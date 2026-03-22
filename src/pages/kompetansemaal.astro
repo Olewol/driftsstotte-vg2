@@ -17,7 +17,7 @@ const grouped = notes.reduce((acc, note) => {
 <BaseLayout title="Kompetansemål">
   <div style="max-width:1140px;margin:0 auto;padding:48px 32px 80px;">
     <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:10px;">Kompetansemål</h1>
-    <p style="font-size:16px;color:var(--text2);margin-bottom:40px;">Alle kompetansemål i faget, med lenkja innhald.</p>
+    <p style="font-size:16px;color:var(--text2);margin-bottom:40px;">Alle kompetansemål i faget, med lenket innhold.</p>
 
     {Object.entries(grouped).map(([km, kmNotes]) => (
       <div style="margin-bottom:28px;padding:20px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;">

@@ -23,7 +23,7 @@ const emneLabels: Record<string, string> = {
     </div>
     <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:10px;">Årsplan — Driftsstøtte</h1>
     <p style="font-size:16px;color:var(--text2);max-width:580px;line-height:1.65;margin-bottom:32px;">
-      Oversikt over emner, kompetansemål og ressursar fordelt over heile skoleåret. Klikk ei veke for å gå til innhaldet.
+      Oversikt over emner, kompetansemål og ressurser fordelt over hele skoleåret. Klikk en uke for å gå til innholdet.
     </p>
 
     <!-- Legend -->
@@ -42,7 +42,7 @@ const emneLabels: Record<string, string> = {
     <!-- Haust -->
     <div style="margin-bottom:48px;">
       <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border);">
-        Haust 2024 — Veke 34–51
+        Høst 2024 — Uke 34–51
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
         {haust.map(v => <WeekCard veke={v as any} />)}
@@ -53,7 +53,7 @@ const emneLabels: Record<string, string> = {
     {vaar.length > 0 && (
       <div>
         <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border);">
-          Vår 2025 — Veke 2–20
+          Vår 2025 — Uke 2–20
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
           {vaar.map(v => <WeekCard veke={v as any} />)}
