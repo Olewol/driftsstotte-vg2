@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Søk">
+  <div style="max-width:860px;margin:0 auto;padding:48px 32px 80px;">
+    <h1 style="font-size:36px;font-weight:800;margin-bottom:10px;">Søk</h1>
+    <p style="font-size:16px;color:var(--text2);margin-bottom:32px;">Søk i alt innhald på sida.</p>
+
+    <div id="search" style="--pagefind-ui-scale:1;--pagefind-ui-primary:var(--accent);--pagefind-ui-text:var(--text);--pagefind-ui-background:var(--bg2);--pagefind-ui-border:var(--border2);--pagefind-ui-tag:var(--bg3);"></div>
+  </div>
+</BaseLayout>
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof PagefindUI !== 'undefined') {
+      new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        resetStyles: false,
+      });
+    }
+  });
+</script>

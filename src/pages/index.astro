@@ -1,17 +1,64 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WeekCard from '../components/WeekCard.astro';
+import { getEmneColor, EMNE_LIST } from '@lib/emneColors';
+import { getEntry } from 'astro:content';
 
+const aarsplan = await getEntry('aarsplan', 'aarsplan');
+const { veker } = aarsplan!.data;
+
+const haust = veker.filter(v => Math.min(...v.uke) >= 34 && Math.min(...v.uke) <= 51);
+const vaar  = veker.filter(v => Math.min(...v.uke) < 34 || Math.min(...v.uke) > 51);
+
+const emneLabels: Record<string, string> = {
+  nettverk: 'Nettverk', sikkerhet: 'Sikkerhet', operativsystem: 'Operativsystem',
+  skripting: 'Skripting', databaser: 'Databaser', 'it-drift': 'IT-drift',
+};
 ---
+<BaseLayout title="Årsplan">
+  <div style="max-width:1140px;margin:0 auto;padding:48px 32px 80px;">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;">
+      Skoleåret 2024–2025
+    </div>
+    <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:10px;">Årsplan — Driftsstøtte</h1>
+    <p style="font-size:16px;color:var(--text2);max-width:580px;line-height:1.65;margin-bottom:32px;">
+      Oversikt over emner, kompetansemål og ressursar fordelt over heile skoleåret. Klikk ei veke for å gå til innhaldet.
+    </p>
+
+    <!-- Legend -->
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:36px;" role="list" aria-label="Emneforklaring">
+      {EMNE_LIST.map(emne => {
+        const { color } = getEmneColor(emne);
+        return (
+          <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text2);" role="listitem">
+            <div style={`width:9px;height:9px;border-radius:50%;background:${color};flex-shrink:0;`}></div>
+            {emneLabels[emne] ?? emne}
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Haust -->
+    <div style="margin-bottom:48px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border);">
+        Haust 2024 — Veke 34–51
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
+        {haust.map(v => <WeekCard veke={v as any} />)}
+      </div>
+    </div>
+
+    <!-- Vår -->
+    {vaar.length > 0 && (
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border);">
+          Vår 2025 — Veke 2–20
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
+          {vaar.map(v => <WeekCard veke={v as any} />)}
+        </div>
+      </div>
+    )}
+  </div>
+</BaseLayout>

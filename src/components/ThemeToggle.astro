@@ -1,0 +1,29 @@
+---
+---
+<button
+  id="themeToggle"
+  class="icon-btn"
+  aria-label="Bytt til lys modus"
+  style="width:38px;height:38px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:background .15s;"
+>🌙</button>
+
+<script>
+  const btn = document.getElementById('themeToggle')!;
+  const html = document.documentElement;
+
+  // Initialise from localStorage or system preference
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = stored ?? (prefersDark ? 'dark' : 'light');
+  html.dataset.theme = theme;
+  btn.textContent = theme === 'dark' ? '🌙' : '☀️';
+  btn.setAttribute('aria-label', theme === 'dark' ? 'Bytt til lys modus' : 'Bytt til mørk modus');
+
+  btn.addEventListener('click', () => {
+    const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    html.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    btn.textContent = next === 'dark' ? '🌙' : '☀️';
+    btn.setAttribute('aria-label', next === 'dark' ? 'Bytt til lys modus' : 'Bytt til mørk modus');
+  });
+</script>

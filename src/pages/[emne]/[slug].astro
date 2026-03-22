@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { slugify } from '@lib/slugify';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('emner', e => e.data.public !== false);
+  return notes.map(note => {
+    const parts = note.id.split('/'); // e.g. "nettverk/tcp-ip-modellen.md"
+    const emne = parts[0];
+    const slug = slugify(parts[1].replace(/\.md$/, ''));
+    return { params: { emne, slug }, props: { note } };
+  });
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver } = note.data;
+---
+<ContentLayout
+  title={title}
+  emne={emne}
+  uke={uke}
+  kompetansemaal={kompetansemaal}
+  relatert={relatert}
+  ressursar={ressursar}
+  oppgaaver={oppgaaver}
+>
+  <Content />
+</ContentLayout>

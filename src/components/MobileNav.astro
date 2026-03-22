@@ -1,0 +1,53 @@
+---
+const links = [
+  { href: '/',               label: 'Årsplan' },
+  { href: '/nettverk',       label: 'Nettverk' },
+  { href: '/sikkerhet',      label: 'Sikkerhet' },
+  { href: '/operativsystem', label: 'Operativsystem' },
+  { href: '/skripting',      label: 'Skripting' },
+  { href: '/kompetansemaal', label: 'Kompetansemål' },
+  { href: '/sok',            label: 'Søk' },
+];
+---
+<button
+  id="hamburger"
+  aria-label="Opne meny"
+  aria-expanded="false"
+  aria-controls="mobileMenu"
+  style="display:none;width:38px;height:38px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-size:18px;align-items:center;justify-content:center;"
+>☰</button>
+
+<div
+  id="mobileMenu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigasjonsmeny"
+  style="display:none;position:fixed;inset:0;background:var(--bg);z-index:200;padding:24px;flex-direction:column;gap:8px;"
+>
+  <button id="closeMenu" aria-label="Lukk meny" style="align-self:flex-end;background:none;border:none;font-size:24px;color:var(--text);cursor:pointer;">✕</button>
+  <input type="search" placeholder="Søk…" style="background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:12px 16px;font-size:16px;color:var(--text);margin-bottom:8px;" />
+  {links.map(l => (
+    <a href={l.href} style="font-size:18px;color:var(--text);padding:12px 0;border-bottom:1px solid var(--border);">{l.label}</a>
+  ))}
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    #hamburger { display: flex !important; }
+  }
+</style>
+
+<script>
+  const hamburger = document.getElementById('hamburger')!;
+  const menu = document.getElementById('mobileMenu')!;
+  const close = document.getElementById('closeMenu')!;
+
+  hamburger.addEventListener('click', () => {
+    menu.style.display = 'flex';
+    hamburger.setAttribute('aria-expanded', 'true');
+  });
+  close.addEventListener('click', () => {
+    menu.style.display = 'none';
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+</script>

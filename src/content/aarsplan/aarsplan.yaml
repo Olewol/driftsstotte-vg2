@@ -1,0 +1,46 @@
+title: "Årsplan 2024–2025"
+skoleaar: "2024-2025"
+veker:
+  - uke: [34, 35]
+    tema: "Introduksjon og grunnleggjande IT"
+    emne: nettverk
+    kompetansemaal: "Orientere seg i fagområdet, utstyr og arbeidsmetodar"
+    notat: []
+    ressurstal: 3
+    oppgavetar: 0
+    type: undervisning
+  - uke: [36, 37]
+    tema: "TCP/IP og OSI-modellen"
+    emne: nettverk
+    kompetansemaal: "Planlegge og konfigurere nettverk med ulike topologiar"
+    notat:
+      - tcp-ip-modellen
+      - osi-modellen
+    ressurstal: 5
+    oppgavetar: 2
+    type: undervisning
+  - uke: [38, 39]
+    tema: "IP-adressering og subnetting"
+    emne: nettverk
+    kompetansemaal: "Konfigurere IP-adressering og subnett i eit nettverk"
+    notat: []
+    ressurstal: 4
+    oppgavetar: 3
+    type: undervisning
+  - uke: [40, 41]
+    tema: "Trusselbilete og sikkerheit"
+    emne: sikkerhet
+    kompetansemaal: "Vurdere risiko og implementere sikkerheitstiltak"
+    notat:
+      - trusselbilete
+    ressurstal: 6
+    oppgavetar: 2
+    type: undervisning
+  - uke: [43]
+    tema: "Haustferie"
+    emne: null
+    kompetansemaal: ""
+    notat: []
+    ressurstal: 0
+    oppgavetar: 0
+    type: ferie

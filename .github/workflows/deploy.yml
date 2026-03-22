@@ -1,0 +1,55 @@
+name: Bygg og deploy til GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Tillat berre eitt deploy om gongen
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    name: Bygg Astro + Pagefind og deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Sjekk ut kode
+        uses: actions/checkout@v4
+
+      - name: Sett opp Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Installer avhengigheiter
+        run: npm ci
+
+      - name: Bygg Astro-sida
+        run: npm run build
+
+      - name: Indekser med Pagefind
+        run: npx pagefind --site dist
+
+      - name: Konfigurer GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Last opp Pages-artefakt
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy til GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

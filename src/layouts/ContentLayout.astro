@@ -1,0 +1,65 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TTSBar from '../components/TTSBar.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { getEmneColor } from '@lib/emneColors';
+import type { Ressurs } from '@lib/types';
+
+interface Props {
+  title: string;
+  emne: string;
+  uke: number[];
+  kompetansemaal: string;
+  relatert: string[];
+  ressursar: Ressurs[];
+  oppgaaver: string[];
+}
+const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver } = Astro.props;
+const { color, bg } = getEmneColor(emne);
+const ukeStr = uke.length > 1 ? `Uke ${uke[0]}–${uke[uke.length - 1]}` : `Uke ${uke[0]}`;
+const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
+---
+<BaseLayout title={title}>
+  <article style="max-width:1140px;margin:0 auto;padding:0 32px 80px;">
+
+    <!-- Header -->
+    <div style="padding:28px 0 22px;border-bottom:1px solid var(--border);">
+      <div style={`display:inline-flex;align-items:center;gap:6px;background:${bg};color:${color};border:1px solid color-mix(in srgb, ${color} 30%, transparent);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;`}>
+        {emneLabel}
+      </div>
+      <h1 style="font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;">{title}</h1>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--text2);">
+        <span>📅 Årsplan:
+          <a href="/" style={`display:inline-block;font-size:12px;background:${bg};color:${color};border:1px solid color-mix(in srgb,${color} 25%,transparent);padding:3px 10px;border-radius:6px;text-decoration:none;margin-left:4px;`}>
+            {ukeStr}
+          </a>
+        </span>
+        {kompetansemaal && <span>🎯 {kompetansemaal}</span>}
+      </div>
+    </div>
+
+    <TTSBar />
+
+    <!-- Two-column body -->
+    <div style="display:grid;grid-template-columns:1fr 260px;gap:0;">
+      <div id="ttsContent" class="prose" style="padding:28px 32px 28px 0;border-right:1px solid var(--border);">
+        <slot />
+      </div>
+      <Sidebar
+        relatert={relatert}
+        emne={emne}
+        uke={uke}
+        ressursar={ressursar}
+        oppgaaver={oppgaaver}
+      />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    article > div:last-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
