@@ -2,13 +2,13 @@
 import type { Ressurs } from '@lib/types';
 
 interface Props {
-  relatert: string[];
+  relatert?: string[];
   emne: string;
-  uke: number[];
-  ressursar: Ressurs[];
-  oppgaaver: string[];
+  uke?: number[];
+  ressursar?: Ressurs[];
+  oppgaaver?: string[];
 }
-const { relatert, emne, uke, ressursar, oppgaaver } = Astro.props;
+const { relatert = [], emne, uke = [], ressursar = [], oppgaaver = [] } = Astro.props;
 
 const ukeStr = uke.length > 1 ? `Uke ${uke[0]}–${uke[uke.length - 1]}` : `Uke ${uke[0]}`;
 
