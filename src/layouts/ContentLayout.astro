@@ -16,7 +16,7 @@ interface Props {
 }
 const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver } = Astro.props;
 const { color, bg } = getEmneColor(emne);
-const ukeStr = uke.length > 1 ? `Uke ${uke[0]}–${uke[uke.length - 1]}` : `Uke ${uke[0]}`;
+const ukeStr = uke.length === 0 ? null : uke.length > 1 ? `Uke ${uke[0]}–${uke[uke.length - 1]}` : `Uke ${uke[0]}`;
 const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
 ---
 <BaseLayout title={title}>
@@ -29,11 +29,11 @@ const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
       </div>
       <h1 style="font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;">{title}</h1>
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--text2);">
-        <span>📅 Årsplan:
+        {ukeStr && <span>📅 Årsplan:
           <a href="/" style={`display:inline-block;font-size:12px;background:${bg};color:${color};border:1px solid color-mix(in srgb,${color} 25%,transparent);padding:3px 10px;border-radius:6px;text-decoration:none;margin-left:4px;`}>
             {ukeStr}
           </a>
-        </span>
+        </span>}
         {kompetansemaal && <span>🎯 {kompetansemaal}</span>}
       </div>
     </div>
