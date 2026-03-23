@@ -5,9 +5,11 @@ kompetansemaal:
   - km-09
 kilder:
   - ndla
+  - https://learn.microsoft.com/nb-no/powershell/scripting/overview
 tags: []
 flashcards: true
 public: true
+notebooklm: true
 ---
 
 ## Introduksjon
@@ -15,6 +17,8 @@ public: true
 Å skrive et skript er bare halve jobben. Det andre halvparten er å sørge for at skriptet faktisk kjøres — til riktig tid, på riktig maskin, uten at noen trenger å tenke på det. Det er her **automatisering** virkelig viser sin verdi.
 
 I denne artikkelen lærer vi to grunnleggende mekanismer for å planlegge og kjøre skript automatisk: **Windows Task Scheduler** for Windows og **cron** for Linux. Vi ser også på **Infrastructure as Code (IaC)** — neste steg etter skripting, der hele IT-infrastrukturen beskrives i kode.
+
+Automatisering bygger direkte på ferdighetene fra [[bash-grunnleggende]] og [[powershell-grunnleggende]]. I større driftsmiljøer henger automatisering tett sammen med [[backup-og-gjenoppretting]], [[serverroller]] og [[skytjenester]].
 
 ---
 
@@ -282,6 +286,20 @@ resource "azurerm_virtual_machine" "webserver" {
 
 IaC er et avansert emne som bygger direkte på skripting-kunnskapen fra dette emnet. Bash og PowerShell er ofte brukt *inne i* IaC-verktøy for spesifikke oppgaver.
 
+#### Idempotens — et sentralt prinsipp
+
+Et viktig begrep i automatisering og IaC er **idempotens**: en operasjon er idempotent hvis den kan kjøres mange ganger uten at resultatet endrer seg etter den første vellykkede kjøringen. Ansible og Terraform er idempotente — de sjekker alltid gjeldende tilstand mot ønsket tilstand og gjør bare det som faktisk trengs. Et enkelt Bash-skript som kjøres to ganger kan derimot opprette duplikater eller overskrive data. Design egne skript med idempotens i tankene (f.eks. sjekk om mappen allerede finnes før du oppretter den).
+
+#### Sikker håndtering av hemmeligheter i automatiserte skript
+
+Skript som kjøres automatisk trenger ofte passord, API-nøkler eller sertifikater. **Lagre aldri hemmeligheter direkte i skriptkoden.** Gode alternativer:
+
+- **Miljøvariabler** — Les hemmeligheten fra miljøet i stedet for å hardkode den.
+- **Windows Credential Manager / Secret Store** — PowerShell-modul `Microsoft.PowerShell.SecretManagement`.
+- **Vault-løsninger** — HashiCorp Vault eller Azure Key Vault for produksjonsmiljøer.
+
+Dette er spesielt viktig når skript lagres i [[dokumentasjon-og-planlegging]] eller versjonskontrollsystemer som Git.
+
 ---
 
 ## Eksempel / lab
@@ -372,6 +390,68 @@ schtasks /create /tn "DagligBackup" /tr "powershell.exe -NonInteractive -File C:
 
 ---
 
+## Study guide
+
+### Automatisering – planlagte oppgaver og IaC
+
+Automatisering handler om å la systemer utføre oppgaver av seg selv — til riktig tid, med riktige rettigheter, uten menneskelig inngripen.
+
+**To plattformer for planlegging:**
+
+| | Windows | Linux |
+|---|---|---|
+| Verktøy | Task Scheduler / `schtasks` | cron / `crontab -e` |
+| Syntaks | GUI eller kommandolinje | 5 tidsfelt + kommando |
+| Eksempel | `schtasks /create /sc DAILY /st 02:00` | `0 2 * * * /sti/til/skript.sh` |
+
+**Cron-syntaks huskeregel** (5 felt): `minutt time dag-i-mnd måned dag-i-uke`
+- `*` = alle verdier, `*/5` = hvert femte, `1-5` = mandag–fredag, `@daily` = snarvei for midnatt hver dag.
+- Alltid absolutte stier i cron — PATH-miljøet er minimalt.
+- Logg alltid output: `>> /var/log/skript.log 2>&1`
+
+**Task Scheduler — tre deler i en oppgave:**
+1. **Trigger** — når (tid, hendelse, pålogging)
+2. **Handling** — hva (program, skript)
+3. **Betingelser** — tilleggskrav (strøm, nettverk)
+
+**Fra skripting til IaC:**
+- Skripting er *imperativt*: "gjør A, B, C i rekkefølge."
+- IaC er *deklarativt*: "systemet skal se slik ut — verktøyet ordner resten."
+- Ansible (YAML-playbooks via SSH) → konfigurasjonsstyring
+- Terraform (HCL) → skyinfrastruktur
+- PowerShell DSC → Windows-tilstandsstyring
+
+**Nøkkelprinsipper:** idempotens (trygt å kjøre flere ganger), sikker hemmelighets-håndtering (aldri passord i kode), versjonskontroll av skript.
+
+Koble til [[backup-og-gjenoppretting]] for eksempler på hva som automatiseres, og [[skytjenester]] for sky-basert IaC.
+
+---
+
+## FAQ
+
+**Hva skjer hvis en cron-jobb feiler — får jeg beskjed?**
+Som standard sender cron feilmeldingen på e-post til systembrukeren. I praksis er det bedre å logge eksplisitt: `0 2 * * * /sti/skript.sh >> /var/log/backup.log 2>&1`. Da kan du sjekke loggen manuelt eller med et overvåkingsverktøy.
+
+**Kan jeg kjøre Task Scheduler-oppgaver uten å være logget inn?**
+Ja, hvis du setter brukerkontoen til `SYSTEM` eller en servicekonto og krysser av for "Run whether user is logged on or not". Da kjøres oppgaven i bakgrunnen uavhengig av påloggingsstatus.
+
+**Hvordan tester jeg en cron-jobb uten å vente til riktig tidspunkt?**
+Kjør skriptet manuelt direkte i terminalen med samme bruker som cron ville brukt: `sudo -u www-data /sti/til/skript.sh`. Dette simulerer cron-miljøet godt. For Task Scheduler: `schtasks /run /tn "OppgaveNavn"`.
+
+**Hva er idempotens og hvorfor er det viktig i automatisering?**
+Idempotens betyr at en operasjon kan kjøres mange ganger uten at resultatet endrer seg etter første vellykkede kjøring. Et skript som alltid sjekker `if [ ! -d "$MAPPE" ]; then mkdir "$MAPPE"; fi` er idempotent — det oppretter mappen kun hvis den ikke finnes. Dette er avgjørende for pålitelig automatisering.
+
+**Hva er forskjellen på Ansible og Terraform?**
+Ansible brukes primært til konfigurasjonsstyring — installere pakker, starte tjenester, redigere konfigurasjonsfiler på eksisterende servere. Terraform brukes primært til å *provisjonere* infrastruktur — opprette VM-er, nettverk og databaser i skyen. I praksis brukes de ofte sammen: Terraform oppretter infrastrukturen, Ansible konfigurerer den.
+
+**Kan et PowerShell-skript i Task Scheduler kjøre uten å åpne et vindu?**
+Ja, legg til `-WindowStyle Hidden` i argumentene: `-NonInteractive -WindowStyle Hidden -File C:\Scripts\skript.ps1`. Da kjøres skriptet i bakgrunnen uten synlig vindu.
+
+**Hvorfor bør hemmeligheter aldri hardkodes i skript?**
+Skript lagres gjerne i versjonskontroll (Git), loggfiler eller deles med kolleger. Hardkodede passord eller API-nøkler eksponeres da ukontrollert. Bruk miljøvariabler, Windows Credential Manager eller en dedikert vault-løsning for sensitiv informasjon.
+
+---
+
 ## Quiz
 
 <details><summary>Spørsmål 1: Hva er de tre hoveddelene i en Task Scheduler-oppgave?</summary>
@@ -420,6 +500,10 @@ Terraform :: Sky-agnostisk IaC-verktøy (HashiCorp) som bruker HCL for å provis
 Deklarativ konfigurasjon :: Beskriver ønsket sluttilstand — verktøyet bestemmer selv hvilke steg som trengs
 `2>&1` :: Shell-omdirigering som sender stderr til samme sted som stdout
 `Register-ScheduledTask` :: PowerShell-cmdlet som registrerer en planlagt oppgave i Windows Task Scheduler
+Idempotens :: Prinsipp i automatisering der en operasjon kan kjøres mange ganger uten at resultatet endrer seg etter første vellykkede kjøring
+Planlagte oppgaver :: Bruk av Task Scheduler (Windows) eller cron (Linux) for å kjøre skript automatisk på gitte tidspunkter eller hendelser
+Imperativ skripting :: Skript som beskriver handlingene som skal utføres steg for steg ("gjør A, så B")
+Deklarativ IaC :: Konfigurasjon som beskriver ønsket sluttilstand, ikke fremgangsmåten for å nå den
 
 ---
 
@@ -429,3 +513,4 @@ Deklarativ konfigurasjon :: Beskriver ønsket sluttilstand — verktøyet bestem
 - [Microsoft Learn – schtasks kommandoreferanse](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks)
 - [man7.org – crontab(5)](https://man7.org/linux/man-pages/man5/crontab.5.html)
 - [IBM – Hva er Infrastructure as Code?](https://www.ibm.com/topics/infrastructure-as-code)
+- [Microsoft Learn – PowerShell på norsk](https://learn.microsoft.com/nb-no/powershell/scripting/overview)

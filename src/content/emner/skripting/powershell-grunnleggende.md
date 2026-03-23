@@ -5,9 +5,13 @@ kompetansemaal:
   - km-09
 kilder:
   - ndla
+  - https://ndla.no/subject:1:7852b71f-506e-41a4-849c-f9f30b910488/topic:1:43d5483f-0f66-4c4f-a492-c94488b0a99c/resource:155075
+  - https://learn.microsoft.com/nb-no/powershell/scripting/overview
 tags: []
 flashcards: true
 public: true
+video: https://www.youtube.com/watch?v=FmJgD-r5U-w
+notebooklm: true
 ---
 
 ## Introduksjon
@@ -15,6 +19,8 @@ public: true
 PowerShell er Microsofts svar på Bash — et kraftig skallspråk og skriptmiljø innebygd i Windows. Det skiller seg fundamentalt fra Bash ved at det opererer med **.NET-objekter** i stedet for ren tekst. Det betyr at når du henter informasjon om en tjeneste, får du tilbake et objekt med egenskaper som `Name`, `Status` og `StartType` — ikke bare en tekstlinje du må tolke selv.
 
 Siden PowerShell 7 er det også tilgjengelig på Linux og macOS, men det er primært på Windows det er uunnværlig: Active Directory, Azure, Task Scheduler og Windows-administrasjon generelt styres effektivt via PowerShell.
+
+PowerShell er den primære plattformen for å administrere [[active-directory]] og [[bruker-og-tilgangsstyring]] i Windows-miljøer. Se [[automatisering]] for å lære hvordan du planlegger PowerShell-skript, og [[bash-grunnleggende]] for Linux-siden av skripting.
 
 ---
 
@@ -189,6 +195,34 @@ Install-Module -Name PSReadLine -Scope CurrentUser
 
 Mange Windows-funksjoner (Active Directory, Exchange, Azure) leveres som PowerShell-moduler.
 
+### Write-Host vs Write-Output
+
+En vanlig forvirringskilde for nybegynnere er forskjellen på disse to:
+
+| Cmdlet | Hva den gjør |
+|---|---|
+| `Write-Host` | Skriver direkte til konsollet — **ikke** til pipelinen. Kan ikke fanges av andre cmdlets. |
+| `Write-Output` | Sender objektet til pipelinen. Andre cmdlets kan bruke det videre. |
+
+Eksempel:
+
+```powershell
+# Write-Host: vises kun på skjermen
+Write-Host "Dette havner ikke i pipeline"
+
+# Write-Output: kan brukes videre i pipeline
+Write-Output "Dette kan pipes videre" | Out-File "logg.txt"
+
+# I funksjoner: returner med Write-Output (eller bare verdien direkte)
+function Get-Dobling {
+    param([int]$Tall)
+    Write-Output ($Tall * 2)
+}
+$resultat = Get-Dobling -Tall 5   # $resultat = 10
+```
+
+Som tommelfingerregel: bruk `Write-Host` kun for meldinger til brukeren på skjermen. Bruk `Write-Output` (eller returner verdien direkte) når du vil at funksjonen skal produsere data til resten av skriptet.
+
 ### Feilhåndtering
 
 PowerShell bruker `try/catch` for strukturert feilhåndtering:
@@ -275,6 +309,56 @@ catch {
 
 ---
 
+## Study guide
+
+### PowerShell – grunnleggende skripting
+
+PowerShell skiller seg fra tradisjonelle skallspråk ved å jobbe med **.NET-objekter** i stedet for ren tekst. Dette gjør det enklere å filtrere, sortere og eksportere data uten å parse tekststrenger.
+
+**Kjernekonsepter:**
+
+1. **Cmdlets** følger alltid mønsteret `Verb-Substantiv` (f.eks. `Get-Service`, `Stop-Process`). Dette gjør det lett å gjette kommandoer.
+2. **Pipelinen (`|`)** sender objekter videre — ikke tekst. Bruk `Where-Object` for filtrering, `Select-Object` for å velge egenskaper, `Sort-Object` for sortering.
+3. **Variabler** starter alltid med `$`. Enkelthermetegn er bokstavelige, dobbelthermetegn ekspanderer variabler.
+4. **Arrays** (`@(...)`) og **hashtables** (`@{...}`) er grunnleggende datastrukturer for å samle og organisere data.
+5. **Funksjoner** bruker `param`-blokk for parametere og bør følge verb-substantiv-konvensjonen.
+6. **Moduler** utvider PowerShell med nye cmdlets — `Import-Module ActiveDirectory` for AD-administrasjon.
+7. **Feilhåndtering** med `try/catch` krever `-ErrorAction Stop` for å fange feil fra cmdlets.
+
+**Viktige skillelinjer:**
+- `Write-Host` viser til skjermen; `Write-Output` sender til pipeline — bruk riktig i funksjoner.
+- Execution Policy styrer hvilke skript som kan kjøres; `RemoteSigned` er et godt valg i driftsmiljøer.
+- `Get-Member` er din beste venn: viser alle egenskaper og metoder for et objekt i pipelinen.
+
+**Typiske driftsoppgaver med PowerShell:** brukeradministrasjon i [[active-directory]], eksport av brukerlister, overvåking av tjenester, og filhåndtering. Kombiner med [[automatisering]] for å planlegge skriptene.
+
+---
+
+## FAQ
+
+**Hva er den viktigste forskjellen mellom PowerShell og ledetekst (cmd.exe)?**
+Ledetekst kjører gamle DOS-kommandoer og arbeider kun med tekst. PowerShell kjører cmdlets og arbeider med .NET-objekter — det betyr strukturerte data med egenskaper du kan filtrere og sortere direkte, uten å tolke tekststrenger manuelt.
+
+**Hvorfor får jeg feilmeldingen "running scripts is disabled on this system"?**
+Execution Policy er satt til `Restricted` (standard på Windows-klienter). Kjør `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` for å tillate lokale skript. Dette er en sikkerhetsinnstilling som hindrer at ondsinnede skript kjøres automatisk.
+
+**Hva gjør `Get-Member` og hvorfor er den nyttig?**
+`Get-Member` viser alle egenskaper (Property) og metoder (Method) på objektene som sendes inn via pipeline. Skriv f.eks. `Get-Service | Get-Member` for å se hva slags data du kan jobbe med. Uunnværlig for å oppdage hvilke egenskaper som finnes på et ukjent objekt.
+
+**Hva er forskjellen mellom `Select-Object` og `Where-Object`?**
+`Select-Object` velger hvilke *kolonner* (egenskaper) som vises — brukes for å redusere datamengden. `Where-Object` filtrerer hvilke *rader* (objekter) som slipper gjennom basert på en betingelse. De brukes gjerne sammen: `Get-Service | Where-Object Status -EQ "Running" | Select-Object Name, Status`.
+
+**Kan jeg bruke PowerShell på Linux?**
+Ja, PowerShell 7+ er åpen kildekode og kan installeres på Linux og macOS. Men mange Windows-spesifikke cmdlets (som `Get-LocalUser` og `Import-Module ActiveDirectory`) er kun tilgjengelige på Windows. For Linux-skripting er [[bash-grunnleggende]] mer naturlig.
+
+**Hva betyr `[Parameter(Mandatory)]` i en funksjon?**
+Det er et attributt som gjør parameteren obligatorisk. Hvis brukeren kaller funksjonen uten å gi den parameteren, stopper PowerShell og spør om verdien interaktivt. Dette er bedre enn å la skriptet feile med en kryptisk feilmelding.
+
+**Hva er ISE og bør jeg bruke det?**
+ISE (Integrated Scripting Environment) er et innebygd grafisk verktøy for å skrive og teste PowerShell-skript. For nyere prosjekter anbefales heller **VS Code** med PowerShell-utvidelsen — den er raskere, har bedre feilsøking og støtter PowerShell 7+.
+
+---
+
 ## Quiz
 
 <details><summary>Spørsmål 1: Hva er den fundamentale forskjellen mellom PowerShell-pipeline og Bash-pipeline?</summary>
@@ -323,6 +407,9 @@ Cmdlet :: Grunnleggende kommandoenhet i PowerShell, følger Verb-Substantiv-møn
 `-ErrorAction Stop` :: Gjør at en cmdlet kaster et unntak ved feil, slik at `catch` kan fange det
 Execution Policy :: Sikkerhetspolitikk som bestemmer hvilke PowerShell-skript som kan kjøres
 `$env:COMPUTERNAME` :: Automatisk miljøvariabel med maskinens navn
+`Write-Host` :: Skriver direkte til konsollet — sendes ikke til pipelinen og kan ikke fanges av andre cmdlets
+`Write-Output` :: Sender verdien til pipelinen slik at den kan bearbeides videre av andre cmdlets
+ISE (Integrated Scripting Environment) :: Innebygd grafisk verktøy i Windows for å skrive og teste PowerShell-skript
 
 ---
 
@@ -332,3 +419,6 @@ Execution Policy :: Sikkerhetspolitikk som bestemmer hvilke PowerShell-skript so
 - [Microsoft Learn – PowerShell 101: Pipeline](https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/04-pipelines)
 - [Microsoft Learn – PowerShell 101: Funksjoner](https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions)
 - [SS64 – PowerShell cmdlet-referanse](https://ss64.com/ps/)
+- [Microsoft Learn – PowerShell på norsk (oversikt)](https://learn.microsoft.com/nb-no/powershell/scripting/overview)
+- [NDLA – PowerShell og skripting for VG2 IT](https://ndla.no/subject:1:7852b71f-506e-41a4-849c-f9f30b910488/topic:1:43d5483f-0f66-4c4f-a492-c94488b0a99c/resource:155075)
+- [YouTube – PowerShell på norsk – Grunnleggende (norskADMIN, ~12 min)](https://www.youtube.com/watch?v=FmJgD-r5U-w)

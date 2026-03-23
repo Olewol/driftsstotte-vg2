@@ -5,16 +5,19 @@ kompetansemaal:
   - km-01
 kilder:
   - ndla
+  - https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/
+video: https://www.youtube.com/watch?v=iL8Lp8w0UIs
 tags: []
 flashcards: true
 public: true
+notebooklm: true
 ---
 
 ## Introduksjon
 
 Data er en av de mest verdifulle ressursene en virksomhet har. Uten fungerende backup kan én hendelse – en harddisk som feiler, et ransomware-angrep eller en brann – føre til permanent tap av kritisk informasjon.
 
-Backup handler ikke bare om å ta kopier. Det handler om å ha en strategi som sikrer at data kan gjenopprettes raskt nok og med lavt nok datatap til at virksomheten overlever hendelsen. En backup er kun verdifull hvis den faktisk kan gjenopprettes.
+Backup handler ikke bare om å ta kopier. Det handler om å ha en strategi som sikrer at data kan gjenopprettes raskt nok og med lavt nok datatap til at virksomheten overlever hendelsen. En backup er kun verdifull hvis den faktisk kan gjenopprettes. I tillegg bør backup-strategien inkludere systemkonfigurasjoner og master-images, ikke bare rådata – slik at hele infrastrukturen kan gjenopprettes, ikke bare filene.
 
 ---
 
@@ -118,6 +121,18 @@ Amazon S3 brukes for aktiv backup-lagring; Glacier er et billigere arkivlagrings
 
 ---
 
+### Automatisering av backup
+
+Manuell backup er utsatt for menneskelig svikt – den som er syk den dagen backupen skal kjøres, glemmer det, eller hopper over det «for én gangs skyld». Automatiserte backup-rutiner eliminerer denne risikoen.
+
+Gode praksiser for automatisert backup:
+- Planlegg backup-jobber utenfor arbeidstid (f.eks. kl. 02:00) for lavt påvirkning på systemer
+- Konfigurer automatisk varsling ved feil i backup-jobben
+- Bruk skriptbasert backup (f.eks. [[powershell-grunnleggende]]) for tilpassede behov
+- Logg alle backup-resultater og oppbevar loggene separat fra backup-systemet
+
+---
+
 ### Gjenopprettingstesting
 
 En backup som aldri er testet, er en backup man ikke kan stole på. Gjenopprettingstesting bør:
@@ -139,7 +154,7 @@ Disaster Recovery (DR) er en bredere plan for hva som skjer hvis store deler av 
 - **Warm standby** – et delvis ferdigkonfigurert miljø som kan aktiveres raskt.
 - **Hot standby / active-passive** – et fullstendig parallelt miljø som alltid er klart. Laveste RTO, men dyrest.
 
-DR-planen skal dokumenteres og øves regelmessig.
+DR-planen skal dokumenteres og øves regelmessig. Se [[dokumentasjon-og-planlegging]] for maler og prosedyredokumentasjon.
 
 ---
 
@@ -153,6 +168,59 @@ Gitt: En skole med 500 elever, karaktersystem, filserver og e-post.
 2. Velg backup-strategi (full/inkrementell/differensiell) og frekvens for hvert system.
 3. Beskriv hvor backupene lagres (lokalt, NAS, sky) – vurder 3-2-1-regelen.
 4. Lag en enkel gjenopprettingsprosedyre for filserveren (steg-for-steg).
+
+**Tilleggsoppgave: Vurder hva som inngår i backup**
+
+Diskuter: Bør en backup kun inneholde datafiler, eller bør den også inkludere systemkonfigurasjon, brukerlister og nettverksinnstillinger? Hva er fordelen med et fullstendig system-image kontra en fil-for-fil-backup?
+
+---
+
+## Study guide
+
+### Kjerneinnhold
+
+Backup og gjenoppretting handler om å sikre at data kan gjenopprettes ved tap eller feil – og at dette faktisk fungerer i praksis.
+
+**3-2-1-regelen (og 3-2-1-1-0):**
+- 3 kopier, 2 medier, 1 offsite
+- + 1 immutable/air-gapped, + 0 feil i testing
+- Beskytter mot fysiske hendelser OG ransomware
+
+**Backupstrategier:**
+- Full: størst, enklest å gjenopprette
+- Inkrementell: minst, raskest å kjøre, kompleks å gjenopprette
+- Differensiell: midt imellom – enkel gjenoppretting (full + én diff)
+
+**RPO og RTO:**
+- RPO = maks akseptabelt datatap i tid (bestemmer backup-frekvens)
+- RTO = maks akseptabel nedetid (bestemmer krav til gjenopprettingshastighet)
+
+**DR-strategier:**
+- Cold standby (billigst, lengst RTO) → Warm standby → Hot standby (dyrest, korteste RTO)
+
+**Nøkkelprinsipp:** Backup som ikke testes jevnlig er ikke pålitelig. Test, dokumenter, repeter.
+
+---
+
+## FAQ
+
+**Hva er forskjellen på backup og archive?**
+Backup er kopier av aktive data som du vil kunne gjenopprette raskt. Archive (arkiv) er data som ikke lenger er i aktiv bruk, men som må bevares over lang tid (f.eks. for lovkrav). AWS Glacier er et arkivlagringsprodukt – det er ikke egnet som primær backup.
+
+**Kan vi bruke RAID som backup?**
+Nei. RAID beskytter mot diskfeil, ikke mot feil sletting, ransomware eller brann. RAID er redundans, ikke backup. Begge deler trengs i en komplett strategi.
+
+**Hva er en immutable backup i praksis?**
+Det er backup-data som er låst av systemet slik at ingen kan endre eller slette den i en definert periode (f.eks. 30 dager). AWS S3 Object Lock og Azure Immutable Blob Storage er eksempler. Selv om en ransomware-angriper får tilgang til backup-systemet, kan de ikke slette eller kryptere immutable data.
+
+**Hva er air-gap og er det praktisk i en skole?**
+Air-gap betyr at backup-mediet er fysisk frakoblet nettverket. En offline harddisk eller et tapemedium i et annet rom er air-gapped. Det er praktisk og rimelig for skoler – men krever rutiner for regelmessig oppdatering.
+
+**Hvor ofte bør vi teste backup?**
+Minimum kvartalsvis for fullstendig gjenopprettingstest. Mange velger månedlig for kritiske systemer. Viktigst er at testen faktisk verifiserer at systemet fungerer etter gjenoppretting – ikke bare at filene er tilgjengelige.
+
+**Hva er forskjellen på RPO og RTO med et eksempel?**
+RPO: "Vi tåler å miste maks 4 timers data." – Backup må kjøres minst hvert 4. time. RTO: "Systemet må være oppe igjen innen 2 timer." – Gjenopprettingsprosessen og infrastrukturen må dimensjoneres for dette. Et karaktersystem for en skole kan ha RPO 24t og RTO 8t; et nettbanksystem kan ha RPO 0 (ingen tap) og RTO 15 min.
 
 ---
 
@@ -212,11 +280,19 @@ Disaster Recovery (DR) :: Helhetlig plan for å gjenopprette IT-systemer etter e
 
 Veeam :: Ledende backup-programvare for virtualiserte miljøer. Støtter VMware, Hyper-V og skybackup.
 
+Cold standby :: DR-strategi der backup-infrastruktur settes opp manuelt ved behov. Billigst, lengst RTO.
+
+Hot standby :: DR-strategi med fullstendig parallelt miljø klart hele tiden. Kortest RTO, dyrest.
+
+System-image :: Komplett kopi av et operativsystem med konfigurasjon og programvare. Raskere totalrestaurering enn fil-for-fil.
+
 ---
 
 ## Ressurser
 
 - [Veeam: 3-2-1 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html)
 - [Microsoft Azure Well-Architected: Disaster Recovery](https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery)
+- [NSM: Sikre og gjenopprette data](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/)
+- [YouTube: 3-2-1-regelen for backup – NetNordic](https://www.youtube.com/watch?v=iL8Lp8w0UIs)
 - [[driftsarkitektur]]
 - [[dokumentasjon-og-planlegging]]

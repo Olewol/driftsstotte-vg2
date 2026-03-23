@@ -6,6 +6,9 @@ kompetansemaal:
 kilder:
   - ndla
   - datatilsynet
+  - https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/
+video: https://www.youtube.com/watch?v=u6p_G7w89Uo
+notebooklm: true
 tags: []
 flashcards: true
 public: true
@@ -16,6 +19,8 @@ public: true
 Personvern handler om enkeltmenneskets rett til å kontrollere informasjon om seg selv. I vår digitale hverdag – der apper, tjenester og virksomheter samler inn enorme mengder data om oss – er personvern både en grunnleggende rettighet og et juridisk krav.
 
 I EU og Norge reguleres personvern av **GDPR** (General Data Protection Regulation), en EU-forordning som trådte i kraft i mai 2018. GDPR gjelder i Norge gjennom EØS-avtalen og er gjennomført i norsk rett via **personopplysningsloven**. For deg som jobber i IT-drift er personvern ikke noe juridisk avdeling håndterer alene – tekniske valg som databasestruktur, tilgangskontroll, logging og backup har direkte personvernkonsekvenser.
+
+Som IT-drifter vil du møte personvern i sammenheng med [[kryptering]] (GDPR krever kryptering av personopplysninger), [[bruker-og-tilgangsstyring]] (hvem har tilgang til persondata?) og [[risikoanalyse]] (GDPR art. 32 krever risikovurdering som grunnlag for sikkerhetstiltak). Personvern er ikke isolert juss – det er teknisk praksis.
 
 ---
 
@@ -78,6 +83,19 @@ Praktiske eksempler:
 - Automatisk slette data etter en fastsatt periode (lagringsbegrensning)
 - Pseudonymisering: erstatte direkte identifikatorer med pseudonymer i testdatabaser
 
+Privacy by Design er søsterprinsippet til Security by Design – begge handler om at sikkerhet (og personvern) er et designkrav, ikke en ettertanke. Se [[it-losninger-med-sikkerhet]] for Security by Design i bredere kontekst.
+
+---
+
+### Behandlingsansvarlig og databehandler
+
+En nøkkel distinksjon i GDPR er rollene i behandlingskjeden:
+
+- **Behandlingsansvarlig:** Den virksomheten eller personen som bestemmer formålet med behandlingen av personopplysninger og hvilke verktøy som skal brukes. Det er behandlingsansvarlig som har det overordnede juridiske ansvaret.
+- **Databehandler:** En ekstern part (f.eks. en skytjeneste) som behandler personopplysninger på vegne av den behandlingsansvarlige.
+
+Denne distinksjonen er avgjørende for hvem som har ansvar hvis noe går galt, og den styrer hvilke avtaler som kreves mellom partene.
+
 ---
 
 ### Personvernombud (DPO)
@@ -97,6 +115,8 @@ Når en virksomhet bruker en tredjepart til å behandle personopplysninger på v
 
 Eksempel: En norsk skole bruker Microsoft 365. Skolen er da **behandlingsansvarlig**, Microsoft er **databehandler**, og det må foreligge en databehandleravtale.
 
+En viktig praktisk oppgave for IT-ansvarlige er å ha oversikt over alle underleverandører og skytjenester som behandler personopplysninger på vegne av virksomheten, og sikre at gyldige databehandleravtaler er på plass for alle.
+
 ---
 
 ### Brudd på personvern og varslingsplikten
@@ -111,6 +131,8 @@ Brudd med risiko for de registrerte skal varsles til Datatilsynet innen **72 tim
 - Tiltak som er iverksatt
 
 **GDPR art. 34:** Brudd med høy risiko for de registrerte skal også varsles direkte til de berørte personene uten ubegrunnet opphold.
+
+Avvikshåndtering – de rutinene som håndterer oppdagelse, stopp og rapportering av brudd – er et krav GDPR stiller til alle virksomheter. IT-driftere er ofte de første som oppdager et brudd.
 
 ---
 
@@ -171,6 +193,58 @@ Vurder følgende:
 
 ---
 
+## Study guide
+
+### Personvern og GDPR – kjerneinnhold
+
+**Hva er GDPR?**
+GDPR er EUs personvernforordning, gjeldende i Norge via EØS. Den gir enkeltpersoner rettigheter over sine personopplysninger og stiller krav til alle virksomheter som behandler slike data. Datatilsynet er norsk tilsynsmyndighet.
+
+**De 7 prinsippene (GDPR art. 5):**
+Lovlighet/rettferdighet/åpenhet, formålsbegrensning, dataminimering, riktighet, lagringsbegrensning, integritet/konfidensialitet, ansvarlighet. Alle er obligatoriske.
+
+**Behandlingsgrunnlag (GDPR art. 6):**
+Du trenger alltid et grunnlag for å behandle personopplysninger: samtykke, avtale, rettslig plikt, vitale interesser, allmenn interesse eller berettiget interesse. Uten grunnlag er behandlingen ulovlig.
+
+**Registrertes rettigheter:**
+Innsyn, retting, sletting («rett til å bli glemt»), portabilitet, innsigelse og begrensning. Virksomheter plikter å oppfylle disse rettighetene innen fastsatte frister.
+
+**Privacy by Design:**
+Personvern integreres fra starten av systemutvikling – ikke legges på etterpå. Kryptering, dataminimering, automatisk sletting og tilgangskontroll er tekniske tiltak som implementeres fra dag én.
+
+**72-timers-regelen:**
+Personvernbrudd med risiko for de registrerte skal varsles til Datatilsynet innen 72 timer. Høyrisiko-brudd varsles også direkte til de berørte.
+
+**Sanksjoner:**
+Inntil 20 millioner euro eller 4 % av global årsomsetning for alvorlige brudd. Personvern er ikke bare etisk – det er et lovkrav med dramatiske konsekvenser ved brudd.
+
+---
+
+## FAQ
+
+**Hva er forskjellen mellom behandlingsansvarlig og databehandler?**
+Behandlingsansvarlig bestemmer formålet med behandlingen og har det overordnede juridiske ansvaret. Databehandler (f.eks. en skytjeneste) behandler data på vegne av den behandlingsansvarlige etter instruksjoner. En skole er behandlingsansvarlig; Microsoft er databehandler for Microsoft 365.
+
+**Må man alltid innhente samtykke for å behandle personopplysninger?**
+Nei. Samtykke er bare ett av seks behandlingsgrunnlag. En arbeidsgiver trenger ikke samtykke for å behandle lønnsinformasjon – det er nødvendig for å oppfylle en avtale. Mange offentlige organer behandler personopplysninger basert på rettslig plikt.
+
+**Hva er en DPIA?**
+DPIA (Data Protection Impact Assessment) er en personvernkonsekvensvurdering som kreves av GDPR art. 35 når en behandling medfører høy risiko for enkeltpersoner. Eksempler: systematisk overvåking, behandling av biometriske data, eller ny teknologi med ukjente personvernkonsekvenser.
+
+**Hva er pseudonymisering og anonymisering?**
+Pseudonymisering erstatter direkte identifikatorer (navn, personnummer) med et pseudonym – data kan fortsatt kobles tilbake til personen med tilleggsinformasjon. Anonymisering fjerner all mulighet for identifikasjon – data faller da utenfor GDPR. Pseudonymisering er et GDPR-tiltak; anonymisering fjerner GDPR-kravene.
+
+**Hva betyr «rett til å bli glemt» i praksis?**
+Enkeltpersoner kan kreve at virksomheter sletter personopplysninger om dem når dataene ikke lenger er nødvendige, samtykket trekkes tilbake, eller det ikke finnes annet behandlingsgrunnlag. Retten er ikke absolutt – den kan overstyres av lovpålagt oppbevaringsplikt (f.eks. regnskapsdata).
+
+**Hva må varslet til Datatilsynet inneholde?**
+Beskrivelse av bruddet, kategorier og omtrentlig antall berørte personer og personopplysninger, mulige konsekvenser for de registrerte, og tiltak som er iverksatt for å håndtere bruddet og begrense skaden.
+
+**Hvordan skiller GDPR mellom normale og sensitive personopplysninger?**
+GDPR art. 9 definerer spesielle kategorier (sensitive data): helseopplysninger, biometriske data, genetiske data, etnisk opprinnelse, politisk overbevisning, religiøs overbevisning, fagforeningsmedlemskap og seksuelle forhold. For disse kreves et strengere grunnlag og ytterligere sikkerhetstiltak.
+
+---
+
 ## Quiz
 
 <details><summary>Spørsmål 1: Hva er de sju personvernprinsippene i GDPR artikkel 5?</summary>
@@ -217,6 +291,8 @@ Datatilsynet :: Norsk tilsynsmyndighet for personvern. Håndhever GDPR og person
 DPO :: Data Protection Officer / personvernombud – obligatorisk for offentlige organer og visse private virksomheter
 Rett til å bli glemt :: Retten til å kreve sletting av egne personopplysninger når de ikke lenger er nødvendige (GDPR art. 17)
 Databehandleravtale :: Avtale (GDPR art. 28) som regulerer hvordan en tredjepart behandler personopplysninger på vegne av virksomheten
+Behandlingsansvarlig :: Den virksomheten som bestemmer formål og midler for behandlingen av personopplysninger og har det overordnede juridiske ansvaret
+Avvikshåndtering :: Rutiner for å oppdage, stoppe og rapportere brudd på personopplysningssikkerheten til Datatilsynet og berørte
 
 ---
 
@@ -227,3 +303,5 @@ Databehandleravtale :: Avtale (GDPR art. 28) som regulerer hvordan en tredjepart
 - [dubestemmer.no – Personvern for unge](https://www.dubestemmer.no)
 - [slettmeg.no – Hjelp til å slette innhold på nett](https://www.slettmeg.no)
 - [NDLA – Innebygd personvern](https://ndla.no)
+- [Datatilsynet – Virksomhetenes plikter (fullstendig oversikt)](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/)
+- [YouTube: Personvern og GDPR – hva betyr det for deg? (Simployer, 10 min)](https://www.youtube.com/watch?v=u6p_G7w89Uo)

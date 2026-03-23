@@ -5,9 +5,12 @@ kompetansemaal:
   - km-05
 kilder:
   - ndla
+  - https://snl.no/protokoll_-_it
 tags: [protokoller, http, ftp, ssh, smtp, dns, porter, tcp, udp]
 flashcards: true
 public: true
+video: https://www.youtube.com/watch?v=uwoD5YskPmc
+notebooklm: true
 ---
 
 # Nettverksprotokoller
@@ -15,6 +18,8 @@ public: true
 ## Introduksjon
 
 En nettverksprotokoll er et sett med regler som definerer hvordan enheter kommuniserer. Uten protokoller ville nettverkskommunikasjon være som å snakke to forskjellige språk — ingen ville forstå hverandre. Å kjenne de viktigste protokollene, hva de brukes til og hvilke portnumre de kjører på, er grunnleggende kunnskap for enhver driftstøtter — både for konfigurasjon og feilsøking.
+
+Protokollene befinner seg på ulike lag i [[osi-modellen]] og [[tcp-ip-modellen]]. Portnumre og transportprotokollene TCP og UDP er fundamentet som alle applikasjonsprotokoller bygger på. Protokollene for [[dns-og-dhcp]] er sentrale nettverkstjenester som bruker disse mekanismene.
 
 ## Teori
 
@@ -29,6 +34,10 @@ Alle applikasjonsprotokoller kjører enten over TCP eller UDP på transportlaget
 | **Hastighet** | Tregere (overhead for ack/retransmit) | Raskere |
 | **Bruksområde** | Web, e-post, filoverføring, SSH | DNS, streaming, VoIP, spill |
 
+**TCP (Transmission Control Protocol)** er en tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll og bekreftelser.
+
+**UDP (User Datagram Protocol)** er en forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak, ofte brukt til streaming og gaming.
+
 ### Portnumre
 
 Et **portnummer** er et tall fra 0–65535 (16 bit) som identifiserer hvilken tjeneste en nettverkspakke er ment for på en maskin. IP-adressen finner maskinen; portnummeret finner riktig tjeneste på maskinen.
@@ -37,6 +46,8 @@ Kategorier:
 - **Well-known ports (0–1023)**: standardporter for kjente tjenester (HTTP, SMTP, DNS, osv.)
 - **Registered ports (1024–49151)**: brukt av applikasjoner
 - **Dynamic/ephemeral ports (49152–65535)**: tildeles midlertidig til klientforbindelser
+
+En **three-way handshake** er prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN → SYN-ACK → ACK).
 
 ### Viktige protokoller
 
@@ -166,6 +177,55 @@ ssh admin@192.168.1.1
 
 Svar: SSH/SFTP, HTTP, HTTPS, RDP, SMTP
 
+### Analysere pakker med Wireshark
+
+Wireshark er et nettverksanalyseverktøy som lar deg se faktisk nettverkstrafikk. Start et opptak og filtrer på protokoll:
+- `http` — se HTTP-forespørsler
+- `dns` — se DNS-oppslag
+- `tcp.port == 443` — se HTTPS-trafikk (kryptert innhold, men metadata synlig)
+
+Dette gir konkret forståelse av protokollene i aksjon og er verdifullt for feilsøking.
+
+## Study guide
+
+**TCP vs. UDP — kjerneforståelse**
+TCP er pålitelig og forbindelsesorientert (three-way handshake, ACK). UDP er rask og forbindelseløs. Velg TCP når du trenger nøyaktighet (web, e-post, filoverføring). Velg UDP når du trenger hastighet (streaming, DNS-oppslag, VoIP).
+
+**Porter å memorere**
+Lag en tabell: HTTP=80, HTTPS=443, SSH=22, FTP=21/20, SMTP=25/587, IMAP=143/993, DNS=53, RDP=3389, DHCP=67/68.
+
+**Vanlige eksamenspoeng**
+- Identifiser hvilken protokoll og port som brukes til en gitt oppgave
+- Forskjellen mellom FTP og SFTP (sikkerhet)
+- Hva HTTP-statuskodene betyr (2xx, 4xx, 5xx)
+- Hvorfor RDP mot internett er en sikkerhetsrisiko
+
+## FAQ
+
+**Hvilken port bruker HTTPS, og hva betyr det at en forbindelse er HTTPS?**
+HTTPS bruker port 443. Det betyr at HTTP-trafikken er kryptert med TLS (Transport Layer Security). Innholdet kan ikke leses av noen som avlytter forbindelsen.
+
+**Hva er forskjellen mellom FTP og SFTP?**
+FTP (port 21) overfører filer uten kryptering — brukernavn, passord og filer sendes i klartekst og kan avlyttes. SFTP er sikker filoverføring over SSH (port 22) der alt krypteres. SFTP er standarden i dag.
+
+**Forklar forskjellen mellom SMTP og IMAP.**
+SMTP brukes til å *sende* e-post (fra klient til server og mellom servere). IMAP brukes til å *hente og synkronisere* e-post fra server til klient — e-posten forblir på serveren slik at du kan lese den fra flere enheter.
+
+**Hva er en HTTP 404-feil?**
+HTTP 404 Not Found betyr at serveren mottok forespørselen, men ikke fant den etterspurte ressursen (f.eks. siden eller filen finnes ikke på den adressen). Det er en klientfeil (4xx).
+
+**Hvorfor er det en sikkerhetsrisiko å ha RDP (port 3389) åpen mot internett?**
+RDP er et populært angrepsmål. Automatiserte verktøy skanner konstant internett etter åpen port 3389 og forsøker brute force-innlogging. Dersom det lykkes, får angriperen grafisk tilgang til Windows-maskinen. Løsningen er å bare tillate RDP fra VPN eller IP-adressen til administratorer.
+
+**Hva er forskjellen mellom TCP og UDP?**
+TCP er forbindelsesorientert og garanterer levering i riktig rekkefølge. UDP er forbindelseløs og prioriterer hastighet. TCP brukes der pålitelighet er viktig; UDP der hastighet er viktigere enn nøyaktighet.
+
+**Hva er three-way handshake?**
+Three-way handshake er prosessen TCP bruker for å opprette en forbindelse: klienten sender SYN, serveren svarer SYN-ACK, klienten bekrefter med ACK. Etter dette er forbindelsen etablert.
+
+**Hva er well-known ports?**
+Well-known ports er portnumre 0–1023 som er reservert for standardiserte tjenester av IANA. F.eks. HTTP=80, HTTPS=443, SSH=22. Disse portene er kjente angrepsmål og bør beskyttes med brannmurregler.
+
 ## Quiz
 
 <details>
@@ -210,6 +270,9 @@ SMTP :: Simple Mail Transfer Protocol — sending av e-post, port 25 (server-ser
 IMAP :: Internet Message Access Protocol — synkronisering av e-post fra server, port 143 / 993 (TLS)
 POP3 :: Post Office Protocol 3 — nedlasting av e-post fra server, port 110 / 995 (TLS)
 SNMP :: Simple Network Management Protocol — overvåking av nettverksenheter på port 161/162
+TCP (Transmission Control Protocol) :: En tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll
+UDP (User Datagram Protocol) :: En forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak
+Three-way Handshake :: Prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN, SYN-ACK, ACK)
 
 ## Ressurser
 
@@ -217,3 +280,4 @@ SNMP :: Simple Network Management Protocol — overvåking av nettverksenheter p
 - [SSH — NDLA](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/topic:6e8a2eaf-4983-4d42-a9b0-911b5921b44a/resource:db7b7d9d-9894-418a-8458-74a5cfec1e60)
 - [Transportlaget TCP og UDP — windowsnett.no](http://windowsnett.no/leksjoner/L08/8b%20Transportlaget%20TCP%20og%20UDP%20skjerm.pdf)
 - [HTTP og IIS — windowsnett.no](http://www.windowsnett.no/leksjoner/L09/Leksjon%209%20beskrivelse.htm)
+- [Protokoll — SNL](https://snl.no/protokoll_-_it)

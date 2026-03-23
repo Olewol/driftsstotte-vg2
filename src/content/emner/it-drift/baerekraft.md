@@ -5,16 +5,20 @@ kompetansemaal:
   - km-12
 kilder:
   - ndla
+  - https://ndla.no/nb/subject:1:43a4e98f-ce79-42b3-9022-297e68266455/topic:1:94c5e317-0f9c-486a-8686-2678683519d5/resource:1:115939
+  - https://www.nkom.no/aktuelt/digital-infrastruktur-og-miljo-hvordan-paivirker-vi-klimaet
+video: https://www.youtube.com/watch?v=68D0v7Y-eIk
 tags: []
 flashcards: true
 public: true
+notebooklm: true
 ---
 
 ## Introduksjon
 
 IT-bransjen er ikke bare digital – den er fysisk, energikrevende og ressursintensiv. Servere, nettverk og klientutstyr produserer varme, bruker strøm og skaper avfall. Å forstå og redusere IT-driftens miljøpåvirkning er en del av fagkompetansen i Driftsstøtte VG2.
 
-Kompetansemål km-12 handler om å utforske dataindustriens miljøavtrykk og vurdere tiltak for mer bærekraftig IT-drift. Det er et felt i rask utvikling, der bransjen selv setter ambisiøse mål – og der det gjenstår mye arbeid.
+Kompetansemål km-12 handler om å utforske dataindustriens miljøavtrykk og vurdere tiltak for mer bærekraftig IT-drift. Det er et felt i rask utvikling, der bransjen selv setter ambisiøse mål – og der det gjenstår mye arbeid. Valg av [[skytjenester]] og [[driftsarkitektur]] har direkte innvirkning på miljøavtrykket.
 
 ---
 
@@ -65,6 +69,18 @@ Hyperscalerne (Google, Meta, Microsoft, Amazon) er best i klassen med PUE rundt 
 
 ---
 
+### Mørke data (Dark Data)
+
+Et undervurdert miljøproblem er **mørke data** – data som lagres i datasentre, men aldri brukes. Studier anslår at opptil 80 % av alle lagrede data aldri aksesseres etter at de er opprettet.
+
+Dette er problematisk fordi:
+- Lagring av ubrukte data krever strøm til servere og kjøling
+- Store organisasjoner akkumulerer terabytes med duplikater, utdaterte filer og ubrukte backuper
+
+Tiltak: regelmessig opprydding av datalagre, klare retningslinjer for oppbevaring og sletting, og dataklassifisering.
+
+---
+
 ### E-avfall og WEEE-direktivet
 
 IT-utstyr har begrenset levetid. Når det skiftes ut, blir det **e-avfall** (elektrisk og elektronisk avfall).
@@ -96,6 +112,8 @@ Tiltak for levetidsforlengelse:
 - Bruk av tynne klienter med lang levetid og enkel administrasjon
 - Sentraliserte systemer (VDI, terminalservere) der klientene er enkle og holdbare
 
+**Sirkulær IT** er en driftsmodell som prioriterer gjenbruk, reparasjon og oppgradering for å holde maskinvare i bruk så lenge som mulig – i tråd med sirkulær økonomi-prinsippene.
+
 ---
 
 ### Green IT-sertifiseringer
@@ -111,6 +129,9 @@ Amerikansk sertifiseringsordning for energieffektivt utstyr (PC-er, servere, mon
 **ISO 50001**
 Internasjonal standard for energiledelse. Stiller krav til systematisk energiarbeid i organisasjonen.
 
+**TCO Certified**
+Internasjonal bærekraftssertifisering for IT-utstyr som vurderer både miljø og sosiale forhold i produksjonskjeden. Mye brukt i norsk offentlig sektor.
+
 ---
 
 ### Grønne tiltak i virksomheter
@@ -124,6 +145,8 @@ Konkrete tiltak IT-ansvarlige kan gjøre:
 5. **Forleng levetiden på utstyr** – ikke bytt før nødvendig
 6. **Riktig avhending** – bruk godkjente e-avfallsmottak (Elretur)
 7. **Overvåk og rapporter energiforbruk** – det som måles, kan forbedres
+8. **Rydd i mørke data** – slett ubrukte data og duplikater regelmessig
+9. **Varmegjenvinning** – overskuddsvarme fra serverrom kan brukes til oppvarming av bygget
 
 Amazon, Microsoft, Meta og Google har samlet inngått kontrakter for over **50 GW fornybar energi** – langt mer enn noe annet enkeltbransje.
 
@@ -162,6 +185,59 @@ En skole har et serverrom med følgende målinger:
 3. Hva bruker de «ekstra» kWene til? (Hint: kjøling, belysning, UPS-tap)
 4. Foreslå minst to tiltak for å forbedre PUE.
 5. Diskuter: Bør skolen vurdere å flytte tjenester til en skyleverandør med bedre PUE? Hvilke faktorer avgjør?
+
+**Tilleggsoppgave: Livssyklus for en bærbar PC**
+
+Kartlegg miljøavtrykket til én bærbar PC gjennom hele livssyklusen: råvareproduksjon, produksjon, bruksfasen og avhending. Hvor i syklusen er miljøpåvirkningen størst? Hvilke valg kan du som IT-ansvarlig gjøre for å redusere det?
+
+---
+
+## Study guide
+
+### Kjerneinnhold
+
+Bærekraft i IT-drift handler om å forstå og redusere IT-sektorens miljøpåvirkning – fra energiforbruk i datasentre til avhending av gammelt utstyr.
+
+**Energiforbruk:**
+- Datasentre bruker 1–1,3 % av globalt el-forbruk (IEA 2022)
+- PUE måler energieffektivitet: 1,0 er perfekt, 1,5 er bransjegjennomsnitt
+- Hyperscalere (Google, Microsoft, AWS) oppnår ~1,1
+
+**E-avfall:**
+- 70–80 % av en PC-s karbonavtrykk skjer under produksjon
+- WEEE-direktivet pålegger produsentansvar og krav til gjenvinning
+- Elretur håndterer e-avfall i Norge
+
+**Tiltak (i prioritert rekkefølge av effekt):**
+1. Forleng levetiden på utstyr (størst effekt per krone)
+2. Virtualiser og konsolider servere
+3. Velg sertifisert utstyr (Energy Star, EPEAT)
+4. Migrer til energieffektive skyleverandører
+5. Rydd i mørke data
+
+**Norsk særstilling:** vannkraft + kaldt klima = lavt karbonavtrykk for norske datasentre.
+
+---
+
+## FAQ
+
+**Er IT en stor kilde til klimagasser?**
+IT-sektoren utgjør ca. 2–4 % av globale CO₂-utslipp – omtrent som luftfarten. Det inkluderer produksjon av utstyr, drift av datasentre og overføring av data. Det er ikke enormt, men det vokser raskt i takt med digitaliseringen.
+
+**Er skybasert drift alltid mer miljøvennlig enn on-premise?**
+Ikke nødvendigvis, men store skyleverandører (Google, Microsoft, AWS) har PUE-verdier rundt 1,1 og investerer masivt i fornybar energi. Et eldre internt datasenter med PUE 2,0 og kullkraft kan ha et mye høyere karbonavtrykk enn å bruke en stor skyleverandør med fornybarenergi.
+
+**Hva er mørke data og hvordan blir det et problem?**
+Mørke data er data som lagres men aldri brukes – duplikater, utdaterte filer, glemte backuper. De bruker lagringsplass som krever strøm. Regelmessig opprydding og klare retningslinjer for dataoppbevaring reduserer problemet.
+
+**Hva er TCO Certified og er det bedre enn Energy Star?**
+TCO Certified vurderer hele livssyklusen og inkluderer sosiale forhold i produksjonskjeden (arbeidsmiljø, kjemikalier), mens Energy Star primært fokuserer på energibruk i driftsfasen. De er komplementære, og norsk offentlig sektor bruker begge.
+
+**Hva er «sirkulær IT»?**
+Sirkulær IT er en driftsmodell basert på sirkulær økonomi: utstyr holdes i bruk så lenge som mulig gjennom oppgradering, reparasjon og refurbishment. Når utstyret til slutt kasseres, gjenvinnes materialene. Det motvirker det lineære mønsteret «produser – bruk – kast».
+
+**Hva gjør Norge spesielt egnet for grønne datasentre?**
+Tre faktorer: nesten 100 % fornybar strøm fra vannkraft, kaldt klima som muliggjør naturlig kjøling store deler av året, og tilgang til fjordvann for kjøling. Dette gir svært lav PUE og nær-null CO₂ fra strøm. Lefdal Mine Datacenter i en norsk fjordside er et konkret eksempel.
 
 ---
 
@@ -223,12 +299,22 @@ Statkraft :: Norsk statlig energiselskap og Europas største produsent av fornyb
 
 IEA :: International Energy Agency – internasjonal organisasjon som overvåker energibruk globalt. Autoritativ kilde for datasentrestatistikk.
 
+Sirkulær IT :: Driftsmodell som prioriterer gjenbruk, reparasjon og oppgradering for å holde maskinvare i bruk så lenge som mulig.
+
+Mørke data (Dark Data) :: Data som lagres i datasentre men aldri brukes. Fører til unødvendig energiforbruk til lagring og kjøling.
+
+TCO Certified :: Internasjonal bærekraftssertifisering for IT-utstyr som vurderer både miljø og sosiale forhold i produksjonskjeden.
+
+EE-avfall :: Elektrisk og elektronisk avfall som inneholder miljøgifter og verdifulle metaller som krever spesialisert gjenvinning.
+
 ---
 
 ## Ressurser
 
 - [IEA: Data Centres and Data Transmission Networks](https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks)
-- [AWS: Bærekraft og sky](https://aws.amazon.com/what-is-cloud-computing/)
+- [NDLA: Bærekraft og IT-utstyr](https://ndla.no/nb/subject:1:43a4e98f-ce79-42b3-9022-297e68266455/topic:1:94c5e317-0f9c-486a-8686-2678683519d5/resource:1:115939)
+- [Nkom: Digital infrastruktur og miljø](https://www.nkom.no/aktuelt/digital-infrastruktur-og-miljo-hvordan-paivirker-vi-klimaet)
 - [Elretur: E-avfall i Norge](https://www.elretur.no/)
+- [YouTube: The life cycle of a smartphone – TED-Ed](https://www.youtube.com/watch?v=68D0v7Y-eIk)
 - [[driftsarkitektur]]
 - [[skytjenester]]

@@ -5,16 +5,18 @@ kompetansemaal:
   - km-04
 kilder:
   - ndla
+  - https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/plan/active-directory-domain-services-logical-structure-design-guide
 tags: []
 flashcards: true
 public: true
+notebooklm: true
 ---
 
 ## Introduksjon
 
 **Active Directory (AD)** er Microsofts katalogtjeneste og er hjertet i Windows-baserte bedriftsmiljøer. AD sentraliserer administrasjon av brukere, datamaskiner, grupper og policyer for hele organisasjonen. I stedet for å administrere hver maskin separat, styrer du alt fra én plass — domenekontrolleren.
 
-I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den vanligste løsningen for brukeradministrasjon. Denne artikkelen dekker struktur, komponenter og praktisk bruk.
+I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den vanligste løsningen for brukeradministrasjon. Denne artikkelen dekker struktur, komponenter og praktisk bruk. AD henger tett sammen med [[dns-og-dhcp]] — uten korrekt DNS fungerer ikke domenepålogging. Se også [[serverroller]] for oversikt over hvilke roller som installeres på en Windows Server, og [[bruker-og-tilgangsstyring]] for detaljer om rettigheter og grupper.
 
 ---
 
@@ -115,6 +117,22 @@ GPO-er kan styre:
 
 GPO-er arves gjennom hierarkiet (skog → domene → OU). En GPO koblet til en OU overstyrer en GPO på domenivå.
 
+### Global katalog
+
+**Global Catalog (GC)** er en distribuert lagringsplass som inneholder en kopi av alle objekter i hele AD-skogen — ikke bare lokalt domene. Den brukes til:
+- Hurtige søk på tvers av domener (f.eks. å finne en bruker i et annet domene)
+- Pålogging med UPN-er (User Principal Name, f.eks. `bruker@firma.no`)
+- Universelle gruppemedlemskap
+
+Minst én domenekontroller bør ha Global Catalog-rollen aktivert. I et single-domene-miljø (som de fleste skoler) er dette automatisk.
+
+### Planlegging og navnestandard
+
+God planlegging er avgjørende før man setter opp AD. Viktige beslutninger:
+- **Domenenavn**: Bruk et internt navn (f.eks. `firma.local`) eller subdomene av et eksternt domene (`intern.firma.no`). Unngå `.local` i nye oppsett — det kan kollidere med mDNS.
+- **Navnestandard for brukere**: Konsistent navnekonvensjon (`fornavn.etternavn`, `f.etternavn` e.l.) forenkler administrasjon og scripting med [[powershell-grunnleggende]].
+- **OU-struktur**: Design OU-hierarkiet basert på organisasjonsstruktur eller geografisk plassering — ikke etter roller. OU-strukturen bør dokumenteres i [[dokumentasjon-og-planlegging]].
+
 ### Domenekobling av klientmaskiner
 
 Når en Windows-klient kobles til domenet:
@@ -194,6 +212,54 @@ gpupdate /force
 
 ---
 
+## Study guide
+
+**Active Directory** er Microsofts sentraliserte katalogtjeneste for Windows-domener. Den er organisert i et hierarki: **Skog → Tre → Domene → OU**. En **domenekontroller (DC)** er serveren som kjører AD DS-rollen og autentiserer alle pålogginger.
+
+Kjernekomponenter du må kjenne:
+- **ADUC** (`dsa.msc`) — det grafiske verktøyet for å opprette og administrere brukere, grupper, datamaskiner og OU-er
+- **GPO (Group Policy Object)** — automatiske innstillinger som distribueres til brukere og maskiner i en OU; arver hierarkisk, nærmeste OU vinner
+- **Kerberos** — autentiseringsprotokollen AD bruker; passordet sendes aldri over nettverket, kun krypterte billetter (TGT)
+- **LDAP** — protokollen programmer bruker til å søke i og oppdatere AD-katalogen
+- **Global katalog** — tverr-domene søketjeneste; nødvendig for UPN-pålogging
+
+Viktige sammenhenger:
+- AD er avhengig av **DNS** — klienten må kunne slå opp domenekontrolleren via DNS for å logge inn
+- **FSMO-roller** er spesialiserte DC-oppgaver som kun én DC kan ha om gangen (f.eks. PDC Emulator, RID Master)
+- Tilgangsstyring gjøres via **sikkerhetsgrupper** koblet til NTFS-rettigheter — aldri tildel tilgang direkte til enkeltbrukere
+
+Beste praksis:
+- Ha alltid minst to domenekontrollere (redundans)
+- Gi administratorer to kontoer: en daglig brukerkonto og en separat adminkonto
+- Bruk GPO til å håndheve passordpolicyer og sikkerhetskrav automatisk
+
+---
+
+## FAQ
+
+**Hva er forskjellen mellom AD DS og Azure AD?**
+AD DS er den klassiske on-premises katalogtjenesten som krever en Windows Server og domenekontroller i eget nettverk. Azure AD (nå kalt Microsoft Entra ID) er Microsofts skybaserte katalogtjeneste for Microsoft 365 og skytjenester. De kan synkroniseres via Azure AD Connect.
+
+**Kan en bruker logge inn på hvilken som helst maskin i domenet?**
+Ja — det er hele poenget med et domene. Domenebrukeren eksisterer i AD, ikke på den enkelte maskinen. GPO-er kan likevel begrense hvilke brukere som kan logge inn på bestemte maskiner.
+
+**Hva skjer hvis domenekontrolleren er nede?**
+Med én enkelt DC vil ingen kunne logge inn med domenekontoer. Allerede innloggede brukere kan fortsette å jobbe lokalt en stund (cachen). Derfor bør man alltid ha minst to DC-er.
+
+**Hva er forskjellen mellom Domain Admins og Enterprise Admins?**
+Domain Admins har full kontroll innenfor ett domene. Enterprise Admins har kontroll over hele AD-skogen (alle domener). Enterprise Admins bør kun brukes ved skog-nivå-operasjoner.
+
+**Hvorfor bør jeg bruke grupper i stedet for å tildele tilgang direkte til brukere?**
+Med grupper trenger du bare å endre gruppemedlemskap når en bruker bytter rolle — ikke gå gjennom alle ressurser manuelt. Det er enklere å revidere (hvem har tilgang til hva) og reduserer feilrisiko.
+
+**Hva er FSMO-roller og hvorfor er de viktige?**
+Flexible Single Master Operation-roller er spesialiserte AD-oppgaver som bare én DC kan utføre om gangen (f.eks. å utstede nye SID-er). Hvis DC-en med en FSMO-rolle faller ut, kan visse operasjoner stoppe inntil rollen overføres til en annen DC.
+
+**Kan jeg endre domenenavn etter installasjon?**
+Teknisk sett ja, men det er komplisert og risikabelt. Alle GPO-er, profiler og tjenestekoblinger er knyttet til domenenavnet. Det anbefales å planlegge domenenavn grundig før installasjon.
+
+---
+
 ## Quiz
 
 <details><summary>Spørsmål 1: Hva er en domenekontroller?</summary>
@@ -242,6 +308,9 @@ Kerberos :: Autentiseringsprotokoll AD bruker; basert på krypterte billetter, p
 TGT :: Ticket Granting Ticket — Kerberos-billett brukt til å be om tilgang til tjenester uten nytt passord
 FSMO :: Flexible Single Master Operation — spesielle AD-roller som kun én DC kan inneha om gangen
 gpupdate /force :: Kommando for å tvinge umiddelbar oppdatering av gruppepolicyer på en klient
+Global katalog (GC) :: Distribuert lagring med kopi av alle objekter i AD-skogen; muliggjør tverr-domene søk og UPN-pålogging
+RBAC :: Rollebasert tilgangsstyring — rettigheter tildeles basert på brukerens rolle, ikke som enkeltpersonstillatelser
+Navnestandard :: Konsistent konvensjon for brukernavn i AD (f.eks. fornavn.etternavn) som forenkler administrasjon og scripting
 
 ---
 
@@ -251,3 +320,4 @@ gpupdate /force :: Kommando for å tvinge umiddelbar oppdatering av gruppepolicy
 - [Microsoft Learn: AD-sikkerhetsgrupper](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups)
 - [Microsoft Learn: Active Directory Users and Computers](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc754217(v=ws.11))
 - [NDLA: Datalab med Windows Server og generisk nettverk](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/datalab-med-windows-server-og-generisk-nettverk/6fbbe0f727)
+- [Microsoft Learn: Logisk strukturdesign for AD DS](https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/plan/active-directory-domain-services-logical-structure-design-guide)

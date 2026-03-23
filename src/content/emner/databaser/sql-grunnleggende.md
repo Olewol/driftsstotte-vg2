@@ -5,6 +5,9 @@ kompetansemaal:
   - km-04
 kilder:
   - ndla
+  - https://www.w3schools.com/sql/default.asp
+  - https://dev.mysql.com/doc/refman/8.0/en/tutorial.html
+notebooklm: true
 tags: []
 flashcards: true
 public: true
@@ -20,7 +23,7 @@ SQL er delt inn i tre hoveddeler:
 - **DML** (Data Manipulation Language) — jobbe med data: `SELECT`, `INSERT`, `UPDATE`, `DELETE`
 - **DCL** (Data Control Language) — tilgangskontroll: `GRANT`, `REVOKE`
 
-I denne artikkelen fokuserer vi på DDL og DML — det du trenger for å bygge og bruke databaser i praksis.
+I denne artikkelen fokuserer vi på DDL og DML — det du trenger for å bygge og bruke databaser i praksis. De fire kjerneoperasjonene INSERT, SELECT, UPDATE og DELETE kalles samlet **CRUD** (Create, Read, Update, Delete). Tilgangskontroll med DCL er dekket i [[databaseadministrasjon]].
 
 ---
 
@@ -68,7 +71,7 @@ Viktig: når du setter inn data med fremmednøkkel, må **parent-tabellen** (`ro
 
 ### SELECT — hente data
 
-`SELECT` er den mest brukte kommandoen i SQL.
+`SELECT` er den mest brukte kommandoen i SQL. Dette er **R** i CRUD — lese (Read) data.
 
 ```sql
 -- Hent alle kolonner fra utstyr
@@ -103,6 +106,8 @@ SELECT * FROM utstyr WHERE serienummer LIKE 'SN%';
 -- Finn utstyr uten registrert plassering
 SELECT * FROM utstyr WHERE plassering IS NULL;
 ```
+
+**Tips:** Unngå `SELECT *` i produksjon og applikasjoner — spesifiser alltid kolonnenavn for bedre ytelse og forutsigbarhet. Se [[databaseadministrasjon]] for mer om ytelsesoptimalisering.
 
 ### INSERT — legge inn data
 
@@ -145,6 +150,21 @@ WHERE type = 'PC' AND plassering = 'Rom 201';
 ```
 
 **Advarsel:** Også her — `DELETE` uten `WHERE` sletter alle rader i tabellen.
+
+### Tabell-aliaser for lesbarhet
+
+Når du jobber med JOIN og lange tabellnavn, er det god praksis å bruke aliaser for å gjøre SQL-koden kortere og mer oversiktlig:
+
+```sql
+-- Uten alias (verbose)
+SELECT utstyr.navn, utstyr.type, rom.navn AS rom_navn
+FROM utstyr INNER JOIN rom ON utstyr.rom_id = rom.id;
+
+-- Med alias (ryddigere)
+SELECT u.navn, u.type, r.navn AS rom_navn
+FROM utstyr AS u
+INNER JOIN rom AS r ON u.rom_id = r.id;
+```
 
 ### JOIN — kombinere tabeller
 
@@ -265,6 +285,62 @@ DELETE FROM utstyr WHERE serienummer = 'SN567890';
 
 ---
 
+## Study guide
+
+### SQL grunnleggende — kjerneinnhold
+
+SQL er standardspråket for relasjonsdatabaser og deles i tre kategorier: DDL (struktur), DML (data) og DCL (tilgang). VG2 IT fokuserer primært på DDL og DML.
+
+**Tabellstruktur og nøkler**
+Tabeller består av kolonner (struktur) og rader (data). Primærnøkkelen identifiserer hver rad unikt og kan ikke være NULL. Fremmednøkkelen kobler tabeller sammen og sikrer referanseintegritet — du kan ikke peke til en rad som ikke finnes. `AUTO_INCREMENT` gjør at MySQL tildeler primærnøkkelverdi automatisk.
+
+**CRUD — de fire kjerneoperasjonene**
+- `INSERT` — legg til nye rader (Create)
+- `SELECT` — hent og filtrer data (Read)
+- `UPDATE` — endre eksisterende rader (Update)
+- `DELETE` — fjern rader (Delete)
+
+Kritisk regel for `UPDATE` og `DELETE`: bruk alltid `WHERE`. Uten `WHERE` påvirkes alle rader i tabellen — en vanlig og farlig feil.
+
+**SELECT og filtrering**
+`WHERE` filtrerer rader med sammenligningsoperatorer, `AND`/`OR`/`NOT`, og `LIKE` for mønstersøk. `ORDER BY` sorterer, `LIMIT` begrenser antall rader. Unngå `SELECT *` — spesifiser kolonner eksplisitt.
+
+**JOIN — kombinere tabeller**
+`INNER JOIN` gir kun rader med treff i begge tabeller. `LEFT JOIN` gir alle rader fra venstre tabell, med `NULL` der høyre tabell mangler treff. Bruk aliaser (`AS u`, `AS r`) for mer lesbar kode ved JOIN med mange tabeller.
+
+**Sammenheng med andre emner**
+SQL-kunnskapene fra denne artikkelen brukes aktivt i [[databaseadministrasjon]] der du optimaliserer spørringer med indekser og `EXPLAIN`. DCL-delen av SQL (GRANT, REVOKE) er dekket der.
+
+---
+
+## FAQ
+
+**Hva betyr CRUD?**
+Create, Read, Update, Delete — de fire grunnleggende operasjonene for datamanipulering. I SQL tilsvarer dette INSERT, SELECT, UPDATE og DELETE.
+
+**Hva er forskjellen på en primærnøkkel og en fremmednøkkel?**
+En primærnøkkel identifiserer én rad unikt i sin egen tabell og kan ikke være NULL. En fremmednøkkel er en kolonne i én tabell som peker til primærnøkkelen i en annen tabell, og brukes til å knytte tabeller sammen.
+
+**Hva skjer hvis du kjører UPDATE eller DELETE uten WHERE?**
+Alle rader i tabellen påvirkes. Ved `UPDATE` endres alle rader til den nye verdien. Ved `DELETE` slettes alle rader. Bruk alltid `WHERE` for å begrense hvilke rader som endres — dette er en av de vanligste og farligste feilene i SQL.
+
+**Hva er forskjellen på INNER JOIN og LEFT JOIN?**
+`INNER JOIN` returnerer kun rader som har treff i begge tabeller. `LEFT JOIN` returnerer alle rader fra venstre tabell og fyller inn `NULL` for kolonner fra høyre tabell der det ikke finnes et treff.
+
+**Hva betyr AUTO_INCREMENT i en kolonnedefinisjon?**
+MySQL tildeler automatisk neste ledige heltall som verdi når en ny rad settes inn, uten at du trenger å angi verdien manuelt. Brukes typisk på primærnøkkelkolonner av typen INT.
+
+**Hvorfor må du sette inn data i parent-tabellen før child-tabellen ved bruk av fremmednøkler?**
+Fremmednøkkelen sikrer referanseintegritet — verdien i fremmednøkkelkolonnen må finnes som primærnøkkel i parent-tabellen. Hvis parent-raden ikke eksisterer, vil MySQL avvise innsettingen med en feilmelding.
+
+**Hva er tabell-aliaser, og hvorfor bør jeg bruke dem?**
+Aliaser (`FROM utstyr AS u`) gir tabeller kortere navn i en spørring. De gjør SQL-koden mer lesbar og mindre feilutsatt, spesielt ved JOIN med flere tabeller der du ellers må skrive fullt tabellnavn mange ganger.
+
+**Hva er en spørring (query)?**
+En forespørsel skrevet i SQL for å hente, filtrere eller endre spesifikke data i databasesystemet. `SELECT * FROM utstyr WHERE type = 'PC'` er et eksempel på en spørring som henter alle PC-er fra utstyr-tabellen.
+
+---
+
 ## Quiz
 
 <details><summary>Spørsmål 1: Hva er forskjellen på en primærnøkkel og en fremmednøkkel?</summary>
@@ -313,6 +389,9 @@ LEFT JOIN :: Returnerer alle rader fra venstre tabell og matchende rader fra hø
 WHERE :: Klausul som filtrerer hvilke rader som påvirkes av en SELECT, UPDATE eller DELETE
 ORDER BY :: Klausul som sorterer resultatet av en SELECT, ASC = stigende, DESC = synkende
 LIMIT :: Klausul som begrenser antall rader returnert av en SELECT
+CRUD :: Create, Read, Update, Delete — de fire grunnleggende dataoperasjonene, tilsvarer INSERT, SELECT, UPDATE, DELETE i SQL
+Spørring (Query) :: En forespørsel i SQL for å hente, filtrere eller endre data i databasesystemet
+Tabell-alias :: Kortform for et tabellnavn i en spørring (f.eks. FROM utstyr AS u) — gjør JOIN-kode mer lesbar
 
 ---
 

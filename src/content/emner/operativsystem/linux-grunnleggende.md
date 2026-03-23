@@ -5,16 +5,18 @@ kompetansemaal:
   - km-04
 kilder:
   - ndla
+  - https://documentation.ubuntu.com/server/how-to/security/user-management/
 tags: []
 flashcards: true
 public: true
+notebooklm: true
 ---
 
 ## Introduksjon
 
 Linux er et åpen kildekode-operativsystem som brukes i stort omfang på servere, skyplattformer og nettverksenheter. For IT-driftsteknikere er grunnleggende Linux-kunnskap nødvendig — mye av infrastrukturen i profesjonelle miljøer kjøres på Linux.
 
-Denne artikkelen dekker Linux-filstrukturen, filrettighetsmodellen (rwx), brukeradministrasjon og de mest brukte kommandoene. Sammenligninger med Windows-ekvivalenter er inkludert der det er nyttig.
+Denne artikkelen dekker Linux-filstrukturen, filrettighetsmodellen (rwx), brukeradministrasjon og de mest brukte kommandoene. Sammenligninger med Windows-ekvivalenter er inkludert der det er nyttig. Filsystemet ext4 som Linux typisk bruker er beskrevet i [[filsystem]], og Linux-brukeradministrasjon henger tett sammen med [[bruker-og-tilgangsstyring]]. For viderekomne skriptoppgaver i Linux-terminalen, se [[bash-grunnleggende]].
 
 ---
 
@@ -209,6 +211,46 @@ ls -ld mappe/            # vis tillatelser for selve mappen
 stat fil.txt             # detaljert informasjon inkl. inode
 ```
 
+### SUID og SGID — spesielle tillatelsesbit
+
+I tillegg til sticky bit finnes to andre spesielle tillatelsesbit som er viktige å kjenne til:
+
+**SUID (Set User ID)** — når SUID er satt på en kjørbar fil, kjøres programmet med **filens eiers** rettigheter, ikke den innloggede brukerens. Brukes f.eks. på `passwd`-kommandoen slik at vanlige brukere kan endre sitt eget passord (som krever skriving til `/etc/shadow`).
+
+```bash
+ls -l /usr/bin/passwd
+# -rwsr-xr-x  → 's' i eierposisjonen betyr SUID
+chmod u+s program       # sett SUID
+```
+
+**SGID (Set Group ID)** — på en fil: programmet kjøres med gruppens rettigheter. På en mappe: nye filer og undermapper i mappen arver mappens gruppe i stedet for oppretterens primærgruppe. Nyttig for delte arbeidsmapper.
+
+```bash
+chmod g+s /felles/prosjekt   # sett SGID på mappe
+ls -ld /felles/prosjekt
+# drwxrwsr-x  → 's' i gruppeposisjonen betyr SGID
+```
+
+### Systemlogging i Linux
+
+Linux logger systemhendelser til `/var/log/`. Viktige loggfiler:
+
+| Loggfil | Innhold |
+|---|---|
+| `/var/log/syslog` | Generelle systemmeldinger (Ubuntu/Debian) |
+| `/var/log/auth.log` | Autentiseringshendelser, sudo-bruk, SSH-pålogginger |
+| `/var/log/kern.log` | Kjernemeldinger |
+| `/var/log/dpkg.log` | Pakkeinstallasjon og -oppdatering |
+
+Moderne Linux bruker **journald** (systemd) for logging. Spørringer via `journalctl`:
+
+```bash
+journalctl -u ssh          # logg for SSH-tjenesten
+journalctl -n 50           # siste 50 linjer
+journalctl --since today   # logg fra i dag
+journalctl -f              # følg logg live (tilsvarende tail -f)
+```
+
 ---
 
 ## Eksempel / lab
@@ -252,6 +294,60 @@ sudo chmod +t /felles/klasse2a
 | Endre tillatelser | NTFS-egenskaper / `icacls` | `chmod` |
 | Endre eier | `takeown` | `chown` |
 | Admin-rettigheter | UAC / Administrator | `sudo` / root |
+
+---
+
+## Study guide
+
+**Linux** er et åpen kildekode-operativsystem basert på Unix. Det er dominerende på servere, i sky og på nettverksenheter. Som IT-driftsteknikker bruker du Linux via terminalen.
+
+**Filstrukturen** er ett enkelt tre med rot i `/`. Viktige kataloger:
+- `/etc` — konfigurasjonsfiler (inkl. `/etc/passwd`, `/etc/shadow`, `/etc/sudoers`)
+- `/home` — hjemmemapper for vanlige brukere
+- `/var/log` — loggfiler fra systemet og tjenester
+- `/tmp` — midlertidige filer, tømmes ved omstart
+- `/bin` og `/usr/bin` — kommandoer og programmer
+
+**Tillatelsesmodellen (rwx)** gir tre sett av tre tillatelser:
+- **r** (read=4), **w** (write=2), **x** (execute=1)
+- For **eier**, **gruppe** og **andre**
+- Oktalsummering: `rwx = 7`, `r-x = 5`, `rw- = 6`
+- Vanlige mønstre: `755` (mapper/programmer), `644` (vanlige filer), `700` (private filer)
+
+**Brukeradministrasjon**:
+- `useradd -m -s /bin/bash elev01` — opprett bruker
+- `passwd elev01` — sett passord
+- `usermod -aG sudo elev01` — gi sudo-tilgang
+- `userdel -r elev01` — slett bruker og hjemmemappe
+
+**Sudo og root**: Root (UID 0) er allmektig. Aldri logg inn som root direkte — bruk `sudo` for enkeltstående administrative kommandoer. `/etc/sudoers` styrer hvem som kan bruke sudo; redigeres alltid med `visudo`.
+
+Spesielle tillatelsesbit: **sticky bit** (hindrer sletting av andres filer i delt mappe), **SUID** (programmet kjøres med filens eiers rettigheter), **SGID** (filer arver mappens gruppe).
+
+---
+
+## FAQ
+
+**Hva er forskjellen mellom `useradd` og `adduser`?**
+`useradd` er det lave systemverktøyet tilgjengelig på alle Linux-distribusjoner. `adduser` er et mer brukervennlig skript (tilgjengelig på Debian/Ubuntu) som stiller spørsmål interaktivt og setter opp hjemmemappe og passord automatisk. I skript brukes `useradd`.
+
+**Hvorfor starter systembrukere på UID 1–999 og vanlige brukere på UID 1000?**
+Systembrukere (UID 1–999) er kontoer opprettet for tjenester og prosesser, ikke for mennesker som logger inn (f.eks. `www-data` for Apache, `postgres` for databasetjenesten). De separeres fra vanlige brukere for sikkerhets- og administrasjonsformål.
+
+**Hva skjer hvis jeg glemmer `-a` i `usermod -aG`?**
+Uten `-a` vil `usermod -G sudo elev01` erstatte alle eksisterende gruppemedlemskap med kun `sudo`. Brukeren mister alle andre grupper de var medlem av. Bruk alltid `-aG` for å legge til.
+
+**Kan jeg sette passord for root og logge inn direkte?**
+Teknisk ja, men det anbefales sterkt ikke i produksjonsmiljøer. SSH bør konfigureres til å nekte root-pålogging (`PermitRootLogin no` i `/etc/ssh/sshd_config`). Bruk alltid sudo fra en vanlig brukerkonto.
+
+**Hva betyr 'd' fremst i `ls -l` output?**
+Det første tegnet angir filtypen: `-` = vanlig fil, `d` = katalog (directory), `l` = symbolsk lenke, `b` = blokkenhetsf il, `c` = tegnenhetsfil.
+
+**Hva er forskjellen mellom `/bin` og `/usr/bin`?**
+`/bin` inneholder grunnleggende systemkommandoer som må være tilgjengelige tidlig i oppstartsprosessen og ved systemgjenoppretting (f.eks. `ls`, `cp`, `bash`). `/usr/bin` inneholder programmer installert av pakkebehandleren. På moderne Linux er `/bin` ofte en symbolsk lenke til `/usr/bin`.
+
+**Hva er `journalctl` og hvorfor er det bedre enn å lese loggfiler direkte?**
+`journalctl` er kommandoen for å lese loggene fra systemd's journald. Fordeler: strukturerte logger med metadata, enkel filtrering per tjeneste og tidsrom, binært format som er mer effektivt enn tekstfiler. For eldre systemer brukes fortsatt tekstfiler i `/var/log/`.
 
 ---
 
@@ -309,6 +405,12 @@ sticky bit :: Forhindrer brukere fra å slette filer i en delt mappe de ikke eie
 useradd -m :: Opprett ny Linux-bruker med hjemmemappe
 usermod -aG :: Legg bruker til i tilleggsgruppe uten å fjerne eksisterende gruppemedlemskap
 visudo :: Sikker måte å redigere /etc/sudoers på — kontrollerer syntaks før lagring
+SUID :: Set User ID — spesiell tillatelsesbit som gjør at en kjørbar fil kjøres med filens eiers rettigheter
+SGID :: Set Group ID — på mappe: nye filer arver mappens gruppe i stedet for oppretterens primærgruppe
+journalctl :: Kommando for å lese systemlogger fra systemd journald; støtter filtrering per tjeneste og tid
+/var/log/auth.log :: Linux-loggfil for autentiseringshendelser, sudo-bruk og SSH-pålogginger
+UID :: User ID — numerisk identifikator for en Linux-bruker (root=0, systembrukere 1–999, vanlige brukere 1000+)
+GID :: Group ID — numerisk identifikator for en Linux-gruppe
 
 ---
 

@@ -5,16 +5,20 @@ kompetansemaal:
   - km-06
 kilder:
   - ndla
+  - https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131
+  - https://learn.microsoft.com/en-us/azure/architecture/framework/
+video: null
 tags: []
 flashcards: true
 public: true
+notebooklm: true
 ---
 
 ## Introduksjon
 
 God dokumentasjon er ryggraden i profesjonell IT-drift. Uten oppdatert dokumentasjon er det umulig å feilsøke effektivt, vanskelig å lære opp nye medarbeidere, og risikabelt å gjøre endringer i systemet.
 
-Dokumentasjon og planlegging handler om å ha oversikt: over hva som finnes, hvordan det henger sammen, hva som er gjort, og hva som skal gjøres. Dette er kompetansemål km-06 – en av de mest praktiske delene av faget.
+Dokumentasjon og planlegging handler om å ha oversikt: over hva som finnes, hvordan det henger sammen, hva som er gjort, og hva som skal gjøres. Dette er kompetansemål km-06 – en av de mest praktiske delene av faget. En god IT-avdeling behandler dokumentasjon som levende ressurser som oppdateres kontinuerlig, ikke som noe som skrives én gang og deretter samler støv.
 
 ---
 
@@ -50,7 +54,7 @@ Alle enheter kobler seg til en sentral svitsj eller ruter. Enkel å feilsøke (i
       [Server]
 ```
 
-- Fordeler: enkel, feiltolerант (én enhet feiler uten å påvirke andre), lett å utvide
+- Fordeler: enkel, feiltolerant (én enhet feiler uten å påvirke andre), lett å utvide
 - Ulemper: svitsjen er et single point of failure (avhjelpes med redundante svitsjer)
 
 #### Mesh-topologi
@@ -76,7 +80,7 @@ Alle enheter koblet til én felles kabel (bus). Brukes ikke lenger i moderne net
 
 ### IP-adresseplan
 
-En IP-adresseplan er en strukturert oversikt over alle IP-adresser, subnett og tilhørende informasjon i nettverket. Den er et kritisk planleggings- og driftsdokument.
+En IP-adresseplan er en strukturert oversikt over alle IP-adresser, subnett og tilhørende informasjon i nettverket. Den er et kritisk planleggings- og driftsdokument. Se [[dns-og-dhcp]] og [[segmentering-og-vlan]] for relaterte emner.
 
 #### Eksempel: IP-adresseplan for et skolenettverk
 
@@ -166,6 +170,23 @@ Forventet resultat: VM starter, filer tilgjengelige, ingen feil.
 
 ---
 
+### ITIL og endringstyring
+
+**ITIL** (IT Infrastructure Library) er et rammeverk for god IT-driftspraksis som er mye brukt i norsk og internasjonal IT-bransje. Selv om man ikke behøver å innføre hele ITIL på VG2-nivå, er noen begreper sentrale:
+
+**Change Management (endringstyring)**
+En strukturert prosess for å håndtere endringer i IT-miljøet på en kontrollert måte:
+1. Endringen planlegges og dokumenteres
+2. Risikovurdering gjennomføres
+3. Endringen godkjennes (av riktig person/rolle)
+4. Endringen gjennomføres i et bestemt tidsvindu
+5. Resultatet verifiseres og dokumenteres i endringsloggen
+6. Rollback-plan er klar hvis noe går galt
+
+Uten endringstyring kan ukontrollerte endringer bli den hyppigste årsaken til driftsforstyrrelser.
+
+---
+
 ### Planlegging av IT-løsninger
 
 God planlegging reduserer risiko og gjør prosjektet mer forutsigbart. En enkel planleggingsprosess kan se slik ut:
@@ -178,6 +199,8 @@ God planlegging reduserer risiko og gjør prosjektet mer forutsigbart. En enkel 
 6. **Implementering og testing**
 7. **Dokumentasjon og overlevering**
 8. **Evaluering** – ble kravene oppfylt?
+
+Se [[risikoanalyse]] for mer om ROS-analyser i IT-sammenheng.
 
 ---
 
@@ -210,6 +233,60 @@ Gitt: Skole med 80 elever, 20 ansatte, 3 servere, 2 printere og et gjestenettver
 4. Fyll inn en tabell med: VLAN-nr, navn, subnett, gateway, DNS, DHCP-område.
 5. Angi statiske adresser for servrene.
 6. Tegn en enkel topologi i draw.io som viser VLAN-strukturen.
+
+**Tilleggsoppgave: Skriv en prosedyre**
+
+Velg én kritisk IT-operasjon (f.eks. legge til en ny bruker i Active Directory, eller utføre en backup). Dokumenter operasjonen som en steg-for-steg prosedyre med tittel, ansvarlig rolle, frekvens og forventet resultat.
+
+---
+
+## Study guide
+
+### Kjerneinnhold
+
+Dokumentasjon og planlegging handler om å skape og vedlikeholde oversikt over IT-miljøet – slik at drift, feilsøking og endringer kan gjøres kontrollert og effektivt.
+
+**Dokumentasjonstyper:**
+- **IP-adresseplan** – oversikt over VLAN, subnett, gateway, DNS, DHCP og statiske adresser
+- **Nettverkstopologi** – visuelt kart over nettverkskomponenter og koblinger (draw.io)
+- **Driftslogg/endringslogg** – kronologisk register over alle endringer
+- **Prosedyredokumentasjon** – steg-for-steg instrukser for kritiske operasjoner
+- **CMDB** – register over all infrastruktur
+
+**Nettverkstopologier:**
+- Stjerne (vanligst): sentralisert svitsj, enkel å feilsøke
+- Mesh: alle koblet til alle, robust men kompleks
+- Buss: historisk, brukes ikke i moderne nettverk
+
+**Planleggingsprosess:**
+Behovskartlegging → Krav → ROS-analyse → Løsningsvalg → Prosjektplan → Implementering → Dokumentasjon → Evaluering
+
+**ITIL endringstyring:**
+Alle endringer planlegges, risikovurderes, godkjennes, gjennomføres, dokumenteres. Rollback-plan alltid klar.
+
+**Husk:** Uten dokumentasjon er IT-avdelingen avhengig av enkeltpersoners hukommelse. God dokumentasjon er en kollektiv forsikring.
+
+---
+
+## FAQ
+
+**Hvorfor er endringsloggen viktigere enn folk tror?**
+Når noe slutter å virke, er det første spørsmålet alltid: «Hva endret vi sist?» Endringsloggen gir svaret umiddelbart. Uten den må man gjette – noe som kan ta timer eller dager.
+
+**Hva er forskjellen på en driftslogg og en endringslogg?**
+I praksis brukes begrepene om hverandre, men en endringslogg fokuserer spesifikt på endringer som er gjort (patching, konfigurasjon, ny bruker), mens en driftslogg kan inkludere hendelser, feil og status mer generelt.
+
+**Hva er CMDB og er det nødvendig for en liten skole?**
+CMDB (Configuration Management Database) er et detaljert register over all IT-infrastruktur. For en liten skole er et enkelt Excel-ark eller Markdown-dokument tilstrekkelig. Store virksomheter bruker dedikerte CMDB-verktøy (f.eks. ServiceNow) fordi antallet komponenter er for stort for manuell sporing.
+
+**Hva er ITIL og trenger vi det?**
+ITIL er et rammeverk med beste praksis for IT-drift, opprinnelig utviklet for store organisasjoner. Prinsippene (endringstyring, incident management, service management) er relevante i alle størrelser, selv om man ikke implementerer hele rammeverket. Å ha en endringslogg og rollback-prosess er ITIL-tenkning i sin enkleste form.
+
+**Hva er en ROS-analyse i IT-planlegging?**
+ROS (Risiko og Sårbarhets) analyse kartlegger hva som kan gå galt med en planlagt IT-løsning, hvor sannsynlig det er, og hva konsekvensen er. Det gir grunnlag for å prioritere tiltak. Se [[risikoanalyse]] for metode og maler.
+
+**Hva gjør draw.io til et godt dokumentasjonsverktøy?**
+draw.io er gratis, nettbasert, og lagrer diagrammer som XML-filer som kan versjonskontrolleres med git. Det har spesifikke symbolbiblioteker for nettverkstopologier. Resultatet er visuelle, lettleselige diagrammer som kan deles og oppdateres enkelt.
 
 ---
 
@@ -271,11 +348,21 @@ Prosedyredokumentasjon :: Steg-for-steg instrukser for kritiske IT-operasjoner. 
 
 ROS-analyse :: Risiko- og sårbarhetsanalyse. Brukes i planleggingsfasen for å identifisere og vurdere risiko.
 
+ITIL :: IT Infrastructure Library – rammeverk for beste praksis i IT-drift. Dekker endringstyring, incident management og service management.
+
+Endringstyring :: Strukturert prosess for å planlegge, godkjenne og dokumentere endringer i IT-miljøet. Inkluderer alltid rollback-plan.
+
+Single point of failure :: En komponent hvis svikt gjør hele systemet utilgjengelig. Avhjelpes med redundans.
+
 ---
 
 ## Ressurser
 
 - [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131)
+- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/)
 - [draw.io (diagramtegning)](https://app.diagrams.net/)
 - [[driftsarkitektur]]
 - [[backup-og-gjenoppretting]]
+- [[risikoanalyse]]
+- [[dns-og-dhcp]]
+- [[segmentering-og-vlan]]

@@ -5,9 +5,12 @@ kompetansemaal:
   - km-02
 kilder:
   - ndla
+  - https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:66547
 tags: [vlan, subnetting, cidr, segmentering, nettverk, 802.1q]
 flashcards: true
 public: true
+video: https://www.youtube.com/watch?v=MzwV67L_6f8
+notebooklm: true
 ---
 
 # Segmentering og VLAN
@@ -15,6 +18,8 @@ public: true
 ## Introduksjon
 
 Et nettverket der alle enheter snakker med alle andre er enkelt å sette opp — men det er en sikkerhetsmessig og ytelsesmessig katastrofe. Segmentering handler om å dele nettverket inn i logiske soner slik at trafikken styres kontrollert. I praksis gjøres dette med subnetting (lag 3) og VLAN (lag 2). Disse to teknikkene utfyller hverandre og er fundamentale for alle som skal planlegge og drifte et profesjonelt nettverk.
+
+For å forstå segmentering er det nyttig å se det i sammenheng med [[osi-modellen]] og de standardiserte protokollene beskrevet i [[nettverksprotokoller]]. VLAN er særlig sentralt i virtuelle infrastrukturer der virtuelle svitsjer bruker IEEE 802.1Q-tagging for å separere trafikk logisk.
 
 ## Teori
 
@@ -95,7 +100,7 @@ Standarden for VLAN er **IEEE 802.1Q**. Den definerer hvordan en VLAN-tag legges
                   4 bytes: inkluderer 12-bits VLAN ID (0–4094)
 ```
 
-VLAN ID 0 og 4095 er reservert; brukbare VLAN-ID-er er 1–4094.
+VLAN ID 0 og 4095 er reservert; brukbare VLAN-ID-er er 1–4094. **IEEE 802.1Q** er den internasjonale standarden for VLAN-tagging i Ethernet-rammer — den muliggjør flere logiske nettverk på én fysisk forbindelse.
 
 #### Access-porter vs. trunk-porter
 
@@ -105,6 +110,8 @@ VLAN ID 0 og 4095 er reservert; brukbare VLAN-ID-er er 1–4094.
 | **Trunk-port** | Bærer trafikk for flere VLAN | Tagged (taggen beholdes) | Forbindelser mellom svitsjer og til ruter |
 
 En PC på en access-port "vet" ikke at den er i et VLAN — den ser bare et vanlig nettverk. Taggen legges til av svitsjen og fjernes på mottakersiden.
+
+En **trunk-port** er altså en svitsjeport konfigurert for å bære trafikk fra flere VLAN samtidig ved å beholde VLAN-taggene i datapakken.
 
 **Native VLAN** er VLAN-et som mottar *untagget* trafikk på en trunk-port (standard er VLAN 1). Det anbefales å endre native VLAN fra 1 av sikkerhetshensyn.
 
@@ -150,6 +157,52 @@ En PC på en access-port "vet" ikke at den er i et VLAN — den ser bare et vanl
 **Trådløst VLAN (SSID):**
 1. Settings → WiFi → opprett nytt WiFi-nettverk
 2. Knytt SSID til ønsket VLAN (f.eks. "Gjest-WiFi" → VLAN 20)
+
+## Study guide
+
+**Kjerneforståelse: subnetting**
+Subnetting deler et IP-adresserom i mindre, isolerte nett. /24 er vanligste LAN-størrelse (254 verter). Forstå forskjellen mellom nettverksadresse, broadcast-adresse og brukbare host-adresser. Husk formelen: 2^(vertsbit) − 2.
+
+**Kjerneforståelse: VLAN**
+VLAN er logisk nettverkssegmentering på lag 2 (datalink). IEEE 802.1Q-taggen (4 bytes) legges i Ethernet-rammen med VLAN ID. Access-porter fjerner taggen for sluttenheter; trunk-porter beholder den for å bære flere VLAN.
+
+**Vanlige eksamenspoeng**
+- Beregne nettverksadresse, broadcast og brukbare adresser fra CIDR-notasjon
+- Forskjellen mellom access-port og trunk-port
+- Hva native VLAN er og hvorfor VLAN 1 som native VLAN er en sikkerhetsrisiko
+- Fordeler med VLAN: sikkerhet, ytelse (færre broadcasts), fleksibilitet
+
+## FAQ
+
+**Hva er forskjellen mellom subnetting og VLAN?**
+Subnetting (lag 3) deler IP-adresserommet og er rutbar separasjon. VLAN (lag 2) skaper logiske nettverk på én fysisk infrastruktur uten å kreve separate fysiske kabler. De to brukes gjerne sammen: hvert VLAN får sitt eget subnett.
+
+**Kan enheter i forskjellige VLAN kommunisere?**
+Ja, men bare via en ruter eller lag 3-svitsj med eksplisitte tillatelsesregler. Dette gir kontrollert trafikk mellom segmenter — f.eks. at servere er tilgjengelige fra ansatt-VLAN, men ikke fra gjeste-VLAN.
+
+**Hva skjer med broadcast-trafikk i et VLAN?**
+Broadcast (f.eks. DHCP Discover, ARP) sendes bare innenfor det samme VLAN-et. Det betyr at en stor bedrift med 10 VLAN har mye lavere broadcast-belastning enn om alle enheter var i ett stort flatt nettverk.
+
+**Hva er native VLAN og hvorfor bør man endre det fra VLAN 1?**
+Native VLAN er VLAN-et som håndterer utagget trafikk på en trunk-port. VLAN 1 er standard, men det er kjent som en sikkerhetsrisiko (VLAN hopping-angrep). Beste praksis er å velge et ubrukt VLAN-nummer som native VLAN.
+
+**Hvordan konfigurerer man VLAN på Cisco-svitsj (grunnleggende)?**
+```
+Switch(config)# vlan 10
+Switch(config-vlan)# name Ansatte
+Switch(config)# interface fa0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+```
+
+**Hva er IEEE 802.1Q?**
+IEEE 802.1Q er den internasjonale standarden for VLAN-tagging i Ethernet-rammer. Taggen er 4 bytes og inneholder bl.a. et 12-bits VLAN ID som muliggjør 4094 ulike VLAN.
+
+**Hva er CIDR og hvorfor er det bedre enn klassisk subnetting?**
+CIDR (Classless Inter-Domain Routing) lar deg bruke subnettmasker som ikke følger de gamle klasse A/B/C-grensene. Dette gir mye mer fleksibel adressering og er grunnlaget for all moderne IP-planlegging.
+
+**Kan jeg ha VLAN på trådløst nettverk?**
+Ja. Moderne aksesspunkter støtter SSID-til-VLAN-mapping. Gjeste-WiFi-nettverket kan kobles til VLAN 20, mens ansattes WiFi kobles til VLAN 10 — trafikken holdes separert selv om begge bruker samme fysiske aksesspunkt.
 
 ## Quiz
 
@@ -199,6 +252,7 @@ IEEE 802.1Q :: Standarden for VLAN-tagging i Ethernet-rammer
 Broadcast-domene :: Området der broadcast-trafikk spres; hvert VLAN er et eget broadcast-domene
 /24-nettverk :: Subnett med 256 adresser (254 brukbare), subnettmaske 255.255.255.0
 Private adresser :: IP-adresser (10.x.x.x, 172.16-31.x.x, 192.168.x.x) som ikke rutes på internett
+IEEE 802.1Q (standard) :: Den internasjonale standarden for VLAN-tagging i Ethernet-rammer, som muliggjør flere logiske nettverk på én fysisk forbindelse
 
 ## Ressurser
 
@@ -207,3 +261,4 @@ Private adresser :: IP-adresser (10.x.x.x, 172.16-31.x.x, 192.168.x.x) som ikke 
 - [Creating Virtual Networks (VLANs) — Ubiquiti UniFi](https://help.ui.com/hc/en-us/articles/9761080275607-Creating-Virtual-Networks-VLANs)
 - [Switch Port VLAN Assignment — Ubiquiti UniFi](https://help.ui.com/hc/en-us/articles/26136855808919-Switch-Port-VLAN-Assignment-Trunk-Access-Ports)
 - [Svitsj — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/svitsj/a33b4b015c)
+- [VLAN — SNL](https://snl.no/VLAN)

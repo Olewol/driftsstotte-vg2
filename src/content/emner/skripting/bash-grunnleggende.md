@@ -5,9 +5,13 @@ kompetansemaal:
   - km-09
 kilder:
   - ndla
+  - https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844
+  - https://learnxinyminutes.com/docs/bash/
 tags: []
 flashcards: true
 public: true
+video: https://www.youtube.com/watch?v=e7BufAVwgyM
+notebooklm: true
 ---
 
 ## Introduksjon
@@ -15,6 +19,8 @@ public: true
 Bash (Bourne Again SHell) er standardskallet på de fleste Linux-distribusjoner og macOS. Det er det første språket de fleste systemadministratorer lærer å skripte i, og med god grunn: Bash er tilgjengelig overalt på Linux, krever ingen installasjon og har direkte tilgang til alle systemverktøy.
 
 I denne artikkelen lærer du de grunnleggende byggesteinene i Bash-skripting: shebang, variabler, betingede utsagn, løkker, funksjoner og filoperasjoner. Alt dette brukes i den praktiske laben der vi bygger et fullstendig backup-skript.
+
+Bash er tett knyttet til [[linux-grunnleggende]] og brukes aktivt i [[automatisering]] av driftsoppgaver. Vil du sammenligne med Windows-siden, se [[powershell-grunnleggende]].
 
 ---
 
@@ -217,6 +223,20 @@ Bash har kraftige innebygde kommandoer for filhåndtering:
 | `ls -la` | List filer med detaljer |
 | `find STI -name "*.log"` | Finn filer etter navn |
 
+### Shellcheck — statisk analyse av skript
+
+**Shellcheck** er et gratis verktøy som analyserer Bash-skript og peker på potensielle feil, dårlige vaner og sikkerhetsproblemer — uten at du trenger å kjøre skriptet.
+
+```bash
+# Installer på Ubuntu/Debian
+sudo apt install shellcheck
+
+# Analyser et skript
+shellcheck backup.sh
+```
+
+Shellcheck vil for eksempel advare om manglende anførselstegn rundt variabler (`"$VAR"` i stedet for `$VAR`), noe som kan gi uventede feil når filnavn inneholder mellomrom. Det er god praksis å kjøre shellcheck på alle skript før de settes i produksjon.
+
 ### Feilhåndtering
 
 Standardvariabelen `$?` inneholder exit-koden til forrige kommando. `0` betyr suksess, alt annet er en feil.
@@ -308,6 +328,56 @@ echo "testinnhold" > "$KILDE/test.txt"
 
 ---
 
+## Study guide
+
+### Bash – grunnleggende skripting
+
+Bash er skallspråket du møter på alle Linux-systemer. Et Bash-skript er en tekstfil med kommandoer som kjøres linje for linje av Bash-tolken.
+
+**Struktur i et skript:**
+1. **Shebang** (`#!/bin/bash`) — alltid første linje, peker på tolken.
+2. **Variabler** — lagrer data. Tilordnes uten mellomrom (`NAVN="verdi"`), leses med `$NAVN`.
+3. **Betingede utsagn** — `if [ betingelse ]; then ... fi` styrer flyten. Bruk filtester (`-f`, `-d`) og sammenligninger (`-eq`, `==`).
+4. **Løkker** — `for`-løkken itererer over lister; `while`-løkken kjører så lenge en betingelse er sann.
+5. **Funksjoner** — navngitte blokker med gjenbrukbar kode. Argumenter hentes med `$1`, `$2` osv. Bruk `local` for lokale variabler.
+6. **Filoperasjoner** — `mkdir -p`, `cp -r`, `mv`, `rm -r`, `find`.
+7. **Feilhåndtering** — `$?` er exit-kode (0 = ok). `set -e` stopper skriptet ved første feil. `>&2` sender feilmeldinger til stderr.
+
+**Gode vaner:**
+- Bruk alltid `"$VAR"` (dobbelthermetegn) rundt variabler — beskytter mot mellomrom i verdier.
+- Kjør `shellcheck skript.sh` for å finne feil før kjøring.
+- Bruk absolutte stier i skript som kalles av cron eller automatiserte systemer.
+- Kommandosubstitusjon `$(kommando)` lagrer utdata fra en kommando i en variabel.
+
+**Typiske bruksområder i drift:** backup-skript, loggrotasjon, brukeroppretting, systemovervåking — se [[automatisering]] for hvordan slike skript planlegges.
+
+---
+
+## FAQ
+
+**Hva er forskjellen på `[ ]` og `[[ ]]` i Bash?**
+`[ ]` er den POSIX-kompatible testen som fungerer i alle Unix-skall. `[[ ]]` er en Bash-utvidelse som gir ekstra funksjoner som mønstermatching med `=~` og logiske operatorer uten behov for `&&`/`||` inni. For VG2-nivå er `[ ]` tilstrekkelig, men det er greit å vite at `[[ ]]` er tryggere mot edge cases.
+
+**Hva skjer hvis jeg glemmer mellomrom inne i `[ ]`?**
+Det feiler. `[$VARIABEL -eq 5]` gir syntaksfeil fordi `[` er en kommando som krever mellomrom rundt alle argumentene. Riktig form er `[ $VARIABEL -eq 5 ]`.
+
+**Kan jeg kjøre et Bash-skript uten `chmod +x`?**
+Ja, ved å kalle tolken eksplisitt: `bash miskript.sh`. Du trenger da ikke kjørerettigheter. `chmod +x` er nødvendig bare hvis du vil kjøre skriptet direkte med `./miskript.sh`.
+
+**Hva betyr `>&2` i en feilmelding?**
+`2` er filbeskriveren for stderr (standardfeil), og `>&2` omdirigerer output til stderr. Det gjør at feilmeldinger kan skilles fra normal output når skriptet kjøres i automatiserte systemer.
+
+**Hva er en exit-kode og hvorfor er 0 suksess?**
+En exit-kode er et tall (0–255) et program returnerer når det avsluttes. Konvensjonen i Unix er at 0 betyr "alt gikk bra" og alt annet betyr en form for feil. Bash-skript kan lese forrige kommandos exit-kode med `$?`.
+
+**Hvordan stopper jeg et skript umiddelbart ved feil?**
+Legg til `set -e` øverst (etter shebang). Da avsluttes skriptet automatisk med feil hvis en kommando returnerer ikke-null exit-kode — i stedet for å fortsette med feil tilstand.
+
+**Hva er kommandosubstitusjon og når brukes det?**
+`$(kommando)` kjører kommandoen og setter inn utdataene i stedet for selve substitusjonen. Typisk bruk: `DATO=$(date +%Y-%m-%d)` lagrer dagens dato i en variabel, som brukes i filnavn for backup-mapper.
+
+---
+
 ## Quiz
 
 <details><summary>Spørsmål 1: Hva gjør shebang-linjen `#!/bin/bash` øverst i et skript?</summary>
@@ -354,6 +424,9 @@ Shebang :: Den første linjen i et skript (`#!/bin/bash`) som forteller OS hvilk
 `local` :: Nøkkelord i Bash-funksjoner som begrenser variabelens levetid til funksjonsblokken
 `[ -d STI ]` :: Bash-test som er sann dersom stien eksisterer og er en mappe
 `[ -f STI ]` :: Bash-test som er sann dersom stien eksisterer og er en vanlig fil
+Shellcheck :: Statisk analyseverktøy for Bash-skript som finner feil og foreslår beste praksis uten å kjøre skriptet
+Exit-kode :: Statuskode (0–255) som returneres av en kommando; 0 = suksess, alt annet = feil
+Kommandosubstitusjon :: Teknikk (`$(kommando)`) som kjører en kommando og setter inn resultatet direkte i en variabel
 
 ---
 
@@ -362,3 +435,6 @@ Shebang :: Den første linjen i et skript (`#!/bin/bash`) som forteller OS hvilk
 - [TLDP Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
 - [TLDP – Bash if/else syntaks](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 - [SS64 – Bash A–Z referanse](https://ss64.com/bash/)
+- [NDLA – Bash og Linux-skripting](https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844)
+- [Learn X in Y Minutes – Bash](https://learnxinyminutes.com/docs/bash/) — kompakt syntaks-oversikt
+- [YouTube – You need to learn Bash Scripting RIGHT NOW!! (NetworkChuck, ~21 min)](https://www.youtube.com/watch?v=e7BufAVwgyM)

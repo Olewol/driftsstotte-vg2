@@ -7,6 +7,10 @@ kilder:
   - ndla
   - nsm
   - microsoft
+  - https://ndla.no/resource/224ac302-1aaa-43c7-9228-8b2f4bf402fc
+  - https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet/beskytte-og-opprettholde/2-2-etabler-en-sikker-ikt-infrastruktur/2-2-3-segmenter-virksomhetens-nettverk-basert-pa-risikoprofil/
+video: https://www.youtube.com/watch?v=nS7fOofT-f4
+notebooklm: true
 tags: []
 flashcards: true
 public: true
@@ -16,7 +20,9 @@ public: true
 
 En brannmur (firewall) er det viktigste enkeltverktøyet for å kontrollere nettverkstrafikk. Den fungerer som en kontrollpost mellom nettverk: den inspiserer datapakker og bestemmer – basert på definerte regler – om de skal slippes gjennom eller blokkeres.
 
-NSM Grunnprinsipper for IKT-sikkerhet peker på «kontroller dataflyt» som et sentralt prinsipp. En brannmur er primærverktøyet for dette, men den fungerer best som del av et helhetlig forsvar med nettverkssegmentering, IDS/IPS og logging.
+NSM Grunnprinsipper for IKT-sikkerhet peker på «kontroller dataflyt» som et sentralt prinsipp. En brannmur er primærverktøyet for dette, men den fungerer best som del av et helhetlig forsvar med [[segmentering-og-vlan|nettverkssegmentering]], IDS/IPS og logging.
+
+I praksis brukes brannmurer på flere nivåer: på nettverksnivå (ruter/switch), i skyen og som vertsbasert programvare på enkeltmaskiner. For å forstå brannmurens rolle fullt ut, er det nyttig å se den i sammenheng med [[it-losninger-med-sikkerhet|helhetlig IT-sikkerhet]] og Defense in Depth-prinsippet.
 
 ---
 
@@ -98,7 +104,7 @@ Internett
 **Nettverkssegmentering** deler nettverket inn i separate soner med brannmurregler mellom. Målet er å begrense **lateral bevegelse** – angriperens evne til å spre seg i nettverket etter å ha kommet inn.
 
 Implementeres via:
-- **VLAN (Virtual LAN):** logisk separasjon på nettverksnivå. Ansatt-VLAN, gjeste-VLAN, server-VLAN og IoT-VLAN er typiske segmenter.
+- **VLAN (Virtual LAN):** logisk separasjon på nettverksnivå. Ansatt-VLAN, gjeste-VLAN, server-VLAN og IoT-VLAN er typiske segmenter. Se [[segmentering-og-vlan]] for detaljer.
 - **Brannmurregler mellom VLAN-ene:** definerer hvilken trafikk som er tillatt på tvers
 
 NSM anbefaler segmentering som et av de viktigste forebyggende tiltakene. I Østre Toten-angrepet (2021) bidro mangel på segmentering til at ransomwaren spredte seg til hele nettverket.
@@ -128,6 +134,12 @@ Motsetningen er *default-allow* (blokkliste): tillat alt, blokkér det kjente on
 | **Ulempe** | Reagerer ikke – bare varsler | Falskt positiv kan blokkere legitim trafikk |
 
 Moderne systemer er gjerne kombinert (IDPS). De bruker signaturer (kjente angrepsmønstre) og anomalideteksjon (avvik fra normalen) for å identifisere trusler.
+
+---
+
+### Next-Generation Firewall (NGFW)
+
+En **Next-Generation Firewall** kombinerer tradisjonell stateful inspection med dypere applikasjons-bevissthet. NGFW kan identifisere og kontrollere trafikk basert på applikasjon (ikke bare port), brukeridentitet og innhold. Eksempler: Palo Alto Networks, Fortinet FortiGate, Cisco Firepower. NGFW er i dag standarden i bedriftsmiljøer fordi enkle pakkefiltre og stateful inspection ikke er tilstrekkelig mot moderne trusler.
 
 ---
 
@@ -163,6 +175,61 @@ En bedrifts forsvar bør ha både en nettverksbrannmur (på ruternivå) og verts
 9. Gi regelen et navn: «Blokker ICMP ping» → **Finish**
 
 **Test:** Forsøk å pinge maskinen fra en annen maskin i nettverket – du skal ikke få svar.
+
+---
+
+## Study guide
+
+### Brannmur og nettverkssikkerhet – kjerneinnhold
+
+**Hva er en brannmur?**
+En brannmur kontrollerer nettverkstrafikk basert på forhåndsdefinerte regler. Den inspiserer datapakker og beslutter om de skal tillates eller blokkeres. Det finnes tre hovednivåer: pakkefiltrering (stateless), stateful inspection og applikasjonsbrannmur (WAF/Layer 7).
+
+**Stateless vs. stateful:**
+Stateless brannmurer vurderer hver pakke isolert – de er raske men har ingen hukommelse. Stateful brannmurer holder oversikt over aktive forbindelser og kan skille mellom legitim returtrafikk og forsøk på innbrudd utenfra. Moderne brannmurer er alltid stateful.
+
+**Default-deny:**
+Grunnprinsippet er å blokkere alt som standard og kun eksplisitt tillate nødvendig trafikk. Dette minimerer angrepsflaten dramatisk sammenlignet med default-allow.
+
+**DMZ og segmentering:**
+DMZ plasserer internett-eksponerte servere i et isolert segment. Intern nettverkssegmentering via VLAN begrenser lateral bevegelse etter et innbrudd. NSM peker på segmentering som ett av de viktigste forebyggende tiltakene.
+
+**IDS/IPS:**
+IDS oppdager og varsler om mistenkelig aktivitet. IPS gjør det samme men blokkerer automatisk. Begge bruker signaturer (kjente mønstre) og anomalideteksjon. Kombinert kalles de IDPS.
+
+**Lagdelt forsvar:**
+Brannmuren er ett lag i et helhetlig forsvar (Defense in Depth). Nettverksbrannmur + vertsbasert brannmur + segmentering + logging gir overlappende beskyttelse slik at svikt i ett lag ikke er fatalt.
+
+**Nøkkelbegreper å beherske:**
+Pakkefiltrering, stateful inspection, WAF, DMZ, nettverkssegmentering, default-deny, VLAN, IDS, IPS, lateral bevegelse, vertsbasert brannmur, NGFW.
+
+---
+
+## FAQ
+
+**Hva er forskjellen mellom en brannmur og antivirus?**
+En brannmur kontrollerer nettverkstrafikk basert på IP-adresser, porter og protokoller – den bestemmer hva som får lov til å kommunisere. Antivirus/EDR analyserer filer og programkjøring for ondsinnet kode på selve maskinen. Begge er nødvendige og utfyller hverandre.
+
+**Kan en brannmur stoppe all malware?**
+Nei. En brannmur stopper uautorisert nettverkstrafikk, men en bruker kan for eksempel laste ned malware via en tillatt HTTPS-tilkobling. Brannmuren er ett lag – ikke en fullstendig løsning alene.
+
+**Hvorfor er DMZ viktig for webservere?**
+Webservere må være tilgjengelige fra internett og er dermed eksponert for angrep. Ved å plassere dem i DMZ sikrer man at selv om en webserver kompromitteres, kan angriperen ikke bevege seg direkte inn i det interne nettverket.
+
+**Hva er forskjellen mellom VLAN-segmentering og DMZ?**
+DMZ er typisk for internett-eksponerte servere og er plassert mellom to brannmurer. VLAN-segmentering deler det interne nettverket i logiske soner (ansatte, elever, gjester, IoT) med brannmurregler mellom. Begge er former for nettverkssegmentering.
+
+**Hva betyr «falskt positiv» i sammenheng med IPS?**
+Et falskt positiv er når IPS feilaktig identifiserer legitim trafikk som en trussel og blokkerer den. Dette kan forstyrre driften, for eksempel at et forretningssystem ikke lenger fungerer. Derfor krever IPS nøye kalibrering og overvåkning.
+
+**Når bør man bruke WAF fremfor vanlig brannmur?**
+WAF brukes i tillegg til vanlig brannmur når du eksponerer webapplikasjoner mot internett. En vanlig brannmur ser ikke innholdet i HTTPS-trafikk, men en WAF dekrypterer og inspekterer HTTP-forespørsler for å oppdage SQL-injeksjon, XSS og andre applikasjonsangrep.
+
+**Hva er en NGFW og hvorfor er den bedre enn tradisjonell brannmur?**
+En Next-Generation Firewall kombinerer stateful inspection med applikasjonsidentifisering, brukeridentitet og innholdsinspeksjon. Den kan for eksempel tillate Zoom men blokkere andre videostrømmingstjenester, og den kan identifisere trafikk uavhengig av port.
+
+**Hva skjer i praksis uten default-deny?**
+Med default-allow tillates all trafikk som ikke eksplisitt er blokkert. Angripere trenger bare å finne én port eller protokoll som ikke er i blokklisten – noe som er enkelt. Med default-deny er utgangspunktet null tilgang, og kun dokumentert nødvendig trafikk åpnes.
 
 ---
 
@@ -212,6 +279,7 @@ IDS :: Intrusion Detection System – overvåker trafikk og varsler ved mistenke
 IPS :: Intrusion Prevention System – overvåker trafikk og blokkerer automatisk mistenkelig aktivitet inline
 Lateral bevegelse :: Angriperens evne til å bevege seg mellom systemer etter å ha fått innledende tilgang
 Vertsbasert brannmur :: Brannmur som kjører på selve maskinen (f.eks. Windows Defender Firewall), i tillegg til nettverksbrannmuren
+NGFW :: Next-Generation Firewall – kombinerer stateful inspection med applikasjonsidentifisering og brukeridentitet for dypere trafikkanalyse
 
 ---
 
@@ -220,3 +288,6 @@ Vertsbasert brannmur :: Brannmur som kjører på selve maskinen (f.eks. Windows 
 - [NDLA – Brannmur (Driftsstøtte VG2)](https://ndla.no/r/driftsstotte-im-itk-vg2/brannmur/2aad28ca4e)
 - [NSM Grunnprinsipper – Kontroller dataflyt](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
 - [Microsoft – Azure Network Security](https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview)
+- [NDLA – Brannmur og pakkefiltrering](https://ndla.no/resource/224ac302-1aaa-43c7-9228-8b2f4bf402fc)
+- [NSM – Nettverkssegmentering](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet/beskytte-og-opprettholde/2-2-etabler-en-sikker-ikt-infrastruktur/2-2-3-segmenter-virksomhetens-nettverk-basert-pa-risikoprofil/)
+- [YouTube: What is a DMZ? (PowerCert Animated Videos, 6 min)](https://www.youtube.com/watch?v=nS7fOofT-f4)

@@ -5,16 +5,18 @@ kompetansemaal:
   - km-04
 kilder:
   - ndla
+  - https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/active-directory-domain-services
 tags: []
 flashcards: true
 public: true
+notebooklm: true
 ---
 
 ## Introduksjon
 
 Bruker- og tilgangsstyring er kjernen i km-04 og én av de viktigste oppgavene en IT-driftsteknikker utfører. Målet er å sikre at **riktige personer har tilgang til riktige ressurser — og ikke mer**. Dette kalles prinsippet om minste privilegium (*Least Privilege*).
 
-Denne artikkelen dekker Windows-brukeradministrasjon (lokalt og i domene), sikkerhetsgrupper, tilgangskontroll og tilsvarende verktøy i Linux.
+Denne artikkelen dekker Windows-brukeradministrasjon (lokalt og i domene), sikkerhetsgrupper, tilgangskontroll og tilsvarende verktøy i Linux. Brukeradministrasjon i domenemiljøer forutsetter kunnskap om [[active-directory]]. For Linux-kommandoer, se [[linux-grunnleggende]], og for automatisering av brukeropprettelse, se [[powershell-grunnleggende]].
 
 ---
 
@@ -103,6 +105,25 @@ Tilgangskontroll bygger på tre steg:
 2. **Autorisasjon** — Hva har du lov til? (grupper, ACL-er, rettigheter)
 3. **Revisjon** — Hva har du gjort? (hendelseslogger, sikkerhetssporing)
 
+### RBAC — Rollebasert tilgangsstyring
+
+**Rollebasert tilgangsstyring (RBAC)** er en utvidelse av prinsippet om minste privilegium. I stedet for å tildele rettigheter direkte til enkeltbrukere, knyttes tillatelser til **roller** (f.eks. «Regnskapsfører», «IT-administrator», «Elev»). Brukere tildeles deretter roller.
+
+Fordeler med RBAC:
+- Enklere å administrere ved store brukermengder
+- Enklere revisjon («hvem har rollen X?» er ett spørsmål, ikke mange)
+- Lavere risiko for feilkonfigurering — nye brukere arver rollen automatisk
+
+I Windows AD implementeres RBAC i praksis ved hjelp av sikkerhetsgrupper: én gruppe per rolle, rettigheter tildeles gruppen.
+
+### Integrasjon mellom Windows og Linux
+
+I større miljøer er det ønskelig at Linux-klienter kan logge inn mot Windows-domenet. Dette gjøres typisk med:
+- **SSSD** (System Security Services Daemon) — lar Linux autentisere mot AD
+- **Samba/Winbind** — alternativ løsning for domeneintegrasjon
+
+Dette er avansert stoff, men konseptet er viktig: ett sentralt brukersystem (AD) for både Windows og Linux.
+
 ---
 
 ## Eksempel / lab
@@ -183,6 +204,52 @@ sudo:x:27:elev01,admin
 
 ---
 
+## Study guide
+
+**Bruker- og tilgangsstyring** handler om å sikre at riktige personer har tilgang til riktige ressurser. Kjerneprinsippet er **minste privilegium**: gi aldri mer tilgang enn nødvendig.
+
+To kontotyper å skille mellom:
+- **Lokale kontoer** lagres i maskinens SAM-database og gjelder kun lokalt
+- **Domenekontoer** lagres i Active Directory og fungerer på alle domene-tilknyttede maskiner
+
+Viktige Windows-konsepter:
+- **SID** — Windows bruker ikke brukernavn internt, men SID. Sletter du og gjenoppretter en konto med samme navn, mister den alle tilganger
+- **UAC** — hindrer programmer i å eskalere til adminrettigheter uten eksplisitt bekreftelse
+- **Sikkerhetsgrupper** — tildel alltid tillatelser til grupper, aldri enkeltbrukere
+- **Gruppeomfang** — domenelokale grupper for tillatelser lokalt, globale grupper for å samle brukere, universelle grupper for skog-nivå
+
+AAA-rammeverket oppsummerer tilgangskontroll: **Autentisering** (hvem er du?), **Autorisasjon** (hva har du lov til?), **Revisjon** (hva har du gjort?).
+
+Linux-ekvivalenter:
+- Brukere opprettes med `useradd`, endres med `usermod`, slettes med `userdel`
+- Grupper administreres med `groupadd` og `gpasswd`
+- `/etc/passwd` inneholder brukerinfo; `/etc/shadow` inneholder krypterte passord (kun root kan lese)
+- Tilgangsrettigheter styres av rwx-modellen — se [[linux-grunnleggende]] for detaljer
+
+---
+
+## FAQ
+
+**Hvorfor bør man ikke bruke Administrator-kontoen til daglig bruk?**
+Administrator-kontoen (SID ...-500) har ubegrenset tilgang og kan ikke deaktiveres permanent. Daglig bruk øker risikoen for at skadelig programvare eller menneskelige feil gjør permanent skade. Bruk en navngitt brukerkonto med begrenset tilgang, og en separat adminkonto kun når nødvendig.
+
+**Hva skjer med tilganger hvis jeg sletter og gjenoppretter en bruker med samme navn?**
+Den nye kontoen får et nytt SID. Alle NTFS-tillatelser, gruppemedlemskap og ressurskoblinger er knyttet til det gamle SID-et og må settes opp på nytt. Bruk derfor deaktivering fremfor sletting ved oppsigelser.
+
+**Hva er forskjellen mellom global, domenelokal og universell gruppe?**
+Global gruppe samler brukere fra eget domene og kan brukes til tillatelser i alle domener i skogen. Domenelokal gruppe brukes til tillatelser lokalt og kan inneholde brukere fra alle domener. Universell gruppe kan inneholde brukere fra hele skogen og brukes i skog-nivå-scenarier.
+
+**Hva gjør `-aG` i `usermod -aG sudo elev01`?**
+`-a` (append) legger brukeren til i gruppen uten å fjerne eksisterende gruppemedlemskap. Uten `-a` ville kommandoen erstatte alle eksisterende gruppemedlemskap med kun `sudo`.
+
+**Hva er RBAC og hvorfor brukes det?**
+Rollebasert tilgangsstyring knytter rettigheter til roller fremfor enkeltpersoner. Det forenkler administrasjon: nye ansatte tildeles en rolle og får automatisk riktig tilgang. Det reduserer også feil og gjør revisjon enklere.
+
+**Hva er forskjellen mellom autentisering og autorisasjon?**
+Autentisering verifiserer identiteten din (du er den du utgir deg for å være). Autorisasjon bestemmer hva du har lov til å gjøre etter du er autentisert. Et system kan autentisere deg uten å gi deg tilgang til noe som helst.
+
+---
+
 ## Quiz
 
 <details><summary>Spørsmål 1: Hva er forskjellen mellom en lokal konto og en domenekonto?</summary>
@@ -238,6 +305,9 @@ AAA :: Autentisering, Autorisasjon og Revisjon — grunnprinsippene for tilgangs
 useradd :: Linux-kommando for å opprette en ny brukerkonto
 usermod -aG :: Linux-kommando for å legge en bruker til i en tilleggsgruppe uten å fjerne eksisterende gruppemedlemskap
 /etc/shadow :: Linux-fil som lagrer krypterte passord (kun root kan lese)
+RBAC :: Rollebasert tilgangsstyring — rettigheter knyttes til roller, ikke enkeltpersoner
+Sudoers :: Konfigurasjonsfil i Linux (`/etc/sudoers`) som definerer hvem som kan kjøre kommandoer med root-rettigheter
+SSSD :: System Security Services Daemon — lar Linux-klienter autentisere mot Active Directory
 
 ---
 
@@ -247,3 +317,4 @@ usermod -aG :: Linux-kommando for å legge en bruker til i en tilleggsgruppe ute
 - [Microsoft Learn: AD-sikkerhetsgrupper](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups)
 - [Microsoft Learn: Administrere brukerkontoer i Windows Server](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server)
 - [Ubuntu Server: Brukerhåndtering](https://documentation.ubuntu.com/server/how-to/security/user-management/)
+- [Microsoft Learn: Active Directory Domain Services](https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/active-directory-domain-services)

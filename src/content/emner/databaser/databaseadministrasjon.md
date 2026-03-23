@@ -5,6 +5,10 @@ kompetansemaal:
   - km-04
 kilder:
   - ndla
+  - https://ndla.no/subject:1:7e101f30-891d-4076-a70e-1100f9156475/topic:1:a6e7039a-5e1a-4c92-b05b-439f72765366/resource:73797690-3486-444c-bc6d-62725e173e97
+  - https://dev.mysql.com/doc/refman/8.0/en/optimization.html
+video: https://www.youtube.com/watch?v=u96rS6Y236M
+notebooklm: true
 tags: []
 flashcards: true
 public: true
@@ -14,7 +18,7 @@ public: true
 
 Databaseadministrasjon handler om å holde en databaseserver trygg, tilgjengelig og effektiv over tid. For en driftstøtter er dette daglig arbeid: du oppretter brukere, tildeler tilganger, tar backup, gjenoppretter data etter feil og sørger for at serveren ikke er for treg.
 
-Denne artikkelen tar for seg tre kjerneområder i MySQL-administrasjon: **brukertilgang**, **backup og gjenoppretting**, og **ytelsesoptimalisering med indekser**.
+Denne artikkelen tar for seg tre kjerneområder i MySQL-administrasjon: **brukertilgang**, **backup og gjenoppretting**, og **ytelsesoptimalisering med indekser**. God databaseadministrasjon er tett koblet til [[bruker-og-tilgangsstyring]] generelt og er en forutsetning for solid [[backup-og-gjenoppretting]] av systemene du drifter.
 
 ---
 
@@ -112,6 +116,8 @@ SET DEFAULT ROLE 'les_inventar' TO 'vikar_bruker'@'localhost';
 
 Roller gjør det mye enklere å administrere tilganger når mange brukere skal ha samme rettigheter.
 
+**Prinsippet om minste privilegium (Least Privilege):** Gi alltid brukere kun de rettighetene de absolutt trenger for å utføre sin oppgave. En applikasjonsbruker som kun leser data trenger ikke `DELETE` eller `DROP`. Dette begrenser skadeomfanget ved feil eller kompromittering.
+
 ---
 
 ### Backup med mysqldump
@@ -162,6 +168,8 @@ crontab -e
 
 Backup-filer bør lagres på en separat disk eller ekstern lokasjon — en backup på samme disk som databasen er ikke en ekte backup.
 
+**Test alltid gjenoppretting (Recovery Testing).** En backup du aldri har testet er ikke en backup du kan stole på. Sett av tid regelmessig til å gjenopprette til en testdatabase og verifiser at dataene er intakte. Se [[backup-og-gjenoppretting]] for generelle prinsipper som gjelder på tvers av systemer.
+
 ---
 
 ### Indekser og ytelsesoptimalisering
@@ -186,7 +194,7 @@ DROP INDEX idx_type ON utstyr;
 
 #### EXPLAIN — analyser spørringer
 
-`EXPLAIN` viser deg hvordan MySQL planlegger å utføre en spørring. Det er det viktigste verktøyet for å finne flaskehalser.
+`EXPLAIN` viser deg hvordan MySQL planlegger å utføre en spørring. Det er det viktigste verktøyet for å finne flaskehalser. Bruk alltid `EXPLAIN` før du legger til nye indekser — det hjelper deg forstå om en indeks faktisk trengs.
 
 ```sql
 EXPLAIN SELECT * FROM utstyr WHERE type = 'PC';
@@ -211,6 +219,20 @@ Etter å ha lagt til en indeks:
 
 ```
 type: ref, key: idx_type, rows: 42
+```
+
+#### Sakte spørringslogg (Slow Query Log)
+
+MySQL kan loggføre alle spørringer som tar lengre tid enn en definert grense. Dette er et verdifullt verktøy for å identifisere ytelsesflaskehalser i produksjonsmiljøer.
+
+```sql
+-- Se om slow query log er aktivert
+SHOW VARIABLES LIKE 'slow_query_log%';
+
+-- Aktiver i MySQL-konfigurasjon (/etc/mysql/my.cnf):
+-- slow_query_log = 1
+-- slow_query_log_file = /var/log/mysql/slow.log
+-- long_query_time = 2
 ```
 
 #### Praktiske ytelsestips
@@ -260,7 +282,7 @@ GRANT ALL PRIVILEGES ON it_inventar.* TO 'drifts_admin'@'localhost';
 CREATE USER 'laerer'@'localhost' IDENTIFIED BY 'Laerer2024!';
 GRANT SELECT ON it_inventar.* TO 'laerer'@'localhost';
 
--- Applikasjonsbru ker: lese og oppdatere, ikke slette
+-- Applikasjonsbruker: lese og oppdatere, ikke slette
 CREATE USER 'app'@'localhost' IDENTIFIED BY 'App2024!';
 GRANT SELECT, INSERT, UPDATE ON it_inventar.* TO 'app'@'localhost';
 
@@ -308,6 +330,56 @@ CREATE INDEX idx_type ON utstyr(type);
 -- Kjør EXPLAIN igjen og sammenlign
 EXPLAIN SELECT * FROM utstyr WHERE type = 'PC';
 ```
+
+---
+
+## Study guide
+
+### Databaseadministrasjon — kjerneinnhold
+
+Databaseadministrasjon i MySQL handler om tre overordnede ansvarsområder som en driftstøtter møter i hverdagen.
+
+**Brukertilgang og sikkerhet**
+MySQL identifiserer brukere med kombinasjonen `'brukernavn'@'host'`, noe som gir finkornet kontroll over hvem som kobler til fra hvilken maskin. Tilgangskontroll skjer i to steg: autentisering (er det riktig bruker?) og autorisering (hva har de lov til?). Prinsippet om minste privilegium er avgjørende: gi aldri mer enn det som trengs. Fra MySQL 8.0 kan roller (RBAC) brukes til å forenkle administrasjon der mange brukere trenger samme rettigheter.
+
+Sentrale kommandoer: `CREATE USER`, `GRANT`, `REVOKE`, `FLUSH PRIVILEGES`, `SHOW GRANTS`, `DROP USER`, `CREATE ROLE`.
+
+**Backup og gjenoppretting**
+`mysqldump` lager en logisk backup som SQL-setninger — portabel, leserbar og versjonsuavhengig. Backup bør automatiseres med cron og lagres utenfor databaseserveren. Like viktig som å ta backup er å *teste gjenoppretting* jevnlig. En utestet backup er ikke en pålitelig backup.
+
+**Ytelsesoptimalisering**
+Indekser (B-tre-strukturer) gjør oppslag dramatisk raskere i store tabeller, men koster litt ved innsetting og oppdatering. `EXPLAIN` er det primære verktøyet for å analysere spørringsplaner og finne manglende indekser. Full tabellscan (`type: ALL`) er tegn på at en indeks mangler. Slow Query Log hjelper deg oppdage flaskehalser i produksjon. Gode vaner: riktige datatyper, unngå `SELECT *`, bruk `LIMIT`.
+
+**Sammenheng med andre emner**
+Databaseadministrasjon bygger på prinsipper fra [[bruker-og-tilgangsstyring]] og er en del av det totale [[backup-og-gjenoppretting]]-ansvaret i en driftsorganisasjon. [[sql-grunnleggende]] gir grunnlaget for å forstå spørringene du optimaliserer.
+
+---
+
+## FAQ
+
+**Hva er de to stadiene i MySQL sin tilgangskontroll?**
+Autentisering (er brukernavn og passord riktig?) og autorisering (hva har denne brukeren lov til å gjøre?). Begge må godkjennes for at en operasjon skal gå gjennom.
+
+**Hvorfor er formatet `'bruker'@'host'` viktig i MySQL?**
+Fordi samme brukernavn fra ulike maskiner kan ha helt forskjellige rettigheter. `admin@localhost` og `admin@'192.168.1.5'` er separate kontoer. Dette gir presis kontroll over nettverkstilgang til databasen.
+
+**Hva er prinsippet om minste privilegium, og hvorfor gjelder det databaser?**
+Gi brukere kun de rettighetene de trenger for sin oppgave — ikke mer. En rapportbruker trenger `SELECT`, ikke `DELETE`. Hvis en konto kompromitteres eller en feil begås, begrenses skaden.
+
+**Hva er forskjellen på logisk og fysisk backup?**
+Logisk backup (mysqldump) eksporterer data som SQL-setninger — portabel og leserbar, men tregere å gjenopprette for store databaser. Fysisk backup kopierer de faktiske datafiler på disk — raskere gjenoppretting, men ikke nødvendigvis kompatibel på tvers av MySQL-versjoner.
+
+**Hvorfor bør jeg teste gjenoppretting, ikke bare ta backup?**
+En backup-fil kan være korrupt, ufullstendig eller skrevet feil. Hvis du aldri tester gjenoppretting, vet du ikke om den faktisk fungerer — det finner du ut i verste øyeblikk under en reell hendelse.
+
+**Hva forteller `EXPLAIN` meg, og når bruker jeg det?**
+EXPLAIN viser MySQL sin plan for å kjøre en spørring: hvilken indeks som brukes, antall estimerte rader som leses, og om det er full tabellscan. Bruk det når en spørring er treg, eller før du legger til en indeks, for å forstå hva som faktisk skjer.
+
+**Hva er en sakte spørringslogg (Slow Query Log)?**
+En MySQL-funksjon som logger alle spørringer som tar lengre tid enn en definert grense (f.eks. 2 sekunder). Uunnværlig i produksjon for å finne ytelsesflaskehalser uten å måtte overvåke manuelt.
+
+**Hva er RBAC, og hvordan støtter MySQL det?**
+Rollebasert tilgangskontroll (RBAC) betyr at rettigheter tildeles roller, og roller tildeles brukere — ikke rettigheter direkte til hver bruker. Fra MySQL 8.0 brukes `CREATE ROLE` og `GRANT rolle TO bruker`. Gjør det mye enklere å administrere mange brukere med like tilgangsbehov.
 
 ---
 
@@ -359,6 +431,9 @@ EXPLAIN :: MySQL-kommando som viser spørringsplanen — brukes for å diagnosti
 RBAC :: Rollebasert tilgangskontroll — rettigheter tildeles roller, roller tildeles brukere
 CREATE ROLE :: MySQL 8.0-kommando for å opprette en rolle som kan samle rettigheter
 Full tabellscan :: MySQL leser alle rader i tabellen for å finne treff — indikert med type=ALL i EXPLAIN, unngås med indekser
+Minste privilegium :: Sikkerhetsprinsipp — gi brukere kun de rettighetene de absolutt trenger for sin oppgave
+Sakte spørringslogg :: MySQL-funksjon som logger spørringer over definert tidsgrense — brukes til å identifisere ytelsesflaskehalser
+Indeksering :: Opprettelse av en datastruktur som fungerer som hurtigvei for søk og forbedrer ytelse ved store datamengder
 
 ---
 
@@ -368,3 +443,5 @@ Full tabellscan :: MySQL leser alle rader i tabellen for å finne treff — indi
 - [MySQL 8.0: Backup og recovery](https://dev.mysql.com/doc/refman/8.0/en/backup-and-recovery.html)
 - [MySQL 8.0: Optimering](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)
 - [PostgreSQL: Backup og restore](https://www.postgresql.org/docs/current/backup.html)
+- [NDLA: Databaseadministrasjon](https://ndla.no/subject:1:7e101f30-891d-4076-a70e-1100f9156475/topic:1:a6e7039a-5e1a-4c92-b05b-439f72765366/resource:73797690-3486-444c-bc6d-62725e173e97)
+- [YouTube: MySQL Administration and User Management — Database Star (12 min)](https://www.youtube.com/watch?v=u96rS6Y236M)

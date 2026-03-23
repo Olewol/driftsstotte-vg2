@@ -5,9 +5,12 @@ kompetansemaal:
   - km-05
 kilder:
   - ndla
+  - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started
 tags: [server, ad, dns, dhcp, filserver, webserver, windows-server, serverrolle]
 flashcards: true
 public: true
+video: https://www.youtube.com/watch?v=vVbrlNlqJP4
+notebooklm: true
 ---
 
 # Serverroller
@@ -15,6 +18,8 @@ public: true
 ## Introduksjon
 
 En server er ikke bare en kraftig datamaskin — det er en maskin med spesifikke roller og ansvar i nettverket. I Windows Server installerer du tjenester som "serverroller" via Server Manager. Å kjenne de viktigste serverrollene, hva de gjør og hvilke protokoller de bruker, er essensielt for driftstøtte: du planlegger infrastrukturen, installerer tjenestene og holder dem i gang.
+
+Serverroller er tett koblet til [[active-directory]], [[bruker-og-tilgangsstyring]] og [[filsystem]], og er en sentral del av [[driftsarkitektur]] i en bedrift. En domenekontroller er ikke én rolle, men en kombinasjon av AD DS, DNS og ofte DHCP som samarbeider.
 
 ## Teori
 
@@ -45,6 +50,8 @@ AD DS er grunnmuren i et Windows-domenenettverk. En server med AD DS-rollen kall
 - **Autentisering**: logger inn brukere med brukernavn og passord
 - **Autorisasjon**: kontrollerer hva brukere har tilgang til
 - **Katalog**: sentralt register over alle brukere, datamaskiner og ressurser
+
+**AD DS** — Active Directory Domain Services — er altså en katalogtjeneste som sentraliserer administrasjon av brukere, grupper og datamaskiner i et nettverk.
 
 #### AD-hierarkiet
 
@@ -91,6 +98,8 @@ Se [[dns-og-dhcp]] for full gjennomgang av DNS.
 
 DHCP-serveren tildeler automatisk IP-konfigurasjon til nettverksklienter. I domenemiljø overtar denne rollen fra ruterens innebygde DHCP.
 
+Et **DHCP Scope** er et definert område med IP-adresser som DHCP-serveren kan tildele klienter på et bestemt subnett.
+
 Viktige steg:
 1. Deaktiver DHCP på ruteren
 2. Installer DHCP Server-rollen i Windows Server
@@ -104,7 +113,7 @@ Se [[dns-og-dhcp]] for full gjennomgang av DHCP.
 
 ### Webserver — IIS (Internet Information Services)
 
-IIS er Microsofts webserverplattform, tilgjengelig som serverrolle i Windows Server.
+**IIS** (Internet Information Services) er Microsofts webserver-rolle som brukes til å hoste nettsider eller webapplikasjoner. Det er en serverrolle tilgjengelig i Windows Server.
 
 **Funksjon**: betjener HTTP/HTTPS-forespørsler fra nettlesere. Brukes til:
 - Interne portaler og intranett-sider
@@ -134,6 +143,8 @@ En filserver gjør mapper tilgjengelig over nettverket slik at brukere kan lagre
 2. Hak av "Share this folder", gi sharenavn (f.eks. `Dokumenter`)
 3. Sett delingsrettigheter (hvem kan lese/skrive via share)
 4. Sett NTFS-rettigheter for finmasket tilgangskontroll
+
+**NTFS-rettigheter** er filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver. De er mer granulære enn share-rettigheter og gjelder også ved lokal tilgang.
 
 Tilgang fra klient:
 ```
@@ -210,6 +221,49 @@ Statisk IP på server: `192.168.1.10/24`, gateway `192.168.1.1`, DNS `192.168.1.
    - Naviger til ønsket OU → New → User
    - Fyll inn fornavn, etternavn og påloggingsnavn
 
+## Study guide
+
+**Serverroller — kjerneforståelse**
+En Windows Server er en plattform for å kjøre tjenester ("roller"). De viktigste å kjenne for VG2 er: AD DS (domene og autentisering), DNS (navneoppløsning), DHCP (IP-tildeling), IIS (webserver) og Filserver (SMB-deling).
+
+**AD DS — det viktigste å forstå**
+AD DS er fundamentet. Det samler brukerkontoer, datamaskiner og policyer i ett sentralt system. En domenekontroller er en server med AD DS-rollen. OU-er strukturerer AD og er ankerpunktet for Group Policy. DNS er en forutsetning for AD.
+
+**Filserver og tilgangskontroll**
+NTFS-rettigheter gjelder alltid, share-rettigheter gjelder kun ved nettverkstilgang. Når begge er satt, er det den mest restriktive kombinasjonen som gjelder. Mappestruktur og rettigheter henger tett sammen med [[bruker-og-tilgangsstyring]].
+
+**Vanlige eksamenspoeng**
+- Forskjellen mellom OU og en vanlig mappe i AD
+- Hva FQDN betyr og eksempel
+- Stegene for å koble en klient til et domene
+- Hvilke protokoller/porter de ulike serverrollene bruker
+
+## FAQ
+
+**Hva er forskjellen mellom en OU og en mappe i Active Directory?**
+En OU (Organizational Unit) er en logisk container i AD som støtter delegert administrasjon og Group Policy Objects (GPO). En vanlig mappe støtter ikke dette. OU-er brukes til å strukturere AD og styre policyer for grupper av brukere eller datamaskiner.
+
+**Hvilken protokoll bruker en Windows-filserver for nettverksdeling, og hvilken port?**
+SMB (Server Message Block), port 445 (TCP). Eldre versjoner brukte port 139 (via NetBIOS).
+
+**Hva er forskjellen mellom IIS, Apache og Nginx?**
+Alle tre er webservere. IIS er Microsofts løsning for Windows Server. Apache er den mest brukte åpen kildekode-webserveren, primært på Linux. Nginx er kjent for høy ytelse og brukes mye som reverse proxy og lastbalanserer, i tillegg til webserver. IIS er integrert med Windows-autentisering og .NET.
+
+**Hva er et FQDN, og gi et eksempel?**
+FQDN (Fully Qualified Domain Name) er det fullstendige domenenavnet til en enhet, inkludert alle ledd frem til roten. Eksempel: `pc01.lab.lan` — her er `pc01` maskinnavnet, `lab` er domenet og `lan` er toppdomenet.
+
+**Hvorfor trenger en domenekontroller DNS-serverrollen?**
+Active Directory er avhengig av DNS for at klienter skal finne domenekontrolleren (via SRV-poster i DNS). Uten DNS kan klienter ikke logge inn, finne AD-tjenester eller kommunisere med domenet. DNS-rollen installeres derfor alltid i kombinasjon med AD DS.
+
+**Hva er DHCP Scope og hvorfor er det viktig å konfigurere det riktig?**
+Et DHCP Scope er adresserommet serveren deler ut fra. Feil konfigurasjon (for lite adresser, feil gateway eller DNS) betyr at klienter ikke kan nå nettverket. Scope-alternativer som gateway og DNS-server er like viktige som adressene selv.
+
+**Hva er AD DS og hvorfor er det sentralt i bedriftsnettverk?**
+AD DS er katalogtjenesten som samler alle nettverksobjekter (brukere, grupper, maskiner) i ett sted. I stedet for at hver bruker har lokale kontoer på hver maskin, logger alle inn med sin AD-konto — og tilganger styres sentralt via grupper og policyer.
+
+**Hva er forskjellen mellom NTFS-rettigheter og share-rettigheter?**
+Share-rettigheter gjelder kun når man kobler til mappen via nettverket. NTFS-rettigheter gjelder alltid — også ved lokal tilgang. Beste praksis er å sette share til "Everyone - Full Control" og bruke NTFS-rettigheter for den faktiske tilgangskontrollen.
+
 ## Quiz
 
 <details>
@@ -254,6 +308,8 @@ FQDN :: Fully Qualified Domain Name — fullstendig domenenavn f.eks. pc01.lab.l
 MTA :: Mail Transfer Agent — serverprogramvare som sender og videresender e-post via SMTP
 GPO :: Group Policy Object — policysett i AD som distribuerer innstillinger til brukere og maskiner
 NAS :: Network Attached Storage — dedikert lagringsenhet med filserverfunksjonalitet
+DHCP Scope :: Et definert område med IP-adresser som DHCP-serveren kan tildele klienter på et bestemt subnett
+NTFS-rettigheter :: Filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver
 
 ## Ressurser
 
@@ -262,3 +318,5 @@ NAS :: Network Attached Storage — dedikert lagringsenhet med filserverfunksjon
 - [Koble opp share i Windows 10 — NDLA](https://ndla.no/en/r/driftsstotte-im-itk-vg2/koble-opp-share-i-windows-10/5a04d2403d)
 - [HTTP og IIS — windowsnett.no](http://www.windowsnett.no/leksjoner/L09/Leksjon%209%20beskrivelse.htm)
 - [windowsnett.no — leksjon 5–7: AD, grupper, delte mapper](https://www.windowsnett.no/)
+- [Active Directory, DNS & DHCP Roles Installation & Configuration on Server 2022 — PowerUser (15 min)](https://www.youtube.com/watch?v=vVbrlNlqJP4)
+- [Getting Started with AD DS — Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started)
