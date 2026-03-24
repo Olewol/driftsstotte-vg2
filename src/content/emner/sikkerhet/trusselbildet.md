@@ -7,7 +7,7 @@ kilder:
   - ndla
   - nsm
   - owasp
-  - https://nsm.no/publikasjoner/risiko-2024
+  - https://nsm.no/regelverk-og-hjelp/risiko-2024
   - https://owasp.org/www-project-top-ten/
 notebooklm: true
 tags: []
@@ -272,5 +272,5 @@ Smishing :: SMS-phishing – svindelforsøk via tekstmelding som utgir seg for �
 - [NCSC – Norsk varslingssenter for digital infrastruktur](https://nsm.no/ncsc)
 - [OWASP Top 10:2021](https://owasp.org/Top10/)
 - [NDLA – Informasjonssikkerhet](https://ndla.no)
-- [NSM – Risikovurdering 2024 (årsrapport)](https://nsm.no/publikasjoner/risiko-2024)
+- [NSM – Risikovurdering 2024 (årsrapport)](https://nsm.no/regelverk-og-hjelp/risiko-2024)
 - [OWASP – Top 10 prosjektside (full dokumentasjon)](https://owasp.org/www-project-top-ten/)

@@ -1,14 +1,14 @@
 ---
-title: "Brannmur"
-emne: "sikkerhet"
-uke: [11]
-kompetansemaal: ["km-06", "km-07"]
+title: "Brannmur og nettverkssikkerhet"
+emne: sikkerhet
+kompetansemaal:
+  - km-10
 kilder:
   - ndla
   - nsm
   - microsoft
   - https://ndla.no/resource/224ac302-1aaa-43c7-9228-8b2f4bf402fc
-  - https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet/beskytte-og-opprettholde/2-2-etabler-en-sikker-ikt-infrastruktur/2-2-3-segmenter-virksomhetens-nettverk-basert-pa-risikoprofil/
+  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/2-2-etabler-en-sikker-ikt-infrastruktur/2-2-3-segmenter-virksomhetens-nettverk-basert-pa-risikoprofil/
 video: https://www.youtube.com/watch?v=nS7fOofT-f4
 notebooklm: true
 tags: []
@@ -289,5 +289,5 @@ NGFW :: Next-Generation Firewall – kombinerer stateful inspection med applikas
 - [NSM Grunnprinsipper – Kontroller dataflyt](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
 - [Microsoft – Azure Network Security](https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview)
 - [NDLA – Brannmur og pakkefiltrering](https://ndla.no/resource/224ac302-1aaa-43c7-9228-8b2f4bf402fc)
-- [NSM – Nettverkssegmentering](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet/beskytte-og-opprettholde/2-2-etabler-en-sikker-ikt-infrastruktur/2-2-3-segmenter-virksomhetens-nettverk-basert-pa-risikoprofil/)
+- [NSM – Nettverkssegmentering](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/2-2-etabler-en-sikker-ikt-infrastruktur/2-2-3-segmenter-virksomhetens-nettverk-basert-pa-risikoprofil/)
 - [YouTube: What is a DMZ? (PowerCert Animated Videos, 6 min)](https://www.youtube.com/watch?v=nS7fOofT-f4)

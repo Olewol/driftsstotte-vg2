@@ -7,7 +7,7 @@ kilder:
   - ndla
   - nsm
   - microsoft
-  - https://nsm.no/fagomrader/ikt-sikkerhet/grunnprinsipper-for-ikt-sikkerhet/
+  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
   - https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054
 video: https://www.youtube.com/watch?v=R9NCYvR3h3w
 notebooklm: true
@@ -328,6 +328,6 @@ JIT :: Just-In-Time – midlertidig, tidsavgrenset tilgang til sensitive systeme
 - [NSM Grunnprinsipper – Beskytt og oppretthold](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
 - [NDLA – Oppdatere Linux med APT](https://ndla.no)
 - [NDLA – Brukerkontoer i Active Directory](https://ndla.no)
-- [NSM – Grunnprinsipper for IKT-sikkerhet (full versjon)](https://nsm.no/fagomrader/ikt-sikkerhet/grunnprinsipper-for-ikt-sikkerhet/)
+- [NSM – Grunnprinsipper for IKT-sikkerhet (full versjon)](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
 - [Digdir – Nulltillitsarkitektur (norsk)](https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054)
 - [YouTube: What is Zero Trust? (IBM Technology, 6 min)](https://www.youtube.com/watch?v=R9NCYvR3h3w)
