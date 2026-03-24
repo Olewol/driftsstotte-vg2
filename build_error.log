@@ -1,0 +1,22 @@
+
+> driftsstotte-vg2@0.0.1 build
+> astro build && npx pagefind --site dist
+
+[2m13:23:10[22m [34m[content][39m Syncing content
+[33m[1m13:23:10[22m [WARN] [glob-loader][39m No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src\content\oppgaver"
+[33m[1m13:23:10[22m [WARN] [glob-loader][39m No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src\content\ressursar"
+[Shiki] 10 instances have been created. Shiki is supposed to be used as a singleton, consider refactoring your code to cache your highlighter instance; Or call `highlighter.dispose()` to release unused instances.
+[InvalidContentEntryDataError] emner → it-drift/dokumentasjon-og-planlegging data does not match collection schema.
+
+  video**: **video: Did not match union.
+> Expected type `"boolean" | "string"`, received `"null"`
+
+  Hint:
+    See https://docs.astro.build/en/guides/content-collections/ for more information on content schemas.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/invalid-content-entry-data-error/
+  Location:
+    C:\Users\Wold\claudefun\driftsstotte-vg2\src\content\emner\it-drift\dokumentasjon-og-planlegging.md:0:0
+  Stack trace:
+    at getEntryDataAndImages (file:///C:/Users/Wold/claudefun/driftsstotte-vg2/node_modules/astro/dist/content/utils.js:168:26)
+    at async syncData (file:///C:/Users/Wold/claudefun/driftsstotte-vg2/node_modules/astro/dist/content/loaders/glob.js:94:28)

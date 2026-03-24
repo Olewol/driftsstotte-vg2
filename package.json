@@ -16,6 +16,7 @@
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.18.1",
+    "rehype-external-links": "^3.0.0",
     "remark-wiki-link": "^2.0.1",
     "tailwindcss": "^3.4.19"
   },

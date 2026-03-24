@@ -1,0 +1,156 @@
+---
+import notebooksData from '../data/notebooks.json';
+
+interface Props {
+  emne: string;
+  notebooklm?: boolean | string;
+  flashcards?: boolean | string;
+  podcast?: boolean | string;
+  video?: boolean | string;
+  quiz?: boolean | string;
+  infographic?: boolean | string;
+}
+
+const { emne, notebooklm, flashcards, podcast, video, quiz, infographic } = Astro.props;
+
+// Determine if any AI feature is active
+const hasAIFeature = notebooklm || flashcards || podcast || video || quiz || infographic;
+
+// Get the default notebook URL for the current emne
+const notebookId = notebooksData[emne as keyof typeof notebooksData];
+const defaultNotebookUrl = notebookId ? `https://notebooklm.google.com/notebook/${notebookId}` : 'https://notebooklm.google.com/';
+
+// Helper function to resolve the target URL
+// If the frontmatter value is a string (a direct URL), use it.
+// Otherwise, fall back to the generic notebook URL.
+const getUrl = (val: boolean | string | undefined) => {
+  if (typeof val === 'string' && val.startsWith('http')) return val;
+  return defaultNotebookUrl;
+};
+---
+
+{hasAIFeature && (
+  <div class="ai-features-container">
+    <div class="ai-header">
+      <span class="ai-icon">✨</span>
+      <span class="ai-title">NotebookLM Funksjoner</span>
+      <span class="ai-badge">KI Støtte</span>
+    </div>
+    
+    <div class="ai-buttons">
+      {notebooklm && (
+        <a href={getUrl(notebooklm)} target="_blank" rel="noopener noreferrer" class="ai-btn" aria-label="Åpne generelt i NotebookLM">
+          <span class="icon">📓</span>
+          <span class="label">Åpne Notebook</span>
+        </a>
+      )}
+      
+      {podcast && (
+        <a href={getUrl(podcast)} target="_blank" rel="noopener noreferrer" class="ai-btn" aria-label="Podcast / Lydoversikt">
+          <span class="icon">🎧</span>
+          <span class="label">Lydoversikt</span>
+        </a>
+      )}
+      
+      {flashcards && (
+        <a href={getUrl(flashcards)} target="_blank" rel="noopener noreferrer" class="ai-btn" aria-label="Flashcards">
+          <span class="icon">📇</span>
+          <span class="label">Flashcards</span>
+        </a>
+      )}
+      
+      {quiz && (
+        <a href={getUrl(quiz)} target="_blank" rel="noopener noreferrer" class="ai-btn" aria-label="KI Quiz">
+          <span class="icon">📝</span>
+          <span class="label">KI Quiz</span>
+        </a>
+      )}
+
+      {video && (
+        <a href={getUrl(video)} target="_blank" rel="noopener noreferrer" class="ai-btn" aria-label="Video oversikt">
+          <span class="icon">📺</span>
+          <span class="label">Video oversikt</span>
+        </a>
+      )}
+      
+      {infographic && (
+        <a href={getUrl(infographic)} target="_blank" rel="noopener noreferrer" class="ai-btn" aria-label="Infografikk">
+          <span class="icon">📊</span>
+          <span class="label">Infografikk</span>
+        </a>
+      )}
+    </div>
+  </div>
+)}
+
+<style>
+  .ai-features-container {
+    margin: 24px 0;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, var(--bg2) 0%, color-mix(in srgb, var(--accent) 5%, var(--bg2)) 100%);
+    border: 1px solid color-mix(in srgb, var(--accent) 15%, var(--border));
+    border-radius: 12px;
+  }
+  
+  .ai-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .ai-icon {
+    font-size: 16px;
+  }
+  
+  .ai-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  
+  .ai-badge {
+    margin-left: auto;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+  
+  .ai-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .ai-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text2);
+    transition: all 0.2s ease;
+  }
+  
+  .ai-btn:hover {
+    background: var(--surface2);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+  
+  .ai-btn .icon {
+    font-size: 15px;
+  }
+</style>

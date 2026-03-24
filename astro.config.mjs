@@ -4,6 +4,7 @@ import path from 'node:path';
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import { slugify } from './src/lib/slugify.js';
+import rehypeExternalLinks from 'rehype-external-links';
 
 const BASE = '/driftsstotte-vg2';
 const emnerDir = path.resolve('./src/content/emner');
@@ -40,6 +41,9 @@ export default defineConfig({
         pageResolver: (name) => [slugify(name)],
         aliasDivider: '|',
       }],
+    ],
+    rehypePlugins: [
+      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
     ],
   },
 });

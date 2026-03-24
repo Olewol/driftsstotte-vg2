@@ -1,0 +1,16 @@
+
+> driftsstotte-vg2@0.0.1 build
+> astro build && npx pagefind --site dist
+
+[2m13:28:42[22m [34m[content][39m Syncing content
+[33m[1m13:28:42[22m [WARN] [glob-loader][39m No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src\content\ressursar"
+[33m[1m13:28:42[22m [WARN] [glob-loader][39m No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src\content\oppgaver"
+duplicated mapping key
+  Location:
+    C:\Users\Wold\claudefun\driftsstotte-vg2\src\content\emner\sikkerhet\brannmur.md:14:0
+  Stack trace:
+    at generateError (file:///C:/Users/Wold/claudefun/driftsstotte-vg2/node_modules/js-yaml/dist/js-yaml.mjs:1289:10)
+    at storeMappingPair (file:///C:/Users/Wold/claudefun/driftsstotte-vg2/node_modules/js-yaml/dist/js-yaml.mjs:1464:7)
+    at composeNode (file:///C:/Users/Wold/claudefun/driftsstotte-vg2/node_modules/js-yaml/dist/js-yaml.mjs:2537:12)
+    at loadDocuments (file:///C:/Users/Wold/claudefun/driftsstotte-vg2/node_modules/js-yaml/dist/js-yaml.mjs:2784:5)
+    at parseFrontmatter (file:///C:/Users/Wold/claudefun/driftsstotte-vg2/node_modules/@astrojs/markdown-remark/dist/frontmatter.js:25:18)

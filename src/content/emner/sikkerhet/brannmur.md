@@ -1,8 +1,8 @@
 ---
-title: "Brannmur og nettverkssikkerhet"
-emne: sikkerhet
-kompetansemaal:
-  - km-10
+title: "Brannmur"
+emne: "sikkerhet"
+uke: [11]
+kompetansemaal: ["km-06", "km-07"]
 kilder:
   - ndla
   - nsm

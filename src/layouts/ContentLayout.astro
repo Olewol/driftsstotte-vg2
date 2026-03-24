@@ -1,23 +1,34 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import TTSBar from '../components/TTSBar.astro';
+import AIFeatures from '../components/AIFeatures.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { getEmneColor } from '@lib/emneColors';
 import type { Ressurs } from '@lib/types';
+import kompetansemaalData from '../data/kompetansemaal.json';
 
 interface Props {
   title: string;
   emne: string;
   uke: number[];
-  kompetansemaal: string;
+  kompetansemaal: string | string[];
   relatert: string[];
   ressursar: Ressurs[];
   oppgaaver: string[];
+  notebooklm?: boolean | string;
+  flashcards?: boolean | string;
+  podcast?: boolean | string;
+  video?: boolean | string;
+  quiz?: boolean | string;
+  infographic?: boolean | string;
 }
-const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver } = Astro.props;
+const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic } = Astro.props;
 const { color, bg } = getEmneColor(emne);
 const ukeStr = uke.length === 0 ? null : uke.length > 1 ? `Uke ${uke[0]}–${uke[uke.length - 1]}` : `Uke ${uke[0]}`;
 const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
+
+const kmArray = Array.isArray(kompetansemaal) ? kompetansemaal : (kompetansemaal ? [kompetansemaal] : []);
+const kmTexts = kmArray.map(km => kompetansemaalData[km as keyof typeof kompetansemaalData] || km);
 ---
 <BaseLayout title={title}>
   <article style="max-width:1140px;margin:0 auto;padding:0 32px 80px;">
@@ -34,11 +45,25 @@ const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
             {ukeStr}
           </a>
         </span>}
-        {kompetansemaal && <span>🎯 {kompetansemaal}</span>}
+        {kmTexts.length > 0 && (
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            {kmTexts.map(text => <span>🎯 {text}</span>)}
+          </div>
+        )}
       </div>
     </div>
 
     <TTSBar />
+    
+    <AIFeatures 
+      emne={emne}
+      notebooklm={notebooklm}
+      flashcards={flashcards}
+      podcast={podcast}
+      video={video}
+      quiz={quiz}
+      infographic={infographic}
+    />
 
     <!-- Two-column body -->
     <div style="display:grid;grid-template-columns:1fr 260px;gap:0;">

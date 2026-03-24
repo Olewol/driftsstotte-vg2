@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 
 const { note } = Astro.props;
 const { Content } = await render(note);
-const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver } = note.data;
+const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic } = note.data;
 ---
 <ContentLayout
   title={title}
@@ -25,6 +25,12 @@ const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver } = not
   relatert={relatert}
   ressursar={ressursar}
   oppgaaver={oppgaaver}
+  notebooklm={notebooklm}
+  flashcards={flashcards}
+  podcast={podcast}
+  video={video}
+  quiz={quiz}
+  infographic={infographic}
 >
   <Content />
 </ContentLayout>

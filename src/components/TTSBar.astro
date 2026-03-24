@@ -17,6 +17,7 @@
       <option value="1.6">Veldig rask</option>
     </select>
     <span style="font-size:11px;color:var(--text3);">Innebygd i nettleseren</span>
+    <span style="font-size:11px;color:var(--text3);margin-left:6px;border-left:1px solid var(--border);padding-left:10px;">Tips: Marker tekst for å lese kun utvalget. ellers leses hele siden.</span>
   </div>
 </div>
 
@@ -50,9 +51,20 @@
       playBtn.classList.remove('playing');
       return;
     }
-    const content = document.getElementById('ttsContent');
-    if (!content) return;
-    const utt = new SpeechSynthesisUtterance(content.innerText);
+    
+    // Check if user has selected text
+    const selection = window.getSelection();
+    let textToRead = '';
+    
+    if (selection && selection.toString().trim() !== '') {
+      textToRead = selection.toString();
+    } else {
+      const content = document.getElementById('ttsContent');
+      if (!content) return;
+      textToRead = content.innerText;
+    }
+
+    const utt = new SpeechSynthesisUtterance(textToRead);
     utt.lang = 'nb-NO'; utt.rate = rate;
     const voices = speechSynthesis.getVoices();
     const norVoice = voices.find(v => v.lang.startsWith('nb') || v.lang.startsWith('no'));
