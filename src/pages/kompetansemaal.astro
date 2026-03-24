@@ -2,15 +2,21 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { slugify } from '@lib/slugify';
+import kompetansemaalData from '../data/kompetansemaal.json';
 
 const notes = await getCollection('emner', e => e.data.public !== false);
 
 // Group by kompetansemaal text
 const grouped = notes.reduce((acc, note) => {
-  const km = note.data.kompetansemaal;
-  if (!km) return acc;
-  if (!acc[km]) acc[km] = [];
-  acc[km].push(note);
+  let kmTags = note.data.kompetansemaal;
+  if (!kmTags) return acc;
+  if (!Array.isArray(kmTags)) kmTags = [kmTags];
+
+  for (const km of kmTags) {
+    if (!km) continue;
+    if (!acc[km]) acc[km] = [];
+    acc[km].push(note);
+  }
   return acc;
 }, {} as Record<string, typeof notes>);
 ---
@@ -19,20 +25,22 @@ const grouped = notes.reduce((acc, note) => {
     <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:10px;">Kompetansemål</h1>
     <p style="font-size:16px;color:var(--text2);margin-bottom:40px;">Alle kompetansemål i faget, med lenket innhold.</p>
 
-    {Object.entries(grouped).map(([km, kmNotes]) => (
+    {Object.entries(grouped).map(([kmId, kmNotes]) => {
+      const kmText = kompetansemaalData[kmId as keyof typeof kompetansemaalData] || kmId;
+      return (
       <div style="margin-bottom:28px;padding:20px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;">
-        <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px;">🎯 {km}</div>
+        <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px;">🎯 {kmText}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
           {kmNotes.map(note => {
             const slug = slugify(note.id.split('/').pop()!.replace(/\.md$/, ''));
             return (
-              <a href={`/${note.data.emne}/${slug}`} style="font-size:13px;color:var(--accent);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:6px;text-decoration:none;transition:border-color .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+              <a href={`/driftsstotte-vg2/${note.data.emne}/${slug}`} style="font-size:13px;color:var(--accent);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:6px;text-decoration:none;transition:border-color .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
                 {note.data.title}
               </a>
             );
           })}
         </div>
       </div>
-    ))}
+    )})}
   </div>
 </BaseLayout>

@@ -1,0 +1,67 @@
+- generic [active] [ref=e1]:
+  - link "Hopp til innhold" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - navigation "Hovednavigasjon" [ref=e3]:
+    - link "Driftsstøtte VG2 – forside" [ref=e4] [cursor=pointer]:
+      - /url: /driftsstotte-vg2/
+      - generic [ref=e5]: DS
+      - generic [ref=e6]:
+        - generic [ref=e7]: Driftsstøtte
+        - generic [ref=e8]: VG2 Informasjonsteknologi
+    - generic [ref=e9]:
+      - link "Årsplan" [ref=e10] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/
+      - link "Nettverk" [ref=e11] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/nettverk
+      - link "Sikkerhet" [ref=e12] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sikkerhet
+      - link "Operativsystem" [ref=e13] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/operativsystem
+      - link "Skripting" [ref=e14] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/skripting
+      - link "Databaser" [ref=e15] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/databaser
+      - link "IT-drift" [ref=e16] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/it-drift
+      - link "Kompetansemål" [ref=e17] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/kompetansemaal
+    - generic [ref=e18]:
+      - link "Søk" [ref=e19] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sok
+        - generic [ref=e20]: 🔍
+        - generic [ref=e21]: Søk…
+        - generic [ref=e22]: ⌘K
+      - button "Bytt til mørk modus" [ref=e23] [cursor=pointer]: ☀️
+  - main [ref=e24]:
+    - generic [ref=e25]:
+      - generic [ref=e26]: Nettverk
+      - heading "Alle notater i Nettverk" [level=1] [ref=e27]
+      - generic [ref=e28]:
+        - link "OSI-modellen km-05" [ref=e29] [cursor=pointer]:
+          - /url: /driftsstotte-vg2/nettverk/osi-modellen
+          - generic [ref=e30]: OSI-modellen
+          - generic [ref=e31]: km-05
+        - link "DNS og DHCP km-05" [ref=e32] [cursor=pointer]:
+          - /url: /driftsstotte-vg2/nettverk/dns-og-dhcp
+          - generic [ref=e33]: DNS og DHCP
+          - generic [ref=e34]: km-05
+        - link "Segmentering og VLAN km-02" [ref=e35] [cursor=pointer]:
+          - /url: /driftsstotte-vg2/nettverk/segmentering-og-vlan
+          - generic [ref=e36]: Segmentering og VLAN
+          - generic [ref=e37]: km-02
+        - link "Nettverksprotokoller km-05" [ref=e38] [cursor=pointer]:
+          - /url: /driftsstotte-vg2/nettverk/nettverksprotokoller
+          - generic [ref=e39]: Nettverksprotokoller
+          - generic [ref=e40]: km-05
+        - link "Serverroller km-05" [ref=e41] [cursor=pointer]:
+          - /url: /driftsstotte-vg2/nettverk/serverroller
+          - generic [ref=e42]: Serverroller
+          - generic [ref=e43]: km-05
+        - link "TCP/IP-modellen km-05" [ref=e44] [cursor=pointer]:
+          - /url: /driftsstotte-vg2/nettverk/tcp-ip-modellen
+          - generic [ref=e45]: TCP/IP-modellen
+          - generic [ref=e46]: km-05
+        - link "Virtuelle løsninger km-02" [ref=e47] [cursor=pointer]:
+          - /url: /driftsstotte-vg2/nettverk/virtuelle-losninger
+          - generic [ref=e48]: Virtuelle løsninger
+          - generic [ref=e49]: km-02
