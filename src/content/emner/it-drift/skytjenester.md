@@ -9,7 +9,7 @@ kilder:
   - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
 video: https://ndla.no/resource:46761
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
 public: true
 notebooklm: true
 ---

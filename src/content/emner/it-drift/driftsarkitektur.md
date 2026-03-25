@@ -10,7 +10,7 @@ kilder:
   - https://snl.no/skytjeneste
 video: https://www.youtube.com/watch?v=mxT23V-pS0I
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
 public: true
 notebooklm: true
 ---

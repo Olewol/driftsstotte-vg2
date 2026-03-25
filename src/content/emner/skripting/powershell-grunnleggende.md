@@ -8,7 +8,7 @@ kilder:
   - https://ndla.no/subject:1:7852b71f-506e-41a4-849c-f9f30b910488/topic:1:43d5483f-0f66-4c4f-a492-c94488b0a99c/resource:155075
   - https://learn.microsoft.com/nb-no/powershell/scripting/overview
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/15678f10-b24e-462c-b837-076df87bd4b7
 public: true
 video: https://www.youtube.com/watch?v=FmJgD-r5U-w
 notebooklm: true

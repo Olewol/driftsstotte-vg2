@@ -7,7 +7,7 @@ kilder:
   - ndla
   - https://ndla.no/nb/subject:1:430c00b5-773a-4933-9f2d-8647038e2f05/topic:2:183060/topic:2:183350/resource:1:115995
 tags: [tcp, ip, protokoll, modell, lag]
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
 public: true
 video: https://www.youtube.com/watch?v=6cG9qrKB9x0
 notebooklm: true

@@ -9,7 +9,7 @@ kilder:
   - https://learn.microsoft.com/en-us/azure/architecture/framework/
 video: null
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
 public: true
 notebooklm: true
 ---

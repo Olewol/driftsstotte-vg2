@@ -12,7 +12,7 @@ kilder:
 video: https://www.youtube.com/watch?v=nS7fOofT-f4
 notebooklm: true
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
 public: true
 ---
 

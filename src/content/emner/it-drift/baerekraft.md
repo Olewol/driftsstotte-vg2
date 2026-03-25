@@ -9,7 +9,7 @@ kilder:
   - https://www.nkom.no/aktuelt/digital-infrastruktur-og-miljo-hvordan-paivirker-vi-klimaet
 video: https://www.youtube.com/watch?v=68D0v7Y-eIk
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
 public: true
 notebooklm: true
 ---

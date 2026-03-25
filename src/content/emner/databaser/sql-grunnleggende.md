@@ -9,7 +9,7 @@ kilder:
   - https://dev.mysql.com/doc/refman/8.0/en/tutorial.html
 notebooklm: true
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/e9134332-9a2e-4991-9a72-2807660c7610
 public: true
 ---
 

@@ -8,7 +8,7 @@ kilder:
   - https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844
   - https://learnxinyminutes.com/docs/bash/
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/15678f10-b24e-462c-b837-076df87bd4b7
 public: true
 video: https://www.youtube.com/watch?v=e7BufAVwgyM
 notebooklm: true

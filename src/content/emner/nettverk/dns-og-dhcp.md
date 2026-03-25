@@ -8,7 +8,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top
   - https://ndla.no/resource/130129
 tags: [dns, dhcp, nettverkstjenester, ip, navneoppløsning]
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
 public: true
 video: https://www.youtube.com/watch?v=S374jTRz4hU
 notebooklm: true

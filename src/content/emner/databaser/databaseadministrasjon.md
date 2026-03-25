@@ -10,7 +10,7 @@ kilder:
 video: https://www.youtube.com/watch?v=u96rS6Y236M
 notebooklm: true
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/e9134332-9a2e-4991-9a72-2807660c7610
 public: true
 ---
 

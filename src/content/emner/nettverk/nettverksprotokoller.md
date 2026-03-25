@@ -7,7 +7,7 @@ kilder:
   - ndla
   - https://snl.no/protokoll_-_it
 tags: [protokoller, http, ftp, ssh, smtp, dns, porter, tcp, udp]
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
 public: true
 video: https://www.youtube.com/watch?v=uwoD5YskPmc
 notebooklm: true

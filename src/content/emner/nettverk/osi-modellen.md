@@ -7,7 +7,7 @@ kilder:
   - ndla
   - https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/
 tags: [osi, modell, lag, protokoll, nettverk]
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
 public: true
 video: https://www.youtube.com/watch?v=vv4y_uOneC0
 notebooklm: true

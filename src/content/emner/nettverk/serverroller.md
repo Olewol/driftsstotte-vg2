@@ -7,7 +7,7 @@ kilder:
   - ndla
   - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started
 tags: [server, ad, dns, dhcp, filserver, webserver, windows-server, serverrolle]
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
 public: true
 video: https://www.youtube.com/watch?v=vVbrlNlqJP4
 notebooklm: true

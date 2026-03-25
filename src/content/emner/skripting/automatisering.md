@@ -7,7 +7,7 @@ kilder:
   - ndla
   - https://learn.microsoft.com/nb-no/powershell/scripting/overview
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/15678f10-b24e-462c-b837-076df87bd4b7
 public: true
 notebooklm: true
 ---

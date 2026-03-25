@@ -7,7 +7,7 @@ kilder:
   - ndla
   - https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/active-directory-domain-services
 tags: []
-flashcards: true
+flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true
 notebooklm: true
 ---
