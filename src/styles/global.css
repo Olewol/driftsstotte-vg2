@@ -48,6 +48,12 @@
   --int: #be185d; --int-bg: rgba(190,24,93,.08);
 }
 
+/* Light mode nav override — default nav bg is near-white and blends into page */
+[data-theme="light"] nav[role="navigation"] {
+  background: rgba(210, 220, 240, 0.96) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.18) !important;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { font-size: 16px; }
