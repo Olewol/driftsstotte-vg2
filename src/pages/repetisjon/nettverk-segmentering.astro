@@ -1,0 +1,90 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Nettverk og segmentering" description="VLAN, 802.1Q, IT vs OT, VPN, DHCP, DNS, subnetting." prev={"infrastruktur-maskinvare"} prevLabel="Infrastruktur og maskinvare" next="nettverkssikkerhet" nextLabel="Nettverkssikkerhet">
+
+## Kort oppsummert
+
+Nettverkssegmentering betyr å dele nettverket i logiske soner (VLAN) for å øke sikkerhet og ytelse. IEEE 802.1Q er standarden for VLAN-tagging. VLAN hindrer lateral bevegelse — om én sone blir angrepet, er de andre beskyttet. Kritiske tjenester som DHCP og DNS må være på plass for at nettverket skal fungere.
+
+## Detaljer
+
+### VLAN — logisk inndeling av nettverket
+
+- **IEEE 802.1Q** = standard for VLAN-tagging
+- VLAN ID 1–4094 (0 og 4095 er reservert)
+- **Access-port**: tilhører ett VLAN (sluttenheter som PC-er, skrivere)
+- **Trunk-port**: bærer trafikk for flere VLAN (mellom svitsjer)
+
+### Eksempel VLAN-inndeling
+
+| VLAN | Navn | Subnett | Formål | Trafikkregler |
+|------|------|---------|--------|---------------|
+| 10 | Kontor | 192.168.10.0/24 | Ansattes PC-er | Tilgang til servere |
+| 20 | Produksjon | 192.168.20.0/24 | Maskiner og utstyr | Kun nødvendig trafikk |
+| 30 | Gjest | 192.168.30.0/24 | Besøkende | Kun internett |
+| 40 | Servere | 192.168.40.0/24 | AD, filserver, backup | Begrenset tilgang |
+| 50 | Drift/Admin | 192.168.50.0/24 | Overvåking, administrasjon | Kun IT-ansatte |
+
+### IT vs OT — hvorfor skille?
+
+| Område | Eksempler | Kjennetegn |
+|--------|-----------|------------|
+| IT (Information Technology) | Kontor-PC-er, servere, nettverk | Oppdateres jevnlig, standard sikkerhet |
+| OT (Operational Technology) | PLC-er, SCADA, produksjonsmaskiner | Kan ha gammelt/usikkert OS — isolasjon er eneste forsvar |
+
+**Best practice:** brannmur mellom IT- og OT-nettverk. Kun nødvendige porter og protokoller tillatt.
+
+### VPN — virtuelt privat nettverk
+
+VPN krypterer all trafikk og gir sikker kommunikasjon over internett.
+
+| Type | Beskrivelse | Når brukes |
+|------|-------------|------------|
+| **Site-to-Site** | Kobl to faste nettverk sammen (brakkerigg → hovedkontor) | Faste avdelingskontorer |
+| **Remote Access** | Enkel bruker kobler seg til bedriftsnettverket | Hjemmekontor, feltarbeidere |
+
+**VPN-protokoller:**
+
+| Protokoll | Styrker | Svakheter |
+|-----------|---------|-----------|
+| IPsec | Bransjestandard, svært sikker | Kompleks konfigurasjon |
+| OpenVPN | Fleksibel, kryssplattform | Lavere hastighet enn WireGuard |
+| WireGuard | Moderne, rask, enkel | Nyere, mindre utbredt i enterprise |
+
+### Kritiske nettverkstjenester
+
+| Tjeneste | Port(er) | Protokoll | Funksjon |
+|----------|----------|-----------|----------|
+| DHCP | 67/68 | UDP | IP-tildeling |
+| DNS | 53 | UDP/TCP | Navneoppløsning |
+| HTTP | 80 | TCP | Web (ukryptert) |
+| HTTPS | 443 | TCP | Web (kryptert) |
+| SSH | 22 | TCP | Sikker terminaltilgang |
+| RDP | 3389 | TCP | Fjernskrivebord |
+
+### DHCP DORA-prosessen
+
+| Steg | Navn | Beskrivelse |
+|------|------|-------------|
+| 1 | **D**iscover | Klienten sender broadcast etter DHCP-server |
+| 2 | **O**ffer | Serveren svarer med tilbud om IP-adresse |
+| 3 | **R**equest | Klienten aksepterer tilbudet |
+| 4 | **A**cknowledge | Serveren bekrefter og sender leiekontrakt |
+
+### DNS — hvordan det fungerer
+
+1. Du skriver `www.eksempel.no` i nettleseren
+2. PC-en spør DNS-serveren: "hva er IP-en til www.eksempel.no?"
+3. DNS-serveren svarer med IP-adressen (f.eks. 93.184.216.34)
+4. PC-en kobler seg til den IP-adressen
+
+### Subnetting — raskt repetert
+
+| CIDR | Subnettmaske | Antall adresser | Eksempel |
+|------|-------------|----------------|----------|
+| /24 | 255.255.255.0 | 254 | Liten bedrift |
+| /23 | 255.255.254.0 | 510 | Middels bedrift |
+| /22 | 255.255.252.0 | 1022 | Større nettverk |
+
+</RepetisjonLayout>

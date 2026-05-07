@@ -1,0 +1,81 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Nettverkssikkerhet" description="Brannmurer, DMZ, defense in depth, default-deny, logging, segmentering." prev={"nettverk-segmentering"} prevLabel="Nettverk og segmentering" next="servermodeller-virtualisering" nextLabel="Servermodeller og virtualisering">
+
+## Kort oppsummert
+
+Nettverkssikkerhet handler om å kontrollere dataflyten mellom nettverk og enheter. Defense in depth betyr flere lag med forsvar — brannmur, segmentering, antivirus, tilgangskontroll, kryptering og opplæring. Default-deny er grunnregelen: blokker alt, tillat kun det som trengs. DMZ isolerer tjenester som må nås fra internett.
+
+## Detaljer
+
+### Brannmurtyper
+
+| Type | Nivå | Hva den sjekker | Eksempel |
+|------|------|-----------------|----------|
+| **Pakkefiltrering (stateless)** | Lag 3/4 | IP, port, protokoll — ingen tilstand | Enkel ACL på ruter |
+| **Stateful inspection** | Lag 3/4+ | Samme + tilstandstabell (følger pågående forbindelser) | De fleste moderne brannmurer |
+| **WAF (Web Application Firewall)** | Lag 7 | HTTP-innhold, SQL-injeksjon, XSS | Cloudflare, ModSecurity |
+
+### DMZ — Demilitarisert sone
+
+En DMZ er et isolert nettverk for tjenester som må være tilgjengelige fra internett.
+
+```
+Internett → [Ytre brannmur] → [DMZ: webserver, e-post] → [Indre brannmur] → [Internt nett]
+```
+
+- Selv om en server i DMZ kompromitteres, er internnettet fortsatt beskyttet
+- Krever to brannmurer (eller én brannmur med tre interfaces: WAN, DMZ, LAN)
+- Vanlige tjenester i DMZ: webserver, e-postserver, VPN-server
+
+### Defense in Depth — forsvar i dybden
+
+Flere lag med sikkerhet slik at ett gjennombrudd ikke er katastrofalt:
+
+1. **Fysisk sikkerhet** — låste serverrom, adgangskontroll
+2. **Brannmur (ytre perimeter)** — første filter mot internett
+3. **Nettverkssegmentering (VLAN)** — hindrer lateral bevegelse
+4. **Antivirus / EDR** — oppdager skadelig programvare på enheter
+5. **Tilgangskontroll (RBAC)** — minste privilegium
+6. **Kryptering** — i ro (kryptert lagring) og i transit (TLS/HTTPS)
+7. **Opplæring av brukere** — forsvar mot phishing og sosial manipulasjon
+8. **Backup og gjenoppretting** — siste forsvarslinje
+
+### Sikkerhetsprinsipper
+
+| Prinsipp | Forklaring |
+|----------|-----------|
+| **Default-deny** | Blokker alt — tillat kun det som er eksplisitt nødvendig |
+| **Minste privilegium** | Brukere og systemer skal kun ha tilgangene de trenger |
+| **Need to know** | Kun data du trenger i din rolle |
+| **Separation of duties** | Ingen skal ha alenemakt over kritiske funksjoner |
+| **Privileged Access Workstation** | Administrasjon av kritiske systemer gjøres fra dedikerte, sikre maskiner |
+
+### Brannmurregler — hva må spesifiseres
+
+| Felt | Beskrivelse | Eksempel |
+|------|-------------|----------|
+| **Kilde** | Hvor kommer trafikken fra? | 192.168.10.0/24 |
+| **Destinasjon** | Hvor skal trafikken? | 192.168.40.0/24 |
+| **Port** | Hvilken tjeneste? | 443 (HTTPS) |
+| **Protokoll** | TCP eller UDP? | TCP |
+| **Handling** | Tillat eller nekt? | ALLOW |
+| **Retning** | Inn, ut eller begge? | Inbound |
+
+### Logging og overvåking
+
+- Brannmurer og servere bør logge all relevant trafikk
+- SIEM-system (Security Information and Event Management) samler logger fra flere kilder
+- Eksempler: Wazuh (åpen kilde), Splunk, Microsoft Sentinel
+- Loggene må sikres mot endring (tamper-proof)
+
+### NSM Grunnprinsipper (Norm for sikkerhetsarbeid)
+
+1. Kontrollere dataflyt — hvem snakker med hvem
+2. Minste privilegium — begrens tilganger
+3. Sårbarhetshåndtering — hold systemer oppdatert
+4. Overvåking og logging — se hva som skjer
+5. Håndtering av sikkerhetshendelser — plan for når noe skjer
+
+</RepetisjonLayout>

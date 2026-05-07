@@ -1,0 +1,83 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Nettverksprotokoller" description="OSI-modellen, TCP vs UDP, portnumre, protokoller lag for lag." prev={"dokumentasjon-planlegging"} prevLabel="Dokumentasjon og planlegging" next="sikkerhet-driftsprinsipper" nextLabel="Prinsipper for sikkerhet og drift">
+
+## Kort oppsummert
+
+Nettverksprotokoller er reglene som bestemmer hvordan enheter kommuniserer. OSI-modellen har 7 lag, fra fysisk kabling til applikasjonsdata. TCP er pålitelig (web, e-post), UDP er raskt (streaming, DNS). Kunnskap om portnumre og protokoller er avgjørende for både konfigurasjon og sikkerhet.
+
+## Detaljer
+
+### OSI-modellen — 7 lag
+
+| Lag | Navn | Protokoll/teknologi | Enhet/dataenhet |
+|-----|------|--------------------|-----------------|
+| 7 | Applikasjon | HTTP, HTTPS, FTP, SMTP, SSH, DNS | Applikasjonsdata |
+| 6 | Presentasjon | TLS/SSL, JPEG, MPEG | Kryptert/formatert data |
+| 5 | Sesjon | NetBIOS, RPC | Oppretter/avslutter forbindelser |
+| 4 | Transport | TCP, UDP | Segmenter |
+| 3 | Nettverk | IP, ICMP, ARP | Pakker |
+| 2 | Link | Ethernet, Wi-Fi (802.11) | Rammer |
+| 1 | Fysisk | Kabling, fiber, radiosignaler | Bits |
+
+**Huskeregel (nedenfra og opp):** "Please Do Not Throw Sausage Pizza Away"  
+(P Physical, D Data Link, N Network, T Transport, S Session, P Presentation, A Application)
+
+Eller på norsk (ovenfra og ned): "Alle Ser På TV, Noen Drikker Pils" (vil si det samme)
+
+### TCP/IP-modellen — 4 lag
+
+Den praktiske modellen som internett faktisk bruker:
+
+| Lag | OSI-ekvivalent | Viktigste protokoller |
+|-----|---------------|----------------------|
+| 4 Applikasjon | Lag 5–7 | HTTP, HTTPS, FTP, SMTP, DNS |
+| 3 Transport | Lag 4 | TCP, UDP |
+| 2 Internett | Lag 3 | IP, ICMP, ARP |
+| 1 Nettverkstilgang | Lag 1–2 | Ethernet, Wi-Fi |
+
+### TCP vs UDP
+
+| Egenskap | TCP | UDP |
+|----------|-----|-----|
+| Forbindelse | Oppretter forbindelse først (3-way handshake) | Forbindelsesløs — bare sender |
+| Pålitelighet | Bekreftelse (ACK), re-sending ved tap | Ingen garanti — "best effort" |
+| Rekkefølge | Bevarer rekkefølgen | Kan komme i feil rekkefølge |
+| Overhead | Høyere (headers, bekreftelser) | Lavere (minimale headers) |
+| Hastighet | Saktere | Raskere |
+| Bruksområde | Web (HTTP), e-post (SMTP), filoverføring (FTP), SSH | Streaming, VoIP, DNS, spill |
+
+### Viktige portnumre
+
+| Port | Protokoll | Tjeneste | Transportlag |
+|------|-----------|----------|--------------|
+| 20/21 | FTP | Filoverføring | TCP |
+| 22 | SSH | Sikker terminaltilgang | TCP |
+| 23 | Telnet | Ukryptert terminal | TCP |
+| 25 | SMTP | E-post (utsending) | TCP |
+| 53 | DNS | Navneoppløsning | UDP/TCP |
+| 67/68 | DHCP | IP-tildeling | UDP |
+| 80 | HTTP | Web (ukryptert) | TCP |
+| 110 | POP3 | E-post (henting) | TCP |
+| 143 | IMAP | E-post (henting, synk) | TCP |
+| 443 | HTTPS | Web (kryptert) | TCP |
+| 3389 | RDP | Fjernskrivebord | TCP |
+
+### TCP 3-way handshake
+
+Slik opprettes en TCP-forbindelse:
+1. **SYN** — Klienten sender synkroniseringssignal
+2. **SYN-ACK** — Serveren bekrefter
+3. **ACK** — Klienten bekrefter tilbake → forbindelsen er etablert
+
+### Andre viktige protokoller
+
+| Protokoll | Funksjon |
+|-----------|----------|
+| **ICMP** | Feilmeldinger og test (ping bruker ICMP Echo Request/Reply) |
+| **ARP** | Oversetter IP-adresser til MAC-adresser i lokalt nettverk |
+| **DHCP** | Tildeler IP-adresser automatisk |
+| **NAT** | Oversetter private IP-adresser til én offentlig IP |
+
+</RepetisjonLayout>

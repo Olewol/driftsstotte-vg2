@@ -1,0 +1,72 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Prinsipper for sikkerhet og drift" description="Minste privilegium, defense in depth, NSM-grunnprinsipper, default-deny." prev={"nettverksprotokoller"} prevLabel="Nettverksprotokoller" next={null}>
+
+## Kort oppsummert
+
+Sikkerhetsprinsipper er de grunnleggende reglene som all IT-sikkerhet bygger på. Minste privilegium, defense in depth og default-deny er de viktigste. NSM (Norm for sikkerhetsarbeid) setter rammeverket for systematisk sikkerhetsarbeid i norsk offentlig sektor, men prinsippene gjelder alle.
+
+## Detaljer
+
+### Grunnleggende sikkerhetsprinsipper
+
+| Prinsipp | Forklaring | Eksempel |
+|----------|-----------|----------|
+| **Minste privilegium** | Brukere og systemer skal kun ha tilgangene de trenger for å utføre jobben | En selger trenger ikke admin-tilgang til servere |
+| **Default-deny** | Alt er nektet inntil det er eksplisitt tillatt | Brannmur: blokker alt, åpne kun nødvendige porter |
+| **Need to know** | Kun data du trenger i din rolle | HR ser lønn, salg ser ikke økonomi |
+| **Separation of duties** | Ingen skal ha alenemakt over kritiske funksjoner | Én person oppretter bruker, en annen godkjenner |
+| **Defense in depth** | Flere lag med forsvar — ett sammenbrudd er ikke katastrofalt | Brannmur + segmentering + antivirus + kryptering |
+| **Least privilege** | Samme som minste privilegium — engelsk term |
+
+### Defense in Depth — lagene
+
+```
+Lag 1: Fysisk sikkerhet (lås, adgangskort, kamera)
+Lag 2: Perimeter (brannmur, IDS/IPS)
+Lag 3: Nettverk (VLAN-segmentering, ACL-er)
+Lag 4: Endepunkt (antivirus/EDR, patch management)
+Lag 5: Applikasjon (sikker koding, WAF)
+Lag 6: Data (kryptering, tilgangskontroll)
+Lag 7: Menneske (opplæring, rutiner)
+```
+
+### NSM Grunnprinsipper
+
+Norm for sikkerhetsarbeid (NSM) beskriver fem grunnprinsipper for systematisk sikkerhetsarbeid:
+
+| Prinsipp | Hva det betyr i praksis |
+|----------|------------------------|
+| **1. Kontrollere dataflyt** | Bestem hvem som kan kommunisere med hvem. VLAN, brannmurregler, ACL-er. |
+| **2. Minste privilegium** | Gi kun tilgangene som trengs. RBAC, regelmessig revisjon av tilganger. |
+| **3. Sårbarhetshåndtering** | Hold systemer oppdatert. Patch management, sårbarhetsskanning. |
+| **4. Overvåking og logging** | Samle og analyser logger. SIEM, varsling ved unormal aktivitet. |
+| **5. Håndtering av sikkerhetshendelser** | Plan for når noe skjer. Incident response-plan, kommunikasjonsrutiner. |
+
+### Vanlige sikkerhetstrusler
+
+| Trussel | Beskrivelse | Motsvar |
+|---------|-------------|---------|
+| **Phishing** | Svindel-e-poster som forsøker å lure til seg passord | Opplæring, MFA, e-postfiltrering |
+| **Ransomware** | Krypterer data og krever løsepenger | Backup (immutable), oppdateringer, segmentering |
+| **DDoS** | Overbelaster tjenester med trafikk | Brannmur, rate limiting, CDN |
+| **Insider-trussel** | Ansatte som misbruker tilgang | Minste privilegium, logging, oppsigelsesrutiner |
+| **Man-in-the-Middle** | Avlytting av kommunikasjon | TLS/HTTPS, VPN, sertifikater |
+
+### Sikkerhetstiltak — prioriteringsliste
+
+1. **Oppdateringer** — hold alt oppdatert (OS, applikasjoner, firmware)
+2. **Brannmur** — stateful inspection, default-deny
+3. **Segmentering** — VLAN, kryss-sone-brannmur
+4. **Tilgangskontroll** — RBAC, MFA (flerfaktorautentisering)
+5. **Backup** — 3-2-1-1-0, test gjenoppretting
+6. **Logging** — sentral logginnsamling (SIEM)
+7. **Opplæring** — bevisstgjøring av brukere
+8. **Responsplan** — hva gjør vi når noe skjer?
+
+### Hvorfor dette henger sammen
+
+Sikkerhet er ikke én enkelt løsning, men en kjede av tiltak. Segmentering (VLAN) hjelper lite hvis brannmuren ikke har regler mellom sonene. Backup hjelper lite hvis den står i samme rom som serveren. Opplæring hjelper lite hvis ingen har lest responsplanen. **Helhetlig sikkerhet = flere lag som utfyller hverandre.**
+
+</RepetisjonLayout>

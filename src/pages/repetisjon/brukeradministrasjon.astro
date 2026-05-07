@@ -1,0 +1,78 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Brukeradministrasjon" description="Katalogtjenester, Active Directory, OU-struktur, RBAC, Kerberos, GPO." prev={null} next="infrastruktur-maskinvare" nextLabel="Infrastruktur og maskinvare">
+
+## Kort oppsummert
+
+En katalogtjeneste (Active Directory eller Entra ID) er en sentral database over brukere, maskiner og tilganger. AD organiseres i et hierarki med skog, trær, domener og OU-er. Rollebasert tilgang (RBAC) betyr at du tildeler rettigheter til grupper, ikke enkeltbrukere. Kerberos er standard autentiseringsprotokoll — sikrere enn NTLM fordi passordet aldri sendes over nettverket.
+
+## Detaljer
+
+### Katalogtjenester
+
+En katalogtjeneste lagrer informasjon om objekter (brukere, datamaskiner, skrivere, grupper) i et nettverk og gjør dem søkbare.
+
+| Tjeneste | Type | Bruksområde |
+|----------|------|-------------|
+| Active Directory DS (AD DS) | Lokal | Windows-baserte bedriftsnettverk, egen server |
+| Entra ID (tidl. Azure AD) | Sky | Microsoft 365, skybasert identitetsstyring |
+| OpenLDAP | Åpen kilde | Linux/Unix-miljøer |
+
+### AD-hierarkiet
+
+| Nivå | Beskrivelse |
+|------|-------------|
+| **Skog (Forest)** | Øverste nivå, inneholder ett eller flere trær |
+| **Tre (Tree)** | Hierarki av domener med felles navnerom |
+| **Domene (Domain)** | Grunnenhet — deler felles database og sikkerhetspolicy |
+| **OU (Organisasjonsenhet)** | Logisk beholder for brukere, maskiner, grupper |
+
+### Best Practice for OU-struktur
+
+```
+firma.local
+├── OU=Brukere
+│   ├── OU=AvdelingA
+│   ├── OU=AvdelingB
+│   └── OU=AvdelingC
+├── OU=Datamaskiner
+│   ├── OU=Kontor
+│   └── OU=Felt
+└── OU=Grupper
+    ├── OU=Sikkerhetsgrupper
+    └── OU=Distribusjonsgrupper
+```
+
+### Rollebasert tilgang (RBAC)
+
+1. Opprett sikkerhetsgrupper per rolle: `SG_Admin`, `SG_Salg`, `SG_Drift`
+2. Plasser brukere i riktig gruppe
+3. Tildel tillatelser til gruppen — ALDRI til enkeltbrukere
+4. **Minste privilegium**: kun tilgangene som trengs for å utføre jobben
+
+### Sammenligning av autentiseringsprotokoller
+
+| Egenskap | Kerberos | NTLM |
+|----------|----------|------|
+| Standard i AD | Ja, standard siden Windows 2000 | Eldre, kun for bakoverkompatibilitet |
+| Passord på nettverket | Aldri — bruker billetter | Sender hashet versjon |
+| Gjensidig autentisering | Ja (både klient og server verifiseres) | Nei (kun klient) |
+| Motsår replay-angrep | Ja (tidsstempler) | Sårbar uten ekstra tiltak |
+
+### GPO — Group Policy Objects
+
+- Distribuerer innstillinger til datamaskiner og brukere i OU-er
+- Eksempler: installer programvare, begrens tilgang til kontrollpanel, sett passordpolicy
+- Arves fra overordnet OU → mer spesifikke policyer kan overskrive
+
+### Viktige begreper
+
+| Begrep | Forklaring |
+|--------|-----------|
+| SID | Unik sikkerhetsidentifikator for hver bruker/gruppe |
+| LDAP | Protokoll for tilgang til katalogtjenesten (port 389) |
+| DC | Domenekontroller — server med AD DS |
+| UAC | User Account Control — hindrer programmer i å kjøre som admin uten godkjenning |
+
+</RepetisjonLayout>

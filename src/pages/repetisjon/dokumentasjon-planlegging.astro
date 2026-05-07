@@ -1,0 +1,75 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Dokumentasjon og planlegging" description="IP-adresseplan, topologier, endringslogg, dokumentasjonstyper." prev={"backup-gjenoppretting"} prevLabel="Backup og gjenoppretting" next="nettverksprotokoller" nextLabel="Nettverksprotokoller">
+
+## Kort oppsummert
+
+Dokumentasjon er like viktig som selve konfigurasjonen. Uten IP-plan får du IP-konflikter. Uten endringslogg blir feilsøking gjetting. God dokumentasjon gjør onboarding enklere, feilsøking raskere og sikrer at bedriften ikke er avhengig av én persons hukommelse.
+
+## Detaljer
+
+### Hvorfor dokumentere?
+
+| Grunn | Forklaring |
+|-------|-----------|
+| **Feilsøking** | Vet hvordan systemet skal se ut — finn avvik raskere |
+| **Onboarding** | Nye IT-ansatte kan sette seg inn uten muntlig overlevering |
+| **Revisjon / GDPR** | Sporbarhet — hvem har tilgang til hva |
+| **Kontinuitet** | Bedriften er ikke avhengig av én persons hukommelse |
+| **Standardisering** | Alle gjør det på samme måte — færre feil |
+
+### Dokumentasjonstyper
+
+| Type | Innhold | Format | Når oppdateres |
+|------|---------|--------|----------------|
+| **Nettverkskart** | Topologi, enheter, linker | Diagram (Visio, draw.io) | Ved endringer |
+| **IP-adresseplan** | VLAN, subnett, reserverte IP-er | Regneark / Wiki | Når nytt subnet tas i bruk |
+| **Endringslogg** | Hva, hvem, hvorfor, når | Logg / Wiki | Hver gang noe endres |
+| **Passordhvelv** | Tjenestekontoer, adminpassord | Kryptert database (KeePass, Bitwarden) | Ved rullering |
+| **Brannmurregler** | Kilde, dest, port, regelnummer | Regneark / Wiki | Når regel legges til/fjernes |
+| **Prosedyrebeskrivelser** | Hvordan gjøre vanlige oppgaver | Wiki / dokument | Ved prosessendring |
+
+### IP-adresseplan — generisk eksempel
+
+| VLAN | Navn | Subnett | DHCP-rekke | Formål |
+|------|------|---------|-----------|--------|
+| 10 | Kontor | 192.168.10.0/24 | .100–.200 | PC-er, skrivere |
+| 20 | Drift | 192.168.20.0/24 | Statisk | Servere, infrastruktur |
+| 30 | Gjest | 192.168.30.0/24 | .10–.254 | Besøkende, kun internett |
+
+### Nøkkelprinsipper for IP-plan
+
+- Forutsi vekst — /24 gir 254 adresser, ikke legg deg for tett
+- Reserver statiske IP-er til servere og nettverksutstyr
+- DHCP for klienter, statisk for servere
+- Dokumenter hvilke IP-er som er reservert og hvorfor
+- Hold en oversikt over ledig rekkevidde
+
+### Nettverkstopologier
+
+| Type | Beskrivelse | Fordeler | Ulemper |
+|------|-------------|----------|---------|
+| **Stjernetopologi** | Alle enheter til sentral svitsj | Enkelt å feilsøke, enkel utvidelse | Avhengig av sentral enhet |
+| **Bus-topologi** | Én felles kabel | Billig og enkelt | Sårbar, treg, vanskelig feilsøking |
+| **Ring-topologi** | Hver enhet koblet i ring | Robust (når dobbel ring) | Vanskelig å feilsøke, treg ved feil |
+| **Mesh** | Alle koblet til alle | Svært robust | Dyrt, komplekst, mye kabling |
+
+**Moderne nettverk bruker nesten utelukkende stjernetopologi** med managed svitsjer.
+
+### Endringslogg — mal
+
+| Dato | Utført av | Hva ble gjort | Hvorfor | Resultat |
+|------|-----------|--------------|---------|----------|
+| 01.04.25 | Ola N. | La til brannmurregel VLAN 10→20 | Sikkerhetsgjennomgang | OK |
+
+### Verktøy for dokumentasjon
+
+| Verktøy | Type | Fordel |
+|---------|------|--------|
+| **draw.io / diagrams.net** | Diagrammer | Gratis, integrasjon med mange plattformer |
+| **Wiki (f.eks. BookStack, Wiki.js)** | Tekstdokumentasjon | Søkbart, versjonshistorikk |
+| **Git + Markdown** | Dokumentasjon som kode | Versjonskontroll, samarbeid |
+| **GLPI / iTop** | ITAM/CMDB | Knytter dokumentasjon til inventar |
+
+</RepetisjonLayout>

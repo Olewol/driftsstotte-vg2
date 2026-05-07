@@ -1,0 +1,69 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Infrastruktur og maskinvare" description="Nødvendige komponenter for IT-drift: servere, svitsjer, ruter, UPS, klienter." prev={"brukeradministrasjon"} prevLabel="Brukeradministrasjon" next="nettverk-segmentering" nextLabel="Nettverk og segmentering">
+
+## Kort oppsummert
+
+Infrastruktur omfatter alle fysiske og virtuelle komponenter som trengs for å drifte IT-systemer: servere, nettverksutstyr, lagring og klienter. En typisk bedrift trenger domenekontrollere for autentisering, DHCP- og DNS-servere for nettverkstjenester, svitsjer for lokal tilkobling, ruter for nettverkstrafikk, brannmur for sikkerhet, og UPS for strømbackup.
+
+## Detaljer
+
+### Nødvendige komponenter
+
+| Komponent | Funksjon | Merknad |
+|-----------|----------|---------|
+| Domenekontroller (DC) | Autentisering, AD-database | Minst 2 for redundans |
+| DHCP-server | Automatisk IP-tildeling | På server, ikke ruter, i bedriftsnett |
+| DNS-server | Navneoppløsning | Kreves av AD — uten DNS fungerer ikke pålogging |
+| Brannmur | Trafikkontroll mellom nettverk | Stateful inspection anbefales |
+| Svitsj (switch) | Koble enheter i LAN (lag 2) | Managed svitsjer gir VLAN-støtte |
+| Ruter | Koble sammen nettverk (lag 3) | VLAN-routing (router-on-a-stick) |
+| Trådløst aksesspunkt (AP) | Wi-Fi-dekning | WPA3 for sikkerhet |
+| NAS / fillager | Sentral fillagring | RAID for redundans |
+| Backup-server | Sikkerhetskopier | Følg 3-2-1-regelen |
+| UPS | Avbruddsfri strøm til kritisk utstyr | Servere, svitsjer, brannmur |
+
+### Servertyper
+
+| Type | Beskrivelse | Når brukes |
+|------|-------------|------------|
+| **Tower-server** | Frittstående kabinett, lik en stasjonær PC | Små bedrifter, få servere, ikke eget serverrom |
+| **Rack-server** | Monteres i rack-stativ, 1U/2U høyde | Standard for de fleste bedrifter — god kjøling og kabling |
+| **Blade-server** | Tette moduler i felles chassis med delt strøm/kjøling | Store datasentre, 10+ servere på liten plass |
+
+### Virtualisering
+
+| Modell | Beskrivelse | Eksempler |
+|--------|-------------|-----------|
+| Hypervisor Type 1 (bare metal) | Kjører direkte på hardware | VMware ESXi, Microsoft Hyper-V, Proxmox |
+| Hypervisor Type 2 (hosted) | Kjører som programvare på et OS | VirtualBox, VMware Workstation |
+| VM | Komplett simulering av en datamaskin | Hver VM har eget OS |
+| Container | Lettere enn VM, deler verts-OS-kjerne | Docker, LXC |
+
+**Fordeler med virtualisering:**
+- Konsolidering: flere VM-er på én fysisk server sparer strøm og plass
+- Snapshots: ta øyeblikksbilde før oppdatering
+- Live migration: flytt VM uten nedetid
+- Isolation: én VM krasjer — andre påvirkes ikke
+
+### Klienter
+
+To hovedtyper av klienter i en bedrift:
+
+| Type | Eksempel | Når brukes |
+|------|----------|------------|
+| **Stasjonær PC** | Kontor-PC, tynnklient | Fast arbeidsstasjon på kontor |
+| **Bærbar PC** | Laptop, Ultrabook | Mobil arbeidskraft, hjemmekontor, møter |
+| **Tynnklient** | Enkel enhet som kjører via server | Sikkerhetsmiljø, delt arbeidsstasjon |
+
+### Nettverkskabling
+
+| Kabeltype | Hastighet | Maks lengde |
+|-----------|-----------|-------------|
+| Cat5e | 1 Gbps | 100 m |
+| Cat6 | 1 Gbps (10 Gbps opp til 55 m) | 100 m |
+| Cat6a | 10 Gbps | 100 m |
+| Fiberoptikk | 10–400 Gbps | Flere km |
+
+</RepetisjonLayout>

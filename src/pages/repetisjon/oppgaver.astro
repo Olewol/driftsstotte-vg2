@@ -1,0 +1,372 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Oppgaver — Eksamensforberedelse">
+  <article style="max-width:860px;margin:0 auto;padding:0 32px 80px;">
+
+    <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text3);padding:28px 0 4px;">
+      <a href={`${base}/repetisjon`} style="color:var(--accent);text-decoration:none;">Forberedelse</a>
+      <span>/</span>
+      <span style="color:var(--text2);">Oppgaver</span>
+    </div>
+
+    <div style="padding:16px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.13);color:#10b981;border:1px solid rgba(16,185,129,.3);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:12px;">
+        Eksamensrepetisjon
+      </div>
+      <h1 style="font-size:30px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--text);">Oppgaver</h1>
+      <p style="font-size:15px;color:var(--text2);line-height:1.6;max-width:620px;">
+        Test deg selv med blandede begreper og scenarier. Klikk på et kort for å se svaret.
+      </p>
+    </div>
+
+    <!-- ---------- MNEMOTEKNIKK ---------- -->
+    <h2 id="mnemoteknikk" style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">🧠 Mnemoteknikk</h2>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:18px;">Huskeregler og mentale bilder som gjør at stoffet sitter.</p>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:40px;">
+      <div class="mnemo-card" onclick="this.classList.toggle('open')">
+        <div class="mnemo-q" style="font-size:15px;font-weight:600;">DHCP DORA-prosessen — hvordan huske stegene?</div>
+        <div class="mnemo-a" style="display:none;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+            <strong style="color:var(--text);">DORA</strong> = <strong style="color:var(--accent);">D</strong>iscover · <strong style="color:var(--accent);">O</strong>ffer · <strong style="color:var(--accent);">R</strong>equest · <strong style="color:var(--accent);">A</strong>cknowledge
+            <br><br>
+            <strong>Huskeregel:</strong> "Dora utforsker nettverket" — først oppdager hun (Discover), får tilbud (Offer), ber om IP (Request), og får bekreftelse (Acknowledge).
+            <br><br>
+            Alternativt: <strong style="color:var(--text);">D</strong>et <strong style="color:var(--text);">O</strong>ppleves <strong style="color:var(--text);">R</strong>imelig <strong style="color:var(--text);">A</strong>t du får en IP.
+          </div>
+        </div>
+      </div>
+
+      <div class="mnemo-card" onclick="this.classList.toggle('open')">
+        <div class="mnemo-q" style="font-size:15px;font-weight:600;">OSI-modellens 7 lag — hvordan huske dem?</div>
+        <div class="mnemo-a" style="display:none;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+            <strong>Engelsk (nedenfra og opp):</strong> "Please Do Not Throw Sausage Pizza Away"<br>
+            <span style="color:var(--text3);">P Physical, D Data Link, N Network, T Transport, S Session, P Presentation, A Application</span>
+            <br><br>
+            <strong>Norsk (ovenfra og ned):</strong> "Alle Ser På TV, Noen Drikker Pils"<br>
+            <span style="color:var(--text3);">A Applikasjon, S Presentasjon, S Sesjon, T Transport, N Nettverk, D Datalink, P Fysisk</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mnemo-card" onclick="this.classList.toggle('open')">
+        <div class="mnemo-q" style="font-size:15px;font-weight:600;">AD-hierarkiet — hvordan huske strukturen?</div>
+        <div class="mnemo-a" style="display:none;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+            Tenk på et <strong style="color:var(--text);">tre</strong>:<br>
+            - <strong style="color:var(--accent);">Skogen</strong> er det øverste (hele organisasjonen)<br>
+            - <strong style="color:var(--accent);">Treet</strong> vokser opp fra skogbunnen<br>
+            - <strong style="color:var(--accent);">Domenet</strong> er stammen<br>
+            - <strong style="color:var(--accent);">OU-ene</strong> er grenene (Brukere, Datamaskiner, Grupper)
+            <br><br>
+            <strong>Huskeregel:</strong> "Skog → Tre → Domene → OU" — akkurat som naturen, fra stort til smått.
+          </div>
+        </div>
+      </div>
+
+      <div class="mnemo-card" onclick="this.classList.toggle('open')">
+        <div class="mnemo-q" style="font-size:15px;font-weight:600;">3-2-1 backup — rask huskeregel?</div>
+        <div class="mnemo-a" style="display:none;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+            <strong>3-2-1</strong> = <strong style="color:var(--text);">T</strong>re kopier, <strong style="color:var(--text);">T</strong>o medier, <strong style="color:var(--text);">E</strong>n offsite<br><br>
+            <strong>Huskeregel:</strong> "3 Kopier, 2 Typer, 1 Utenfor"<br>
+            Eller på engelsk: "3 Copies, 2 Media types, 1 Offsite" — lett å tegne som en sjekkliste.
+            <br><br>
+            For 3-2-1-1-0: legg til "Immutable + Zero errors ved testing".
+          </div>
+        </div>
+      </div>
+
+      <div class="mnemo-card" onclick="this.classList.toggle('open')">
+        <div class="mnemo-q" style="font-size:15px;font-weight:600;">IT vs OT — hva er forskjellen?</div>
+        <div class="mnemo-a" style="display:none;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+            <strong>IT</strong> = <strong style="color:var(--text);">I</strong>nformation <strong style="color:var(--text);">T</strong>echnology — kontor, servere, PC-er, skrivere<br>
+            <strong>OT</strong> = <strong style="color:var(--text);">O</strong>perational <strong style="color:var(--text);">T</strong>echnology — maskiner, PLC-er, industriutstyr
+            <br><br>
+            <strong>Huskeregel:</strong> "IT er på skrivebordet, OT er på fabrikkgulvet"
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- BEGREPER ---------- -->
+    <h2 id="begreper" style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">🔤 Blandede begreper</h2>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:18px;">Klikk på hvert kort for å se forklaringen. Kan du det før du åpner?</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:40px;">
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">Domenekontroller (DC)</div>
+        <div class="begrep-svar" style="display:none;">Server med Active Directory Domain Services. Autentiserer brukere og lagrer AD-databasen. <strong>Minst 2 for redundans.</strong></div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">OU</div>
+        <div class="begrep-svar" style="display:none;">Organisasjonsenhet — logisk beholder i AD for brukere, maskiner og grupper. Brukes til å strukturere domenet og knytte GPO-er til.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">GPO</div>
+        <div class="begrep-svar" style="display:none;">Group Policy Object — sentrale innstillinger som distribueres til datamaskiner og brukere i AD. Alt fra passordpolicy til programvareinstallasjon.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">Kerberos</div>
+        <div class="begrep-svar" style="display:none;">Standard autentiseringsprotokoll i AD. Bruker billetter — passordet sendes aldri over nettverket. Sikrere og raskere enn NTLM.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">RBAC</div>
+        <div class="begrep-svar" style="display:none;">Rollebasert tilgangskontroll. Rettigheter tildeles roller (sikkerhetsgrupper), ikke enkeltbrukere. Følger prinsippet om minste privilegium.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">802.1Q</div>
+        <div class="begrep-svar" style="display:none;">IEEE-standarden for VLAN-tagging. Legger til et 4-byte tag-felt i Ethernet-rammen som identifiserer hvilket VLAN trafikken tilhører.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">Access-port vs Trunk-port</div>
+        <div class="begrep-svar" style="display:none;"><strong>Access:</strong> tilhører ett VLAN (sluttenheter). <strong>Trunk:</strong> bærer trafikk for flere VLAN (mellom svitsjer). Trunks tagges med VLAN ID.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">Default-deny</div>
+        <div class="begrep-svar" style="display:none;">Sikkerhetsprinsipp: blokker alt, tillat kun det som er eksplisitt nødvendig. Gjelder brannmurregler, filtilganger, porter — alt.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">DMZ</div>
+        <div class="begrep-svar" style="display:none;">Demilitarisert sone — isolert nettverk mellom internett og internt nett. Tjenester som må nås fra utsiden (webserver, e-post) plasseres her.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">RPO</div>
+        <div class="begrep-svar" style="display:none;">Recovery Point Objective — hvor mye datatap har vi råd til? Hvis RPO=4 timer, må backup tas minst hver 4. time.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">RTO</div>
+        <div class="begrep-svar" style="display:none;">Recovery Time Objective — hvor lang nedetid tåler vi? Hvis RTO=2 timer, må systemet være oppe igjen innen 2 timer.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">Stateful vs Stateless brannmur</div>
+        <div class="begrep-svar" style="display:none;"><strong>Stateless:</strong> sjekker kun IP, port og protokoll per pakke. <strong>Stateful:</strong> holder også en tilstandstabell som følger pågående forbindelser — sikrere.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">Hypervisor (Type 1 vs 2)</div>
+        <div class="begrep-svar" style="display:none;"><strong>Type 1 (bare metal):</strong> kjører direkte på hardware (VMware ESXi, Hyper-V). <strong>Type 2 (hosted):</strong> kjører på et OS (VirtualBox, VMware Workstation).</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">RAID 1 vs RAID 5</div>
+        <div class="begrep-svar" style="display:none;"><strong>RAID 1:</strong> speiling — eksakt kopi på 2 disker (50% kapasitet). <strong>RAID 5:</strong> striping med paritet — minimum 3 disker, tåler én diskfeil.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">Site-to-Site VPN</div>
+        <div class="begrep-svar" style="display:none;">Kobler to faste nettverk sammen over internett via kryptert tunnel. Brukes f.eks. mellom hovedkontor og brakkerigg på byggeplass.</div>
+      </div>
+      <div class="begrep-kort" onclick="toggleBegrep(this)">
+        <div class="begrep-tittel">SIEM</div>
+        <div class="begrep-svar" style="display:none;">Security Information and Event Management — samler logger fra flere kilder (brannmur, servere, applikasjoner) i én sentral plattform for overvåking og varsling.</div>
+      </div>
+    </div>
+
+    <!-- ---------- SCENARIER ---------- -->
+    <h2 id="scenarier" style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;">🎯 Praktiske scenarier</h2>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:18px;">Praktiske eksamensscenarier. Les spørsmålet, tenk gjennom svaret, så trykk for å se et forslag.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:48px;">
+
+      <div class="scenario-card" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="background:rgba(79,140,255,.13);color:#4f8cff;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">1</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">En bedrift med 40 ansatte vil organisere brukere og tilganger. Hvordan bør de gjøre det?</div>
+            <div class="scenario-svar" style="display:none;">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+                <strong>Forslag til løsning:</strong><br>
+                - Sett opp AD DS med én eller to domenekontrollere<br>
+                - Opprett OU-struktur etter avdelinger (OU=Salg, OU=Produksjon, OU=Administrasjon)<br>
+                - Opprett sikkerhetsgrupper per rolle (SG_Selger, SG_Produksjon, SG_Admin)<br>
+                - Bruk GPO for å distribuere innstillinger (skriver, skrivebord, sikkerhet)<br>
+                - Følg minste privilegium: selgere trenger ikke tilgang til produksjonssystemer<br>
+                - Vurder Entra ID hvis de bruker Microsoft 365 — hybrid-løsning gir det beste fra begge verdener
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="background:rgba(249,115,22,.13);color:#f97316;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">2</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">En fabrikk har kontor-PC-er og produksjonsmaskiner på samme nettverk. Hva er risikoen?</div>
+            <div class="scenario-svar" style="display:none;">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+                <strong>Risiko:</strong> Hvis en kontor-PC blir infisert (f.eks. phishing), kan angriperen bevege seg lateralt til produksjonsmaskinene. OT-utstyr har ofte gammelt OS som ikke kan oppdateres → isolasjon er eneste forsvar.
+                <br><br>
+                <strong>Løsning:</strong>
+                - Sett IT og OT i separate VLAN (f.eks. VLAN 10 og VLAN 20)
+                - Brannmur mellom VLAN-ene: kun nødvendige porter/protokoller tillatt
+                - Gjestenett på eget VLAN 30 med kun internett-tilgang
+                - Fysisk separate svitsjer for IT og OT hvis mulig
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="background:rgba(16,185,129,.13);color:#10b981;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">3</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Du skal sette opp nettverk i en brakkerigg på en byggeplass. Hva trengs?</div>
+            <div class="scenario-svar" style="display:none;">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+                <strong>Nødvendig utstyr:</strong>
+                - Ruter med VPN-støtte (site-to-site til hovedkontoret)
+                - Svitsj for lokal tilkobling i brakka
+                - Trådløst aksesspunkt for Wi-Fi
+                - Liten UPS for strømbackup
+                - Ev. 4G/5G-router som backup hvis fast nett ikke er lagt
+                <br><br>
+                <strong>Sikkerhet:</strong>
+                - All trafikk til hovedkontoret går gjennom VPN-tunnel (kryptert)
+                - Eget VLAN for gjester (underleverandører)
+                - Brannmur mellom brakkerigg og internett
+                <br><br>
+                <strong>Tilganger:</strong>
+                - Underleverandører får kun tilgang til byggetegninger (minste privilegium)
+                - Midlertidige brukerkontoer som deaktiveres når prosjektet er ferdig
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="background:rgba(245,158,11,.13);color:#f59e0b;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">4</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">En bedrift har råd til maks 1 time nedetid og maks 15 minutters datatap. Hva betyr dette?</div>
+            <div class="scenario-svar" style="display:none;">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+                <strong>RTO = 1 time:</strong> Systemet må være oppe igjen innen 60 minutter. Krever rask gjenoppretting — sannsynligvis failover-klargjorte systemer eller hot standby.
+                <br><br>
+                <strong>RPO = 15 minutter:</strong> Backup må tas minst hvert 15. minutt. Høy frekvens — krever inkrementell backup eller kontinuerlig databeskyttelse.
+                <br><br>
+                Dette er <strong>strenge krav</strong> som koster penger å oppfylle. Bedriften må investere i redundante systemer og hyppig backup.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="background:rgba(168,85,247,.13);color:#a855f7;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">5</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Du får i oppgave å velge servere til en bedrift som vokser. De har 2 servere i dag, men trenger 8 om 2 år.</div>
+            <div class="scenario-svar" style="display:none;">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+                <strong>Anbefaling:</strong>
+                - Kjøp én kraftig rack-server (2U) med god CPU og mye RAM
+                - Installer en hypervisor (Type 1, f.eks. Proxmox eller Hyper-V)
+                - Virtualiser: 8 VM-er på én fysisk server
+                - Fordeler: sparer strøm, plass og kjøling
+                - Skaleringsmulighet: kjøp en til rack-server når de trenger mer kapasitet
+                <br><br>
+                <strong>Hvorfor ikke tower?</strong> 2 tower-serverer i dag → 8 om 2 år → kaos med kabler og plass. Rack er mer standardisert og enklere å skalere.
+                <br><br>
+                <strong>Hvorfor ikke blade?</strong> For dyrt for "bare" 8 servere. Blade lønner seg ved 10+.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="background:rgba(6,214,199,.13);color:#06d6c7;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">6</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">En IT-ansatt slutter. Hva må gjøres med brukerkontoen og tilgangene?</div>
+            <div class="scenario-svar" style="display:none;">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;font-size:14px;color:var(--text2);line-height:1.7;margin-top:10px;">
+                <strong>Riktig fremgangsmåte:</strong>
+                1. <strong>Deaktiver kontoen</strong> — ikke slett! Bevarer SID, e-post, filer og tilgangshistorikk
+                2. Endre passord på tjenestekontoer vedkommende hadde tilgang til
+                3. Overfør e-post og filer til leder/nærmeste kollega
+                4. Loggfør tidspunkt for deaktivering
+                <br><br>
+                <strong>Hvorfor ikke slette?</strong> Sletting fjerner SID-en → alle ACL-er som refererer til brukeren blir ødelagt. E-post, SharePoint-tilganger og revideringslogg forsvinner.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom nav -->
+    <div style="display:flex;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid var(--border);">
+      <a href={`${base}/repetisjon`} style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text3);text-decoration:none;transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">
+        ← Tilbake til oversikten
+      </a>
+    </div>
+
+  </article>
+</BaseLayout>
+
+<style>
+  /* Mnemoteknikk-kort */
+  .mnemo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .mnemo-card:hover { border-color: var(--border2); background: var(--surface2); }
+  .mnemo-card.open { border-color: rgba(236,72,153,.3); }
+
+  /* Begreps-kort */
+  .begrep-kort {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .begrep-kort:hover { border-color: var(--border2); background: var(--surface2); }
+  .begrep-tittel {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .begrep-svar {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Scenarie-kort */
+  .scenario-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .scenario-card:hover { border-color: var(--border2); background: var(--surface2); }
+  .scenario-card.open { border-color: rgba(79,140,255,.3); }
+</style>
+
+<script>
+  function toggleBegrep(el) {
+    const svar = el.querySelector('.begrep-svar');
+    if (!svar) return;
+    const isOpen = svar.style.display !== 'none';
+    svar.style.display = isOpen ? 'none' : 'block';
+  }
+</script>

@@ -1,0 +1,62 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Backup og gjenoppretting" description="3-2-1-1-0-regelen, RPO/RTO, backupstrategier, testing." prev={"servermodeller-virtualisering"} prevLabel="Servermodeller og virtualisering" next="dokumentasjon-planlegging" nextLabel="Dokumentasjon og planlegging">
+
+## Kort oppsummert
+
+En god backupstrategi er siste forsvarslinje ved datatap. 3-2-1-regelen er bransjestandard: 3 kopier på 2 medier, 1 offsite. Moderne utvidelse (3-2-1-1-0) legger til én immutable kopi og null feil ved testing. RPO og RTO bestemmer hvor ofte du tar backup og hvor raskt du må være tilbake.
+
+## Detaljer
+
+### 3-2-1-regelen
+
+| Tall | Betydning | Eksempel |
+|------|-----------|----------|
+| **3** kopier av data | 1 primær + 2 backup-kopier | Original på server + backup på NAS + backup i sky |
+| **2** ulike medietyper | Forskjellig lagringsteknologi | Harddisk + bånd / NAS + skytjeneste |
+| **1** kopi offsite | Utenfor bygningen | Sky, annet kontor, kolokalisering |
+
+### 3-2-1-1-0 (moderne utvidelse)
+
+- **+1** immutable kopi — kan ikke slettes eller krypteres av ransomware
+- **+0** null feil ved gjenopprettingstesting — test jevnlig at backup faktisk fungerer
+
+### Backupstrategier — sammenligning
+
+| Type | Lagringsplass | Backuptid | Gjenopprettingstid | Når brukes |
+|------|--------------|-----------|-------------------|------------|
+| **Full backup** | Størst | Lengst | Raskest (én fil) | Ukentlig/månedlig |
+| **Differensiell** | Medium (vokser) | Medium | Medium (full + siste differensielle) | Daglig |
+| **Inkrementell** | Minst | Raskest | Lengst (full + alle inkrementelle) | Flere ganger daglig |
+
+**Typisk oppsett:** Full backup hver søndag + inkrementell hver natt. Dette gir god balanse mellom lagringsplass og gjenopprettingstid.
+
+### RPO og RTO — to nøkkeltall
+
+| Begrep | Betydning | Eksempel |
+|--------|-----------|----------|
+| **RPO** (Recovery Point Objective) | Hvor mye datatap har vi råd til? | 4 timer = backup hver 4. time |
+| **RTO** (Recovery Time Objective) | Hvor lang nedetid tåler vi? | 2 timer = systemet må være oppe igjen innen 2 timer |
+
+Korte RPO/RTO = dyrere løsning. Finn balansen basert på hvor kritisk dataene er.
+
+### Hvorfor backup kan mislykkes
+
+| Problem | Årsak | Forebygging |
+|---------|-------|-------------|
+| Korrupt backupfil | Lagringsfeil, strømbrudd under backup | Verifiser backup, test gjenoppretting |
+| Kryptert av ransomware | Angriper får tilgang til backup-server | Immutable backup, offline-kopi |
+| Menneskelig feil | Noen sletter ved et uhell | Versjonshistorikk, tilgangskontroll |
+| Maskinvarefeil | Disk krasjer | RAID, redundant lagring |
+| Katastrofe | Brann, flom, innbrudd | Offsite-kopi |
+
+### Gylne regler for backup
+
+- Test gjenoppretting jevnlig — en backup som ikke kan restores er verdiløs
+- Full + inkrementell er mest lagringsplass-effektivt
+- Offsite backup beskytter mot brann, innbrudd og flom
+- Krypter backup både i transit og på lagringsmediet
+- Dokumenter backup-planen — hva som backes opp, når og hvordan
+
+</RepetisjonLayout>

@@ -1,0 +1,71 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+---
+<RepetisjonLayout title="Servermodeller og virtualisering" description="Tower, rack, blade-servere. Hypervisor, VM, container. Når brukes hva?" prev={"nettverkssikkerhet"} prevLabel="Nettverkssikkerhet" next="backup-gjenoppretting" nextLabel="Backup og gjenoppretting">
+
+## Kort oppsummert
+
+Servere kommer i tre hovedformater: tower, rack og blade. Tower er billigst og enklest for små bedrifter. Rack er standard for de fleste — monteres i stativ med god kjøling. Blade gir høyest tetthet og egner seg i store datasentre. Virtualisering lar deg kjøre flere servere på én fysisk maskin, noe som sparer strøm, plass og gir fleksibilitet.
+
+## Detaljer
+
+### Fysiske servermodeller
+
+| Modell | Fordeler | Ulemper | Typisk bruk |
+|--------|----------|---------|-------------|
+| **Tower** | Billig, enkel å sette opp, stillegående | Tar mye plass, dårlig skalering | Små bedrifter, testmiljø |
+| **Rack** | Standardisert (1U/2U), god kjøling, tett | Krever rack-stativ, støyende | De fleste bedrifter |
+| **Blade** | Svært høy tetthet, delt strøm/kjøling | Dyrere chassis, vendor-spesifikk | Store datasentre, 10+ servere |
+
+### Når velge hva?
+
+| Behov | Anbefalt modell |
+|-------|----------------|
+| Få servere, ikke eget serverrom | Tower |
+| Standard bedrift, eget serverrom | Rack (1U eller 2U per server) |
+| Mange servere på liten plass | Blade |
+| Trenger redundans og enkel skalering | Rack med flere enheter |
+| Virtualisering av flere OS | Rack + hypervisor |
+
+### Virtualisering
+
+**Hva er en hypervisor?**
+Programvare som oppretter og kjører virtuelle maskiner.
+
+| Type | Hvordan den kjører | Eksempler | Ytelse |
+|------|-------------------|-----------|--------|
+| **Type 1 (bare metal)** | Direkte på fysisk hardware | VMware ESXi, Hyper-V, Proxmox | Høy (nær fysisk) |
+| **Type 2 (hosted)** | Som programvare på et OS | VirtualBox, VMware Workstation | Lavere (OS-overhead) |
+
+**VM vs Container**
+
+| Egenskap | VM | Container |
+|----------|----|-----------|
+| OS | Hver VM har eget OS | Deler verts-OS-kjerne |
+| Størrelse | Flere GB | MB |
+| Oppstart | Minutter | Sekunder |
+| Isolation | Høy (full hardware-emulering) | Moderat (deler kjerne) |
+| Ressursbruk | Høy | Lav |
+
+### Hvorfor virtualisere?
+
+| Grunn | Forklaring |
+|-------|-----------|
+| **Konsolidering** | 10 fysiske servere → 1 fysisk + 10 VM-er |
+| **Snapshots** | Ta øyeblikksbilde før oppdatering — enkelt å rulle tilbake |
+| **Live migration** | Flytt VM til annen vert uten nedetid |
+| **Isolation** | Én VM krasjer — andre påvirkes ikke |
+| **Ressursoptimalisering** | Over-alloker CPU/minne (flere VM-er deler ressurser) |
+| **Testmiljø** | Klon en VM på sekunder for testing |
+
+### RAID — diskredundans
+
+| Nivå | Beskrivelse | Minimum disker | Kapasitet |
+|------|-------------|---------------|-----------|
+| RAID 0 | Striping (høy hastighet, ingen redundans) | 2 | 100% |
+| RAID 1 | Speiling (eksakt kopi) | 2 | 50% |
+| RAID 5 | Striping med paritet | 3 | (N-1)/N |
+| RAID 6 | Striping med dobbel paritet | 4 | (N-2)/N |
+| RAID 10 | Speiling + striping | 4 | 50% |
+
+</RepetisjonLayout>
