@@ -3,61 +3,60 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 ---
 <RepetisjonLayout title="Nettverkssikkerhet" description="Brannmurer, DMZ, defense in depth, default-deny, logging, segmentering." prev={"nettverk-segmentering"} prevLabel="Nettverk og segmentering" next="servermodeller-virtualisering" nextLabel="Servermodeller og virtualisering">
 
-## Kort oppsummert
-
-Nettverkssikkerhet handler om å kontrollere dataflyten mellom nettverk og enheter. Defense in depth betyr flere lag med forsvar — brannmur, segmentering, antivirus, tilgangskontroll, kryptering og opplæring. Default-deny er grunnregelen: blokker alt, tillat kun det som trengs. DMZ isolerer tjenester som må nås fra internett.
+Nettverkssikkerhet handler om a kontrollere dataflyten mellom nettverk og enheter. Defense in depth betyr flere lag: brannmur, segmentering, antivirus, tilgangskontroll, kryptering og opplaring. Default-deny er grunnregelen: blokker alt, tillat kun det som trengs. DMZ isolerer tjenester som ma nas fra internett.
 
 <div class="hvorfor-callout">
-  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
-  <p>Sikkerhetsbrudd skjer — det er et spørsmål om <strong>når</strong>, ikke <strong>om</strong>. Som IT-driftstekniker er du den som setter opp brannmurregler, konfigurerer DMZ og sørger for at VLAN-segmentering faktisk fungerer. Én feilkonfigurert brannmurregel kan eksponere hele internnettet. Defense in depth handler om å ha flere lag så ett gjennombrudd ikke blir katastrofalt.</p>
+  <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
+  <p>Sikkerhetsbrudd er et sporsmal om <strong>nar</strong>, ikke <strong>om</strong>. Som IT-tekniker er du den som setter opp brannmurregler, konfigurerer DMZ og sorger for at VLAN-segmentering faktisk fungerer. En feilkonfigurert regel kan eksponere hele internnettet. Defense in depth handler om a ha flere lag slik at ett gjennombrudd ikke blir katastrofe.</p>
 </div>
 
 ## Detaljer
 
 ### Brannmurtyper
 
-| Type | Nivå | Hva den sjekker | Eksempel |
+| Type | Niva | Hva den sjekker | Eksempel |
 |------|------|-----------------|----------|
-| **Pakkefiltrering (stateless)** | Lag 3/4 | IP, port, protokoll — ingen tilstand | Enkel ACL på ruter |
-| **Stateful inspection** | Lag 3/4+ | Samme + tilstandstabell (følger pågående forbindelser) | De fleste moderne brannmurer |
+| **Pakkefiltrering (stateless)** | Lag 3/4 | IP, port, protokoll — ingen tilstand | Enkel ACL pa ruter |
+| **Stateful inspection** | Lag 3/4+ | Samme + tilstandstabell (folger pagende forbindelser) | De fleste moderne brannmurer |
 | **WAF (Web Application Firewall)** | Lag 7 | HTTP-innhold, SQL-injeksjon, XSS | Cloudflare, ModSecurity |
+
+Stateful er standard i dag. Forskjellen: en stateless brannmur ser hver pakke isolert. En stateful forstar at svaret pa en utgående foresporsel skal slippes inn — uten at du trenger en egen regel for returtrafikk.
 
 ### DMZ — Demilitarisert sone
 
-En DMZ er et isolert nettverk for tjenester som må være tilgjengelige fra internett.
+En DMZ er et isolert nettverk for tjenester som ma vaere tilgjengelige fra internett.
 
 ```
-Internett → [Ytre brannmur] → [DMZ: webserver, e-post] → [Indre brannmur] → [Internt nett]
+Internett  [Ytre brannmur]  [DMZ: webserver, e-post]  [Indre brannmur]  [Internt nett]
 ```
 
-- Selv om en server i DMZ kompromitteres, er internnettet fortsatt beskyttet
-- Krever to brannmurer (eller én brannmur med tre interfaces: WAN, DMZ, LAN)
-- Vanlige tjenester i DMZ: webserver, e-postserver, VPN-server
+Poenget: selv om en angriper tar kontroll over webserveren i DMZ, mater de fortsatt gjennom den indre brannmuren for a na interne systemer. Dette krever to brannmurer (eller en brannmur med tre interfaces: WAN, DMZ, LAN). Vanlige tjenester i DMZ: webserver, e-postserver, VPN-server.
 
 ### Defense in Depth — forsvar i dybden
 
 Flere lag med sikkerhet slik at ett gjennombrudd ikke er katastrofalt:
 
-1. **Fysisk sikkerhet** — låste serverrom, adgangskontroll
-2. **Brannmur (ytre perimeter)** — første filter mot internett
+1. **Fysisk sikkerhet** — laste serverrom, adgangskontroll
+2. **Brannmur (ytre perimeter)** — forste filter mot internett
 3. **Nettverkssegmentering (VLAN)** — hindrer lateral bevegelse
-4. **Antivirus / EDR** — oppdager skadelig programvare på enheter
+4. **Antivirus / EDR** — oppdager skadelig programvare
 5. **Tilgangskontroll (RBAC)** — minste privilegium
 6. **Kryptering** — i ro (kryptert lagring) og i transit (TLS/HTTPS)
-7. **Opplæring av brukere** — forsvar mot phishing og sosial manipulasjon
+7. **Opplaring av brukere** — forsvar mot phishing
 8. **Backup og gjenoppretting** — siste forsvarslinje
+
+De fleste sikkerhetsbrudd skyldes menneskelig svikt, ikke manglende teknologi. Derfor er opplaring av brukere like viktig som brannmuren.
 
 ### Sikkerhetsprinsipper
 
 | Prinsipp | Forklaring |
 |----------|-----------|
-| **Default-deny** | Blokker alt — tillat kun det som er eksplisitt nødvendig |
+| **Default-deny** | Blokker alt — tillat kun det som er eksplisitt nodvendig |
 | **Minste privilegium** | Brukere og systemer skal kun ha tilgangene de trenger |
 | **Need to know** | Kun data du trenger i din rolle |
 | **Separation of duties** | Ingen skal ha alenemakt over kritiske funksjoner |
-| **Privileged Access Workstation** | Administrasjon av kritiske systemer gjøres fra dedikerte, sikre maskiner |
 
-### Brannmurregler — hva må spesifiseres
+### Brannmurregler — hva ma spesifiseres
 
 | Felt | Beskrivelse | Eksempel |
 |------|-------------|----------|
@@ -68,43 +67,40 @@ Flere lag med sikkerhet slik at ett gjennombrudd ikke er katastrofalt:
 | **Handling** | Tillat eller nekt? | ALLOW |
 | **Retning** | Inn, ut eller begge? | Inbound |
 
-### Logging og overvåking
+### Logging og SIEM
 
-- Brannmurer og servere bør logge all relevant trafikk
-- SIEM-system (Security Information and Event Management) samler logger fra flere kilder
-- Eksempler: Wazuh (åpen kilde), Splunk, Microsoft Sentinel
-- Loggene må sikres mot endring (tamper-proof)
+Brannmurer og servere bor logge all trafikk. Et SIEM-system (Security Information and Event Management) samler logger fra flere kilder i en sentral plattform. Eksempler: Wazuh (apen kilde), Splunk, Microsoft Sentinel. Loggene ma sikres mot endring — ellers kan en angriper slette sporene sine.
 
 ### NSM Grunnprinsipper (Norm for sikkerhetsarbeid)
 
 1. Kontrollere dataflyt — hvem snakker med hvem
 2. Minste privilegium — begrens tilganger
-3. Sårbarhetshåndtering — hold systemer oppdatert
-4. Overvåking og logging — se hva som skjer
-5. Håndtering av sikkerhetshendelser — plan for når noe skjer
+3. Sarbarhetshandtering — hold systemer oppdatert
+4. Overvaking og logging — se hva som skjer
+5. Handtering av sikkerhetshendelser — plan for nar noe skjer
 
 <div class="nokkelbegreper">
-  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-title">Nokkelbegreper</div>
   <div class="nokkelbegreper-grid">
     <div class="nokkelbegrep-item">
       <strong>Stateful brannmur</strong>
-      <span>Holder en tilstandstabell som følger pågående forbindelser. Sikrere enn stateless fordi den forstår konteksten til trafikken.</span>
+      <span>Holder en tilstandstabell som folger pagende forbindelser. Sikrere enn stateless fordi den forstar konteksten til trafikken.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>DMZ</strong>
-      <span>Demilitarisert sone — isolert nettverk mellom internett og internt nett. Tjenester som må nås fra utsiden plasseres her.</span>
+      <span>Demilitarisert sone. Isolert nettverk mellom internett og internt nett for tjenester som webserver, e-post, VPN.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Defense in depth</strong>
-      <span>Flere lag med forsvar slik at ett gjennombrudd ikke er katastrofalt. Fysisk → brannmur → VLAN → antivirus → RBAC → kryptering → opplæring → backup.</span>
+      <span>Flere lag med forsvar: fysisk brannmur VLAN antivirus RBAC kryptering opplaring backup. Ett gjennombrudd utgjor ikke katastrofe.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Default-deny</strong>
-      <span>Sikkerhetsprinsipp: blokker alt, tillat kun det som er eksplisitt nødvendig. Gjelder brannmurregler, filtilganger, porter — alt.</span>
+      <span>Blokker alt, tillat kun det som er eksplisitt nodvendig. Gjelder brannmurregler, filtilganger, porter — alt.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>SIEM</strong>
-      <span>Security Information and Event Management. Samler logger fra flere kilder i én sentral plattform for overvåking, varsling og analyse.</span>
+      <span>Security Information and Event Management. Samler logger fra flere kilder for overvaking, varsling og analyse.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>WAF</strong>
@@ -114,38 +110,36 @@ Flere lag med sikkerhet slik at ett gjennombrudd ikke er katastrofalt:
 </div>
 
 <div class="tips-callout">
-  <div class="tips-callout-title">💡 Praktiske tips</div>
-  <p><strong>Dokumentér brannmurregler:</strong> Hver regel bør ha et unikt nummer, beskrivelse av formål, og dato for opprettelse. Dette gjør revisjon og feilsøking mye enklere.</p>
-  <p><strong>Start med default-deny:</strong> Når du setter opp en ny brannmur, start med å blokkere all trafikk, så åpne kun nødvendige porter. Mye sikrere enn å prøve å blokkere det farlige.</p>
-  <p><strong>DMZ for alt som trengs utenfra:</strong> Webserver, e-postserver, VPN-server — alt som skal nås fra internett havner i DMZ. Aldri plasser interne servere direkte på internettsiden av brannmuren.</p>
+  <div class="tips-callout-title">Praktiske tips</div>
+  <p><strong>Dokumenter brannmurregler:</strong> Hver regel bor ha unikt nummer, beskrivelse og dato. Gjor revisjon og feilsoking mye enklere.</p>
+  <p><strong>Start med default-deny:</strong> Blokker all trafikk, apne kun det som trengs. Mye sikrere enn a prove a blokkere alt farlig.</p>
+  <p><strong>DMZ for alt som trengs utenfra:</strong> Webserver, e-post, VPN — alt som nas fra internett havner i DMZ. Aldri plasser interne servere direkte mot internett.</p>
 </div>
 
-|<!-- Husk til eksamen -->
-|<div class="eksamen-callout">
-|  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
-|  <p><strong>Defense in depth:</strong> Flere lag med forsvar. Nevn minst 5 lag: fysisk, brannmur, VLAN, antivirus, RBAC, kryptering, opplæring, backup.</p>
-|  <p><strong>DMZ:</strong> Isolert sone for tjenester fra internett (webserver, e-post). Tegn gjerne Internett → Brannmur → DMZ → Brannmur → Internt nett.</p>
-|  <p><strong>Default-deny:</strong> Blokker alt, tillat kun nødvendig. Dette gjelder ALLE brannmurregler.</p>
-|  <p><strong>Brannmurtyper:</strong> Stateless (IP/port), Stateful (følger forbindelser), WAF (applikasjonslag).</p>
-|  <p><strong>Vanlig eksamensspørsmål:</strong> "Hvordan beskytter du nettverket ditt?" — svar med defense in depth, ikke bare én løsning.</p>
-|</div>
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p><strong>Defense in depth:</strong> Nevn minst 5 lag: fysisk, brannmur, VLAN, antivirus, RBAC, kryptering, opplaring, backup.</p>
+  <p><strong>DMZ:</strong> Internett  Brannmur  DMZ  Brannmur  Internt nett. Tegn dette.</p>
+  <p><strong>Default-deny:</strong> Blokker alt, tillat kun nodvendig. Dette gjelder alle regler.</p>
+  <p><strong>Brannmurtyper:</strong> Stateless (IP/port), Stateful (folger forbindelser), WAF (applikasjonslag).</p>
+</div>
 
 <div class="sjekk-sporsmal">
-  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+  <div class="sjekk-sporsmal-title">Sjekk om du kan dette</div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hva er forskjellen på stateless og stateful brannmur?</div>
-    <div class="sjekk-q-answer">Stateless (pakkefiltrering) sjekker kun IP, port og protokoll per enkeltpakke — den har ingen forståelse av pågående forbindelser. Stateful holder en tilstandstabell som følger forbindelser, så den kan for eksempel tillate returtrafikk for en utgående forbindelse automatisk. Stateful er sikrere og standard i dag.</div>
+    <div class="sjekk-q-question">Hva er forskjellen pa stateless og stateful brannmur?</div>
+    <div class="sjekk-q-answer">Stateless sjekker kun IP, port og protokoll per enkeltpakke. Stateful holder en tilstandstabell som folger pagende forbindelser — den kan tillate returtrafikk automatisk. Stateful er sikrere og standard i dag.</div>
   </div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Tegn og forklar hvordan en DMZ fungerer.</div>
-    <div class="sjekk-q-answer">Internett → [Ytre brannmur] → DMZ (webserver, e-post) → [Indre brannmur] → Internt nett. Poenget er at selv om en angriper tar kontroll over webserveren i DMZ, må de fortsatt gjennom den indre brannmuren for å nå interne systemer. Dette gir to lag med beskyttelse.</div>
+    <div class="sjekk-q-question">Forklar hvordan en DMZ fungerer.</div>
+    <div class="sjekk-q-answer">Internett  [Ytre brannmur]  DMZ (webserver, e-post)  [Indre brannmur]  Internt nett. Selv om angriperen tar webserveren, ma de gjennom den indre brannmuren for a na interne systemer.</div>
   </div>
 
   <div class="sjekk-q">
     <div class="sjekk-q-question">Hva betyr default-deny, og hvorfor er det viktig?</div>
-    <div class="sjekk-q-answer">Default-deny betyr at alt er nektet inntil det er eksplisitt tillatt. I brannmur-sammenheng: du starter med å blokkere all trafikk, så åpner du kun portene som trengs. Alternativet (default-allow) betyr at du må huske å blokkere alt farlig — umulig i praksis. Default-deny er grunnprinsippet i all sikkerhet.</div>
+    <div class="sjekk-q-answer">Default-deny: alt er nektet inntil det er eksplisitt tillatt. Start med a blokkere all trafikk, apne kun portene som trengs. Alternativet (default-allow) betyr at du ma huske a blokkere alt farlig — umulig i praksis.</div>
   </div>
 </div>
 

@@ -3,137 +3,136 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 ---
 <RepetisjonLayout title="Brukeradministrasjon" description="Katalogtjenester, Active Directory, OU-struktur, RBAC, Kerberos, GPO." prev={null} next="infrastruktur-maskinvare" nextLabel="Infrastruktur og maskinvare">
 
-## Kort oppsummert
-
-En katalogtjeneste (Active Directory eller Entra ID) er en sentral database over brukere, maskiner og tilganger. AD organiseres i et hierarki med skog, trær, domener og OU-er. Rollebasert tilgang (RBAC) betyr at du tildeler rettigheter til grupper, ikke enkeltbrukere. Kerberos er standard autentiseringsprotokoll — sikrere enn NTLM fordi passordet aldri sendes over nettverket.
+En katalogtjeneste (Active Directory eller Entra ID) lagrer alle brukere, maskiner og tilganger i en sentral database. AD organiseres som et hierarki: skog, trær, domener og OU-er. Roller gir rettigheter via grupper, ikke enkeltbrukere. Kerberos er standarden for autentisering — sikrere enn NTLM fordi passordet aldri gar over nettverket.
 
 <div class="hvorfor-callout">
-  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
-  <p>Som IT-driftstekniker kommer du til å jobbe med brukeradministrasjon <strong>hver eneste dag</strong>. Når en ny ansatt starter, skal du opprette kontoen, plassere vedkommende i riktig OU, gi riktige tilganger via sikkerhetsgrupper, og sørge for at GPO-er treffer rett. Når noen slutter, skal du deaktivere kontoen — ikke slette. Feil her kan bety sikkerhetshull eller at ansatte ikke får gjort jobben sin.</p>
+  <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
+  <p>Du kommer til a jobbe med brukeradministrasjon <strong>hver dag</strong>. Ny ansatt: opprett konto, plasser i riktig OU, gi tilganger via sikkerhetsgrupper, treff med GPO-er. Ansatt slutter: deaktiver, ikke slett. En sletting fjerner SID-en som henger sammen med alle ACL-er, e-postbokser og revisjonslogger. Feil her = sikkerhetshull eller ansatte som ikke far gjort jobben sin. Det er den vanligste oppgaven din, og den er grei a fa rett.</p>
 </div>
 
 ## Detaljer
 
 ### Katalogtjenester
 
-En katalogtjeneste lagrer informasjon om objekter (brukere, datamaskiner, skrivere, grupper) i et nettverk og gjør dem søkbare.
+En katalogtjeneste lagrer objekter (brukere, datamaskiner, skrivere, grupper) og gjor dem sokbare.
 
-| Tjeneste | Type | Bruksområde |
+| Tjeneste | Type | Bruksomrade |
 |----------|------|-------------|
 | Active Directory DS (AD DS) | Lokal | Windows-baserte bedriftsnettverk, egen server |
 | Entra ID (tidl. Azure AD) | Sky | Microsoft 365, skybasert identitetsstyring |
-| OpenLDAP | Åpen kilde | Linux/Unix-miljøer |
+| OpenLDAP | Apen kilde | Linux/Unix-miljoer |
 
 ### AD-hierarkiet
 
-| Nivå | Beskrivelse |
+| Niva | Beskrivelse |
 |------|-------------|
-| **Skog (Forest)** | Øverste nivå, inneholder ett eller flere trær |
+| **Skog (Forest)** | Overste niva, inneholder ett eller flere trar |
 | **Tre (Tree)** | Hierarki av domener med felles navnerom |
 | **Domene (Domain)** | Grunnenhet — deler felles database og sikkerhetspolicy |
 | **OU (Organisasjonsenhet)** | Logisk beholder for brukere, maskiner, grupper |
+
+Hierarkiet betyr noe: GPO-er arves nedover. En policy satt pa domenet gjelder alle OU-er med mindre en mer spesifikk policy overstyrer. Planlegg OU-strukturen for du oppretter brukere — det er mye vanskeligere a flytte dem etterpa.
 
 ### Best Practice for OU-struktur
 
 ```
 firma.local
-├── OU=Brukere
-│   ├── OU=AvdelingA
-│   ├── OU=AvdelingB
-│   └── OU=AvdelingC
-├── OU=Datamaskiner
-│   ├── OU=Kontor
-│   └── OU=Felt
-└── OU=Grupper
-    ├── OU=Sikkerhetsgrupper
-    └── OU=Distribusjonsgrupper
++-- OU=Brukere
+|   +-- OU=AvdelingA
+|   +-- OU=AvdelingB
+|   +-- OU=AvdelingC
++-- OU=Datamaskiner
+|   +-- OU=Kontor
+|   +-- OU=Felt
++-- OU=Grupper
+    +-- OU=Sikkerhetsgrupper
+    +-- OU=Distribusjonsgrupper
 ```
 
 ### Rollebasert tilgang (RBAC)
 
 1. Opprett sikkerhetsgrupper per rolle: `SG_Admin`, `SG_Salg`, `SG_Drift`
 2. Plasser brukere i riktig gruppe
-3. Tildel tillatelser til gruppen — ALDRI til enkeltbrukere
-4. **Minste privilegium**: kun tilgangene som trengs for å utføre jobben
+3. Tildel tillatelser til gruppen — **aldri** til enkeltbrukere
+4. **Minste privilegium**: kun tilgangene som trengs for a utfore jobben
+
+Rettigheter pa enkeltbrukere er en darlig vane som gar igjen. Problemet: nar den ansatte bytter rolle, ma du huske a fjerne alle de gamle rettighetene. Med grupper flytter du brukeren til ny gruppe, og alt folger automatisk.
 
 ### Sammenligning av autentiseringsprotokoller
 
 | Egenskap | Kerberos | NTLM |
 |----------|----------|------|
-| Standard i AD | Ja, standard siden Windows 2000 | Eldre, kun for bakoverkompatibilitet |
-| Passord på nettverket | Aldri — bruker billetter | Sender hashet versjon |
-| Gjensidig autentisering | Ja (både klient og server verifiseres) | Nei (kun klient) |
-| Motsår replay-angrep | Ja (tidsstempler) | Sårbar uten ekstra tiltak |
+| Standard i AD | Ja, siden Windows 2000 | Eldre, kun bakoverkompatibilitet |
+| Passord pa nettverket | Aldri — bruker billetter | Sender hashet versjon |
+| Gjensidig autentisering | Ja (bade klient og server) | Nei (kun klient) |
+| Motstar replay-angrep | Ja (tidsstempler) | Sarbar uten ekstra tiltak |
 
 ### GPO — Group Policy Objects
 
-- Distribuerer innstillinger til datamaskiner og brukere i OU-er
-- Eksempler: installer programvare, begrens tilgang til kontrollpanel, sett passordpolicy
-- Arves fra overordnet OU → mer spesifikke policyer kan overskrive
+Gruppepolicy distribuerer innstillinger til datamaskiner og brukere via OU-er. Eksempler: installer programvare, begrens tilgang til kontrollpanel, sett passordpolicy. Arves fra overordnet OU. Det mest spesifikke policy-nivaet vinner.
 
 <div class="nokkelbegreper">
-  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-title">Nokkelbegreper</div>
   <div class="nokkelbegreper-grid">
     <div class="nokkelbegrep-item">
       <strong>SID</strong>
-      <span>Unik sikkerhetsidentifikator for hver bruker/gruppe. Brukes av systemet internt for tilgangskontroll.</span>
+      <span>Unik sikkerhetsidentifikator for hver bruker/gruppe. Systemet bruker SID internt for tilgangskontroll — derfor odelegger sletting av bruker alle ACL-er.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>LDAP</strong>
-      <span>Protokoll for tilgang til katalogtjenesten (port 389). Brukes for å slå opp brukere, grupper og maskiner.</span>
+      <span>Protokoll for tilgang til katalogtjenesten (port 389). Slar opp brukere, grupper og maskiner.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>DC</strong>
-      <span>Domenekontroller — server med AD DS. Autentiserer brukere og lagrer AD-databasen. Minst 2 for redundans.</span>
+      <span>Domenekontroller — server med AD DS. Autentiserer brukere og lagrer AD-databasen. Du trenger minst 2 for redundans.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>UAC</strong>
-      <span>User Account Control — hindrer programmer i å kjøre som admin uten godkjenning. Viktig sikkerhetsfunksjon i Windows.</span>
+      <span>User Account Control. Hindrer programmer i a kjore som admin uten godkjenning. Irriterende, men viktig.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>GPO</strong>
-      <span>Group Policy Object — sentrale innstillinger som distribueres til datamaskiner og brukere via AD.</span>
+      <span>Group Policy Object. Sentrale innstillinger som distribueres til datamaskiner og brukere via AD.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>OU</strong>
-      <span>Organisasjonsenhet — logisk beholder i AD for brukere, maskiner og grupper. Strukturerer domenet og knytter GPO-er til.</span>
+      <span>Organisasjonsenhet i AD. Strukturerer domenet og knytter GPO-er til riktige brukere/maskiner.</span>
     </div>
   </div>
 </div>
 
 <div class="tips-callout">
-  <div class="tips-callout-title">💡 Praktiske tips</div>
-  <p><strong>Navnestandard:</strong> Bruk konsekvent navngivning: <code>fornavn.etternavn</code> for brukere, <code>SRV-funksjon-nummer</code> for servere.</p>
-  <p><strong>Gruppebasert tilgang:</strong> Legg ALLTID rettigheter på grupper, ikke enkeltbrukere. Hvis en bruker bytter rolle, flytter du dem til ny gruppe — resten følger automatisk.</p>
-  <p><strong>Deaktiver, ikke slett:</strong> Når en ansatt slutter: deaktiver kontoen, ikke slett. Sletting fjerner SID-en og ødelegger ACL-er, e-post og revisjonslogg.</p>
+  <div class="tips-callout-title">Praktiske tips</div>
+  <p><strong>Navnestandard:</strong> Bruk <code>fornavn.etternavn</code> for brukere, <code>SRV-funksjon-nummer</code> for servere. Konsistent navngivning sparer deg for mye letting.</p>
+  <p><strong>Grupper, ikke enkeltbrukere:</strong> ALLTID rettigheter pa grupper. Bruker skifter rolle? Flytt til ny gruppe — resten automatisk.</p>
+  <p><strong>Deaktiver, ikke slett:</strong> Ansatt slutter? Deaktiver kontoen. Sletting fjerner SID-en og odelegger ACL-er, e-post og revisjonslogg. La kontoen ligge deaktivert i 30 dager for du vurderer sletting.</p>
 </div>
 
-|<!-- Husk til eksamen -->
-|<div class="eksamen-callout">
-|  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
-|  <p><strong>AD-hierarkiet:</strong> Skog → Tre → Domene → OU. Lær rekkefølgen og hva hvert nivå betyr.</p>
-|  <p><strong>Kerberos vs NTLM:</strong> Kerberos er standard — billetter, ikke passord på nettet. NTLM er kun for bakoverkompatibilitet.</p>
-|  <p><strong>RBAC:</strong> Rettigheter tildeles grupper, ikke enkeltbrukere. Minste privilegium er nøkkelordet.</p>
-|  <p><strong>GPO:</strong> Knyttes til OU-er. Arves nedover. Mer spesifikk policy vinner.</p>
-|  <p><strong>Vanlig eksamensspørsmål:</strong> "Foreslå OU-struktur for en bedrift med 3 avdelinger" — tegn et hierarki og forklar hvorfor.</p>
-|</div>
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p><strong>AD-hierarkiet:</strong> Skog Tre Domene OU. Lær rekkefolgen.</p>
+  <p><strong>Kerberos vs NTLM:</strong> Kerberos = billetter og gjensidig autentisering. NTLM = gammelt, kun for bakoverkompabilitet.</p>
+  <p><strong>RBAC:</strong> Rettigheter til grupper, ikke enkeltbrukere. Minste privilegium er stikkordet.</p>
+  <p><strong>GPO:</strong> Knyttes til OU-er. Arves nedover. Mest spesifikk vinner.</p>
+  <p><strong>Vanlig oppgave pa eksamen:</strong> "Foresla OU-struktur for en bedrift med 3 avdelinger" — tegn hierarki, forklar hvorfor.</p>
+</div>
 
 <div class="sjekk-sporsmal">
-  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+  <div class="sjekk-sporsmal-title">Sjekk om du kan dette</div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hva er forskjellen på Kerberos og NTLM?</div>
-    <div class="sjekk-q-answer">Kerberos bruker billetter — passordet sendes aldri over nettverket. Det gir gjensidig autentisering og beskytter mot replay-angrep. NTLM sender en hashet versjon av passordet og autentiserer kun klienten. Kerberos er standard i AD siden Windows 2000.</div>
+    <div class="sjekk-q-question">Hva er forskjellen pa Kerberos og NTLM?</div>
+    <div class="sjekk-q-answer">Kerberos bruker billetter — passordet sendes aldri over nettverket. Gir gjensidig autentisering og beskytter mot replay-angrep. NTLM sender en hashet versjon av passordet og autentiserer kun klienten. Kerberos har vært standard i AD siden Windows 2000.</div>
   </div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hvorfor skal du aldri slette en brukerkonto når en ansatt slutter?</div>
-    <div class="sjekk-q-answer">Sletting fjerner SID-en (sikkerhetsidentifikatoren) som er knyttet til alle ACL-er, e-post, SharePoint-tilganger og revisjonslogger. I stedet deaktiverer du kontoen, endrer passord på tjenestekontoer vedkommende hadde tilgang til, og overfører e-post/filer til leder.</div>
+    <div class="sjekk-q-question">Hvorfor skal du aldri slette en brukerkonto nar en ansatt slutter?</div>
+    <div class="sjekk-q-answer">Sletting fjerner SID-en som er knyttet til alle ACL-er, e-post, SharePoint-tilganger og revisjonslogger. Riktig prosedyre: deaktiver kontoen, endre passord pa tjenestekontoer vedkommende hadde tilgang til, og overfor e-post/filer til leder.</div>
   </div>
 
   <div class="sjekk-q">
     <div class="sjekk-q-question">Hva er minste privilegium, og hvorfor er det viktig?</div>
-    <div class="sjekk-q-answer">Minste privilegium betyr at brukere og systemer kun skal ha tilgangene de trenger for å utføre jobben. En selger trenger ikke admin-tilgang til servere. Det reduserer risikoen for både utilsiktede feil og bevisste angrep.</div>
+    <div class="sjekk-q-answer">Brukere og systemer skal kun ha tilgangene de trenger for a utfore jobben. En selger trenger ikke admin-tilgang til servere. Reduserer risiko for bade utilsiktede feil og bevisste angrep.</div>
   </div>
 </div>
 

@@ -3,21 +3,19 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 ---
 <RepetisjonLayout title="Nettverksprotokoller" description="OSI-modellen, TCP vs UDP, portnumre, protokoller lag for lag." prev={"dokumentasjon-planlegging"} prevLabel="Dokumentasjon og planlegging" next="sikkerhet-driftsprinsipper" nextLabel="Prinsipper for sikkerhet og drift">
 
-## Kort oppsummert
-
-Nettverksprotokoller er reglene som bestemmer hvordan enheter kommuniserer. OSI-modellen har 7 lag, fra fysisk kabling til applikasjonsdata. TCP er pålitelig (web, e-post), UDP er raskt (streaming, DNS). Kunnskap om portnumre og protokoller er avgjørende for både konfigurasjon og sikkerhet.
+Nettverksprotokoller er reglene for hvordan enheter kommuniserer. OSI-modellen har 7 lag, fra fysisk kabling til applikasjonsdata. TCP er palitelig (web, e-post), UDP er raskt (streaming, DNS). Portnumre og protokoller ma du kunne for bade konfigurasjon og sikkerhet.
 
 <div class="hvorfor-callout">
-  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
-  <p>Når noe ikke fungerer på nettverket, må du forstå <strong>hvilket lag</strong> problemet er på. Er det fysisk kabling (lag 1)? IP-konfigurasjon (lag 3)? Eller en brannmur som blokkerer port 443 (lag 4)? OSI-modellen er feilsøkingsverktøyet ditt. Å kunne portnumre utenat (22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP) spiller deg tid i feilsøking og sikkerhetskonfigurasjon.</p>
+  <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
+  <p>Nar noe ikke fungerer pa nettverket, ma du forsta <strong>hvilket lag</strong> problemet er pa. Fysisk kabling (lag 1)? IP-konfigurasjon (lag 3)? Brannmur som blokkerer port 443 (lag 4)? OSI-modellen er feilsokingsverktoyet ditt. Portnumre utenat (22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP) sparer deg for tid i feilsoking og sikkerhetskonfigurasjon.</p>
 </div>
 
 ## Detaljer
 
 ### OSI-modellen — 7 lag
 
-| Lag | Navn | Protokoll/teknologi | Enhet/dataenhet |
-|-----|------|--------------------|-----------------|
+| Lag | Navn | Protokoll/teknologi | Dataenhet |
+|-----|------|--------------------|-----------|
 | 7 | Applikasjon | HTTP, HTTPS, FTP, SMTP, SSH, DNS | Applikasjonsdata |
 | 6 | Presentasjon | TLS/SSL, JPEG, MPEG | Kryptert/formatert data |
 | 5 | Sesjon | NetBIOS, RPC | Oppretter/avslutter forbindelser |
@@ -26,10 +24,7 @@ Nettverksprotokoller er reglene som bestemmer hvordan enheter kommuniserer. OSI-
 | 2 | Link | Ethernet, Wi-Fi (802.11) | Rammer |
 | 1 | Fysisk | Kabling, fiber, radiosignaler | Bits |
 
-**Huskeregel (nedenfra og opp):** "Please Do Not Throw Sausage Pizza Away"
-(P Physical, D Data Link, N Network, T Transport, S Session, P Presentation, A Application)
-
-Eller på norsk (ovenfra og ned): "Alle Ser På TV, Noen Drikker Pils"
+**Huskeregler:** Engelsk nedenfra: "Please Do Not Throw Sausage Pizza Away" (Physical, Data Link, Network, Transport, Session, Presentation, Application). Norsk ovenfra: "Alle Ser Pa TV, Noen Drikker Pils."
 
 ### TCP/IP-modellen — 4 lag
 
@@ -37,31 +32,33 @@ Den praktiske modellen som internett faktisk bruker:
 
 | Lag | OSI-ekvivalent | Viktigste protokoller |
 |-----|---------------|----------------------|
-| 4 Applikasjon | Lag 5–7 | HTTP, HTTPS, FTP, SMTP, DNS |
+| 4 Applikasjon | Lag 57 | HTTP, HTTPS, FTP, SMTP, DNS |
 | 3 Transport | Lag 4 | TCP, UDP |
 | 2 Internett | Lag 3 | IP, ICMP, ARP |
-| 1 Nettverkstilgang | Lag 1–2 | Ethernet, Wi-Fi |
+| 1 Nettverkstilgang | Lag 12 | Ethernet, Wi-Fi |
 
 ### TCP vs UDP
 
 | Egenskap | TCP | UDP |
 |----------|-----|-----|
-| Forbindelse | Oppretter forbindelse først (3-way handshake) | Forbindelsesløs — bare sender |
-| Pålitelighet | Bekreftelse (ACK), re-sending ved tap | Ingen garanti — "best effort" |
-| Rekkefølge | Bevarer rekkefølgen | Kan komme i feil rekkefølge |
-| Overhead | Høyere (headers, bekreftelser) | Lavere (minimale headers) |
+| Forbindelse | Oppretter forbindelse forst (3-way handshake) | Forbindelseslos — bare sender |
+| Palitelighet | Bekreftelse (ACK), re-sending ved tap | Ingen garanti — "best effort" |
+| Rekkefolge | Bevarer rekkefolgen | Kan komme i feil rekkefolge |
+| Overhead | Hoyere (headers, bekreftelser) | Lavere (minimale headers) |
 | Hastighet | Saktere | Raskere |
-| Bruksområde | Web (HTTP), e-post (SMTP), filoverføring (FTP), SSH | Streaming, VoIP, DNS, spill |
+| Bruksomrade | Web (HTTP), e-post (SMTP), filoverforing (FTP), SSH | Streaming, VoIP, DNS, spill |
+
+Husk: TCP = palitelig og treigt. UDP = raskt, men du risikerer tap. Velg basert pa hva som er viktigst — korrekthet eller hastighet.
 
 ### Viktige portnumre
 
 | Port | Protokoll | Tjeneste | Transportlag |
 |------|-----------|----------|--------------|
-| 20/21 | FTP | Filoverføring | TCP |
+| 20/21 | FTP | Filoverforing | TCP |
 | 22 | SSH | Sikker terminaltilgang | TCP |
 | 23 | Telnet | Ukryptert terminal | TCP |
 | 25 | SMTP | E-post (utsending) | TCP |
-| 53 | DNS | Navneoppløsning | UDP/TCP |
+| 53 | DNS | Navneopplosning | UDP/TCP |
 | 67/68 | DHCP | IP-tildeling | UDP |
 | 80 | HTTP | Web (ukryptert) | TCP |
 | 110 | POP3 | E-post (henting) | TCP |
@@ -69,12 +66,17 @@ Den praktiske modellen som internett faktisk bruker:
 | 443 | HTTPS | Web (kryptert) | TCP |
 | 3389 | RDP | Fjernskrivebord | TCP |
 
+Disse 11 portene ma du kunne. Spesielt 22, 53, 80, 443 og 3389 dukker opp omtrent hver eneste gang du setter opp eller feilsoker noe.
+
 ### TCP 3-way handshake
 
 Slik opprettes en TCP-forbindelse:
+
 1. **SYN** — Klienten sender synkroniseringssignal
 2. **SYN-ACK** — Serveren bekrefter
-3. **ACK** — Klienten bekrefter tilbake → forbindelsen er etablert
+3. **ACK** — Klienten bekrefter tilbake — forbindelsen er etablert
+
+Far du ikke SYN-ACK tilbake? Da er porten blokkert av brannmur eller serveren er nede.
 
 ### Andre viktige protokoller
 
@@ -83,71 +85,69 @@ Slik opprettes en TCP-forbindelse:
 | **ICMP** | Feilmeldinger og test (ping bruker ICMP Echo Request/Reply) |
 | **ARP** | Oversetter IP-adresser til MAC-adresser i lokalt nettverk |
 | **DHCP** | Tildeler IP-adresser automatisk |
-| **NAT** | Oversetter private IP-adresser til én offentlig IP |
+| **NAT** | Oversetter private IP-er til en offentlig IP |
 
 <div class="nokkelbegreper">
-  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-title">Nokkelbegreper</div>
   <div class="nokkelbegreper-grid">
     <div class="nokkelbegrep-item">
       <strong>OSI-modellen</strong>
-      <span>7-lagsmodell for nettverkskommunikasjon: Fysisk → Datalink → Nettverk → Transport → Sesjon → Presentasjon → Applikasjon. Norsk huskeregel: "Alle Ser På TV, Noen Drikker Pils."</span>
+      <span>7 lag: Fysisk Datalink Nettverk Transport Sesjon Presentasjon Applikasjon. Norsk: "Alle Ser Pa TV, Noen Drikker Pils."</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>TCP/IP-modellen</strong>
-      <span>4-lagsmodellen som internett faktisk bruker: Nettverkstilgang → Internett → Transport → Applikasjon. Mer praktisk enn OSI.</span>
+      <span>4 lag som internett faktisk bruker: Nettverkstilgang Internett Transport Applikasjon.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>TCP</strong>
-      <span>Transmission Control Protocol. Pålitelig, forbindelsesorientert. 3-way handshake (SYN, SYN-ACK, ACK). Brukes til web, e-post, filoverføring.</span>
+      <span>Palitelig, forbindelsesorientert. 3-way handshake (SYN, SYN-ACK, ACK). Web, e-post, filoverforing.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>UDP</strong>
-      <span>User Datagram Protocol. Rask, forbindelsesløs, ingen garanti. Brukes til streaming, VoIP, DNS, spill.</span>
+      <span>Rask, forbindelseslos, ingen garanti. Streaming, VoIP, DNS, spill.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>3-way handshake</strong>
-      <span>SYN → SYN-ACK → ACK. Slik opprettes en TCP-forbindelse. Hvis du ikke får SYN-ACK, er porten blokkert eller serveren nede.</span>
+      <span>SYN  SYN-ACK  ACK. Far du ikke SYN-ACK er porten blokkert eller serveren nede.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>ARP / NAT</strong>
-      <span>ARP oversetter IP til MAC i lokalt nett. NAT oversetter private IP-er til én offentlig IP — slik at mange enheter kan dele én internettilkobling.</span>
+      <span>ARP oversetter IP til MAC i lokalt nett. NAT oversetter private IP-er til offentlig — slik at mange enheter deler en internettilkobling.</span>
     </div>
   </div>
 </div>
 
 <div class="tips-callout">
-  <div class="tips-callout-title">💡 Praktiske tips</div>
-  <p><strong>Lær portnumrene som en sjekkliste:</strong> 22 (SSH), 53 (DNS), 80 (HTTP), 443 (HTTPS), 3389 (RDP) — disse må du kunne. Skriv dem på en lapp ved skjermen til de sitter.</p>
-  <p><strong>Bruk OSI-modellen i feilsøking:</strong> Fysisk → Link → Nettverk → Transport → Applikasjon. Sjekk alltid nedenfra og opp. Er kabelen tilkoblet? (lag 1) Får enheten IP? (lag 3) Kan du pinge? (ICMP, lag 3). Først da ser du på applikasjonen (lag 7).</p>
-  <p><strong>Ping for å teste grunnleggende tilkobling:</strong> Før du roter med DNS og applikasjoner, ping IP-en. Fungerer ping? Ja → problemet er høyere i stacken. Nei → sjekk kabling, IP-konfigurasjon og brannmur.</p>
+  <div class="tips-callout-title">Praktiske tips</div>
+  <p><strong>Lar portnumrene som sjekkliste:</strong> 22 (SSH), 53 (DNS), 80 (HTTP), 443 (HTTPS), 3389 (RDP). Skriv dem pa en lapp ved skjermen til de sitter.</p>
+  <p><strong>Bruk OSI i feilsoking:</strong> Sjekk nedenfra og opp. Kabel tilkoblet? (lag 1). IP-konfigurasjon? (lag 3). Pinger? (ICMP, lag 3). Forst da ser du pa applikasjonen (lag 7).</p>
+  <p><strong>Ping forst:</strong> For du roter med DNS og apper, ping IP-en. Fungerer ping? Ja — problemet er hoyere i stacken. Nei — sjekk kabling, IP og brannmur.</p>
 </div>
 
-|<!-- Husk til eksamen -->
-|<div class="eksamen-callout">
-|  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
-|  <p><strong>OSI-modellen:</strong> 7 lag: Fysisk, Datalink, Nettverk, Transport, Sesjon, Presentasjon, Applikasjon. Kan du alle? Norsk: "Alle Ser På TV, Noen Drikker Pils."</p>
-|  <p><strong>TCP vs UDP:</strong> TCP = pålitelig (web, e-post). UDP = raskt (streaming, DNS). TCP har 3-way handshake (SYN, SYN-ACK, ACK).</p>
-|  <p><strong>Viktige portnumre:</strong> 22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP. Lær disse — de kommer ofte på eksamen.</p>
-|  <p><strong>Andre protokoller:</strong> ICMP (ping), ARP (IP→MAC), DHCP (IP-tildeling), NAT (privat→offentlig IP).</p>
-|  <p><strong>Vanlig eksamensspørsmål:</strong> "Hvilken protokoll brukes til e-post?" eller "Forklar forskjellen på TCP og UDP" — forbered korte, presise svar.</p>
-|</div>
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p><strong>OSI:</strong> 7 lag. Kan du alle? "Alle Ser Pa TV, Noen Drikker Pils."</p>
+  <p><strong>TCP vs UDP:</strong> TCP = palitelig (web, e-post). UDP = raskt (streaming, DNS). TCP har 3-way handshake.</p>
+  <p><strong>Portnumre:</strong> 22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP.</p>
+  <p><strong>Andre protokoller:</strong> ICMP (ping), ARP (IP MAC), DHCP (IP-tildeling), NAT (privat offentlig).</p>
+</div>
 
 <div class="sjekk-sporsmal">
-  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+  <div class="sjekk-sporsmal-title">Sjekk om du kan dette</div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Nevn OSI-modellens 7 lag i riktig rekkefølge — og forklar hvorfor du bør feilsøke nedenfra og opp.</div>
-    <div class="sjekk-q-answer">1 Fysisk, 2 Datalink, 3 Nettverk, 4 Transport, 5 Sesjon, 6 Presentasjon, 7 Applikasjon. Du bør feilsøke nedenfra og opp fordi hvert lag er avhengig av laget under. Hvis kabelen er løs (lag 1), hjelper det ikke å sjekke DNS (lag 7). Sjekk alltid det fysiske først, så IP, så transport, så applikasjon.</div>
+    <div class="sjekk-q-question">Nevn OSI-modellens 7 lag — og forklar hvorfor du bor feilsoke nedenfra og opp.</div>
+    <div class="sjekk-q-answer">1 Fysisk, 2 Datalink, 3 Nettverk, 4 Transport, 5 Sesjon, 6 Presentasjon, 7 Applikasjon. Fordi hvert lag er avhengig av laget under. Er kabelen los (lag 1), hjelper det ikke a sjekke DNS (lag 7).</div>
   </div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hva er forskjellen på TCP og UDP? Gi eksempler på bruksområder for hver.</div>
-    <div class="sjekk-q-answer">TCP er forbindelsesorientert og pålitelig — den bekrefter mottak (ACK) og sender på nytt ved tap. Brukes til web (HTTP/HTTPS), e-post (SMTP), filoverføring (FTP), SSH. UDP er forbindelsesløs og rask — "best effort" uten garanti. Brukes til streaming, VoIP, DNS-spørringer og online-spill der hastighet er viktigere enn perfekt levering.</div>
+    <div class="sjekk-q-question">Hva er forskjellen pa TCP og UDP?</div>
+    <div class="sjekk-q-answer">TCP er palitelig og forbindelsesorientert — bekrefter mottak (ACK), sender pa nytt ved tap. Brukes til web, e-post, SSH. UDP er raskt og forbindelseslost — "best effort". Brukes til streaming, VoIP, DNS der hastighet er viktigere enn perfekt levering.</div>
   </div>
 
   <div class="sjekk-q">
     <div class="sjekk-q-question">Hva skjer under en TCP 3-way handshake?</div>
-    <div class="sjekk-q-answer">1. Klienten sender SYN (synkroniseringssignal) til serveren. 2. Serveren svarer med SYN-ACK (bekrefter mottak og sender eget synkroniseringssignal). 3. Klienten sender ACK (bekrefter mottak av serverens SYN). Forbindelsen er etablert. Hvis du ikke får SYN-ACK tilbake, er porten blokkert av brannmur eller serveren er nede.</div>
+    <div class="sjekk-q-answer">1. Klient sender SYN. 2. Server svarer SYN-ACK. 3. Klient sender ACK. Forbindelsen er etablert. Far du ikke SYN-ACK er porten blokkert eller serveren nede.</div>
   </div>
 </div>
 
