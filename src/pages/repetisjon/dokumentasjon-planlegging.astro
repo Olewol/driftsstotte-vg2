@@ -7,6 +7,11 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 
 Dokumentasjon er like viktig som selve konfigurasjonen. Uten IP-plan får du IP-konflikter. Uten endringslogg blir feilsøking gjetting. God dokumentasjon gjør onboarding enklere, feilsøking raskere og sikrer at bedriften ikke er avhengig av én persons hukommelse.
 
+<div class="hvorfor-callout">
+  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
+  <p>Har du noen gang arvet et IT-miljø uten dokumentasjon? Da vet du hvor fort det blir gjetting: "Hvorfor er port 443 åpen til denne serveren?", "Hvem satte opp VLAN 50?", "Hvorfor er IP-en 192.168.10.55 reservert?". Uten dokumentasjon blir du den som <strong>må huske alt</strong> — og det går ikke. Dokumentasjon er ikke kjedelig administrasjon, det er din egen forsikring mot å bli flaskehalsen.</p>
+</div>
+
 ## Detaljer
 
 ### Hvorfor dokumentere?
@@ -72,6 +77,43 @@ Dokumentasjon er like viktig som selve konfigurasjonen. Uten IP-plan får du IP-
 | **Git + Markdown** | Dokumentasjon som kode | Versjonskontroll, samarbeid |
 | **GLPI / iTop** | ITAM/CMDB | Knytter dokumentasjon til inventar |
 
+<div class="nokkelbegreper">
+  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-grid">
+    <div class="nokkelbegrep-item">
+      <strong>IP-adresseplan</strong>
+      <span>Oversikt over alle VLAN, subnett, DHCP-rekkevidder og reserverte IP-er. Forhindrer IP-konflikter og gjør feilsøking raskere.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Endringslogg</strong>
+      <span>Logg over hva som er endret, hvem som gjorde det, hvorfor og når. Uunnværlig for feilsøking og revisjon.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Stjernetopologi</strong>
+      <span>Alle enheter koblet til en sentral svitsj. Standard i moderne nettverk — enkel å feilsøke og utvide.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>CMDB</strong>
+      <span>Configuration Management Database. Oversikt over all IT-infrastruktur og relasjonene mellom komponentene.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>VLAN-plan</strong>
+      <span>Dokumentert oversikt over hvilke VLAN som finnes, deres formål, subnett og tilgangsregler mellom sonene.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Passordhvelv</strong>
+      <span>Kryptert database for tjenestekontoer og admin-passord. Eksempler: KeePass, Bitwarden. Aldri del passord via e-post.</span>
+    </div>
+  </div>
+</div>
+
+<div class="tips-callout">
+  <div class="tips-callout-title">💡 Praktiske tips</div>
+  <p><strong>Start lite, utvid etter behov:</strong> Du trenger ikke et perfekt Wiki-oppsett fra dag én. Start med én IP-adresseplan i et regneark og én endringslogg. Utvid når du ser hva som mangler.</p>
+  <p><strong>Skriv ned hvorfor, ikke bare hva:</strong> "La til brannmurregel 5" er nytteløst. "La til brannmurregel 5: Tillat HTTPS fra VLAN 10 til VLAN 40 for å gi kontoransatte tilgang til webgrensesnitt på server" — det er dokumentasjon som hjelper.</p>
+  <p><strong>Draw.io for nettverkskart:</strong> Gratis, enkelt, og kan lagres direkte i Git. Tegn topologien, merk alle VLAN og IP-er. Oppdater når noe endres.</p>
+</div>
+
 |<!-- Husk til eksamen -->
 |<div class="eksamen-callout">
 |  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
@@ -81,5 +123,24 @@ Dokumentasjon er like viktig som selve konfigurasjonen. Uten IP-plan får du IP-
 |  <p><strong>Topologier:</strong> Stjerne er standard i moderne nettverk. Bus, ring og mesh kan du fordelene/ulempene.</p>
 |  <p><strong>Vanlig eksamensspørsmål:</strong> "Hva bør dokumenteres i et IT-miljø?" — svar med minst 5 dokumentasjonstyper og hvorfor hver er viktig.</p>
 |</div>
-|
-|</RepetisjonLayout>
+
+<div class="sjekk-sporsmal">
+  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Nevn minst 5 dokumentasjonstyper som bør finnes i et IT-miljø — og forklar hvorfor hver er viktig.</div>
+    <div class="sjekk-q-answer">1. Nettverkskart (topologi, enheter, linker) — for feilsøking og planlegging. 2. IP-adresseplan (VLAN, subnett) — forhindrer IP-konflikter. 3. Endringslogg (hva, hvem, hvorfor) — sporbarhet og feilsøking. 4. Passordhvelv (tjenestekontoer) — sikker lagring av kritiske passord. 5. Brannmurregler (kilde, dest, port) — forstå og revidere sikkerhet.</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hvorfor er det viktig å dokumentere hvorfor en endring ble gjort, ikke bare hva som ble gjort?</div>
+    <div class="sjekk-q-answer">Fordi konteksten forsvinner over tid. "La til regel i brannmuren" sier ingenting om formålet. "La til regel fordi avdeling A trengte tilgang til ERP-systemet etter omorganisering" forklarer hvorfor regelen finnes — og om den fortsatt er nødvendig ved neste revisjon.</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva er forskjellen på stjerne- og bus-topologi, og hvilken brukes i dag?</div>
+    <div class="sjekk-q-answer">Stjernetopologi har alle enheter koblet til en sentral svitsj — enkel å feilsøke, utvide og håndtere. Bus-topologi har én felles kabel som alle deler — billig, men sårbar (én feil tar ned hele nettverket) og vanskelig å feilsøke. Moderne nettverk bruker stjernetopologi med managed svitsjer.</div>
+  </div>
+</div>
+
+</RepetisjonLayout>

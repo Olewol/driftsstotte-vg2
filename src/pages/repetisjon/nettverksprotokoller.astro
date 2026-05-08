@@ -7,6 +7,11 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 
 Nettverksprotokoller er reglene som bestemmer hvordan enheter kommuniserer. OSI-modellen har 7 lag, fra fysisk kabling til applikasjonsdata. TCP er pålitelig (web, e-post), UDP er raskt (streaming, DNS). Kunnskap om portnumre og protokoller er avgjørende for både konfigurasjon og sikkerhet.
 
+<div class="hvorfor-callout">
+  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
+  <p>Når noe ikke fungerer på nettverket, må du forstå <strong>hvilket lag</strong> problemet er på. Er det fysisk kabling (lag 1)? IP-konfigurasjon (lag 3)? Eller en brannmur som blokkerer port 443 (lag 4)? OSI-modellen er feilsøkingsverktøyet ditt. Å kunne portnumre utenat (22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP) spiller deg tid i feilsøking og sikkerhetskonfigurasjon.</p>
+</div>
+
 ## Detaljer
 
 ### OSI-modellen — 7 lag
@@ -21,10 +26,10 @@ Nettverksprotokoller er reglene som bestemmer hvordan enheter kommuniserer. OSI-
 | 2 | Link | Ethernet, Wi-Fi (802.11) | Rammer |
 | 1 | Fysisk | Kabling, fiber, radiosignaler | Bits |
 
-**Huskeregel (nedenfra og opp):** "Please Do Not Throw Sausage Pizza Away"  
+**Huskeregel (nedenfra og opp):** "Please Do Not Throw Sausage Pizza Away"
 (P Physical, D Data Link, N Network, T Transport, S Session, P Presentation, A Application)
 
-Eller på norsk (ovenfra og ned): "Alle Ser På TV, Noen Drikker Pils" (vil si det samme)
+Eller på norsk (ovenfra og ned): "Alle Ser På TV, Noen Drikker Pils"
 
 ### TCP/IP-modellen — 4 lag
 
@@ -80,6 +85,43 @@ Slik opprettes en TCP-forbindelse:
 | **DHCP** | Tildeler IP-adresser automatisk |
 | **NAT** | Oversetter private IP-adresser til én offentlig IP |
 
+<div class="nokkelbegreper">
+  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-grid">
+    <div class="nokkelbegrep-item">
+      <strong>OSI-modellen</strong>
+      <span>7-lagsmodell for nettverkskommunikasjon: Fysisk → Datalink → Nettverk → Transport → Sesjon → Presentasjon → Applikasjon. Norsk huskeregel: "Alle Ser På TV, Noen Drikker Pils."</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>TCP/IP-modellen</strong>
+      <span>4-lagsmodellen som internett faktisk bruker: Nettverkstilgang → Internett → Transport → Applikasjon. Mer praktisk enn OSI.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>TCP</strong>
+      <span>Transmission Control Protocol. Pålitelig, forbindelsesorientert. 3-way handshake (SYN, SYN-ACK, ACK). Brukes til web, e-post, filoverføring.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>UDP</strong>
+      <span>User Datagram Protocol. Rask, forbindelsesløs, ingen garanti. Brukes til streaming, VoIP, DNS, spill.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>3-way handshake</strong>
+      <span>SYN → SYN-ACK → ACK. Slik opprettes en TCP-forbindelse. Hvis du ikke får SYN-ACK, er porten blokkert eller serveren nede.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>ARP / NAT</strong>
+      <span>ARP oversetter IP til MAC i lokalt nett. NAT oversetter private IP-er til én offentlig IP — slik at mange enheter kan dele én internettilkobling.</span>
+    </div>
+  </div>
+</div>
+
+<div class="tips-callout">
+  <div class="tips-callout-title">💡 Praktiske tips</div>
+  <p><strong>Lær portnumrene som en sjekkliste:</strong> 22 (SSH), 53 (DNS), 80 (HTTP), 443 (HTTPS), 3389 (RDP) — disse må du kunne. Skriv dem på en lapp ved skjermen til de sitter.</p>
+  <p><strong>Bruk OSI-modellen i feilsøking:</strong> Fysisk → Link → Nettverk → Transport → Applikasjon. Sjekk alltid nedenfra og opp. Er kabelen tilkoblet? (lag 1) Får enheten IP? (lag 3) Kan du pinge? (ICMP, lag 3). Først da ser du på applikasjonen (lag 7).</p>
+  <p><strong>Ping for å teste grunnleggende tilkobling:</strong> Før du roter med DNS og applikasjoner, ping IP-en. Fungerer ping? Ja → problemet er høyere i stacken. Nei → sjekk kabling, IP-konfigurasjon og brannmur.</p>
+</div>
+
 |<!-- Husk til eksamen -->
 |<div class="eksamen-callout">
 |  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
@@ -89,5 +131,24 @@ Slik opprettes en TCP-forbindelse:
 |  <p><strong>Andre protokoller:</strong> ICMP (ping), ARP (IP→MAC), DHCP (IP-tildeling), NAT (privat→offentlig IP).</p>
 |  <p><strong>Vanlig eksamensspørsmål:</strong> "Hvilken protokoll brukes til e-post?" eller "Forklar forskjellen på TCP og UDP" — forbered korte, presise svar.</p>
 |</div>
-|
-|</RepetisjonLayout>
+
+<div class="sjekk-sporsmal">
+  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Nevn OSI-modellens 7 lag i riktig rekkefølge — og forklar hvorfor du bør feilsøke nedenfra og opp.</div>
+    <div class="sjekk-q-answer">1 Fysisk, 2 Datalink, 3 Nettverk, 4 Transport, 5 Sesjon, 6 Presentasjon, 7 Applikasjon. Du bør feilsøke nedenfra og opp fordi hvert lag er avhengig av laget under. Hvis kabelen er løs (lag 1), hjelper det ikke å sjekke DNS (lag 7). Sjekk alltid det fysiske først, så IP, så transport, så applikasjon.</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva er forskjellen på TCP og UDP? Gi eksempler på bruksområder for hver.</div>
+    <div class="sjekk-q-answer">TCP er forbindelsesorientert og pålitelig — den bekrefter mottak (ACK) og sender på nytt ved tap. Brukes til web (HTTP/HTTPS), e-post (SMTP), filoverføring (FTP), SSH. UDP er forbindelsesløs og rask — "best effort" uten garanti. Brukes til streaming, VoIP, DNS-spørringer og online-spill der hastighet er viktigere enn perfekt levering.</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva skjer under en TCP 3-way handshake?</div>
+    <div class="sjekk-q-answer">1. Klienten sender SYN (synkroniseringssignal) til serveren. 2. Serveren svarer med SYN-ACK (bekrefter mottak og sender eget synkroniseringssignal). 3. Klienten sender ACK (bekrefter mottak av serverens SYN). Forbindelsen er etablert. Hvis du ikke får SYN-ACK tilbake, er porten blokkert av brannmur eller serveren er nede.</div>
+  </div>
+</div>
+
+</RepetisjonLayout>

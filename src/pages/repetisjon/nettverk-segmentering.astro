@@ -7,6 +7,11 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 
 Nettverkssegmentering betyr å dele nettverket i logiske soner (VLAN) for å øke sikkerhet og ytelse. IEEE 802.1Q er standarden for VLAN-tagging. VLAN hindrer lateral bevegelse — om én sone blir angrepet, er de andre beskyttet. Kritiske tjenester som DHCP og DNS må være på plass for at nettverket skal fungere.
 
+<div class="hvorfor-callout">
+  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
+  <p>Uten nettverkssegmentering kan én infisert PC lamme hele bedriften. Forestill deg at en ansatt åpner en phishing-epost — uten VLAN kan angriperen bevege seg fritt til servere, produksjonsmaskiner og andre avdelinger. Med VLAN er skaden begrenset til én sone. Dette er <strong>eksamensfavoritt</strong> og noe du kommer til å konfigurere i praksis.</p>
+</div>
+
 ## Detaljer
 
 ### VLAN — logisk inndeling av nettverket
@@ -87,6 +92,43 @@ VPN krypterer all trafikk og gir sikker kommunikasjon over internett.
 | /23 | 255.255.254.0 | 510 | Middels bedrift |
 | /22 | 255.255.252.0 | 1022 | Større nettverk |
 
+<div class="nokkelbegreper">
+  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-grid">
+    <div class="nokkelbegrep-item">
+      <strong>VLAN (802.1Q)</strong>
+      <span>IEEE-standarden for VLAN-tagging. Legger til et 4-byte tag-felt i Ethernet-rammen som identifiserer hvilket VLAN trafikken tilhører.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Access-port</strong>
+      <span>Svitsjport som tilhører ett enkelt VLAN. Brukes for sluttenheter som PC-er, skrivere og trådløse aksesspunkter.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Trunk-port</strong>
+      <span>Svitsjport som bærer trafikk for flere VLAN samtidig. Brukes mellom svitsjer og til rutere for VLAN-routing.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Site-to-Site VPN</strong>
+      <span>Kobler to faste nettverk sammen over internett via kryptert tunnel. Brukes mellom hovedkontor og brakkerigg på byggeplass.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>DHCP DORA</strong>
+      <span>Firestegsprosessen for IP-tildeling: Discover → Offer → Request → Acknowledge. Kan du alle stegene i riktig rekkefølge?</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Subnetting / CIDR</strong>
+      <span>Metode for å dele opp IP-adresserom. /24 = 254 adresser, /23 = 510, /22 = 1022. Jo lavere tall, jo større nettverk.</span>
+    </div>
+  </div>
+</div>
+
+<div class="tips-callout">
+  <div class="tips-callout-title">💡 Praktiske tips</div>
+  <p><strong>Planlegg VLAN-ID-er:</strong> Bruk et konsekvent system — for eksempel VLAN 10 for kontor, 20 for produksjon, 30 for gjester. Dokumentér alle VLAN-ID-er i IP-adresseplanen.</p>
+  <p><strong>Brannmur mellom VLAN:</strong> VLAN isolerer, men uten brannmurregler mellom sonene har segmentering liten effekt. Default-deny mellom VLAN, åpne kun nødvendige porter.</p>
+  <p><strong>WireGuard for VPN:</strong> Hvis du setter opp VPN i dag, velg WireGuard. Det er raskere, enklere og sikrere enn eldre alternativer som OpenVPN og IPsec.</p>
+</div>
+
 |<!-- Husk til eksamen -->
 |<div class="eksamen-callout">
 |  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
@@ -97,5 +139,24 @@ VPN krypterer all trafikk og gir sikker kommunikasjon over internett.
 |  <p><strong>Subnetting:</strong> /24 = 254 adresser. /23 = 510. /22 = 1022. Lær forskjellen.</p>
 |  <p><strong>Vanlig eksamensspørsmål:</strong> "Foreslå VLAN-inndeling for en bedrift med kontor, produksjon og gjester" — svar med tabell.</p>
 |</div>
-|
-|</RepetisjonLayout>
+
+<div class="sjekk-sporsmal">
+  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva er forskjellen på en access-port og en trunk-port?</div>
+    <div class="sjekk-q-answer">En access-port tilhører ett enkelt VLAN og brukes for sluttenheter (PC-er, skrivere). En trunk-port bærer trafikk for flere VLAN samtidig, identifisert med 802.1Q-tagger, og brukes mellom svitsjer eller mellom svitsj og ruter.</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva er de fire stegene i DHCP DORA-prosessen?</div>
+    <div class="sjekk-q-answer">Discover (klienten søker etter DHCP-server), Offer (serveren tilbyr en IP), Request (klienten aksepterer), Acknowledge (serveren bekrefter). Husk: "Dora utforsker nettverket".</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hvorfor bør IT- og OT-nettverk separeres?</div>
+    <div class="sjekk-q-answer">OT-utstyr (produksjonsmaskiner, PLC-er, SCADA) har ofte gammelt OS som ikke kan oppdateres eller patcheres. Hvis de er på samme nett som kontor-PC-er, kan en infisert PC bevege seg lateralt til produksjonsutstyret. Isolasjon via VLAN + brannmur mellom er eneste forsvar.</div>
+  </div>
+</div>
+
+</RepetisjonLayout>

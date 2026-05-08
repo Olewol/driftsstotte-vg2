@@ -7,6 +7,11 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 
 En god backupstrategi er siste forsvarslinje ved datatap. 3-2-1-regelen er bransjestandard: 3 kopier på 2 medier, 1 offsite. Moderne utvidelse (3-2-1-1-0) legger til én immutable kopi og null feil ved testing. RPO og RTO bestemmer hvor ofte du tar backup og hvor raskt du må være tilbake.
 
+<div class="hvorfor-callout">
+  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
+  <p>En <strong>backup som ikke er testet er ikke en backup</strong>. Det høres brutalt ut, men det er sant. Ransomware-angrep, hardware-feil og menneskelige feil skjer hele tiden. Som IT-driftstekniker er du den som må gjenopprette systemene når noe går galt. Uten en solid backupstrategi med kjente RPO/RTO-verdier, jobber du uten sikkerhetsnett.</p>
+</div>
+
 ## Detaljer
 
 ### 3-2-1-regelen
@@ -59,14 +64,70 @@ Korte RPO/RTO = dyrere løsning. Finn balansen basert på hvor kritisk dataene e
 - Krypter backup både i transit og på lagringsmediet
 - Dokumenter backup-planen — hva som backes opp, når og hvordan
 
+<div class="nokkelbegreper">
+  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-grid">
+    <div class="nokkelbegrep-item">
+      <strong>RPO</strong>
+      <span>Recovery Point Objective — hvor mye datatap har vi råd til? Bestemmer backup-frekvens. RPO=4t betyr backup minst hver 4. time.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>RTO</strong>
+      <span>Recovery Time Objective — hvor lang nedetid tåler vi? Bestemmer hvor raskt systemet må være tilbake. RTO=2t betyr maks 2 timer nedetid.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>3-2-1-1-0</strong>
+      <span>3 kopier, 2 medietyper, 1 offsite, 1 immutable, 0 feil ved testing. Bransjestandarden for backup.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Full / Inkrementell</strong>
+      <span>Full = kopierer alt (størst, tregest backup, raskest restore). Inkrementell = kun endringer (minst, raskest backup, tregest restore).</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Immutable backup</strong>
+      <span>Backup som ikke kan endres, slettes eller krypteres — selv ikke av administrator. Kritisk forsvar mot ransomware.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Offsite</strong>
+      <span>Backup-kopi utenfor bygningen. Beskytter mot brann, flom, innbrudd og andre fysiske katastrofer.</span>
+    </div>
+  </div>
+</div>
+
+<div class="tips-callout">
+  <div class="tips-callout-title">💡 Praktiske tips</div>
+  <p><strong>Test gjenoppretting kvartalsvis:</strong> Sett av en dag hvert kvartal til å faktisk restorere en tilfeldig fil eller VM fra backup. Det avdekker korrupte backup-filer, feilkonfigurasjon og manglende tilganger.</p>
+  <p><strong>RPO og RTO må bestemmes av ledelsen:</strong> Ikke velg backup-frekvens basert på hva som er enkelt. Spør ledelsen: "Hvor mye nedetid tåler vi?" og "Hvor mye datatap har vi råd til?" — så bygger du strategien deretter.</p>
+  <p><strong>3-2-1-1-0 i praksis:</strong> Full backup på NAS (lokalt) + inkrementell hver natt. Kopier til sky (offsite) med immutability. Test gjenoppretting jevnlig.</p>
+</div>
+
 |<!-- Husk til eksamen -->
 |<div class="eksamen-callout">
 |  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
 |  <p><strong>3-2-1-1-0:</strong> 3 kopier, 2 medier, 1 offsite, 1 immutable, 0 feil ved testing. Kan du alle tallene?</p>
 |  <p><strong>RPO vs RTO:</strong> RPO = hvor mye datatap (backup-frekvens). RTO = hvor lang nedetid (gjenopprettingstid). Kort = dyrt.</p>
-|  <p><strong>Full vs inkrementell:</strong> Full = størst, treigest backup, raskest restore. Inkrementell = minst, raskest backup, treigest restore.</p>
+|  <p><strong>Full vs inkrementell:</strong> Full = størst, treigest backup, raskest restore. Inkrementell = minst, raskest backup, tregest restore.</p>
 |  <p><strong>Vanlig eksamensspørsmål:</strong> "En bedrift har RTO=2 timer og RPO=4 timer. Hva betyr dette?" — systemet må være oppe på 2 timer, backup hver 4. time.</p>
 |  <p><strong>Viktig:</strong> En backup som ikke er testet er ikke en backup. Test gjenoppretting jevnlig.</p>
 |</div>
-|
-|</RepetisjonLayout>
+
+<div class="sjekk-sporsmal">
+  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva betyr RPO=4 timer og RTO=1 time for en bedrift?</div>
+    <div class="sjekk-q-answer">RPO=4t betyr at backup må tas minst hver 4. time — bedriften tåler maks 4 timers datatap. RTO=1t betyr at systemet må være oppe igjen innen 1 time etter et brudd. Dette er relativt strenge krav som krever hyppig backup og rask gjenopprettingsmekanisme (f.eks. failover).</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva er forskjellen på full, differensiell og inkrementell backup?</div>
+    <div class="sjekk-q-answer">Full backup kopierer alt (størst, tregest backup, raskest restore). Differensiell kopierer alt som er endret siden forrige full backup (medium størrelse, medium restore). Inkrementell kopierer kun endringer siden forrige backup (minst, raskest backup, tregest restore fordi du må restorere full + alle inkrementelle).</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hvorfor er immutable backup viktig, og hva beskytter det mot?</div>
+    <div class="sjekk-q-answer">Immutable backup kan ikke endres, slettes eller krypteres — ikke engang av administrator. Det er det viktigste forsvaret mot ransomware fordi angriperen ikke kan kryptere backupen selv om de får admin-tilgang. Kombineres med offsite-lagring for best beskyttelse.</div>
+  </div>
+</div>
+
+</RepetisjonLayout>

@@ -7,6 +7,11 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 
 Sikkerhetsprinsipper er de grunnleggende reglene som all IT-sikkerhet bygger på. Minste privilegium, defense in depth og default-deny er de viktigste. NSM (Norm for sikkerhetsarbeid) setter rammeverket for systematisk sikkerhetsarbeid i norsk offentlig sektor, men prinsippene gjelder alle.
 
+<div class="hvorfor-callout">
+  <div class="hvorfor-callout-title">🤔 Hvorfor skal du bry deg?</div>
+  <p>Sikkerhet er <strong>ikke én enkelt løsning</strong> — det er en kjede av prinsipper og tiltak som må henge sammen. Du kan ha den beste brannmuren i verden, men hvis en ansatt får phishing-epost og gir fra seg passordet, er brannmuren ubrukelig. Derfor må du forstå hvordan minste privilegium, defense in depth og NSM-prinsippene jobber sammen. Det er dette som skiller en IT-tekniker fra en som bare trykker på knapper.</p>
+</div>
+
 ## Detaljer
 
 ### Grunnleggende sikkerhetsprinsipper
@@ -69,6 +74,43 @@ Norm for sikkerhetsarbeid (NSM) beskriver fem grunnprinsipper for systematisk si
 
 Sikkerhet er ikke én enkelt løsning, men en kjede av tiltak. Segmentering (VLAN) hjelper lite hvis brannmuren ikke har regler mellom sonene. Backup hjelper lite hvis den står i samme rom som serveren. Opplæring hjelper lite hvis ingen har lest responsplanen. **Helhetlig sikkerhet = flere lag som utfyller hverandre.**
 
+<div class="nokkelbegreper">
+  <div class="nokkelbegreper-title">📖 Nøkkelbegreper</div>
+  <div class="nokkelbegreper-grid">
+    <div class="nokkelbegrep-item">
+      <strong>Minste privilegium</strong>
+      <span>Brukere og systemer skal kun ha tilgangene de trenger. Ikke gi admin til noen som ikke trenger det. Følges opp med regelmessig revisjon.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Default-deny</strong>
+      <span>Alt er nektet inntil det er eksplisitt tillatt. Gjelder brannmurregler, filtilganger, brukerrettigheter — absolutt alt.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Defense in depth</strong>
+      <span>Flere lag med forsvar: fysisk, perimeter, nettverk, endepunkt, applikasjon, data, menneske. Ett gjennombrudd er ikke katastrofalt.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>NSM-prinsipper</strong>
+      <span>Norm for sikkerhetsarbeid: kontroller dataflyt, minste privilegium, sårbarhetshåndtering, overvåking/logging, hendelseshåndtering.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Separation of duties</strong>
+      <span>Ingen skal ha alenemakt over kritiske funksjoner. Én person oppretter bruker, en annen godkjenner. Reduserer risiko for misbruk.</span>
+    </div>
+    <div class="nokkelbegrep-item">
+      <strong>Need to know</strong>
+      <span>Kun data du trenger i din rolle. HR ser lønn, salg ser ikke økonomi. Beskytter sensitiv informasjon mot unødvendig eksponering.</span>
+    </div>
+  </div>
+</div>
+
+<div class="tips-callout">
+  <div class="tips-callout-title">💡 Praktiske tips</div>
+  <p><strong>Sikkerhet starter med oppdateringer:</strong> Før du kjøper dyr sikkerhetsprogramvare, sørg for at alle systemer er oppdatert. Oppdaterte systemer er det enkleste og billigste sikkerhetstiltaket.</p>
+  <p><strong>Tenk "hva om...":</strong> Gå gjennom scenarioer: "Hva om en ansatt klikker på phishing?" → opplæring + MFA. "Hva om serverrommet brenner?" → offsite backup. "Hva om admin-kontoen blir hacked?" → minste privilegium + logging.</p>
+  <p><strong>Dokumenter responsplanen:</strong> Når en sikkerhetshendelse skjer, skal alle vite hva de skal gjøre. Hvem kontaktes? Hvem har myndighet til å stenge ned systemer? Øv på planen.</p>
+</div>
+
 |<!-- Husk til eksamen -->
 |<div class="eksamen-callout">
 |  <div class="eksamen-callout-title">📌 Husk til eksamen</div>
@@ -78,5 +120,24 @@ Sikkerhet er ikke én enkelt løsning, men en kjede av tiltak. Segmentering (VLA
 |  <p><strong>NSM grunnprinsipper:</strong> Kontroller dataflyt, minste privilegium, sårbarhetshåndtering, overvåking/logging, hendelseshåndtering.</p>
 |  <p><strong>Vanlig eksamensspørsmål:</strong> "Hvilke sikkerhetstiltak ville du prioritert?" — svar med en prioritert liste, start med oppdateringer og brannmur.</p>
 |</div>
-|
-|</RepetisjonLayout>
+
+<div class="sjekk-sporsmal">
+  <div class="sjekk-sporsmal-title">✅ Sjekk om du kan dette</div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva er de 5 NSM-grunnprinsippene, og hvorfor er de viktige?</div>
+    <div class="sjekk-q-answer">1. Kontrollere dataflyt (hvem snakker med hvem). 2. Minste privilegium (kun nødvendige tilganger). 3. Sårbarhetshåndtering (hold systemer oppdatert). 4. Overvåking og logging (se hva som skjer). 5. Håndtering av sikkerhetshendelser (plan for når noe skjer). De er viktige fordi de gir et systematisk rammeverk som dekker hele spekteret av sikkerhetsarbeid.</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hva er forskjellen på default-deny og minste privilegium?</div>
+    <div class="sjekk-q-answer">Default-deny handler om tilgangskontroll: alt er nektet inntil det er eksplisitt tillatt. Minste privilegium handler om å gi akkurat nok tilgang til å utføre jobben — verken mer eller mindre. Default-deny er en policy (alt stengt), minste privilegium er en praksis (åpne kun det som trengs). De utfyller hverandre.</div>
+  </div>
+
+  <div class="sjekk-q">
+    <div class="sjekk-q-question">Hvordan ville du prioritert sikkerhetstiltak i en bedrift med begrenset budsjett?</div>
+    <div class="sjekk-q-answer">1. Oppdateringer (gratis/rimelig, størst effekt). 2. Brannmur med default-deny. 3. VLAN-segmentering. 4. RBAC og MFA. 5. Backup med 3-2-1-1-0. 6. Logging (SIEM). 7. Opplæring av ansatte. 8. Responsplan. Start med det som gir mest sikkerhet per krone — oppdateringer og brannmur gir mye beskyttelse for lite penger.</div>
+  </div>
+</div>
+
+</RepetisjonLayout>
