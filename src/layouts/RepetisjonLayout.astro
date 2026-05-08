@@ -2,35 +2,50 @@
 import BaseLayout from './BaseLayout.astro';
 const { title, description, prev, next, prevLabel, nextLabel } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname;
+
+const topics = [
+  'brukeradministrasjon', 'infrastruktur-maskinvare', 'nettverk-segmentering',
+  'nettverkssikkerhet', 'servermodeller-virtualisering', 'backup-gjenoppretting',
+  'dokumentasjon-planlegging', 'nettverksprotokoller', 'sikkerhet-driftsprinsipper',
+];
+const topicIndex = topics.findIndex(t => path.includes(t)) + 1;
+const totalTopics = topics.length;
 ---
 
 <BaseLayout title={title} description={description}>
-  <article style="max-width:860px;margin:0 auto;padding:0 32px 80px;">
+  <article style="max-width:880px;margin:0 auto;padding:0 32px 80px;">
 
-    <!-- Breadcrumb -->
-    <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text3);padding:28px 0 4px;">
-      <a href={`${base}/repetisjon`} style="color:var(--accent);text-decoration:none;">Forberedelse</a>
-      <span>/</span>
-      <span style="color:var(--text2);">{title}</span>
+    <!-- Breadcrumb + progress -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 0 4px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text3);">
+        <a href={`${base}/repetisjon`} style="color:var(--accent);text-decoration:none;">Forberedelse</a>
+        <span>/</span>
+        <span style="color:var(--text2);">{title}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;" aria-label="Tema {topicIndex} av {totalTopics}">
+        <div style="display:flex;gap:4px;">
+          {Array.from({length: totalTopics}, (_, i) => (
+            <div style={`width:8px;height:8px;border-radius:50%;background:${i < topicIndex ? 'var(--accent)' : 'var(--border)'};transition:background .3s;`}></div>
+          ))}
+        </div>
+        <span style="font-size:11px;color:var(--text3);font-weight:600;">{topicIndex}/{totalTopics}</span>
+      </div>
     </div>
 
     <!-- Header -->
     <div style="padding:16px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;">
-      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(236,72,153,.13);color:#ec4899;border:1px solid rgba(236,72,153,.3);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:12px;">
-        Eksamensrepetisjon
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(79,140,255,.13);color:var(--accent);border:1px solid rgba(79,140,255,.3);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:12px;">
+        Tema {topicIndex} av {totalTopics}
       </div>
-      <h1 style="font-size:30px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--text);">{title}</h1>
-      {description && <p style="font-size:15px;color:var(--text2);line-height:1.6;">{description}</p>}
+      <h1 style="font-size:32px;font-weight:800;letter-spacing:-.025em;margin-bottom:8px;color:var(--text);">{title}</h1>
+      {description && <p style="font-size:15px;color:var(--text2);line-height:1.65;">{description}</p>}
     </div>
 
-    <!-- Innholdsfortegnelse for siden -->
-    <nav class="repetisjon-toc" aria-label="På denne siden" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:32px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:10px;">På denne siden</div>
-      <ul id="toc-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;">
-        <li style="font-size:13px;">↳ <a href="#kort-oppsummert" style="color:var(--accent);text-decoration:none;">Kort oppsummert</a></li>
-        <li style="font-size:13px;">↳ <a href="#detaljer" style="color:var(--accent);text-decoration:none;">Detaljer</a></li>
-        <li style="font-size:13px;">↳ <a href="#husk-til-eksamen" style="color:var(--accent);text-decoration:none;">Husk til eksamen</a></li>
-      </ul>
+    <!-- TOC -->
+    <nav class="repetisjon-toc" aria-label="På denne siden" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:32px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px;">På denne siden</div>
+      <ul id="toc-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:3px;"></ul>
     </nav>
 
     <!-- Content -->
@@ -38,17 +53,17 @@ const base = import.meta.env.BASE_URL;
       <slot />
     </div>
 
-    <!-- Bottom navigation -->
+    <!-- Bottom nav -->
     <div style="display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);">
       {prev ? (
-        <a href={`${base}/repetisjon/${prev}`} style="flex:1;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:background .15s,border-color .15s;color:var(--text);" onmouseover="this.style.background='var(--surface2)';this.style.borderColor='var(--border2)'" onmouseout="this.style.background='var(--surface)';this.style.borderColor='var(--border)'">
-          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">← Forrige</div>
+        <a href={`${base}/repetisjon/${prev}`} style="flex:1;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:all .18s;color:var(--text);" onmouseover="this.style.background='var(--surface2)';this.style.borderColor='var(--border2)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--surface)';this.style.borderColor='var(--border)';this.style.transform=''">
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">← Forrige tema</div>
           <div style="font-size:14px;font-weight:600;">{prevLabel || prev}</div>
         </a>
       ) : <div style="flex:1;"></div>}
       {next ? (
-        <a href={`${base}/repetisjon/${next}`} style="flex:1;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;text-align:right;transition:background .15s,border-color .15s;color:var(--text);" onmouseover="this.style.background='var(--surface2)';this.style.borderColor='var(--border2)'" onmouseout="this.style.background='var(--surface)';this.style.borderColor='var(--border)'">
-          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">Neste →</div>
+        <a href={`${base}/repetisjon/${next}`} style="flex:1;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;text-align:right;transition:all .18s;color:var(--text);" onmouseover="this.style.background='var(--surface2)';this.style.borderColor='var(--border2)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--surface)';this.style.borderColor='var(--border)';this.style.transform=''">
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">Neste tema →</div>
           <div style="font-size:14px;font-weight:600;">{nextLabel || next}</div>
         </a>
       ) : <div style="flex:1;"></div>}
@@ -65,122 +80,211 @@ const base = import.meta.env.BASE_URL;
 
 <style>
   .repetisjon-prose {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.85;
     color: var(--text2);
   }
-  .repetisjon-prose p { margin-bottom: 1.1rem; }
+  .repetisjon-prose p { margin-bottom: 1.2rem; }
+
+  /* Section headings */
   .repetisjon-prose h2 {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--text);
-    margin: 1.8rem 0 0.6rem;
-    padding-bottom: 6px;
+    margin: 2.2rem 0 0.8rem;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
+    scroll-margin-top: 80px;
   }
   .repetisjon-prose h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--text);
-    margin: 1.4rem 0 0.4rem;
+    margin: 1.6rem 0 0.5rem;
   }
   .repetisjon-prose h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text);
-    margin: 1rem 0 0.3rem;
+    color: var(--text2);
+    margin: 1.2rem 0 0.3rem;
   }
-  .repetisjon-prose a {
-    color: var(--accent);
-    border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  }
+  .repetisjon-prose a { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
   .repetisjon-prose a:hover { border-color: var(--accent); text-decoration: none; }
   .repetisjon-prose strong { color: var(--text); }
-  .repetisjon-prose table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    margin: 1rem 0;
-  }
-  .repetisjon-prose th {
-    background: var(--bg3);
-    color: var(--text2);
-    padding: 9px 12px;
-    text-align: left;
-    border: 1px solid var(--border);
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-  }
-  .repetisjon-prose td {
-    padding: 9px 12px;
-    border: 1px solid var(--border);
-    color: var(--text);
-  }
-  .repetisjon-prose tr:nth-child(even) td { background: var(--surface); }
   .repetisjon-prose ul, .repetisjon-prose ol {
-    margin: 0.6rem 0;
+    margin: 0.6rem 0 1rem;
     padding-left: 1.5rem;
   }
-  .repetisjon-prose li { margin-bottom: 0.3rem; }
+  .repetisjon-prose li { margin-bottom: 0.4rem; line-height: 1.7; }
   .repetisjon-prose code {
     background: var(--bg3);
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 2px 7px;
+    border-radius: 5px;
     font-size: 0.875em;
+    color: #e2e8f0;
   }
   .repetisjon-prose pre {
     background: var(--bg3);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 1.2rem 0;
+    font-size: 14px;
+    line-height: 1.6;
   }
   .repetisjon-prose pre code { background: none; padding: 0; }
 
-  /* Husk til eksamen - callout box */
-  .eksamen-callout {
-    background: linear-gradient(135deg, rgba(249,115,22,.1) 0%, rgba(236,72,153,.08) 100%);
-    border-left: 4px solid #f97316;
+  /* Tables */
+  .repetisjon-prose table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    margin: 1.2rem 0;
     border-radius: 10px;
-    padding: 18px 22px;
-    margin: 1.5rem 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
   }
+  .repetisjon-prose th {
+    background: linear-gradient(135deg, var(--bg3) 0%, rgba(79,140,255,.06) 100%);
+    color: var(--text);
+    padding: 11px 14px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  .repetisjon-prose td {
+    padding: 10px 14px;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .repetisjon-prose tr:last-child td { border-bottom: none; }
+  .repetisjon-prose tr:nth-child(even) td { background: var(--surface); }
+  .repetisjon-prose tr:hover td { background: var(--surface2); }
+
+  /* Callout box — Husk til eksamen */
+  .eksamen-callout {
+    background: linear-gradient(135deg, rgba(249,115,22,.08) 0%, rgba(236,72,153,.06) 100%);
+    border: 1px solid rgba(249,115,22,.25);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 1.8rem 0;
+    transition: border-color .2s;
+  }
+  .eksamen-callout:hover { border-color: rgba(249,115,22,.4); }
   .eksamen-callout-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .06em;
     color: #f97316;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
   }
-  .eksamen-callout p { margin-bottom: 0 !important; }
+  .eksamen-callout p { margin-bottom: 0.5rem !important; }
+  .eksamen-callout p:last-child { margin-bottom: 0 !important; }
   .eksamen-callout ul { margin: 0.4rem 0 0 0; }
+  .eksamen-callout li { margin-bottom: 0.3rem; }
+
+  /* Tips box */
+  .tips-callout {
+    background: linear-gradient(135deg, rgba(16,185,129,.07) 0%, rgba(79,140,255,.05) 100%);
+    border: 1px solid rgba(16,185,129,.2);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 1.5rem 0;
+  }
+  .tips-callout:hover { border-color: rgba(16,185,129,.35); }
+
+  /* Definition list style */
+  .def-term { font-weight: 600; color: var(--text); }
+  .def-desc { color: var(--text2); margin-bottom: 0.6rem; }
+
+  /* Comparison table alt style */
+  .compare-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1.2rem 0;
+  }
+  .compare-header {
+    background: var(--bg3);
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text);
+  }
+  .compare-cell {
+    background: var(--surface);
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--text2);
+  }
 
   @media (max-width: 768px) {
     article { padding-left: 20px !important; padding-right: 20px !important; }
+    .repetisjon-prose { font-size: 15px; }
+    .repetisjon-prose table { font-size: 13px; }
   }
 </style>
 
 <script>
-  // Auto-generate TOC from h2 headings in the content
+  // Auto-generate TOC from h2 headings AND make them clickable
   const toc = document.getElementById('toc-list');
-  if (toc) {
-    toc.innerHTML = '';
-    const headings = document.querySelector('.repetisjon-prose')?.querySelectorAll('h2') || [];
+  const prose = document.querySelector('.repetisjon-prose');
+  if (toc && prose) {
+    const headings = prose.querySelectorAll('h2');
     headings.forEach((h, i) => {
-      if (!h.id) h.id = `section-${i}`;
+      if (!h.id) {
+        h.id = h.textContent.toLowerCase().replace(/[^a-z0-9æøå]+/g, '-').replace(/^-|-$/g, '') || `section-${i}`;
+      }
       const li = document.createElement('li');
       li.style.cssText = 'font-size:13px;';
       const a = document.createElement('a');
       a.href = `#${h.id}`;
       a.textContent = h.textContent;
-      a.style.cssText = 'color:var(--accent);text-decoration:none;';
+      a.style.cssText = 'color:var(--accent);text-decoration:none;padding:2px 0;display:inline-block;';
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', `#${h.id}`);
+      });
       li.innerHTML = '↳ ';
       li.appendChild(a);
       toc.appendChild(li);
     });
   }
+
+  // Highlight current TOC item on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      if (!id) return;
+      const link = toc?.querySelector(`a[href="#${id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        link.style.color = 'var(--text)';
+        link.style.fontWeight = '600';
+      } else {
+        link.style.color = 'var(--accent)';
+        link.style.fontWeight = '400';
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '-80px 0px 0px 0px' });
+
+  document.querySelectorAll('.repetisjon-prose h2').forEach(h => observer.observe(h));
 </script>
