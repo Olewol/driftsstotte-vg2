@@ -1,13 +1,13 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 ---
-<RepetisjonLayout title="Servermodeller og virtualisering" description="Tower, rack, blade-servere. Hypervisor, VM, container. Nar brukes hva?" prev={"nettverkssikkerhet"} prevLabel="Nettverkssikkerhet" next="backup-gjenoppretting" nextLabel="Backup og gjenoppretting">
+<RepetisjonLayout title="Servermodeller og virtualisering" description="Tower, rack, blade-servere. Hypervisor, VM, container. Når brukes hva?" prev={"nettverkssikkerhet"} prevLabel="Nettverkssikkerhet" next="backup-gjenoppretting" nextLabel="Backup og gjenoppretting">
 
-Servere kommer i tre formater: tower, rack og blade. Tower er billigst og enklest for sma bedrifter. Rack er standard for de fleste — monteres i stativ med god kjoling. Blade gir hoyest tetthet og horer hjemme i store datasentre. Virtualisering lar deg kjore flere servere pa en fysisk maskin, noe som sparer strom, plass og gir fleksibilitet.
+Servere kommer i tre formater: tower, rack og blade. Tower er billigst og enklest for små bedrifter. Rack er standard for de fleste — monteres i stativ med god kjøling. Blade gir høyest tetthet og hører hjemme i store datasentre. Virtualisering lar deg kjøre flere servere på én fysisk maskin, noe som sparer strøm, plass og gir fleksibilitet.
 
 <div class="hvorfor-callout">
   <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
-  <p>Virtualisering er <strong>standard i dag</strong>. Nesten ingen kjoper lenger en fysisk server per tjeneste. Du ma kunne anbefale riktig servermodell, forsta hypervisor-valg og vite forskjellen pa VM og container. Nar en bedrift vokser fra 2 til 8 servere, sier du "en kraftig rack-server med hypervisor" — ikke "8 tower-server i en haug".</p>
+  <p>Virtualisering er <strong>standard i dag</strong>. Nesten ingen kjøper lenger én fysisk server per tjeneste. Du må kunne anbefale riktig servermodell, forstå hypervisor-valg og vite forskjellen på VM og container. Når en bedrift vokser fra 2 til 8 servere, sier du "én kraftig rack-server med hypervisor" — ikke "8 tower-server i en haug".</p>
 </div>
 
 ## Detaljer
@@ -16,56 +16,56 @@ Servere kommer i tre formater: tower, rack og blade. Tower er billigst og enkles
 
 | Modell | Fordeler | Ulemper | Typisk bruk |
 |--------|----------|---------|-------------|
-| **Tower** | Billig, enkel setup, stillegående | Tar mye plass, darlig skalering | Sma bedrifter, testmiljo |
-| **Rack** | Standardisert (1U/2U), god kjoling | Krever rack-stativ, stoyende | De fleste bedrifter |
-| **Blade** | Svaert hoy tetthet, delt strom/kjoling | Dyrere chassis, vendor-spesifikk | Store datasentre, 10+ servere |
+| **Tower** | Billig, enkel setup, stillegående | Tar mye plass, dårlig skalering | Små bedrifter, testmiljø |
+| **Rack** | Standardisert (1U/2U), god kjøling | Krever rack-stativ, støyende | De fleste bedrifter |
+| **Blade** | Svært høy tetthet, delt strøm/kjøling | Dyrere chassis, vendor-spesifikk | Store datasentre, 10+ servere |
 
-### Nar velge hva?
+### Når velge hva?
 
 | Behov | Anbefalt modell |
 |-------|----------------|
-| Fa servere, ikke eget serverrom | Tower |
+| Få servere, ikke eget serverrom | Tower |
 | Standard bedrift, serverrom | Rack (1U eller 2U) |
-| Mange servere pa liten plass | Blade |
+| Mange servere på liten plass | Blade |
 | Trenger redundans og skalering | Rack med flere enheter |
 | Virtualisering av flere OS | Rack + hypervisor |
 
 ### Virtualisering
 
-**Hypervisor** er programvaren som lager og kjorer virtuelle maskiner.
+**Hypervisor** er programvaren som lager og kjører virtuelle maskiner.
 
-| Type | Hvordan den kjorer | Eksempler | Ytelse |
+| Type | Hvordan den kjører | Eksempler | Ytelse |
 |------|-------------------|-----------|--------|
-| **Type 1 (bare metal)** | Direkte pa fysisk hardware | VMware ESXi, Hyper-V, Proxmox | Hoy (naer fysisk) |
-| **Type 2 (hosted)** | Som programvare pa et OS | VirtualBox, VMware Workstation | Lavere (OS-overhead) |
+| **Type 1 (bare metal)** | Direkte på fysisk hardware | VMware ESXi, Hyper-V, Proxmox | Høy (nær fysisk) |
+| **Type 2 (hosted)** | Som programvare på et OS | VirtualBox, VMware Workstation | Lavere (OS-overhead) |
 
-Type 1 er det du bruker i produksjon. Type 2 er greit for a teste noe pa laptop'en.
+Type 1 er det du bruker i produksjon. Type 2 er greit for å teste noe på laptop.
 
-**VM vs Container**
+### VM vs Container
 
 | Egenskap | VM | Container |
 |----------|----|-----------|
 | OS | Hver VM har eget OS | Deler verts-OS-kjerne |
-| Storrelse | Flere GB | MB |
+| Størrelse | Flere GB | MB |
 | Oppstart | Minutter | Sekunder |
-| Isolation | Hoy (full hardware-emulering) | Moderat (deler kjerne) |
-| Ressursbruk | Hoy | Lav |
+| Isolasjon | Høy (full hardware-emulering) | Moderat (deler kjerne) |
+| Ressursbruk | Høy | Lav |
 
-VM gir bedre isolation. Container gir bedre utnyttelse av ressurser. Velg basert pa behovet — ikke bruk container fordi det er kult hvis du trenger isolation.
+VM gir bedre isolasjon. Container gir bedre utnyttelse av ressurser. Velg basert på behovet — ikke bruk container fordi det er kult hvis du trenger isolasjon.
 
 ### Hvorfor virtualisere?
 
 - **Konsolidering** — 10 fysiske servere blir 1 fysisk + 10 VM-er
-- **Snapshots** — ta bilde for oppdatering, enkelt a rulle tilbake
+- **Snapshots** — ta bilde før oppdatering, enkelt å rulle tilbake
 - **Live migration** — flytt VM uten nedetid
-- **Isolation** — en VM krasjer, andre pavirkes ikke
+- **Isolasjon** — én VM krasjer, andre påvirkes ikke
 - **Ressursoptimalisering** — over-alloker CPU/minne
 
 ### RAID — diskredundans
 
-| Niva | Beskrivelse | Minimum disker | Kapasitet |
+| Nivå | Beskrivelse | Minimum disker | Kapasitet |
 |------|-------------|---------------|-----------|
-| RAID 0 | Striping (hoy hastighet, ingen redundans) | 2 | 100% |
+| RAID 0 | Striping (høy hastighet, ingen redundans) | 2 | 100% |
 | RAID 1 | Speiling (eksakt kopi) | 2 | 50% |
 | RAID 5 | Striping med paritet | 3 | (N-1)/N |
 | RAID 6 | Striping med dobbel paritet | 4 | (N-2)/N |
@@ -74,15 +74,15 @@ VM gir bedre isolation. Container gir bedre utnyttelse av ressurser. Velg basert
 RAID 10 gir best ytelse. RAID 5 er et godt kompromiss for lagringsservere. RAID 0 bruker du kun hvis du har backup og ytelse er alt som teller.
 
 <div class="nokkelbegreper">
-  <div class="nokkelbegreper-title">Nokkelbegreper</div>
+  <div class="nokkelbegreper-title">Nøkkelbegreper</div>
   <div class="nokkelbegreper-grid">
     <div class="nokkelbegrep-item">
       <strong>Tower / Rack / Blade</strong>
-      <span>De tre serverformatene. Tower = frittstaende, Rack = 1U/2U i stativ (standard), Blade = moduler i felles chassis (hoy tetthet).</span>
+      <span>De tre serverformatene. Tower = frittstående, Rack = 1U/2U i stativ (standard), Blade = moduler i felles chassis (høy tetthet).</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Hypervisor Type 1</strong>
-      <span>Kjorer direkte pa hardware (bare metal). Eksempler: VMware ESXi, Hyper-V, Proxmox. Nesten fysisk ytelse.</span>
+      <span>Kjører direkte på hardware (bare metal). Eksempler: VMware ESXi, Hyper-V, Proxmox. Nesten fysisk ytelse.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>VM vs Container</strong>
@@ -90,50 +90,50 @@ RAID 10 gir best ytelse. RAID 5 er et godt kompromiss for lagringsservere. RAID 
     </div>
     <div class="nokkelbegrep-item">
       <strong>RAID 1 / 5 / 10</strong>
-      <span>RAID 1 = speiling (50% kapasitet). RAID 5 = paritet, taler 1 disk (N-1)/N. RAID 10 = speiling+striping, best ytelse (50%).</span>
+      <span>RAID 1 = speiling (50% kapasitet). RAID 5 = paritet, tåler 1 disk (N-1)/N. RAID 10 = speiling+striping, best ytelse (50%).</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Live migration</strong>
-      <span>Flytt en kjorende VM til en annen fysisk vert uten nedetid. Viktig for vedlikehold og lastbalansering.</span>
+      <span>Flytt en kjørende VM til en annen fysisk vert uten nedetid. Viktig for vedlikehold og lastbalansering.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Snapshot</strong>
-      <span>Oyeblikksbilde av en VM. Brukes for oppdateringer — enkelt a rulle tilbake hvis noe gar galt.</span>
+      <span>Øyeblikksbilde av en VM. Brukes før oppdateringer — enkelt å rulle tilbake hvis noe går galt.</span>
     </div>
   </div>
 </div>
 
 <div class="tips-callout">
   <div class="tips-callout-title">Praktiske tips</div>
-  <p><strong>En stor server vs flere sma:</strong> En kraftig rack-server + hypervisor er bedre enn flere tower-server. Sparer strom, plass og kjoling. Trenger du mer? Kjop en til rack-server.</p>
-  <p><strong>RAID 10 for ytelse:</strong> Har du rad til 50% kapasitetstap? Velg RAID 10. RAID 5 er et godt kompromiss for lagringsservere.</p>
-  <p><strong>Snapshot er ikke backup:</strong> Snapshots er fine for oppdateringer, men de er avhengige av den opprinnelige disken. Backup ma lagres separat.</p>
+  <p><strong>Én stor server vs flere små:</strong> Én kraftig rack-server + hypervisor er bedre enn flere tower-server. Sparer strøm, plass og kjøling. Trenger du mer? Kjøp én til rack-server.</p>
+  <p><strong>RAID 10 for ytelse:</strong> Har du råd til 50% kapasitetstap? Velg RAID 10. RAID 5 er et godt kompromiss for lagringsservere.</p>
+  <p><strong>Snapshot er ikke backup:</strong> Snapshots er fine for oppdateringer, men de er avhengige av den opprinnelige disken. Backup må lagres separat.</p>
 </div>
 
 <div class="eksamen-callout">
   <div class="eksamen-callout-title">Husk til eksamen</div>
-  <p><strong>Serverformater:</strong> Tower (billig, enkel), Rack (standard, 1U/2U), Blade (hoy tetthet).</p>
-  <p><strong>Hypervisor Type 1:</strong> ESXi, Hyper-V, Proxmox — pa hardware. Nesten fysisk ytelse.</p>
+  <p><strong>Serverformater:</strong> Tower (billig, enkel), Rack (standard, 1U/2U), Blade (høy tetthet).</p>
+  <p><strong>Hypervisor Type 1:</strong> ESXi, Hyper-V, Proxmox — på hardware. Nesten fysisk ytelse.</p>
   <p><strong>VM vs Container:</strong> VM = eget OS (GB, minutter), Container = deler kjerne (MB, sekunder).</p>
-  <p><strong>RAID:</strong> RAID 1 (speiling 50%), RAID 5 (paritet, taler 1 disk), RAID 10 (speiling+striping, 50%, best ytelse).</p>
+  <p><strong>RAID:</strong> RAID 1 (speiling 50%), RAID 5 (paritet, tåler 1 disk), RAID 10 (speiling+striping, 50%, best ytelse).</p>
 </div>
 
 <div class="sjekk-sporsmal">
   <div class="sjekk-sporsmal-title">Sjekk om du kan dette</div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Nar bor du velge blade-server framfor rack-server?</div>
-    <div class="sjekk-q-answer">Blade passer i store datasentre med 10+ servere. Hoyere tetthet og delt strom/kjoling, men dyrere og vendor-spesifikk. For de fleste bedrifter er rack-standard best.</div>
+    <div class="sjekk-q-question">Når bør du velge blade-server framfor rack-server?</div>
+    <div class="sjekk-q-answer">Blade passer i store datasentre med 10+ servere. Høyere tetthet og delt strøm/kjøling, men dyrere og vendor-spesifikk. For de fleste bedrifter er rack-standard best.</div>
   </div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hva er forskjellen pa hypervisor Type 1 og Type 2?</div>
-    <div class="sjekk-q-answer">Type 1 kjorer direkte pa hardware — brukes i produksjon (ESXi, Hyper-V, Proxmox). Type 2 kjorer pa et OS — brukes til testing (VirtualBox).</div>
+    <div class="sjekk-q-question">Hva er forskjellen på hypervisor Type 1 og Type 2?</div>
+    <div class="sjekk-q-answer">Type 1 kjører direkte på hardware — brukes i produksjon (ESXi, Hyper-V, Proxmox). Type 2 kjører på et OS — brukes til testing (VirtualBox).</div>
   </div>
 
   <div class="sjekk-q">
     <div class="sjekk-q-question">Hva er fordelen med RAID 10 sammenlignet med RAID 5?</div>
-    <div class="sjekk-q-answer">RAID 10 gir best ytelse bade for lesing og skriving, og taler flere diskfeil sa lenge de ikke er i samme speilpar. Ulempe: 50% kapasitet. RAID 5 gir mer kapasitet (N-1)/N og taler en disk, men har darligere skriveytelse.</div>
+    <div class="sjekk-q-answer">RAID 10 gir best ytelse både for lesing og skriving, og tåler flere diskfeil så lenge de ikke er i samme speilpar. Ulempe: 50% kapasitet. RAID 5 gir mer kapasitet (N-1)/N og tåler én disk, men har dårligere skriveytelse.</div>
   </div>
 </div>
 

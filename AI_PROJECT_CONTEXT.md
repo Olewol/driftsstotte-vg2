@@ -24,9 +24,10 @@ Lagt til en ny underseksjon `repetisjon` for eksamensforberedelse VG2 Driftsstø
 - `src/components/Nav.astro` — lagt til "Eksamen"-lenke
 - `./.gitignore` — legg til node_modules
 
-### Design:
-- Mørk tema (matcher resten av siden)
-- RepetisjonLayout: innebygget TOC-generering fra h2-headings
-- "Husk til eksamen" callout-boks
-- Navigasjon mellom temaer (forrige/neste)
-- Oppgaver: interaktive klikk-for-å-se-svar-kort
+|### Design:
+|- Mørk tema (matcher resten av siden)
+|- RepetisjonLayout: innebygget TOC-generering fra h2-headings, fremdriftsindikator (topic X/9), scroll-spy
+|- "Husk til eksamen" callout-boks på hver side (`.eksamen-callout`)
+|- "Tips" callout-boks (`.tips-callout`)
+|- Navigasjon mellom temaer (forrige/neste)
+|- Oppgaver: interaktive klikk-for-å-se-svar-kort

@@ -3,11 +3,11 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 ---
 <RepetisjonLayout title="Nettverk og segmentering" description="VLAN, 802.1Q, IT vs OT, VPN, DHCP, DNS, subnetting." prev={"infrastruktur-maskinvare"} prevLabel="Infrastruktur og maskinvare" next="nettverkssikkerhet" nextLabel="Nettverkssikkerhet">
 
-Nettverkssegmentering deler nettverket i logiske soner (VLAN) for a oke sikkerhet og ytelse. IEEE 802.1Q er standarden for VLAN-tagging. Poenget: hindre lateral bevegelse. Blir en sone angrepet, er de andre beskyttet. For at nettverket skal fungere, ma DHCP og DNS vaere pa plass.
+Nettverkssegmentering deler nettverket i logiske soner (VLAN) for å øke sikkerhet og ytelse. IEEE 802.1Q er standarden for VLAN-tagging. Poenget: hindre lateral bevegelse. Blir en sone angrepet, er de andre beskyttet. For at nettverket skal fungere, må DHCP og DNS være på plass.
 
 <div class="hvorfor-callout">
   <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
-  <p>Uten segmentering kan en infisert PC lamme hele bedriften. En ansatt apner en phishing-epost, og angriperen gar rett pa serverne — fordi alt er pa samme flate nett. Med VLAN stopper skaden i en sone. Dette er noe du kommer til a konfigurere i praksis, og det dukker opp pa eksamen.</p>
+  <p>Uten segmentering kan en infisert PC lamme hele bedriften. En ansatt åpner en phishing-epost, og angriperen går rett på serverne — fordi alt er på samme flate nett. Med VLAN stopper skaden i en sone. Dette er noe du kommer til å konfigurere i praksis, og det dukker opp på eksamen.</p>
 </div>
 
 ## Detaljer
@@ -16,35 +16,50 @@ Nettverkssegmentering deler nettverket i logiske soner (VLAN) for a oke sikkerhe
 
 - **IEEE 802.1Q** = standarden for VLAN-tagging
 - VLAN ID 1–4094 (0 og 4095 er reservert)
-- **Access-port**: tilhorer ett VLAN (sluttenheter som PC-er, skrivere)
-- **Trunk-port**: baerer trafikk for flere VLAN (mellom svitsjer)
+- **Access-port**: tilhører ett VLAN (sluttenheter som PC-er, skrivere)
+- **Trunk-port**: bærer trafikk for flere VLAN (mellom svitsjer)
+
+<pre style="line-height:1.4;font-size:13px;">
+  ┌─────────┐  Trunk (802.1Q)  ┌─────────┐
+  │ Svitsj 1├──────────────────┤ Svitsj 2│
+  └────┬────┘                  └────┬────┘
+       │                           │
+  ┌────┴────┐                 ┌────┴────┐
+  │ Access  │                 │ Access  │
+  │ VLAN 10 │                 │ VLAN 10 │
+  └─────────┘                 └─────────┘
+  ┌─────────┐                 ┌─────────┐
+  │ Access  │                 │ Access  │
+  │ VLAN 20 │                 │ VLAN 20 │
+  └─────────┘                 └─────────┘
+</pre>
 
 ### Eksempel VLAN-inndeling
 
-| VLAN | Navn | Subnett | Formal | Trafikkregler |
+| VLAN | Navn | Subnett | Formål | Trafikkregler |
 |------|------|---------|--------|---------------|
 | 10 | Kontor | 192.168.10.0/24 | Ansattes PC-er | Tilgang til servere |
-| 20 | Produksjon | 192.168.20.0/24 | Maskiner og utstyr | Kun nodvendig trafikk |
-| 30 | Gjest | 192.168.30.0/24 | Besokende | Kun internett |
+| 20 | Produksjon | 192.168.20.0/24 | Maskiner og utstyr | Kun nødvendig trafikk |
+| 30 | Gjest | 192.168.30.0/24 | Besøkende | Kun internett |
 | 40 | Servere | 192.168.40.0/24 | AD, filserver, backup | Begrenset tilgang |
-| 50 | Drift/Admin | 192.168.50.0/24 | Overvaking, administrasjon | Kun IT-ansatte |
+| 50 | Drift/Admin | 192.168.50.0/24 | Overvåking, administrasjon | Kun IT-ansatte |
 
-Legg merke til monsteret: ansatte far tilgang til servere, produksjon far kun nodvendig trafikk, gjester far kun internett. Det er default-deny i praksis.
+Legg merke til mønsteret: ansatte får tilgang til servere, produksjon får kun nødvendig trafikk, gjester får kun internett. Det er default-deny i praksis.
 
 ### IT vs OT — hvorfor skille?
 
-| Omrade | Eksempler | Kjennetegn |
+| Område | Eksempler | Kjennetegn |
 |--------|-----------|------------|
 | IT (Information Technology) | Kontor-PC-er, servere, nettverk | Oppdateres jevnlig, standard sikkerhet |
 | OT (Operational Technology) | PLC-er, SCADA, produksjonsmaskiner | Kan ha gammelt/usikkert OS — isolasjon er eneste forsvar |
 
-**Best practice:** brannmur mellom IT- og OT-nettverk. Kun nodvendige porter og protokoller tillatt. OT-utstyr kan ofte ikke oppdateres eller patcheres, sa isolasjon er alt du har.
+**Best practice:** brannmur mellom IT- og OT-nettverk. Kun nødvendige porter og protokoller tillatt. OT-utstyr kan ofte ikke oppdateres eller patcheres, så isolasjon er alt du har.
 
 ### VPN — virtuelt privat nettverk
 
 VPN krypterer all trafikk og gir sikker kommunikasjon over internett.
 
-| Type | Beskrivelse | Nar brukes |
+| Type | Beskrivelse | Når brukes |
 |------|-------------|------------|
 | **Site-to-Site** | Kobler to faste nettverk sammen | Faste avdelingskontorer, brakkerigg |
 | **Remote Access** | Enkel bruker kobler seg til bedriftsnettet | Hjemmekontor, feltarbeidere |
@@ -53,7 +68,7 @@ VPN krypterer all trafikk og gir sikker kommunikasjon over internett.
 
 | Protokoll | Styrker | Svakheter |
 |-----------|---------|-----------|
-| IPsec | Bransjestandard, svart sikker | Kompleks konfigurasjon |
+| IPsec | Bransjestandard, svært sikker | Kompleks konfigurasjon |
 | OpenVPN | Fleksibel, kryssplattform | Lavere hastighet enn WireGuard |
 | WireGuard | Moderne, rask, enkel | Nyere, mindre utbredt i enterprise |
 
@@ -64,7 +79,7 @@ Velg WireGuard om du setter opp nytt i dag. Det er raskere, enklere og sikrere e
 | Tjeneste | Port(er) | Protokoll | Funksjon |
 |----------|----------|-----------|----------|
 | DHCP | 67/68 | UDP | IP-tildeling |
-| DNS | 53 | UDP/TCP | Navneopplosning |
+| DNS | 53 | UDP/TCP | Navneoppløsning |
 | HTTP | 80 | TCP | Web (ukryptert) |
 | HTTPS | 443 | TCP | Web (kryptert) |
 | SSH | 22 | TCP | Sikker terminaltilgang |
@@ -72,23 +87,29 @@ Velg WireGuard om du setter opp nytt i dag. Det er raskere, enklere og sikrere e
 
 ### DHCP DORA-prosessen
 
-| Steg | Navn | Beskrivelse |
-|------|------|-------------|
-| 1 | **D**iscover | Klienten soker etter DHCP-server (broadcast) |
-| 2 | **O**ffer | Serveren svarer med tilbud om IP-adresse |
-| 3 | **R**equest | Klienten aksepterer tilbudet |
-| 4 | **A**cknowledge | Serveren bekrefter og sender leiekontrakt |
+<pre style="line-height:1.4;font-size:13px;">
+  Klient                    DHCP-server
+    │                            │
+    │  1. Discover (broadcast)──►│  "Finnes det en DHCP-server?"
+    │                            │
+    │  2. Offer ◄───────────────│  "Her kan du få 192.168.1.50"
+    │                            │
+    │  3. Request (broadcast)───►│  "Ja, jeg vil ha den adressen"
+    │                            │
+    │  4. Acknowledge ◄─────────│  "OK, den er din i 8 dager"
+    │                            │
+</pre>
 
 Husk "Dora utforsker nettverket" — Discover, Offer, Request, Acknowledge.
 
 ### DNS — hvordan det fungerer
 
 1. Du skriver `www.eksempel.no` i nettleseren
-2. PC-en spor DNS-serveren: "hva er IP-en?"
+2. PC-en spør DNS-serveren: "hva er IP-en?"
 3. DNS-serveren svarer med IP-adressen (f.eks. 93.184.216.34)
 4. PC-en kobler seg til den IP-adressen
 
-Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-feil er det forste du sjekker nar "internett er nede" — det er oftest DNS, ikke internett.
+Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-feil er det første du sjekker når "internett er nede" — det er oftest DNS, ikke internett.
 
 ### Subnetting — raskt repetert
 
@@ -96,22 +117,22 @@ Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-fei
 |------|-------------|----------------|----------|
 | /24 | 255.255.255.0 | 254 | Liten bedrift |
 | /23 | 255.255.254.0 | 510 | Middels bedrift |
-| /22 | 255.255.252.0 | 1022 | Storre nettverk |
+| /22 | 255.255.252.0 | 1022 | Større nettverk |
 
 <div class="nokkelbegreper">
-  <div class="nokkelbegreper-title">Nokkelbegreper</div>
+  <div class="nokkelbegreper-title">Nøkkelbegreper</div>
   <div class="nokkelbegreper-grid">
     <div class="nokkelbegrep-item">
       <strong>VLAN (802.1Q)</strong>
-      <span>IEEE-standarden for VLAN-tagging. Legger et 4-byte tag-felt i Ethernet-rammen som identifiserer hvilket VLAN trafikken tilhorer.</span>
+      <span>IEEE-standarden for VLAN-tagging. Legger et 4-byte tag-felt i Ethernet-rammen som identifiserer hvilket VLAN trafikken tilhører.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Access-port</strong>
-      <span>Svitsjport som tilhorer ett VLAN. Brukes for sluttenheter som PC-er, skrivere og tradslose aksesspunkter.</span>
+      <span>Svitsjport som tilhører ett VLAN. Brukes for sluttenheter som PC-er, skrivere og trådløse aksesspunkter.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Trunk-port</strong>
-      <span>Svitsjport som baerer trafikk for flere VLAN samtidig. Brukes mellom svitsjer og til rutere for VLAN-routing.</span>
+      <span>Svitsjport som bærer trafikk for flere VLAN samtidig. Brukes mellom svitsjer og til rutere for VLAN-routing.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Site-to-Site VPN</strong>
@@ -119,11 +140,11 @@ Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-fei
     </div>
     <div class="nokkelbegrep-item">
       <strong>DHCP DORA</strong>
-      <span>Firestegsprosessen: Discover Offer Request Acknowledge. Kan du alle stegene i riktig rekkefolge?</span>
+      <span>Firestegsprosessen: Discover → Offer → Request → Acknowledge. Kan du alle stegene i riktig rekkefølge?</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Subnetting / CIDR</strong>
-      <span>Deling av IP-adresserom. /24 = 254 adresser, /23 = 510, /22 = 1022. Lavere tall = storre nettverk.</span>
+      <span>Deling av IP-adresserom. /24 = 254 adresser, /23 = 510, /22 = 1022. Lavere tall = større nettverk.</span>
     </div>
   </div>
 </div>
@@ -131,16 +152,16 @@ Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-fei
 <div class="tips-callout">
   <div class="tips-callout-title">Praktiske tips</div>
   <p><strong>Planlegg VLAN-ID-er:</strong> Konsekvent system — VLAN 10 for kontor, 20 for produksjon, 30 for gjester. Dokumenter alle ID-er i IP-planen.</p>
-  <p><strong>Brannmur mellom VLAN:</strong> VLAN isolerer, men uten brannmurregler mellom sonene er segmentering nyttelos. Default-deny, apne kun nodvendige porter.</p>
+  <p><strong>Brannmur mellom VLAN:</strong> VLAN isolerer, men uten brannmurregler mellom sonene er segmentering nytteløs. Default-deny, åpne kun nødvendige porter.</p>
   <p><strong>WireGuard for VPN:</strong> Velg WireGuard om du setter opp nytt. Raskere og enklere enn OpenVPN og IPsec.</p>
 </div>
 
 <div class="eksamen-callout">
   <div class="eksamen-callout-title">Husk til eksamen</div>
   <p><strong>VLAN:</strong> IEEE 802.1Q. Access-port = en enhet. Trunk-port = mellom svitsjer.</p>
-  <p><strong>IT vs OT:</strong> Aldri pa samme nett — brannmur mellom.</p>
-  <p><strong>VPN:</strong> Site-to-Site (kontor kontor), Remote Access (hjemmekontor).</p>
-  <p><strong>DHCP DORA:</strong> Discover Offer Request Acknowledge.</p>
+  <p><strong>IT vs OT:</strong> Aldri på samme nett — brannmur mellom.</p>
+  <p><strong>VPN:</strong> Site-to-Site (kontor↔kontor), Remote Access (hjemmekontor).</p>
+  <p><strong>DHCP DORA:</strong> Discover → Offer → Request → Acknowledge.</p>
   <p><strong>Subnetting:</strong> /24 = 254 adresser. /23 = 510. /22 = 1022.</p>
 </div>
 
@@ -148,18 +169,18 @@ Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-fei
   <div class="sjekk-sporsmal-title">Sjekk om du kan dette</div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hva er forskjellen pa en access-port og en trunk-port?</div>
-    <div class="sjekk-q-answer">Access-port tilhorer ett VLAN og brukes for sluttenheter. Trunk-port baerer trafikk for flere VLAN, identifisert med 802.1Q-tagger, og brukes mellom svitsjer eller mellom svitsj og ruter.</div>
+    <div class="sjekk-q-question">Hva er forskjellen på en access-port og en trunk-port?</div>
+    <div class="sjekk-q-answer">Access-port tilhører ett VLAN og brukes for sluttenheter. Trunk-port bærer trafikk for flere VLAN, identifisert med 802.1Q-tagger, og brukes mellom svitsjer eller mellom svitsj og ruter.</div>
   </div>
 
   <div class="sjekk-q">
     <div class="sjekk-q-question">Hva er de fire stegene i DHCP DORA-prosessen?</div>
-    <div class="sjekk-q-answer">Discover (klienten soker), Offer (serveren tilbyr IP), Request (klienten aksepterer), Acknowledge (serveren bekrefter). Husk: "Dora utforsker nettverket".</div>
+    <div class="sjekk-q-answer">Discover (klienten søker), Offer (serveren tilbyr IP), Request (klienten aksepterer), Acknowledge (serveren bekrefter). Husk: "Dora utforsker nettverket".</div>
   </div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hvorfor bor IT- og OT-nettverk separeres?</div>
-    <div class="sjekk-q-answer">OT-utstyr (produksjonsmaskiner, PLC-er, SCADA) har ofte gammelt OS som ikke kan oppdateres. Pa samme nett som kontor-PC-er kan en infisert PC bevege seg lateralt til produksjonen. Isolasjon via VLAN + brannmur er eneste forsvar.</div>
+    <div class="sjekk-q-question">Hvorfor bør IT- og OT-nettverk separeres?</div>
+    <div class="sjekk-q-answer">OT-utstyr (produksjonsmaskiner, PLC-er, SCADA) har ofte gammelt OS som ikke kan oppdateres. På samme nett som kontor-PC-er kan en infisert PC bevege seg lateralt til produksjonen. Isolasjon via VLAN + brannmur er eneste forsvar.</div>
   </div>
 </div>
 

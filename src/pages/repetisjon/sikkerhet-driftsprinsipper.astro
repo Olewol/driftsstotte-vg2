@@ -3,11 +3,11 @@ import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
 ---
 <RepetisjonLayout title="Prinsipper for sikkerhet og drift" description="Minste privilegium, defense in depth, NSM-grunnprinsipper, default-deny." prev={"nettverksprotokoller"} prevLabel="Nettverksprotokoller" next={null}>
 
-Sikkerhetsprinsipper er de grunnleggende reglene all IT-sikkerhet bygger pa. Minste privilegium, defense in depth og default-deny er de viktigste. NSM (Norm for sikkerhetsarbeid) setter rammeverket for systematisk sikkerhetsarbeid, men prinsippene gjelder alle.
+Sikkerhetsprinsipper er de grunnleggende reglene all IT-sikkerhet bygger på. Minste privilegium, defense in depth og default-deny er de viktigste. NSM (Norm for sikkerhetsarbeid) setter rammeverket for systematisk sikkerhetsarbeid, men prinsippene gjelder alle.
 
 <div class="hvorfor-callout">
   <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
-  <p>Sikkerhet er <strong>ikke en enkelt losning</strong> — det er en kjede av prinsipper og tiltak som ma henge sammen. Du kan ha den beste brannmuren i verden, men hvis en ansatt gir fra seg passordet i en phishing-epost, er brannmuren ubrukelig. Derfor ma du forsta hvordan minste privilegium, defense in depth og NSM jobber sammen. Det er dette som skiller en IT-tekniker fra en som bare trykker pa knapper.</p>
+  <p>Sikkerhet er <strong>ikke en enkelt løsning</strong> — det er en kjede av prinsipper og tiltak som må henge sammen. Du kan ha den beste brannmuren i verden, men hvis en ansatt gir fra seg passordet i en phishing-epost, er brannmuren ubrukelig. Derfor må du forstå hvordan minste privilegium, defense in depth og NSM jobber sammen. Det er dette som skiller en IT-tekniker fra en som bare trykker på knapper.</p>
 </div>
 
 ## Detaljer
@@ -17,24 +17,45 @@ Sikkerhetsprinsipper er de grunnleggende reglene all IT-sikkerhet bygger pa. Min
 | Prinsipp | Forklaring | Eksempel |
 |----------|-----------|----------|
 | **Minste privilegium** | Brukere og systemer skal kun ha tilgangene de trenger | En selger trenger ikke admin-tilgang til servere |
-| **Default-deny** | Alt er nektet inntil det er eksplisitt tillatt | Brannmur: blokker alt, apne kun nodvendige porter |
-| **Need to know** | Kun data du trenger i din rolle | HR ser lonn, salg ser ikke okonomi |
+| **Default-deny** | Alt er nektet inntil det er eksplisitt tillatt | Brannmur: blokker alt, åpne kun nødvendige porter |
+| **Need to know** | Kun data du trenger i din rolle | HR ser lønn, salg ser ikke økonomi |
 | **Separation of duties** | Ingen skal ha alenemakt over kritiske funksjoner | En person oppretter bruker, en annen godkjenner |
 | **Defense in depth** | Flere lag med forsvar — ett sammenbrudd er ikke katastrofalt | Brannmur + segmentering + antivirus + kryptering |
 
-Disse prinsippene overlapper og forsterker hverandre. Default-deny og minste privilegium hores like ut, men default-deny er policyen (alt stengt), mens minste privilegium er praksisen (apne kun det som trengs).
+Disse prinsippene overlapper og forsterker hverandre. Default-deny og minste privilegium høres like ut, men default-deny er policyen (alt stengt), mens minste privilegium er praksisen (åpne kun det som trengs).
 
 ### Defense in Depth — lagene
 
-```
-Lag 1: Fysisk sikkerhet (las, adgangskort, kamera)
-Lag 2: Perimeter (brannmur, IDS/IPS)
-Lag 3: Nettverk (VLAN-segmentering, ACL-er)
-Lag 4: Endepunkt (antivirus/EDR, patch management)
-Lag 5: Applikasjon (sikker koding, WAF)
-Lag 6: Data (kryptering, tilgangskontroll)
-Lag 7: Menneske (opplaring, rutiner)
-```
+<pre style="line-height:1.4;font-size:13px;">
+                          ☠️ Angriper
+                             │
+                    ┌────────┴────────┐
+                    │  Lag 7: Menneske│  ← opplæring, rutiner, bevissthet
+                    ├─────────────────┤
+                    │  Lag 6: Data    │  ← kryptering, tilgangskontroll
+                    ├─────────────────┤
+                    │  Lag 5: App     │  ← sikker koding, WAF
+                    ├─────────────────┤
+                    │  Lag 4: Endepkt │  ← antivirus/EDR, patch mgmt
+                    ├─────────────────┤
+                    │  Lag 3: Nettverk│  ← VLAN, ACL-er, segmentering
+                    ├─────────────────┤
+                    │  Lag 2: Permtr  │  ← brannmur, IDS/IPS (ytre)
+                    ├─────────────────┤
+                    │  Lag 1: Fysisk  │  ← lås, adgangskort, kamera
+                    └─────────────────┘
+                          ✅ Trygt
+</pre>
+
+| Lag | Beskyttelse | Eksempel |
+|-----|-------------|----------|
+| 1 — Fysisk | Tilgang til maskinvare | Låste serverrom, adgangskort |
+| 2 — Perimeter | Ytre forsvar | Brannmur, IDS/IPS |
+| 3 — Nettverk | Internt forsvar | VLAN-segmentering, ACL-er |
+| 4 — Endepunkt | Enhetene selv | Antivirus/EDR, patch management |
+| 5 — Applikasjon | Programvare | Sikker koding, WAF |
+| 6 — Data | Selve informasjonen | Kryptering i ro og transit |
+| 7 — Menneske | Brukerne | Opplæring, sikkerhetskultur |
 
 ### NSM Grunnprinsipper
 
@@ -44,16 +65,16 @@ Norm for sikkerhetsarbeid (NSM) beskriver fem prinsipper for systematisk sikkerh
 |----------|------------------------|
 | **1. Kontrollere dataflyt** | Bestem hvem som kan kommunisere med hvem. VLAN, brannmurregler, ACL-er. |
 | **2. Minste privilegium** | Gi kun tilgangene som trengs. RBAC, regelmessig revisjon av tilganger. |
-| **3. Sarbarhetshandtering** | Hold systemer oppdatert. Patch management, sarbarhetsskanning. |
-| **4. Overvaking og logging** | Samle og analyser logger. SIEM, varsling ved unormal aktivitet. |
-| **5. Handtering av sikkerhetshendelser** | Plan for nar noe skjer. Incident response-plan, kommunikasjonsrutiner. |
+| **3. Sårbarhetshåndtering** | Hold systemer oppdatert. Patch management, sårbarhetsskanning. |
+| **4. Overvåking og logging** | Samle og analyser logger. SIEM, varsling ved unormal aktivitet. |
+| **5. Håndtering av sikkerhetshendelser** | Plan for når noe skjer. Incident response-plan, kommunikasjonsrutiner. |
 
 ### Vanlige sikkerhetstrusler
 
 | Trussel | Beskrivelse | Motsvar |
 |---------|-------------|---------|
-| **Phishing** | Svindel-e-poster som forsoker a lure til seg passord | Opplaring, MFA, e-postfiltrering |
-| **Ransomware** | Krypterer data og krever losepenger | Backup (immutable), oppdateringer, segmentering |
+| **Phishing** | Svindel-e-poster som forsøker å lure til seg passord | Opplæring, MFA, e-postfiltrering |
+| **Ransomware** | Krypterer data og krever løsepenger | Backup (immutable), oppdateringer, segmentering |
 | **DDoS** | Overbelaster tjenester med trafikk | Brannmur, rate limiting, CDN |
 | **Insider-trussel** | Ansatte som misbruker tilgang | Minste privilegium, logging, oppsigelsesrutiner |
 | **Man-in-the-Middle** | Avlytting av kommunikasjon | TLS/HTTPS, VPN, sertifikater |
@@ -66,21 +87,21 @@ Norm for sikkerhetsarbeid (NSM) beskriver fem prinsipper for systematisk sikkerh
 4. **Tilgangskontroll** — RBAC, MFA
 5. **Backup** — 3-2-1-1-0, test gjenoppretting
 6. **Logging** — sentral logginnsamling (SIEM)
-7. **Opplaring** — bevisstgjoring av brukere
-8. **Responsplan** — hva gjor vi nar noe skjer?
+7. **Opplæring** — bevisstgjøring av brukere
+8. **Responsplan** — hva gjør vi når noe skjer?
 
-Oppdateringer er det enkleste og billigste tiltaket med storst effekt. Start der.
+Oppdateringer er det enkleste og billigste tiltaket med størst effekt. Start der.
 
 ### Hvorfor dette henger sammen
 
-Sikkerhet er ikke en enkelt losning, men en kjede. Segmentering (VLAN) hjelper lite hvis brannmuren ikke har regler mellom sonene. Backup hjelper lite hvis den star i samme rom som serveren. Opplaring hjelper lite hvis ingen har lest responsplanen. Helhetlig sikkerhet = flere lag som utfyller hverandre.
+Sikkerhet er ikke en enkelt løsning, men en kjede. Segmentering (VLAN) hjelper lite hvis brannmuren ikke har regler mellom sonene. Backup hjelper lite hvis den står i samme rom som serveren. Opplæring hjelper lite hvis ingen har lest responsplanen. Helhetlig sikkerhet = flere lag som utfyller hverandre.
 
 <div class="nokkelbegreper">
-  <div class="nokkelbegreper-title">Nokkelbegreper</div>
+  <div class="nokkelbegreper-title">Nøkkelbegreper</div>
   <div class="nokkelbegreper-grid">
     <div class="nokkelbegrep-item">
       <strong>Minste privilegium</strong>
-      <span>Brukere og systemer skal kun ha tilgangene de trenger. Ikke gi admin til noen som ikke trenger det. Folges opp med regelmessig revisjon.</span>
+      <span>Brukere og systemer skal kun ha tilgangene de trenger. Ikke gi admin til noen som ikke trenger det. Følges opp med regelmessig revisjon.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Default-deny</strong>
@@ -92,7 +113,7 @@ Sikkerhet er ikke en enkelt losning, men en kjede. Segmentering (VLAN) hjelper l
     </div>
     <div class="nokkelbegrep-item">
       <strong>NSM-prinsipper</strong>
-      <span>Norm for sikkerhetsarbeid: kontroller dataflyt, minste privilegium, sarbarhetshandtering, overvaking/logging, hendelseshandtering.</span>
+      <span>Norm for sikkerhetsarbeid: kontroller dataflyt, minste privilegium, sårbarhetshåndtering, overvåking/logging, hendelseshåndtering.</span>
     </div>
     <div class="nokkelbegrep-item">
       <strong>Separation of duties</strong>
@@ -100,16 +121,16 @@ Sikkerhet er ikke en enkelt losning, men en kjede. Segmentering (VLAN) hjelper l
     </div>
     <div class="nokkelbegrep-item">
       <strong>Need to know</strong>
-      <span>Kun data du trenger i din rolle. HR ser lonn, salg ser ikke okonomi. Beskytter sensitiv informasjon.</span>
+      <span>Kun data du trenger i din rolle. HR ser lønn, salg ser ikke økonomi. Beskytter sensitiv informasjon.</span>
     </div>
   </div>
 </div>
 
 <div class="tips-callout">
   <div class="tips-callout-title">Praktiske tips</div>
-  <p><strong>Sikkerhet starter med oppdateringer:</strong> For du kjoper dyr sikkerhetsprogramvare, sor for at alt er oppdatert. Oppdaterte systemer er det billigste og mest effektive tiltaket.</p>
-  <p><strong>Tenk "hva om...":</strong> Ga gjennom scenarioer. "Hva om en ansatt klikker pa phishing?" — opplaring + MFA. "Hva om serverrommet brenner?" — offsite backup.</p>
-  <p><strong>Dokumenter responsplanen:</strong> Alle skal vite hva de skal gjore nar en hendelse skjer. Hvem kontaktes? Hvem kan stenge ned systemer? Ov pa planen.</p>
+  <p><strong>Sikkerhet starter med oppdateringer:</strong> Før du kjøper dyr sikkerhetsprogramvare, sørg for at alt er oppdatert. Oppdaterte systemer er det billigste og mest effektive tiltaket.</p>
+  <p><strong>Tenk "hva om...":</strong> Gå gjennom scenarioer. "Hva om en ansatt klikker på phishing?" — opplæring + MFA. "Hva om serverrommet brenner?" — offsite backup.</p>
+  <p><strong>Dokumenter responsplanen:</strong> Alle skal vite hva de skal gjøre når en hendelse skjer. Hvem kontaktes? Hvem kan stenge ned systemer? Øv på planen.</p>
 </div>
 
 <div class="eksamen-callout">
@@ -117,7 +138,7 @@ Sikkerhet er ikke en enkelt losning, men en kjede. Segmentering (VLAN) hjelper l
   <p><strong>Minste privilegium:</strong> Kun tilgangene som trengs.</p>
   <p><strong>Default-deny:</strong> Blokker alt, tillat eksplisitt.</p>
   <p><strong>Defense in depth:</strong> Flere lag. Nevn 7 lag: fysisk, perimeter, nettverk, endepunkt, applikasjon, data, menneske.</p>
-  <p><strong>NSM:</strong> Kontroller dataflyt, minste privilegium, sarbarhetshandtering, overvaking/logging, hendelseshandtering.</p>
+  <p><strong>NSM:</strong> Kontroller dataflyt, minste privilegium, sårbarhetshåndtering, overvåking/logging, hendelseshåndtering.</p>
 </div>
 
 <div class="sjekk-sporsmal">
@@ -125,17 +146,17 @@ Sikkerhet er ikke en enkelt losning, men en kjede. Segmentering (VLAN) hjelper l
 
   <div class="sjekk-q">
     <div class="sjekk-q-question">Hva er de 5 NSM-grunnprinsippene?</div>
-    <div class="sjekk-q-answer">1. Kontrollere dataflyt. 2. Minste privilegium. 3. Sarbarhetshandtering. 4. Overvaking og logging. 5. Handtering av sikkerhetshendelser. De gir et systematisk rammeverk som dekker hele spekteret av sikkerhetsarbeid.</div>
+    <div class="sjekk-q-answer">1. Kontrollere dataflyt. 2. Minste privilegium. 3. Sårbarhetshåndtering. 4. Overvåking og logging. 5. Håndtering av sikkerhetshendelser. De gir et systematisk rammeverk som dekker hele spekteret av sikkerhetsarbeid.</div>
   </div>
 
   <div class="sjekk-q">
-    <div class="sjekk-q-question">Hva er forskjellen pa default-deny og minste privilegium?</div>
-    <div class="sjekk-q-answer">Default-deny er policyen: alt er nektet inntil eksplisitt tillatt. Minste privilegium er praksisen: gi akkurat nok tilgang til a utfore jobben. Default-deny = alt stengt, minste privilegium = apne kun det som trengs. De utfyller hverandre.</div>
+    <div class="sjekk-q-question">Hva er forskjellen på default-deny og minste privilegium?</div>
+    <div class="sjekk-q-answer">Default-deny er policyen: alt er nektet inntil eksplisitt tillatt. Minste privilegium er praksisen: gi akkurat nok tilgang til å utføre jobben. Default-deny = alt stengt, minste privilegium = åpne kun det som trengs. De utfyller hverandre.</div>
   </div>
 
   <div class="sjekk-q">
     <div class="sjekk-q-question">Hvordan ville du prioritert sikkerhetstiltak i en bedrift med begrenset budsjett?</div>
-    <div class="sjekk-q-answer">1. Oppdateringer (gratis/rimelig, storst effekt). 2. Brannmur med default-deny. 3. VLAN-segmentering. 4. RBAC og MFA. 5. Backup 3-2-1-1-0. 6. Logging (SIEM). 7. Opplaring. 8. Responsplan. Start med det som gir mest sikkerhet per krone.</div>
+    <div class="sjekk-q-answer">1. Oppdateringer (gratis/rimelig, størst effekt). 2. Brannmur med default-deny. 3. VLAN-segmentering. 4. RBAC og MFA. 5. Backup 3-2-1-1-0. 6. Logging (SIEM). 7. Opplæring. 8. Responsplan. Start med det som gir mest sikkerhet per krone.</div>
   </div>
 </div>
 
