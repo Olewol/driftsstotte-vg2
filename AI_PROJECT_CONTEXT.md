@@ -2,7 +2,7 @@
 
 ## Eksamensrepetisjon-seksjon
 
-Lagt til en ny underseksjon `repetisjon` for eksamensforberedelse VG2 Driftsstøtte.
+Lagt til en underseksjon `repetisjon` for eksamensrepetisjon VG2 Driftsstøtte.
 
 ### Sider lagt til:
 - `src/pages/repetisjon/index.astro` — oversikt med kort
@@ -29,5 +29,22 @@ Lagt til en ny underseksjon `repetisjon` for eksamensforberedelse VG2 Driftsstø
 |- RepetisjonLayout: innebygget TOC-generering fra h2-headings, fremdriftsindikator (topic X/9), scroll-spy
 |- "Husk til eksamen" callout-boks på hver side (`.eksamen-callout`)
 |- "Tips" callout-boks (`.tips-callout`)
-|- Navigasjon mellom temaer (forrige/neste)
-|- Oppgaver: interaktive klikk-for-å-se-svar-kort
+- Navigasjon mellom temaer (forrige/neste)
+- Oppgaver: interaktive klikk-for-å-se-svar-kort
+
+## Mai 2026 — Oppgradering til Eksamensrepetisjon
+
+### Endringer:
+- Nav-etikett: "Eksamen" → "Eksamensrepetisjon"
+- Index-side: "Eksamensforberedelse" → "Eksamensrepetisjon"
+- Rettet norske skrivefeil fra tidligere humaniseringsrunde (a→å, o→ø, pålitelig, feilsøking, sårbarhetshåndtering, overvåking, nøkkelbegreper m.m.)
+- Lagt til ASCII-illustrasjoner i `<pre>`-blokker:
+  - AD-hierarki (brukeradministrasjon)
+  - OSI-modellen (nettverksprotokoller)
+  - TCP 3-way handshake (nettverksprotokoller)
+  - Defense in depth-lag med angriper → trygt (sikkerhet-driftsprinsipper)
+  - DMZ-arkitektur (nettverkssikkerhet)
+  - VLAN-trunking (nettverk-segmentering)
+  - DHCP DORA-prosess (nettverk-segmentering)
+- Forbedret avsnittsstruktur med flere underoverskrifter og tydeligere visuell organisering
+- Consistent norsk bokmål gjennom alle repetisjonssider (med unntak av bransjeord og faguttrykk)
