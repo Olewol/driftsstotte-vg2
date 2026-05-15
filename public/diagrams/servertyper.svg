@@ -1,0 +1,32 @@
+<svg width="100%" viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;height:auto;background:transparent;">
+<style>
+  .t { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #1a1a18; }
+  .ts { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #5f5e5a; }
+  .th { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #1a1a18; font-weight: 500; }
+  .b1 > rect { fill: #E6F1FB; stroke: #185FA5; stroke-width: 0.5px; rx: 8; }
+  .b2 > rect { fill: #E1F5EE; stroke: #0F6E56; stroke-width: 0.5px; rx: 8; }
+  .b3 > rect { fill: #FAECE7; stroke: #993C1D; stroke-width: 0.5px; rx: 8; }
+  .b4 > rect { fill: #EEEDFE; stroke: #534AB7; stroke-width: 0.5px; rx: 8; }
+  .arr { stroke: #5f5e5a; stroke-width: 1.5px; fill: none; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<g class="b1"><rect x="30" y="40" width="140" height="50"/><text class="th" x="100" y="65" text-anchor="middle" dominant-baseline="central">Tower-server</text></g>
+<g class="b2"><rect x="200" y="40" width="140" height="50"/><text class="th" x="270" y="65" text-anchor="middle" dominant-baseline="central">Rack-server</text></g>
+<g class="b3"><rect x="370" y="40" width="140" height="50"/><text class="th" x="440" y="65" text-anchor="middle" dominant-baseline="central">Blade-server</text></g>
+<g class="b4"><rect x="540" y="40" width="120" height="50"/><text class="th" x="600" y="65" text-anchor="middle" dominant-baseline="central">Virtuell VM</text></g>
+<line x1="170" y1="65" x2="195" y2="65" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="65" x2="365" y2="65" class="arr" marker-end="url(#arrow)"/>
+<line x1="510" y1="65" x2="535" y2="65" class="arr" marker-end="url(#arrow)"/>
+<text class="ts" x="100" y="120" text-anchor="middle">Små bedrifter</text>
+<text class="ts" x="270" y="120" text-anchor="middle">De fleste bedrifter</text>
+<text class="ts" x="440" y="120" text-anchor="middle">Store datasentre</text>
+<text class="ts" x="600" y="120" text-anchor="middle">Konsolidering</text>
+<text class="ts" x="100" y="140" text-anchor="middle">Frittstående</text>
+<text class="ts" x="270" y="140" text-anchor="middle">Standardisert</text>
+<text class="ts" x="440" y="140" text-anchor="middle">Høy tetthet</text>
+<text class="ts" x="600" y="140" text-anchor="middle">Programvare</text>
+</svg>

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import mermaid from 'astro-mermaid';
 import { slugify } from './src/lib/slugify.js';
 import rehypeExternalLinks from 'rehype-external-links';
 
@@ -29,7 +30,10 @@ if (fs.existsSync(emnerDir)) {
 export default defineConfig({
   site: 'https://Olewol.github.io/driftsstotte-vg2',
   base: BASE,
-  integrations: [tailwind()],
+  integrations: [
+    tailwind(),
+    mermaid(),
+  ],
   markdown: {
     remarkPlugins: [
       ['remark-wiki-link', {
