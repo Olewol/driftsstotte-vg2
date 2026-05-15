@@ -1,18 +1,21 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Infrastruktur og maskinvare" description="Nødvendige komponenter for IT-drift: servere, svitsjer, ruter, UPS, klienter." prev={"brukeradministrasjon"} prevLabel="Brukeradministrasjon" next="nettverk-segmentering" nextLabel="Nettverk og segmentering">
 
-Infrastruktur er alt det fysiske og virtuelle som må til for å drive IT-systemene: servere, nettverksutstyr, lagring og klienter. En typisk bedrift trenger domenekontrollere for autentisering, DHCP til IP-adresser, DNS for navneoppløsning, svitsjer for lokal tilkobling, ruter for trafikk mellom nettverk, brannmur for sikkerhet og UPS for strømbackup.
+Infrastruktur er alt det fysiske og virtuelle som må til for å drive IT-systemene. En typisk bedrift trenger domenekontrollere for autentisering, DHCP til IP-adresser, DNS for navneoppløsning, svitsjer for lokal tilkobling, ruter for trafikk mellom nettverk, brannmur for sikkerhet og UPS for strømbackup.
 
 <div class="hvorfor-callout">
   <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
-  <p>Infrastruktur er <strong>grunnmuren</strong>. Uten riktig valg av servere, nettverksutstyr og strømbackup stopper alt. Når en server krasjer eller svitsjen gir seg, er det du som må feilsøke og bytte. Da teller det å vite forskjellen på en rack-server og en blade, eller hvorfor UPS er kritisk for en domenekontroller. Det er ikke teori — du må fysisk håndtere dette.</p>
+  <p>Infrastruktur er <strong>grunnmuren</strong>. Uten riktig valg av servere, nettverksutstyr og strømbackup stopper alt. Når en server krasjer eller svitsjen gir seg, er det du som må feilsøke og bytte. Da teller det å vite forskjellen på en rack-server og en blade, eller hvorfor UPS er kritisk for en domenekontroller.</p>
 </div>
 
 ## Detaljer
 
-### Nødvendige komponenter
+### Nødvendige komponenter — oversikt
+
+<img src={`${base}/diagrams/infrastruktur-oversikt.svg`} alt="IT-infrastruktur: kjernetjenester, nettverksutstyr, lagring og strøm" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Komponent | Funksjon | Merknad |
 |-----------|----------|---------|
@@ -27,7 +30,9 @@ Infrastruktur er alt det fysiske og virtuelle som må til for å drive IT-system
 | Backup-server | Sikkerhetskopier | Følg 3-2-1-regelen |
 | UPS | Avbruddsfri strøm til kritisk utstyr | Servere, svitsjer, brannmur |
 
-### Servertyper
+### Servertyper — hva passer hvor?
+
+<img src={`${base}/diagrams/servertyper.svg`} alt="Servertyper: Tower, Rack, Blade, Virtuell" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Type | Beskrivelse | Når brukes |
 |------|-------------|------------|
@@ -37,9 +42,11 @@ Infrastruktur er alt det fysiske og virtuelle som må til for å drive IT-system
 
 Velg rack om du har et valg. Tower-servere blir fort kaotiske når du trenger flere. Rack tvinger frem standard kjøling, kabling og organisering. Blade gir høy tetthet, men du låser deg til en vendor.
 
-### Virtualisering
+### Virtualisering og hypervisor
 
 Hypervisor er programvaren som lager og kjører virtuelle maskiner. Type 1 kjører rett på hardware (VMware ESXi, Hyper-V, Proxmox) og gir nesten fysisk ytelse. Type 2 kjører på et OS (VirtualBox, VMware Workstation) — greit for testing, brukes ikke i produksjon.
+
+<img src={`${base}/diagrams/virtualisering.svg`} alt="Virtualisering: Hypervisor med flere VM-er" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 **Hvorfor virtualisere?**
 - Konsolidering: flere VM-er på en fysisk server sparer strøm og plass
@@ -47,7 +54,7 @@ Hypervisor er programvaren som lager og kjører virtuelle maskiner. Type 1 kjør
 - Live migration: flytt VM uten nedetid
 - Isolation: én VM krasjer — de andre fortsetter
 
-### Klienter
+### Klienttyper
 
 | Type | Eksempel | Når brukes |
 |------|----------|------------|

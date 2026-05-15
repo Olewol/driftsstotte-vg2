@@ -1,5 +1,6 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Backup og gjenoppretting" description="3-2-1-1-0-regelen, RPO/RTO, backupstrategier, testing." prev={"servermodeller-virtualisering"} prevLabel="Servermodeller og virtualisering" next="dokumentasjon-planlegging" nextLabel="Dokumentasjon og planlegging">
 
@@ -7,12 +8,14 @@ God backupstrategi er siste forsvarslinje ved datatap. 3-2-1-regelen er bransjes
 
 <div class="hvorfor-callout">
   <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
-  <p>En <strong>backup som ikke er testet er ikke en backup</strong>. Brutalt, men sant. Ransomware, hardware-feil og menneskelige feil skjer hele tiden. Når noe går galt, er det du som må gjenopprette. Uten solid strategi med kjente RPO/RTO-verdier jobber du uten sikkerhetsnett. Den første gangen du trenger backupen, er det for sent å finne ut at den ikke fungerer.</p>
+  <p>En <strong>backup som ikke er testet er ikke en backup</strong>. Ransomware, hardware-feil og menneskelige feil skjer hele tiden. Når noe går galt, er det du som må gjenopprette. Uten solid strategi med kjente RPO/RTO-verdier jobber du uten sikkerhetsnett. Den første gangen du trenger backupen, er det for sent å finne ut at den ikke fungerer.</p>
 </div>
 
 ## Detaljer
 
-### 3-2-1-regelen
+### 3-2-1-regelen — grunnprinsippet
+
+<img src={`${base}/diagrams/backup-3-2-1.svg`} alt="3-2-1 backup: 3 kopier, 2 medier, 1 offsite" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Tall | Betydning | Eksempel |
 |------|-----------|----------|
@@ -20,14 +23,16 @@ God backupstrategi er siste forsvarslinje ved datatap. 3-2-1-regelen er bransjes
 | **2** ulike medietyper | Forskjellig lagringsteknologi | Harddisk + bånd / NAS + sky |
 | **1** kopi offsite | Utenfor bygningen | Sky, annet kontor, kolokalisering |
 
-### 3-2-1-1-0 (moderne utvidelse)
+### 3-2-1-1-0 — moderne utvidelse
 
 - **+1** immutable kopi — kan ikke slettes eller krypteres av ransomware
 - **+0** null feil ved testing — test jevnlig at backup faktisk fungerer
 
 Immutable backup er det viktigste tiltaket mot ransomware. Uten det kan en angriper med admin-tilgang kryptere også backupen.
 
-### Backupstrategier
+### Backupstrategier — full, differensiell, inkrementell
+
+<img src={`${base}/diagrams/backup-strategi.svg`} alt="Backupstrategi: Full ukentlig + inkrementell daglig" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Type | Lagringsplass | Backuptid | Gjenopprettingstid | Når brukes |
 |------|--------------|-----------|-------------------|------------|
@@ -56,7 +61,7 @@ Korte RPO/RTO = dyrere løsning. Ledelsen må bestemme tallene — ikke velg bac
 | Maskinvarefeil | Disk krasjer | RAID, redundant lagring |
 | Katastrofe | Brann, flom, innbrudd | Offsite-kopi |
 
-### Gylne regler
+### Gylne regler for backup
 
 - Test gjenoppretting jevnlig — en backup som ikke kan restores er verdiløs
 - Full + inkrementell er mest lagringsplass-effektivt

@@ -1,5 +1,6 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Nettverk og segmentering" description="VLAN, 802.1Q, IT vs OT, VPN, DHCP, DNS, subnetting." prev={"infrastruktur-maskinvare"} prevLabel="Infrastruktur og maskinvare" next="nettverkssikkerhet" nextLabel="Nettverkssikkerhet">
 
@@ -14,27 +15,11 @@ Nettverkssegmentering deler nettverket i logiske soner (VLAN) for å øke sikker
 
 ### VLAN — logisk inndeling av nettverket
 
-- **IEEE 802.1Q** = standarden for VLAN-tagging
-- VLAN ID 1–4094 (0 og 4095 er reservert)
-- **Access-port**: tilhører ett VLAN (sluttenheter som PC-er, skrivere)
-- **Trunk-port**: bærer trafikk for flere VLAN (mellom svitsjer)
+IEEE 802.1Q er standarden for VLAN-tagging. VLAN-ID-er går fra 1 til 4094 (0 og 4095 er reservert). Access-porter tilhører ett VLAN (for sluttenheter). Trunk-porter bærer trafikk for flere VLAN (mellom svitsjer).
 
-<pre style="line-height:1.4;font-size:13px;">
-  ┌─────────┐  Trunk (802.1Q)  ┌─────────┐
-  │ Svitsj 1├──────────────────┤ Svitsj 2│
-  └────┬────┘                  └────┬────┘
-       │                           │
-  ┌────┴────┐                 ┌────┴────┐
-  │ Access  │                 │ Access  │
-  │ VLAN 10 │                 │ VLAN 10 │
-  └─────────┘                 └─────────┘
-  ┌─────────┐                 ┌─────────┐
-  │ Access  │                 │ Access  │
-  │ VLAN 20 │                 │ VLAN 20 │
-  └─────────┘                 └─────────┘
-</pre>
+<img src={`${base}/diagrams/vlan-segmentering.svg`} alt="VLAN-segmentering med router og trunk" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-### Eksempel VLAN-inndeling
+#### Eksempel VLAN-inndeling
 
 | VLAN | Navn | Subnett | Formål | Trafikkregler |
 |------|------|---------|--------|---------------|
@@ -48,23 +33,22 @@ Legg merke til mønsteret: ansatte får tilgang til servere, produksjon får kun
 
 ### IT vs OT — hvorfor skille?
 
-| Område | Eksempler | Kjennetegn |
-|--------|-----------|------------|
-| IT (Information Technology) | Kontor-PC-er, servere, nettverk | Oppdateres jevnlig, standard sikkerhet |
-| OT (Operational Technology) | PLC-er, SCADA, produksjonsmaskiner | Kan ha gammelt/usikkert OS — isolasjon er eneste forsvar |
+OT-utstyr (produksjonsmaskiner, PLC-er, SCADA) har ofte gammelt OS som ikke kan oppdateres. På samme nett som kontor-PC-er kan en infisert PC bevege seg lateralt til produksjonen. Isolasjon via VLAN + brannmur er eneste forsvar.
+
+<img src={`${base}/diagrams/it-vs-ot.svg`} alt="IT vs OT-nettverk med brannmur mellom" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 **Best practice:** brannmur mellom IT- og OT-nettverk. Kun nødvendige porter og protokoller tillatt. OT-utstyr kan ofte ikke oppdateres eller patcheres, så isolasjon er alt du har.
 
 ### VPN — virtuelt privat nettverk
 
-VPN krypterer all trafikk og gir sikker kommunikasjon over internett.
+VPN krypterer all trafikk og gir sikker kommunikasjon over internett. To hovedtyper:
 
 | Type | Beskrivelse | Når brukes |
 |------|-------------|------------|
 | **Site-to-Site** | Kobler to faste nettverk sammen | Faste avdelingskontorer, brakkerigg |
 | **Remote Access** | Enkel bruker kobler seg til bedriftsnettet | Hjemmekontor, feltarbeidere |
 
-**VPN-protokoller:**
+#### VPN-protokoller
 
 | Protokoll | Styrker | Svakheter |
 |-----------|---------|-----------|
@@ -87,22 +71,11 @@ Velg WireGuard om du setter opp nytt i dag. Det er raskere, enklere og sikrere e
 
 ### DHCP DORA-prosessen
 
-<pre style="line-height:1.4;font-size:13px;">
-  Klient                    DHCP-server
-    │                            │
-    │  1. Discover (broadcast)──►│  "Finnes det en DHCP-server?"
-    │                            │
-    │  2. Offer ◄───────────────│  "Her kan du få 192.168.1.50"
-    │                            │
-    │  3. Request (broadcast)───►│  "Ja, jeg vil ha den adressen"
-    │                            │
-    │  4. Acknowledge ◄─────────│  "OK, den er din i 8 dager"
-    │                            │
-</pre>
+<img src={`${base}/diagrams/dhcp-dora.svg`} alt="DHCP DORA: Discover, Offer, Request, Acknowledge" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-Husk "Dora utforsker nettverket" — Discover, Offer, Request, Acknowledge.
+Husk "Dora utforsker nettverket" — **D**iscover, **O**ffer, **R**equest, **A**cknowledge.
 
-### DNS — hvordan det fungerer
+### DNS — slik fungerer navneoppløsning
 
 1. Du skriver `www.eksempel.no` i nettleseren
 2. PC-en spør DNS-serveren: "hva er IP-en?"

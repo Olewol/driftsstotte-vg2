@@ -1,5 +1,6 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Nettverkssikkerhet" description="Brannmurer, DMZ, defense in depth, default-deny, logging, segmentering." prev={"nettverk-segmentering"} prevLabel="Nettverk og segmentering" next="servermodeller-virtualisering" nextLabel="Servermodeller og virtualisering">
 
@@ -24,36 +25,17 @@ Stateful er standard i dag. Forskjellen: en stateless brannmur ser hver pakke is
 
 ### DMZ — Demilitarisert sone
 
-En DMZ er et isolert nettverk for tjenester som må være tilgjengelige fra internett.
+En DMZ er et isolert nettverk for tjenester som må være tilgjengelige fra internett. Poenget: selv om en angriper tar kontroll over webserveren i DMZ, må de fortsatt gjennom den indre brannmuren for å nå interne systemer.
 
-<pre style="line-height:1.4;font-size:13px;">
-  🌐 Internett
-       │
-       ▼
-  ┌────────────────┐
-  │ Ytre brannmur  │  ← port 80/443 åpen for alle
-  └───────┬────────┘
-          │
-  ┌───────┴────────┐
-  │   DMZ-sone     │  ← webserver, e-postserver, VPN
-  │  (isolert)     │
-  └───────┬────────┘
-          │
-  ┌───────┴────────┐
-  │ Indre brannmur │  ← Kun tillatte forbindelser inn
-  └───────┬────────┘
-          │
-  ┌───────┴────────┐
-  │  Internt nett  │  ← AD, filservere, database
-  │  (beskyttet)   │
-  └────────────────┘
-</pre>
+<img src={`${base}/diagrams/dmz.svg`} alt="DMZ-arkitektur: Internett → Ytre brannmur → DMZ → Indre brannmur → Internt nett" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-Poenget: selv om en angriper tar kontroll over webserveren i DMZ, må de fortsatt gjennom den indre brannmuren for å nå interne systemer. Dette krever to brannmurer (eller en brannmur med tre interfaces: WAN, DMZ, LAN). Vanlige tjenester i DMZ: webserver, e-postserver, VPN-server.
+Dette krever to brannmurer (eller en brannmur med tre interfaces: WAN, DMZ, LAN). Vanlige tjenester i DMZ: webserver, e-postserver, VPN-server.
 
 ### Defense in Depth — forsvar i dybden
 
 Flere lag med sikkerhet slik at ett gjennombrudd ikke er katastrofalt:
+
+<img src={`${base}/diagrams/defense-in-depth.svg`} alt="Forsvar i dybden — 7 lag" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 1. **Fysisk sikkerhet** — låste serverrom, adgangskontroll
 2. **Brannmur (ytre perimeter)** — første filter mot internett

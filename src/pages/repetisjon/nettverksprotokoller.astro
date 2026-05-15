@@ -1,5 +1,6 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Nettverksprotokoller" description="OSI-modellen, TCP vs UDP, portnumre, protokoller lag for lag." prev={"dokumentasjon-planlegging"} prevLabel="Dokumentasjon og planlegging" next="sikkerhet-driftsprinsipper" nextLabel="Prinsipper for sikkerhet og drift">
 
@@ -14,28 +15,11 @@ Nettverksprotokoller er reglene for hvordan enheter kommuniserer. OSI-modellen h
 
 ### OSI-modellen — 7 lag
 
-<pre style="line-height:1.4;font-size:13px;">
- ┌──────┬──────────────────┬──────────────────────┬─────────────┐
- │ Lag  │ Navn             │ Protokoll/teknologi   │ Dataenhet   │
- ├──────┼──────────────────┼──────────────────────┼─────────────┤
- │  7   │ Applikasjon      │ HTTP, HTTPS, FTP,    │ Applikasjons│
- │      │                  │ SMTP, SSH, DNS       │ data        │
- │  6   │ Presentasjon     │ TLS/SSL, JPEG, MPEG  │ Kryptert/   │
- │      │                  │                      │ formatert   │
- │  5   │ Sesjon           │ NetBIOS, RPC         │ Økt         │
- │  4   │ Transport        │ TCP, UDP             │ Segmenter   │
- │  3   │ Nettverk         │ IP, ICMP, ARP        │ Pakker      │
- │  2   │ Datalink         │ Ethernet, Wi-Fi      │ Rammer      │
- │  1   │ Fysisk           │ Kabling, fiber,      │ Bits        │
- │      │                  │ radiosignaler        │             │
- └──────┴──────────────────┴──────────────────────┴─────────────┘
-</pre>
+<img src={`${base}/diagrams/osi-model.svg`} alt="OSI-modellen: 7 lag med protokoller" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-**Huskeregel nedenfra og opp (lag 1→7):** "Please Do Not Throw Sausage Pizza Away"  
-(Physical, Data Link, Network, Transport, Session, Presentation, Application)
+**Huskeregel nedenfra og opp (lag 1→7):** "Please Do Not Throw Sausage Pizza Away" (Physical, Data Link, Network, Transport, Session, Presentation, Application)
 
-**Huskeregel ovenfra og ned (lag 7→1):** "Alle Ser På TV, Noen Drikker Pils"  
-(Applikasjon, Presentasjon, Sesjon, Transport, Nettverk, Datalink, Fysisk)
+**Huskeregel ovenfra og ned (lag 7→1):** "Alle Ser På TV, Noen Drikker Pils" (Applikasjon, Presentasjon, Sesjon, Transport, Nettverk, Datalink, Fysisk)
 
 ### TCP/IP-modellen — 4 lag
 
@@ -48,7 +32,9 @@ Den praktiske modellen som internett faktisk bruker:
 | 2 Internett | Lag 3 | IP, ICMP, ARP |
 | 1 Nettverkstilgang | Lag 1–2 | Ethernet, Wi-Fi |
 
-### TCP vs UDP
+### TCP vs UDP — når brukes hva?
+
+<img src={`${base}/diagrams/tcp-vs-udp.svg`} alt="TCP vs UDP: pålitelighet vs hastighet" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Egenskap | TCP | UDP |
 |----------|-----|-----|
@@ -61,7 +47,7 @@ Den praktiske modellen som internett faktisk bruker:
 
 Husk: TCP = pålitelig og treigt. UDP = raskt, men du risikerer tap. Velg basert på hva som er viktigst — korrekthet eller hastighet.
 
-### Viktige portnumre
+### Viktige portnumre — må kunne utenat
 
 | Port | Protokoll | Tjeneste | Transportlag |
 |------|-----------|----------|--------------|
@@ -81,19 +67,9 @@ Disse 11 portene må du kunne. Spesielt 22, 53, 80, 443 og 3389 dukker opp omtre
 
 ### TCP 3-way handshake
 
-Slik opprettes en TCP-forbindelse:
+<img src={`${base}/diagrams/dhcp-dora.svg`} alt="DHCP DORA-prosessen" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-<pre style="line-height:1.4;font-size:13px;">
-       Klient                    Server
-         │                         │
-         │  1. SYN ──────────────► │
-         │                         │
-         │  2. SYN-ACK ◄───────── │
-         │                         │
-         │  3. ACK ──────────────► │
-         │                         │
-         │  [Forbindelse etablert] │
-</pre>
+Slik opprettes en TCP-forbindelse:
 
 1. **SYN** — Klienten sender synkroniseringssignal
 2. **SYN-ACK** — Serveren bekrefter

@@ -1,5 +1,6 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Dokumentasjon og planlegging" description="IP-adresseplan, topologier, endringslogg, dokumentasjonstyper." prev={"backup-gjenoppretting"} prevLabel="Backup og gjenoppretting" next="nettverksprotokoller" nextLabel="Nettverksprotokoller">
 
@@ -22,7 +23,9 @@ Dokumentasjon er like viktig som konfigurasjonen. Uten IP-plan får du IP-konfli
 | **Kontinuitet** | Bedriften er ikke avhengig av én persons hukommelse |
 | **Standardisering** | Alle gjør det på samme måte — færre feil |
 
-### Dokumentasjonstyper
+### Dokumentasjonstyper — oversikt
+
+<img src={`${base}/diagrams/dokumentasjonstyper.svg`} alt="Dokumentasjonstyper: Nettverkskart, IP-plan, endringslogg, passordhvelv, brannmurregler, prosedyrer" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Type | Innhold | Format | Når oppdateres |
 |------|---------|--------|----------------|
@@ -33,7 +36,7 @@ Dokumentasjon er like viktig som konfigurasjonen. Uten IP-plan får du IP-konfli
 | **Brannmurregler** | Kilde, dest, port, regelnummer | Regneark / Wiki | Når regel legges til/fjernes |
 | **Prosedyrebeskrivelser** | Hvordan gjøre vanlige oppgaver | Wiki / dokument | Ved prosessendring |
 
-### IP-adresseplan
+### IP-adresseplan — eksempel
 
 | VLAN | Navn | Subnett | DHCP-rekke | Formål |
 |------|------|---------|-----------|--------|
@@ -41,7 +44,8 @@ Dokumentasjon er like viktig som konfigurasjonen. Uten IP-plan får du IP-konfli
 | 20 | Drift | 192.168.20.0/24 | Statisk | Servere, infrastruktur |
 | 30 | Gjest | 192.168.30.0/24 | .10–.254 | Besøkende, kun internett |
 
-**Nøkkelprinsipper for IP-plan:**
+#### Nøkkelprinsipper for IP-plan
+
 - Forutsi vekst — /24 gir 254 adresser, ikke legg deg for tett
 - Reserver statiske IP-er til servere og nettverksutstyr
 - DHCP for klienter, statisk for servere

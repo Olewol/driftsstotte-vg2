@@ -1,9 +1,10 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Prinsipper for sikkerhet og drift" description="Minste privilegium, defense in depth, NSM-grunnprinsipper, default-deny." prev={"nettverksprotokoller"} prevLabel="Nettverksprotokoller" next={null}>
 
-Sikkerhetsprinsipper er de grunnleggende reglene all IT-sikkerhet bygger på. Minste privilegium, defense in depth og default-deny er de viktigste. NSM (Norm for sikkerhetsarbeid) setter rammeverket for systematisk sikkerhetsarbeid, men prinsippene gjelder alle.
+Sikkerhetsprinsipper er de grunnleggende reglene all IT-sikkerhet bygger på. Minste privilegium, defense in depth og default-deny er de viktigste. NSM (Norm for sikkerhetsarbeid) setter rammeverket for systematisk sikkerhetsarbeid.
 
 <div class="hvorfor-callout">
   <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
@@ -26,26 +27,7 @@ Disse prinsippene overlapper og forsterker hverandre. Default-deny og minste pri
 
 ### Defense in Depth — lagene
 
-<pre style="line-height:1.4;font-size:13px;">
-                          ☠️ Angriper
-                             │
-                    ┌────────┴────────┐
-                    │  Lag 7: Menneske│  ← opplæring, rutiner, bevissthet
-                    ├─────────────────┤
-                    │  Lag 6: Data    │  ← kryptering, tilgangskontroll
-                    ├─────────────────┤
-                    │  Lag 5: App     │  ← sikker koding, WAF
-                    ├─────────────────┤
-                    │  Lag 4: Endepkt │  ← antivirus/EDR, patch mgmt
-                    ├─────────────────┤
-                    │  Lag 3: Nettverk│  ← VLAN, ACL-er, segmentering
-                    ├─────────────────┤
-                    │  Lag 2: Permtr  │  ← brannmur, IDS/IPS (ytre)
-                    ├─────────────────┤
-                    │  Lag 1: Fysisk  │  ← lås, adgangskort, kamera
-                    └─────────────────┘
-                          ✅ Trygt
-</pre>
+<img src={`${base}/diagrams/defense-in-depth.svg`} alt="Forsvar i dybden — 7 lag" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Lag | Beskyttelse | Eksempel |
 |-----|-------------|----------|
@@ -70,6 +52,8 @@ Norm for sikkerhetsarbeid (NSM) beskriver fem prinsipper for systematisk sikkerh
 | **5. Håndtering av sikkerhetshendelser** | Plan for når noe skjer. Incident response-plan, kommunikasjonsrutiner. |
 
 ### Vanlige sikkerhetstrusler
+
+<img src={`${base}/diagrams/sikkerhetstrusler.svg`} alt="Vanlige sikkerhetstrusler og mottiltak" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Trussel | Beskrivelse | Motsvar |
 |---------|-------------|---------|

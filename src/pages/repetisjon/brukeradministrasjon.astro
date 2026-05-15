@@ -1,5 +1,6 @@
 ---
 import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <RepetisjonLayout title="Brukeradministrasjon" description="Katalogtjenester, Active Directory, OU-struktur, RBAC, Kerberos, GPO." prev={null} next="infrastruktur-maskinvare" nextLabel="Infrastruktur og maskinvare">
 
@@ -7,7 +8,7 @@ En katalogtjeneste (Active Directory eller Entra ID) lagrer alle brukere, maskin
 
 <div class="hvorfor-callout">
   <div class="hvorfor-callout-title">Hvorfor skal du bry deg?</div>
-  <p>Du kommer til å jobbe med brukeradministrasjon <strong>hver dag</strong>. Ny ansatt: opprett konto, plasser i riktig OU, gi tilganger via sikkerhetsgrupper, treff med GPO-er. Ansatt slutter: deaktiver, ikke slett. En sletting fjerner SID-en som henger sammen med alle ACL-er, e-postbokser og revisjonslogger. Feil her = sikkerhetshull eller ansatte som ikke får gjort jobben sin. Det er den vanligste oppgaven din, og den er grei å få rett.</p>
+  <p>Du kommer til å jobbe med brukeradministrasjon <strong>hver dag</strong>. Ny ansatt: opprett konto, plasser i riktig OU, gi tilganger via sikkerhetsgrupper, treff med GPO-er. Ansatt slutter: deaktiver, ikke slett. En sletting fjerner SID-en som henger sammen med alle ACL-er, e-postbokser og revisjonslogger. Feil her = sikkerhetshull eller ansatte som ikke får gjort jobben sin.</p>
 </div>
 
 ## Detaljer
@@ -22,32 +23,11 @@ En katalogtjeneste lagrer objekter (brukere, datamaskiner, skrivere, grupper) og
 | Entra ID (tidl. Azure AD) | Sky | Microsoft 365, skybasert identitetsstyring |
 | OpenLDAP | Åpen kilde | Linux/Unix-miljøer |
 
-### AD-hierarkiet
+### AD-hierarkiet — fra skog til OU
 
-<pre style="line-height:1.4;font-size:13px;">
-                    ┌──────────────┐
-                    │   Skog       │  ← forest.local (øverste nivå)
-                    │  (Forest)    │
-                    └──────┬───────┘
-                           │
-                    ┌──────┴───────┐
-                    │   Tre        │  ← felles navnerom
-                    │  (Tree)      │
-                    └──────┬───────┘
-                           │
-                    ┌──────┴───────┐
-                    │   Domene     │  ← deler database og
-                    │  (Domain)    │     sikkerhetspolicy
-                    └──────┬───────┘
-                           │
-              ┌────────────┼────────────┐
-              │            │            │
-    ┌─────────┴──────┐ ┌──┴────────┐ ┌─┴──────────┐
-    │ OU=Brukere     │ │ OU=Maskiner│ │ OU=Grupper  │
-    │  ┌─AvdelingA   │ │  ┌─Kontor │ │  ┌─Sikkerh. │
-    │  └─AvdelingB   │ │  └─Felt   │ │  └─Distrib. │
-    └────────────────┘ └───────────┘ └────────────┘
-</pre>
+Active Directory er bygget opp som et hierarki. Rekkefølgen er viktig å kunne.
+
+<img src={`${base}/diagrams/ad-hierarchy.svg`} alt="AD-hierarki: Skog, Tre, Domene, OU" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 | Nivå | Beskrivelse |
 |------|-------------|
@@ -58,7 +38,7 @@ En katalogtjeneste lagrer objekter (brukere, datamaskiner, skrivere, grupper) og
 
 Hierarkiet betyr noe: GPO-er arves nedover. En policy satt på domenet gjelder alle OU-er med mindre en mer spesifikk policy overstyrer. Planlegg OU-strukturen før du oppretter brukere — det er mye vanskeligere å flytte dem etterpå.
 
-### Best Practice for OU-struktur
+#### Best Practice for OU-struktur
 
 ```
 firma.local
@@ -76,6 +56,10 @@ firma.local
 
 ### Rollebasert tilgang (RBAC)
 
+RBAC er prinsippet om at rettigheter gis via roller/grupper, ikke til enkeltbrukere. Slik fungerer det i praksis:
+
+<img src={`${base}/diagrams/rbac-flow.svg`} alt="RBAC-flyt: Gruppe → Bruker → Rettigheter" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
 1. Opprett sikkerhetsgrupper per rolle: `SG_Admin`, `SG_Salg`, `SG_Drift`
 2. Plasser brukere i riktig gruppe
 3. Tildel tillatelser til gruppen — **aldri** til enkeltbrukere
@@ -83,7 +67,7 @@ firma.local
 
 Rettigheter på enkeltbrukere er en dårlig vane som går igjen. Problemet: når den ansatte bytter rolle, må du huske å fjerne alle de gamle rettighetene. Med grupper flytter du brukeren til ny gruppe, og alt følger automatisk.
 
-### Sammenligning av autentiseringsprotokoller
+### Autentisering — Kerberos vs NTLM
 
 | Egenskap | Kerberos | NTLM |
 |----------|----------|------|
@@ -92,9 +76,20 @@ Rettigheter på enkeltbrukere er en dårlig vane som går igjen. Problemet: når
 | Gjensidig autentisering | Ja (både klient og server) | Nei (kun klient) |
 | Motstår replay-angrep | Ja (tidsstempler) | Sårbar uten ekstra tiltak |
 
+#### Slik fungerer Kerberos
+
+Kerberos bruker en tredjepart (Key Distribution Center, KDC) som utsteder billetter. Når du logger på, får du en Ticket Granting Ticket (TGT). Denne bruker du til å be om billetter til spesifikke tjenester — uten at passordet ditt noen gang sendes over nettverket.
+
 ### GPO — Group Policy Objects
 
 Gruppepolicy distribuerer innstillinger til datamaskiner og brukere via OU-er. Eksempler: installer programvare, begrens tilgang til kontrollpanel, sett passordpolicy. Arves fra overordnet OU. Det mest spesifikke policy-nivået vinner.
+
+#### Hvordan GPO-arving fungerer
+
+- En GPO på domenenivå gjelder alle OU-er under
+- En GPO på en OU overstyrer domenepolicyen for den OU-en
+- "Enforce" (tvungen) kan blokkere overstyring
+- "Block inheritance" på en OU stopper arv fra overordnet
 
 <div class="nokkelbegreper">
   <div class="nokkelbegreper-title">Nøkkelbegreper</div>
