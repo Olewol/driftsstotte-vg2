@@ -11,86 +11,207 @@ Nettverkssegmentering deler nettverket i logiske soner (VLAN) for å øke sikker
   <p>Uten segmentering kan en infisert PC lamme hele bedriften. En ansatt åpner en phishing-epost, og angriperen går rett på serverne — fordi alt er på samme flate nett. Med VLAN stopper skaden i en sone. Dette er noe du kommer til å konfigurere i praksis, og det dukker opp på eksamen.</p>
 </div>
 
-## Detaljer
+<h2>Detaljer</h2>
 
-### VLAN — logisk inndeling av nettverket
+<h3>VLAN — logisk inndeling av nettverket</h3>
 
 IEEE 802.1Q er standarden for VLAN-tagging. VLAN-ID-er går fra 1 til 4094 (0 og 4095 er reservert). Access-porter tilhører ett VLAN (for sluttenheter). Trunk-porter bærer trafikk for flere VLAN (mellom svitsjer).
 
 <img src={`${base}/diagrams/vlan-segmentering.svg`} alt="VLAN-segmentering med router og trunk" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-#### Eksempel VLAN-inndeling
+<h4>Eksempel VLAN-inndeling</h4>
 
-| VLAN | Navn | Subnett | Formål | Trafikkregler |
-|------|------|---------|--------|---------------|
-| 10 | Kontor | 192.168.10.0/24 | Ansattes PC-er | Tilgang til servere |
-| 20 | Produksjon | 192.168.20.0/24 | Maskiner og utstyr | Kun nødvendig trafikk |
-| 30 | Gjest | 192.168.30.0/24 | Besøkende | Kun internett |
-| 40 | Servere | 192.168.40.0/24 | AD, filserver, backup | Begrenset tilgang |
-| 50 | Drift/Admin | 192.168.50.0/24 | Overvåking, administrasjon | Kun IT-ansatte |
+<table><thead><tr>
+<th>VLAN</th>
+<th>Navn</th>
+<th>Subnett</th>
+<th>Formål</th>
+<th>Trafikkregler</th>
+</tr></thead><tbody>
+<tr>
+<td>10</td>
+<td>Kontor</td>
+<td>192.168.10.0/24</td>
+<td>Ansattes PC-er</td>
+<td>Tilgang til servere</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Produksjon</td>
+<td>192.168.20.0/24</td>
+<td>Maskiner og utstyr</td>
+<td>Kun nødvendig trafikk</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Gjest</td>
+<td>192.168.30.0/24</td>
+<td>Besøkende</td>
+<td>Kun internett</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Servere</td>
+<td>192.168.40.0/24</td>
+<td>AD, filserver, backup</td>
+<td>Begrenset tilgang</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Drift/Admin</td>
+<td>192.168.50.0/24</td>
+<td>Overvåking, administrasjon</td>
+<td>Kun IT-ansatte</td>
+</tr>
+</tbody></table>
 
 Legg merke til mønsteret: ansatte får tilgang til servere, produksjon får kun nødvendig trafikk, gjester får kun internett. Det er default-deny i praksis.
 
-### IT vs OT — hvorfor skille?
+<h3>IT vs OT — hvorfor skille?</h3>
 
 OT-utstyr (produksjonsmaskiner, PLC-er, SCADA) har ofte gammelt OS som ikke kan oppdateres. På samme nett som kontor-PC-er kan en infisert PC bevege seg lateralt til produksjonen. Isolasjon via VLAN + brannmur er eneste forsvar.
 
 <img src={`${base}/diagrams/it-vs-ot.svg`} alt="IT vs OT-nettverk med brannmur mellom" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-**Best practice:** brannmur mellom IT- og OT-nettverk. Kun nødvendige porter og protokoller tillatt. OT-utstyr kan ofte ikke oppdateres eller patcheres, så isolasjon er alt du har.
+<strong>Best practice:</strong> brannmur mellom IT- og OT-nettverk. Kun nødvendige porter og protokoller tillatt. OT-utstyr kan ofte ikke oppdateres eller patcheres, så isolasjon er alt du har.
 
-### VPN — virtuelt privat nettverk
+<h3>VPN — virtuelt privat nettverk</h3>
 
 VPN krypterer all trafikk og gir sikker kommunikasjon over internett. To hovedtyper:
 
-| Type | Beskrivelse | Når brukes |
-|------|-------------|------------|
-| **Site-to-Site** | Kobler to faste nettverk sammen | Faste avdelingskontorer, brakkerigg |
-| **Remote Access** | Enkel bruker kobler seg til bedriftsnettet | Hjemmekontor, feltarbeidere |
+<table><thead><tr>
+<th>Type</th>
+<th>Beskrivelse</th>
+<th>Når brukes</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Site-to-Site</strong></td>
+<td>Kobler to faste nettverk sammen</td>
+<td>Faste avdelingskontorer, brakkerigg</td>
+</tr>
+<tr>
+<td><strong>Remote Access</strong></td>
+<td>Enkel bruker kobler seg til bedriftsnettet</td>
+<td>Hjemmekontor, feltarbeidere</td>
+</tr>
+</tbody></table>
 
-#### VPN-protokoller
+<h4>VPN-protokoller</h4>
 
-| Protokoll | Styrker | Svakheter |
-|-----------|---------|-----------|
-| IPsec | Bransjestandard, svært sikker | Kompleks konfigurasjon |
-| OpenVPN | Fleksibel, kryssplattform | Lavere hastighet enn WireGuard |
-| WireGuard | Moderne, rask, enkel | Nyere, mindre utbredt i enterprise |
+<table><thead><tr>
+<th>Protokoll</th>
+<th>Styrker</th>
+<th>Svakheter</th>
+</tr></thead><tbody>
+<tr>
+<td>IPsec</td>
+<td>Bransjestandard, svært sikker</td>
+<td>Kompleks konfigurasjon</td>
+</tr>
+<tr>
+<td>OpenVPN</td>
+<td>Fleksibel, kryssplattform</td>
+<td>Lavere hastighet enn WireGuard</td>
+</tr>
+<tr>
+<td>WireGuard</td>
+<td>Moderne, rask, enkel</td>
+<td>Nyere, mindre utbredt i enterprise</td>
+</tr>
+</tbody></table>
 
 Velg WireGuard om du setter opp nytt i dag. Det er raskere, enklere og sikrere enn de gamle alternativene.
 
-### Kritiske nettverkstjenester
+<h3>Kritiske nettverkstjenester</h3>
 
-| Tjeneste | Port(er) | Protokoll | Funksjon |
-|----------|----------|-----------|----------|
-| DHCP | 67/68 | UDP | IP-tildeling |
-| DNS | 53 | UDP/TCP | Navneoppløsning |
-| HTTP | 80 | TCP | Web (ukryptert) |
-| HTTPS | 443 | TCP | Web (kryptert) |
-| SSH | 22 | TCP | Sikker terminaltilgang |
-| RDP | 3389 | TCP | Fjernskrivebord |
+<table><thead><tr>
+<th>Tjeneste</th>
+<th>Port(er)</th>
+<th>Protokoll</th>
+<th>Funksjon</th>
+</tr></thead><tbody>
+<tr>
+<td>DHCP</td>
+<td>67/68</td>
+<td>UDP</td>
+<td>IP-tildeling</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>53</td>
+<td>UDP/TCP</td>
+<td>Navneoppløsning</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>80</td>
+<td>TCP</td>
+<td>Web (ukryptert)</td>
+</tr>
+<tr>
+<td>HTTPS</td>
+<td>443</td>
+<td>TCP</td>
+<td>Web (kryptert)</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>22</td>
+<td>TCP</td>
+<td>Sikker terminaltilgang</td>
+</tr>
+<tr>
+<td>RDP</td>
+<td>3389</td>
+<td>TCP</td>
+<td>Fjernskrivebord</td>
+</tr>
+</tbody></table>
 
-### DHCP DORA-prosessen
+<h3>DHCP DORA-prosessen</h3>
 
 <img src={`${base}/diagrams/dhcp-dora.svg`} alt="DHCP DORA: Discover, Offer, Request, Acknowledge" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-Husk "Dora utforsker nettverket" — **D**iscover, **O**ffer, **R**equest, **A**cknowledge.
+Husk "Dora utforsker nettverket" — <strong>D</strong>iscover, <strong>O</strong>ffer, <strong>R</strong>equest, <strong>A</strong>cknowledge.
 
-### DNS — slik fungerer navneoppløsning
+<h3>DNS — slik fungerer navneoppløsning</h3>
 
-1. Du skriver `www.eksempel.no` i nettleseren
-2. PC-en spør DNS-serveren: "hva er IP-en?"
-3. DNS-serveren svarer med IP-adressen (f.eks. 93.184.216.34)
-4. PC-en kobler seg til den IP-adressen
+<ol>
+<li>Du skriver <code>www.eksempel.no</code> i nettleseren</li>
+<li>PC-en spør DNS-serveren: "hva er IP-en?"</li>
+<li>DNS-serveren svarer med IP-adressen (f.eks. 93.184.216.34)</li>
+<li>PC-en kobler seg til den IP-adressen</li>
+</ol>
 
 Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-feil er det første du sjekker når "internett er nede" — det er oftest DNS, ikke internett.
 
-### Subnetting — raskt repetert
+<h3>Subnetting — raskt repetert</h3>
 
-| CIDR | Subnettmaske | Antall adresser | Eksempel |
-|------|-------------|----------------|----------|
-| /24 | 255.255.255.0 | 254 | Liten bedrift |
-| /23 | 255.255.254.0 | 510 | Middels bedrift |
-| /22 | 255.255.252.0 | 1022 | Større nettverk |
+<table><thead><tr>
+<th>CIDR</th>
+<th>Subnettmaske</th>
+<th>Antall adresser</th>
+<th>Eksempel</th>
+</tr></thead><tbody>
+<tr>
+<td>/24</td>
+<td>255.255.255.0</td>
+<td>254</td>
+<td>Liten bedrift</td>
+</tr>
+<tr>
+<td>/23</td>
+<td>255.255.254.0</td>
+<td>510</td>
+<td>Middels bedrift</td>
+</tr>
+<tr>
+<td>/22</td>
+<td>255.255.252.0</td>
+<td>1022</td>
+<td>Større nettverk</td>
+</tr>
+</tbody></table>
 
 <div class="nokkelbegreper">
   <div class="nokkelbegreper-title">Nøkkelbegreper</div>
@@ -156,5 +277,6 @@ Uten DNS kan du like godt huske alle IP-er utenat. Det er grunnen til at DNS-fei
     <div class="sjekk-q-answer">OT-utstyr (produksjonsmaskiner, PLC-er, SCADA) har ofte gammelt OS som ikke kan oppdateres. På samme nett som kontor-PC-er kan en infisert PC bevege seg lateralt til produksjonen. Isolasjon via VLAN + brannmur er eneste forsvar.</div>
   </div>
 </div>
+
 
 </RepetisjonLayout>

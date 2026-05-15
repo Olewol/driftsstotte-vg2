@@ -11,74 +11,210 @@ Dokumentasjon er like viktig som konfigurasjonen. Uten IP-plan får du IP-konfli
   <p>Har du noen gang arvet et IT-miljø uten dokumentasjon? Da vet du: det blir gjetting. "Hvorfor er port 443 åpen til denne serveren?", "Hvem satte opp VLAN 50?", "Hvorfor er IP-en 192.168.10.55 reservert?" Uten dokumentasjon blir du den som <strong>må huske alt</strong> — og det går ikke. Dokumentasjon er din forsikring mot å bli flaskehalsen.</p>
 </div>
 
-## Detaljer
+<h2>Detaljer</h2>
 
-### Hvorfor dokumentere?
+<h3>Hvorfor dokumentere?</h3>
 
-| Grunn | Forklaring |
-|-------|-----------|
-| **Feilsøking** | Vet hvordan systemet skal se ut — finn avvik raskere |
-| **Onboarding** | Nye IT-ansatte kan sette seg inn uten muntlig overlevering |
-| **Revisjon / GDPR** | Sporbarhet — hvem har tilgang til hva |
-| **Kontinuitet** | Bedriften er ikke avhengig av én persons hukommelse |
-| **Standardisering** | Alle gjør det på samme måte — færre feil |
+<table><thead><tr>
+<th>Grunn</th>
+<th>Forklaring</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Feilsøking</strong></td>
+<td>Vet hvordan systemet skal se ut — finn avvik raskere</td>
+</tr>
+<tr>
+<td><strong>Onboarding</strong></td>
+<td>Nye IT-ansatte kan sette seg inn uten muntlig overlevering</td>
+</tr>
+<tr>
+<td><strong>Revisjon / GDPR</strong></td>
+<td>Sporbarhet — hvem har tilgang til hva</td>
+</tr>
+<tr>
+<td><strong>Kontinuitet</strong></td>
+<td>Bedriften er ikke avhengig av én persons hukommelse</td>
+</tr>
+<tr>
+<td><strong>Standardisering</strong></td>
+<td>Alle gjør det på samme måte — færre feil</td>
+</tr>
+</tbody></table>
 
-### Dokumentasjonstyper — oversikt
+<h3>Dokumentasjonstyper — oversikt</h3>
 
 <img src={`${base}/diagrams/dokumentasjonstyper.svg`} alt="Dokumentasjonstyper: Nettverkskart, IP-plan, endringslogg, passordhvelv, brannmurregler, prosedyrer" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-| Type | Innhold | Format | Når oppdateres |
-|------|---------|--------|----------------|
-| **Nettverkskart** | Topologi, enheter, linker | Diagram (Visio, draw.io) | Ved endringer |
-| **IP-adresseplan** | VLAN, subnett, reserverte IP-er | Regneark / Wiki | Når nytt subnet tas i bruk |
-| **Endringslogg** | Hva, hvem, hvorfor, når | Logg / Wiki | Hver gang noe endres |
-| **Passordhvelv** | Tjenestekontoer, adminpassord | Kryptert database | Ved rullering |
-| **Brannmurregler** | Kilde, dest, port, regelnummer | Regneark / Wiki | Når regel legges til/fjernes |
-| **Prosedyrebeskrivelser** | Hvordan gjøre vanlige oppgaver | Wiki / dokument | Ved prosessendring |
+<table><thead><tr>
+<th>Type</th>
+<th>Innhold</th>
+<th>Format</th>
+<th>Når oppdateres</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Nettverkskart</strong></td>
+<td>Topologi, enheter, linker</td>
+<td>Diagram (Visio, draw.io)</td>
+<td>Ved endringer</td>
+</tr>
+<tr>
+<td><strong>IP-adresseplan</strong></td>
+<td>VLAN, subnett, reserverte IP-er</td>
+<td>Regneark / Wiki</td>
+<td>Når nytt subnet tas i bruk</td>
+</tr>
+<tr>
+<td><strong>Endringslogg</strong></td>
+<td>Hva, hvem, hvorfor, når</td>
+<td>Logg / Wiki</td>
+<td>Hver gang noe endres</td>
+</tr>
+<tr>
+<td><strong>Passordhvelv</strong></td>
+<td>Tjenestekontoer, adminpassord</td>
+<td>Kryptert database</td>
+<td>Ved rullering</td>
+</tr>
+<tr>
+<td><strong>Brannmurregler</strong></td>
+<td>Kilde, dest, port, regelnummer</td>
+<td>Regneark / Wiki</td>
+<td>Når regel legges til/fjernes</td>
+</tr>
+<tr>
+<td><strong>Prosedyrebeskrivelser</strong></td>
+<td>Hvordan gjøre vanlige oppgaver</td>
+<td>Wiki / dokument</td>
+<td>Ved prosessendring</td>
+</tr>
+</tbody></table>
 
-### IP-adresseplan — eksempel
+<h3>IP-adresseplan — eksempel</h3>
 
-| VLAN | Navn | Subnett | DHCP-rekke | Formål |
-|------|------|---------|-----------|--------|
-| 10 | Kontor | 192.168.10.0/24 | .100–.200 | PC-er, skrivere |
-| 20 | Drift | 192.168.20.0/24 | Statisk | Servere, infrastruktur |
-| 30 | Gjest | 192.168.30.0/24 | .10–.254 | Besøkende, kun internett |
+<table><thead><tr>
+<th>VLAN</th>
+<th>Navn</th>
+<th>Subnett</th>
+<th>DHCP-rekke</th>
+<th>Formål</th>
+</tr></thead><tbody>
+<tr>
+<td>10</td>
+<td>Kontor</td>
+<td>192.168.10.0/24</td>
+<td>.100–.200</td>
+<td>PC-er, skrivere</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Drift</td>
+<td>192.168.20.0/24</td>
+<td>Statisk</td>
+<td>Servere, infrastruktur</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Gjest</td>
+<td>192.168.30.0/24</td>
+<td>.10–.254</td>
+<td>Besøkende, kun internett</td>
+</tr>
+</tbody></table>
 
-#### Nøkkelprinsipper for IP-plan
+<h4>Nøkkelprinsipper for IP-plan</h4>
 
-- Forutsi vekst — /24 gir 254 adresser, ikke legg deg for tett
-- Reserver statiske IP-er til servere og nettverksutstyr
-- DHCP for klienter, statisk for servere
-- Dokumenter reserverte IP-er og hvorfor de er reservert
-- Hold oversikt over ledig rekkevidde
+<ul>
+<li>Forutsi vekst — /24 gir 254 adresser, ikke legg deg for tett</li>
+<li>Reserver statiske IP-er til servere og nettverksutstyr</li>
+<li>DHCP for klienter, statisk for servere</li>
+<li>Dokumenter reserverte IP-er og hvorfor de er reservert</li>
+<li>Hold oversikt over ledig rekkevidde</li>
+</ul>
 
-### Nettverkstopologier
+<h3>Nettverkstopologier</h3>
 
-| Type | Beskrivelse | Fordeler | Ulemper |
-|------|-------------|----------|---------|
-| **Stjernetopologi** | Alle enheter til sentral svitsj | Enkelt, enkel utvidelse | Avhengig av sentral enhet |
-| **Bus-topologi** | Én felles kabel | Billig og enkelt | Sårbar, treg, vanskelig feilsøking |
-| **Ring-topologi** | Hver enhet koblet i ring | Robust (dobbel ring) | Vanskelig feilsøking |
-| **Mesh** | Alle koblet til alle | Svært robust | Dyrt, komplekst |
+<table><thead><tr>
+<th>Type</th>
+<th>Beskrivelse</th>
+<th>Fordeler</th>
+<th>Ulemper</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Stjernetopologi</strong></td>
+<td>Alle enheter til sentral svitsj</td>
+<td>Enkelt, enkel utvidelse</td>
+<td>Avhengig av sentral enhet</td>
+</tr>
+<tr>
+<td><strong>Bus-topologi</strong></td>
+<td>Én felles kabel</td>
+<td>Billig og enkelt</td>
+<td>Sårbar, treg, vanskelig feilsøking</td>
+</tr>
+<tr>
+<td><strong>Ring-topologi</strong></td>
+<td>Hver enhet koblet i ring</td>
+<td>Robust (dobbel ring)</td>
+<td>Vanskelig feilsøking</td>
+</tr>
+<tr>
+<td><strong>Mesh</strong></td>
+<td>Alle koblet til alle</td>
+<td>Svært robust</td>
+<td>Dyrt, komplekst</td>
+</tr>
+</tbody></table>
 
 Moderne nettverk bruker stjernetopologi med managed svitsjer. De andre variantene er mest eksamensstoff i dag.
 
-### Endringslogg — mal
+<h3>Endringslogg — mal</h3>
 
-| Dato | Utført av | Hva ble gjort | Hvorfor | Resultat |
-|------|-----------|--------------|---------|----------|
-| 01.04.25 | Ola N. | La til brannmurregel VLAN 10→20 | Sikkerhetsgjennomgang | OK |
+<table><thead><tr>
+<th>Dato</th>
+<th>Utført av</th>
+<th>Hva ble gjort</th>
+<th>Hvorfor</th>
+<th>Resultat</th>
+</tr></thead><tbody>
+<tr>
+<td>01.04.25</td>
+<td>Ola N.</td>
+<td>La til brannmurregel VLAN 10→20</td>
+<td>Sikkerhetsgjennomgang</td>
+<td>OK</td>
+</tr>
+</tbody></table>
 
 Legg merke til "Hvorfor"-kolonnen. "La til regel i brannmuren" er nytteløst. "La til regel fordi avdeling A trengte tilgang til ERP etter omorganisering" — det hjelper deg om to år når noen spør om regelen fortsatt trengs.
 
-### Verktøy for dokumentasjon
+<h3>Verktøy for dokumentasjon</h3>
 
-| Verktøy | Type | Fordel |
-|---------|------|--------|
-| **draw.io / diagrams.net** | Diagrammer | Gratis, mange integrasjoner |
-| **Wiki (BookStack, Wiki.js)** | Tekstdokumentasjon | Søkbart, versjonshistorikk |
-| **Git + Markdown** | Dokumentasjon som kode | Versjonskontroll, samarbeid |
-| **GLPI / iTop** | ITAM/CMDB | Knytter dokumentasjon til inventar |
+<table><thead><tr>
+<th>Verktøy</th>
+<th>Type</th>
+<th>Fordel</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>draw.io / diagrams.net</strong></td>
+<td>Diagrammer</td>
+<td>Gratis, mange integrasjoner</td>
+</tr>
+<tr>
+<td><strong>Wiki (BookStack, Wiki.js)</strong></td>
+<td>Tekstdokumentasjon</td>
+<td>Søkbart, versjonshistorikk</td>
+</tr>
+<tr>
+<td><strong>Git + Markdown</strong></td>
+<td>Dokumentasjon som kode</td>
+<td>Versjonskontroll, samarbeid</td>
+</tr>
+<tr>
+<td><strong>GLPI / iTop</strong></td>
+<td>ITAM/CMDB</td>
+<td>Knytter dokumentasjon til inventar</td>
+</tr>
+</tbody></table>
 
 <div class="nokkelbegreper">
   <div class="nokkelbegreper-title">Nøkkelbegreper</div>
@@ -143,5 +279,6 @@ Legg merke til "Hvorfor"-kolonnen. "La til regel i brannmuren" er nytteløst. "L
     <div class="sjekk-q-answer">Stjerne: alle enheter til sentral svitsj — enkel å feilsøke og utvide. Bus: én felles kabel — billig, men én feil tar ned hele nettverket. Moderne nettverk bruker stjernetopologi.</div>
   </div>
 </div>
+
 
 </RepetisjonLayout>

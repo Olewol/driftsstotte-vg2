@@ -11,65 +11,163 @@ Infrastruktur er alt det fysiske og virtuelle som må til for å drive IT-system
   <p>Infrastruktur er <strong>grunnmuren</strong>. Uten riktig valg av servere, nettverksutstyr og strømbackup stopper alt. Når en server krasjer eller svitsjen gir seg, er det du som må feilsøke og bytte. Da teller det å vite forskjellen på en rack-server og en blade, eller hvorfor UPS er kritisk for en domenekontroller.</p>
 </div>
 
-## Detaljer
+<h2>Detaljer</h2>
 
-### Nødvendige komponenter — oversikt
+<h3>Nødvendige komponenter — oversikt</h3>
 
 <img src={`${base}/diagrams/infrastruktur-oversikt.svg`} alt="IT-infrastruktur: kjernetjenester, nettverksutstyr, lagring og strøm" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-| Komponent | Funksjon | Merknad |
-|-----------|----------|---------|
-| Domenekontroller (DC) | Autentisering, AD-database | Minst 2 for redundans |
-| DHCP-server | Automatisk IP-tildeling | På server, ikke ruter, i bedriftsnett |
-| DNS-server | Navneoppløsning | Kreves av AD — uten DNS fungerer ikke pålogging |
-| Brannmur | Trafikkontroll mellom nettverk | Stateful inspection anbefales |
-| Svitsj (switch) | Koble enheter i LAN (lag 2) | Managed svitsjer gir VLAN-støtte |
-| Ruter | Koble sammen nettverk (lag 3) | VLAN-routing (router-on-a-stick) |
-| Trådløst aksesspunkt (AP) | Wi-Fi-dekning | WPA3 for sikkerhet |
-| NAS / fillager | Sentral fillagring | RAID for redundans |
-| Backup-server | Sikkerhetskopier | Følg 3-2-1-regelen |
-| UPS | Avbruddsfri strøm til kritisk utstyr | Servere, svitsjer, brannmur |
+<table><thead><tr>
+<th>Komponent</th>
+<th>Funksjon</th>
+<th>Merknad</th>
+</tr></thead><tbody>
+<tr>
+<td>Domenekontroller (DC)</td>
+<td>Autentisering, AD-database</td>
+<td>Minst 2 for redundans</td>
+</tr>
+<tr>
+<td>DHCP-server</td>
+<td>Automatisk IP-tildeling</td>
+<td>På server, ikke ruter, i bedriftsnett</td>
+</tr>
+<tr>
+<td>DNS-server</td>
+<td>Navneoppløsning</td>
+<td>Kreves av AD — uten DNS fungerer ikke pålogging</td>
+</tr>
+<tr>
+<td>Brannmur</td>
+<td>Trafikkontroll mellom nettverk</td>
+<td>Stateful inspection anbefales</td>
+</tr>
+<tr>
+<td>Svitsj (switch)</td>
+<td>Koble enheter i LAN (lag 2)</td>
+<td>Managed svitsjer gir VLAN-støtte</td>
+</tr>
+<tr>
+<td>Ruter</td>
+<td>Koble sammen nettverk (lag 3)</td>
+<td>VLAN-routing (router-on-a-stick)</td>
+</tr>
+<tr>
+<td>Trådløst aksesspunkt (AP)</td>
+<td>Wi-Fi-dekning</td>
+<td>WPA3 for sikkerhet</td>
+</tr>
+<tr>
+<td>NAS / fillager</td>
+<td>Sentral fillagring</td>
+<td>RAID for redundans</td>
+</tr>
+<tr>
+<td>Backup-server</td>
+<td>Sikkerhetskopier</td>
+<td>Følg 3-2-1-regelen</td>
+</tr>
+<tr>
+<td>UPS</td>
+<td>Avbruddsfri strøm til kritisk utstyr</td>
+<td>Servere, svitsjer, brannmur</td>
+</tr>
+</tbody></table>
 
-### Servertyper — hva passer hvor?
+<h3>Servertyper — hva passer hvor?</h3>
 
 <img src={`${base}/diagrams/servertyper.svg`} alt="Servertyper: Tower, Rack, Blade, Virtuell" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-| Type | Beskrivelse | Når brukes |
-|------|-------------|------------|
-| **Tower-server** | Frittstående kabinett, lik en stasjonær PC | Små bedrifter, få servere, ikke eget serverrom |
-| **Rack-server** | Montere i rack-stativ, 1U/2U høyde | Standard for de fleste bedrifter — god kjøling og kabling |
-| **Blade-server** | Tette moduler i felles chassis med delt strøm/kjøling | Store datasentre, 10+ servere på liten plass |
+<table><thead><tr>
+<th>Type</th>
+<th>Beskrivelse</th>
+<th>Når brukes</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Tower-server</strong></td>
+<td>Frittstående kabinett, lik en stasjonær PC</td>
+<td>Små bedrifter, få servere, ikke eget serverrom</td>
+</tr>
+<tr>
+<td><strong>Rack-server</strong></td>
+<td>Montere i rack-stativ, 1U/2U høyde</td>
+<td>Standard for de fleste bedrifter — god kjøling og kabling</td>
+</tr>
+<tr>
+<td><strong>Blade-server</strong></td>
+<td>Tette moduler i felles chassis med delt strøm/kjøling</td>
+<td>Store datasentre, 10+ servere på liten plass</td>
+</tr>
+</tbody></table>
 
 Velg rack om du har et valg. Tower-servere blir fort kaotiske når du trenger flere. Rack tvinger frem standard kjøling, kabling og organisering. Blade gir høy tetthet, men du låser deg til en vendor.
 
-### Virtualisering og hypervisor
+<h3>Virtualisering og hypervisor</h3>
 
 Hypervisor er programvaren som lager og kjører virtuelle maskiner. Type 1 kjører rett på hardware (VMware ESXi, Hyper-V, Proxmox) og gir nesten fysisk ytelse. Type 2 kjører på et OS (VirtualBox, VMware Workstation) — greit for testing, brukes ikke i produksjon.
 
 <img src={`${base}/diagrams/virtualisering.svg`} alt="Virtualisering: Hypervisor med flere VM-er" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-**Hvorfor virtualisere?**
-- Konsolidering: flere VM-er på en fysisk server sparer strøm og plass
-- Snapshots: ta bilde før oppdatering — enkelt å rulle tilbake
-- Live migration: flytt VM uten nedetid
-- Isolation: én VM krasjer — de andre fortsetter
+<strong>Hvorfor virtualisere?</strong>
+<ul>
+<li>Konsolidering: flere VM-er på en fysisk server sparer strøm og plass</li>
+<li>Snapshots: ta bilde før oppdatering — enkelt å rulle tilbake</li>
+<li>Live migration: flytt VM uten nedetid</li>
+<li>Isolation: én VM krasjer — de andre fortsetter</li>
+</ul>
 
-### Klienttyper
+<h3>Klienttyper</h3>
 
-| Type | Eksempel | Når brukes |
-|------|----------|------------|
-| **Stasjonær PC** | Kontor-PC, tynnklient | Fast arbeidsstasjon på kontor |
-| **Bærbar PC** | Laptop, Ultrabook | Mobil arbeidskraft, hjemmekontor, møter |
-| **Tynnklient** | Enkel enhet som kjører via server | Sikkerhetsmiljø, delt arbeidsstasjon |
+<table><thead><tr>
+<th>Type</th>
+<th>Eksempel</th>
+<th>Når brukes</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Stasjonær PC</strong></td>
+<td>Kontor-PC, tynnklient</td>
+<td>Fast arbeidsstasjon på kontor</td>
+</tr>
+<tr>
+<td><strong>Bærbar PC</strong></td>
+<td>Laptop, Ultrabook</td>
+<td>Mobil arbeidskraft, hjemmekontor, møter</td>
+</tr>
+<tr>
+<td><strong>Tynnklient</strong></td>
+<td>Enkel enhet som kjører via server</td>
+<td>Sikkerhetsmiljø, delt arbeidsstasjon</td>
+</tr>
+</tbody></table>
 
-### Nettverkskabling
+<h3>Nettverkskabling</h3>
 
-| Kabeltype | Hastighet | Maks lengde |
-|-----------|-----------|-------------|
-| Cat5e | 1 Gbps | 100 m |
-| Cat6 | 1 Gbps (10 Gbps opp til 55 m) | 100 m |
-| Cat6a | 10 Gbps | 100 m |
-| Fiberoptikk | 10–400 Gbps | Flere km |
+<table><thead><tr>
+<th>Kabeltype</th>
+<th>Hastighet</th>
+<th>Maks lengde</th>
+</tr></thead><tbody>
+<tr>
+<td>Cat5e</td>
+<td>1 Gbps</td>
+<td>100 m</td>
+</tr>
+<tr>
+<td>Cat6</td>
+<td>1 Gbps (10 Gbps opp til 55 m)</td>
+<td>100 m</td>
+</tr>
+<tr>
+<td>Cat6a</td>
+<td>10 Gbps</td>
+<td>100 m</td>
+</tr>
+<tr>
+<td>Fiberoptikk</td>
+<td>10–400 Gbps</td>
+<td>Flere km</td>
+</tr>
+</tbody></table>
 
 Legg Cat6a om du bygger nytt. Forskjellen i kabelkostnad er liten, og du slipper å rive opp himling om fem år når 10 Gbps er standard.
 
@@ -136,5 +234,6 @@ Legg Cat6a om du bygger nytt. Forskjellen i kabelkostnad er liten, og du slipper
     <div class="sjekk-q-answer">Én domenekontroller er et single point of failure. Hvis den går ned, kan ingen logge på, ingen får tilganger, og hele nettverket stopper. To DC-er gir redundans. I beste fall plasseres de på ulik fysisk lokasjon.</div>
   </div>
 </div>
+
 
 </RepetisjonLayout>

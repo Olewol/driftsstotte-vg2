@@ -11,63 +11,143 @@ God backupstrategi er siste forsvarslinje ved datatap. 3-2-1-regelen er bransjes
   <p>En <strong>backup som ikke er testet er ikke en backup</strong>. Ransomware, hardware-feil og menneskelige feil skjer hele tiden. Når noe går galt, er det du som må gjenopprette. Uten solid strategi med kjente RPO/RTO-verdier jobber du uten sikkerhetsnett. Den første gangen du trenger backupen, er det for sent å finne ut at den ikke fungerer.</p>
 </div>
 
-## Detaljer
+<h2>Detaljer</h2>
 
-### 3-2-1-regelen — grunnprinsippet
+<h3>3-2-1-regelen — grunnprinsippet</h3>
 
 <img src={`${base}/diagrams/backup-3-2-1.svg`} alt="3-2-1 backup: 3 kopier, 2 medier, 1 offsite" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-| Tall | Betydning | Eksempel |
-|------|-----------|----------|
-| **3** kopier av data | 1 primær + 2 backup-kopier | Original + NAS + sky |
-| **2** ulike medietyper | Forskjellig lagringsteknologi | Harddisk + bånd / NAS + sky |
-| **1** kopi offsite | Utenfor bygningen | Sky, annet kontor, kolokalisering |
+<table><thead><tr>
+<th>Tall</th>
+<th>Betydning</th>
+<th>Eksempel</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>3</strong> kopier av data</td>
+<td>1 primær + 2 backup-kopier</td>
+<td>Original + NAS + sky</td>
+</tr>
+<tr>
+<td><strong>2</strong> ulike medietyper</td>
+<td>Forskjellig lagringsteknologi</td>
+<td>Harddisk + bånd / NAS + sky</td>
+</tr>
+<tr>
+<td><strong>1</strong> kopi offsite</td>
+<td>Utenfor bygningen</td>
+<td>Sky, annet kontor, kolokalisering</td>
+</tr>
+</tbody></table>
 
-### 3-2-1-1-0 — moderne utvidelse
+<h3>3-2-1-1-0 — moderne utvidelse</h3>
 
-- **+1** immutable kopi — kan ikke slettes eller krypteres av ransomware
-- **+0** null feil ved testing — test jevnlig at backup faktisk fungerer
+<ul>
+<li><strong>+1</strong> immutable kopi — kan ikke slettes eller krypteres av ransomware</li>
+<li><strong>+0</strong> null feil ved testing — test jevnlig at backup faktisk fungerer</li>
+</ul>
 
 Immutable backup er det viktigste tiltaket mot ransomware. Uten det kan en angriper med admin-tilgang kryptere også backupen.
 
-### Backupstrategier — full, differensiell, inkrementell
+<h3>Backupstrategier — full, differensiell, inkrementell</h3>
 
 <img src={`${base}/diagrams/backup-strategi.svg`} alt="Backupstrategi: Full ukentlig + inkrementell daglig" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-| Type | Lagringsplass | Backuptid | Gjenopprettingstid | Når brukes |
-|------|--------------|-----------|-------------------|------------|
-| **Full backup** | Størst | Lengst | Raskest (én fil) | Ukentlig/månedlig |
-| **Differensiell** | Medium (vokser) | Medium | Medium (full + siste differensielle) | Daglig |
-| **Inkrementell** | Minst | Raskest | Lengst (full + alle inkrementelle) | Flere ganger daglig |
+<table><thead><tr>
+<th>Type</th>
+<th>Lagringsplass</th>
+<th>Backuptid</th>
+<th>Gjenopprettingstid</th>
+<th>Når brukes</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Full backup</strong></td>
+<td>Størst</td>
+<td>Lengst</td>
+<td>Raskest (én fil)</td>
+<td>Ukentlig/månedlig</td>
+</tr>
+<tr>
+<td><strong>Differensiell</strong></td>
+<td>Medium (vokser)</td>
+<td>Medium</td>
+<td>Medium (full + siste differensielle)</td>
+<td>Daglig</td>
+</tr>
+<tr>
+<td><strong>Inkrementell</strong></td>
+<td>Minst</td>
+<td>Raskest</td>
+<td>Lengst (full + alle inkrementelle)</td>
+<td>Flere ganger daglig</td>
+</tr>
+</tbody></table>
 
-**Typisk oppsett:** Full backup hver søndag + inkrementell hver natt. Gir god balanse mellom plass og gjenopprettingstid.
+<strong>Typisk oppsett:</strong> Full backup hver søndag + inkrementell hver natt. Gir god balanse mellom plass og gjenopprettingstid.
 
-### RPO og RTO — to nøkkeltall
+<h3>RPO og RTO — to nøkkeltall</h3>
 
-| Begrep | Betydning | Eksempel |
-|--------|-----------|----------|
-| **RPO** (Recovery Point Objective) | Hvor mye datatap har vi råd til? | 4 timer = backup hver 4. time |
-| **RTO** (Recovery Time Objective) | Hvor lang nedetid tåler vi? | 2 timer = systemet må være oppe innen 2 timer |
+<table><thead><tr>
+<th>Begrep</th>
+<th>Betydning</th>
+<th>Eksempel</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>RPO</strong> (Recovery Point Objective)</td>
+<td>Hvor mye datatap har vi råd til?</td>
+<td>4 timer = backup hver 4. time</td>
+</tr>
+<tr>
+<td><strong>RTO</strong> (Recovery Time Objective)</td>
+<td>Hvor lang nedetid tåler vi?</td>
+<td>2 timer = systemet må være oppe innen 2 timer</td>
+</tr>
+</tbody></table>
 
 Korte RPO/RTO = dyrere løsning. Ledelsen må bestemme tallene — ikke velg backup-frekvens basert på hva som er enklest.
 
-### Hvorfor backup kan mislykkes
+<h3>Hvorfor backup kan mislykkes</h3>
 
-| Problem | Årsak | Forebygging |
-|---------|-------|-------------|
-| Korrupt backupfil | Lagringsfeil, strømbrudd under backup | Verifiser backup, test gjenoppretting |
-| Kryptert av ransomware | Angriper får tilgang til backup-server | Immutable backup, offline-kopi |
-| Menneskelig feil | Noen sletter ved et uhell | Versjonshistorikk, tilgangskontroll |
-| Maskinvarefeil | Disk krasjer | RAID, redundant lagring |
-| Katastrofe | Brann, flom, innbrudd | Offsite-kopi |
+<table><thead><tr>
+<th>Problem</th>
+<th>Årsak</th>
+<th>Forebygging</th>
+</tr></thead><tbody>
+<tr>
+<td>Korrupt backupfil</td>
+<td>Lagringsfeil, strømbrudd under backup</td>
+<td>Verifiser backup, test gjenoppretting</td>
+</tr>
+<tr>
+<td>Kryptert av ransomware</td>
+<td>Angriper får tilgang til backup-server</td>
+<td>Immutable backup, offline-kopi</td>
+</tr>
+<tr>
+<td>Menneskelig feil</td>
+<td>Noen sletter ved et uhell</td>
+<td>Versjonshistorikk, tilgangskontroll</td>
+</tr>
+<tr>
+<td>Maskinvarefeil</td>
+<td>Disk krasjer</td>
+<td>RAID, redundant lagring</td>
+</tr>
+<tr>
+<td>Katastrofe</td>
+<td>Brann, flom, innbrudd</td>
+<td>Offsite-kopi</td>
+</tr>
+</tbody></table>
 
-### Gylne regler for backup
+<h3>Gylne regler for backup</h3>
 
-- Test gjenoppretting jevnlig — en backup som ikke kan restores er verdiløs
-- Full + inkrementell er mest lagringsplass-effektivt
-- Offsite backup beskytter mot brann, innbrudd og flom
-- Krypter backup både i transit og på mediet
-- Dokumenter backup-planen: hva, når og hvordan
+<ul>
+<li>Test gjenoppretting jevnlig — en backup som ikke kan restores er verdiløs</li>
+<li>Full + inkrementell er mest lagringsplass-effektivt</li>
+<li>Offsite backup beskytter mot brann, innbrudd og flom</li>
+<li>Krypter backup både i transit og på mediet</li>
+<li>Dokumenter backup-planen: hva, når og hvordan</li>
+</ul>
 
 <div class="nokkelbegreper">
   <div class="nokkelbegreper-title">Nøkkelbegreper</div>
@@ -132,5 +212,6 @@ Korte RPO/RTO = dyrere løsning. Ledelsen må bestemme tallene — ikke velg bac
     <div class="sjekk-q-answer">Ransomware-angripere med admin-tilgang kan kryptere eller slette vanlige backup-filer. Immutable backup kan ikke endres, slettes eller krypteres — selv ikke av administrator. Det er den eneste måten å være sikker på at backupen er der når du trenger den.</div>
   </div>
 </div>
+
 
 </RepetisjonLayout>

@@ -11,80 +11,205 @@ Nettverksprotokoller er reglene for hvordan enheter kommuniserer. OSI-modellen h
   <p>Når noe ikke fungerer på nettverket, må du forstå <strong>hvilket lag</strong> problemet er på. Fysisk kabling (lag 1)? IP-konfigurasjon (lag 3)? Brannmur som blokkerer port 443 (lag 4)? OSI-modellen er feilsøkingsverktøyet ditt. Portnumre utenat (22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP) sparer deg for tid i feilsøking og sikkerhetskonfigurasjon.</p>
 </div>
 
-## Detaljer
+<h2>Detaljer</h2>
 
-### OSI-modellen — 7 lag
+<h3>OSI-modellen — 7 lag</h3>
 
 <img src={`${base}/diagrams/osi-model.svg`} alt="OSI-modellen: 7 lag med protokoller" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-**Huskeregel nedenfra og opp (lag 1→7):** "Please Do Not Throw Sausage Pizza Away" (Physical, Data Link, Network, Transport, Session, Presentation, Application)
+<strong>Huskeregel nedenfra og opp (lag 1→7):</strong> "Please Do Not Throw Sausage Pizza Away" (Physical, Data Link, Network, Transport, Session, Presentation, Application)
 
-**Huskeregel ovenfra og ned (lag 7→1):** "Alle Ser På TV, Noen Drikker Pils" (Applikasjon, Presentasjon, Sesjon, Transport, Nettverk, Datalink, Fysisk)
+<strong>Huskeregel ovenfra og ned (lag 7→1):</strong> "Alle Ser På TV, Noen Drikker Pils" (Applikasjon, Presentasjon, Sesjon, Transport, Nettverk, Datalink, Fysisk)
 
-### TCP/IP-modellen — 4 lag
+<h3>TCP/IP-modellen — 4 lag</h3>
 
 Den praktiske modellen som internett faktisk bruker:
 
-| Lag | OSI-ekvivalent | Viktigste protokoller |
-|-----|---------------|----------------------|
-| 4 Applikasjon | Lag 5–7 | HTTP, HTTPS, FTP, SMTP, DNS |
-| 3 Transport | Lag 4 | TCP, UDP |
-| 2 Internett | Lag 3 | IP, ICMP, ARP |
-| 1 Nettverkstilgang | Lag 1–2 | Ethernet, Wi-Fi |
+<table><thead><tr>
+<th>Lag</th>
+<th>OSI-ekvivalent</th>
+<th>Viktigste protokoller</th>
+</tr></thead><tbody>
+<tr>
+<td>4 Applikasjon</td>
+<td>Lag 5–7</td>
+<td>HTTP, HTTPS, FTP, SMTP, DNS</td>
+</tr>
+<tr>
+<td>3 Transport</td>
+<td>Lag 4</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>2 Internett</td>
+<td>Lag 3</td>
+<td>IP, ICMP, ARP</td>
+</tr>
+<tr>
+<td>1 Nettverkstilgang</td>
+<td>Lag 1–2</td>
+<td>Ethernet, Wi-Fi</td>
+</tr>
+</tbody></table>
 
-### TCP vs UDP — når brukes hva?
+<h3>TCP vs UDP — når brukes hva?</h3>
 
 <img src={`${base}/diagrams/tcp-vs-udp.svg`} alt="TCP vs UDP: pålitelighet vs hastighet" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-| Egenskap | TCP | UDP |
-|----------|-----|-----|
-| Forbindelse | Oppretter forbindelse først (3-way handshake) | Forbindelsesløs — bare sender |
-| Pålitelighet | Bekreftelse (ACK), re-sending ved tap | Ingen garanti — "best effort" |
-| Rekkefølge | Bevarer rekkefølgen | Kan komme i feil rekkefølge |
-| Overhead | Høyere (headers, bekreftelser) | Lavere (minimale headers) |
-| Hastighet | Saktere | Raskere |
-| Bruksområde | Web (HTTP), e-post (SMTP), filoverføring (FTP), SSH | Streaming, VoIP, DNS, spill |
+<table><thead><tr>
+<th>Egenskap</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr></thead><tbody>
+<tr>
+<td>Forbindelse</td>
+<td>Oppretter forbindelse først (3-way handshake)</td>
+<td>Forbindelsesløs — bare sender</td>
+</tr>
+<tr>
+<td>Pålitelighet</td>
+<td>Bekreftelse (ACK), re-sending ved tap</td>
+<td>Ingen garanti — "best effort"</td>
+</tr>
+<tr>
+<td>Rekkefølge</td>
+<td>Bevarer rekkefølgen</td>
+<td>Kan komme i feil rekkefølge</td>
+</tr>
+<tr>
+<td>Overhead</td>
+<td>Høyere (headers, bekreftelser)</td>
+<td>Lavere (minimale headers)</td>
+</tr>
+<tr>
+<td>Hastighet</td>
+<td>Saktere</td>
+<td>Raskere</td>
+</tr>
+<tr>
+<td>Bruksområde</td>
+<td>Web (HTTP), e-post (SMTP), filoverføring (FTP), SSH</td>
+<td>Streaming, VoIP, DNS, spill</td>
+</tr>
+</tbody></table>
 
 Husk: TCP = pålitelig og treigt. UDP = raskt, men du risikerer tap. Velg basert på hva som er viktigst — korrekthet eller hastighet.
 
-### Viktige portnumre — må kunne utenat
+<h3>Viktige portnumre — må kunne utenat</h3>
 
-| Port | Protokoll | Tjeneste | Transportlag |
-|------|-----------|----------|--------------|
-| 20/21 | FTP | Filoverføring | TCP |
-| 22 | SSH | Sikker terminaltilgang | TCP |
-| 23 | Telnet | Ukryptert terminal | TCP |
-| 25 | SMTP | E-post (utsending) | TCP |
-| 53 | DNS | Navneoppløsning | UDP/TCP |
-| 67/68 | DHCP | IP-tildeling | UDP |
-| 80 | HTTP | Web (ukryptert) | TCP |
-| 110 | POP3 | E-post (henting) | TCP |
-| 143 | IMAP | E-post (henting, synk) | TCP |
-| 443 | HTTPS | Web (kryptert) | TCP |
-| 3389 | RDP | Fjernskrivebord | TCP |
+<table><thead><tr>
+<th>Port</th>
+<th>Protokoll</th>
+<th>Tjeneste</th>
+<th>Transportlag</th>
+</tr></thead><tbody>
+<tr>
+<td>20/21</td>
+<td>FTP</td>
+<td>Filoverføring</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>22</td>
+<td>SSH</td>
+<td>Sikker terminaltilgang</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Telnet</td>
+<td>Ukryptert terminal</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>25</td>
+<td>SMTP</td>
+<td>E-post (utsending)</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>53</td>
+<td>DNS</td>
+<td>Navneoppløsning</td>
+<td>UDP/TCP</td>
+</tr>
+<tr>
+<td>67/68</td>
+<td>DHCP</td>
+<td>IP-tildeling</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>80</td>
+<td>HTTP</td>
+<td>Web (ukryptert)</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>110</td>
+<td>POP3</td>
+<td>E-post (henting)</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>143</td>
+<td>IMAP</td>
+<td>E-post (henting, synk)</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>443</td>
+<td>HTTPS</td>
+<td>Web (kryptert)</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>3389</td>
+<td>RDP</td>
+<td>Fjernskrivebord</td>
+<td>TCP</td>
+</tr>
+</tbody></table>
 
 Disse 11 portene må du kunne. Spesielt 22, 53, 80, 443 og 3389 dukker opp omtrent hver eneste gang du setter opp eller feilsøker noe.
 
-### TCP 3-way handshake
+<h3>TCP 3-way handshake</h3>
 
 <img src={`${base}/diagrams/dhcp-dora.svg`} alt="DHCP DORA-prosessen" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 Slik opprettes en TCP-forbindelse:
 
-1. **SYN** — Klienten sender synkroniseringssignal
-2. **SYN-ACK** — Serveren bekrefter
-3. **ACK** — Klienten bekrefter tilbake — forbindelsen er etablert
+<ol>
+<li><strong>SYN</strong> — Klienten sender synkroniseringssignal</li>
+<li><strong>SYN-ACK</strong> — Serveren bekrefter</li>
+<li><strong>ACK</strong> — Klienten bekrefter tilbake — forbindelsen er etablert</li>
+</ol>
 
 Får du ikke SYN-ACK tilbake? Da er porten blokkert av brannmur eller serveren er nede.
 
-### Andre viktige protokoller
+<h3>Andre viktige protokoller</h3>
 
-| Protokoll | Funksjon |
-|-----------|----------|
-| **ICMP** | Feilmeldinger og test (ping bruker ICMP Echo Request/Reply) |
-| **ARP** | Oversetter IP-adresser til MAC-adresser i lokalt nettverk |
-| **DHCP** | Tildeler IP-adresser automatisk |
-| **NAT** | Oversetter private IP-er til en offentlig IP |
+<table><thead><tr>
+<th>Protokoll</th>
+<th>Funksjon</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>ICMP</strong></td>
+<td>Feilmeldinger og test (ping bruker ICMP Echo Request/Reply)</td>
+</tr>
+<tr>
+<td><strong>ARP</strong></td>
+<td>Oversetter IP-adresser til MAC-adresser i lokalt nettverk</td>
+</tr>
+<tr>
+<td><strong>DHCP</strong></td>
+<td>Tildeler IP-adresser automatisk</td>
+</tr>
+<tr>
+<td><strong>NAT</strong></td>
+<td>Oversetter private IP-er til en offentlig IP</td>
+</tr>
+</tbody></table>
 
 <div class="nokkelbegreper">
   <div class="nokkelbegreper-title">Nøkkelbegreper</div>
@@ -149,5 +274,6 @@ Får du ikke SYN-ACK tilbake? Da er porten blokkert av brannmur eller serveren e
     <div class="sjekk-q-answer">1. Klient sender SYN. 2. Server svarer SYN-ACK. 3. Klient sender ACK. Forbindelsen er etablert. Får du ikke SYN-ACK er porten blokkert eller serveren nede.</div>
   </div>
 </div>
+
 
 </RepetisjonLayout>

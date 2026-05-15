@@ -11,34 +11,65 @@ En katalogtjeneste (Active Directory eller Entra ID) lagrer alle brukere, maskin
   <p>Du kommer til å jobbe med brukeradministrasjon <strong>hver dag</strong>. Ny ansatt: opprett konto, plasser i riktig OU, gi tilganger via sikkerhetsgrupper, treff med GPO-er. Ansatt slutter: deaktiver, ikke slett. En sletting fjerner SID-en som henger sammen med alle ACL-er, e-postbokser og revisjonslogger. Feil her = sikkerhetshull eller ansatte som ikke får gjort jobben sin.</p>
 </div>
 
-## Detaljer
+<h2>Detaljer</h2>
 
-### Katalogtjenester
+<h3>Katalogtjenester</h3>
 
 En katalogtjeneste lagrer objekter (brukere, datamaskiner, skrivere, grupper) og gjør dem søkbare.
 
-| Tjeneste | Type | Bruksområde |
-|----------|------|-------------|
-| Active Directory DS (AD DS) | Lokal | Windows-baserte bedriftsnettverk, egen server |
-| Entra ID (tidl. Azure AD) | Sky | Microsoft 365, skybasert identitetsstyring |
-| OpenLDAP | Åpen kilde | Linux/Unix-miljøer |
+<table><thead><tr>
+<th>Tjeneste</th>
+<th>Type</th>
+<th>Bruksområde</th>
+</tr></thead><tbody>
+<tr>
+<td>Active Directory DS (AD DS)</td>
+<td>Lokal</td>
+<td>Windows-baserte bedriftsnettverk, egen server</td>
+</tr>
+<tr>
+<td>Entra ID (tidl. Azure AD)</td>
+<td>Sky</td>
+<td>Microsoft 365, skybasert identitetsstyring</td>
+</tr>
+<tr>
+<td>OpenLDAP</td>
+<td>Åpen kilde</td>
+<td>Linux/Unix-miljøer</td>
+</tr>
+</tbody></table>
 
-### AD-hierarkiet — fra skog til OU
+<h3>AD-hierarkiet — fra skog til OU</h3>
 
 Active Directory er bygget opp som et hierarki. Rekkefølgen er viktig å kunne.
 
 <img src={`${base}/diagrams/ad-hierarchy.svg`} alt="AD-hierarki: Skog, Tre, Domene, OU" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-| Nivå | Beskrivelse |
-|------|-------------|
-| **Skog (Forest)** | Øverste nivå, inneholder ett eller flere trær |
-| **Tre (Tree)** | Hierarki av domener med felles navnerom |
-| **Domene (Domain)** | Grunnenhet — deler felles database og sikkerhetspolicy |
-| **OU (Organisasjonsenhet)** | Logisk beholder for brukere, maskiner, grupper |
+<table><thead><tr>
+<th>Nivå</th>
+<th>Beskrivelse</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Skog (Forest)</strong></td>
+<td>Øverste nivå, inneholder ett eller flere trær</td>
+</tr>
+<tr>
+<td><strong>Tre (Tree)</strong></td>
+<td>Hierarki av domener med felles navnerom</td>
+</tr>
+<tr>
+<td><strong>Domene (Domain)</strong></td>
+<td>Grunnenhet — deler felles database og sikkerhetspolicy</td>
+</tr>
+<tr>
+<td><strong>OU (Organisasjonsenhet)</strong></td>
+<td>Logisk beholder for brukere, maskiner, grupper</td>
+</tr>
+</tbody></table>
 
 Hierarkiet betyr noe: GPO-er arves nedover. En policy satt på domenet gjelder alle OU-er med mindre en mer spesifikk policy overstyrer. Planlegg OU-strukturen før du oppretter brukere — det er mye vanskeligere å flytte dem etterpå.
 
-#### Best Practice for OU-struktur
+<h4>Best Practice for OU-struktur</h4>
 
 ```
 firma.local
@@ -54,42 +85,66 @@ firma.local
     +-- OU=Distribusjonsgrupper
 ```
 
-### Rollebasert tilgang (RBAC)
+<h3>Rollebasert tilgang (RBAC)</h3>
 
 RBAC er prinsippet om at rettigheter gis via roller/grupper, ikke til enkeltbrukere. Slik fungerer det i praksis:
 
 <img src={`${base}/diagrams/rbac-flow.svg`} alt="RBAC-flyt: Gruppe → Bruker → Rettigheter" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-1. Opprett sikkerhetsgrupper per rolle: `SG_Admin`, `SG_Salg`, `SG_Drift`
-2. Plasser brukere i riktig gruppe
-3. Tildel tillatelser til gruppen — **aldri** til enkeltbrukere
-4. **Minste privilegium**: kun tilgangene som trengs for å utføre jobben
+<ol>
+<li>Opprett sikkerhetsgrupper per rolle: <code>SG_Admin</code>, <code>SG_Salg</code>, <code>SG_Drift</code></li>
+<li>Plasser brukere i riktig gruppe</li>
+<li>Tildel tillatelser til gruppen — <strong>aldri</strong> til enkeltbrukere</li>
+<li><strong>Minste privilegium</strong>: kun tilgangene som trengs for å utføre jobben</li>
+</ol>
 
 Rettigheter på enkeltbrukere er en dårlig vane som går igjen. Problemet: når den ansatte bytter rolle, må du huske å fjerne alle de gamle rettighetene. Med grupper flytter du brukeren til ny gruppe, og alt følger automatisk.
 
-### Autentisering — Kerberos vs NTLM
+<h3>Autentisering — Kerberos vs NTLM</h3>
 
-| Egenskap | Kerberos | NTLM |
-|----------|----------|------|
-| Standard i AD | Ja, siden Windows 2000 | Eldre, kun bakoverkompatibilitet |
-| Passord på nettverket | Aldri — bruker billetter | Sender hashet versjon |
-| Gjensidig autentisering | Ja (både klient og server) | Nei (kun klient) |
-| Motstår replay-angrep | Ja (tidsstempler) | Sårbar uten ekstra tiltak |
+<table><thead><tr>
+<th>Egenskap</th>
+<th>Kerberos</th>
+<th>NTLM</th>
+</tr></thead><tbody>
+<tr>
+<td>Standard i AD</td>
+<td>Ja, siden Windows 2000</td>
+<td>Eldre, kun bakoverkompatibilitet</td>
+</tr>
+<tr>
+<td>Passord på nettverket</td>
+<td>Aldri — bruker billetter</td>
+<td>Sender hashet versjon</td>
+</tr>
+<tr>
+<td>Gjensidig autentisering</td>
+<td>Ja (både klient og server)</td>
+<td>Nei (kun klient)</td>
+</tr>
+<tr>
+<td>Motstår replay-angrep</td>
+<td>Ja (tidsstempler)</td>
+<td>Sårbar uten ekstra tiltak</td>
+</tr>
+</tbody></table>
 
-#### Slik fungerer Kerberos
+<h4>Slik fungerer Kerberos</h4>
 
 Kerberos bruker en tredjepart (Key Distribution Center, KDC) som utsteder billetter. Når du logger på, får du en Ticket Granting Ticket (TGT). Denne bruker du til å be om billetter til spesifikke tjenester — uten at passordet ditt noen gang sendes over nettverket.
 
-### GPO — Group Policy Objects
+<h3>GPO — Group Policy Objects</h3>
 
 Gruppepolicy distribuerer innstillinger til datamaskiner og brukere via OU-er. Eksempler: installer programvare, begrens tilgang til kontrollpanel, sett passordpolicy. Arves fra overordnet OU. Det mest spesifikke policy-nivået vinner.
 
-#### Hvordan GPO-arving fungerer
+<h4>Hvordan GPO-arving fungerer</h4>
 
-- En GPO på domenenivå gjelder alle OU-er under
-- En GPO på en OU overstyrer domenepolicyen for den OU-en
-- "Enforce" (tvungen) kan blokkere overstyring
-- "Block inheritance" på en OU stopper arv fra overordnet
+<ul>
+<li>En GPO på domenenivå gjelder alle OU-er under</li>
+<li>En GPO på en OU overstyrer domenepolicyen for den OU-en</li>
+<li>"Enforce" (tvungen) kan blokkere overstyring</li>
+<li>"Block inheritance" på en OU stopper arv fra overordnet</li>
+</ul>
 
 <div class="nokkelbegreper">
   <div class="nokkelbegreper-title">Nøkkelbegreper</div>
@@ -155,5 +210,6 @@ Gruppepolicy distribuerer innstillinger til datamaskiner og brukere via OU-er. E
     <div class="sjekk-q-answer">Brukere og systemer skal kun ha tilgangene de trenger for å utføre jobben. En selger trenger ikke admin-tilgang til servere. Reduserer risiko for både utilsiktede feil og bevisste angrep.</div>
   </div>
 </div>
+
 
 </RepetisjonLayout>
