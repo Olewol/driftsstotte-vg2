@@ -12,6 +12,10 @@ kilder:
   - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 tags: [vlan, subnetting, cidr, segmentering, nettverk, 802.1q]
 flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+relaterte-oppgaver:
+  - tittel: "IP-plan og nettverkskart for Nordic Cloud Solutions"
+    url: "https://olewol.github.io/oppgaver-for-2IT/driftsstotte/ip-plan-nettverkskart"
+    fag: driftsstotte
 public: true
 video: https://www.youtube.com/watch?v=MzwV67L_6f8
 notebooklm: true
