@@ -4,6 +4,8 @@ import path from 'node:path';
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mermaid from 'astro-mermaid';
+import expressiveCode from 'astro-expressive-code';
+import sitemap from '@astrojs/sitemap';
 import { slugify } from './src/lib/slugify.js';
 import rehypeExternalLinks from 'rehype-external-links';
 
@@ -33,6 +35,8 @@ export default defineConfig({
   integrations: [
     tailwind(),
     mermaid(),
+    expressiveCode(),
+    sitemap(),
   ],
   markdown: {
     remarkPlugins: [
