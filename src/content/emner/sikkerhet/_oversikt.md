@@ -10,6 +10,10 @@ kilder:
   - ndla
   - nsm
   - datatilsynet
+  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+  - https://www.datatilsynet.no/
+  - https://owasp.org/www-project-top-ten/
+  - https://www.digdir.no/informasjonssikkerhet/
 tags: []
 flashcards: false
 public: true

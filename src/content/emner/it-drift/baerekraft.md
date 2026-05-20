@@ -7,6 +7,10 @@ kilder:
   - ndla
   - https://ndla.no/nb/subject:1:43a4e98f-ce79-42b3-9022-297e68266455/topic:1:94c5e317-0f9c-486a-8686-2678683519d5/resource:1:115939
   - https://www.nkom.no/aktuelt/digital-infrastruktur-og-miljo-hvordan-paivirker-vi-klimaet
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
+  - https://learn.microsoft.com/en-us/azure/architecture/framework/
+  - https://snl.no/skytjeneste
 video: https://www.youtube.com/watch?v=68D0v7Y-eIk
 tags: []
 flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd

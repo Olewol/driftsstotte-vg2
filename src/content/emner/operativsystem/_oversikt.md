@@ -5,6 +5,9 @@ kompetansemaal:
   - km-04
 kilder:
   - ndla
+  - https://learn.microsoft.com/nb-no/windows-server/
+  - https://documentation.ubuntu.com/server/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 tags: []
 flashcards: false
 public: true

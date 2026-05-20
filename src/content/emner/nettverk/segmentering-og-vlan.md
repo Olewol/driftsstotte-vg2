@@ -6,6 +6,10 @@ kompetansemaal:
 kilder:
   - ndla
   - https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:66547
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://www.professormesser.com/network-plus/
+  - https://www.cloudflare.com/learning/
+  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 tags: [vlan, subnetting, cidr, segmentering, nettverk, 802.1q]
 flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
 public: true

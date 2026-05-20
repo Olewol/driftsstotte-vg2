@@ -4,6 +4,9 @@ emne: databaser
 kompetansemaal: []
 kilder:
   - ndla
+  - https://www.w3schools.com/sql/
+  - https://dev.mysql.com/doc/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 tags: []
 flashcards: false
 public: true

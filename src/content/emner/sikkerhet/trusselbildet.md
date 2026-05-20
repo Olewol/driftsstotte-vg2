@@ -9,6 +9,9 @@ kilder:
   - owasp
   - https://nsm.no/regelverk-og-hjelp/risiko-2024
   - https://owasp.org/www-project-top-ten/
+  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+  - https://www.datatilsynet.no/
+  - https://www.digdir.no/informasjonssikkerhet/
 notebooklm: true
 tags: []
 flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9

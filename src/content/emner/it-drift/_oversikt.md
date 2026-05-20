@@ -8,6 +8,10 @@ kompetansemaal:
   - km-12
 kilder:
   - ndla
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
+  - https://learn.microsoft.com/en-us/azure/architecture/framework/
+  - https://snl.no/skytjeneste
 tags: []
 flashcards: false
 public: true

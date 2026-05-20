@@ -6,6 +6,10 @@ kompetansemaal:
 kilder:
   - ndla
   - https://ndla.no/nb/subject:1:430c00b5-773a-4933-9f2d-8647038e2f05/topic:2:183060/topic:2:183350/resource:1:115995
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://www.professormesser.com/network-plus/
+  - https://www.cloudflare.com/learning/
+  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 tags: [tcp, ip, protokoll, modell, lag]
 flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
 public: true

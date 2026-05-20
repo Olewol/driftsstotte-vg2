@@ -9,6 +9,9 @@ kilder:
   - microsoft
   - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
   - https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054
+  - https://www.datatilsynet.no/
+  - https://owasp.org/www-project-top-ten/
+  - https://www.digdir.no/informasjonssikkerhet/
 video: https://www.youtube.com/watch?v=R9NCYvR3h3w
 notebooklm: true
 tags: []

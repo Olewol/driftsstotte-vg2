@@ -6,6 +6,10 @@ kompetansemaal:
   - km-05
 kilder:
   - ndla
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://www.professormesser.com/network-plus/
+  - https://www.cloudflare.com/learning/
+  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 tags: []
 flashcards: false
 public: true

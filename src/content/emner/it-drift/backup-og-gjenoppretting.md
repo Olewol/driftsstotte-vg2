@@ -6,6 +6,10 @@ kompetansemaal:
 kilder:
   - ndla
   - https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
+  - https://learn.microsoft.com/en-us/azure/architecture/framework/
+  - https://snl.no/skytjeneste
 video: https://www.youtube.com/watch?v=iL8Lp8w0UIs
 tags: []
 flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd

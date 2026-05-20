@@ -6,6 +6,9 @@ kompetansemaal:
 kilder:
   - ndla
   - https://documentation.ubuntu.com/server/how-to/security/user-management/
+  - https://learn.microsoft.com/nb-no/windows-server/
+  - https://documentation.ubuntu.com/server/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 tags: []
 flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true

@@ -7,6 +7,9 @@ kilder:
   - ndla
   - https://ndla.no/resource:160100
   - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://learn.microsoft.com/en-us/azure/architecture/framework/
+  - https://snl.no/skytjeneste
 video: https://ndla.no/resource:46761
 tags: []
 flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd

@@ -7,6 +7,9 @@ kilder:
   - ndla
   - https://www.w3schools.com/sql/default.asp
   - https://dev.mysql.com/doc/refman/8.0/en/tutorial.html
+  - https://www.w3schools.com/sql/
+  - https://dev.mysql.com/doc/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 notebooklm: true
 tags: []
 flashcards: https://notebooklm.google.com/notebook/e9134332-9a2e-4991-9a72-2807660c7610

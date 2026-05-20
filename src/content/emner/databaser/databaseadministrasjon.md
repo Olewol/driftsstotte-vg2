@@ -7,6 +7,9 @@ kilder:
   - ndla
   - https://ndla.no/subject:1:7e101f30-891d-4076-a70e-1100f9156475/topic:1:a6e7039a-5e1a-4c92-b05b-439f72765366/resource:73797690-3486-444c-bc6d-62725e173e97
   - https://dev.mysql.com/doc/refman/8.0/en/optimization.html
+  - https://www.w3schools.com/sql/
+  - https://dev.mysql.com/doc/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 video: https://www.youtube.com/watch?v=u96rS6Y236M
 notebooklm: true
 tags: []

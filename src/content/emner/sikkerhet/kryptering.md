@@ -8,6 +8,10 @@ kilder:
   - nsm
   - microsoft
   - https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/
+  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+  - https://www.datatilsynet.no/
+  - https://owasp.org/www-project-top-ten/
+  - https://www.digdir.no/informasjonssikkerhet/
 video: https://www.youtube.com/watch?v=N6Tf1_27n0A
 notebooklm: true
 tags: []

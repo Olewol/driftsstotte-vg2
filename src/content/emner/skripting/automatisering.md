@@ -6,6 +6,9 @@ kompetansemaal:
 kilder:
   - ndla
   - https://learn.microsoft.com/nb-no/powershell/scripting/overview
+  - https://learn.microsoft.com/nb-no/powershell/scripting/
+  - https://learnxinyminutes.com/docs/bash/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 tags: []
 flashcards: https://notebooklm.google.com/notebook/15678f10-b24e-462c-b837-076df87bd4b7
 public: true

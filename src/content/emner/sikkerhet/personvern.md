@@ -7,6 +7,10 @@ kilder:
   - ndla
   - datatilsynet
   - https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/
+  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+  - https://www.datatilsynet.no/
+  - https://owasp.org/www-project-top-ten/
+  - https://www.digdir.no/informasjonssikkerhet/
 video: https://www.youtube.com/watch?v=u6p_G7w89Uo
 notebooklm: true
 tags: []

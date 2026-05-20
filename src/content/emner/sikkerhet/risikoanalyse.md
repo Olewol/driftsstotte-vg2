@@ -8,6 +8,10 @@ kilder:
   - nsm
   - datatilsynet
   - https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/
+  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+  - https://www.datatilsynet.no/
+  - https://owasp.org/www-project-top-ten/
+  - https://www.digdir.no/informasjonssikkerhet/
 notebooklm: true
 tags: []
 flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
