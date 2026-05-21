@@ -16,6 +16,7 @@ export async function getStaticPaths() {
 const { note } = Astro.props;
 const { Content } = await render(note);
 const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic } = note.data;
+const pageLang = note.id.endsWith('-en.md') ? 'en' : 'no';
 ---
 <ContentLayout
   title={title}
@@ -31,6 +32,7 @@ const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebo
   video={video}
   quiz={quiz}
   infographic={infographic}
+  language={pageLang}
 >
   <Content />
 </ContentLayout>

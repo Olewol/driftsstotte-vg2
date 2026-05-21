@@ -5,12 +5,13 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  lang?: string;
 }
-const { title, description = 'Driftsstøtte VG2 Informasjonsteknologi' } = Astro.props;
+const { title, description = 'Driftsstøtte VG2 Informasjonsteknologi', lang = 'no' } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 <!doctype html>
-<html lang="no">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />

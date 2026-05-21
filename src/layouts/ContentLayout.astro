@@ -9,6 +9,7 @@ import kompetansemaalData from '../data/kompetansemaal.json';
 
 interface Props {
   title: string;
+  language?: string;
   emne: string;
   uke: number[];
   kompetansemaal: string | string[];
@@ -22,15 +23,16 @@ interface Props {
   quiz?: boolean | string;
   infographic?: boolean | string;
 }
-const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic } = Astro.props;
+const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic, language } = Astro.props;
 const { color, bg } = getEmneColor(emne);
 const ukeStr = uke.length === 0 ? null : uke.length > 1 ? `Uke ${uke[0]}–${uke[uke.length - 1]}` : `Uke ${uke[0]}`;
 const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
 
 const kmArray = Array.isArray(kompetansemaal) ? kompetansemaal : (kompetansemaal ? [kompetansemaal] : []);
 const kmTexts = kmArray.map(km => kompetansemaalData[km as keyof typeof kompetansemaalData] || km);
+const pageLang = language === 'en' ? 'en' : 'no';
 ---
-<BaseLayout title={title}>
+<BaseLayout title={title} lang={pageLang}>
   <article style="max-width:1140px;margin:0 auto;padding:0 32px 80px;">
 
     <!-- Header -->
