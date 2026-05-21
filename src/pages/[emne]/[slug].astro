@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   return notes.map(note => {
     const parts = note.id.split('/'); // e.g. "nettverk/tcp-ip-modellen.md"
     const emne = parts[0];
-    const slug = slugify(parts[1].replace(/\.md$/, ''));
+    const slug = slugify(parts[1].replace(/\.mdx?$/, ''));
     return { params: { emne, slug }, props: { note } };
   });
 }
