@@ -19,7 +19,7 @@ notebooklm: true
 
 ## Introduksjon
 
-Skyberegning (cloud computing) har endret måten virksomheter bygger og drifter IT-systemer. I stedet for å eie og vedlikeholde egne servere kan en virksomhet leie datakraft, lagring og programvare over internett – og betale kun for det de bruker.
+Skyberegning (cloud computing) har endret måten virksomheter bygger og drifter IT-systemer.[^1] I stedet for å eie og vedlikeholde egne servere kan en virksomhet leie datakraft, lagring og programvare over internett – og betale kun for det de bruker.
 
 AWS definerer det slik: *"Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing."*
 
@@ -33,7 +33,7 @@ I dag bruker de fleste virksomheter en eller annen form for skytjeneste, fra e-p
 
 #### IaaS – Infrastructure as a Service
 
-IaaS gir tilgang til grunnleggende IT-infrastruktur over nett: virtuelle maskiner, lagring, nettverk og brannmurer. Du leier infrastruktur, men er selv ansvarlig for operativsystem, applikasjoner og konfigurering.
+IaaS gir tilgang til grunnleggende IT-infrastruktur over nett: virtuelle maskiner, lagring, nettverk og brannmurer.[^2] Du leier infrastruktur, men er selv ansvarlig for operativsystem, applikasjoner og konfigurering.
 
 > "In an IaaS model, the cloud provider is responsible for maintaining the hardware, network connectivity (to the internet), and physical security. You're responsible for everything else: operating system installation, configuration, and maintenance; network configuration; database and storage configuration." – Microsoft Learn
 
@@ -99,7 +99,7 @@ Bruk av flere offentlige skyleverandører parallelt (f.eks. Azure for e-post og 
 
 ### Shared Responsibility Model
 
-En viktig del av å jobbe med skytjenester er å forstå hvem som er ansvarlig for hva. Dette kalles *Shared Responsibility Model*:
+En viktig del av å jobbe med skytjenester er å forstå hvem som er ansvarlig for hva. Dette kalles *Shared Responsibility Model*:[^3]
 
 - **Leverandøren** er alltid ansvarlig for den fysiske infrastrukturen (bygninger, servere, nettverk).
 - **Kunden** er alltid ansvarlig for sine egne data og tilgangsstyring.
@@ -150,7 +150,7 @@ Norske skyleverandører som Telenor og Basefarm tilbyr alternativer for virksomh
 
 ### FinOps – skyøkonomi i praksis
 
-Sky-tjenester er fleksible, men kan føre til ukontrollerte kostnader hvis de ikke styres aktivt. **FinOps** (Cloud Financial Management) er en praksis for å forstå, kontrollere og optimalisere skykostnader i samarbeid mellom IT, finans og forretning.
+Sky-tjenester er fleksible, men kan føre til ukontrollerte kostnader hvis de ikke styres aktivt. **FinOps** (Cloud Financial Management) er en praksis for å forstå, kontrollere og optimalisere skykostnader i samarbeid mellom IT, finans og forretning.[^4]
 
 Typiske tiltak:
 - Slå av ubrukte ressurser automatisk (f.eks. test-servere om natten)
@@ -161,7 +161,7 @@ Typiske tiltak:
 
 ### GDPR og datalagring i sky – norsk perspektiv
 
-Personvernforordningen (GDPR) gjelder i Norge og stiller strenge krav til behandling og lagring av personopplysninger. Nøkkelspørsmål ved bruk av skytjenester:
+Personvernforordningen (GDPR) gjelder i Norge og stiller strenge krav til behandling og lagring av personopplysninger.[^5] Nøkkelspørsmål ved bruk av skytjenester:
 
 - **Hvor lagres dataene?** EU/EØS-lagring er krav for personopplysninger uten spesielt grunnlag.
 - **Hvem har tilgang?** Skyleverandøren og eventuelle underleverandører må behandle data i samsvar med GDPR.
@@ -321,3 +321,12 @@ FinOps :: Cloud Financial Management – praksis for å forstå og optimalisere 
 - [[personvern]]
 - [[virtuelle-losninger]]
 - [[backup-og-gjenoppretting]]
+
+## Kilder
+
+[^1]: [NDLA: Hva er skytjenester?](https://ndla.no/resource:160100) – Introduksjon til skyberegning og skytjenester.
+[^2]: [Microsoft Learn: Beskrive skytjenestetyper](https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/) – IaaS, PaaS og SaaS forklart.
+[^3]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – Shared Responsibility Model og ansvarsdeling.
+[^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – FinOps og kostnadsstyring i sky.
+[^5]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – GDPR og datasuverenitet ved bruk av skytjenester.
+

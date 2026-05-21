@@ -18,7 +18,7 @@ public: true
 
 ## Introduksjon
 
-SQL (Structured Query Language) er standardspråket for å kommunisere med relasjonsdatabaser. Det ble standardisert av ANSI i 1986 og ISO i 1987, og brukes i dag i MySQL, PostgreSQL, SQLite, Microsoft SQL Server og mange andre systemer. Selv om dialektene varierer litt, er kjernesyntaksen den samme overalt.
+SQL (Structured Query Language) er standardspråket for å kommunisere med relasjonsdatabaser. Det ble standardisert av ANSI i 1986 og ISO i 1987, og brukes i dag i MySQL, PostgreSQL, SQLite, Microsoft SQL Server og mange andre systemer.[^2] Selv om dialektene varierer litt, er kjernesyntaksen den samme overalt.
 
 SQL er delt inn i tre hoveddeler:
 
@@ -50,7 +50,7 @@ Her er `id` satt til `PRIMARY KEY` og `AUTO_INCREMENT`, noe som betyr at MySQL a
 
 ### Primærnøkkel og fremmednøkkel
 
-En **primærnøkkel** (PRIMARY KEY) identifiserer én rad unikt i tabellen. Den kan ikke være NULL og kan ikke ha duplikater.
+En **primærnøkkel** (PRIMARY KEY) identifiserer én rad unikt i tabellen. Den kan ikke være NULL og kan ikke ha duplikater.[^3]
 
 En **fremmednøkkel** (FOREIGN KEY) peker til primærnøkkelen i en annen tabell og skaper en relasjon mellom tabellene. Fremmednøkkelen sikrer **referanseintegritet** — du kan ikke legge inn en fremmednøkkelverdi som ikke finnes i kildetabellen.
 
@@ -74,7 +74,7 @@ Viktig: når du setter inn data med fremmednøkkel, må **parent-tabellen** (`ro
 
 ### SELECT — hente data
 
-`SELECT` er den mest brukte kommandoen i SQL. Dette er **R** i CRUD — lese (Read) data.
+`SELECT` er den mest brukte kommandoen i SQL. Dette er **R** i CRUD — lese (Read) data.[^4]
 
 ```sql
 -- Hent alle kolonner fra utstyr
@@ -404,3 +404,11 @@ Tabell-alias :: Kortform for et tabellnavn i en spørring (f.eks. FROM utstyr AS
 - [W3Schools: SQL JOIN](https://www.w3schools.com/sql/sql_join.asp)
 - [MySQL 8.0 offisiell tutorial](https://dev.mysql.com/doc/refman/8.0/en/tutorial.html)
 - [NDLA: Legge inn data i en database](https://ndla.no/r/konseptutvikling-og-programmering-im-ikm-vg1/legge-inn-data-i-en-database/22e4bdf1fd)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: W3Schools. *SQL Tutorial*. [w3schools.com](https://www.w3schools.com/sql/default.asp)
+[^3]: MySQL. *Tutorial*. [dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/tutorial.html)
+[^4]: W3Schools. *SQL*. [w3schools.com](https://www.w3schools.com/sql/)
+[^5]: MySQL. *Documentation*. [dev.mysql.com](https://dev.mysql.com/doc/)

@@ -45,7 +45,7 @@ Automatisering reduserer menneskelige feil, frigjør tid og gjør driften mer fo
 
 ### Windows Task Scheduler
 
-Task Scheduler (Oppgaveplanlegger) er Windows' innebygde system for å planlegge og kjøre programmer og skript automatisk.
+Task Scheduler (Oppgaveplanlegger) er Windows' innebygde system for å planlegge og kjøre programmer og skript automatisk.[^2]
 
 #### Konsepter
 
@@ -120,7 +120,7 @@ schtasks /run /tn "DagligBackup"
 
 ### Linux Cron
 
-**Cron** er Linux' daemon for å kjøre planlagte oppgaver. Oppgavene defineres i en **crontab**-fil (cron table) med en spesifikk syntaks.
+**Cron** er Linux' daemon for å kjøre planlagte oppgaver. Oppgavene defineres i en **crontab**-fil (cron table) med en spesifikk syntaks.[^4]
 
 #### Crontab-syntaks
 
@@ -517,3 +517,10 @@ Deklarativ IaC :: Konfigurasjon som beskriver ønsket sluttilstand, ikke fremgan
 - [man7.org – crontab(5)](https://man7.org/linux/man-pages/man5/crontab.5.html)
 - [IBM – Hva er Infrastructure as Code?](https://www.ibm.com/topics/infrastructure-as-code)
 - [Microsoft Learn – PowerShell på norsk](https://learn.microsoft.com/nb-no/powershell/scripting/overview)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: Microsoft. *PowerShell Scripting Overview*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/powershell/scripting/overview)
+[^3]: Microsoft. *PowerShell Scripting*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/powershell/scripting/)
+[^4]: Learn X in Y Minutes. *Bash*. [learnxinyminutes.com](https://learnxinyminutes.com/docs/bash/)

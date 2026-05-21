@@ -21,7 +21,7 @@ notebooklm: true
 
 ## Introduksjon
 
-OSI-modellen (Open Systems Interconnection) er en 7-lags referansemodell utviklet av ISO på slutten av 1970-tallet. Den ble aldri den dominerende implementasjonen i praksis — det ble TCP/IP — men OSI er blitt den universelle standarden for å *beskrive og forstå* nettverkskommunikasjon. I feilsøking er spørsmålet "på hvilket lag oppstår problemet?" en av de mest nyttige du kan stille.
+OSI-modellen (Open Systems Interconnection) er en 7-lags referansemodell utviklet av ISO på slutten av 1970-tallet[^1]. Den ble aldri den dominerende implementasjonen i praksis — det ble TCP/IP — men OSI er blitt den universelle standarden for å *beskrive og forstå* nettverkskommunikasjon. I feilsøking er spørsmålet "på hvilket lag oppstår problemet?" en av de mest nyttige du kan stille.
 
 OSI-modellen er tett knyttet til [[tcp-ip-modellen]], som er det rammeverket internett faktisk bruker i praksis. Å forstå OSI er nøkkelen til å forstå protokoller som [[nettverksprotokoller]] beskriver, samt tjenestene i [[dns-og-dhcp]] og [[serverroller]].
 
@@ -39,7 +39,7 @@ OSI-modellen er tett knyttet til [[tcp-ip-modellen]], som er det rammeverket int
 | 2 | Data Link | Datalinklaget | Frames, MAC-adresser, feildeteksjon | Ethernet, ARP, 802.11 |
 | 1 | Physical | Fysisk lag | Bitsending over medium | UTP-kabel, fiber, WiFi-radio |
 
-### Detaljert beskrivelse av hvert lag
+### Detaljert beskrivelse av hvert lag[^1]
 
 **Lag 1 — Fysisk lag**
 Det fysiske laget definerer de elektriske, optiske og trådløse signalene som representerer biter (0 og 1). Det inkluderer kontakttyper (RJ-45), kabeltyper (Cat5e, Cat6, fiber), og overføringsmetoder. Ingenting her kjenner til adresser eller logisk struktur — det er bare bits.
@@ -71,7 +71,7 @@ Det øverste laget er det brukeren møter. Her befinner seg protokollene som app
 
 ### Innkapsling og PDU
 
-Når data sendes nedover gjennom OSI-lagene, legger hvert lag til sin egen kontrollinformasjon (header). Denne prosessen kalles **innkapsling (encapsulation)**. Hvert lag opererer med sin egen **PDU (Protocol Data Unit)**: på lag 4 kalles den *Segment*, på lag 3 *Pakke*, og på lag 2 *Ramme*. Ved mottak pakkes det ut i omvendt rekkefølge — hvert lag leser og fjerner sin header.
+Når data sendes nedover gjennom OSI-lagene, legger hvert lag til sin egen kontrollinformasjon (header). Denne prosessen kalles **innkapsling (encapsulation)**[^1]. Hvert lag opererer med sin egen **PDU (Protocol Data Unit)**[^2]: på lag 4 kalles den *Segment*, på lag 3 *Pakke*, og på lag 2 *Ramme*. Ved mottak pakkes det ut i omvendt rekkefølge — hvert lag leser og fjerner sin header.
 
 ### Huskeregel
 
@@ -96,7 +96,7 @@ Og ovenfra og ned (lag 7 → 1):
 | Datalinklaget | 2 | Datalinklaget |
 | Fysisk lag | 1 | Fysisk lag |
 
-OSI-modellens lag 5, 6 og 7 tilsvarer samlet applikasjonslaget i TCP/IP. I praksis er funksjonene fra presentasjons- og sesjonslaget implementert direkte i applikasjonsprotokoller eller i TLS.
+OSI-modellens lag 5, 6 og 7 tilsvarer samlet applikasjonslaget i TCP/IP[^3]. I praksis er funksjonene fra presentasjons- og sesjonslaget implementert direkte i applikasjonsprotokoller eller i TLS.
 
 ### OSI i feilsøking
 
@@ -225,6 +225,13 @@ Innkapsling (Encapsulation) :: Prosessen der data pakkes inn i kontrollinformasj
 PDU (Protocol Data Unit) :: Betegnelsen på informasjonsenheten på et spesifikt lag: Segment (lag 4), Pakke (lag 3), Ramme (lag 2)
 Lag (Layers) :: De syv logiske nivåene i OSI-modellen som deler opp oppgavene i nettverkskommunikasjon for å sikre standardisering og forenkle feilsøking
 Referansemodell :: Et teoretisk rammeverk som brukes for å forstå og beskrive hvordan komplekse prosesser som nettverkskommunikasjon fungerer
+
+## Kilder
+
+[^1]: Cloudflare Learning. (2025). What is the OSI Model? https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/
+[^2]: Professor Messer. (2025). Network+ Study Guide — OSI Model. https://www.professormesser.com/network-plus/
+[^3]: NDLA. (2024). 5-lags TCP/IP-modell. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6
+[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 
 ## Ressurser
 

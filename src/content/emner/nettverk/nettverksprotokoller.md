@@ -21,7 +21,7 @@ notebooklm: true
 
 ## Introduksjon
 
-En nettverksprotokoll er et sett med regler som definerer hvordan enheter kommuniserer. Uten protokoller ville nettverkskommunikasjon være som å snakke to forskjellige språk — ingen ville forstå hverandre. Å kjenne de viktigste protokollene, hva de brukes til og hvilke portnumre de kjører på, er grunnleggende kunnskap for enhver driftstøtter — både for konfigurasjon og feilsøking.
+En nettverksprotokoll er et sett med regler som definerer hvordan enheter kommuniserer[^1]. Uten protokoller ville nettverkskommunikasjon være som å snakke to forskjellige språk — ingen ville forstå hverandre. Å kjenne de viktigste protokollene, hva de brukes til og hvilke portnumre de kjører på, er grunnleggende kunnskap for enhver driftstøtter — både for konfigurasjon og feilsøking.
 
 Protokollene befinner seg på ulike lag i [[osi-modellen]] og [[tcp-ip-modellen]]. Portnumre og transportprotokollene TCP og UDP er fundamentet som alle applikasjonsprotokoller bygger på. Protokollene for [[dns-og-dhcp]] er sentrale nettverkstjenester som bruker disse mekanismene.
 
@@ -38,9 +38,9 @@ Alle applikasjonsprotokoller kjører enten over TCP eller UDP på transportlaget
 | **Hastighet** | Tregere (overhead for ack/retransmit) | Raskere |
 | **Bruksområde** | Web, e-post, filoverføring, SSH | DNS, streaming, VoIP, spill |
 
-**TCP (Transmission Control Protocol)** er en tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll og bekreftelser.
+**TCP (Transmission Control Protocol)** er en tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll og bekreftelser[^2].
 
-**UDP (User Datagram Protocol)** er en forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak, ofte brukt til streaming og gaming.
+**UDP (User Datagram Protocol)** er en forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak, ofte brukt til streaming og gaming[^2].
 
 ### Portnumre
 
@@ -51,7 +51,7 @@ Kategorier:
 - **Registered ports (1024–49151)**: brukt av applikasjoner
 - **Dynamic/ephemeral ports (49152–65535)**: tildeles midlertidig til klientforbindelser
 
-En **three-way handshake** er prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN → SYN-ACK → ACK).
+En **three-way handshake** er prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN → SYN-ACK → ACK)[^3].
 
 ### Viktige protokoller
 
@@ -71,11 +71,11 @@ En **three-way handshake** er prosessen TCP bruker for å etablere en stabil for
 | DHCP | 67 (server), 68 (klient) | UDP | Automatisk IP-tildeling | Ingen autentisering |
 | SNMP | 161 (agent), 162 (trap) | UDP | Nettverksovervåking og -administrasjon | SNMPv3 er kryptert |
 
-### Detaljert gjennomgang
+### Detaljert gjennomgang[^5]
 
 #### HTTP og HTTPS (port 80/443)
 
-HTTP (Hypertext Transfer Protocol) er grunnlaget for webkommunikasjon. Protokollen bruker en **forespørsel/svar-modell**:
+HTTP (Hypertext Transfer Protocol) er grunnlaget for webkommunikasjon[^2]. Protokollen bruker en **forespørsel/svar-modell**:
 
 ```
 Klient → Server:
@@ -96,11 +96,11 @@ Content-Type: text/html
 - 4xx Klientfeil: `400 Bad Request`, `403 Forbidden`, `404 Not Found`
 - 5xx Serverfeil: `500 Internal Server Error`, `503 Service Unavailable`
 
-**HTTPS** = HTTP + TLS. Forbindelsen krypteres med TLS (Transport Layer Security) — det er dette hengelåsikonet i nettleseren betyr. All moderne webtrafikk bør bruke HTTPS.
+**HTTPS** = HTTP + TLS. Forbindelsen krypteres med TLS (Transport Layer Security) — det er dette hengelåsikonet i nettleseren betyr[^2]. All moderne webtrafikk bør bruke HTTPS.
 
 #### FTP og SFTP (port 21/22)
 
-FTP (File Transfer Protocol) bruker to separate forbindelser: **kontrollkanal** (port 21) for kommandoer og **datakanal** (port 20) for selve filoverføringen. FTP er ukryptert — brukernavn og passord sendes i klartekst.
+FTP (File Transfer Protocol) bruker to separate forbindelser: **kontrollkanal** (port 21) for kommandoer og **datakanal** (port 20) for selve filoverføringen[^2]. FTP er ukryptert — brukernavn og passord sendes i klartekst.
 
 **SFTP** (SSH File Transfer Protocol) er en komplett erstatning som kjører over SSH (port 22) og er kryptert fra start til slutt. SFTP er standarden i dag.
 
@@ -108,7 +108,7 @@ Verktøy: FileZilla (grafisk klient for FTP/SFTP), WinSCP (Windows), scp-kommand
 
 #### SSH (port 22)
 
-SSH (Secure Shell) gir sikker fjerntilgang til en kommandolinje — primært på Linux/Unix-servere, men også nettverksutstyr som svitsjer og rutere.
+SSH (Secure Shell) gir sikker fjerntilgang til en kommandolinje[^3] — primært på Linux/Unix-servere, men også nettverksutstyr som svitsjer og rutere.
 
 ```bash
 # Koble til server via SSH
@@ -138,7 +138,7 @@ E-postsystemet bruker forskjellige protokoller for sending og mottak:
 
 SNMP (Simple Network Management Protocol) brukes til å overvåke og administrere nettverksenheter (svitsjer, rutere, servere). En SNMP-**agent** kjører på hver enhet og rapporterer tilstand. En **NMS** (Network Management Station) poller agentene på port 161. Agenter kan sende alarmer (**traps**) til NMS på port 162 ved hendelser.
 
-SNMPv1 og v2c bruker "community strings" (passord i klartekst). **SNMPv3** er den sikre versjonen med kryptering og autentisering.
+SNMPv1 og v2c bruker "community strings" (passord i klartekst). **SNMPv3** er den sikre versjonen med kryptering og autentisering[^3].
 
 ### Sikkerhet og porter
 
@@ -277,6 +277,14 @@ SNMP :: Simple Network Management Protocol — overvåking av nettverksenheter p
 TCP (Transmission Control Protocol) :: En tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll
 UDP (User Datagram Protocol) :: En forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak
 Three-way Handshake :: Prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN, SYN-ACK, ACK)
+
+## Kilder
+
+[^1]: SNL. (2024). Protokoll — IT. https://snl.no/protokoll_-_it
+[^2]: Cloudflare Learning. (2025). What is TCP/IP? https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/
+[^3]: Professor Messer. (2025). Network+ Study Guide — Protocols and Ports. https://www.professormesser.com/network-plus/
+[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^5]: NDLA. (2024). TCP, UDP og porter. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e
 
 ## Ressurser
 

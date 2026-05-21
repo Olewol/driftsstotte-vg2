@@ -29,7 +29,7 @@ Denne artikkelen tar for seg tre kjerneområder i MySQL-administrasjon: **bruker
 
 ### Brukertilgang i MySQL
 
-MySQL håndterer tilgangskontroll i to steg:
+MySQL håndterer tilgangskontroll i to steg:[^2]
 
 1. **Autentisering** — kan brukeren koble til serveren? (riktig brukernavn og passord)
 2. **Autorisering** — hva har brukeren lov til å gjøre? (hvilke databaser, tabeller og operasjoner)
@@ -125,7 +125,7 @@ Roller gjør det mye enklere å administrere tilganger når mange brukere skal h
 
 ### Backup med mysqldump
 
-`mysqldump` er det enkleste verktøyet for å ta **logisk backup** av MySQL-databaser. Det eksporterer databasestrukturen og dataene som SQL-setninger som kan kjøres på nytt for å gjenopprette databasen.
+`mysqldump` er det enkleste verktøyet for å ta **logisk backup** av MySQL-databaser. Det eksporterer databasestrukturen og dataene som SQL-setninger som kan kjøres på nytt for å gjenopprette databasen.[^5]
 
 Logisk backup er bærbar: du kan gjenopprette til en annen maskin, et annet operativsystem, eller en nyere versjon av MySQL.
 
@@ -179,7 +179,7 @@ Backup-filer bør lagres på en separat disk eller ekstern lokasjon — en backu
 
 #### Hva er en indeks?
 
-En indeks er en datastruktur (typisk et B-tre) som gjør oppslag i en kolonne raskere, på bekostning av litt mer diskplass og litt tregere innsetting/oppdatering. Primærnøkler og kolonner med `UNIQUE` får automatisk en indeks. Andre kolonner som brukes mye i `WHERE`-setninger bør du legge til manuelt.
+En indeks er en datastruktur (typisk et B-tre) som gjør oppslag i en kolonne raskere, på bekostning av litt mer diskplass og litt tregere innsetting/oppdatering.[^3] Primærnøkler og kolonner med `UNIQUE` får automatisk en indeks. Andre kolonner som brukes mye i `WHERE`-setninger bør du legge til manuelt.
 
 ```sql
 -- Opprett en indeks på type-kolonnen
@@ -448,3 +448,11 @@ Indeksering :: Opprettelse av en datastruktur som fungerer som hurtigvei for sø
 - [PostgreSQL: Backup og restore](https://www.postgresql.org/docs/current/backup.html)
 - [NDLA: Databaseadministrasjon](https://ndla.no/subject:1:7e101f30-891d-4076-a70e-1100f9156475/topic:1:a6e7039a-5e1a-4c92-b05b-439f72765366/resource:73797690-3486-444c-bc6d-62725e173e97)
 - [YouTube: MySQL Administration and User Management — Database Star (12 min)](https://www.youtube.com/watch?v=u96rS6Y236M)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: NDLA. *Databaseadministrasjon*. [ndla.no](https://ndla.no/subject:1:7e101f30-891d-4076-a70e-1100f9156475/topic:1:a6e7039a-5e1a-4c92-b05b-439f72765366/resource:73797690-3486-444c-bc6d-62725e173e97)
+[^3]: MySQL. *Optimization*. [dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)
+[^4]: W3Schools. *SQL Tutorial*. [w3schools.com](https://www.w3schools.com/sql/)
+[^5]: MySQL. *Documentation*. [dev.mysql.com](https://dev.mysql.com/doc/)

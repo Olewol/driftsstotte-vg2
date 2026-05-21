@@ -17,7 +17,7 @@ notebooklm: true
 
 ## Introduksjon
 
-**Active Directory (AD)** er Microsofts katalogtjeneste og er hjertet i Windows-baserte bedriftsmiljøer. AD sentraliserer administrasjon av brukere, datamaskiner, grupper og policyer for hele organisasjonen. I stedet for å administrere hver maskin separat, styrer du alt fra én plass — domenekontrolleren.
+**Active Directory (AD)** er Microsofts katalogtjeneste og er hjertet i Windows-baserte bedriftsmiljøer.[^2] AD sentraliserer administrasjon av brukere, datamaskiner, grupper og policyer for hele organisasjonen. I stedet for å administrere hver maskin separat, styrer du alt fra én plass — domenekontrolleren.
 
 I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den vanligste løsningen for brukeradministrasjon. Denne artikkelen dekker struktur, komponenter og praktisk bruk. AD henger tett sammen med [[dns-og-dhcp]] — uten korrekt DNS fungerer ikke domenepålogging. Se også [[serverroller]] for oversikt over hvilke roller som installeres på en Windows Server, og [[bruker-og-tilgangsstyring]] for detaljer om rettigheter og grupper.
 
@@ -80,7 +80,7 @@ Den første DC-en i et domene kalles også den første domeneopprettende kontrol
 
 ### Kerberos-autentisering
 
-AD bruker **Kerberos** som standard autentiseringsprotokoll (i stedet for det eldre NTLM).
+AD bruker **Kerberos** som standard autentiseringsprotokoll (i stedet for det eldre NTLM).[^2]
 
 Kort forklart:
 1. Brukeren logger inn og sender brukernavnet til DC-en
@@ -103,7 +103,7 @@ Standardbeholderen `Users` inneholder de innebygde kontoene: `Administrator`, `G
 
 ### Gruppepolicy (GPO)
 
-**Group Policy Objects (GPO)** er en av de kraftigste funksjonene i AD. En GPO er et sett med innstillinger som automatisk distribueres til brukere og maskiner i en OU, et domene eller en site.
+**Group Policy Objects (GPO)** er en av de kraftigste funksjonene i AD. En GPO er et sett med innstillinger som automatisk distribueres til brukere og maskiner i en OU, et domene eller en site.[^3]
 
 GPO-er kan styre:
 - Passordpolicyer (lengde, kompleksitet, levetid)
@@ -324,3 +324,10 @@ Navnestandard :: Konsistent konvensjon for brukernavn i AD (f.eks. fornavn.etter
 - [Microsoft Learn: Active Directory Users and Computers](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc754217(v=ws.11))
 - [NDLA: Datalab med Windows Server og generisk nettverk](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/datalab-med-windows-server-og-generisk-nettverk/6fbbe0f727)
 - [Microsoft Learn: Logisk strukturdesign for AD DS](https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/plan/active-directory-domain-services-logical-structure-design-guide)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: Microsoft. *Active Directory Domain Services – Logisk strukturdesign*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/plan/active-directory-domain-services-logical-structure-design-guide)
+[^3]: Microsoft. *Windows Server-dokumentasjon*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/windows-server/)
+[^4]: Ubuntu. *Server Documentation*. [documentation.ubuntu.com](https://documentation.ubuntu.com/server/)

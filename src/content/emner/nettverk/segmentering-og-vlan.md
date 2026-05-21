@@ -35,14 +35,14 @@ For å forstå segmentering er det nyttig å se det i sammenheng med [[osi-model
 
 #### IPv4-adresser
 
-En IPv4-adresse er 32 bit lang og skrives som fire desimale tall separert av punktum (dotted decimal notation):
+En IPv4-adresse er 32 bit lang[^2] og skrives som fire desimale tall separert av punktum (dotted decimal notation):
 
 ```
 192  .  168  .   1  .  10
 11000000.10101000.00000001.00001010
 ```
 
-Hvert tall (oktet) kan være fra 0 til 255 (8 bit). Det gir teoretisk ca. **4,29 milliarder** unike adresser — et tall som er oppbrukt, noe som er en av grunnene til IPv6.
+Hvert tall (oktet) kan være fra 0 til 255 (8 bit). Det gir teoretisk ca. **4,29 milliarder** unike adresser[^2] — et tall som er oppbrukt, noe som er en av grunnene til IPv6.
 
 #### Nettverksdel og vertsdel
 
@@ -54,7 +54,7 @@ En IP-adresse er delt i to:
 
 #### CIDR-notasjon
 
-CIDR (Classless Inter-Domain Routing) er en kompakt måte å skrive subnettmasken på — som et suffiks etter IP-adressen:
+CIDR (Classless Inter-Domain Routing) er en kompakt måte å skrive subnettmasken på[^1] — som et suffiks etter IP-adressen:
 
 | CIDR | Subnettmaske | Antall verter | Typisk bruk |
 |------|-------------|---------------|-------------|
@@ -82,7 +82,7 @@ Hvert subnett kan bruke /26 (62 verter per subnett):
 
 #### Private adresserom
 
-Disse adressene rutes ikke på internett og brukes til interne nettverk:
+Disse adressene rutes ikke på internett og brukes til interne nettverk[^2]:
 
 | Adresseblokk | CIDR | Antall adresser |
 |--------------|------|-----------------|
@@ -96,11 +96,11 @@ Disse adressene rutes ikke på internett og brukes til interne nettverk:
 
 #### Hva er et VLAN?
 
-Et VLAN (Virtual Local Area Network) er en logisk inndeling av et fysisk nettverk. Med VLAN kan du ha tre separate nettverk på én fysisk svitsj — enhetene i hvert VLAN ser hverandre, men ikke enheter i andre VLAN (med mindre du eksplisitt tillater det via en ruter).
+Et VLAN (Virtual Local Area Network) er en logisk inndeling av et fysisk nettverk[^3]. Med VLAN kan du ha tre separate nettverk på én fysisk svitsj — enhetene i hvert VLAN ser hverandre, men ikke enheter i andre VLAN (med mindre du eksplisitt tillater det via en ruter).
 
 #### IEEE 802.1Q — VLAN-tagging
 
-Standarden for VLAN er **IEEE 802.1Q**. Den definerer hvordan en VLAN-tag legges til i Ethernet-rammen:
+Standarden for VLAN er **IEEE 802.1Q**[^4]. Den definerer hvordan en VLAN-tag legges til i Ethernet-rammen:
 
 ```
 [Dest MAC][Src MAC][802.1Q tag][EtherType][Data][FCS]
@@ -117,11 +117,11 @@ VLAN ID 0 og 4095 er reservert; brukbare VLAN-ID-er er 1–4094. **IEEE 802.1Q**
 | **Access-port** | Tilhører ett VLAN | Untagged (taggen fjernes) | Sluttenheter (PC, printer) |
 | **Trunk-port** | Bærer trafikk for flere VLAN | Tagged (taggen beholdes) | Forbindelser mellom svitsjer og til ruter |
 
-En PC på en access-port "vet" ikke at den er i et VLAN — den ser bare et vanlig nettverk. Taggen legges til av svitsjen og fjernes på mottakersiden.
+En PC på en access-port "vet" ikke at den er i et VLAN[^4] — den ser bare et vanlig nettverk. Taggen legges til av svitsjen og fjernes på mottakersiden.
 
 En **trunk-port** er altså en svitsjeport konfigurert for å bære trafikk fra flere VLAN samtidig ved å beholde VLAN-taggene i datapakken.
 
-**Native VLAN** er VLAN-et som mottar *untagget* trafikk på en trunk-port (standard er VLAN 1). Det anbefales å endre native VLAN fra 1 av sikkerhetshensyn.
+**Native VLAN** er VLAN-et som mottar *untagget* trafikk på en trunk-port[^3] (standard er VLAN 1). Det anbefales å endre native VLAN fra 1 av sikkerhetshensyn.
 
 #### Hvorfor segmentere med VLAN?
 
@@ -261,6 +261,14 @@ Broadcast-domene :: Området der broadcast-trafikk spres; hvert VLAN er et eget 
 /24-nettverk :: Subnett med 256 adresser (254 brukbare), subnettmaske 255.255.255.0
 Private adresser :: IP-adresser (10.x.x.x, 172.16-31.x.x, 192.168.x.x) som ikke rutes på internett
 IEEE 802.1Q (standard) :: Den internasjonale standarden for VLAN-tagging i Ethernet-rammer, som muliggjør flere logiske nettverk på én fysisk forbindelse
+
+## Kilder
+
+[^1]: NDLA. (2024). IPv4. https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02
+[^2]: Cloudflare Learning. (2025). What is IP? https://www.cloudflare.com/learning/network-layer/what-is-an-ip-address/
+[^3]: Professor Messer. (2025). Network+ Study Guide — VLANs and Switching. https://www.professormesser.com/network-plus/
+[^4]: NDLA. (2024). Virtuelt lokalnettverk VLAN. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88
+[^5]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 
 ## Ressurser
 

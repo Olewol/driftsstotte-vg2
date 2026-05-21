@@ -29,9 +29,9 @@ Virtuelle løsninger henger tett sammen med [[segmentering-og-vlan]], siden virt
 
 ### Hva er virtualisering?
 
-Virtualisering er teknologien som lar en fysisk datamaskin kjøre flere isolerte virtuelle maskiner (VM-er) samtidig. Hver VM kjører sitt eget operativsystem og sine egne applikasjoner, og "tror" at den er en selvstendig fysisk maskin.
+Virtualisering er teknologien som lar en fysisk datamaskin kjøre flere isolerte virtuelle maskiner (VM-er) samtidig[^4]. Hver VM kjører sitt eget operativsystem og sine egne applikasjoner, og "tror" at den er en selvstendig fysisk maskin.
 
-En **hypervisor** er programvaren som administrerer de virtuelle maskinene og fordeler fysiske ressurser (CPU, RAM, disk, nettverk) mellom dem.
+En **hypervisor** er programvaren som administrerer de virtuelle maskinene og fordeler fysiske ressurser (CPU, RAM, disk, nettverk) mellom dem[^2].
 
 ### Type 1 vs. Type 2 hypervisorer
 
@@ -45,7 +45,7 @@ En **hypervisor** er programvaren som administrerer de virtuelle maskinene og fo
 
 #### Type 1: Microsoft Hyper-V
 
-Hyper-V er Microsofts Type 1-hypervisor og er tilgjengelig som en serverrolle i Windows Server. Den kan også aktiveres som funksjon i Windows 10/11 Pro.
+Hyper-V er Microsofts Type 1-hypervisor og er tilgjengelig som en serverrolle i Windows Server[^1]. Den kan også aktiveres som funksjon i Windows 10/11 Pro.
 
 Nøkkelbegreper i Hyper-V:
 - **Root partition**: Windows Server-installasjonen med tilgang til faktisk maskinvare
@@ -88,7 +88,7 @@ En **virtuell svitsj (vSwitch)** er en programvarebasert nettverkssvitsj som lar
 | **Intern** | Kommunikasjon mellom host og VM-er — ikke ut på fysisk nettverk | Host administrerer VM-er, delt nett |
 | **Privat** | Kun mellom VM-er — host har ikke tilgang | Isolerte testmiljøer |
 
-#### VirtualBox nettverksmodi
+#### VirtualBox nettverksmodi[^1]
 
 | Modus | VM ser | VM nås fra | Typisk bruk |
 |-------|--------|-----------|-------------|
@@ -99,7 +99,7 @@ En **virtuell svitsj (vSwitch)** er en programvarebasert nettverkssvitsj som lar
 
 ### VLAN i virtuelle nettverk
 
-Virtuelle svitsjer støtter VLAN-tagging. En VM kan tilordnes et bestemt VLAN-ID, slik at den logisk befinner seg i det samme VLAN-et som fysiske maskiner i samme segment. Dette er nøkkelen til kompetansemål km-02: virtuelle løsninger integreres i de segmenterte nettverkene.
+Virtuelle svitsjer støtter VLAN-tagging[^3]. En VM kan tilordnes et bestemt VLAN-ID, slik at den logisk befinner seg i det samme VLAN-et som fysiske maskiner i samme segment. Dette er nøkkelen til kompetansemål km-02: virtuelle løsninger integreres i de segmenterte nettverkene.
 
 Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klient-VM-er tilordnes VLAN 10 (Ansatte) — nøyaktig slik fysiske maskiner ville vært plassert.
 
@@ -253,6 +253,13 @@ Root partition :: Hyper-V-terminologi for Windows Server-installasjonen med tilg
 Child partition :: Hyper-V-terminologi for en gjeste-VM som kun ser virtuell/emulert maskinvare
 Virtuell Svitsj (vSwitch) :: En programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med hverandre og fysiske nettverk via VLAN
 Isolasjon :: Prinsippet om at en virtuell maskin er separert fra andre maskiner og vertssystemet, slik at feil eller virus i én VM ikke sprer seg
+
+## Kilder
+
+[^1]: Microsoft Learn. (2025). Hyper-V Technology Overview. https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview
+[^2]: Professor Messer. (2025). Network+ Study Guide — Virtualization. https://www.professormesser.com/network-plus/
+[^3]: NDLA. (2024). Virtualisering i Windows Server. https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb
+[^4]: Cloudflare Learning. (2025). What is Virtualization? https://www.cloudflare.com/learning/cloud/what-is-virtualization/
 
 ## Ressurser
 

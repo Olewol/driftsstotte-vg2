@@ -17,7 +17,7 @@ notebooklm: true
 
 ## Introduksjon
 
-Linux er et åpen kildekode-operativsystem som brukes i stort omfang på servere, skyplattformer og nettverksenheter. For IT-driftsteknikere er grunnleggende Linux-kunnskap nødvendig — mye av infrastrukturen i profesjonelle miljøer kjøres på Linux.
+Linux er et åpen kildekode-operativsystem som brukes i stort omfang på servere, skyplattformer og nettverksenheter. For IT-driftsteknikere er grunnleggende Linux-kunnskap nødvendig — mye av infrastrukturen i profesjonelle miljøer kjøres på Linux.[^4]
 
 Denne artikkelen dekker Linux-filstrukturen, filrettighetsmodellen (rwx), brukeradministrasjon og de mest brukte kommandoene. Sammenligninger med Windows-ekvivalenter er inkludert der det er nyttig. Filsystemet ext4 som Linux typisk bruker er beskrevet i [[filsystem]], og Linux-brukeradministrasjon henger tett sammen med [[bruker-og-tilgangsstyring]]. For viderekomne skriptoppgaver i Linux-terminalen, se [[bash-grunnleggende]].
 
@@ -124,9 +124,9 @@ ls -ld /felles/           # vises som 't' på slutten: drwxrwxrwt
 
 ### sudo og root
 
-**Root-brukeren** (UID 0) er den allmektige superbrukeren i Linux — tilsvarer `Administrator` i Windows, men uten noen UAC-lignende begrensning. Root kan gjøre alt.
+**Root-brukeren** (UID 0) er den allmektige superbrukeren i Linux — tilsvarer `Administrator` i Windows, men uten noen UAC-lignende begrensning. Root kan gjøre alt.[^2]
 
-**sudo** (Superuser Do) lar vanlige brukere kjøre enkeltkommandoer med root-rettigheter:
+**sudo** (Superuser Do) lar vanlige brukere kjøre enkeltkommandoer med root-rettigheter:[^2]
 ```bash
 sudo apt update           # kjør som root
 sudo -i                   # åpne root-shell (vær forsiktig)
@@ -422,3 +422,10 @@ GID :: Group ID — numerisk identifikator for en Linux-gruppe
 - [Ubuntu Community Wiki: Filrettigheter](https://help.ubuntu.com/community/FilePermissions)
 - [Ubuntu Community Wiki: POSIX ACL](https://help.ubuntu.com/community/FilePermissionsACLs)
 - [Ubuntu Server: Brukerhåndtering](https://documentation.ubuntu.com/server/how-to/security/user-management/)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: Ubuntu. *Server Documentation – User Management*. [documentation.ubuntu.com](https://documentation.ubuntu.com/server/how-to/security/user-management/)
+[^3]: Microsoft. *Windows Server-dokumentasjon*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/windows-server/)
+[^4]: Ubuntu. *Server Documentation*. [documentation.ubuntu.com](https://documentation.ubuntu.com/server/)

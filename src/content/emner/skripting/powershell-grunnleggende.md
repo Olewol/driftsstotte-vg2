@@ -19,7 +19,7 @@ notebooklm: true
 
 ## Introduksjon
 
-PowerShell er Microsofts svar på Bash — et kraftig skallspråk og skriptmiljø innebygd i Windows. Det skiller seg fundamentalt fra Bash ved at det opererer med **.NET-objekter** i stedet for ren tekst. Det betyr at når du henter informasjon om en tjeneste, får du tilbake et objekt med egenskaper som `Name`, `Status` og `StartType` — ikke bare en tekstlinje du må tolke selv.
+PowerShell er Microsofts svar på Bash — et kraftig skallspråk og skriptmiljø innebygd i Windows. Det skiller seg fundamentalt fra Bash ved at det opererer med **.NET-objekter** i stedet for ren tekst. Det betyr at når du henter informasjon om en tjeneste, får du tilbake et objekt med egenskaper som `Name`, `Status` og `StartType` — ikke bare en tekstlinje du må tolke selv.[^3]
 
 Siden PowerShell 7 er det også tilgjengelig på Linux og macOS, men det er primært på Windows det er uunnværlig: Active Directory, Azure, Task Scheduler og Windows-administrasjon generelt styres effektivt via PowerShell.
 
@@ -56,7 +56,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ### Cmdlets — verb-substantiv-konvensjonen
 
-Det grunnleggende byggeklossen i PowerShell er **cmdlet** (uttales "command-let"). Alle cmdlets følger mønsteret `Verb-Substantiv`:
+Det grunnleggende byggeklossen i PowerShell er **cmdlet** (uttales "command-let"). Alle cmdlets følger mønsteret `Verb-Substantiv`:[^3]
 
 | Cmdlet | Beskrivelse |
 |---|---|
@@ -425,3 +425,11 @@ ISE (Integrated Scripting Environment) :: Innebygd grafisk verktøy i Windows fo
 - [Microsoft Learn – PowerShell på norsk (oversikt)](https://learn.microsoft.com/nb-no/powershell/scripting/overview)
 - [NDLA – PowerShell og skripting for VG2 IT](https://ndla.no/subject:1:7852b71f-506e-41a4-849c-f9f30b910488/topic:1:43d5483f-0f66-4c4f-a492-c94488b0a99c/resource:155075)
 - [YouTube – PowerShell på norsk – Grunnleggende (norskADMIN, ~12 min)](https://www.youtube.com/watch?v=FmJgD-r5U-w)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: NDLA. *PowerShell og skripting for VG2 IT*. [ndla.no](https://ndla.no/subject:1:7852b71f-506e-41a4-849c-f9f30b910488/topic:1:43d5483f-0f66-4c4f-a492-c94488b0a99c/resource:155075)
+[^3]: Microsoft. *PowerShell Scripting Overview*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/powershell/scripting/overview)
+[^4]: Microsoft. *PowerShell Scripting*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/powershell/scripting/)
+[^5]: Learn X in Y Minutes. *Bash*. [learnxinyminutes.com](https://learnxinyminutes.com/docs/bash/)

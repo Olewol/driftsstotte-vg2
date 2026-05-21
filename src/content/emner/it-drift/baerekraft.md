@@ -33,7 +33,7 @@ Kompetansemål km-12 handler om å utforske dataindustriens miljøavtrykk og vur
 Datasentre er den mest energikrevende enkeltkomponenten i IT-infrastrukturen.
 
 **Globalt:**
-> "Estimated global data centre electricity consumption in 2022 was 240–340 TWh, or around 1–1.3% of global final electricity demand." – IEA (2023)
+> "Estimated global data centre electricity consumption in 2022 was 240–340 TWh, or around 1–1.3% of global final electricity demand." – IEA (2023)[^1]
 
 I tillegg bruker dataoverføringsnettverk 260–360 TWh per år. Til sammen utgjør dette ca. 1–2,8 % av globalt el-forbruk.
 
@@ -50,7 +50,7 @@ De fire store – Amazon, Microsoft, Google og Meta – brukte samlet over **72 
 
 ### PUE – Power Usage Effectiveness
 
-PUE er bransjens standardmål for energieffektivitet i datasentre:
+PUE er bransjens standardmål for energieffektivitet i datasentre:[^2]
 
 $$\text{PUE} = \frac{\text{Totalt el-forbruk i datasenteret}}{\text{El-forbruk til IT-utstyr}}$$
 
@@ -75,7 +75,7 @@ Hyperscalerne (Google, Meta, Microsoft, Amazon) er best i klassen med PUE rundt 
 
 ### Mørke data (Dark Data)
 
-Et undervurdert miljøproblem er **mørke data** – data som lagres i datasentre, men aldri brukes. Studier anslår at opptil 80 % av alle lagrede data aldri aksesseres etter at de er opprettet.
+Et undervurdert miljøproblem er **mørke data** – data som lagres i datasentre, men aldri brukes. Studier anslår at opptil 80 % av alle lagrede data aldri aksesseres etter at de er opprettet.[^3]
 
 Dette er problematisk fordi:
 - Lagring av ubrukte data krever strøm til servere og kjøling
@@ -94,7 +94,7 @@ E-avfall er problematisk fordi:
 - Utstyret inneholder **giftige stoffer** som bly, kadmium og kvikksølv
 - Ulovlig deponering av e-avfall er et globalt problem, særlig i Vest-Afrika og Sørøst-Asia
 
-**WEEE-direktivet** (Waste Electrical and Electronic Equipment) er EU-lovgivning som også gjelder i Norge. Direktivet krever:
+**WEEE-direktivet** (Waste Electrical and Electronic Equipment) er EU-lovgivning som også gjelder i Norge.[^4] Direktivet krever:
 - Produsenter og importører er ansvarlige for å samle inn og resirkulere e-avfall
 - Forbrukere og virksomheter skal levere utstyr til godkjente innsamlingspunkter
 - Visse materialer (plast, metaller, glass) skal gjenvinnes
@@ -154,7 +154,7 @@ Konkrete tiltak IT-ansvarlige kan gjøre:
 
 Amazon, Microsoft, Meta og Google har samlet inngått kontrakter for over **50 GW fornybar energi** – langt mer enn noe annet enkeltbransje.
 
-IEA understreker at globale utslipp fra datasentre må **halveres innen 2030** for å nå netto-null-målene.
+IEA understreker at globale utslipp fra datasentre må **halveres innen 2030** for å nå netto-null-målene.[^5]
 
 ---
 
@@ -322,3 +322,12 @@ EE-avfall :: Elektrisk og elektronisk avfall som inneholder miljøgifter og verd
 - [YouTube: The life cycle of a smartphone – TED-Ed](https://www.youtube.com/watch?v=68D0v7Y-eIk)
 - [[driftsarkitektur]]
 - [[skytjenester]]
+
+## Kilder
+
+[^1]: [IEA: Data Centres and Data Transmission Networks](https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks) – Globalt energiforbruk fra datasentre og nettverk.
+[^2]: [NDLA: Bærekraft og IT-utstyr](https://ndla.no/nb/subject:1:43a4e98f-ce79-42b3-9022-297e68266455/topic:1:94c5e317-0f9c-486a-8686-2678683519d5/resource:1:115939) – PUE og energieffektivitet i datasentre.
+[^3]: [Nkom: Digital infrastruktur og miljø](https://www.nkom.no/aktuelt/digital-infrastruktur-og-miljo-hvordan-paivirker-vi-klimaet) – Mørke data og energibruk.
+[^4]: [Elretur: E-avfall i Norge](https://www.elretur.no/) – WEEE-direktivet og håndtering av e-avfall.
+[^5]: [IEA: Data Centres and Data Transmission Networks](https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks) – Mål om halverte utslipp innen 2030.
+

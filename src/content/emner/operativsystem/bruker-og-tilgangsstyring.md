@@ -17,7 +17,7 @@ notebooklm: true
 
 ## Introduksjon
 
-Bruker- og tilgangsstyring er kjernen i km-04 og én av de viktigste oppgavene en IT-driftsteknikker utfører. Målet er å sikre at **riktige personer har tilgang til riktige ressurser — og ikke mer**. Dette kalles prinsippet om minste privilegium (*Least Privilege*).
+Bruker- og tilgangsstyring er kjernen i km-04 og én av de viktigste oppgavene en IT-driftsteknikker utfører. Målet er å sikre at **riktige personer har tilgang til riktige ressurser — og ikke mer**. Dette kalles prinsippet om minste privilegium (*Least Privilege*).[^2]
 
 Denne artikkelen dekker Windows-brukeradministrasjon (lokalt og i domene), sikkerhetsgrupper, tilgangskontroll og tilsvarende verktøy i Linux. Brukeradministrasjon i domenemiljøer forutsetter kunnskap om [[active-directory]]. For Linux-kommandoer, se [[linux-grunnleggende]], og for automatisering av brukeropprettelse, se [[powershell-grunnleggende]].
 
@@ -58,7 +58,7 @@ Når du oppretter eller redigerer en brukerkonto, kan du styre:
 
 ### SID — Security Identifier
 
-Hver brukerkonto og gruppe i Windows tildeles et unikt **SID** (Security Identifier) ved opprettelse. SID er det operativsystemet faktisk bruker internt — ikke brukernavnet. Dette betyr:
+Hver brukerkonto og gruppe i Windows tildeles et unikt **SID** (Security Identifier) ved opprettelse. SID er det operativsystemet faktisk bruker internt — ikke brukernavnet.[^3] Dette betyr:
 
 - Hvis du sletter og gjenoppretter en konto med samme navn, får den et nytt SID og mister alle tidligere tilganger
 - Tillatelser i ACL-er lagres som SID-er, ikke navn
@@ -74,7 +74,7 @@ Brukere og prosesser skal kun ha de rettighetene som er absolutt nødvendige for
 
 ### UAC — User Account Control
 
-UAC er en sikkerhetsmekanisme i Windows som hindrer programmer i å kjøre med administrative rettigheter uten brukerens eksplisitte godkjenning. Selv om du er logget inn som administrator, kjøres programmer med standard brukerrettigheter inntil UAC godkjenner en forhøyning (*elevation*).
+UAC er en sikkerhetsmekanisme i Windows som hindrer programmer i å kjøre med administrative rettigheter uten brukerens eksplisitte godkjenning. Selv om du er logget inn som administrator, kjøres programmer med standard brukerrettigheter inntil UAC godkjenner en forhøyning (*elevation*).[^3]
 
 Når et program ber om administratorrettigheter, vises UAC-dialogen. Standardbruker må taste inn adminpassord; administrator klikker bare «Ja».
 
@@ -321,3 +321,10 @@ SSSD :: System Security Services Daemon — lar Linux-klienter autentisere mot A
 - [Microsoft Learn: Administrere brukerkontoer i Windows Server](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server)
 - [Ubuntu Server: Brukerhåndtering](https://documentation.ubuntu.com/server/how-to/security/user-management/)
 - [Microsoft Learn: Active Directory Domain Services](https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/active-directory-domain-services)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: Microsoft. *Active Directory Domain Services*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/active-directory-domain-services)
+[^3]: Microsoft. *Windows Server-dokumentasjon*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/windows-server/)
+[^4]: Ubuntu. *Server Documentation – User Management*. [documentation.ubuntu.com](https://documentation.ubuntu.com/server/)

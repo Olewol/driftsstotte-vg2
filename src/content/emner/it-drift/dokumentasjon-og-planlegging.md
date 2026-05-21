@@ -19,7 +19,7 @@ notebooklm: true
 
 ## Introduksjon
 
-God dokumentasjon er ryggraden i profesjonell IT-drift. Uten oppdatert dokumentasjon er det umulig å feilsøke effektivt, vanskelig å lære opp nye medarbeidere, og risikabelt å gjøre endringer i systemet.
+God dokumentasjon er ryggraden i profesjonell IT-drift.[^1] Uten oppdatert dokumentasjon er det umulig å feilsøke effektivt, vanskelig å lære opp nye medarbeidere, og risikabelt å gjøre endringer i systemet.
 
 Dokumentasjon og planlegging handler om å ha oversikt: over hva som finnes, hvordan det henger sammen, hva som er gjort, og hva som skal gjøres. Dette er kompetansemål km-06 – en av de mest praktiske delene av faget. En god IT-avdeling behandler dokumentasjon som levende ressurser som oppdateres kontinuerlig, ikke som noe som skrives én gang og deretter samler støv.
 
@@ -37,13 +37,13 @@ Dokumentasjon tjener flere formål i IT-drift:
 - **Endringstyring** – sporing av hva som er endret, hvem som endret det og hvorfor
 - **Kontinuitet** – virksomheten er ikke avhengig av én person som bærer all kunnskap i hodet
 
-Digdir understreker at god dokumentasjon er grunnlaget for interoperabilitet i norsk offentlig sektor.
+Digdir understreker at god dokumentasjon er grunnlaget for interoperabilitet i norsk offentlig sektor.[^2]
 
 ---
 
 ### Nettverkstopologier
 
-En nettverkstopologi beskriver hvordan noder (enheter) er koblet sammen i et nettverk.
+En nettverkstopologi beskriver hvordan noder (enheter) er koblet sammen i et nettverk.[^3]
 
 #### Stjernetopologi (vanligst)
 
@@ -111,7 +111,7 @@ En IP-adresseplan er en strukturert oversikt over alle IP-adresser, subnett og t
 
 ### Driftslogg og endringslogg
 
-En driftslogg (change log) er en kronologisk registrering av alle endringer som er gjort i IT-miljøet. Det er kanskje det viktigste enkeltdokumentet i en driftsorganisasjon.
+En driftslogg (change log) er en kronologisk registrering av alle endringer som er gjort i IT-miljøet.[^4] Det er kanskje det viktigste enkeltdokumentet i en driftsorganisasjon.
 
 #### Format
 
@@ -175,7 +175,7 @@ Forventet resultat: VM starter, filer tilgjengelige, ingen feil.
 
 ### ITIL og endringstyring
 
-**ITIL** (IT Infrastructure Library) er et rammeverk for god IT-driftspraksis som er mye brukt i norsk og internasjonal IT-bransje. Selv om man ikke behøver å innføre hele ITIL på VG2-nivå, er noen begreper sentrale:
+**ITIL** (IT Infrastructure Library) er et rammeverk for god IT-driftspraksis som er mye brukt i norsk og internasjonal IT-bransje.[^5] Selv om man ikke behøver å innføre hele ITIL på VG2-nivå, er noen begreper sentrale:
 
 **Change Management (endringstyring)**
 En strukturert prosess for å håndtere endringer i IT-miljøet på en kontrollert måte:
@@ -369,3 +369,12 @@ Single point of failure :: En komponent hvis svikt gjør hele systemet utilgjeng
 - [[risikoanalyse]]
 - [[dns-og-dhcp]]
 - [[segmentering-og-vlan]]
+
+## Kilder
+
+[^1]: [NDLA: Dokumentasjon og planlegging](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Betydningen av dokumentasjon i IT-drift.
+[^2]: [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131) – Dokumentasjon som grunnlag for interoperabilitet.
+[^3]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Nettverkstopologier og nettverksstruktur.
+[^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – Prinsipper for driftslogg og endringssporing.
+[^5]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – ITIL og endringstyring i offentlig sektor.
+

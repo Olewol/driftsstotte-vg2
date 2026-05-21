@@ -22,7 +22,7 @@ public: true
 
 En risikoanalyse er et strukturert verktøy for å identifisere hva som kan gå galt med et IT-system, hvor sannsynlig det er, og hva konsekvensene vil være. Formålet er ikke å eliminere all risiko – det er umulig – men å forstå risikoen godt nok til å prioritere de riktige tiltakene.
 
-NSM Grunnprinsipper for IKT-sikkerhet (v2.1, 2024) plasserer «Identifiser og kartlegg» som første og grunnleggende steg. GDPR artikkel 32 krever dessuten at alle virksomheter som behandler personopplysninger gjennomfører risikovurdering som grunnlag for sine sikkerhetstiltak.
+NSM Grunnprinsipper for IKT-sikkerhet (v2.1, 2024) plasserer «Identifiser og kartlegg» som første og grunnleggende steg.[^1] GDPR artikkel 32 krever dessuten at alle virksomheter som behandler personopplysninger gjennomfører risikovurdering som grunnlag for sine sikkerhetstiltak.[^2]
 
 Risikoanalyse er grunnmuren som kobler [[trusselbildet]] (hvilke trusler finnes?) til [[it-losninger-med-sikkerhet]] (hvilke tiltak er riktige?). Uten risikoanalyse risikerer man å bruke ressurser på de gale problemene. Husk også at GDPR art. 32 gjør dette til et lovkrav der [[personvern]] er involvert.
 
@@ -116,12 +116,12 @@ God sikkerhetspraksis kombinerer alle tre typer – du kan ikke bare forebygge, 
 
 ### GDPR artikkel 32 og risikovurdering
 
-GDPR artikkel 32 krever at virksomheter som behandler personopplysninger skal implementere «egnede tekniske og organisatoriske sikkerhetstiltak» basert på en risikovurdering. Vurderingen skal ta hensyn til:
+GDPR artikkel 32 krever at virksomheter som behandler personopplysninger skal implementere «egnede tekniske og organisatoriske sikkerhetstiltak» basert på en risikovurdering.[^2] Vurderingen skal ta hensyn til:
 
 - Behandlingens art, omfang, sammenheng og formål
 - Sannsynligheten for og alvorligheten av risikoen for de registrertes rettigheter
 
-Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav dersom du behandler persondata. Datatilsynet har publisert en konkret veileder for risikovurdering av personopplysninger.
+Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav dersom du behandler persondata. Datatilsynet har publisert en konkret veileder for risikovurdering av personopplysninger.[^3]
 
 ---
 
@@ -228,7 +228,7 @@ En trussel er en potensiell hendelse som kan skade verdiene dine, f.eks. ransomw
 Ledelsen er de eneste som kan akseptere restrisiko på virksomhetens vegne. De bestemmer også ressurser til sikkerhetstiltak. En risikoanalyse som ikke når ledelsen, fører sjelden til faktiske forbedringer.
 
 **Hva er en ROS-analyse?**
-ROS (Risiko- og Sårbarhetsanalyse) er det norske begrepet for risikoanalyse. Det er den samme 4-stegsmodellen, men termen brukes særlig i norsk offentlig sektor og i NVEs krav til kritisk infrastruktur.
+ROS (Risiko- og Sårbarhetsanalyse) er det norske begrepet for risikoanalyse. Det er den samme 4-stegsmodellen, men termen brukes særlig i norsk offentlig sektor og i NVEs krav til kritisk infrastruktur.[^4]
 
 **Kan restrisiko alltid aksepteres?**
 Ikke alltid. Noen risikoer er for høye til å aksepteres – da må man enten redusere dem ytterligere, unngå aktiviteten helt, eller overføre risikoen (f.eks. gjennom cyberforsikring). Hvis restrisikoen fortsatt er kritisk (20–25) etter alle tiltak, bør aktiviteten vurderes på nytt.
@@ -305,3 +305,10 @@ Verdi (asset) :: Alt som har verdi i en virksomhet og som bør beskyttes: data, 
 - [Datatilsynet – Risikovurdering og personvern](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/risikovurdering/)
 - [NDLA – Risikovurdering for kontoradministrasjon](https://ndla.no)
 - [Datatilsynet – Veileder for risikovurdering av personopplysninger](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/)
+
+## Kilder
+
+[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+[^2]: GDPR art. 32 – Sikkerhet ved behandling av personopplysninger. https://eur-lex.europa.eu/eli/reg/2016/679/oj
+[^3]: Datatilsynet – Risikovurdering. https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/
+[^4]: NVE – Veileder for ROS-analyse. https://www.nve.no/kartlegging-av-risiko-og-sarbarhet-ros/

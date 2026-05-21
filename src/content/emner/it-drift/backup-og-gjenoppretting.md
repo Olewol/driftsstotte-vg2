@@ -29,7 +29,7 @@ Backup handler ikke bare om å ta kopier. Det handler om å ha en strategi som s
 
 ### 3-2-1-regelen
 
-3-2-1-regelen er den enkleste og mest anerkjente retningslinjen for backup-strategi:
+3-2-1-regelen er den enkleste og mest anerkjente retningslinjen for backup-strategi:[^1]
 
 - **3** – Ha minst 3 kopier av data (1 primær + 2 backup)
 - **2** – Lagre på minst 2 ulike medietyper (f.eks. intern disk + ekstern disk eller NAS)
@@ -39,7 +39,7 @@ Offsite-kopien beskytter mot fysiske hendelser som brann, flom eller innbrudd so
 
 #### Moderne utvidelse: 3-2-1-1-0
 
-Veeam og andre eksperter anbefaler en utvidet versjon:
+Veeam og andre eksperter anbefaler en utvidet versjon:[^2]
 
 - **+1** – Ha én immutable (uforanderlig) eller air-gapped kopi som ikke kan slettes av ransomware
 - **+0** – Null feil ved gjenopprettingstesting (automatisk verifisering av backup)
@@ -83,7 +83,7 @@ Tar en kopi av alt som har endret seg siden **siste fulle backup**.
 
 ### RPO og RTO
 
-To begreper er avgjørende for å designe en backup-strategi:
+To begreper er avgjørende for å designe en backup-strategi:[^3]
 
 **RPO – Recovery Point Objective**
 > "The maximum acceptable amount of data loss measured in time." – Microsoft Azure
@@ -152,7 +152,7 @@ Veeam og Azure Backup støtter automatisk verifisering (SureBackup / Instant Res
 
 ### Katastrofegjenoppretting (Disaster Recovery)
 
-Disaster Recovery (DR) er en bredere plan for hva som skjer hvis store deler av infrastrukturen feiler. DR-strategi inkluderer:
+Disaster Recovery (DR) er en bredere plan for hva som skjer hvis store deler av infrastrukturen feiler.[^4] DR-strategi inkluderer:
 
 - **Cold standby** – backup-infrastruktur som settes opp manuelt ved behov. Billig, men lang RTO.
 - **Warm standby** – et delvis ferdigkonfigurert miljø som kan aktiveres raskt.
@@ -212,7 +212,7 @@ Backup og gjenoppretting handler om å sikre at data kan gjenopprettes ved tap e
 Backup er kopier av aktive data som du vil kunne gjenopprette raskt. Archive (arkiv) er data som ikke lenger er i aktiv bruk, men som må bevares over lang tid (f.eks. for lovkrav). AWS Glacier er et arkivlagringsprodukt – det er ikke egnet som primær backup.
 
 **Kan vi bruke RAID som backup?**
-Nei. RAID beskytter mot diskfeil, ikke mot feil sletting, ransomware eller brann. RAID er redundans, ikke backup. Begge deler trengs i en komplett strategi.
+Nei. RAID beskytter mot diskfeil, ikke mot feil sletting, ransomware eller brann.[^5] RAID er redundans, ikke backup. Begge deler trengs i en komplett strategi.
 
 **Hva er en immutable backup i praksis?**
 Det er backup-data som er låst av systemet slik at ingen kan endre eller slette den i en definert periode (f.eks. 30 dager). AWS S3 Object Lock og Azure Immutable Blob Storage er eksempler. Selv om en ransomware-angriper får tilgang til backup-systemet, kan de ikke slette eller kryptere immutable data.
@@ -300,3 +300,12 @@ System-image :: Komplett kopi av et operativsystem med konfigurasjon og programv
 - [YouTube: 3-2-1-regelen for backup – NetNordic](https://www.youtube.com/watch?v=iL8Lp8w0UIs)
 - [[driftsarkitektur]]
 - [[dokumentasjon-og-planlegging]]
+
+## Kilder
+
+[^1]: [Veeam: 3-2-1 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html) – Bransjestandarden for backup-strategi.
+[^2]: [Veeam: 3-2-1-1-0 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html) – Utvidet versjon med immutable og verifisering.
+[^3]: [Microsoft Azure Well-Architected Framework: Disaster Recovery](https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery) – Definisjoner av RPO og RTO.
+[^4]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Om katastrofegjenoppretting og beredskap.
+[^5]: [NSM: Grunnprinsipper for IKT-sikkerhet – Sikre og gjenopprette data](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/) – RAID er ikke backup.
+

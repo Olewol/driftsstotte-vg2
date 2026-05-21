@@ -17,7 +17,7 @@ notebooklm: true
 
 ## Introduksjon
 
-Et **filsystem** bestemmer hvordan data lagres og organiseres på en disk. For IT-driftsteknikere er valg av filsystem direkte knyttet til sikkerhet og tilgangskontroll — kun NTFS støtter for eksempel brukerbaserte tillatelser i Windows. Kunnskap om filsystemer er nødvendig for å administrere rettigheter, sette opp kvoter og forstå begrensningene på ulike lagringsmedier. NTFS-tillatelsene henger tett sammen med [[bruker-og-tilgangsstyring]], og Linux-filsystemet ext4 dekkes i sammenheng med [[linux-grunnleggende]]. Filsystemvalg er også relevant for [[backup-og-gjenoppretting]] siden ikke alle backup-løsninger støtter alle filsystemer.
+Et **filsystem** bestemmer hvordan data lagres og organiseres på en disk. For IT-driftsteknikere er valg av filsystem direkte knyttet til sikkerhet og tilgangskontroll — kun NTFS støtter for eksempel brukerbaserte tillatelser i Windows.[^2] Kunnskap om filsystemer er nødvendig for å administrere rettigheter, sette opp kvoter og forstå begrensningene på ulike lagringsmedier. NTFS-tillatelsene henger tett sammen med [[bruker-og-tilgangsstyring]], og Linux-filsystemet ext4 dekkes i sammenheng med [[linux-grunnleggende]]. Filsystemvalg er også relevant for [[backup-og-gjenoppretting]] siden ikke alle backup-løsninger støtter alle filsystemer.
 
 ---
 
@@ -25,7 +25,7 @@ Et **filsystem** bestemmer hvordan data lagres og organiseres på en disk. For I
 
 ### NTFS (New Technology File System)
 
-NTFS er standard filsystem for Windows og Windows Server. Det er det eneste alternativet når du trenger tilgangskontroll på filnivå i Windows.
+NTFS er standard filsystem for Windows og Windows Server. Det er det eneste alternativet når du trenger tilgangskontroll på filnivå i Windows.[^3]
 
 **Nøkkelfunksjoner:**
 
@@ -66,7 +66,7 @@ exFAT er en etterfølger til FAT32 designet for flash-lagring. Fjerner 4 GB-begr
 
 ### ext4 (Fourth Extended Filesystem)
 
-ext4 er standard filsystem i moderne Linux-distribusjoner som Ubuntu, Debian og RHEL.
+ext4 er standard filsystem i moderne Linux-distribusjoner som Ubuntu, Debian og RHEL.[^4]
 
 **Kjennetegn:**
 - **Journaling**: Tilsvarende NTFS — logger operasjoner for å sikre konsistens ved strømbrudd.
@@ -260,3 +260,10 @@ EFS :: Encrypting File System — NTFS-funksjonen for transparent filkryptering 
 - [Microsoft Learn: Konfigurere delte tillatelser og NTFS-tillatelser](https://learn.microsoft.com/en-us/iis/web-hosting/configuring-servers-in-the-windows-web-platform/configuring-share-and-ntfs-permissions)
 - [Ubuntu Community Wiki: Filrettigheter](https://help.ubuntu.com/community/FilePermissions)
 - [Store Norske Leksikon: Filsystem](https://snl.no/filsystem)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: SNL. *Filsystem*. [snl.no](https://snl.no/filsystem)
+[^3]: Microsoft. *Windows Server-dokumentasjon*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/windows-server/)
+[^4]: Ubuntu. *Server Documentation*. [documentation.ubuntu.com](https://documentation.ubuntu.com/server/)

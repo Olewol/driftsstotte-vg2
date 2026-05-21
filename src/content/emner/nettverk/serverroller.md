@@ -29,7 +29,7 @@ Serverroller er tett koblet til [[active-directory]], [[bruker-og-tilgangsstyrin
 
 ### Hva er en serverrolle?
 
-En **serverrolle** er en tilleggsfunksjon man installerer i Windows Server via:
+En **serverrolle** er en tilleggsfunksjon man installerer i Windows Server[^1] via:
 `Server Manager → Manage → Add Roles and Features`
 
 Én fysisk server kan ha flere roller installert, men av ytelsesmessige og sikkerhetsmessige grunner anbefales det å holde rollene separate — spesielt i produksjon. I skolelab er det vanlig å ha AD DS, DNS og DHCP på samme domenekontroller.
@@ -50,12 +50,12 @@ En **serverrolle** er en tilleggsfunksjon man installerer i Windows Server via:
 
 ### Active Directory Domain Services (AD DS)
 
-AD DS er grunnmuren i et Windows-domenenettverk. En server med AD DS-rollen kalles en **domenekontroller** og administrerer:
+AD DS er grunnmuren i et Windows-domenenettverk[^1]. En server med AD DS-rollen kalles en **domenekontroller** og administrerer:
 - **Autentisering**: logger inn brukere med brukernavn og passord
 - **Autorisasjon**: kontrollerer hva brukere har tilgang til
 - **Katalog**: sentralt register over alle brukere, datamaskiner og ressurser
 
-**AD DS** — Active Directory Domain Services — er altså en katalogtjeneste som sentraliserer administrasjon av brukere, grupper og datamaskiner i et nettverk.
+**AD DS** — Active Directory Domain Services — er altså en katalogtjeneste som sentraliserer administrasjon av brukere, grupper og datamaskiner i et nettverk[^2].
 
 #### AD-hierarkiet
 
@@ -117,7 +117,7 @@ Se [[dns-og-dhcp]] for full gjennomgang av DHCP.
 
 ### Webserver — IIS (Internet Information Services)
 
-**IIS** (Internet Information Services) er Microsofts webserver-rolle som brukes til å hoste nettsider eller webapplikasjoner. Det er en serverrolle tilgjengelig i Windows Server.
+**IIS** (Internet Information Services) er Microsofts webserver-rolle som brukes til å hoste nettsider eller webapplikasjoner[^5]. Det er en serverrolle tilgjengelig i Windows Server.
 
 **Funksjon**: betjener HTTP/HTTPS-forespørsler fra nettlesere. Brukes til:
 - Interne portaler og intranett-sider
@@ -140,7 +140,7 @@ Se [[dns-og-dhcp]] for full gjennomgang av DHCP.
 
 En filserver gjør mapper tilgjengelig over nettverket slik at brukere kan lagre og hente filer fra en sentral plassering.
 
-**SMB (Server Message Block)** er Windows-standarden for nettverksdeling, port 445.
+**SMB (Server Message Block)** er Windows-standarden for nettverksdeling, port 445[^4].
 
 **Sette opp en delt mappe (share)**:
 1. Høyreklikk mappe → Properties → Sharing → Advanced Sharing
@@ -148,7 +148,7 @@ En filserver gjør mapper tilgjengelig over nettverket slik at brukere kan lagre
 3. Sett delingsrettigheter (hvem kan lese/skrive via share)
 4. Sett NTFS-rettigheter for finmasket tilgangskontroll
 
-**NTFS-rettigheter** er filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver. De er mer granulære enn share-rettigheter og gjelder også ved lokal tilgang.
+**NTFS-rettigheter** er filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver[^1]. De er mer granulære enn share-rettigheter og gjelder også ved lokal tilgang.
 
 Tilgang fra klient:
 ```
@@ -314,6 +314,15 @@ GPO :: Group Policy Object — policysett i AD som distribuerer innstillinger ti
 NAS :: Network Attached Storage — dedikert lagringsenhet med filserverfunksjonalitet
 DHCP Scope :: Et definert område med IP-adresser som DHCP-serveren kan tildele klienter på et bestemt subnett
 NTFS-rettigheter :: Filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver
+
+## Kilder
+
+[^1]: Microsoft Learn. (2025). Getting Started with AD DS. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started
+[^2]: NDLA. (2024). Brukerkontoer, grupper og struktur i AD. https://ndla.no/r/driftsstotte-im-itk-vg2/brukerkontoer-grupper-og-struktur-i-active-directory/2c7a25f92e
+[^3]: NDLA. (2024). Domener og hierarkiet i Active Directory. https://ndla.no/en/r/driftsstotte-im-itk-vg2/domener-og-hierarkiet-i-active-directory/db58e9da66
+[^4]: Professor Messer. (2025). Network+ Study Guide — Server Roles. https://www.professormesser.com/network-plus/
+[^5]: Cloudflare Learning. (2025). What is a Web Server? https://www.cloudflare.com/learning/ddos/glossary/web-server/
+[^6]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 
 ## Ressurser
 

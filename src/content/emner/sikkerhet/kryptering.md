@@ -23,9 +23,9 @@ public: true
 
 Kryptering er teknologien som gjør at informasjon forblir konfidensielt selv om den havner i feil hender. Uten kryptering ville alt du sender over internett – passord, bankdetaljer, helseinformasjon, private meldinger – være leselig for hvem som helst som avlytter nettverkstrafikken.
 
-NSM anbefaler i sine grunnprinsipper å «beskytte data i ro og under overføring», og kryptering er det primære verktøyet for dette. For en IT-drifter er det essensielt å forstå hvordan kryptering fungerer, hvilke standarder som er aktuelle i dag, og hvordan man verifiserer at kryptering faktisk er på plass.
+NSM anbefaler i sine grunnprinsipper å «beskytte data i ro og under overføring», og kryptering er det primære verktøyet for dette.[^1] For en IT-drifter er det essensielt å forstå hvordan kryptering fungerer, hvilke standarder som er aktuelle i dag, og hvordan man verifiserer at kryptering faktisk er på plass.
 
-Kryptering er tett knyttet til [[personvern]] – GDPR krever at personopplysninger beskyttes med egnede tekniske tiltak, og kryptering er det mest sentrale av disse. Datatilsynet gir konkrete råd om når og hvordan kryptering bør brukes i norske virksomheter.
+Kryptering er tett knyttet til [[personvern]] – GDPR krever at personopplysninger beskyttes med egnede tekniske tiltak, og kryptering er det mest sentrale av disse. Datatilsynet gir konkrete råd om når og hvordan kryptering bør brukes i norske virksomheter.[^2]
 
 ---
 
@@ -37,7 +37,7 @@ Ved symmetrisk kryptering brukes **samme nøkkel** til å kryptere og dekryptere
 
 - Fordel: svært rask – egnet for å kryptere store datamengder
 - Ulempe: **nøkkeldistribusjonsproblemet** – nøkkelen må deles trygt mellom sender og mottaker, noe som er utfordrende over åpne nettverk
-- Eksempel: **AES-256** (Advanced Encryption Standard med 256-bits nøkkel) – regnes som uknekket og er industristandarden for kryptering av data i ro (filsystemer, databaser, backuper)
+- Eksempel: **AES-256** (Advanced Encryption Standard med 256-bits nøkkel) – regnes som uknekket og er industristandarden for kryptering av data i ro (filsystemer, databaser, backuper)[^3]
 
 **Illustrasjon:**
 ```
@@ -70,7 +70,7 @@ Hybrid kryptering kombinerer det beste fra begge metoder:
 1. **Asymmetrisk kryptering** brukes til å utveksle en midlertidig symmetrisk nøkkel (sesjonsnøkkel) trygt
 2. **Symmetrisk kryptering** (AES) brukes for selve datakommunikasjonen – effektiv og rask
 
-Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon på internett er basert på hybrid kryptering.
+Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon på internett er basert på hybrid kryptering.[^4]
 
 ---
 
@@ -91,7 +91,7 @@ Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon 
 Forbedringer i TLS 1.3 vs 1.2:
 - Raskere handshake (1 round-trip i stedet for 2)
 - Alle utdaterte cipher suites fjernet (ingen RC4, DES, 3DES, MD5)
-- Forward secrecy er obligatorisk – gamle sesjoner kan ikke dekrypteres selv om nøkkelen later kompromitteres
+- Forward secrecy er obligatorisk – gamle sesjoner kan ikke dekrypteres selv om nøkkelen later kompromitteres[^4]
 
 Hashing er en enveisprosess – i motsetning til kryptering kan man ikke reversere en hash til originaldata. Dette skiller hashing fra kryptering: kryptering er toveis (reversibel med riktig nøkkel), hashing er enveis.
 
@@ -113,7 +113,7 @@ Root CA (selvsignert, innebygget i OS/nettleser)
 
 Nettleseren verifiserer at serverens sertifikat er signert av en CA den stoler på. Hvis sertifikatet er ugyldig, utløpt eller selvsignert, vises en sikkerhetsadvarsel.
 
-Kjente CA-er: DigiCert, Let's Encrypt (gratis, automatisert), Sectigo, GlobalSign.
+Kjente CA-er: DigiCert, Let's Encrypt (gratis, automatisert), Sectigo, GlobalSign.[^5]
 
 ---
 
@@ -126,7 +126,7 @@ Hashing er en **enveisfunksjon** – du kan lage en hash fra data, men ikke reko
 | MD5 | 128 bit | **Utdatert** – kollisjoner er funnet |
 | SHA-1 | 160 bit | **Utdatert** – ikke lenger anbefalt |
 | SHA-256 | 256 bit | **Anbefalt** – brukes i TLS, sertifikater, Git |
-| bcrypt / Argon2 | variabel | **Anbefalt for passord** – langsom med vilje |
+| bcrypt / Argon2 | variabel | **Anbefalt for passord** – langsom med vilje |[^6]
 
 Typiske bruksområder:
 - Passordlagring: aldri lagre klartekstpassord – lagre hashen (med salt)
@@ -137,7 +137,7 @@ Typiske bruksområder:
 
 ### Ende-til-ende-kryptering (E2EE)
 
-Med ende-til-ende-kryptering er meldinger kryptert på avsenderens enhet og dekryptert kun hos mottakeren. Tjenesten i midten (serveren) kan ikke lese innholdet. Eksempler: Signal, WhatsApp (E2EE for meldinger, men ikke backuper som standard).
+Med ende-til-ende-kryptering er meldinger kryptert på avsenderens enhet og dekryptert kun hos mottakeren. Tjenesten i midten (serveren) kan ikke lese innholdet. Eksempler: Signal, WhatsApp (E2EE for meldinger, men ikke backuper som standard).[^7]
 
 E2EE er spesielt relevant for [[personvern]] – selv om serveren hackes, er innholdet uleselig. For sensitive kommunikasjonskanaler i virksomheter er E2EE derfor et viktig krav.
 
@@ -203,7 +203,7 @@ Nettleseren viser en sikkerhetsadvarsel. Dette betyr ikke nødvendigvis at siden
 Forward secrecy betyr at sesjonsnøkler slettes etter bruk og ikke kan avledes fra langtidsnøkkelen. Selv om en angripere registrerer all kryptert trafikk nå og later stjeler serverens private nøkkel, kan de ikke dekryptere den gamle trafikken. TLS 1.3 krever dette obligatorisk.
 
 **Kan kvantecomputere knekke krypteringen vi bruker i dag?**
-Kvantecomputere er en fremtidig trussel mot RSA og ECC (asymmetrisk kryptering). Symmetrisk AES-256 er langt mer motstandsdyktig. NIST jobber med å standardisere post-kvante-krypteringsalgoritmer. For VG2-nivå er det viktig å vite at fremtidssikker kryptering er et aktivt forskningsfelt.
+Kvantecomputere er en fremtidig trussel mot RSA og ECC (asymmetrisk kryptering). Symmetrisk AES-256 er langt mer motstandsdyktig. NIST jobber med å standardisere post-kvante-krypteringsalgoritmer.[^8] For VG2-nivå er det viktig å vite at fremtidssikker kryptering er et aktivt forskningsfelt.
 
 **Hva er en CA, og hvem kan bli det?**
 En Certificate Authority (CA) er en betrodd tredjepart som utsteder digitale sertifikater. Å bli en rot-CA krever strenge revisjonskrav og godkjenning fra nettleserprodusentene (Apple, Google, Mozilla, Microsoft). Let's Encrypt er en non-profit CA som tilbyr gratis, automatiserte sertifikater og har revolusjonert utbredelsen av HTTPS.
@@ -272,3 +272,14 @@ AES-256 :: Advanced Encryption Standard med 256-bits nøkkel – industristandar
 - [Azure kryptering og nøkkelhåndtering](https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview)
 - [Datatilsynet – Kryptering av personopplysninger](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/)
 - [YouTube: Kryptering (NDLA, 6 min)](https://www.youtube.com/watch?v=N6Tf1_27n0A)
+
+## Kilder
+
+[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). «Beskytt data i ro og under overføring». https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+[^2]: Datatilsynet – Kryptering av personopplysninger. https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/
+[^3]: NDLA – Kryptering. https://ndla.no
+[^4]: TLS 1.3 (RFC 8446). Mozilla Hacks – Introducing TLS 1.3. https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/
+[^5]: Let's Encrypt – How It Works. https://letsencrypt.org/how-it-works/
+[^6]: OWASP Top 10:2021 – A02: Cryptographic Failures. https://owasp.org/www-project-top-ten/
+[^7]: Signal – Technical Information. https://signal.org/docs/
+[^8]: NIST – Post-Quantum Cryptography Standardization. https://csrc.nist.gov/projects/post-quantum-cryptography

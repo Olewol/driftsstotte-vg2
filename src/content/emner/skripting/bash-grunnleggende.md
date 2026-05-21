@@ -30,7 +30,7 @@ Bash er tett knyttet til [[linux-grunnleggende]] og brukes aktivt i [[automatise
 
 ### Shebang — `#!/bin/bash`
 
-Den aller første linjen i et Bash-skript kalles **shebang** (eller hashbang). Den forteller operativsystemet hvilket program som skal tolke filen.
+Den aller første linjen i et Bash-skript kalles **shebang** (eller hashbang). Den forteller operativsystemet hvilket program som skal tolke filen.[^3]
 
 ```bash
 #!/bin/bash
@@ -227,7 +227,7 @@ Bash har kraftige innebygde kommandoer for filhåndtering:
 
 ### Shellcheck — statisk analyse av skript
 
-**Shellcheck** er et gratis verktøy som analyserer Bash-skript og peker på potensielle feil, dårlige vaner og sikkerhetsproblemer — uten at du trenger å kjøre skriptet.
+**Shellcheck** er et gratis verktøy som analyserer Bash-skript og peker på potensielle feil, dårlige vaner og sikkerhetsproblemer — uten at du trenger å kjøre skriptet.[^3]
 
 ```bash
 # Installer på Ubuntu/Debian
@@ -440,3 +440,10 @@ Kommandosubstitusjon :: Teknikk (`$(kommando)`) som kjører en kommando og sette
 - [NDLA – Bash og Linux-skripting](https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844)
 - [Learn X in Y Minutes – Bash](https://learnxinyminutes.com/docs/bash/) — kompakt syntaks-oversikt
 - [YouTube – You need to learn Bash Scripting RIGHT NOW!! (NetworkChuck, ~21 min)](https://www.youtube.com/watch?v=e7BufAVwgyM)
+
+## Kilder
+
+[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
+[^2]: NDLA. *Bash og Linux-skripting*. [ndla.no](https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844)
+[^3]: Learn X in Y Minutes. *Bash*. [learnxinyminutes.com](https://learnxinyminutes.com/docs/bash/)
+[^4]: Microsoft. *PowerShell Scripting*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/powershell/scripting/)

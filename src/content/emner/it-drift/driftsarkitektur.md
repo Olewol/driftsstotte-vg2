@@ -20,7 +20,7 @@ notebooklm: true
 
 ## Introduksjon
 
-En driftsarkitektur beskriver hvordan en virksomhets IT-infrastruktur er bygget opp – hvilke komponenter som finnes, hvordan de henger sammen, og hvor de er plassert. En gjennomtenkt arkitektur gjør systemet stabilt, sikkert og skalerbart.
+En driftsarkitektur beskriver hvordan en virksomhets IT-infrastruktur er bygget opp – hvilke komponenter som finnes, hvordan de henger sammen, og hvor de er plassert.[^1] En gjennomtenkt arkitektur gjør systemet stabilt, sikkert og skalerbart.
 
 I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infrastruktur, og en kombinasjon av begge (hybrid). Valget avhenger av krav til kontroll, kostnad, fleksibilitet og lovpålegg. En god driftsarkitektur tar alltid hensyn til hvem som er ansvarlig for hva – noe som er særlig viktig når tjenester flyttes til skyen (se [[skytjenester]] for Shared Responsibility Model).
 
@@ -35,7 +35,7 @@ I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infr
 - Fordeler: full kontroll, forutsigbare kostnader over tid, ingen avhengighet av internettforbindelse
 - Ulemper: høye investeringskostnader (CAPEX), krever kompetanse internt, skalering tar tid
 
-**Skybasert infrastruktur (public cloud)** betyr at ressurser leies av en ekstern skyleverandør (Microsoft Azure, Amazon Web Services, Google Cloud). Virksomheten betaler for det den bruker (OPEX-modell).
+**Skybasert infrastruktur (public cloud)** betyr at ressurser leies av en ekstern skyleverandør (Microsoft Azure, Amazon Web Services, Google Cloud).[^2] Virksomheten betaler for det den bruker (OPEX-modell).
 
 - Fordeler: elastisk skalering, betaler kun for bruk, lavt vedlikeholdsansvar
 - Ulemper: løpende kostnader, avhengighet av leverandør og internett, spørsmål om datalagring og GDPR
@@ -50,7 +50,7 @@ I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infr
 
 En **fysisk server** er dedikert maskinvare som kjører ett eller flere operativsystemer. I et datasenter plasseres servere i **rack** (metallstativer), og mange rack samles i en serversal.
 
-**Virtualisering** gjør det mulig å kjøre flere virtuelle maskiner (VM-er) på én fysisk server. En **hypervisor** er programvaren som administrerer VM-ene. De vanligste hypervisorene er:
+**Virtualisering** gjør det mulig å kjøre flere virtuelle maskiner (VM-er) på én fysisk server.[^3] En **hypervisor** er programvaren som administrerer VM-ene. De vanligste hypervisorene er:
 
 - **VMware ESXi** – industristandard, mye brukt i bedrifter
 - **Microsoft Hyper-V** – innebygget i Windows Server
@@ -110,7 +110,7 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 
 **UPS (Uninterruptible Power Supply)** er et batterisystem som gir strøm ved strømbrudd. Det sikrer at servere og nettverksutstyr kan slå seg ned kontrollert – eller fortsette å kjøre – når strømmen går.
 
-**Redundans** betyr at kritiske komponenter finnes i duplikat, slik at systemet fortsetter å fungere om én komponent feiler:
+**Redundans** betyr at kritiske komponenter finnes i duplikat, slik at systemet fortsetter å fungere om én komponent feiler:[^5]
 - Redundante strømforsyninger i servere
 - Redundante nettverkskoblinger (bonding/failover)
 - RAID (Redundant Array of Independent Disks) for lagring
@@ -120,7 +120,7 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 
 ### Infrastruktur som kode (IaC)
 
-Moderne driftsarkitektur handler ikke bare om hvilke komponenter som finnes – det handler også om hvordan de konfigureres og vedlikeholdes. **Infrastruktur som kode (IaC)** er en metode der IT-infrastruktur beskrives og styres via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering.
+Moderne driftsarkitektur handler ikke bare om hvilke komponenter som finnes – det handler også om hvordan de konfigureres og vedlikeholdes. **Infrastruktur som kode (IaC)** er en metode der IT-infrastruktur beskrives og styres via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering.[^4]
 
 Fordeler med IaC:
 - Reproduserbar infrastruktur – samme konfigurasjon gir alltid samme resultat
@@ -299,3 +299,12 @@ Latens :: Forsinkelsen i kommunikasjon mellom klient og server. Lav latens er kr
 - [[skytjenester]]
 - [[backup-og-gjenoppretting]]
 - [[dokumentasjon-og-planlegging]]
+
+## Kilder
+
+[^1]: [NDLA: Driftsarkitektur](https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358) – Introduksjon til driftsarkitektur og infrastruktur.
+[^2]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – Om offentlig sky og skytjenester.
+[^3]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Virtualisering og hypervisor-teknologi.
+[^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – Infrastruktur som kode (IaC) og beste praksis.
+[^5]: [NSM: Grunnprinsipper for IKT-sikkerhet](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/) – Redundans og kontinuitet i IT-drift.
+

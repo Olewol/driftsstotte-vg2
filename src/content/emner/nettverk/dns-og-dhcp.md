@@ -41,7 +41,7 @@ En DHCP-server tildeler klienter:
 
 #### DORA-prosessen
 
-DHCP bruker en fire-stegs prosess kalt DORA:
+DHCP bruker en fire-stegs prosess kalt DORA[^1]:
 
 | Steg | Melding | Beskrivelse |
 |------|---------|-------------|
@@ -56,7 +56,7 @@ Steg 1 og 3 sendes som broadcast (til `255.255.255.255`) fordi klienten ikke har
 
 Et **scope** er adresserommet DHCP-serveren administrerer — f.eks. `192.168.1.100`–`192.168.1.200`. Adresser utenfor dette kan tildeles statisk til servere og nettverksutstyr.
 
-En **lease-tid** er tidsavtalen mellom DHCP-server og klient om at klienten bruker adressen en bestemt periode. Når leaseperioden nærmer seg slutten, forsøker klienten å fornye den. Standardleaseperiode i Windows Server er 8 dager.
+En **lease-tid** er tidsavtalen mellom DHCP-server og klient om at klienten bruker adressen en bestemt periode. Når leaseperioden nærmer seg slutten, forsøker klienten å fornye den. Standardleaseperiode i Windows Server er 8 dager[^2].
 
 #### Statisk vs. dynamisk tildeling
 
@@ -68,7 +68,7 @@ En **lease-tid** er tidsavtalen mellom DHCP-server og klient om at klienten bruk
 
 #### DHCP i bedriftsnettverk
 
-I et enkelt hjemmenettverk kjører DHCP på ruteren. I et bedriftsnettverk med Windows Server bør DHCP flyttes til domenekontrolleren. Da må DHCP på ruteren **deaktiveres** for å unngå konflikter (to DHCP-servere på samme nett gir kaos).
+I et enkelt hjemmenettverk kjører DHCP på ruteren. I et bedriftsnettverk med Windows Server bør DHCP flyttes til domenekontrolleren[^6]. Da må DHCP på ruteren **deaktiveres** for å unngå konflikter (to DHCP-servere på samme nett gir kaos).
 
 Sjekk nåværende IP-konfigurasjon fra klienten:
 ```cmd
@@ -79,7 +79,7 @@ ipconfig /all
 
 ### DNS — Domain Name System
 
-DNS er internettets "telefonbok". Det oversetter menneskevennlige domenenavn som `ndla.no` til maskineslige IP-adresser som `185.45.32.10`. Uten DNS måtte du huske IP-adressen til hvert nettsted du besøker.
+DNS er internettets "telefonbok"[^3]. Det oversetter menneskevennlige domenenavn som `ndla.no` til maskineslige IP-adresser som `185.45.32.10`. Uten DNS måtte du huske IP-adressen til hvert nettsted du besøker.
 
 #### Hierarkisk struktur
 
@@ -95,7 +95,7 @@ DNS er organisert i et tre-hierarki:
     www.ndla.no
 ```
 
-- **Rotservere** (13 stk. globalt): vet om alle toppdomener
+- **Rotservere** (13 stk. globalt)[^3]: vet om alle toppdomener
 - **Toppdomeneservere (TLD)**: `.no`, `.com`, `.org` osv.
 - **Autoritative navneservere**: ansvarlige for spesifikke domener
 - **Rekursive resolvere**: gjør jobben for klientene (typisk din ISP eller Google 8.8.8.8)
@@ -112,7 +112,7 @@ DNS er organisert i et tre-hierarki:
 | NS | Name Server | Hvilke servere er autoritative | `ndla.no → ns1.domeneshop.no` |
 | SOA | Start of Authority | Metadata om sonen | Primær navneserver, serienummer |
 
-En **A-Record** (A-post) kobler altså et vertsnavn til en spesifikk IPv4-adresse — dette er den vanligste og viktigste DNS-posttypen.
+En **A-Record** (A-post) kobler altså et vertsnavn til en spesifikk IPv4-adresse — dette er den vanligste og viktigste DNS-posttypen[^3].
 
 #### DNS i Active Directory
 
@@ -126,7 +126,7 @@ DNS bruker primært **UDP på port 53** for vanlige oppslag (rask, liten overhea
 
 #### Sikkerhet: DNS-spoofing og DHCP-snooping
 
-DNS-spoofing er et angrep der en angriper sender falske DNS-svar for å omdirigere brukere til ondsinnede nettsteder. DNSSEC (DNS Security Extensions) kan brukes til å beskytte mot dette. I svitsjer brukes **DHCP snooping** for å hindre falske DHCP-servere: svitsjen blokkerer DHCP-svar fra porter som ikke er konfigurert som betrodde.
+DNS-spoofing er et angrep der en angriper sender falske DNS-svar for å omdirigere brukere til ondsinnede nettsteder[^4]. DNSSEC (DNS Security Extensions) kan brukes til å beskytte mot dette. I svitsjer brukes **DHCP snooping** for å hindre falske DHCP-servere: svitsjen blokkerer DHCP-svar fra porter som ikke er konfigurert som betrodde.
 
 ## Eksempel / lab
 
@@ -187,7 +187,7 @@ ipconfig /flushdns
 Vanlige problemer og tiltak:
 - **Ingen IP-adresse**: klienten har ikke nådd DHCP-serveren (sjekk om scope er aktivt, om DHCP på ruter er av, om det er nok ledige adresser)
 - **Kan ikke nå ndla.no**: sjekk med `nslookup ndla.no` — hvis DNS-oppslaget feiler, er problemet DNS. Hvis DNS gir svar men siden ikke åpner, er problemet i nettverksforbindelsen.
-- **169.254.x.x-adresse**: APIPA-adresse — klienten fikk ikke svar fra DHCP-server
+- **169.254.x.x-adresse**: APIPA-adresse[^5] — klienten fikk ikke svar fra DHCP-server
 
 ## Study guide
 
@@ -276,6 +276,15 @@ DHCP lease :: Tidsavtalen mellom DHCP-server og klient om bruk av en IP-adresse
 Forwarder :: DNS-konfigurasjon som videresender uløste oppslag til en annen DNS-server
 Lease-tid :: Tiden en klient får beholde en tildelt IP-adresse før den må be om fornyelse fra DHCP-serveren
 A-Record :: En ressurs-oppføring i DNS som kobler et vertsnavn til en spesifikk IPv4-adresse
+
+## Kilder
+
+[^1]: NDLA. (2024). Driftsstøtte IM-ITK VG2 — nettverksfag. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^2]: Microsoft Learn. (2024). DHCP Overview. https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top
+[^3]: Cloudflare Learning. (2025). What is DNS? https://www.cloudflare.com/learning/dns/what-is-dns/
+[^4]: Professor Messer. (2025). Network+ Study Guide — Network Security. https://www.professormesser.com/network-plus/
+[^5]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^6]: NDLA. (2024). Deaktivere eksisterende DHCP-server. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7
 
 ## Ressurser
 

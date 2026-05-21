@@ -21,7 +21,7 @@ notebooklm: true
 
 ## Introduksjon
 
-TCP/IP-modellen er det praktiske rammeverket som internett og de fleste moderne nettverk bygger på. Den beskriver hvordan data pakkes inn, sendes gjennom et nettverk og pakkes ut igjen på mottakersiden. Å forstå modellen er nøkkelen til å forstå hvorfor nettverksprotokoller er organisert slik de er, og hva som skjer "under panseret" når du åpner en nettside.
+TCP/IP-modellen er det praktiske rammeverket som internett og de fleste moderne nettverk bygger på[^1]. Den beskriver hvordan data pakkes inn, sendes gjennom et nettverk og pakkes ut igjen på mottakersiden. Å forstå modellen er nøkkelen til å forstå hvorfor nettverksprotokoller er organisert slik de er, og hva som skjer "under panseret" når du åpner en nettside.
 
 TCP/IP-modellen er nært beslektet med [[osi-modellen]], som er referansemodellen for teori og feilsøking. De konkrete protokollene som opererer i modellen beskrives i [[nettverksprotokoller]], og tjenester som [[dns-og-dhcp]] og [[serverroller]] befinner seg på applikasjonslaget.
 
@@ -29,7 +29,7 @@ TCP/IP-modellen er nært beslektet med [[osi-modellen]], som er referansemodelle
 
 ### Lagene i TCP/IP-modellen
 
-NDLA og mange norske lærebøker bruker en **5-lagsmodell** for TCP/IP. Den klassiske internettmodellen har 4 lag (der de to nederste slås sammen). Begge variantene er gyldige; 5-lagsmodellen er mer pedagogisk og mer lik OSI.
+NDLA og mange norske lærebøker bruker en **5-lagsmodell** for TCP/IP[^2]. Den klassiske internettmodellen har 4 lag (der de to nederste slås sammen). Begge variantene er gyldige; 5-lagsmodellen er mer pedagogisk og mer lik OSI.
 
 | Lag | Navn | Funksjon | Protokolleksempler |
 |-----|------|----------|--------------------|
@@ -47,7 +47,7 @@ Ansvarlig for selve bitsendingen: spenningsnivåer på kobberledning, lyspulser 
 **Lag 2 — Datalinklaget**
 Pakker biter inn i *frames* (rammer). Ethernet er dominerende her. Hvert nettverkskort har en unik **MAC-adresse** (48 bit, skrevet som f.eks. `00:1A:2B:3C:4D:5E`). En svitsj opererer på lag 2 og videresender frames basert på MAC-adresser. ARP (Address Resolution Protocol) brukes til å finne MAC-adressen til en kjent IP-adresse.
 
-En **MAC-adresse** er en unik fysisk adresse på datalinklaget (lag 2) som er brent inn i nettverkskortet for identifikasjon i et lokalt nettverk.
+En **MAC-adresse** er en unik fysisk adresse på datalinklaget (lag 2) som er brent inn i nettverkskortet for identifikasjon i et lokalt nettverk[^3].
 
 **Lag 3 — Nettverkslaget**
 Håndterer logisk adressering med **IP-adresser** og ruting mellom ulike nettverk. En ruter opererer på lag 3. IPv4-adresser er 32 bit (f.eks. `192.168.1.10`), IPv6-adresser er 128 bit. ICMP brukes til feilmeldinger og diagnostikk (`ping`).
@@ -59,15 +59,15 @@ Ansvarlig for ende-til-ende-kommunikasjon mellom applikasjoner på to maskiner. 
 
 En **port** er et numerisk identifikasjonsnummer på transportlaget som brukes til å dirigere trafikk til riktig applikasjon eller tjeneste på en maskin.
 
-- **TCP (Transmission Control Protocol)**: forbindelsesorientert, garanterer leveringsrekkefølge og feilretting. Brukes der pålitelighet er viktig (nettsider, e-post, filoverføring).
-- **UDP (User Datagram Protocol)**: forbindelseløs, rask men uten garantier. Brukes der hastighet er viktigere enn nøyaktighet (videostrømming, VoIP, DNS-oppslag).
+- **TCP (Transmission Control Protocol)**: forbindelsesorientert, garanterer leveringsrekkefølge og feilretting[^1]. Brukes der pålitelighet er viktig (nettsider, e-post, filoverføring).
+- **UDP (User Datagram Protocol)**: forbindelseløs, rask men uten garantier[^1]. Brukes der hastighet er viktigere enn nøyaktighet (videostrømming, VoIP, DNS-oppslag).
 
 **Lag 5 — Applikasjonslaget**
 Her befinner seg protokollene som programmer bruker direkte: HTTP for web, SMTP for e-post, DNS for navneoppløsning, osv. Dette laget "snakker" med brukernes applikasjoner (nettleser, e-postklient, terminalprogram).
 
 ### Innkapsling
 
-Når data sendes nedover gjennom lagene, legger hvert lag til sin egen **header** (topptekst) med styringsinformasjon. Dette kalles innkapsling:
+Når data sendes nedover gjennom lagene, legger hvert lag til sin egen **header** (topptekst) med styringsinformasjon. Dette kalles innkapsling[^1]:
 
 ```
 Applikasjon:  [DATA]
@@ -91,7 +91,7 @@ På mottakersiden pakkes det ut i omvendt rekkefølge — hvert lag leser og fje
 | Datalinklaget | Datalinklaget (2) |
 | Fysisk lag | Fysisk lag (1) |
 
-TCP/IP er den modellen internett faktisk bruker. OSI er referansemodellen som brukes til teori og feilsøking. Se [[osi-modellen]] for full beskrivelse. Norske lærebøker veksler mellom 4-lags og 5-lags TCP/IP — begge er korrekte, men 5-lagsmodellen er mer pedagogisk fordi den skiller mellom fysisk lag og datalink.
+TCP/IP er den modellen internett faktisk bruker[^1]. OSI er referansemodellen som brukes til teori og feilsøking. Se [[osi-modellen]] for full beskrivelse. Norske lærebøker veksler mellom 4-lags og 5-lags TCP/IP — begge er korrekte, men 5-lagsmodellen er mer pedagogisk fordi den skiller mellom fysisk lag og datalink.
 
 ## Eksempel / lab
 
@@ -199,6 +199,13 @@ ICMP :: Internet Control Message Protocol — brukes til feilmeldinger og diagno
 Three-way handshake :: TCP-prosessen for å opprette en forbindelse: SYN → SYN-ACK → ACK
 Ruter :: Nettverksenhet som opererer på lag 3 og videresender pakker mellom ulike nettverk
 TCP (Transmission Control Protocol) :: En forbindelsesorientert protokoll på transportlaget som garanterer feilfri levering og riktig rekkefølge på datapakker
+
+## Kilder
+
+[^1]: Cloudflare Learning. (2025). What is TCP/IP? https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/
+[^2]: NDLA. (2024). 5-lags TCP/IP-modell. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6
+[^3]: Professor Messer. (2025). Network+ Study Guide — TCP/IP Model. https://www.professormesser.com/network-plus/
+[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
 
 ## Ressurser
 

@@ -23,7 +23,7 @@ public: true
 
 Sikkerhet er ikke noe du legger til etter at et system er bygget. Det er et designkrav som må integreres fra første kravspesifikasjon til løpende drift. Denne artikkelen handler om prinsippene og praksisen bak det å bygge og drifte IT-løsninger der sikkerhet er en naturlig del av arkitekturen – ikke en ettertanke.
 
-NSM Grunnprinsipper for IKT-sikkerhet (v2.1, 2024) understreker at god IKT-sikkerhet krever både tekniske og organisatoriske tiltak over hele livssyklusen til et system. Her ser vi på de viktigste prinsippene og metodene.
+NSM Grunnprinsipper for IKT-sikkerhet (v2.1, 2024) understreker at god IKT-sikkerhet krever både tekniske og organisatoriske tiltak over hele livssyklusen til et system.[^1] Her ser vi på de viktigste prinsippene og metodene.
 
 Prinsippene i denne artikkelen henger tett sammen med [[brannmur|brannmur og nettverkssikkerhet]], [[bruker-og-tilgangsstyring]] og [[backup-og-gjenoppretting]]. God IT-sikkerhet er aldri ett enkelt tiltak – det er summen av mange overlappende lag.
 
@@ -35,7 +35,7 @@ Prinsippene i denne artikkelen henger tett sammen med [[brannmur|brannmur og net
 
 **Security by Design** er prinsippet om at sikkerhet integreres i alle faser av systemutvikling og -drift – fra kravspesifikasjon, design, utvikling og testing til produksjon og avvikling.
 
-Microsofts **SDL (Security Development Lifecycle)** er en referansemodell med fasene:
+Microsofts **SDL (Security Development Lifecycle)** er en referansemodell[^2] med fasene:
 1. Opplæring i sikker koding
 2. Kravspesifikasjon inkl. sikkerhetskrav
 3. Trusselmodellering (threat modeling)
@@ -56,7 +56,7 @@ Motsetningen – å legge til sikkerhet etter at systemet er bygget – er dyrer
 
 Tradisjonell sikkerhetstenkning antok at alt innenfor bedriftsnettverket var trygt. Zero Trust forkaster denne antagelsen og behandler all tilgang som potensielt farlig – uavhengig av om brukeren er innenfor eller utenfor bedriftsnettverket.
 
-**Tre kjerneprinsippler (Microsoft Zero Trust):**
+**Tre kjerneprinsippler (Microsoft Zero Trust):**[^3]
 
 | Prinsipp | Norsk | Hva betyr det i praksis |
 |---|---|---|
@@ -70,7 +70,7 @@ Tradisjonell sikkerhetstenkning antok at alt innenfor bedriftsnettverket var try
 - Mikrosegmentering: begrens hvilke systemer brukere og applikasjoner kan nå
 - Ingen implisitt tillit til bedriftsnettverket – VPN er ikke lenger nok
 
-Digitaliseringsdirektoratet (Digdir) har publisert en norsk veileder for nulltillitsarkitektur som beskriver hvordan Zero Trust implementeres i offentlig sektor.
+Digitaliseringsdirektoratet (Digdir) har publisert en norsk veileder for nulltillitsarkitektur som beskriver hvordan Zero Trust implementeres i offentlig sektor.[^4]
 
 ---
 
@@ -90,7 +90,7 @@ Kjente sårbarheter i programvare er en av de hyppigste inngangsdørene for angr
 - Linux: `apt update && apt upgrade` (Debian/Ubuntu), `dnf update` (RHEL/Fedora)
 - Nettverk: leverandørens administrasjonsportal for firmware
 
-**NSM anbefaling:** Kritiske patcher bør installeres innen 24–72 timer. Eldre OWASP A06 (Vulnerable and Outdated Components) understreker at utdaterte komponenter er en av de hyppigste angrepsvektorene.
+**NSM anbefaling:** Kritiske patcher bør installeres innen 24–72 timer. Eldre OWASP A06 (Vulnerable and Outdated Components) understreker at utdaterte komponenter er en av de hyppigste angrepsvektorene.[^5]
 
 Automatisering av patchprosessen er nøkkelen til å redusere sårbarhetsvinduet – jo kortere tid fra en patch er tilgjengelig til den er installert, jo mindre tid har angripere til å utnytte kjente hull.
 
@@ -114,7 +114,7 @@ SIEM samler logger fra alle systemer til et sentralt sted, korrelerer hendelser 
 - **Splunk, IBM QRadar:** kommersielle SIEM-løsninger
 - **Wazuh, Graylog:** åpne alternativer
 
-OWASP identifiserer manglende logging og overvåkning (A09) som en kritisk sårbarhet – uten logger vet du ikke at du er angrepet.
+OWASP identifiserer manglende logging og overvåkning (A09) som en kritisk sårbarhet – uten logger vet du ikke at du er angrepet.[^5]
 
 ---
 
@@ -131,7 +131,7 @@ Tilganger knyttes til roller (f.eks. «Helpdesk», «Regnskapsmedarbeider», «I
 **Verktøy:**
 - **Active Directory (AD):** brukerkontoer, grupper og rettighetsstyring on-premises. Se [[active-directory]].
 - **Azure Entra ID (tidligere Azure AD):** skybasert IAM. Støtter SSO (Single Sign-On), MFA og Conditional Access.
-- **MFA:** kombinerer noe du vet (passord), noe du har (autentiseringsapp/SMS) og/eller noe du er (biometri). Blokkerer over 99 % av kontoovertak ifølge Microsoft.
+- **MFA:** kombinerer noe du vet (passord), noe du har (autentiseringsapp/SMS) og/eller noe du er (biometri). Blokkerer over 99 % av kontoovertak ifølge Microsoft.[^6]
 
 Se også [[bruker-og-tilgangsstyring]] for praktisk gjennomgang av tilgangsstyring.
 
@@ -187,7 +187,7 @@ Lag 2: Fysisk        → Adgangskontroll til serverrom, låste rack
 Lag 1: Retningslinjer→ Sikkerhetspolicyer, opplæring, rutiner
 ```
 
-Azure benytter eksplisitt denne modellen i sin sikkerhetsdokumentasjon.
+Azure benytter eksplisitt denne modellen i sin sikkerhetsdokumentasjon.[^7]
 
 Mikrosegmentering er et konkret tiltak for å implementere Defense in Depth på nettverksnivå: ved å begrense hvilke systemer og tjenester som kan snakke sammen, reduseres skadeomfanget dramatisk hvis ett system kompromitteres.
 
@@ -334,3 +334,13 @@ JIT :: Just-In-Time – midlertidig, tidsavgrenset tilgang til sensitive systeme
 - [NSM – Grunnprinsipper for IKT-sikkerhet (full versjon)](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
 - [Digdir – Nulltillitsarkitektur (norsk)](https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054)
 - [YouTube: What is Zero Trust? (IBM Technology, 6 min)](https://www.youtube.com/watch?v=R9NCYvR3h3w)
+
+## Kilder
+
+[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
+[^2]: Microsoft – Security Development Lifecycle (SDL). https://learn.microsoft.com/en-us/security/sdl/
+[^3]: Microsoft – Zero Trust-modellen. https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview
+[^4]: Digdir – Nulltillitsarkitektur (norsk veileder). https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054
+[^5]: OWASP Top 10:2021. https://owasp.org/www-project-top-ten/
+[^6]: Microsoft – MFA blokkerer over 99 % av kontoovertak. https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-mfa-how-it-works
+[^7]: Microsoft – Azure Defense in Depth. https://learn.microsoft.com/en-us/azure/security/fundamentals/infrastructure

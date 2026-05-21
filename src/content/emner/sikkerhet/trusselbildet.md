@@ -20,7 +20,7 @@ public: true
 
 ## Introduksjon
 
-Trusselbildet innen digital sikkerhet endrer seg raskt. Det som var eksotiske angrepsmetoder for ti år siden, er i dag hverdagskost for norske virksomheter og enkeltpersoner. NSM (Nasjonal sikkerhetsmyndighet) publiserer hvert år en trusselrapport som viser at norske bedrifter, sykehus, kommuner og kritisk infrastruktur stadig er under press fra digitale angrep.
+Trusselbildet innen digital sikkerhet endrer seg raskt. Det som var eksotiske angrepsmetoder for ti år siden, er i dag hverdagskost for norske virksomheter og enkeltpersoner. NSM (Nasjonal sikkerhetsmyndighet) publiserer hvert år en trusselrapport som viser at norske bedrifter, sykehus, kommuner og kritisk infrastruktur stadig er under press fra digitale angrep.[^1]
 
 For å jobbe med IT-sikkerhet må du kjenne de vanligste truslene: hva de er, hvordan de virker, og hvilken påvirkning de har på samfunnet.
 
@@ -38,13 +38,13 @@ Malware er en samlebetegnelse for programvare som er laget for å skade, forstyr
 Et virus kopierer seg selv ved å legge seg inn i andre filer. Det sprer seg når infiserte filer åpnes eller deles. Virus trenger brukerhandling for å spre seg.
 
 **Orm (worm)**
-En orm sprer seg automatisk over nettverk uten å trenge brukerhandling. Den utnytter sårbarheter i nettverksprotokollene. WannaCry (2017) var en orm som rammet over 200 000 systemer i 150 land på kort tid – inkludert britiske NHS-sykehus.
+En orm sprer seg automatisk over nettverk uten å trenge brukerhandling. Den utnytter sårbarheter i nettverksprotokollene. WannaCry (2017) var en orm som rammet over 200 000 systemer i 150 land på kort tid – inkludert britiske NHS-sykehus.[^2]
 
 **Trojaner**
 En trojaner later som den er nyttig programvare, men inneholder skjult ondsinnet kode. Eksempel: et gratis spill som i virkeligheten installerer spyware. Trojanere gir ofte angriperen bakdørstilgang.
 
 **Ransomware**
-Ransomware krypterer offerets filer og krever løsepenger for dekrypteringsnøkkelen. Dette er den dominerende trusselen mot norske virksomheter ifølge NSM. I 2021 rammet Conti-ransomware Østre Toten kommune og la ned all digital drift i uker. Helsesektoren, kommuner og industribedrifter er hyppige mål.
+Ransomware krypterer offerets filer og krever løsepenger for dekrypteringsnøkkelen. Dette er den dominerende trusselen mot norske virksomheter ifølge NSM.[^1] I 2021 rammet Conti-ransomware Østre Toten kommune og la ned all digital drift i uker.[^3] Helsesektoren, kommuner og industribedrifter er hyppige mål.
 
 **Spyware**
 Spyware overvåker brukerens aktivitet uten samtykke – tastaturlogging, skjermopptak, innsamling av passord og bankinformasjon. Kan inngå i kommersielle «stalkerware»-produkter brukt til overvåking av partnere.
@@ -71,7 +71,7 @@ Den menneskelige faktoren er hyppigste angrepsvektor. De fleste vellykkede cyber
 
 **DDoS (Distributed Denial of Service)** oversvømmer en tjeneste med så mange forespørsler at den ikke klarer å betjene reelle brukere. Angrepet koordineres fra tusenvis av kompromitterte maskiner (et botnet).
 
-NSM og NCSC varsler jevnlig om DDoS-angrep mot norsk kritisk infrastruktur, særlig i kjølvannet av geopolitiske hendelser. I 2022, etter Norges støtte til Ukraina, ble flere norske offentlige nettsider rammet av DDoS-angrep fra pro-russiske hackergrupper.
+NSM og NCSC varsler jevnlig om DDoS-angrep mot norsk kritisk infrastruktur, særlig i kjølvannet av geopolitiske hendelser. I 2022, etter Norges støtte til Ukraina, ble flere norske offentlige nettsider rammet av DDoS-angrep fra pro-russiske hackergrupper.[^4]
 
 Konsekvenser: nettbanker utilgjengelige, offentlige portaler nede, kommunikasjonstjenester forstyrret.
 
@@ -105,7 +105,7 @@ Tiltak: prinsippet om minste privilegium (least privilege), logging av brukerakt
 - Målet er spionasje, sabotasje eller destabilisering, ikke rask gevinst
 - Angriperen kan oppholde seg skjult i et nettverk i årevis
 
-NSM peker på statlige aktører knyttet til Russland, Kina og Nord-Korea som aktive trusler mot norske interesser. APT29 (Cozy Bear) og APT28 (Fancy Bear) er kjente russiske grupper som har angrepet norske mål.
+NSM peker på statlige aktører knyttet til Russland, Kina og Nord-Korea som aktive trusler mot norske interesser. APT29 (Cozy Bear) og APT28 (Fancy Bear) er kjente russiske grupper som har angrepet norske mål.[^5]
 
 Kontinuerlig overvåking og logganalyse er avgjørende for å oppdage APT-aktivitet. En angriper som har tilgang i årevis uten å bli oppdaget kan eksfiltrere enormt med data.
 
@@ -113,7 +113,7 @@ Kontinuerlig overvåking og logganalyse er avgjørende for å oppdage APT-aktivi
 
 ### OWASP Top 10 – Webapplikasjonssårbarheter
 
-OWASP (Open Web Application Security Project) publiserer en liste over de ti vanligste sikkerhetsfeilene i webapplikasjoner. 2021-versjonen er gjeldende:
+OWASP (Open Web Application Security Project) publiserer en liste over de ti vanligste sikkerhetsfeilene i webapplikasjoner. 2021-versjonen er gjeldende:[^6]
 
 | Nr | Kategori |
 |---|---|
@@ -214,7 +214,7 @@ Vanlig hacking er gjerne opportunistisk – angriperen ser etter lett tilgjengel
 Det betyr at applikasjonen ikke håndhever tilgangskontroll korrekt – brukere kan gjøre ting de ikke burde ha tilgang til. Eksempel: en vanlig bruker kan redigere URL-en og få tilgang til en annen brukers data. Det er konsekvent rangert som den vanligste webapplikasjonssårbarheten.
 
 **Hvordan kan desinformasjon true demokratiet?**
-Statsstøttede aktører kan bruke sosiale medier til å spre falske nyheter systematisk, forsterke polarisering og svekke tillit til medier, politikere og institusjoner. Når borgere ikke kan skille mellom fakta og løgn, svekkes grunnlaget for informerte valg. Cambridge Analytica-skandalen viste at persondata kombinert med målrettet desinformasjon kan påvirke valgresultater.
+Statsstøttede aktører kan bruke sosiale medier til å spre falske nyheter systematisk, forsterke polarisering og svekke tillit til medier, politikere og institusjoner. Når borgere ikke kan skille mellom fakta og løgn, svekkes grunnlaget for informerte valg. Cambridge Analytica-skandalen viste at persondata kombinert med målrettet desinformasjon kan påvirke valgresultater.[^7]
 
 ---
 
@@ -277,3 +277,13 @@ Smishing :: SMS-phishing – svindelforsøk via tekstmelding som utgir seg for �
 - [NDLA – Informasjonssikkerhet](https://ndla.no)
 - [NSM – Risikovurdering 2024 (årsrapport)](https://nsm.no/regelverk-og-hjelp/risiko-2024)
 - [OWASP – Top 10 prosjektside (full dokumentasjon)](https://owasp.org/www-project-top-ten/)
+
+## Kilder
+
+[^1]: NSM – Risikovurdering 2024 (årlig trusselrapport). https://nsm.no/regelverk-og-hjelp/risiko-2024
+[^2]: NCSC – WannaCry. https://www.ncsc.gov.uk/ransomware
+[^3]: Østre Toten kommune – Conti-ransomware-angrep 2021. https://nsm.no/aktuelt/omfattende-it-angrep-mot-ostre-toten-kommune
+[^4]: NSM – DDoS-angrep mot norske mål 2022. https://nsm.no/aktuelt/ddos-angrep-mot-norske-nettsider
+[^5]: NSM – Trusler fra statlige aktører. https://nsm.no/fagomrader/digital-sikkerhet/
+[^6]: OWASP Top 10:2021. https://owasp.org/www-project-top-ten/
+[^7]: Cambridge Analytica-skandalen (2018). https://www.datatilsynet.no/aktuelt/aktuelle-nyheter-2018/cambridge-analytica/
