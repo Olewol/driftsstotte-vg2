@@ -14,9 +14,17 @@ const links = [
 
 const currentPath = Astro.url.pathname;
 const isEnglish = currentPath.endsWith('-en/');
-const otherLangPath = isEnglish
-  ? currentPath.replace(/-en\/$/, '/')
-  : currentPath.replace(/\/$/, '-en/');
+let otherLangPath;
+let showLangToggle = true;
+if (currentPath === `${base}/`) {
+  showLangToggle = false;
+} else if (currentPath === `${base}/en/`) {
+  showLangToggle = false;
+} else {
+  otherLangPath = isEnglish
+    ? currentPath.replace(/-en\/$/, '/')
+    : currentPath.replace(/\/$/, '-en/');
+}
 const otherLangLabel = isEnglish ? 'Norsk' : 'English';
 const otherLangIcon = isEnglish ? '🇳🇴' : '🇬🇧';
 const searchLabel = isEnglish ? 'Search' : 'Søk';
@@ -41,9 +49,11 @@ const searchLabel = isEnglish ? 'Search' : 'Søk';
     <a href={`${base}/sok`} style="flex:1;display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:12px 16px;font-size:15px;color:var(--text2);text-decoration:none;margin-right:8px;">
       <span>🔍</span><span>{searchLabel}</span><span style="margin-left:auto;font-size:11px;color:var(--text3);">↵</span>
     </a>
+    {showLangToggle && (
     <a href={otherLangPath} style="display:flex;align-items:center;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:12px;font-size:14px;color:var(--text);text-decoration:none;white-space:nowrap;" aria-label={`Bytt språk til ${otherLangLabel}`}>
       <span>{otherLangIcon}</span><span style="font-size:13px;">{otherLangLabel}</span>
     </a>
+    )}
   </div>
   {links.map(l => (
     <a href={l.href} style="font-size:18px;color:var(--text);padding:12px 0;border-bottom:1px solid var(--border);text-decoration:none;">{l.label}</a>

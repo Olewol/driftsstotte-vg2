@@ -6,10 +6,10 @@ export interface Props {
 }
 
 const { question, answer, emoji = '📇' } = Astro.props;
-const id = `fc-${Math.random().toString(36).slice(2, 8)}`;
+const uid = Math.random().toString(36).slice(2, 8);
 ---
 
-<div class="flashcard" id={id} role="button" tabindex="0" aria-label={`Spørsmål: ${question}`}>
+<div class="flashcard" data-fcid={uid} role="button" tabindex="0" aria-label={`Spørsmål: ${question}`}>
   <div class="fc-front">
     <span class="fc-icon">{emoji}</span>
     <span class="fc-q">{question}</span>
@@ -47,17 +47,19 @@ const id = `fc-${Math.random().toString(36).slice(2, 8)}`;
 </style>
 
 <script>
-  const card = document.getElementById('{id}')!;
-  card.addEventListener('click', () => {
-    card.classList.toggle('flipped');
-    card.setAttribute('aria-label', card.classList.contains('flipped')
-      ? `Svar: ${answer}`
-      : `Spørsmål: ${question}`);
-  });
-  card.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      card.click();
-    }
+  document.querySelectorAll('.flashcard').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+      const isFlipped = card.classList.contains('flipped');
+      const q = card.querySelector('.fc-q')?.textContent || '';
+      const a = card.querySelector('.fc-a')?.textContent || '';
+      card.setAttribute('aria-label', isFlipped ? `Svar: ${a}` : `Spørsmål: ${q}`);
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
   });
 </script>
