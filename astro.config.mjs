@@ -6,6 +6,7 @@ import tailwind from '@astrojs/tailwind';
 import mermaid from 'astro-mermaid';
 import expressiveCode from 'astro-expressive-code';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 import { slugify } from './src/lib/slugify.js';
 import rehypeExternalLinks from 'rehype-external-links';
 
@@ -37,6 +38,7 @@ export default defineConfig({
     mermaid(),
     expressiveCode(),
     sitemap(),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [
