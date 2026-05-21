@@ -10,12 +10,21 @@ const links = [
   { href: `${base}/it-drift`,        label: 'IT-drift' },
   { href: `${base}/kompetansemaal`,  label: 'Kompetansemål' },
   { href: `${base}/repetisjon`,      label: 'Eksamensrepetisjon' },
-  { href: `${base}/sok`,             label: 'Søk' },
 ];
+
+const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.endsWith('-en/');
+const otherLangPath = isEnglish
+  ? currentPath.replace(/-en\/$/, '/')
+  : currentPath.replace(/\/$/, '-en/');
+const otherLangLabel = isEnglish ? 'Norsk' : 'English';
+const otherLangIcon = isEnglish ? '🇳🇴' : '🇬🇧';
+const searchLabel = isEnglish ? 'Search' : 'Søk';
 ---
+
 <button
   id="hamburger"
-  aria-label="Åpne meny"
+  aria-label={isEnglish ? "Open menu" : "Åpne meny"}
   aria-expanded="false"
   aria-controls="mobileMenu"
   style="display:none;width:38px;height:38px;background:var(--bg3);border:1px solid var(--border2);border-radius:9px;cursor:pointer;font-size:18px;align-items:center;justify-content:center;color:var(--text);"
@@ -26,13 +35,21 @@ const links = [
   role="dialog"
   aria-modal="true"
   aria-label="Navigasjonsmeny"
-  style="display:none;position:fixed;inset:0;background:var(--bg2);z-index:200;padding:24px;flex-direction:column;gap:8px;"
+  style="display:none;position:fixed;inset:0;background:var(--bg3);z-index:200;padding:24px;flex-direction:column;gap:8px;box-shadow:0 0 0 9999px rgba(0,0,0,0.5);"
 >
-  <button id="closeMenu" aria-label="Lukk menyen" style="align-self:flex-end;background:none;border:none;font-size:24px;color:var(--text);cursor:pointer;">✕</button>
-  <input type="search" placeholder="Søk…" style="background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:12px 16px;font-size:16px;color:var(--text);margin-bottom:8px;" />
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+    <a href={`${base}/sok`} style="flex:1;display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:12px 16px;font-size:15px;color:var(--text2);text-decoration:none;margin-right:8px;">
+      <span>🔍</span><span>{searchLabel}</span><span style="margin-left:auto;font-size:11px;color:var(--text3);">↵</span>
+    </a>
+    <a href={otherLangPath} style="display:flex;align-items:center;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:12px;font-size:14px;color:var(--text);text-decoration:none;white-space:nowrap;" aria-label={`Bytt språk til ${otherLangLabel}`}>
+      <span>{otherLangIcon}</span><span style="font-size:13px;">{otherLangLabel}</span>
+    </a>
+  </div>
   {links.map(l => (
-    <a href={l.href} style="font-size:18px;color:var(--text);padding:12px 0;border-bottom:1px solid var(--border);">{l.label}</a>
+    <a href={l.href} style="font-size:18px;color:var(--text);padding:12px 0;border-bottom:1px solid var(--border);text-decoration:none;">{l.label}</a>
   ))}
+  <!-- Close button ved bunnen for lett tilgang -->
+  <button id="closeMenu" aria-label="Lukk menyen" style="margin-top:auto;width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:14px;font-size:16px;color:var(--text);cursor:pointer;">✕ Lukk</button>
 </div>
 
 <style>

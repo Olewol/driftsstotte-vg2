@@ -1,0 +1,63 @@
+---
+export interface Props {
+  question: string;
+  answer: string;
+  emoji?: string;
+}
+
+const { question, answer, emoji = '📇' } = Astro.props;
+const id = `fc-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="flashcard" id={id} role="button" tabindex="0" aria-label={`Spørsmål: ${question}`}>
+  <div class="fc-front">
+    <span class="fc-icon">{emoji}</span>
+    <span class="fc-q">{question}</span>
+    <span class="fc-hint">Klikk for svar</span>
+  </div>
+  <div class="fc-back" aria-hidden="true">
+    <span class="fc-a">{answer}</span>
+  </div>
+</div>
+
+<style>
+  .flashcard {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+    user-select: none;
+  }
+  .flashcard:hover { border-color: var(--accent); }
+  .flashcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .flashcard.flipped { background: linear-gradient(135deg, var(--bg3) 0%, color-mix(in srgb, var(--accent) 8%, var(--bg3)) 100%); }
+  
+  .fc-front { display: flex; flex-direction: column; gap: 6px; }
+  .fc-icon { font-size: 24px; }
+  .fc-q { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.5; }
+  .fc-hint { font-size: 12px; color: var(--text3); }
+  
+  .fc-back { display: none; }
+  .flashcard.flipped .fc-front { display: none; }
+  .flashcard.flipped .fc-back { display: flex; }
+  .fc-a { font-size: 15px; color: var(--text2); line-height: 1.7; padding-top: 4px; }
+</style>
+
+<script>
+  const card = document.getElementById('{id}')!;
+  card.addEventListener('click', () => {
+    card.classList.toggle('flipped');
+    card.setAttribute('aria-label', card.classList.contains('flipped')
+      ? `Svar: ${answer}`
+      : `Spørsmål: ${question}`);
+  });
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      card.click();
+    }
+  });
+</script>
