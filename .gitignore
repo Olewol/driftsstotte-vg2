@@ -27,3 +27,17 @@ pnpm-debug.log*
 # Pagefind (genererast ved bygging)
 dist/pagefind/
 public/pagefind/
+
+# Playwright-testartefakter
+.playwright-cli/
+
+# Byggeloggar
+build_error.log
+build_error_2.log
+
+# Skjermbilete og store binære filer i rot
+article.png
+final.png
+frontpage2.png
+nettverk-page.png
+osi.png

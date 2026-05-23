@@ -1,0 +1,56 @@
+name: Lint og kvalitetssjekk
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  markdown-lint:
+    name: Markdown-linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sjekk ut kode
+        uses: actions/checkout@v4
+
+      - name: Sett opp Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Installer avhengigheiter
+        run: npm ci
+
+      - name: Kjør markdownlint på markdownfiler
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+            !node_modules/**
+            !dist/**
+            !.astro/**
+            !AI_PROJECT_CONTEXT.md
+
+  astro-check:
+    name: Astro-typesjekk
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sjekk ut kode
+        uses: actions/checkout@v4
+
+      - name: Sett opp Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Installer avhengigheiter
+        run: npm ci
+
+      - name: Kjør Astro-sjekk
+        run: npx astro check
+        continue-on-error: true

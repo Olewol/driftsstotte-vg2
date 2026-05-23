@@ -1,43 +1,60 @@
-# Astro Starter Kit: Minimal
+# Driftsstøtte VG2
 
-```sh
-npm create astro@latest -- --template minimal
+Læringsressurser for faget Driftsstøtte (VG2) — bygd med [Astro](https://astro.build) 5 og deployert til GitHub Pages.
+
+## Innhald
+
+- **Fagstoff** — 6 kategoriar med djupneartiklar (nettverk, sikkerheit, IT-drift, operativsystem, skripting, databaser)
+- **Repetisjonssider** — 9 eksamensretta faktasider med interaktive element
+- **Flashcards** — sjølvtester for kvart emne
+- **Årsplan** — oversikt over skuleåret
+- **Søk** — fulltekstsøk via Pagefind
+
+## Tospråkleg innhald
+
+Kvart emne har både bokmål (`.md`) og engelsk (`-en.md`) versjonar. Språkveljar i menyen lar elevane veksle mellom språka.
+
+## Køyr lokalt
+
+```bash
+npm install
+npm run dev        # utviklingsserver på :4321
+npm run build      # produksjonsbygg til dist/
+npm run preview    # førehandsvis det ferdige bygget
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Struktur
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
+```
 /
 ├── public/
+│   ├── audio/          # Lydfiler
+│   ├── diagrams/       # SVG-diagram (18 stk)
+│   └── video/          # Videofiler
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── content/
+│   │   ├── aarsplan/   # Årsplan
+│   │   ├── emner/      # Fagstoff (6 kategoriar × 2 språk)
+│   │   ├── flashcards/ # Sjølvtester
+│   │   └── oppgaver/   # Øvingsoppgåver
+│   ├── components/     # Gjenbrukbare komponentar
+│   ├── layouts/        # Sidemalar
+│   ├── pages/          # Ruter og sider
+│   │   ├── [emne]/     # Dynamiske emnesider
+│   │   └── repetisjon/ # Eksamensrepetisjon
+│   └── styles/         # Global CSS + Tailwind
+├── .github/workflows/
+│   ├── deploy.yml      # Bygg + deploy til GitHub Pages
+│   └── lint.yml        # Markdown-linting + Astro-typesjekk
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## CI/CD
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **Deploy** — automatisk bygg og deploy til GitHub Pages ved push til `main`
+- **Lint** — markdown-linting med `markdownlint-cli2` og Astro-typesjekk
+- **Krav** — Node.js >= 22.12.0
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Lisens
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Internt undervisningsmateriell.

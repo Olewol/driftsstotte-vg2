@@ -30,17 +30,14 @@ jobs:
       - name: Sett opp Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Installer avhengigheiter
         run: npm ci
 
-      - name: Bygg Astro-sida
+      - name: Bygg Astro-sida + Pagefind-indeksering
         run: npm run build
-
-      - name: Indekser med Pagefind
-        run: npx pagefind --site dist
 
       - name: Konfigurer GitHub Pages
         uses: actions/configure-pages@v4
