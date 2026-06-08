@@ -25,7 +25,7 @@ notebooklm: true
 
 The OSI model (Open Systems Interconnection) is a 7-layer reference model developed by ISO in the late 1970s. It never became the dominant implementation in practice — that was TCP/IP — but OSI has become the universal standard for *describing and understanding* network communication. In troubleshooting, asking "which layer is the problem at?" is one of the most useful questions you can ask.
 
-The OSI model is closely linked to the [[tcp-ip-modellen|TCP/IP model]], which is the framework the internet actually uses in practice. Understanding OSI is key to understanding the protocols described in [[nettverksprotokoller|network protocols]], as well as the services in [[dns-og-dhcp|DNS and DHCP]] and [[serverroller|server roles]].
+The OSI model is closely linked to the [[tcp-ip-modellen-en|TCP/IP model]], which is the framework the internet actually uses in practice. Understanding OSI is key to understanding the protocols described in [[nettverksprotokoller-en|network protocols]], as well as the services in [[dns-og-dhcp-en|DNS and DHCP]] and [[serverroller-en|server roles]].
 
 ## Theory
 
@@ -211,22 +211,6 @@ Start at layer 1 and work up: check cable → switch → IP address → firewall
 
 **Answer:** "Please Do Not Throw Sausage Pizza Away" — Physical, Data Link, Network, Transport, Session, Presentation, Application (layers 1 to 7).
 </details>
-
-## Flashcards
-
-OSI model :: ISO standard's 7-layer reference model for network communication
-Physical layer (OSI 1) :: Bit transmission over physical medium (cable, fiber, WiFi radio)
-Data Link layer (OSI 2) :: Frames and MAC addressing within one network segment
-Network layer (OSI 3) :: IP addressing and routing between different networks
-Transport layer (OSI 4) :: End-to-end communication with TCP or UDP and port numbers
-Session layer (OSI 5) :: Creating, maintaining, and terminating application sessions
-Presentation layer (OSI 6) :: Formatting, encryption (TLS), and compression of data
-Application layer (OSI 7) :: User-facing protocols like HTTP, FTP, SMTP, and DNS
-OSI vs TCP/IP :: OSI has 7 layers and is a reference model; TCP/IP has 4–5 layers and is what the internet actually uses
-Encapsulation :: The process where data is wrapped in control information (headers) from each layer of the OSI model as it travels down the stack
-PDU (Protocol Data Unit) :: The name for the information unit at a specific layer: Segment (layer 4), Packet (layer 3), Frame (layer 2)
-Layers :: The seven logical levels of the OSI model that divide network communication tasks to ensure standardization and simplify troubleshooting
-Reference Model :: A theoretical framework used to understand and describe how complex processes like network communication work
 
 ## Resources
 

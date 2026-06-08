@@ -9,6 +9,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/windows-server/
   - https://documentation.ubuntu.com/server/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+video: https://www.youtube.com/watch?v=fSRgESnRwAU
 tags: []
 flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true
@@ -290,27 +291,6 @@ Autentisering verifiserer identiteten din (du er den du utgir deg for å være).
 **Svar:** Den legger brukeren `elev01` til i gruppen `sudo` uten å fjerne brukeren fra andre grupper (`-a` = append, `-G` = supplementary groups). Dette gir brukeren mulighet til å kjøre kommandoer med root-rettigheter via `sudo`.
 
 </details>
-
----
-
-## Flashcards
-
-Lokal konto :: Brukerkonto lagret i maskinens SAM-database, gyldig kun på denne maskinen
-Domenekonto :: Brukerkonto lagret i Active Directory, gyldig på alle maskiner i domenet
-SID :: Security Identifier — unik numerisk identifikator Windows tildeler hver konto og gruppe
-Prinsippet om minste privilegium :: Brukere skal kun ha de rettighetene de trenger for jobben sin
-UAC :: User Account Control — Windows-mekanisme som krever eksplisitt godkjenning for administrative operasjoner
-Domain Admins :: Innebygd AD-gruppe med full administrasjonstilgang til domenet
-Sikkerhetsgruppe :: AD-objekt som samler brukere for felles tilgangsstyring
-Domenelokal gruppe :: Gruppe som kan brukes til tillatelser kun i eget domene
-Global gruppe :: Gruppe fra eget domene som kan brukes til tillatelser i alle domener i skogen
-AAA :: Autentisering, Autorisasjon og Revisjon — grunnprinsippene for tilgangskontroll
-useradd :: Linux-kommando for å opprette en ny brukerkonto
-usermod -aG :: Linux-kommando for å legge en bruker til i en tilleggsgruppe uten å fjerne eksisterende gruppemedlemskap
-/etc/shadow :: Linux-fil som lagrer krypterte passord (kun root kan lese)
-RBAC :: Rollebasert tilgangsstyring — rettigheter knyttes til roller, ikke enkeltpersoner
-Sudoers :: Konfigurasjonsfil i Linux (`/etc/sudoers`) som definerer hvem som kan kjøre kommandoer med root-rettigheter
-SSSD :: System Security Services Daemon — lar Linux-klienter autentisere mot Active Directory
 
 ---
 

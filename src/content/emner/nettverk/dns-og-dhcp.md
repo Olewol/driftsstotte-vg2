@@ -262,21 +262,6 @@ DNS-spoofing er et angrep der falske DNS-svar omdirigerer brukere til ondsinnede
 **Svar:** En A-post oversetter navn til IP (fremover-oppslag). En PTR-post (Pointer) gjør det motsatte — den oversetter IP-adresse til navn (omvendt oppslag/reverse lookup). PTR-poster brukes bl.a. av e-postservere og logger.
 </details>
 
-## Flashcards
-
-DHCP :: Dynamic Host Configuration Protocol — tildeler automatisk IP-konfigurasjon til klienter
-DORA :: De fire stegene i DHCP: Discover, Offer, Request, Acknowledge
-DNS :: Domain Name System — oversetter domenenavn til IP-adresser
-DNS A-post :: DNS-post som kobler domenenavn til IPv4-adresse
-DNS CNAME :: DNS-post som lager et alias/peker til et annet domenenavn
-DNS MX-post :: DNS-post som angir hvilken server som håndterer e-post for domenet
-DNS PTR-post :: DNS-post for omvendt oppslag: IP-adresse → domenenavn
-DHCP scope :: Adresserommet DHCP-serveren administrerer og tildeler fra
-DHCP lease :: Tidsavtalen mellom DHCP-server og klient om bruk av en IP-adresse
-Forwarder :: DNS-konfigurasjon som videresender uløste oppslag til en annen DNS-server
-Lease-tid :: Tiden en klient får beholde en tildelt IP-adresse før den må be om fornyelse fra DHCP-serveren
-A-Record :: En ressurs-oppføring i DNS som kobler et vertsnavn til en spesifikk IPv4-adresse
-
 ## Kilder
 
 [^1]: NDLA. (2024). Driftsstøtte IM-ITK VG2 — nettverksfag. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/

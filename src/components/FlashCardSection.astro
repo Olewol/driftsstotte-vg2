@@ -1,0 +1,98 @@
+---
+import type { Props as FlashCardProps } from './FlashCard.astro';
+
+interface Props {
+  cards: FlashCardProps[];
+  title?: string;
+}
+
+const { cards, title = 'Flashcards' } = Astro.props;
+---
+
+{cards.length > 0 && (
+  <div class="flashcard-section">
+    <h2 style="font-size:20px;font-weight:700;margin:32px 0 16px;display:flex;align-items:center;gap:8px;">
+      <span>📇</span> {title}
+    </h2>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:16px;">
+      Klikk på hvert kort for å se svaret. Bruk disse til å teste deg selv.
+    </p>
+    <div class="flashcard-grid">
+      {cards.map(card => (
+        <div class="flashcard" role="button" tabindex="0" aria-label={`Spørsmål: ${card.question}`}>
+          <div class="fc-front">
+            <span class="fc-q">{card.question}</span>
+            <span class="fc-hint">Klikk for svar</span>
+          </div>
+          <div class="fc-back" aria-hidden="true">
+            <span class="fc-a">{card.answer}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .flashcard-section {
+    margin: 32px 0;
+  }
+  .flashcard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .flashcard {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    cursor: pointer;
+    transition: transform 0.18s, border-color 0.2s, box-shadow 0.2s;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .flashcard:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+  .fc-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .fc-q {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .fc-hint {
+    font-size: 11px;
+    color: var(--text3);
+    font-style: italic;
+  }
+  .fc-back {
+    display: none;
+  }
+  .fc-a {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .flashcard.flipped .fc-front { display: none; }
+  .flashcard.flipped .fc-back { display: flex; align-items: center; justify-content: center; }
+</style>
+
+<script>
+  document.querySelectorAll('.flashcard').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+  });
+</script>

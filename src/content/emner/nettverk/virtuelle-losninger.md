@@ -239,21 +239,6 @@ Isolasjon betyr at en VM er separert fra andre VM-er og fra vertssystemet. Hvis 
 **Svar:** (Velg tre av): Ressurseffektivitet (færre fysiske servere), isolasjon mellom tjenester, portabilitet (eksport/import av VM-er), snapshots for enkel feilretting, enkel skalering, raskere utrulling av nye servere.
 </details>
 
-## Flashcards
-
-Hypervisor :: Programvare som administrerer virtuelle maskiner og fordeler fysiske ressurser mellom dem
-Type 1 hypervisor :: Hypervisor som kjører direkte på maskinvare (bare metal): Hyper-V, VMware ESXi, Proxmox
-Type 2 hypervisor :: Hypervisor som kjører oppå et vertsoperativsystem: VirtualBox, VMware Workstation
-VM (virtuell maskin) :: Isolert programvaresimulert datamaskin som kjører eget OS på en hypervisor
-Snapshot :: Øyeblikksbilde av en VM-s tilstand som kan brukes til å rulle tilbake endringer
-Hyper-V ekstern svitsj :: Virtuell svitsj koblet til fysisk nettverkskort — gir VM-er tilgang til det fysiske nettverket
-NAT (VM-nettverk) :: VM deler hostens IP og når internett, men er ikke direkte synlig utenfra
-Bridged (VM-nettverk) :: VM kobles direkte til fysisk nettverk og får egen IP-adresse
-Root partition :: Hyper-V-terminologi for Windows Server-installasjonen med tilgang til fysisk maskinvare
-Child partition :: Hyper-V-terminologi for en gjeste-VM som kun ser virtuell/emulert maskinvare
-Virtuell Svitsj (vSwitch) :: En programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med hverandre og fysiske nettverk via VLAN
-Isolasjon :: Prinsippet om at en virtuell maskin er separert fra andre maskiner og vertssystemet, slik at feil eller virus i én VM ikke sprer seg
-
 ## Kilder
 
 [^1]: Microsoft Learn. (2025). Hyper-V Technology Overview. https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview

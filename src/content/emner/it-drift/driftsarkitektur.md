@@ -252,42 +252,6 @@ DMZ (Demilitarisert sone) er et isolert nettverk mellom internett og det interne
 
 ---
 
-## Flashcards
-
-On-premise :: Lokal IT-infrastruktur eid og driftet av virksomheten selv, med full kontroll men høye investeringskostnader (CAPEX).
-
-Hybridsky :: En driftsmodell som kombinerer lokal (on-premise) infrastruktur med skytjenester.
-
-Hypervisor :: Programvare som lar én fysisk server kjøre flere virtuelle maskiner (VM-er) samtidig. Eksempler: VMware ESXi, Hyper-V.
-
-VM (virtuell maskin) :: En programvarebasert server som oppfører seg som en fysisk maskin, men kjører på delt fysisk maskinvare.
-
-NAS :: Network Attached Storage – lagringsenhet tilkoblet nettverket for fildeling. Tilgjengelig for alle enheter i nettverket.
-
-SAN :: Storage Area Network – dedikert høyhastighetsnettverk for lagring. Gir servere blokkbasert tilgang til lagring.
-
-DAS :: Direct Attached Storage – lagring koblet direkte til én server. Enkel og rask, men ikke delt.
-
-Svitsj :: Nettverkskomponent som kobler enheter i et lokalt nettverk (LAN) ved hjelp av MAC-adresser.
-
-Brannmur :: Nettverkssikkerhetskomponent som filtrerer trafikk inn og ut av nettverket basert på regler.
-
-VLAN :: Virtual LAN – logisk segmentering av et nettverk uten fysisk separasjon, brukt for sikkerhet og ytelse.
-
-UPS :: Uninterruptible Power Supply – batterisystem som sikrer strøm ved strømbrudd og beskytter mot uplanlagt nedstengning.
-
-CAPEX :: Capital Expenditure – engangsutgifter til kjøp av utstyr. Typisk for on-premise infrastruktur.
-
-OPEX :: Operational Expenditure – løpende driftsutgifter. Typisk for skytjenester med abonnementsmodell.
-
-Infrastruktur som kode (IaC) :: Metode for å styre IT-infrastruktur via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering. Gir reproduserbarhet og versjonskontroll.
-
-Redundans :: Dublering av kritiske komponenter i et system for å sikre drift hvis én del svikter.
-
-Latens :: Forsinkelsen i kommunikasjon mellom klient og server. Lav latens er kritisk for sanntidssystemer.
-
----
-
 ## Ressurser
 
 - [Microsoft Azure: Hva er IaaS?](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas/)

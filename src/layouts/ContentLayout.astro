@@ -3,9 +3,11 @@ import BaseLayout from './BaseLayout.astro';
 import TTSBar from '../components/TTSBar.astro';
 import AIFeatures from '../components/AIFeatures.astro';
 import Sidebar from '../components/Sidebar.astro';
+import FlashCardSection from '../components/FlashCardSection.astro';
 import { getEmneColor } from '@lib/emneColors';
 import type { Ressurs } from '@lib/types';
 import kompetansemaalData from '../data/kompetansemaal.json';
+import flashcardData from '../data/flashcards.json';
 
 interface Props {
   title: string;
@@ -22,8 +24,10 @@ interface Props {
   video?: boolean | string;
   quiz?: boolean | string;
   infographic?: boolean | string;
+  flashcardSlug?: string;
 }
-const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic, language } = Astro.props;
+const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic, language, flashcardSlug = '' } = Astro.props;
+const cards = flashcardSlug ? (flashcardData as Record<string, {question: string, answer: string}[]>)[flashcardSlug] || [] : [];
 const { color, bg } = getEmneColor(emne);
 const ukeStr = uke.length === 0 ? null : uke.length > 1 ? `Uke ${uke[0]}–${uke[uke.length - 1]}` : `Uke ${uke[0]}`;
 const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
@@ -80,6 +84,8 @@ const pageLang = language === 'en' ? 'en' : 'no';
         oppgaaver={oppgaaver}
       />
     </div>
+
+    <FlashCardSection cards={cards} />
   </article>
 </BaseLayout>
 

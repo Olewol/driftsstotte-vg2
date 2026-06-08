@@ -25,7 +25,7 @@ notebooklm: true
 
 The TCP/IP model is the practical framework that the internet and most modern networks are built upon. It describes how data is wrapped, sent through a network, and unpacked again at the receiving end. Understanding the model is key to understanding why network protocols are organized the way they are, and what happens "under the hood" when you open a website.
 
-The TCP/IP model is closely related to the [[osi-modellen|OSI model]], which is the reference model for theory and troubleshooting. The specific protocols operating in the model are described in [[nettverksprotokoller|network protocols]], and services like [[dns-og-dhcp|DNS and DHCP]] and [[serverroller|server roles]] reside at the application layer.
+The TCP/IP model is closely related to the [[osi-modellen-en|OSI model]], which is the reference model for theory and troubleshooting. The specific protocols operating in the model are described in [[nettverksprotokoller-en|network protocols]], and services like [[dns-og-dhcp-en|DNS and DHCP]] and [[serverroller-en|server roles]] reside at the application layer.
 
 ## Theory
 
@@ -93,7 +93,7 @@ At the receiving end, it is unpacked in reverse order — each layer reads and r
 | Data Link | Data Link (2) |
 | Physical | Physical (1) |
 
-TCP/IP is the model the internet actually uses. OSI is the reference model used for theory and troubleshooting. See [[osi-modellen|the OSI model]] for a full description. Norwegian textbooks alternate between 4-layer and 5-layer TCP/IP — both are correct, but the 5-layer model is more pedagogical because it separates the physical layer from the data link layer.
+TCP/IP is the model the internet actually uses. OSI is the reference model used for theory and troubleshooting. See [[osi-modellen-en|the OSI model]] for a full description. Norwegian textbooks alternate between 4-layer and 5-layer TCP/IP — both are correct, but the 5-layer model is more pedagogical because it separates the physical layer from the data link layer.
 
 ## Example / Lab
 
@@ -187,20 +187,6 @@ ICMP (Internet Control Message Protocol) is a protocol at layer 3 used for error
 
 **Answer:** Layering allows each layer to be developed and updated independently of the others. For example, you can switch from IPv4 to IPv6 at layer 3 without changing TCP at layer 4 or HTTP at layer 5. It also simplifies troubleshooting — you can isolate a problem to a single layer.
 </details>
-
-## Flashcards
-
-TCP :: Connection-oriented transport protocol that guarantees delivery and ordering
-UDP :: Connectionless transport protocol that is fast but without delivery guarantees
-IP address :: Logical address at layer 3 that identifies a device in a network (IPv4: 32 bits)
-MAC address :: Physical address at layer 2 that identifies a network card (48 bits, e.g. 00:1A:2B:3C:4D:5E)
-Encapsulation :: The process where each layer adds its header as data travels down through the TCP/IP layers
-Port :: Number (1–65535) that identifies which application/service a network packet is intended for
-ARP :: Address Resolution Protocol — translates IP address to MAC address on the same network
-ICMP :: Internet Control Message Protocol — used for error messages and diagnostics (ping)
-Three-way handshake :: The TCP process for establishing a connection: SYN → SYN-ACK → ACK
-Router :: Network device that operates at layer 3 and forwards packets between different networks
-TCP (Transmission Control Protocol) :: A connection-oriented protocol at the transport layer that guarantees error-free delivery and correct ordering of data packets
 
 ## Resources
 

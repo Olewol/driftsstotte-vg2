@@ -26,7 +26,7 @@ Privacy is about an individual's right to control information about themselves. 
 
 In the EU and Norway, privacy is regulated by **GDPR** (General Data Protection Regulation), an EU regulation that came into force in May 2018. GDPR applies in Norway through the EEA Agreement and is implemented in Norwegian law via the **Personal Data Act**. For those working in IT operations, privacy is not something the legal department handles alone – technical choices like database structure, access control, logging, and backup have direct privacy implications.
 
-As an IT operations professional, you will encounter privacy in connection with [[kryptering|encryption]] (GDPR requires encryption of personal data), [[bruker-og-tilgangsstyring|user and access management]] (who has access to personal data?), and [[risikoanalyse|risk analysis]] (GDPR Art. 32 requires risk assessment as a basis for security measures). Privacy is not isolated legal theory – it is technical practice.
+As an IT operations professional, you will encounter privacy in connection with [[kryptering-en|encryption]] (GDPR requires encryption of personal data), [[bruker-og-tilgangsstyring-en|user and access management]] (who has access to personal data?), and [[risikoanalyse-en|risk analysis]] (GDPR Art. 32 requires risk assessment as a basis for security measures). Privacy is not isolated legal theory – it is technical practice.
 
 ---
 
@@ -89,7 +89,7 @@ Practical examples:
 - Automatically delete data after a specified period (storage limitation)
 - Pseudonymization: replace direct identifiers with pseudonyms in test databases
 
-Privacy by Design is the sister principle to Security by Design – both are about security (and privacy) being a design requirement, not an afterthought. See [[it-losninger-med-sikkerhet|IT solutions with built-in security]] for Security by Design in a broader context.
+Privacy by Design is the sister principle to Security by Design – both are about security (and privacy) being a design requirement, not an afterthought. See [[it-losninger-med-sikkerhet-en|IT solutions with built-in security]] for Security by Design in a broader context.
 
 ---
 
@@ -282,23 +282,6 @@ GDPR Art. 9 defines special categories (sensitive data): health information, bio
 **Answer:** Identity theft, fraud, psychological harm, discrimination, stalking/harassment, and loss of control over one's own life. Breaches involving sensitive categories (health, sexuality, politics) can have particularly serious consequences.
 
 </details>
-
----
-
-## Flashcards
-
-GDPR :: EU's General Data Protection Regulation, applicable in Norway via the EEA. Came into force May 2018
-Personal Data Act :: Norwegian law implementing GDPR in Norwegian legislation
-Legal basis :: Legal grounds for processing personal data (GDPR Art. 6): consent, contract, legal obligation, etc.
-Data minimization :: Principle that only necessary personal data is collected (GDPR Art. 5(1)(c))
-Privacy by Design :: Principle that privacy is integrated into system design from the start (GDPR Art. 25)
-72-hour rule :: Breaches posing risk to data subjects must be notified to the Data Protection Authority within 72 hours (GDPR Art. 33)
-Datatilsynet :: Norwegian Data Protection Authority. Enforces GDPR and the Personal Data Act
-DPO :: Data Protection Officer – mandatory for public authorities and certain private organizations
-Right to be forgotten :: The right to demand deletion of one's personal data when it is no longer necessary (GDPR Art. 17)
-Data processing agreement :: Agreement (GDPR Art. 28) regulating how a third party processes personal data on behalf of the organization
-Controller :: The organization that determines the purpose and means of processing personal data and has overall legal responsibility
-Incident management :: Routines for detecting, stopping, and reporting personal data breaches to the Data Protection Authority and affected individuals
 
 ---
 

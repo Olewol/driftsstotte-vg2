@@ -327,38 +327,6 @@ draw.io er gratis, nettbasert, og lagrer diagrammer som XML-filer som kan versjo
 
 ---
 
-## Flashcards
-
-Nettverkstopologi :: Beskrivelse av hvordan noder er koblet sammen i et nettverk. Eksempler: stjerne, mesh, buss.
-
-Stjernetopologi :: Alle enheter koblet til en sentral svitsj. Enkel og vanligst i moderne nettverk.
-
-IP-adresseplan :: Strukturert oversikt over IP-adresser, subnett, gateway og DNS i et nettverk.
-
-Subnett :: En del av et IP-nettverk adskilt ved hjelp av subnettmaske. Brukes for VLAN-segmentering og adressering.
-
-VLAN :: Virtual LAN – logisk nettverksegmentering. Enheter i samme VLAN kommuniserer som om de er på samme fysiske nettverk.
-
-Driftslogg :: Kronologisk logg over alle endringer i IT-miljøet. Brukes til feilsøking, revisjon og kontinuitet.
-
-CMDB :: Configuration Management Database – register over all IT-infrastruktur og konfigurasjoner.
-
-draw.io :: Gratis, nettbasert verktøy for tegning av nettverkstopologier og arkitekturdiagrammer.
-
-IT Glue :: Profesjonelt dokumentasjonsverktøy for IT-driftsselskaper. Samler dokumentasjon, passord og enhetsinformasjon.
-
-Prosedyredokumentasjon :: Steg-for-steg instrukser for kritiske IT-operasjoner. Sikrer at hvem som helst kan utføre oppgaven.
-
-ROS-analyse :: Risiko- og sårbarhetsanalyse. Brukes i planleggingsfasen for å identifisere og vurdere risiko.
-
-ITIL :: IT Infrastructure Library – rammeverk for beste praksis i IT-drift. Dekker endringstyring, incident management og service management.
-
-Endringstyring :: Strukturert prosess for å planlegge, godkjenne og dokumentere endringer i IT-miljøet. Inkluderer alltid rollback-plan.
-
-Single point of failure :: En komponent hvis svikt gjør hele systemet utilgjengelig. Avhjelpes med redundans.
-
----
-
 ## Ressurser
 
 - [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131)

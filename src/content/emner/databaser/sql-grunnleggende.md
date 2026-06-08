@@ -11,6 +11,7 @@ kilder:
   - https://dev.mysql.com/doc/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 notebooklm: true
+video: https://www.youtube.com/watch?v=7S_tz1z_5bA
 tags: []
 flashcards: https://notebooklm.google.com/notebook/e9134332-9a2e-4991-9a72-2807660c7610
 public: true
@@ -375,26 +376,6 @@ En forespørsel skrevet i SQL for å hente, filtrere eller endre spesifikke data
 **Svar:** Fremmednøkkelen sikrer referanseintegritet — verdien i fremmednøkkelkolonnen må finnes som primærnøkkel i parent-tabellen. Hvis parent-raden ikke eksisterer, vil MySQL avvise innsettingen med en feilmelding.
 
 </details>
-
----
-
-## Flashcards
-
-SQL :: Standardspråk for å kommunisere med relasjonsdatabaser (ANSI 1986, ISO 1987)
-DDL :: Data Definition Language — kommandoer som CREATE, ALTER og DROP som endrer databasestruktur
-DML :: Data Manipulation Language — kommandoer som SELECT, INSERT, UPDATE og DELETE som jobber med data
-Primærnøkkel :: En kolonne (eller kombinasjon) som unikt identifiserer hver rad i en tabell — kan ikke være NULL
-Fremmednøkkel :: En kolonne som peker til primærnøkkelen i en annen tabell og skaper en relasjon mellom tabellene
-Referanseintegritet :: Garantien om at en fremmednøkkelverdi alltid peker til en eksisterende rad i den refererte tabellen
-AUTO_INCREMENT :: MySQL-funksjon som automatisk tildeler neste ledige heltall til en kolonne ved innsetting
-INNER JOIN :: Kombinerer rader fra to tabeller der det finnes treff i begge — rader uten treff ekskluderes
-LEFT JOIN :: Returnerer alle rader fra venstre tabell og matchende rader fra høyre — NULL der det ikke er treff
-WHERE :: Klausul som filtrerer hvilke rader som påvirkes av en SELECT, UPDATE eller DELETE
-ORDER BY :: Klausul som sorterer resultatet av en SELECT, ASC = stigende, DESC = synkende
-LIMIT :: Klausul som begrenser antall rader returnert av en SELECT
-CRUD :: Create, Read, Update, Delete — de fire grunnleggende dataoperasjonene, tilsvarer INSERT, SELECT, UPDATE, DELETE i SQL
-Spørring (Query) :: En forespørsel i SQL for å hente, filtrere eller endre data i databasesystemet
-Tabell-alias :: Kortform for et tabellnavn i en spørring (f.eks. FROM utstyr AS u) — gjør JOIN-kode mer lesbar
 
 ---
 

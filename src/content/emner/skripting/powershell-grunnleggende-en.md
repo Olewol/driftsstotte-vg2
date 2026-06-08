@@ -25,7 +25,7 @@ PowerShell is Microsoft's answer to Bash — a powerful shell language and scrip
 
 Since PowerShell 7, it is also available on Linux and macOS, but it is primarily on Windows that it is indispensable: Active Directory, Azure, Task Scheduler, and Windows administration in general are managed efficiently via PowerShell.
 
-PowerShell is the primary platform for managing [[active-directory]] and [[bruker-og-tilgangsstyring|user and access management]] in Windows environments. See [[automatisering|automation]] to learn how to schedule PowerShell scripts, and [[bash-grunnleggende|Bash basics]] for the Linux side of scripting.
+PowerShell is the primary platform for managing [[active-directory-en]] and [[bruker-og-tilgangsstyring-en|user and access management]] in Windows environments. See [[automatisering-en|automation]] to learn how to schedule PowerShell scripts, and [[bash-grunnleggende-en|Bash basics]] for the Linux side of scripting.
 
 ---
 
@@ -335,7 +335,7 @@ PowerShell differs from traditional shell languages by working with **.NET objec
 - Execution Policy controls which scripts can run; `RemoteSigned` is a good choice in operations environments.
 - `Get-Member` is your best friend: shows all properties and methods of an object in the pipeline.
 
-**Typical operations tasks with PowerShell:** user administration in [[active-directory]], export of user lists, service monitoring, and file management. Combine with [[automatisering|automation]] to schedule scripts.
+**Typical operations tasks with PowerShell:** user administration in [[active-directory-en]], export of user lists, service monitoring, and file management. Combine with [[automatisering-en|automation]] to schedule scripts.
 
 ---
 
@@ -354,7 +354,7 @@ The Execution Policy is set to `Restricted` (default on Windows clients). Run `S
 `Select-Object` chooses which *columns* (properties) to display — used to reduce data volume. `Where-Object` filters which *rows* (objects) pass through based on a condition. They are often used together: `Get-Service | Where-Object Status -EQ "Running" | Select-Object Name, Status`.
 
 **Can I use PowerShell on Linux?**
-Yes, PowerShell 7+ is open source and can be installed on Linux and macOS. However, many Windows-specific cmdlets (such as `Get-LocalUser` and `Import-Module ActiveDirectory`) are only available on Windows. For Linux scripting, [[bash-grunnleggende|Bash basics]] is more natural.
+Yes, PowerShell 7+ is open source and can be installed on Linux and macOS. However, many Windows-specific cmdlets (such as `Get-LocalUser` and `Import-Module ActiveDirectory`) are only available on Windows. For Linux scripting, [[bash-grunnleggende-en|Bash basics]] is more natural.
 
 **What does `[Parameter(Mandatory)]` mean in a function?**
 It is an attribute that makes the parameter mandatory. If the user calls the function without providing that parameter, PowerShell stops and asks for the value interactively. This is better than letting the script fail with a cryptic error message.
@@ -395,26 +395,6 @@ ISE (Integrated Scripting Environment) is a built-in graphical tool for writing 
 **Answer:** You must add `-ErrorAction Stop` to the cmdlet that might fail. By default, PowerShell cmdlets are set to continue even on error (`-ErrorAction Continue`), and then an exception error that `catch` can catch is not thrown.
 
 </details>
-
----
-
-## Flashcards
-
-Cmdlet :: Basic command unit in PowerShell, follows Verb-Noun pattern (e.g., Get-Service)
-`$_` :: Automatic variable in PowerShell that represents the current object in a pipeline
-`Get-Member` :: Cmdlet that shows all properties and methods of the objects passed in
-`Where-Object` :: Cmdlet that filters pipeline objects based on a condition
-`Select-Object` :: Cmdlet that selects specific properties from pipeline objects
-`Export-Csv` :: Cmdlet that writes pipeline objects to a CSV file
-`Import-Module` :: Loads a PowerShell module with its associated cmdlets
-`param` block :: Declares parameters for a PowerShell function with type and validation
-`[Parameter(Mandatory)]` :: Attribute that makes a function parameter mandatory
-`-ErrorAction Stop` :: Makes a cmdlet throw an exception on error, so `catch` can handle it
-Execution Policy :: Security policy that determines which PowerShell scripts can run
-`$env:COMPUTERNAME` :: Automatic environment variable with the machine's name
-`Write-Host` :: Writes directly to the console — not sent to the pipeline and cannot be captured by other cmdlets
-`Write-Output` :: Sends the value to the pipeline so it can be processed further by other cmdlets
-ISE (Integrated Scripting Environment) :: Built-in graphical tool in Windows for writing and testing PowerShell scripts
 
 ---
 

@@ -247,23 +247,6 @@ Salt er en tilfeldig verdi som legges til passordet før hashing. Uten salt vil 
 
 ---
 
-## Flashcards
-
-Symmetrisk kryptering :: Kryptering der samme nøkkel brukes til både kryptering og dekryptering. Rask, men nøkkeldistribusjon er utfordrende. Eks: AES-256
-Asymmetrisk kryptering :: Kryptering med nøkkelpar: offentlig nøkkel (deles fritt) og privat nøkkel (holdes hemmelig). Eks: RSA, ECC
-Hybrid kryptering :: Kombinerer asymmetrisk nøkkelutveksling med symmetrisk datakryptering – modellen TLS og HTTPS bruker
-TLS :: Transport Layer Security – protokoll som sikrer kommunikasjon over internett. TLS 1.3 er gjeldende standard
-PKI :: Public Key Infrastructure – system av sertifikater og CA-er som gjør asymmetrisk kryptering praktisk i stor skala
-Certificate Authority (CA) :: Betrodd tredjepart som utsteder og signerer digitale sertifikater, bekrefter eierskap til offentlige nøkler
-SHA-256 :: Kryptografisk hashfunksjon som produserer et 256-bits fingeravtrykk. Anbefalt standard (erstatter MD5 og SHA-1)
-Hashing :: Enveisfunksjon som lager et unikt fingeravtrykk av data. Brukes til integritetskontroll og passordlagring
-Ende-til-ende-kryptering :: Kryptering der bare avsender og mottaker kan lese innholdet – ikke serveren eller tredjeparter
-Forward secrecy :: Egenskap ved TLS 1.3: selv om langtidsnøkkelen kompromitteres, kan tidligere sesjoner ikke dekrypteres
-Salt :: Tilfeldig verdi som legges til et passord før hashing for å forhindre rainbow table-angrep og gjøre identiske passord unike
-AES-256 :: Advanced Encryption Standard med 256-bits nøkkel – industristandarden for symmetrisk kryptering av data i ro
-
----
-
 ## Ressurser
 
 - [NDLA – Kryptering](https://ndla.no)

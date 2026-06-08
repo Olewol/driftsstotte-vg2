@@ -13,6 +13,7 @@ kilder:
   - https://www.datatilsynet.no/
   - https://www.digdir.no/informasjonssikkerhet/
 notebooklm: true
+video: https://www.youtube.com/watch?v=nG9v3RSSXTo
 tags: []
 flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
 public: true
@@ -26,7 +27,7 @@ The threat landscape in digital security changes rapidly. What were exotic attac
 
 To work with IT security, you need to know the most common threats: what they are, how they work, and what impact they have on society.
 
-To move from knowledge about threats to concrete measures, it is necessary to conduct a structured [[risikoanalyse|risk analysis]]. The threat landscape provides the raw material – risk analysis helps you prioritize. [[it-losninger-med-sikkerhet|IT solutions with built-in security]] shows which technical and organizational countermeasures exist.
+To move from knowledge about threats to concrete measures, it is necessary to conduct a structured [[risikoanalyse-en|risk analysis]]. The threat landscape provides the raw material – risk analysis helps you prioritize. [[it-losninger-med-sikkerhet-en|IT solutions with built-in security]] shows which technical and organizational countermeasures exist.
 
 ---
 
@@ -251,23 +252,6 @@ State-sponsored actors can use social media to systematically spread fake news, 
 **Answer:** State-sponsored actors can spread fake news via social media to polarize populations, undermine trust in democratic institutions, and influence elections. This is a form of digital warfare that does not require traditional military means.
 
 </details>
-
----
-
-## Flashcards
-
-Malware :: Collective term for malicious software such as viruses, worms, trojans, ransomware, spyware, and rootkits
-Ransomware :: Malware that encrypts files and demands payment. Dominant threat against Norwegian organizations (NSM)
-Phishing :: Attempt to trick users into revealing sensitive information by posing as a legitimate entity
-Spear phishing :: Targeted phishing against a specific person or organization, based on collected information
-DDoS :: Distributed Denial of Service – floods a service with traffic from a botnet to make it unavailable
-Zero-day :: Unknown vulnerability in software that is exploited before the vendor has developed a patch
-APT :: Advanced Persistent Threat – long-term, sophisticated attacks from resourceful (often state-sponsored) actors
-Botnet :: Network of compromised machines controlled by an attacker, used among other things for DDoS
-Insider threat :: Threat from employees or others with internal access, either unintentional (mistake) or intentional (sabotage)
-OWASP Top 10 :: List of the ten most common security flaws in web applications, published by OWASP
-Pretexting :: Social engineering where the attacker constructs a believable false background story to trick the victim
-Smishing :: SMS phishing – fraud attempts via text message posing as a bank, package carrier, etc.
 
 ---
 

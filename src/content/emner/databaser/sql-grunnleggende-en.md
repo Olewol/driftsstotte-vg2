@@ -11,6 +11,7 @@ kilder:
   - https://dev.mysql.com/doc/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 notebooklm: true
+video: https://www.youtube.com/watch?v=7S_tz1z_5bA
 tags: []
 flashcards: https://notebooklm.google.com/notebook/e9134332-9a2e-4991-9a72-2807660c7610
 public: true
@@ -28,7 +29,7 @@ SQL is divided into three main parts:
 - **DML** (Data Manipulation Language) — work with data: `SELECT`, `INSERT`, `UPDATE`, `DELETE`
 - **DCL** (Data Control Language) — access control: `GRANT`, `REVOKE`
 
-In this article, we focus on DDL and DML — what you need to build and use databases in practice. The four core operations INSERT, SELECT, UPDATE, and DELETE are collectively called **CRUD** (Create, Read, Update, Delete). Access control with DCL is covered in [[databaseadministrasjon|database administration]].
+In this article, we focus on DDL and DML — what you need to build and use databases in practice. The four core operations INSERT, SELECT, UPDATE, and DELETE are collectively called **CRUD** (Create, Read, Update, Delete). Access control with DCL is covered in [[databaseadministrasjon-en|database administration]].
 
 ---
 
@@ -112,7 +113,7 @@ SELECT * FROM equipment WHERE serial_no LIKE 'SN%';
 SELECT * FROM equipment WHERE location IS NULL;
 ```
 
-**Tip:** Avoid `SELECT *` in production and applications — always specify column names for better performance and predictability. See [[databaseadministrasjon|database administration]] for more on performance optimization.
+**Tip:** Avoid `SELECT *` in production and applications — always specify column names for better performance and predictability. See [[databaseadministrasjon-en|database administration]] for more on performance optimization.
 
 ### INSERT — Insert Data
 
@@ -314,7 +315,7 @@ Critical rule for `UPDATE` and `DELETE`: always use `WHERE`. Without `WHERE`, al
 `INNER JOIN` gives only rows with matches in both tables. `LEFT JOIN` gives all rows from the left table, with `NULL` where the right table lacks matches. Use aliases (`AS e`, `AS r`) for more readable code when JOINing many tables.
 
 **Connections to other topics**
-The SQL knowledge from this article is actively used in [[databaseadministrasjon|database administration]] where you optimize queries with indexes and `EXPLAIN`. The DCL part of SQL (GRANT, REVOKE) is covered there.
+The SQL knowledge from this article is actively used in [[databaseadministrasjon-en|database administration]] where you optimize queries with indexes and `EXPLAIN`. The DCL part of SQL (GRANT, REVOKE) is covered there.
 
 ---
 
@@ -377,26 +378,6 @@ A request written in SQL to retrieve, filter, or modify specific data in the dat
 **Answer:** The foreign key ensures referential integrity — the value in the foreign key column must exist as a primary key in the parent table. If the parent row does not exist, MySQL will reject the insertion with an error message.
 
 </details>
-
----
-
-## Flashcards
-
-SQL :: Standard language for communicating with relational databases (ANSI 1986, ISO 1987)
-DDL :: Data Definition Language — commands like CREATE, ALTER, and DROP that modify database structure
-DML :: Data Manipulation Language — commands like SELECT, INSERT, UPDATE, and DELETE that work with data
-Primary key :: A column (or combination) that uniquely identifies each row in a table — cannot be NULL
-Foreign key :: A column that points to the primary key in another table and creates a relationship between the tables
-Referential integrity :: The guarantee that a foreign key value always points to an existing row in the referenced table
-AUTO_INCREMENT :: MySQL feature that automatically assigns the next available integer to a column on insertion
-INNER JOIN :: Combines rows from two tables where there are matches in both — rows without matches are excluded
-LEFT JOIN :: Returns all rows from the left table and matching rows from the right — NULL where there is no match
-WHERE :: Clause that filters which rows are affected by a SELECT, UPDATE, or DELETE
-ORDER BY :: Clause that sorts the result of a SELECT, ASC = ascending, DESC = descending
-LIMIT :: Clause that limits the number of rows returned by a SELECT
-CRUD :: Create, Read, Update, Delete — the four basic data operations, corresponding to INSERT, SELECT, UPDATE, DELETE in SQL
-Query :: A request in SQL to retrieve, filter, or modify data in the database system
-Table alias :: Short form for a table name in a query (e.g., FROM equipment AS e) — makes JOIN code more readable
 
 ---
 

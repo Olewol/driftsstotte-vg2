@@ -23,7 +23,7 @@ original: databaseadministrasjon.md
 
 Database administration is about keeping a database server secure, available, and efficient over time. For an operations technician, this is daily work: you create users, grant permissions, take backups, restore data after failures, and ensure the server is not too slow.
 
-This article covers three core areas of MySQL administration: **user access**, **backup and recovery**, and **performance optimization with indexes**. Good database administration is closely linked to [[bruker-og-tilgangsstyring|user and access management]] in general and is a prerequisite for solid [[backup-og-gjenoppretting|backup and recovery]] of the systems you operate.
+This article covers three core areas of MySQL administration: **user access**, **backup and recovery**, and **performance optimization with indexes**. Good database administration is closely linked to [[bruker-og-tilgangsstyring-en|user and access management]] in general and is a prerequisite for solid [[backup-og-gjenoppretting-en|backup and recovery]] of the systems you operate.
 
 ---
 
@@ -173,7 +173,7 @@ crontab -e
 
 Backup files should be stored on a separate disk or external location — a backup on the same disk as the database is not a real backup.
 
-**Always test recovery (Recovery Testing).** A backup you have never tested is not a backup you can rely on. Set aside time regularly to restore to a test database and verify that the data is intact. See [[backup-og-gjenoppretting|backup and recovery]] for general principles that apply across systems.
+**Always test recovery (Recovery Testing).** A backup you have never tested is not a backup you can rely on. Set aside time regularly to restore to a test database and verify that the data is intact. See [[backup-og-gjenoppretting-en|backup and recovery]] for general principles that apply across systems.
 
 ---
 
@@ -356,7 +356,7 @@ Key commands: `CREATE USER`, `GRANT`, `REVOKE`, `FLUSH PRIVILEGES`, `SHOW GRANTS
 Indexes (B-tree structures) make lookups dramatically faster in large tables, but cost a little on inserts and updates. `EXPLAIN` is the primary tool for analyzing query plans and finding missing indexes. Full table scan (`type: ALL`) is a sign that an index is missing. The Slow Query Log helps you discover bottlenecks in production. Good habits: correct data types, avoid `SELECT *`, use `LIMIT`.
 
 **Connections to other topics**
-Database administration builds on principles from [[bruker-og-tilgangsstyring|user and access management]] and is part of the overall [[backup-og-gjenoppretting|backup and recovery]] responsibility in an operations organization. [[sql-grunnleggende|SQL basics]] provides the foundation for understanding the queries you optimize.
+Database administration builds on principles from [[bruker-og-tilgangsstyring-en|user and access management]] and is part of the overall [[backup-og-gjenoppretting-en|backup and recovery]] responsibility in an operations organization. [[sql-grunnleggende-en|SQL basics]] provides the foundation for understanding the queries you optimize.
 
 ---
 
@@ -419,26 +419,6 @@ Role-based access control (RBAC) means privileges are assigned to roles, and rol
 **Answer:** mysqldump typically includes DROP TABLE IF EXISTS before CREATE TABLE, so existing tables are deleted and replaced. You lose data that was in the database before. Always use an empty database or a dedicated restoration database if you want to keep existing data.
 
 </details>
-
----
-
-## Flashcards
-
-Authentication :: Verifies who the user is — username and password — first step in MySQL access control
-Authorization :: Determines what the authenticated user is allowed to do — second step in MySQL access control
-GRANT :: MySQL command to grant privileges to a user or role
-REVOKE :: MySQL command to remove privileges from a user or role
-FLUSH PRIVILEGES :: Forces MySQL to reload the privilege tables so changes take effect
-mysqldump :: Command-line tool for logical backup of MySQL databases — exports SQL statements
-Logical backup :: Backup stored as SQL statements (e.g., mysqldump) — portable across versions and systems
-Index :: Data structure (typically B-tree) that makes lookups in a column faster — created with CREATE INDEX
-EXPLAIN :: MySQL command that shows the query plan — used to diagnose slow queries
-RBAC :: Role-based access control — privileges are assigned to roles, roles are assigned to users
-CREATE ROLE :: MySQL 8.0 command to create a role that can group privileges
-Full table scan :: MySQL reads all rows in the table to find matches — indicated by type=ALL in EXPLAIN, avoided with indexes
-Least privilege :: Security principle — give users only the privileges they absolutely need for their task
-Slow Query Log :: MySQL feature that logs queries above a defined time threshold — used to identify performance bottlenecks
-Indexing :: Creation of a data structure that acts as a shortcut for searches and improves performance with large data volumes
 
 ---
 

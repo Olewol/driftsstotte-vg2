@@ -25,7 +25,7 @@ notebooklm: true
 
 A network protocol is a set of rules that defines how devices communicate. Without protocols, network communication would be like speaking two different languages — nobody would understand each other. Knowing the most important protocols, what they are used for, and which port numbers they run on, is fundamental knowledge for any IT support technician — both for configuration and troubleshooting.
 
-Protocols reside at different layers of the [[osi-modellen|OSI model]] and the [[tcp-ip-modellen|TCP/IP model]]. Port numbers and the transport protocols TCP and UDP are the foundation that all application protocols build upon. The protocols for [[dns-og-dhcp|DNS and DHCP]] are central network services that use these mechanisms.
+Protocols reside at different layers of the [[osi-modellen-en|OSI model]] and the [[tcp-ip-modellen-en|TCP/IP model]]. Port numbers and the transport protocols TCP and UDP are the foundation that all application protocols build upon. The protocols for [[dns-og-dhcp-en|DNS and DHCP]] are central network services that use these mechanisms.
 
 ## Theory
 
@@ -263,22 +263,6 @@ Well-known ports are port numbers 0–1023 that are reserved for standardized se
 
 **Answer:** RDP is a popular attack target. Automated tools constantly scan the internet for open port 3389 and attempt brute force login. If successful, the attacker gets graphical access to the Windows machine. The solution is to only allow RDP from VPN or the IP addresses of administrators.
 </details>
-
-## Flashcards
-
-HTTP :: Hypertext Transfer Protocol — unencrypted web protocol on port 80
-HTTPS :: HTTP over TLS — encrypted web protocol on port 443
-FTP :: File Transfer Protocol — unencrypted file transfer on port 21 (control) and 20 (data)
-SFTP :: Secure file transfer over SSH on port 22 — encrypted replacement for FTP
-SSH :: Secure Shell — encrypted remote terminal/command line access on port 22
-RDP :: Remote Desktop Protocol — graphical Windows remote control on port 3389
-SMTP :: Simple Mail Transfer Protocol — sending email, port 25 (server-server) / 587 (client-server)
-IMAP :: Internet Message Access Protocol — email synchronization from server, port 143 / 993 (TLS)
-POP3 :: Post Office Protocol 3 — downloading email from server, port 110 / 995 (TLS)
-SNMP :: Simple Network Management Protocol — monitoring network devices on port 161/162
-TCP (Transmission Control Protocol) :: A connection-oriented and reliable protocol that ensures data arrives in the correct order and without errors through error checking
-UDP (User Datagram Protocol) :: A connectionless protocol that prioritizes speed over reliability; sends data without confirming receipt
-Three-way Handshake :: The process TCP uses to establish a stable connection between sender and receiver (SYN, SYN-ACK, ACK)
 
 ## Resources
 

@@ -279,40 +279,6 @@ Tre faktorer: nesten 100 % fornybar strøm fra vannkraft, kaldt klima som muligg
 
 ---
 
-## Flashcards
-
-PUE :: Power Usage Effectiveness – mål på energieffektivitet i datasentre. PUE = totalt forbruk / IT-forbruk. 1,0 er perfekt; bransjegjennomsnitt ~1,5.
-
-E-avfall :: Elektrisk og elektronisk avfall. Inneholder sjeldne jordmetaller og giftige stoffer. Skal leveres til godkjente mottak.
-
-WEEE-direktivet :: EU-direktiv om elektrisk og elektronisk avfall. Produsentansvar og krav til gjenvinning. Gjelder i Norge.
-
-Energy Star :: Sertifiseringsordning for energieffektivt IT-utstyr. Produkter bruker typisk 25–50 % mindre energi.
-
-EPEAT :: Electronic Product Environmental Assessment Tool – global sertifisering for miljøvennlig IT-utstyr. Brukes i offentlige anskaffelser.
-
-Levetidsforlengelse :: Tiltak for å bruke IT-utstyr lenger. Et av de mest effektive miljøtiltakene siden produksjon er den største miljøbelastningen.
-
-Fri-kjøling :: Bruk av kald uteluft eller vann til å kjøle datasentre. Reduserer behovet for energikrevende kjølemaskiner.
-
-Hyperscaler :: De største skyleverandørene (Google, Microsoft, Amazon, Meta). Har de beste PUE-verdiene (~1,1) og størst fornybarenergi-kontrakter.
-
-Refurbished utstyr :: Brukt IT-utstyr som er renovert og selges på nytt. Reduserer behovet for ny produksjon og miljøbelastning.
-
-Statkraft :: Norsk statlig energiselskap og Europas største produsent av fornybar energi. Viktig for Norges posisjon innen grønn IT.
-
-IEA :: International Energy Agency – internasjonal organisasjon som overvåker energibruk globalt. Autoritativ kilde for datasentrestatistikk.
-
-Sirkulær IT :: Driftsmodell som prioriterer gjenbruk, reparasjon og oppgradering for å holde maskinvare i bruk så lenge som mulig.
-
-Mørke data (Dark Data) :: Data som lagres i datasentre men aldri brukes. Fører til unødvendig energiforbruk til lagring og kjøling.
-
-TCO Certified :: Internasjonal bærekraftssertifisering for IT-utstyr som vurderer både miljø og sosiale forhold i produksjonskjeden.
-
-EE-avfall :: Elektrisk og elektronisk avfall som inneholder miljøgifter og verdifulle metaller som krever spesialisert gjenvinning.
-
----
-
 ## Ressurser
 
 - [IEA: Data Centres and Data Transmission Networks](https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks)

@@ -210,22 +210,6 @@ Start fra lag 1 og jobb oppover: sjekk kabel → svitsj → IP-adresse → brann
 **Svar:** "Please Do Not Throw Sausage Pizza Away" — Physical, Data Link, Network, Transport, Session, Presentation, Application (lag 1 til 7).
 </details>
 
-## Flashcards
-
-OSI-modellen :: ISO-standardens 7-lags referansemodell for nettverkskommunikasjon
-Fysisk lag (OSI 1) :: Bitsending over fysisk medium (kabel, fiber, WiFi-radio)
-Datalinklaget (OSI 2) :: Frames og MAC-adressering innenfor ett nettverkssegment
-Nettverkslaget (OSI 3) :: IP-adressering og ruting mellom ulike nettverk
-Transportlaget (OSI 4) :: Ende-til-ende-kommunikasjon med TCP eller UDP og portnumre
-Sesjonslaget (OSI 5) :: Oppretting, vedlikehold og avslutning av applikasjonssesjoner
-Presentasjonslaget (OSI 6) :: Formatering, kryptering (TLS) og komprimering av data
-Applikasjonslaget (OSI 7) :: Brukervendte protokoller som HTTP, FTP, SMTP og DNS
-OSI vs TCP/IP :: OSI har 7 lag og er referansemodell; TCP/IP har 4–5 lag og er det internett faktisk bruker
-Innkapsling (Encapsulation) :: Prosessen der data pakkes inn i kontrollinformasjon (headers) fra hvert lag i OSI-modellen når de sendes nedover i stakken
-PDU (Protocol Data Unit) :: Betegnelsen på informasjonsenheten på et spesifikt lag: Segment (lag 4), Pakke (lag 3), Ramme (lag 2)
-Lag (Layers) :: De syv logiske nivåene i OSI-modellen som deler opp oppgavene i nettverkskommunikasjon for å sikre standardisering og forenkle feilsøking
-Referansemodell :: Et teoretisk rammeverk som brukes for å forstå og beskrive hvordan komplekse prosesser som nettverkskommunikasjon fungerer
-
 ## Kilder
 
 [^1]: Cloudflare Learning. (2025). What is the OSI Model? https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/

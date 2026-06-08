@@ -186,20 +186,6 @@ ICMP (Internet Control Message Protocol) er en protokoll på lag 3 som brukes ti
 **Svar:** Lagdeling gjør at hvert lag kan utvikles og oppdateres uavhengig av de andre. F.eks. kan man bytte fra IPv4 til IPv6 på lag 3 uten å endre TCP på lag 4 eller HTTP på lag 5. Det forenkler også feilsøking — man kan isolere problemet til ett lag.
 </details>
 
-## Flashcards
-
-TCP :: Forbindelsesorientert transportprotokoll som garanterer levering og rekkefølge
-UDP :: Forbindelseløs transportprotokoll som er rask men uten leveringsgarantier
-IP-adresse :: Logisk adresse på lag 3 som identifiserer en enhet i et nettverk (IPv4: 32 bit)
-MAC-adresse :: Fysisk adresse på lag 2 som identifiserer et nettverkskort (48 bit, f.eks. 00:1A:2B:3C:4D:5E)
-Innkapsling :: Prosessen der hvert lag legger til sin header når data sendes nedover gjennom TCP/IP-lagene
-Port :: Tall (1–65535) som identifiserer hvilken applikasjon/tjeneste en nettverkspakke er ment for
-ARP :: Address Resolution Protocol — oversetter IP-adresse til MAC-adresse på samme nettverk
-ICMP :: Internet Control Message Protocol — brukes til feilmeldinger og diagnostikk (ping)
-Three-way handshake :: TCP-prosessen for å opprette en forbindelse: SYN → SYN-ACK → ACK
-Ruter :: Nettverksenhet som opererer på lag 3 og videresender pakker mellom ulike nettverk
-TCP (Transmission Control Protocol) :: En forbindelsesorientert protokoll på transportlaget som garanterer feilfri levering og riktig rekkefølge på datapakker
-
 ## Kilder
 
 [^1]: Cloudflare Learning. (2025). What is TCP/IP? https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/

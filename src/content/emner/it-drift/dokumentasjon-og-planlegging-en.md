@@ -85,7 +85,7 @@ All devices connected to one common cable (bus). No longer used in modern networ
 
 ### IP Address Plan
 
-An IP address plan is a structured overview of all IP addresses, subnets, and related information in the network. It is a critical planning and operations document. See [[dns-og-dhcp]] and [[segmentering-og-vlan]] for related topics.
+An IP address plan is a structured overview of all IP addresses, subnets, and related information in the network. It is a critical planning and operations document. See [[dns-og-dhcp-en]] and [[segmentering-og-vlan-en]] for related topics.
 
 #### Example: IP Address Plan for a School Network
 
@@ -205,7 +205,7 @@ Good planning reduces risk and makes the project more predictable. A simple plan
 7. **Documentation and handover**
 8. **Evaluation** – were the requirements met?
 
-See [[risikoanalyse]] for more on ROS analyses in an IT context.
+See [[risikoanalyse-en]] for more on ROS analyses in an IT context.
 
 ---
 
@@ -288,7 +288,7 @@ CMDB (Configuration Management Database) is a detailed register of all IT infras
 ITIL is a framework of best practices for IT operations, originally developed for large organizations. The principles (change management, incident management, service management) are relevant at all scales, even if you do not implement the entire framework. Having a change log and rollback process is ITIL thinking in its simplest form.
 
 **What is a ROS analysis in IT planning?**
-ROS (Risk and Vulnerability) analysis maps what can go wrong with a planned IT solution, how likely it is, and what the consequence would be. It provides a basis for prioritizing measures. See [[risikoanalyse]] for method and templates.
+ROS (Risk and Vulnerability) analysis maps what can go wrong with a planned IT solution, how likely it is, and what the consequence would be. It provides a basis for prioritizing measures. See [[risikoanalyse-en]] for method and templates.
 
 **What makes draw.io a good documentation tool?**
 draw.io is free, web-based, and saves diagrams as XML files that can be version-controlled with git. It has specific symbol libraries for network topologies. The result is visual, easy-to-read diagrams that can be shared and updated easily.
@@ -329,45 +329,13 @@ draw.io is free, web-based, and saves diagrams as XML files that can be version-
 
 ---
 
-## Flashcards
-
-Network topology :: Description of how nodes are connected in a network. Examples: star, mesh, bus.
-
-Star topology :: All devices connected to a central switch. Simple and most common in modern networks.
-
-IP address plan :: Structured overview of IP addresses, subnets, gateway, and DNS in a network.
-
-Subnet :: A portion of an IP network separated using a subnet mask. Used for VLAN segmentation and addressing.
-
-VLAN :: Virtual LAN – logical network segmentation. Devices in the same VLAN communicate as if they are on the same physical network.
-
-Operations log :: Chronological log of all changes in the IT environment. Used for troubleshooting, auditing, and continuity.
-
-CMDB :: Configuration Management Database – register of all IT infrastructure and configurations.
-
-draw.io :: Free, web-based tool for drawing network topologies and architecture diagrams.
-
-IT Glue :: Professional documentation tool for IT operations companies. Consolidates documentation, passwords, and device information.
-
-Procedure documentation :: Step-by-step instructions for critical IT operations. Ensures anyone can perform the task.
-
-ROS analysis :: Risk and vulnerability analysis. Used in the planning phase to identify and assess risk.
-
-ITIL :: IT Infrastructure Library – framework of best practices in IT operations. Covers change management, incident management, and service management.
-
-Change management :: Structured process for planning, approving, and documenting changes in the IT environment. Always includes a rollback plan.
-
-Single point of failure :: A component whose failure makes the entire system unavailable. Mitigated with redundancy.
-
----
-
 ## Resources
 
 - [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131)
 - [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/)
 - [draw.io (diagram drawing)](https://app.diagrams.net/)
-- [[driftsarkitektur]]
-- [[backup-og-gjenoppretting]]
-- [[risikoanalyse]]
-- [[dns-og-dhcp]]
-- [[segmentering-og-vlan]]
+- [[driftsarkitektur-en]]
+- [[backup-og-gjenoppretting-en]]
+- [[risikoanalyse-en]]
+- [[dns-og-dhcp-en]]
+- [[segmentering-og-vlan-en]]

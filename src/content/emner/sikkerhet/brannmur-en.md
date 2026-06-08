@@ -25,7 +25,7 @@ original: brannmur.md
 
 A **firewall** is the most important single tool for controlling network traffic [^1]. It acts as a checkpoint between networks: it inspects data packets and decides — based on defined rules — whether to allow or block them.
 
-The Norwegian National Security Authority (NSM) identifies "control data flow" as a key principle [^2]. A firewall is the primary tool for this, but it works best as part of a layered defense with [[segmentering-og-vlan|network segmentation]], IDS/IPS, and logging [^3].
+The Norwegian National Security Authority (NSM) identifies "control data flow" as a key principle [^2]. A firewall is the primary tool for this, but it works best as part of a layered defense with [[segmentering-og-vlan-en|network segmentation]], IDS/IPS, and logging [^3].
 
 Firewalls operate at multiple levels: at the network level (routers/switches), in the cloud, and as host-based software on individual machines [^4].
 
@@ -258,22 +258,6 @@ WAF is used in addition to a regular firewall when exposing web applications to 
 **Answer:** Network segmentation divides the network into separate zones with firewall rules between them. It limits an attacker's ability for lateral movement — even if one zone is compromised, the firewall prevents spread [^2].
 
 </details>
-
----
-
-## Flashcards
-
-Packet filtering :: Stateless firewall that inspects source/destination IP, port, and protocol for each packet in isolation
-Stateful inspection :: Firewall that remembers the state of active connections and automatically allows return traffic
-WAF :: Web Application Firewall — application-layer firewall that inspects HTTP content and blocks SQL injection and XSS
-DMZ :: Demilitarized Zone — network segment between internet and internal network for internet-exposed servers
-Network segmentation :: Dividing a network into VLAN zones with firewall rules between to limit lateral movement
-Default-deny :: Firewall principle: block everything, allow only explicitly approved traffic
-IDS :: Intrusion Detection System — monitors traffic and alerts on suspicious activity, but does not block
-IPS :: Intrusion Prevention System — monitors traffic and automatically blocks suspicious activity inline
-Lateral movement :: An attacker's ability to move between systems after gaining initial access
-Host-based firewall :: Firewall running on the machine itself (e.g. Windows Defender Firewall), in addition to the network firewall
-NGFW :: Next-Generation Firewall — combines stateful inspection with application identification and user identity for deeper traffic analysis
 
 ---
 

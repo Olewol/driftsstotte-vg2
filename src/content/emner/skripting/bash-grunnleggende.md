@@ -414,24 +414,6 @@ Legg til `set -e` øverst (etter shebang). Da avsluttes skriptet automatisk med 
 
 ---
 
-## Flashcards
-
-Shebang :: Den første linjen i et skript (`#!/bin/bash`) som forteller OS hvilken tolk som skal brukes
-`$?` :: Spesialvariabel som inneholder exit-koden til forrige kommando (0 = suksess)
-`$1`, `$2` :: Posisjonelle parametere — argumenter gitt til skriptet eller funksjonen
-`set -e` :: Bash-innstilling som avbryter skriptet ved første feil
-`$(kommando)` :: Kommandosubstitusjon — kjører kommandoen og setter inn utdataene
-`mkdir -p` :: Oppretter mappe og alle manglende foreldremapper, uten feil ved eksisterende mappe
-`chmod +x` :: Gir kjørerettigheter til en fil slik at den kan kjøres direkte
-`local` :: Nøkkelord i Bash-funksjoner som begrenser variabelens levetid til funksjonsblokken
-`[ -d STI ]` :: Bash-test som er sann dersom stien eksisterer og er en mappe
-`[ -f STI ]` :: Bash-test som er sann dersom stien eksisterer og er en vanlig fil
-Shellcheck :: Statisk analyseverktøy for Bash-skript som finner feil og foreslår beste praksis uten å kjøre skriptet
-Exit-kode :: Statuskode (0–255) som returneres av en kommando; 0 = suksess, alt annet = feil
-Kommandosubstitusjon :: Teknikk (`$(kommando)`) som kjører en kommando og setter inn resultatet direkte i en variabel
-
----
-
 ## Ressurser
 
 - [TLDP Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)

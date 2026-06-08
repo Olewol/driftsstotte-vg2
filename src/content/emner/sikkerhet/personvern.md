@@ -283,23 +283,6 @@ GDPR art. 9 definerer spesielle kategorier (sensitive data): helseopplysninger, 
 
 ---
 
-## Flashcards
-
-GDPR :: EUs personvernforordning (General Data Protection Regulation), gjeldende i Norge via EØS. Trådte i kraft mai 2018
-Personopplysningsloven :: Norsk lov som gjennomfører GDPR i norsk rett
-Behandlingsgrunnlag :: Juridisk grunnlag for å behandle personopplysninger (GDPR art. 6): samtykke, avtale, rettslig plikt m.fl.
-Dataminimering :: Prinsipp om at kun nødvendige personopplysninger samles inn (GDPR art. 5 nr. 1 c)
-Privacy by Design :: Prinsipp om at personvern integreres i systemdesign fra starten (GDPR art. 25)
-72-timers-regelen :: Brudd med risiko for registrerte skal varsles til Datatilsynet innen 72 timer (GDPR art. 33)
-Datatilsynet :: Norsk tilsynsmyndighet for personvern. Håndhever GDPR og personopplysningsloven
-DPO :: Data Protection Officer / personvernombud – obligatorisk for offentlige organer og visse private virksomheter
-Rett til å bli glemt :: Retten til å kreve sletting av egne personopplysninger når de ikke lenger er nødvendige (GDPR art. 17)
-Databehandleravtale :: Avtale (GDPR art. 28) som regulerer hvordan en tredjepart behandler personopplysninger på vegne av virksomheten
-Behandlingsansvarlig :: Den virksomheten som bestemmer formål og midler for behandlingen av personopplysninger og har det overordnede juridiske ansvaret
-Avvikshåndtering :: Rutiner for å oppdage, stoppe og rapportere brudd på personopplysningssikkerheten til Datatilsynet og berørte
-
----
-
 ## Ressurser
 
 - [Datatilsynet – Personvernprinsippene](https://www.datatilsynet.no/rettigheter-og-plikter/personvernprinsippene/)

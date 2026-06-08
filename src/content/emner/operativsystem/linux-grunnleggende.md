@@ -9,6 +9,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/windows-server/
   - https://documentation.ubuntu.com/server/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+video: https://www.youtube.com/watch?v=pkZEKIXe3u4
 tags: []
 flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true
@@ -385,35 +386,6 @@ Det første tegnet angir filtypen: `-` = vanlig fil, `d` = katalog (directory), 
 **Svar:** `/etc` inneholder konfigurasjonsfiler for systemet og installerte tjenester, bl.a. `/etc/passwd` (brukerkontoer), `/etc/group` (grupper), `/etc/hosts` (vertsnavn) og `/etc/ssh/sshd_config` (SSH-konfigurasjon).
 
 </details>
-
----
-
-## Flashcards
-
-/ :: Rotkatalogen i Linux — toppen av hele filsystemet
-/etc :: Katalog med konfigurasjonsfiler for system og tjenester
-/home :: Katalog med hjemmemapper for vanlige brukere
-/var/log :: Katalog med loggfiler fra systemet og tjenester
-chmod :: Linux-kommando for å endre filrettigheter (rwx)
-chown :: Linux-kommando for å endre eier og/eller gruppe for en fil
-sudo :: Kommando som lar en vanlig bruker kjøre en kommando med root-rettigheter
-root :: Superbrukeren i Linux (UID 0) med ubegrenset tilgang til systemet
-rwx :: Les (r=4), skriv (w=2), kjør (x=1) — de tre tillatelsene i Linux
-chmod 755 :: eier: rwx, gruppe: r-x, andre: r-x — typisk for websider og mapper
-chmod 644 :: eier: rw-, gruppe: r--, andre: r-- — typisk for vanlige filer
-sticky bit :: Forhindrer brukere fra å slette filer i en delt mappe de ikke eier
-/etc/passwd :: Fil med brukerkontoer — inneholder brukernavn, UID, GID, hjemmemappe og shell
-/etc/shadow :: Fil med krypterte passord — kun lesbar av root
-/etc/group :: Fil med gruppedefinisjoner og gruppemedlemskap
-useradd -m :: Opprett ny Linux-bruker med hjemmemappe
-usermod -aG :: Legg bruker til i tilleggsgruppe uten å fjerne eksisterende gruppemedlemskap
-visudo :: Sikker måte å redigere /etc/sudoers på — kontrollerer syntaks før lagring
-SUID :: Set User ID — spesiell tillatelsesbit som gjør at en kjørbar fil kjøres med filens eiers rettigheter
-SGID :: Set Group ID — på mappe: nye filer arver mappens gruppe i stedet for oppretterens primærgruppe
-journalctl :: Kommando for å lese systemlogger fra systemd journald; støtter filtrering per tjeneste og tid
-/var/log/auth.log :: Linux-loggfil for autentiseringshendelser, sudo-bruk og SSH-pålogginger
-UID :: User ID — numerisk identifikator for en Linux-bruker (root=0, systembrukere 1–999, vanlige brukere 1000+)
-GID :: Group ID — numerisk identifikator for en Linux-gruppe
 
 ---
 

@@ -27,7 +27,7 @@ Encryption is the technology that ensures information remains confidential even 
 
 NSM recommends in its fundamental principles to "protect data at rest and in transit," and encryption is the primary tool for this. For an IT operations professional, it is essential to understand how encryption works, which standards are relevant today, and how to verify that encryption is actually in place.
 
-Encryption is closely tied to [[personvern|privacy]] – GDPR requires that personal data be protected with appropriate technical measures, and encryption is the most central of these. The Norwegian Data Protection Authority (Datatilsynet) provides specific guidance on when and how encryption should be used in Norwegian organizations.
+Encryption is closely tied to [[personvern-en|privacy]] – GDPR requires that personal data be protected with appropriate technical measures, and encryption is the most central of these. The Norwegian Data Protection Authority (Datatilsynet) provides specific guidance on when and how encryption should be used in Norwegian organizations.
 
 ---
 
@@ -141,7 +141,7 @@ Typical use cases:
 
 With end-to-end encryption, messages are encrypted on the sender's device and decrypted only at the receiver's end. The service in the middle (the server) cannot read the content. Examples: Signal, WhatsApp (E2EE for messages, but not backups by default).
 
-E2EE is especially relevant for [[personvern|privacy]] – even if the server is hacked, the content is unreadable. For sensitive communication channels in organizations, E2EE is therefore an important requirement.
+E2EE is especially relevant for [[personvern-en|privacy]] – even if the server is hacked, the content is unreadable. For sensitive communication channels in organizations, E2EE is therefore an important requirement.
 
 ---
 
@@ -246,23 +246,6 @@ Salt is a random value added to the password before hashing. Without salt, two u
 **Answer:** A CA is a trusted third party that issues and signs digital certificates. The CA confirms that a public key actually belongs to the identity (e.g., the domain) it claims to represent. Browsers trust CAs that are pre-installed in the operating system.
 
 </details>
-
----
-
-## Flashcards
-
-Symmetric encryption :: Encryption where the same key is used for both encryption and decryption. Fast, but key distribution is challenging. E.g., AES-256
-Asymmetric encryption :: Encryption with a key pair: public key (shared freely) and private key (kept secret). E.g., RSA, ECC
-Hybrid encryption :: Combines asymmetric key exchange with symmetric data encryption – the model used by TLS and HTTPS
-TLS :: Transport Layer Security – protocol that secures communication over the internet. TLS 1.3 is the current standard
-PKI :: Public Key Infrastructure – system of certificates and CAs that makes asymmetric encryption practical at scale
-Certificate Authority (CA) :: Trusted third party that issues and signs digital certificates, confirms ownership of public keys
-SHA-256 :: Cryptographic hash function that produces a 256-bit fingerprint. Recommended standard (replaces MD5 and SHA-1)
-Hashing :: One-way function that creates a unique fingerprint of data. Used for integrity verification and password storage
-End-to-end encryption :: Encryption where only the sender and receiver can read the content – not the server or third parties
-Forward secrecy :: Property of TLS 1.3: even if the long-term key is compromised, previous sessions cannot be decrypted
-Salt :: Random value added to a password before hashing to prevent rainbow table attacks and make identical passwords unique
-AES-256 :: Advanced Encryption Standard with 256-bit key – the industry standard for symmetric encryption of data at rest
 
 ---
 

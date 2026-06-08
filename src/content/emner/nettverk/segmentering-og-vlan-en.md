@@ -25,7 +25,7 @@ notebooklm: true
 
 A network where all devices can talk to everyone else is easy to set up — but it's a security and performance disaster. Segmentation is about dividing the network into logical zones so that traffic is controlled. In practice, this is done with subnetting (layer 3) and VLANs (layer 2). These two techniques complement each other and are fundamental for anyone planning and operating a professional network.
 
-To understand segmentation, it's useful to see it in the context of the [[osi-modellen|OSI model]] and the standardized protocols described in [[nettverksprotokoller|network protocols]]. VLANs are especially central in virtual infrastructures where virtual switches use IEEE 802.1Q tagging to logically separate traffic.
+To understand segmentation, it's useful to see it in the context of the [[osi-modellen-en|OSI model]] and the standardized protocols described in [[nettverksprotokoller-en|network protocols]]. VLANs are especially central in virtual infrastructures where virtual switches use IEEE 802.1Q tagging to logically separate traffic.
 
 ## Theory
 
@@ -245,20 +245,6 @@ Yes. Modern access points support SSID-to-VLAN mapping. The guest WiFi network c
 
 **Answer:** Private address ranges (10.x.x.x, 172.16-31.x.x, 192.168.x.x) are IP addresses that are not routed on the internet. They are used for internal networks and are translated to a public IP via NAT when traffic goes to the internet. This saves address space and provides an extra layer of concealment from the internet.
 </details>
-
-## Flashcards
-
-VLAN :: Virtual Local Area Network — logical division of a physical network using IEEE 802.1Q
-CIDR :: Classless Inter-Domain Routing — writing subnet mask as a suffix: e.g. /24 = 255.255.255.0
-Subnet mask :: Indicates the boundary between network part and host part in an IP address
-Access port :: Switch port that belongs to one VLAN and sends untagged traffic to end devices
-Trunk port :: Switch port that carries tagged traffic for multiple VLANs (switch-to-switch, switch-to-router)
-Native VLAN :: The VLAN that receives untagged traffic on a trunk port (default VLAN 1)
-IEEE 802.1Q :: The standard for VLAN tagging in Ethernet frames
-Broadcast domain :: The area where broadcast traffic spreads; each VLAN is its own broadcast domain
-/24 network :: Subnet with 256 addresses (254 usable), subnet mask 255.255.255.0
-Private addresses :: IP addresses (10.x.x.x, 172.16-31.x.x, 192.168.x.x) that are not routed on the internet
-IEEE 802.1Q (standard) :: The international standard for VLAN tagging in Ethernet frames, enabling multiple logical networks on a single physical connection
 
 ## Resources
 

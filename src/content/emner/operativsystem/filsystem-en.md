@@ -9,6 +9,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/windows-server/
   - https://documentation.ubuntu.com/server/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+video: https://www.youtube.com/watch?v=F5itS2u4I1A
 tags: []
 flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true
@@ -19,7 +20,7 @@ original: filsystem.md
 
 ## Introduction
 
-A **file system** determines how data is stored and organized on a disk. For IT operations technicians, choosing a file system is directly linked to security and access control — only NTFS, for example, supports user-based permissions in Windows. Knowledge of file systems is necessary to manage rights, set up quotas, and understand the limitations of different storage media. NTFS permissions are closely related to [[bruker-og-tilgangsstyring]], and the Linux ext4 file system is covered in connection with [[linux-grunnleggende]]. File system choices are also relevant for [[backup-og-gjenoppretting]] since not all backup solutions support every file system.
+A **file system** determines how data is stored and organized on a disk. For IT operations technicians, choosing a file system is directly linked to security and access control — only NTFS, for example, supports user-based permissions in Windows. Knowledge of file systems is necessary to manage rights, set up quotas, and understand the limitations of different storage media. NTFS permissions are closely related to [[bruker-og-tilgangsstyring-en]], and the Linux ext4 file system is covered in connection with [[linux-grunnleggende-en]]. File system choices are also relevant for [[backup-og-gjenoppretting-en]] since not all backup solutions support every file system.
 
 ---
 
@@ -73,7 +74,7 @@ ext4 is the standard file system on modern Linux distributions such as Ubuntu, D
 **Characteristics:**
 - **Journaling**: Similar to NTFS — logs operations to ensure consistency after power failure.
 - **Inodes**: Each file has an inode that stores metadata (owner, group, permissions, timestamps). The filename itself is a pointer to the inode.
-- **Permission model**: rwx for owner, group, and others (see [[linux-grunnleggende]]).
+- **Permission model**: rwx for owner, group, and others (see [[linux-grunnleggende-en]]).
 - **POSIX ACL**: For more granular control, similar to NTFS ACL.
 - Supports volume sizes up to 1 exabyte and files up to 16 TB.
 
@@ -187,7 +188,7 @@ For Linux: the rwx model gives three permission sets (owner, group, others). POS
 The permissions move with the disk, but they are stored as SIDs. If you connect the disk to a machine in a different domain or with different local users, the SIDs will no longer match any user — and you will typically not have access. You can take ownership with `takeown` and `icacls` to regain access.
 
 **What is the difference between journaling and backup?**
-Journaling protects against corruption when the system crashes mid-write — it is not a backup. The journal logs what was planned, so the file system can complete or roll back the operation at the next boot. Journaling does not replace [[backup-og-gjenoppretting]].
+Journaling protects against corruption when the system crashes mid-write — it is not a backup. The journal logs what was planned, so the file system can complete or roll back the operation at the next boot. Journaling does not replace [[backup-og-gjenoppretting-en]].
 
 **Why can't I copy a 5 GB ISO file to a USB drive formatted as FAT32?**
 FAT32 has an absolute limit of 4 GB − 1 byte per file. A 5 GB file exceeds this limit. Solution: format the USB drive as exFAT (retains compatibility) or NTFS (Windows only without extra drivers on Mac/Linux).
@@ -234,25 +235,6 @@ Example: NTFS says "Read", Share says "Full Control". The user gets only read ac
 **Answer:** ext4 (Fourth Extended Filesystem).
 
 </details>
-
----
-
-## Flashcards
-
-NTFS :: Standard Windows file system with support for ACL, quotas, journaling, and encryption
-ACL :: Access Control List — list of users/groups and their permissions on a file or folder
-Permission inheritance :: Mechanism in NTFS where subfolders automatically adopt the permissions of the parent folder
-FAT32 :: Older file system without access control; max file size 4 GB − 1 byte (4,294,967,295 bytes)
-exFAT :: Modern FAT-based file system without the 4 GB limit; used on USB/SD
-ext4 :: Standard Linux file system with journaling, inodes, and rwx permission model
-Inode :: Data structure in Linux file systems that stores metadata about a file (owner, permissions, timestamp)
-Journaling :: File system transaction log that ensures consistency after a system crash
-Disk quota :: Limit on how much storage space a user can use on a volume
-Full control :: Highest NTFS permission level — includes the right to change permissions and take ownership
-POSIX ACL :: Extended access control in Linux beyond standard rwx; provides per-user and per-group permissions with `setfacl`/`getfacl`
-icacls :: Windows command-line tool for viewing and changing NTFS permissions
-Share Permissions :: Permissions that only apply when accessing a shared resource over the network; combined with NTFS permissions (most restrictive wins)
-EFS :: Encrypting File System — NTFS feature for transparent file encryption tied to the user's certificate
 
 ---
 

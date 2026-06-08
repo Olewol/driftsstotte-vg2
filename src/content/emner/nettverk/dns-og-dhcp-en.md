@@ -24,7 +24,7 @@ notebooklm: true
 
 ## Introduction
 
-When you connect a PC to a network, two things happen automatically in the background: the machine gets an IP address (DHCP), and it learns who to ask when it needs to find out what `ndla.no` means in numbers (DNS). These two services are invisible to most users — but without them, nothing would work. As an IT support technician, they are among the most important services you will configure and troubleshoot. DNS and DHCP are not isolated services — they work closely with [[serverroller|server roles]] in a domain network, and errors in either are among the most common causes of network problems in business environments. To understand which protocols and ports these services use, see [[nettverksprotokoller|network protocols]].
+When you connect a PC to a network, two things happen automatically in the background: the machine gets an IP address (DHCP), and it learns who to ask when it needs to find out what `ndla.no` means in numbers (DNS). These two services are invisible to most users — but without them, nothing would work. As an IT support technician, they are among the most important services you will configure and troubleshoot. DNS and DHCP are not isolated services — they work closely with [[serverroller-en|server roles]] in a domain network, and errors in either are among the most common causes of network problems in business environments. To understand which protocols and ports these services use, see [[nettverksprotokoller-en|network protocols]].
 
 ## Theory
 
@@ -263,21 +263,6 @@ DNS spoofing is an attack where fake DNS responses redirect users to malicious w
 
 **Answer:** An A record translates name to IP (forward lookup). A PTR record (Pointer) does the opposite — it translates an IP address to a name (reverse lookup). PTR records are used by email servers and logs among other things.
 </details>
-
-## Flashcards
-
-DHCP :: Dynamic Host Configuration Protocol — automatically assigns IP configuration to clients
-DORA :: The four steps in DHCP: Discover, Offer, Request, Acknowledge
-DNS :: Domain Name System — translates domain names to IP addresses
-DNS A record :: DNS record that connects a domain name to an IPv4 address
-DNS CNAME :: DNS record that creates an alias/pointer to another domain name
-DNS MX record :: DNS record that specifies which server handles email for the domain
-DNS PTR record :: DNS record for reverse lookup: IP address → domain name
-DHCP scope :: The address range the DHCP server manages and assigns from
-DHCP lease :: The time agreement between DHCP server and client for use of an IP address
-Forwarder :: DNS configuration that forwards unresolved lookups to another DNS server
-Lease time :: The time a client gets to keep an assigned IP address before it must request renewal from the DHCP server
-A Record :: A DNS resource record that connects a hostname to a specific IPv4 address
 
 ## Resources
 

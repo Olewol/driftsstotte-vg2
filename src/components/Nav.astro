@@ -16,7 +16,21 @@ const links = [
   { href: `${base}/kompetansemaal`,  label: 'Kompetansemål' },
   { href: `${base}/repetisjon`,      label: 'Eksamensrepetisjon' },
 ];
+
+// Language toggle logic
+const isEnglish = currentPath.endsWith('-en/');
+const isHomePage = currentPath === `${base}/` || currentPath === `${base}/en/`;
+let otherLangPath = '';
+if (!isHomePage) {
+  otherLangPath = isEnglish
+    ? currentPath.replace(/-en\/$/, '/')
+    : currentPath.replace(/\/$/, '-en/');
+}
+const otherLangLabel = isEnglish ? 'Norsk' : 'English';
+const otherLangIcon = isEnglish ? '🇳🇴' : '🇬🇧';
+const searchLabel = isEnglish ? 'Search' : 'Søk';
 ---
+
 <nav role="navigation" aria-label="Hovednavigasjon" style="position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 32px;height:62px;display:flex;align-items:center;transition:background .3s;">
   <a href={`${base}/`} aria-label="Driftsstøtte VG2 – forside" style="display:flex;align-items:center;gap:12px;margin-right:36px;text-decoration:none;">
     <div style="width:36px;height:36px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0;">DS</div>
@@ -37,10 +51,21 @@ const links = [
   </div>
 
   <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
-    <a href={`${base}/sok`} class="desktop-links" style="background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:7px 14px;font-size:14px;color:var(--text2);display:flex;align-items:center;gap:7px;width:190px;text-decoration:none;" aria-label="Søk">
-      <span>🔍</span><span>Søk…</span>
+    <a href={`${base}/sok`} class="desktop-links" style="background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:7px 14px;font-size:14px;color:var(--text2);display:flex;align-items:center;gap:7px;width:190px;text-decoration:none;" aria-label={searchLabel}>
+      <span>🔍</span><span>{searchLabel}…</span>
       <kbd style="margin-left:auto;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:1px 6px;font-size:11px;color:var(--text3);">⌘K</kbd>
     </a>
+    {!isHomePage && (
+      <a
+        href={otherLangPath}
+        class="desktop-links"
+        style="display:inline-flex;align-items:center;gap:5px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:13px;color:var(--text2);text-decoration:none;transition:color .15s,background .15s,border-color .15s;white-space:nowrap;"
+        aria-label={`Bytt språk til ${otherLangLabel}`}
+      >
+        <span>{otherLangIcon}</span>
+        <span style="font-weight:600;">{otherLangLabel}</span>
+      </a>
+    )}
     <ThemeToggle />
     <MobileNav />
   </div>

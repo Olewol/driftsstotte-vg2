@@ -9,6 +9,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/windows-server/
   - https://documentation.ubuntu.com/server/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+video: https://www.youtube.com/watch?v=85-bp7XxWDQ
 tags: []
 flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true
@@ -294,26 +295,6 @@ Teknisk sett ja, men det er komplisert og risikabelt. Alle GPO-er, profiler og t
 **Svar:** Lightweight Directory Access Protocol — protokollen som brukes for å spørre mot og oppdatere katalogdata i Active Directory.
 
 </details>
-
----
-
-## Flashcards
-
-Active Directory (AD) :: Microsofts katalogtjeneste for sentralisert administrasjon av brukere, maskiner og policyer
-Domenekontroller (DC) :: Server med AD DS installert som autentiserer alle pålogginger i domenet
-Organisasjonsenhet (OU) :: Logisk beholder i AD for å organisere objekter og knytte GPO-er til
-GPO :: Group Policy Object — sett med innstillinger som distribueres automatisk til brukere og maskiner i AD
-ADUC :: Active Directory Users and Computers — grafisk verktøy for å administrere AD-objekter
-Skog (Forest) :: Øverste nivå i AD-hierarkiet; samling av trær med felles skjema og global katalog
-Domene :: Grunnenheten i AD — logisk gruppe av brukere og maskiner under felles administrasjon
-LDAP :: Lightweight Directory Access Protocol — protokoll for å søke i og oppdatere AD-katalogen
-Kerberos :: Autentiseringsprotokoll AD bruker; basert på krypterte billetter, passordet sendes aldri over nettverket
-TGT :: Ticket Granting Ticket — Kerberos-billett brukt til å be om tilgang til tjenester uten nytt passord
-FSMO :: Flexible Single Master Operation — spesielle AD-roller som kun én DC kan inneha om gangen
-gpupdate /force :: Kommando for å tvinge umiddelbar oppdatering av gruppepolicyer på en klient
-Global katalog (GC) :: Distribuert lagring med kopi av alle objekter i AD-skogen; muliggjør tverr-domene søk og UPN-pålogging
-RBAC :: Rollebasert tilgangsstyring — rettigheter tildeles basert på brukerens rolle, ikke som enkeltpersonstillatelser
-Navnestandard :: Konsistent konvensjon for brukernavn i AD (f.eks. fornavn.etternavn) som forenkler administrasjon og scripting
 
 ---
 

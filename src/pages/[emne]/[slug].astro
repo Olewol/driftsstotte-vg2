@@ -17,6 +17,7 @@ const { note } = Astro.props;
 const { Content } = await render(note);
 const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic } = note.data;
 const pageLang = note.id.endsWith('-en.md') ? 'en' : 'no';
+const slug = note.id.split('/').pop()!.replace(/\.mdx?$/, '');
 ---
 <ContentLayout
   title={title}
@@ -33,6 +34,7 @@ const pageLang = note.id.endsWith('-en.md') ? 'en' : 'no';
   quiz={quiz}
   infographic={infographic}
   language={pageLang}
+  flashcardSlug={slug}
 >
   <Content />
 </ContentLayout>

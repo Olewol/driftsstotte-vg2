@@ -25,7 +25,7 @@ notebooklm: true
 
 A server is not just a powerful computer — it's a machine with specific roles and responsibilities in the network. In Windows Server, you install services as "server roles" via Server Manager. Knowing the most important server roles, what they do, and which protocols they use, is essential for IT support: you plan the infrastructure, install the services, and keep them running.
 
-Server roles are closely tied to [[active-directory]], [[bruker-og-tilgangsstyring|user and access management]] and [[filsystem|file system]], and are a central part of [[driftsarkitektur|operations architecture]] in a business. A domain controller is not one role, but a combination of AD DS, DNS, and often DHCP working together.
+Server roles are closely tied to [[active-directory-en]], [[bruker-og-tilgangsstyring-en|user and access management]] and [[filsystem-en|file system]], and are a central part of [[driftsarkitektur-en|operations architecture]] in a business. A domain controller is not one role, but a combination of AD DS, DNS, and often DHCP working together.
 
 ## Theory
 
@@ -96,7 +96,7 @@ Configuration in Windows Server:
 - Forwarders: lookups outside `lab.lan` are forwarded to router (e.g. `192.168.1.1`) or public DNS (`8.8.8.8`)
 - Dynamic update: clients register automatically in DNS when joining the domain
 
-See [[dns-og-dhcp|DNS and DHCP]] for a full review of DNS.
+See [[dns-og-dhcp-en|DNS and DHCP]] for a full review of DNS.
 
 ---
 
@@ -113,7 +113,7 @@ Important steps:
 4. Configure scope options: gateway, DNS server, lease time
 5. Activate the scope
 
-See [[dns-og-dhcp|DNS and DHCP]] for a full review of DHCP.
+See [[dns-og-dhcp-en|DNS and DHCP]] for a full review of DHCP.
 
 ---
 
@@ -236,7 +236,7 @@ A Windows Server is a platform for running services ("roles"). The most importan
 AD DS is the foundation. It collects user accounts, computers, and policies in one central system. A domain controller is a server with the AD DS role. OUs structure AD and are the anchor point for Group Policy. DNS is a prerequisite for AD.
 
 **File Server and Access Control**
-NTFS permissions always apply, share permissions only apply during network access. When both are set, the most restrictive combination takes effect. Folder structure and permissions are closely tied to [[bruker-og-tilgangsstyring|user and access management]].
+NTFS permissions always apply, share permissions only apply during network access. When both are set, the most restrictive combination takes effect. Folder structure and permissions are closely tied to [[bruker-og-tilgangsstyring-en|user and access management]].
 
 **Common Exam Points**
 - The difference between an OU and a regular folder in AD
@@ -301,21 +301,6 @@ Share permissions only apply when connecting to the folder via the network. NTFS
 
 **Answer:** Active Directory relies on DNS for clients to find the domain controller (via SRV records in DNS). Without DNS, clients cannot log in, find AD services, or communicate with the domain. The DNS role is therefore always installed in combination with AD DS.
 </details>
-
-## Flashcards
-
-Server role :: Additional function installed in Windows Server via Server Manager (e.g. AD DS, DNS, DHCP, IIS)
-AD DS :: Active Directory Domain Services — domain controller role that centralizes authentication and directory services
-Domain controller :: Server with the AD DS role that manages users, groups, and policies in a domain
-OU :: Organizational Unit — logical container in AD that supports Group Policy and delegated administration
-IIS :: Internet Information Services — Microsoft's web server for Windows Server, serves HTTP/HTTPS
-SMB :: Server Message Block — Windows protocol for network sharing of folders and files (port 445)
-FQDN :: Fully Qualified Domain Name — complete domain name e.g. pc01.lab.lan
-MTA :: Mail Transfer Agent — server software that sends and forwards email via SMTP
-GPO :: Group Policy Object — policy set in AD that distributes settings to users and machines
-NAS :: Network Attached Storage — dedicated storage device with file server functionality
-DHCP Scope :: A defined range of IP addresses that the DHCP server can assign to clients on a particular subnet
-NTFS permissions :: File system-level permissions that determine what access users and groups have to files and folders on a file server
 
 ## Resources
 

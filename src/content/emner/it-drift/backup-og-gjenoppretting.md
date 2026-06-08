@@ -262,36 +262,6 @@ RPO: "Vi tåler å miste maks 4 timers data." – Backup må kjøres minst hvert
 
 ---
 
-## Flashcards
-
-3-2-1-regelen :: 3 kopier av data, 2 ulike lagringsmedier, 1 offsite-kopi. Standard minstekrav for backup-strategi.
-
-RPO :: Recovery Point Objective – maksimalt akseptabelt datatap målt i tid. Bestemmer backup-frekvens.
-
-RTO :: Recovery Time Objective – maksimalt akseptabel nedetid. Bestemmer krav til gjenopprettingshastighet.
-
-Full backup :: Komplett kopi av alle valgte data. Størst lagringsbruk, raskest å gjenopprette.
-
-Inkrementell backup :: Kopi av endringer siden siste backup (uansett type). Liten og rask, men kompleks gjenoppretting.
-
-Differensiell backup :: Kopi av alle endringer siden siste fulle backup. Middels størrelse og gjenopprettingstid.
-
-Immutable backup :: Backup-data som er låst og ikke kan endres eller slettes. Beskytter mot ransomware.
-
-Air-gapped backup :: Backup isolert fra nettverket. Angripere kan ikke nå den digitalt.
-
-Disaster Recovery (DR) :: Helhetlig plan for å gjenopprette IT-systemer etter en større katastrofe.
-
-Veeam :: Ledende backup-programvare for virtualiserte miljøer. Støtter VMware, Hyper-V og skybackup.
-
-Cold standby :: DR-strategi der backup-infrastruktur settes opp manuelt ved behov. Billigst, lengst RTO.
-
-Hot standby :: DR-strategi med fullstendig parallelt miljø klart hele tiden. Kortest RTO, dyrest.
-
-System-image :: Komplett kopi av et operativsystem med konfigurasjon og programvare. Raskere totalrestaurering enn fil-for-fil.
-
----
-
 ## Ressurser
 
 - [Veeam: 3-2-1 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html)

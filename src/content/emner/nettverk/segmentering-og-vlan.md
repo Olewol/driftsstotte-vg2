@@ -248,20 +248,6 @@ Ja. Moderne aksesspunkter støtter SSID-til-VLAN-mapping. Gjeste-WiFi-nettverket
 **Svar:** Private adresserom (10.x.x.x, 172.16-31.x.x, 192.168.x.x) er IP-adresser som ikke rutes på internett. De brukes til interne nettverk og oversettes til en offentlig IP via NAT når trafikk går ut på internett. Dette gir adressebesparelse og et ekstra lag med skjul mot internett.
 </details>
 
-## Flashcards
-
-VLAN :: Virtual Local Area Network — logisk inndeling av et fysisk nettverk med IEEE 802.1Q
-CIDR :: Classless Inter-Domain Routing — skriving av subnettmaske som suffiks: f.eks. /24 = 255.255.255.0
-Subnettmaske :: Angir grensen mellom nettverksdel og vertsdel i en IP-adresse
-Access-port :: Svitsjeport som tilhører ett VLAN og sender utagget trafikk til sluttenheter
-Trunk-port :: Svitsjeport som bærer tagget trafikk for flere VLAN (svitsj-til-svitsj, svitsj-til-ruter)
-Native VLAN :: VLAN-et som mottar utagget trafikk på en trunk-port (standard VLAN 1)
-IEEE 802.1Q :: Standarden for VLAN-tagging i Ethernet-rammer
-Broadcast-domene :: Området der broadcast-trafikk spres; hvert VLAN er et eget broadcast-domene
-/24-nettverk :: Subnett med 256 adresser (254 brukbare), subnettmaske 255.255.255.0
-Private adresser :: IP-adresser (10.x.x.x, 172.16-31.x.x, 192.168.x.x) som ikke rutes på internett
-IEEE 802.1Q (standard) :: Den internasjonale standarden for VLAN-tagging i Ethernet-rammer, som muliggjør flere logiske nettverk på én fysisk forbindelse
-
 ## Kilder
 
 [^1]: NDLA. (2024). IPv4. https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02

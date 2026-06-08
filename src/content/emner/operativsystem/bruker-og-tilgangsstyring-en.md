@@ -9,6 +9,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/windows-server/
   - https://documentation.ubuntu.com/server/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+video: https://www.youtube.com/watch?v=fSRgESnRwAU
 tags: []
 flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true
@@ -21,7 +22,7 @@ original: bruker-og-tilgangsstyring.md
 
 User and access management is the core of km-04 and one of the most important tasks an IT operations technician performs. The goal is to ensure that **the right people have access to the right resources — and nothing more**. This is called the principle of least privilege.
 
-This article covers Windows user administration (local and in a domain), security groups, access control, and the equivalent tools in Linux. User administration in domain environments requires knowledge of [[active-directory]]. For Linux commands, see [[linux-grunnleggende]], and for automating user creation, see [[powershell-grunnleggende]].
+This article covers Windows user administration (local and in a domain), security groups, access control, and the equivalent tools in Linux. User administration in domain environments requires knowledge of [[active-directory-en]]. For Linux commands, see [[linux-grunnleggende-en]], and for automating user creation, see [[powershell-grunnleggende-en]].
 
 ---
 
@@ -229,7 +230,7 @@ Linux equivalents:
 - Users are created with `useradd`, modified with `usermod`, deleted with `userdel`
 - Groups are managed with `groupadd` and `gpasswd`
 - `/etc/passwd` contains user info; `/etc/shadow` contains encrypted passwords (only root can read)
-- Access rights are controlled by the rwx model — see [[linux-grunnleggende]] for details
+- Access rights are controlled by the rwx model — see [[linux-grunnleggende-en]] for details
 
 ---
 
@@ -292,27 +293,6 @@ Authentication verifies your identity (you are who you claim to be). Authorizati
 **Answer:** It adds the user `student01` to the `sudo` group without removing the user from other groups (`-a` = append, `-G` = supplementary groups). This gives the user the ability to run commands with root privileges via `sudo`.
 
 </details>
-
----
-
-## Flashcards
-
-Local account :: User account stored in the machine's SAM database, valid only on that machine
-Domain account :: User account stored in Active Directory, valid on all machines in the domain
-SID :: Security Identifier — unique numeric identifier Windows assigns to each account and group
-Principle of least privilege :: Users should only have the permissions they need for their job
-UAC :: User Account Control — Windows mechanism that requires explicit approval for administrative operations
-Domain Admins :: Built-in AD group with full administrative access to the domain
-Security group :: AD object that gathers users for shared access management
-Domain local group :: Group that can be used for permissions only in its own domain
-Global group :: Group from the same domain that can be used for permissions in all domains in the forest
-AAA :: Authentication, Authorization, and Accounting — the core principles of access control
-useradd :: Linux command to create a new user account
-usermod -aG :: Linux command to add a user to a supplementary group without removing existing group memberships
-/etc/shadow :: Linux file that stores encrypted passwords (only root can read)
-RBAC :: Role-based access control — permissions are linked to roles, not individuals
-Sudoers :: Configuration file in Linux (`/etc/sudoers`) that defines who can run commands with root privileges
-SSSD :: System Security Services Daemon — lets Linux clients authenticate against Active Directory
 
 ---
 

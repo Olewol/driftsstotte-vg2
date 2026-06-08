@@ -420,26 +420,6 @@ Rollebasert tilgangskontroll (RBAC) betyr at rettigheter tildeles roller, og rol
 
 ---
 
-## Flashcards
-
-Autentisering :: Verifiserer hvem brukeren er — brukernavn og passord — første steg i MySQL-tilgangskontroll
-Autorisering :: Bestemmer hva den autentiserte brukeren har lov til å gjøre — andre steg i MySQL-tilgangskontroll
-GRANT :: MySQL-kommando for å tildele rettigheter til en bruker eller rolle
-REVOKE :: MySQL-kommando for å fjerne rettigheter fra en bruker eller rolle
-FLUSH PRIVILEGES :: Tvinger MySQL til å laste inn rettighetstabellene på nytt slik at endringer trer i kraft
-mysqldump :: Kommandolinjeverktøy for logisk backup av MySQL-databaser — eksporterer SQL-setninger
-Logisk backup :: Backup lagret som SQL-setninger (f.eks. mysqldump) — bærbar på tvers av versjoner og systemer
-Indeks :: Datastruktur (typisk B-tre) som gjør oppslag i en kolonne raskere — opprettes med CREATE INDEX
-EXPLAIN :: MySQL-kommando som viser spørringsplanen — brukes for å diagnostisere trege spørringer
-RBAC :: Rollebasert tilgangskontroll — rettigheter tildeles roller, roller tildeles brukere
-CREATE ROLE :: MySQL 8.0-kommando for å opprette en rolle som kan samle rettigheter
-Full tabellscan :: MySQL leser alle rader i tabellen for å finne treff — indikert med type=ALL i EXPLAIN, unngås med indekser
-Minste privilegium :: Sikkerhetsprinsipp — gi brukere kun de rettighetene de absolutt trenger for sin oppgave
-Sakte spørringslogg :: MySQL-funksjon som logger spørringer over definert tidsgrense — brukes til å identifisere ytelsesflaskehalser
-Indeksering :: Opprettelse av en datastruktur som fungerer som hurtigvei for søk og forbedrer ytelse ved store datamengder
-
----
-
 ## Ressurser
 
 - [MySQL 8.0: Access Control](https://dev.mysql.com/doc/refman/8.0/en/access-control.html)

@@ -271,44 +271,6 @@ Serverless (f.eks. Azure Functions) er ikke at det ikke finnes servere – det e
 
 ---
 
-## Flashcards
-
-IaaS :: Infrastructure as a Service – leie av virtuell infrastruktur (servere, lagring, nettverk). Kunden styrer OS og opp. Eksempel: AWS EC2, Azure Virtual Machines.
-
-PaaS :: Platform as a Service – leverandøren håndterer OS og mellomvare. Kunden fokuserer på applikasjonsutvikling. Eksempel: Azure App Service.
-
-SaaS :: Software as a Service – ferdig programvare levert over nett. Leverandøren håndterer alt. Eksempel: Microsoft 365, Google Workspace.
-
-Offentlig sky :: Sky-ressurser delt mellom mange kunder hos leverandøren. Billigst og mest skalerbart. Eksempel: Azure, AWS.
-
-Privat sky :: Dedikert sky for én organisasjon. Mer kontroll, men dyrere.
-
-Hybridsky :: Kombinasjon av offentlig og privat sky (og/eller on-premise). Gir fleksibilitet.
-
-Shared Responsibility Model :: Ansvarsmodell som fordeler sikkerhetsansvar mellom leverandøren og kunden avhengig av tjenestemodell.
-
-SLA :: Service Level Agreement – avtale om garantert tilgjengelighet og ytelse. F.eks. 99,9 % oppetid.
-
-GDPR :: Personvernforordningen – EU-lov som regulerer behandling av personopplysninger. Gjelder i Norge.
-
-Databehandleravtale :: Lovpålagt avtale mellom virksomheten og skyleverandøren som regulerer behandling av personopplysninger.
-
-Elastisitet :: Evnen til å skalere ressurser opp og ned etter behov – en nøkkelfordel med sky.
-
-OPEX :: Operational Expenditure – løpende kostnader. Sky bruker OPEX-modell (betal for bruk).
-
-Multi-sky (Multi-cloud) :: Bruk av flere offentlige skyleverandører for å unngå vendor lock-in og øke redundansen.
-
-Serverless :: PaaS-variant der leverandøren automatisk tildeler ressurser basert på kodekjøring. Ingen serveradministrasjon. Eksempel: Azure Functions.
-
-Hyperscalere :: De største skyleverandørene (AWS, Azure, Google Cloud) med enorm global infrastruktur og kapasitet.
-
-Datasuverenitet :: Prinsippet om at data er underlagt lovene i landet der de lagres fysisk. Kritisk for GDPR-overholdelse.
-
-FinOps :: Cloud Financial Management – praksis for å forstå og optimalisere skykostnader i samarbeid mellom IT og økonomi.
-
----
-
 ## Ressurser
 
 - [AWS: What is cloud computing?](https://aws.amazon.com/what-is-cloud-computing/)

@@ -24,7 +24,7 @@ Bash (Bourne Again SHell) is the standard shell on most Linux distributions and 
 
 In this article, you will learn the basic building blocks of Bash scripting: shebang, variables, conditional statements, loops, functions, and file operations. All of this is used in the practical lab where we build a complete backup script.
 
-Bash is closely tied to [[linux-grunnleggende|Linux basics]] and is actively used in [[automatisering|automation]] of operations tasks. To compare with the Windows side, see [[powershell-grunnleggende|PowerShell basics]].
+Bash is closely tied to [[linux-grunnleggende-en|Linux basics]] and is actively used in [[automatisering-en|automation]] of operations tasks. To compare with the Windows side, see [[powershell-grunnleggende-en|PowerShell basics]].
 
 ---
 
@@ -353,7 +353,7 @@ Bash is the shell language you encounter on all Linux systems. A Bash script is 
 - Use absolute paths in scripts called by cron or automated systems.
 - Command substitution `$(command)` stores output from a command in a variable.
 
-**Typical use cases in operations:** backup scripts, log rotation, user creation, system monitoring — see [[automatisering|automation]] for how such scripts are scheduled.
+**Typical use cases in operations:** backup scripts, log rotation, user creation, system monitoring — see [[automatisering-en|automation]] for how such scripts are scheduled.
 
 ---
 
@@ -413,24 +413,6 @@ Add `set -e` at the top (after the shebang). The script will then automatically 
 **Answer:** It makes the script abort immediately if a command returns a non-zero exit code (i.e., an error). This prevents the script from continuing in a partially failed state.
 
 </details>
-
----
-
-## Flashcards
-
-Shebang :: The first line of a script (`#!/bin/bash`) that tells the OS which interpreter to use
-`$?` :: Special variable that contains the exit code of the previous command (0 = success)
-`$1`, `$2` :: Positional parameters — arguments given to the script or function
-`set -e` :: Bash setting that aborts the script at the first error
-`$(command)` :: Command substitution — runs the command and inserts the output
-`mkdir -p` :: Creates a folder and all missing parent folders, without error if the folder exists
-`chmod +x` :: Grants execute permissions to a file so it can be run directly
-`local` :: Keyword in Bash functions that limits a variable's scope to the function block
-`[ -d PATH ]` :: Bash test that is true if the path exists and is a directory
-`[ -f PATH ]` :: Bash test that is true if the path exists and is a regular file
-Shellcheck :: Static analysis tool for Bash scripts that finds errors and suggests best practices without running the script
-Exit code :: Status code (0–255) returned by a command; 0 = success, anything else = error
-Command substitution :: Technique (`$(command)`) that runs a command and inserts the result directly into a variable
 
 ---
 

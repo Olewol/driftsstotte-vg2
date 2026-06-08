@@ -262,22 +262,6 @@ Well-known ports er portnumre 0–1023 som er reservert for standardiserte tjene
 **Svar:** RDP er et populært angrepsmål. Automatiserte verktøy skanner konstant internett etter åpen port 3389 og forsøker brute force-innlogging. Dersom det lykkes, får angriperen grafisk tilgang til Windows-maskinen. Løsningen er å bare tillate RDP fra VPN eller IP-adressen til administratorer.
 </details>
 
-## Flashcards
-
-HTTP :: Hypertext Transfer Protocol — ukryptert nettprotokoll på port 80
-HTTPS :: HTTP over TLS — kryptert nettprotokoll på port 443
-FTP :: File Transfer Protocol — ukryptert filoverføring på port 21 (kontroll) og 20 (data)
-SFTP :: Sikker filoverføring over SSH på port 22 — kryptert erstatning for FTP
-SSH :: Secure Shell — kryptert fjerntilgang til terminal/kommandolinje på port 22
-RDP :: Remote Desktop Protocol — grafisk Windows-fjernstyring på port 3389
-SMTP :: Simple Mail Transfer Protocol — sending av e-post, port 25 (server-server) / 587 (klient-server)
-IMAP :: Internet Message Access Protocol — synkronisering av e-post fra server, port 143 / 993 (TLS)
-POP3 :: Post Office Protocol 3 — nedlasting av e-post fra server, port 110 / 995 (TLS)
-SNMP :: Simple Network Management Protocol — overvåking av nettverksenheter på port 161/162
-TCP (Transmission Control Protocol) :: En tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll
-UDP (User Datagram Protocol) :: En forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak
-Three-way Handshake :: Prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN, SYN-ACK, ACK)
-
 ## Kilder
 
 [^1]: SNL. (2024). Protokoll — IT. https://snl.no/protokoll_-_it

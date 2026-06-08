@@ -24,7 +24,7 @@ original: driftsarkitektur.md
 
 An operations architecture describes how an organization's IT infrastructure is built – which components exist, how they connect, and where they are located. A well-thought-out architecture makes the system stable, secure, and scalable.
 
-Today, there are three main models: on-premise infrastructure, cloud-based infrastructure, and a combination of both (hybrid). The choice depends on requirements for control, cost, flexibility, and legal obligations. A good operations architecture always considers who is responsible for what – which is especially important when services are moved to the cloud (see [[skytjenester]] for the Shared Responsibility Model).
+Today, there are three main models: on-premise infrastructure, cloud-based infrastructure, and a combination of both (hybrid). The choice depends on requirements for control, cost, flexibility, and legal obligations. A good operations architecture always considers who is responsible for what – which is especially important when services are moved to the cloud (see [[skytjenester-en]] for the Shared Responsibility Model).
 
 ---
 
@@ -44,7 +44,7 @@ Today, there are three main models: on-premise infrastructure, cloud-based infra
 
 **Hybrid cloud** combines on-premise and cloud. Critical data and services can remain local, while variable workloads run in the cloud. This is the most common model for medium-sized and large Norwegian enterprises today.
 
-> Connection to km-03: Cloud services are an integrated part of modern operations architecture. IaaS (Infrastructure as a Service) is effectively an extension of on-premise – you rent virtual machines and networks instead of owning physical equipment. See [[skytjenester]] for a complete overview.
+> Connection to km-03: Cloud services are an integrated part of modern operations architecture. IaaS (Infrastructure as a Service) is effectively an extension of on-premise – you rent virtual machines and networks instead of owning physical equipment. See [[skytjenester-en]] for a complete overview.
 
 ---
 
@@ -58,7 +58,7 @@ A **physical server** is dedicated hardware that runs one or more operating syst
 - **Microsoft Hyper-V** – built into Windows Server
 - **KVM** – open source, used in Linux environments
 
-Virtualization provides better resource utilization, easier administration, and faster deployment of new servers. See [[virtuelle-losninger]] for a deeper look at virtualization technology.
+Virtualization provides better resource utilization, easier administration, and faster deployment of new servers. See [[virtuelle-losninger-en]] for a deeper look at virtualization technology.
 
 **Containers** (e.g., Docker) are a lighter form of virtualization that share the operating system kernel between applications. Kubernetes is used to orchestrate containers at scale.
 
@@ -77,7 +77,7 @@ A local network (LAN) consists of several key components:
 | **VLAN** | Logical network segmentation without physical separation. Used for security and performance. |
 | **Wireless Access Point (AP)** | Provides Wi-Fi access to the network. |
 
-See [[brannmur]] and [[segmentering-og-vlan]] for more on these components.
+See [[brannmur-en]] and [[segmentering-og-vlan-en]] for more on these components.
 
 ---
 
@@ -129,7 +129,7 @@ Advantages of IaC:
 - Version control – changes are tracked as code
 - Automated deployment – faster and more reliable than manual work
 
-Tools: Terraform (infrastructure), Ansible (configuration), Azure ARM templates. See [[automatisering]] for more.
+Tools: Terraform (infrastructure), Ansible (configuration), Azure ARM templates. See [[automatisering-en]] for more.
 
 ---
 
@@ -151,7 +151,7 @@ A small to medium-sized business (SMB) might have an architecture like this:
  NAS, UPS]
 ```
 
-In addition, some services may reside in the cloud (e.g., email via Microsoft 365, backup to Azure), resulting in a hybrid architecture. Good [[dokumentasjon-og-planlegging]] ensures that all components are mapped and that changes are tracked.
+In addition, some services may reside in the cloud (e.g., email via Microsoft 365, backup to Azure), resulting in a hybrid architecture. Good [[dokumentasjon-og-planlegging-en]] ensures that all components are mapped and that changes are tracked.
 
 ---
 
@@ -254,42 +254,6 @@ A DMZ (Demilitarized Zone) is an isolated network between the internet and the i
 
 ---
 
-## Flashcards
-
-On-premise :: Local IT infrastructure owned and operated by the organization itself, with full control but high capital costs (CAPEX).
-
-Hybrid cloud :: An operational model that combines local (on-premise) infrastructure with cloud services.
-
-Hypervisor :: Software that allows one physical server to run multiple virtual machines (VMs) simultaneously. Examples: VMware ESXi, Hyper-V.
-
-VM (virtual machine) :: A software-based server that behaves like a physical machine but runs on shared physical hardware.
-
-NAS :: Network Attached Storage – storage unit connected to the network for file sharing. Accessible to all devices on the network.
-
-SAN :: Storage Area Network – dedicated high-speed network for storage. Provides servers with block-based access to storage.
-
-DAS :: Direct Attached Storage – storage connected directly to one server. Simple and fast, but not shared.
-
-Switch :: Network component that connects devices in a local network (LAN) using MAC addresses.
-
-Firewall :: Network security component that filters traffic in and out of the network based on rules.
-
-VLAN :: Virtual LAN – logical segmentation of a network without physical separation, used for security and performance.
-
-UPS :: Uninterruptible Power Supply – battery system that ensures power during outages and protects against unplanned shutdowns.
-
-CAPEX :: Capital Expenditure – one-time expenses for purchasing equipment. Typical for on-premise infrastructure.
-
-OPEX :: Operational Expenditure – ongoing operating expenses. Typical for cloud services with a subscription model.
-
-Infrastructure as Code (IaC) :: Method for managing IT infrastructure via machine-readable configuration files instead of manual configuration. Provides reproducibility and version control.
-
-Redundancy :: Duplication of critical components in a system to ensure operation if one part fails.
-
-Latency :: The delay in communication between client and server. Low latency is critical for real-time systems.
-
----
-
 ## Resources
 
 - [Microsoft Azure: What is IaaS?](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas/)
@@ -298,6 +262,6 @@ Latency :: The delay in communication between client and server. Low latency is 
 - [NDLA: Driftsarkitektur](https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358)
 - [SNL: Skytjeneste](https://snl.no/skytjeneste)
 - [YouTube: What is Cloud Computing? – Amazon Web Services](https://www.youtube.com/watch?v=mxT23V-pS0I)
-- [[skytjenester]]
-- [[backup-og-gjenoppretting]]
-- [[dokumentasjon-og-planlegging]]
+- [[skytjenester-en]]
+- [[backup-og-gjenoppretting-en]]
+- [[dokumentasjon-og-planlegging-en]]

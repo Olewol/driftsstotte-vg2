@@ -271,22 +271,6 @@ Med default-allow tillates all trafikk som ikke eksplisitt er blokkert. Angriper
 
 ---
 
-## Flashcards
-
-Pakkefiltrering :: Stateless brannmur som inspiserer kilde/mål-IP, port og protokoll for hver pakke isolert
-Stateful inspection :: Brannmur som husker tilstanden til aktive forbindelser og tillater returtrafikk automatisk
-WAF :: Web Application Firewall – applikasjonsbrannmur som inspiserer HTTP-innhold og stopper SQL-injeksjon og XSS
-DMZ :: Demilitarisert sone – nettverk mellom internett og internt nett der internett-eksponerte servere plasseres
-Nettverkssegmentering :: Deling av nettverk i VLAN-soner med brannmurregler mellom for å begrense lateral bevegelse
-Default-deny :: Brannmurprinsipp: blokker alt, tillat kun eksplisitt godkjent trafikk
-IDS :: Intrusion Detection System – overvåker trafikk og varsler ved mistenkelig aktivitet, men blokkerer ikke
-IPS :: Intrusion Prevention System – overvåker trafikk og blokkerer automatisk mistenkelig aktivitet inline
-Lateral bevegelse :: Angriperens evne til å bevege seg mellom systemer etter å ha fått innledende tilgang
-Vertsbasert brannmur :: Brannmur som kjører på selve maskinen (f.eks. Windows Defender Firewall), i tillegg til nettverksbrannmuren
-NGFW :: Next-Generation Firewall – kombinerer stateful inspection med applikasjonsidentifisering og brukeridentitet for dypere trafikkanalyse
-
----
-
 ## Kilder
 
 [^1]: NDLA. (2024). *Brannmur (Driftsstøtte VG2)*. https://ndla.no/r/driftsstotte-im-itk-vg2/brannmur/2aad28ca4e

@@ -25,7 +25,7 @@ Cloud computing has changed the way organizations build and operate IT systems. 
 
 AWS defines it this way: *"Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing."*
 
-Today, most organizations use some form of cloud service, from email and file storage to complete server infrastructures. Understanding the various service models and deployment models is a fundamental competency in the IT profession. To understand cloud in context, see [[driftsarkitektur]] for an overview of on-premise, cloud, and hybrid.
+Today, most organizations use some form of cloud service, from email and file storage to complete server infrastructures. Understanding the various service models and deployment models is a fundamental competency in the IT profession. To understand cloud in context, see [[driftsarkitektur-en]] for an overview of on-premise, cloud, and hybrid.
 
 ---
 
@@ -107,7 +107,7 @@ An important part of working with cloud services is understanding who is respons
 - **The customer** is always responsible for their own data and access management.
 - Everything in between depends on whether you use IaaS, PaaS, or SaaS (see the table above).
 
-Misunderstanding the responsibility model is a common cause of security issues in cloud environments. For more on access management in the cloud, see [[bruker-og-tilgangsstyring]].
+Misunderstanding the responsibility model is a common cause of security issues in cloud environments. For more on access management in the cloud, see [[bruker-og-tilgangsstyring-en]].
 
 ---
 
@@ -171,7 +171,7 @@ The General Data Protection Regulation (GDPR) applies in Norway and sets strict 
 
 Digdir (Norwegian Digitalization Agency) recommends that the public sector consider cloud services, but always with a risk assessment for privacy and data sovereignty. The Schrems II ruling (2020) created uncertainty around data transfer to the US, which among other things affected Norwegian municipalities' choice of cloud services.
 
-Both Microsoft Azure and AWS offer European data centers (including in Norway, Sweden, and Ireland) and have committed to complying with GDPR. See [[personvern]] for more on the GDPR framework.
+Both Microsoft Azure and AWS offer European data centers (including in Norway, Sweden, and Ireland) and have committed to complying with GDPR. See [[personvern-en]] for more on the GDPR framework.
 
 ---
 
@@ -273,44 +273,6 @@ Serverless (e.g., Azure Functions) is not that there are no servers – it is th
 
 ---
 
-## Flashcards
-
-IaaS :: Infrastructure as a Service – renting virtual infrastructure (servers, storage, networking). The customer manages the OS and above. Example: AWS EC2, Azure Virtual Machines.
-
-PaaS :: Platform as a Service – the provider handles the OS and middleware. The customer focuses on application development. Example: Azure App Service.
-
-SaaS :: Software as a Service – ready-made software delivered over the web. The provider handles everything. Example: Microsoft 365, Google Workspace.
-
-Public cloud :: Cloud resources shared between many customers at the provider. Cheapest and most scalable. Example: Azure, AWS.
-
-Private cloud :: Dedicated cloud for one organization. More control, but more expensive.
-
-Hybrid cloud :: Combination of public and private cloud (and/or on-premise). Provides flexibility.
-
-Shared Responsibility Model :: Responsibility model that distributes security responsibility between the provider and the customer depending on the service model.
-
-SLA :: Service Level Agreement – agreement on guaranteed availability and performance. E.g., 99.9% uptime.
-
-GDPR :: General Data Protection Regulation – EU law regulating the processing of personal data. Applies in Norway.
-
-Data processing agreement :: Legally required agreement between the organization and the cloud provider regulating the processing of personal data.
-
-Elasticity :: The ability to scale resources up and down as needed – a key advantage of cloud.
-
-OPEX :: Operational Expenditure – ongoing costs. Cloud uses the OPEX model (pay for use).
-
-Multi-cloud :: Use of multiple public cloud providers to avoid vendor lock-in and increase redundancy.
-
-Serverless :: PaaS variant where the provider automatically allocates resources based on code execution. No server administration. Example: Azure Functions.
-
-Hyperscalers :: The largest cloud providers (AWS, Azure, Google Cloud) with enormous global infrastructure and capacity.
-
-Data sovereignty :: The principle that data is subject to the laws of the country where it is physically stored. Critical for GDPR compliance.
-
-FinOps :: Cloud Financial Management – practice for understanding and optimizing cloud costs through collaboration between IT and finance.
-
----
-
 ## Resources
 
 - [AWS: What is cloud computing?](https://aws.amazon.com/what-is-cloud-computing/)
@@ -318,8 +280,8 @@ FinOps :: Cloud Financial Management – practice for understanding and optimizi
 - [Microsoft Learn AZ-900: PaaS](https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/3-describe-platform-service)
 - [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153)
 - [NDLA: Hva er skytjenester? (video)](https://ndla.no/resource:46761)
-- [[driftsarkitektur]]
-- [[baerekraft]]
-- [[personvern]]
-- [[virtuelle-losninger]]
-- [[backup-og-gjenoppretting]]
+- [[driftsarkitektur-en]]
+- [[baerekraft-en]]
+- [[personvern-en]]
+- [[virtuelle-losninger-en]]
+- [[backup-og-gjenoppretting-en]]

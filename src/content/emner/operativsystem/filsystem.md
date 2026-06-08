@@ -9,6 +9,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/windows-server/
   - https://documentation.ubuntu.com/server/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+video: https://www.youtube.com/watch?v=F5itS2u4I1A
 tags: []
 flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
 public: true
@@ -232,25 +233,6 @@ Eksempel: NTFS sier «Les», Share sier «Full kontroll». Brukeren får kun les
 **Svar:** ext4 (Fourth Extended Filesystem).
 
 </details>
-
----
-
-## Flashcards
-
-NTFS :: Standard Windows-filsystem med støtte for ACL, kvoter, journaling og kryptering
-ACL :: Access Control List — liste over brukere/grupper og deres tillatelser på en fil eller mappe
-Tillatelsesarv :: Mekanisme i NTFS der undermapper automatisk overtar tillatelsene til overordnet mappe
-FAT32 :: Eldre filsystem uten tilgangskontroll; maks filstørrelse 4 GB − 1 byte (4 294 967 295 bytes)
-exFAT :: Moderne FAT-basert filsystem uten 4 GB-begrensning; brukes på USB/SD
-ext4 :: Standard Linux-filsystem med journaling, inoder og rwx-tillatelsesmodell
-Inode :: Datastruktur i Linux-filsystemer som lagrer metadata om en fil (eier, tillatelser, tidsstempel)
-Journaling :: Filsystemets transaksjonslogg som sikrer konsistens etter systemkrasj
-Diskkvote :: Grense for hvor mye lagringsplass en bruker kan bruke på et volum
-Full kontroll :: Høyeste NTFS-tillatelsesnivå — inkluderer rettigheten til å endre tillatelser og ta eierskap
-POSIX ACL :: Utvidet tilgangskontroll i Linux utover standard rwx; gir per-bruker- og per-gruppe-tillatelser med `setfacl`/`getfacl`
-icacls :: Windows kommandolinjeverktøy for å vise og endre NTFS-tillatelser
-Share Permissions :: Tillatelser som kun gjelder ved nettverkstilgang til en delt ressurs; kombineres med NTFS-tillatelser (mest restriktive gjelder)
-EFS :: Encrypting File System — NTFS-funksjonen for transparent filkryptering knyttet til brukerens sertifikat
 
 ---
 

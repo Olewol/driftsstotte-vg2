@@ -9,6 +9,7 @@ kilder:
   - https://learn.microsoft.com/nb-no/powershell/scripting/
   - https://learnxinyminutes.com/docs/bash/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+video: https://www.youtube.com/watch?v=j9MAMgyNpAU
 tags: []
 flashcards: https://notebooklm.google.com/notebook/15678f10-b24e-462c-b837-076df87bd4b7
 public: true
@@ -23,7 +24,7 @@ Writing a script is only half the job. The other half is making sure the script 
 
 In this article, we learn two basic mechanisms for scheduling and running scripts automatically: **Windows Task Scheduler** for Windows and **cron** for Linux. We also look at **Infrastructure as Code (IaC)** — the next step beyond scripting, where entire IT infrastructures are described in code.
 
-Automation builds directly on the skills from [[bash-grunnleggende|Bash basics]] and [[powershell-grunnleggende|PowerShell basics]]. In larger operations environments, automation is closely linked to [[backup-og-gjenoppretting|backup and recovery]], [[serverroller|server roles]], and [[skytjenester|cloud services]].
+Automation builds directly on the skills from [[bash-grunnleggende-en|Bash basics]] and [[powershell-grunnleggende-en|PowerShell basics]]. In larger operations environments, automation is closely linked to [[backup-og-gjenoppretting-en|backup and recovery]], [[serverroller-en|server roles]], and [[skytjenester-en|cloud services]].
 
 ---
 
@@ -303,7 +304,7 @@ Scripts that run automatically often need passwords, API keys, or certificates. 
 - **Windows Credential Manager / Secret Store** — PowerShell module `Microsoft.PowerShell.SecretManagement`.
 - **Vault solutions** — HashiCorp Vault or Azure Key Vault for production environments.
 
-This is especially important when scripts are stored in [[dokumentasjon-og-planlegging|documentation and planning]] or version control systems like Git.
+This is especially important when scripts are stored in [[dokumentasjon-og-planlegging-en|documentation and planning]] or version control systems like Git.
 
 ---
 
@@ -311,7 +312,7 @@ This is especially important when scripts are stored in [[dokumentasjon-og-planl
 
 ### Lab: Set Up Automatic Backup with Task Scheduler
 
-We will set up a Windows task that runs the PowerShell backup script (from [[powershell-grunnleggende|PowerShell basics]]) daily at 02:00.
+We will set up a Windows task that runs the PowerShell backup script (from [[powershell-grunnleggende-en|PowerShell basics]]) daily at 02:00.
 
 **Prerequisite:** The backup script is located at `C:\Scripts\backup.ps1`.
 
@@ -428,7 +429,7 @@ Automation is about letting systems perform tasks on their own — at the right 
 
 **Key principles:** idempotence (safe to run multiple times), secure secret management (never passwords in code), version control of scripts.
 
-Connect to [[backup-og-gjenoppretting|backup and recovery]] for examples of what is automated, and [[skytjenester|cloud services]] for cloud-based IaC.
+Connect to [[backup-og-gjenoppretting-en|backup and recovery]] for examples of what is automated, and [[skytjenester-en|cloud services]] for cloud-based IaC.
 
 ---
 
@@ -488,27 +489,6 @@ Scripts are often stored in version control (Git), log files, or shared with col
 **Answer:** It redirects **stderr** (file descriptor 2) to **stdout** (file descriptor 1). When combined with `>> /var/log/backup.log`, it means both normal output and error messages are written to the same log file.
 
 </details>
-
----
-
-## Flashcards
-
-Crontab :: Configuration file in Linux that defines scheduled tasks for the cron daemon
-Cron syntax :: Five fields (min hour day month weekday) followed by the command to run
-`@reboot` :: Cron special string that runs the command at system startup
-`crontab -e` :: Command to edit the user's crontab in the default editor
-`schtasks /create` :: Windows command-line tool for creating scheduled tasks
-Task Scheduler trigger :: The condition that starts a task (time, event, logon, etc.)
-Infrastructure as Code (IaC) :: The practice of defining IT infrastructure in machine-readable configuration files
-Ansible :: Agentless IaC tool (Red Hat) that uses YAML playbooks via SSH
-Terraform :: Cloud-agnostic IaC tool (HashiCorp) that uses HCL to provision infrastructure
-Declarative configuration :: Describes desired end state — the tool determines which steps are needed
-`2>&1` :: Shell redirect that sends stderr to the same location as stdout
-`Register-ScheduledTask` :: PowerShell cmdlet that registers a scheduled task in Windows Task Scheduler
-Idempotence :: Principle in automation where an operation can be run many times without changing the result after the first successful run
-Scheduled tasks :: Using Task Scheduler (Windows) or cron (Linux) to run scripts automatically at given times or events
-Imperative scripting :: Scripts that describe the actions to be performed step by step ("do A, then B")
-Declarative IaC :: Configuration that describes the desired end state, not the procedure to reach it
 
 ---
 

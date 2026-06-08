@@ -300,21 +300,6 @@ Share-rettigheter gjelder kun når man kobler til mappen via nettverket. NTFS-re
 **Svar:** Active Directory er avhengig av DNS for at klienter skal finne domenekontrolleren (via SRV-poster i DNS). Uten DNS kan klienter ikke logge inn, finne AD-tjenester eller kommunisere med domenet. DNS-rollen installeres derfor alltid i kombinasjon med AD DS.
 </details>
 
-## Flashcards
-
-Serverrolle :: Tilleggsfunksjon installert i Windows Server via Server Manager (f.eks. AD DS, DNS, DHCP, IIS)
-AD DS :: Active Directory Domain Services — domenekontrollerrolle som sentraliserer autentisering og katalogtjenester
-Domenekontroller :: Server med AD DS-rollen som administrerer brukere, grupper og policyer i et domene
-OU :: Organizational Unit — logisk container i AD som støtter Group Policy og delegert administrasjon
-IIS :: Internet Information Services — Microsofts webserver for Windows Server, betjener HTTP/HTTPS
-SMB :: Server Message Block — Windows-protokollen for nettverksdeling av mapper og filer (port 445)
-FQDN :: Fully Qualified Domain Name — fullstendig domenenavn f.eks. pc01.lab.lan
-MTA :: Mail Transfer Agent — serverprogramvare som sender og videresender e-post via SMTP
-GPO :: Group Policy Object — policysett i AD som distribuerer innstillinger til brukere og maskiner
-NAS :: Network Attached Storage — dedikert lagringsenhet med filserverfunksjonalitet
-DHCP Scope :: Et definert område med IP-adresser som DHCP-serveren kan tildele klienter på et bestemt subnett
-NTFS-rettigheter :: Filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver
-
 ## Kilder
 
 [^1]: Microsoft Learn. (2025). Getting Started with AD DS. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started

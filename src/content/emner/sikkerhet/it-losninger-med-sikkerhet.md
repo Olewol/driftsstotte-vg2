@@ -307,23 +307,6 @@ Logging alene gir deg rå data – du kan ikke manuelt lese gjennom millioner av
 
 ---
 
-## Flashcards
-
-Security by Design :: Prinsipp om at sikkerhet integreres i alle faser av systemutvikling og -drift, ikke legges til etterpå
-Zero Trust :: Sikkerhetsarkitektur basert på «aldri stol, alltid verifiser» – ingen implisitt tillit til brukere, enheter eller nettverk
-Minste privilegium :: Prinsipp om at brukere og systemer kun gis de tilgangene som er strengt nødvendige
-SIEM :: Security Information and Event Management – sentralisert logginnsamling og hendelsesanalyse. Eks: Microsoft Sentinel
-3-2-1-regelen :: Backup-prinsipp: 3 kopier, 2 medier, 1 offsite-kopi
-RTO :: Recovery Time Objective – maksimalt akseptabel nedetid under gjenoppretting
-RPO :: Recovery Point Objective – maksimalt akseptabelt datatap, angir hvor gammel siste backup kan være
-BCDR :: Business Continuity and Disaster Recovery – planer for å opprettholde og gjenopprette IT-tjenester under og etter katastrofale hendelser
-Defense in Depth :: Lagdelt sikkerhet – retningslinjer, fysisk, nettverk, datamaskin, identitet, applikasjon og data
-RBAC :: Role-Based Access Control – tilganger knyttes til roller, ikke individuelle brukere
-Mikrosegmentering :: Finkornet nettverksdeling der individuelle systemer eller applikasjoner isoleres fra hverandre for å begrense lateral bevegelse
-JIT :: Just-In-Time – midlertidig, tidsavgrenset tilgang til sensitive systemer, gis kun når nødvendig
-
----
-
 ## Ressurser
 
 - [Microsoft – Zero Trust (engelsk)](https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview)

@@ -13,6 +13,7 @@ kilder:
   - https://owasp.org/www-project-top-ten/
   - https://www.digdir.no/informasjonssikkerhet/
 notebooklm: true
+video: https://www.youtube.com/watch?v=DejxGE91xJY
 tags: []
 flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
 public: true
@@ -26,7 +27,7 @@ A risk analysis is a structured tool for identifying what can go wrong with an I
 
 NSM's Fundamental Principles for ICT Security (v2.1, 2024) places "Identify and map" as the first and fundamental step. GDPR Article 32 also requires that all organizations processing personal data conduct a risk assessment as the basis for their security measures.
 
-Risk analysis is the foundation that connects [[trusselbildet|the threat landscape]] (which threats exist?) to [[it-losninger-med-sikkerhet|IT solutions with built-in security]] (which measures are appropriate?). Without risk analysis, you risk spending resources on the wrong problems. Remember also that GDPR Art. 32 makes this a legal requirement where [[personvern|privacy]] is involved.
+Risk analysis is the foundation that connects [[trusselbildet-en|the threat landscape]] (which threats exist?) to [[it-losninger-med-sikkerhet-en|IT solutions with built-in security]] (which measures are appropriate?). Without risk analysis, you risk spending resources on the wrong problems. Remember also that GDPR Art. 32 makes this a legal requirement where [[personvern-en|privacy]] is involved.
 
 ---
 
@@ -281,23 +282,6 @@ At least once a year, and always after significant changes in the IT environment
 **Answer:** Residual risk is the risk that remains after measures have been implemented. It is not possible to eliminate all risk – management must formally accept the remaining risk.
 
 </details>
-
----
-
-## Flashcards
-
-Risk :: Probability multiplied by consequence. Expresses how serious a potential event is
-Risk matrix :: Visual tool (typically 5×5) that ranks risk scenarios by probability and consequence
-Vulnerability :: A weakness in a system that can be exploited by a threat (e.g., outdated software, weak password)
-Threat :: A potential event that can harm assets in an IT system (e.g., ransomware, fire, human error)
-Preventive measures :: Measures that stop an event from occurring, e.g., firewall, MFA, and patches
-Detective measures :: Measures that reveal that something is under attack, e.g., logging, IDS, and antivirus monitoring
-Reactive measures :: Measures that limit damage after an event, e.g., backup recovery and DR plan
-Residual risk :: The risk that remains after measures are implemented – formally accepted by management
-GDPR Art. 32 :: Legal requirement to conduct a risk assessment and implement appropriate security measures when processing personal data
-Risk acceptance :: A management decision that a remaining risk level is within acceptable boundaries
-ROS analysis :: Risk and Vulnerability Analysis – Norwegian term for structured risk assessment, particularly used in the public sector
-Asset :: Everything of value in an organization that should be protected: data, systems, services, employees, and reputation
 
 ---
 

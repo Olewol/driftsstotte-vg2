@@ -27,7 +27,7 @@ Security is not something you add after a system is built. It is a design requir
 
 The Norwegian National Security Authority's (NSM) Fundamental Principles for ICT Security (v2.1, 2024) emphasize that good ICT security requires both technical and organizational measures throughout the entire lifecycle of a system. Here we look at the most important principles and methods.
 
-The principles in this article are closely linked to [[brannmur|firewall and network security]], [[bruker-og-tilgangsstyring|user and access management]], and [[backup-og-gjenoppretting|backup and recovery]]. Good IT security is never a single measure – it is the sum of many overlapping layers.
+The principles in this article are closely linked to [[brannmur-en|firewall and network security]], [[bruker-og-tilgangsstyring-en|user and access management]], and [[backup-og-gjenoppretting-en|backup and recovery]]. Good IT security is never a single measure – it is the sum of many overlapping layers.
 
 ---
 
@@ -131,11 +131,11 @@ Users, applications, and services should only have the access rights that are st
 Permissions are tied to roles (e.g., "Helpdesk," "Accounting Staff," "IT Admin"), not to individual users. Users are assigned roles.
 
 **Tools:**
-- **Active Directory (AD):** user accounts, groups, and permissions management on-premises. See [[active-directory]].
+- **Active Directory (AD):** user accounts, groups, and permissions management on-premises. See [[active-directory-en]].
 - **Azure Entra ID (formerly Azure AD):** cloud-based IAM. Supports SSO (Single Sign-On), MFA, and Conditional Access.
 - **MFA:** combines something you know (password), something you have (authenticator app/SMS), and/or something you are (biometrics). Blocks over 99% of account takeovers according to Microsoft.
 
-See also [[bruker-og-tilgangsstyring|user and access management]] for a practical walkthrough of access management.
+See also [[bruker-og-tilgangsstyring-en|user and access management]] for a practical walkthrough of access management.
 
 ---
 
@@ -153,7 +153,7 @@ Backup is not just an operational routine – it is a security measure and the m
 - Isolate backup systems from the production network (ransomware encrypts everything it can reach)
 - Azure Backup: integrated cloud backup for virtual machines, databases, and file servers
 
-See [[backup-og-gjenoppretting|backup and recovery]] for a detailed review of backup strategies and recovery plans.
+See [[backup-og-gjenoppretting-en|backup and recovery]] for a detailed review of backup strategies and recovery plans.
 
 ---
 
@@ -306,23 +306,6 @@ Logging alone gives you raw data – you cannot manually read through millions o
 **Answer:** SIEM (Security Information and Event Management) collects logs from all systems centrally, correlates events, and alerts on suspicious activity. OWASP Top 10 A09 identifies insufficient logging and monitoring as a critical vulnerability – without logs, you cannot detect attacks.
 
 </details>
-
----
-
-## Flashcards
-
-Security by Design :: Principle that security is integrated into all phases of system development and operations, not added afterward
-Zero Trust :: Security architecture based on "never trust, always verify" – no implicit trust of users, devices, or networks
-Least privilege :: Principle that users and systems are only given the access rights that are strictly necessary
-SIEM :: Security Information and Event Management – centralized log collection and event analysis. E.g., Microsoft Sentinel
-3-2-1 rule :: Backup principle: 3 copies, 2 media, 1 offsite copy
-RTO :: Recovery Time Objective – maximum acceptable downtime during recovery
-RPO :: Recovery Point Objective – maximum acceptable data loss, specifies how old the latest backup can be
-BCDR :: Business Continuity and Disaster Recovery – plans for maintaining and restoring IT services during and after catastrophic events
-Defense in Depth :: Layered security – policies, physical, network, computer, identity, application, and data
-RBAC :: Role-Based Access Control – permissions tied to roles, not individual users
-Microsegmentation :: Fine-grained network division where individual systems or applications are isolated from each other to limit lateral movement
-JIT :: Just-In-Time – temporary, time-limited access to sensitive systems, granted only when needed
 
 ---
 
