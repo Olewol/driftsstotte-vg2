@@ -6,32 +6,55 @@ import { slugify } from '@lib/slugify';
 import kompetansemaalData from '../../data/kompetansemaal.json';
 
 export async function getStaticPaths() {
-  return EMNE_LIST.map(emne => ({ params: { emne } }));
+  const paths = [];
+  for (const emne of EMNE_LIST) {
+    // Norwegian version
+    paths.push({ params: { emne } });
+    // English version
+    paths.push({ params: { emne: emne + '-en' } });
+  }
+  return paths;
 }
 
 const { emne } = Astro.params;
 const base = import.meta.env.BASE_URL;
+const isEnglish = emne.endsWith('-en');
+const baseEmne = isEnglish ? emne.slice(0, -3) : emne;
+
 const notes = await getCollection('emner', e =>
-  e.data.public !== false && e.id.startsWith(emne + '/')
+  e.data.public !== false && e.id.startsWith(baseEmne + '/')
 );
-const { color, bg } = getEmneColor(emne);
-const emneLabel = emne.charAt(0).toUpperCase() + emne.slice(1);
+
+// Filter: English path shows only -en.md files, Norwegian shows only non-en
+const filteredNotes = notes.filter(n => {
+  const filename = n.id.split('/').pop() || '';
+  const isEnFile = filename.endsWith('-en.md') || filename.endsWith('-en.mdx');
+  return isEnglish ? isEnFile : !isEnFile;
+});
+
+const { color, bg } = getEmneColor(baseEmne);
+const emneLabel = (baseEmne.charAt(0).toUpperCase() + baseEmne.slice(1)) + (isEnglish ? ' — English' : '');
+const pageTitle = isEnglish ? `${emneLabel} — Driftsstøtte VG2` : emneLabel;
+const pageLang = isEnglish ? 'en' : 'no';
 ---
-<BaseLayout title={emneLabel}>
+
+<BaseLayout title={emneLabel} lang={pageLang}>
   <div style="max-width:1140px;margin:0 auto;padding:48px 32px 80px;">
     <div style={`font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${color};margin-bottom:10px;`}>{emneLabel}</div>
-    <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:32px;">Alle notater i {emneLabel}</h1>
+    <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:32px;">
+      {isEnglish ? `All articles in ${baseEmne}` : `Alle notater i ${baseEmne}`}
+    </h1>
 
-    {notes.length === 0 ? (
-      <p style="color:var(--text2);">Ingen publisert innhold ennå.</p>
+    {filteredNotes.length === 0 ? (
+      <p style="color:var(--text2);">{isEnglish ? 'No published content yet.' : 'Ingen publisert innhold ennå.'}</p>
     ) : (
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;">
-        {notes.map(note => {
+        {filteredNotes.map(note => {
           const slug = slugify(note.id.split('/').pop()!.replace(/\.md$/, ''));
           const kmArray = Array.isArray(note.data.kompetansemaal) ? note.data.kompetansemaal : (note.data.kompetansemaal ? [note.data.kompetansemaal] : []);
           const kmTexts = kmArray.map(km => kompetansemaalData[km as keyof typeof kompetansemaalData] || km).join(' • ');
           return (
-            <a href={`${base}/${emne}/${slug}`} style={`background:linear-gradient(145deg,${bg} 0%,var(--surface) 60%);border:1px solid var(--border);border-radius:14px;padding:20px;text-decoration:none;display:block;color:var(--text);transition:transform .18s,border-color .2s;`} onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+            <a href={`${base}/${baseEmne}/${slug}`} style={`background:linear-gradient(145deg,${bg} 0%,var(--surface) 60%);border:1px solid var(--border);border-radius:14px;padding:20px;text-decoration:none;display:block;color:var(--text);transition:transform .18s,border-color .2s;`} onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
               <div style="font-size:15px;font-weight:600;margin-bottom:6px;">{note.data.title}</div>
               <div style="font-size:13px;color:var(--text2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{kmTexts}</div>
             </a>
