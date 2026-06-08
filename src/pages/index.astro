@@ -14,20 +14,55 @@ const emneLabels: Record<string, string> = {
   nettverk: 'Nettverk', sikkerhet: 'Sikkerhet', operativsystem: 'Operativsystem',
   skripting: 'Skripting', databaser: 'Databaser', 'it-drift': 'IT-drift',
 };
+
+const progression = [
+  { emne: 'nettverk',     uker: 'Uke 34–39',        timer: '~30t', desc: 'Grunnmuren — nettverk er fundamentet all IT-drift bygger på. Elevene må forstå hvordan data flyter før de kan administrere, sikre eller scripte.' },
+  { emne: 'operativsystem', uker: 'Uke 41–45',      timer: '~25t', desc: 'OS-administrasjon — brukere, filsystemer og Linux. Nødvendig før sikkerhet (hva skal beskyttes?) og skripting (hva skal automatiseres?).' },
+  { emne: 'sikkerhet',    uker: 'Uke 46–48',         timer: '~15t', desc: 'Sikkerhet bygger direkte på nettverk og OS — elevene må kjenne infrastrukturen før de kan vurdere risiko og tiltak.' },
+  { emne: 'skripting',    uker: 'Uke 49–51',         timer: '~15t', desc: 'Automatisering forutsetter OS-forståelse. PowerShell (Windows) og Bash (Linux) gjør driften effektiv og reproduserbar.' },
+  { emne: 'databaser',    uker: 'Uke 2–5',           timer: '~20t', desc: 'Databaser er delvis uavhengig, men skripting-kunnskap gjør SQL-automatisering mulig. Naturlig start på vårsemesteret.' },
+  { emne: 'it-drift',     uker: 'Uke 6–11',          timer: '~30t', desc: 'Kapstone — integrerer alle emner i praktisk drift: sky, backup, dokumentasjon. Forutsetter kunnskap fra alle foregående emner.' },
+  { emne: 'repetisjon',   uker: 'Uke 14–24',         timer: '~35t', desc: 'Eksamensforberedelse med tverrfaglige oppgaver, muntlig trening og dybde-repetisjon av alle kompetansemål.' },
+];
 ---
-<BaseLayout title="Årsplan">
+
+<BaseLayout title="Årsplan — Driftsstøtte 2026–2027">
   <div style="max-width:1140px;margin:0 auto;padding:48px 32px 80px;">
 
     <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;">
-      Skoleåret 2024–2025
+      Østfold fylkeskommune — Skoleåret 2026–2027
     </div>
-    <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:10px;">Årsplan — Driftsstøtte</h1>
-    <p style="font-size:16px;color:var(--text2);max-width:580px;line-height:1.65;margin-bottom:32px;">
-      Oversikt over emner, kompetansemål og ressurser fordelt over hele skoleåret. Klikk en uke for å gå til innholdet.
+    <h1 style="font-size:36px;font-weight:800;letter-spacing:-.025em;margin-bottom:8px;">Årsplan — Driftsstøtte VG2</h1>
+    <p style="font-size:16px;color:var(--text2);max-width:620px;line-height:1.65;margin-bottom:10px;">
+      Første skoledag 17. august — siste skoledag 17. juni. 190 skoledager fordelt på 6 emner + eksamensforberedelse.
     </p>
 
+    <!-- Pedagogisk progresjon -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:36px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:16px;">📈 Pedagogisk progresjon — bygger stegvis</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+        {progression.map((p, i) => {
+          const { color, bg } = getEmneColor(p.emne);
+          const arrow = i < progression.length - 1 ? ' →' : '';
+          return (
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style={`width:36px;height:36px;border-radius:10px;background:${bg};border:1px solid color-mix(in srgb, ${color} 30%, transparent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:${color};flex-shrink:0;`}>{i + 1}</div>
+              <div style="flex:1;min-width:0;">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                  <span style="font-size:14px;font-weight:600;color:var(--text);">{emneLabels[p.emne] || p.emne}</span>
+                  <span style="font-size:11px;color:var(--text3);background:var(--bg3);padding:2px 8px;border-radius:4px;">{p.uker}</span>
+                  <span style="font-size:11px;color:var(--text3);">{p.timer}</span>
+                </div>
+                <div style="font-size:13px;color:var(--text2);line-height:1.5;margin-top:4px;">{p.desc}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
     <!-- Legend -->
-    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:36px;" role="list" aria-label="Emneforklaring">
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:28px;" role="list" aria-label="Emneforklaring">
       {EMNE_LIST.map(emne => {
         const { color } = getEmneColor(emne);
         return (
@@ -39,10 +74,23 @@ const emneLabels: Record<string, string> = {
       })}
     </div>
 
+    <!-- Ferie-oversikt -->
+    <details style="margin-bottom:28px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;">
+      <summary style="font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;">📅 Skolerute Østfold 2026–2027 — {veker.filter(v => v.type === 'ferie').length} ferieperioder</summary>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:10px;font-size:13px;color:var(--text2);">
+        <div>🏁 <strong>Første skoledag:</strong> 17. august (uke 34)</div>
+        <div>🍂 <strong>Høstferie:</strong> uke 40</div>
+        <div>🎄 <strong>Juleferie:</strong> uke 52–1</div>
+        <div>❄️ <strong>Vinterferie:</strong> uke 8</div>
+        <div>🐣 <strong>Påskeferie:</strong> uke 12–13</div>
+        <div>🏁 <strong>Siste skoledag:</strong> 17. juni (uke 24)</div>
+      </div>
+    </details>
+
     <!-- Haust -->
     <div style="margin-bottom:48px;">
       <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border);">
-        Høst 2024 — Uke 34–51
+        Høst 2026 — Uke 34–51
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
         {haust.map(v => <WeekCard veke={v as any} />)}
@@ -53,7 +101,7 @@ const emneLabels: Record<string, string> = {
     {vaar.length > 0 && (
       <div>
         <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--border);">
-          Vår 2025 — Uke 2–20
+          Vår 2027 — Uke 1–24
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">
           {vaar.map(v => <WeekCard veke={v as any} />)}
