@@ -33,6 +33,7 @@ jobs:
             !dist/**
             !.astro/**
             !AI_PROJECT_CONTEXT.md
+            !public/**
 
   astro-check:
     name: Astro-typesjekk
