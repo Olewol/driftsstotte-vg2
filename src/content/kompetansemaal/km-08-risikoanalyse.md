@@ -149,7 +149,7 @@ Assess the school's website for 5 scenarios (DDoS, hacking, data leak, content h
 
 - [[risikoanalyse]] — Gjennomføring av risikoanalyse i praksis
 - [[trusselbildet]] — Forstå truslene for å kunne analysere risiko
-- [[sikre-it-losninger]] — Sikkerhetstiltak for å redusere risiko (KM-10)
+- [[it-losninger-med-sikkerhet]] — Sikkerhetstiltak for å redusere risiko (KM-10)
 
 ## 📚 Kilder / Sources
 
