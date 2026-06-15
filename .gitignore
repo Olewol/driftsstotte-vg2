@@ -51,6 +51,9 @@ dist.stale.qa/
 __pycache__/
 *.pyc
 
+# pnpm (erstattar npm)
+package-lock.json
+
 # Midlertidige fikseskript
 fix_md_lint.py
 fix_remaining.py
