@@ -1,0 +1,54 @@
+{
+  "$ref": "#/definitions/kompetansemaal",
+  "definitions": {
+    "kompetansemaal": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "emne": {
+          "type": "string"
+        },
+        "kompetansemaal": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "kilder": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "flashcards": {
+          "type": "boolean",
+          "default": false
+        },
+        "public": {
+          "type": "boolean",
+          "default": true
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "emne",
+        "kompetansemaal",
+        "kilder"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

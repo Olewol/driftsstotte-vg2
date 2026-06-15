@@ -1,0 +1,58 @@
+- generic [active] [ref=e1]:
+  - link "Hopp til innhold" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - navigation "Hovednavigasjon" [ref=e3]:
+    - link "Driftsstøtte VG2 – forside" [ref=e4] [cursor=pointer]:
+      - /url: /driftsstotte-vg2/
+      - generic [ref=e5]: DS
+      - generic [ref=e6]:
+        - generic [ref=e7]: Driftsstøtte
+        - generic [ref=e8]: VG2 Informasjonsteknologi
+    - generic [ref=e9]:
+      - link "Årsplan" [ref=e10] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/
+      - link "Nettverk" [ref=e11] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/nettverk
+      - link "Sikkerhet" [ref=e12] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sikkerhet
+      - link "Operativsystem" [ref=e13] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/operativsystem
+      - link "Skripting" [ref=e14] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/skripting
+      - link "Databaser" [ref=e15] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/databaser
+      - link "IT-drift" [ref=e16] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/it-drift
+      - link "Kompetansemål" [ref=e17] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/kompetansemaal
+    - generic [ref=e18]:
+      - link "Søk" [ref=e19] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sok
+        - generic [ref=e20]: 🔍
+        - generic [ref=e21]: Søk…
+        - generic [ref=e22]: ⌘K
+      - button "Bytt til mørk modus" [ref=e23] [cursor=pointer]: ☀️
+  - main [ref=e24]:
+    - generic [ref=e25]:
+      - generic [ref=e26]: Skoleåret 2024–2025
+      - heading "Årsplan — Driftsstøtte" [level=1] [ref=e27]
+      - paragraph [ref=e28]: Oversikt over emner, kompetansemål og ressurser fordelt over hele skoleåret. Klikk en uke for å gå til innholdet.
+      - list "Emneforklaring" [ref=e29]:
+        - listitem [ref=e30]: Nettverk
+        - listitem [ref=e32]: Sikkerhet
+        - listitem [ref=e34]: Operativsystem
+        - listitem [ref=e36]: Skripting
+        - listitem [ref=e38]: Databaser
+        - listitem [ref=e40]: IT-drift
+      - generic [ref=e42]:
+        - generic [ref=e43]: Høst 2024 — Uke 34–51
+        - generic [ref=e44]:
+          - link "Veke 34–35 Introduksjon og grunnleggende IT Orientere seg i fagområdet, utstyr og arbeidsmetoder Nettverk" [ref=e45] [cursor=pointer]:
+            - /url: /driftsstotte-vg2/nettverk
+            - generic [ref=e47]: Veke 34–35
+            - generic [ref=e48]: Introduksjon og grunnleggende IT
+            - generic [ref=e49]: Orientere seg i fagområdet, utstyr og arbeidsmetoder
+            - generic [ref=e51]: Nettverk
+          - generic [ref=e52]:
+            - generic [ref=e54]: Veke 43
+            - generic [ref=e55]: Høstferie

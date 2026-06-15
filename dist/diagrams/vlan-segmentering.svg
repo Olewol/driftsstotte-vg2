@@ -1,0 +1,30 @@
+<svg width="100%" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;height:auto;background:transparent;">
+<style>
+  .t { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #1a1a18; }
+  .ts { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #5f5e5a; }
+  .th { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #1a1a18; font-weight: 500; }
+  .router > rect { fill: #FAECE7; stroke: #993C1D; stroke-width: 0.5px; rx: 8; }
+  .switch > rect { fill: #E1F5EE; stroke: #0F6E56; stroke-width: 0.5px; rx: 8; }
+  .acc > rect { fill: #EEEDFE; stroke: #534AB7; stroke-width: 0.5px; rx: 8; }
+  .arr { stroke: #5f5e5a; stroke-width: 1.5px; fill: none; }
+  .trunk-text { fill: #0F6E56; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<g class="router"><rect x="40" y="30" width="140" height="50"/><text class="th" x="110" y="55" text-anchor="middle" dominant-baseline="central">Router / Brannmur</text></g>
+<g class="switch"><rect x="260" y="30" width="160" height="50"/><text class="th" x="340" y="55" text-anchor="middle" dominant-baseline="central">Svitsj (Trunk)</text></g>
+<line x1="180" y1="55" x2="255" y2="55" class="arr" marker-end="url(#arrow)"/>
+<text class="ts trunk-text" x="200" y="45">802.1Q tagged</text>
+<g class="acc"><rect x="40" y="170" width="160" height="44"/><text class="th" x="120" y="192" text-anchor="middle" dominant-baseline="central">VLAN 10 — Kontor</text></g>
+<g class="acc"><rect x="240" y="170" width="160" height="44"/><text class="th" x="320" y="192" text-anchor="middle" dominant-baseline="central">VLAN 20 — Produksjon</text></g>
+<g class="acc"><rect x="440" y="170" width="160" height="44"/><text class="th" x="520" y="192" text-anchor="middle" dominant-baseline="central">VLAN 30 — Gjest</text></g>
+<line x1="290" y1="80" x2="120" y2="170" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="80" x2="320" y2="170" class="arr" marker-end="url(#arrow)"/>
+<line x1="370" y1="80" x2="520" y2="170" class="arr" marker-end="url(#arrow)"/>
+<text class="ts" x="120" y="238" text-anchor="middle">Access-port</text>
+<text class="ts" x="320" y="238" text-anchor="middle">Access-port</text>
+<text class="ts" x="520" y="238" text-anchor="middle">Access-port</text>
+</svg>

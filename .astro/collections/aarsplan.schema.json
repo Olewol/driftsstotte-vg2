@@ -1,0 +1,83 @@
+{
+  "$ref": "#/definitions/aarsplan",
+  "definitions": {
+    "aarsplan": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "skoleaar": {
+          "type": "string"
+        },
+        "veker": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uke": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "tema": {
+                "type": "string"
+              },
+              "emne": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "kompetansemaal": {
+                "type": "string",
+                "default": ""
+              },
+              "notat": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "ressurstal": {
+                "type": "number",
+                "default": 0
+              },
+              "oppgavetar": {
+                "type": "number",
+                "default": 0
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "undervisning",
+                  "ferie",
+                  "eksamen",
+                  "prosjekt"
+                ]
+              }
+            },
+            "required": [
+              "uke",
+              "tema",
+              "type"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "skoleaar",
+        "veker"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

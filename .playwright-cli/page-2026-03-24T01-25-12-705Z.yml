@@ -1,0 +1,417 @@
+- generic [active] [ref=e1]:
+  - link "Hopp til innhold" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - navigation "Hovednavigasjon" [ref=e3]:
+    - link "Driftsstøtte VG2 – forside" [ref=e4] [cursor=pointer]:
+      - /url: /driftsstotte-vg2/
+      - generic [ref=e5]: DS
+      - generic [ref=e6]:
+        - generic [ref=e7]: Driftsstøtte
+        - generic [ref=e8]: VG2 Informasjonsteknologi
+    - generic [ref=e9]:
+      - link "Årsplan" [ref=e10] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/
+      - link "Nettverk" [ref=e11] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/nettverk
+      - link "Sikkerhet" [ref=e12] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sikkerhet
+      - link "Operativsystem" [ref=e13] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/operativsystem
+      - link "Skripting" [ref=e14] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/skripting
+      - link "Databaser" [ref=e15] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/databaser
+      - link "IT-drift" [ref=e16] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/it-drift
+      - link "Kompetansemål" [ref=e17] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/kompetansemaal
+    - generic [ref=e18]:
+      - link "Søk" [ref=e19] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sok
+        - generic [ref=e20]: 🔍
+        - generic [ref=e21]: Søk…
+        - generic [ref=e22]: ⌘K
+      - button "Bytt til mørk modus" [ref=e23] [cursor=pointer]: ☀️
+  - main [ref=e24]:
+    - article [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]: Nettverk
+        - heading "DNS og DHCP" [level=1] [ref=e28]
+        - generic [ref=e30]: 🎯 km-05
+      - toolbar "Opplesing" [ref=e31]:
+        - generic [ref=e32]: 🔊
+        - button "Les opp innholdet" [ref=e33] [cursor=pointer]: ▶ Les opp
+        - button "Stopp opplesing" [ref=e34] [cursor=pointer]: ⏹ Stopp
+        - generic [ref=e35]:
+          - generic [ref=e36]: "Hastighet:"
+          - combobox "Hastighet:" [ref=e37] [cursor=pointer]:
+            - option "Sakte"
+            - option "Normal" [selected]
+            - option "Rask"
+            - option "Veldig rask"
+          - generic [ref=e38]: Innebygd i nettleseren
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - heading "DNS og DHCP" [level=1] [ref=e41]
+          - heading "Introduksjon" [level=2] [ref=e42]
+          - paragraph [ref=e43]:
+            - text: "Når du kobler en PC til et nettverk, skjer det to ting automatisk i bakgrunnen: maskinen får en IP-adresse (DHCP), og den lærer hvem den skal spørre når den trenger å finne ut hva"
+            - code [ref=e44]: ndla.no
+            - text: betyr i tall (DNS). Disse to tjenestene er usynlige for de fleste brukere — men uten dem ville ingenting fungere. Som driftstøtter er de to av de viktigste tjenestene du vil konfigurere og feilsøke. DNS og DHCP er ikke isolerte tjenester — de samarbeider tett med
+            - link "serverroller" [ref=e45] [cursor=pointer]:
+              - /url: /serverroller
+            - text: i et domenenettverk, og feil i én av dem er en av de vanligste årsakene til nettverksproblemer i bedriftsmiljøer. For å forstå hvilke protokoller og porter disse tjenestene bruker, se
+            - link "nettverksprotokoller" [ref=e46] [cursor=pointer]:
+              - /url: /nettverksprotokoller
+            - text: .
+          - heading "Teori" [level=2] [ref=e47]
+          - heading "DHCP — Dynamic Host Configuration Protocol" [level=3] [ref=e48]
+          - paragraph [ref=e49]: DHCP automatiserer tildeling av IP-konfigurasjonen til klienter. Uten DHCP måtte en administrator manuelt konfigurere IP-adresse, subnettmaske, gateway og DNS på hver eneste maskin.
+          - heading "Hva DHCP deler ut" [level=4] [ref=e50]
+          - paragraph [ref=e51]: "En DHCP-server tildeler klienter:"
+          - list [ref=e52]:
+            - listitem [ref=e53]:
+              - strong [ref=e54]: IP-adresse
+              - text: (f.eks.
+              - code [ref=e55]: 192.168.1.50
+              - text: )
+            - listitem [ref=e56]:
+              - strong [ref=e57]: Subnettmaske
+              - text: (f.eks.
+              - code [ref=e58]: 255.255.255.0
+              - text: )
+            - listitem [ref=e59]:
+              - strong [ref=e60]: Standard gateway
+              - text: (f.eks.
+              - code [ref=e61]: 192.168.1.1
+              - text: )
+            - listitem [ref=e62]:
+              - strong [ref=e63]: DNS-serveradresse
+              - text: (f.eks.
+              - code [ref=e64]: 192.168.1.10
+              - text: )
+            - listitem [ref=e65]:
+              - strong [ref=e66]: Leasetid
+              - text: (hvor lenge klienten kan beholde adressen)
+          - heading "DORA-prosessen" [level=4] [ref=e67]
+          - paragraph [ref=e68]: "DHCP bruker en fire-stegs prosess kalt DORA:"
+          - table [ref=e69]:
+            - rowgroup [ref=e70]:
+              - row "Steg Melding Beskrivelse" [ref=e71]:
+                - columnheader "Steg" [ref=e72]
+                - columnheader "Melding" [ref=e73]
+                - columnheader "Beskrivelse" [ref=e74]
+            - rowgroup [ref=e75]:
+              - 'row "1 Discover Klienten sender broadcast: “Er det noen DHCP-server her?“" [ref=e76]':
+                - cell "1" [ref=e77]
+                - cell "Discover" [ref=e78]:
+                  - strong [ref=e79]: D
+                  - text: iscover
+                - 'cell "Klienten sender broadcast: “Er det noen DHCP-server her?“" [ref=e80]'
+              - row "2 Offer DHCP-serveren svarer med et tilbud om en IP-adresse" [ref=e81]:
+                - cell "2" [ref=e82]
+                - cell "Offer" [ref=e83]:
+                  - strong [ref=e84]: O
+                  - text: ffer
+                - cell "DHCP-serveren svarer med et tilbud om en IP-adresse" [ref=e85]
+              - 'row "3 Request Klienten aksepterer tilbudet: “Jeg vil ha denne adressen”" [ref=e86]':
+                - cell "3" [ref=e87]
+                - cell "Request" [ref=e88]:
+                  - strong [ref=e89]: R
+                  - text: equest
+                - 'cell "Klienten aksepterer tilbudet: “Jeg vil ha denne adressen”" [ref=e90]'
+              - 'row "4 Acknowledge Serveren bekrefter: “Adressen er din i X timer/dager”" [ref=e91]':
+                - cell "4" [ref=e92]
+                - cell "Acknowledge" [ref=e93]:
+                  - strong [ref=e94]: A
+                  - text: cknowledge
+                - 'cell "Serveren bekrefter: “Adressen er din i X timer/dager”" [ref=e95]'
+          - paragraph [ref=e96]:
+            - text: Steg 1 og 3 sendes som broadcast (til
+            - code [ref=e97]: 255.255.255.255
+            - text: ) fordi klienten ikke har IP-adresse ennå.
+          - heading "Scope og leasing" [level=4] [ref=e98]
+          - paragraph [ref=e99]:
+            - text: Et
+            - strong [ref=e100]: scope
+            - text: er adresserommet DHCP-serveren administrerer — f.eks.
+            - code [ref=e101]: 192.168.1.100
+            - text: –
+            - code [ref=e102]: 192.168.1.200
+            - text: . Adresser utenfor dette kan tildeles statisk til servere og nettverksutstyr.
+          - paragraph [ref=e103]:
+            - text: En
+            - strong [ref=e104]: lease-tid
+            - text: er tidsavtalen mellom DHCP-server og klient om at klienten bruker adressen en bestemt periode. Når leaseperioden nærmer seg slutten, forsøker klienten å fornye den. Standardleaseperiode i Windows Server er 8 dager.
+          - heading "Statisk vs. dynamisk tildeling" [level=4] [ref=e105]
+          - table [ref=e106]:
+            - rowgroup [ref=e107]:
+              - row "Type Beskrivelse Brukes til" [ref=e108]:
+                - columnheader "Type" [ref=e109]
+                - columnheader "Beskrivelse" [ref=e110]
+                - columnheader "Brukes til" [ref=e111]
+            - rowgroup [ref=e112]:
+              - row "Dynamisk DHCP tildeler ledig adresse fra scope Klientmaskiner" [ref=e113]:
+                - cell "Dynamisk" [ref=e114]
+                - cell "DHCP tildeler ledig adresse fra scope" [ref=e115]
+                - cell "Klientmaskiner" [ref=e116]
+              - row "Statisk reservasjon DHCP tildeler alltid samme adresse til bestemt MAC Skrivere, servere i DHCP-miljø" [ref=e117]:
+                - cell "Statisk reservasjon" [ref=e118]
+                - cell "DHCP tildeler alltid samme adresse til bestemt MAC" [ref=e119]
+                - cell "Skrivere, servere i DHCP-miljø" [ref=e120]
+              - row "Manuell/statisk IP konfigureres direkte på enheten Servere, rutere, svitsjer" [ref=e121]:
+                - cell "Manuell/statisk" [ref=e122]
+                - cell "IP konfigureres direkte på enheten" [ref=e123]
+                - cell "Servere, rutere, svitsjer" [ref=e124]
+          - heading "DHCP i bedriftsnettverk" [level=4] [ref=e125]
+          - paragraph [ref=e126]:
+            - text: I et enkelt hjemmenettverk kjører DHCP på ruteren. I et bedriftsnettverk med Windows Server bør DHCP flyttes til domenekontrolleren. Da må DHCP på ruteren
+            - strong [ref=e127]: deaktiveres
+            - text: for å unngå konflikter (to DHCP-servere på samme nett gir kaos).
+          - paragraph [ref=e128]: "Sjekk nåværende IP-konfigurasjon fra klienten:"
+          - code [ref=e130]:
+            - generic [ref=e131]: ipconfig /all
+          - separator [ref=e132]
+          - heading "DNS — Domain Name System" [level=3] [ref=e133]
+          - paragraph [ref=e134]:
+            - text: DNS er internettets “telefonbok”. Det oversetter menneskevennlige domenenavn som
+            - code [ref=e135]: ndla.no
+            - text: til maskineslige IP-adresser som
+            - code [ref=e136]: 185.45.32.10
+            - text: . Uten DNS måtte du huske IP-adressen til hvert nettsted du besøker.
+          - heading "Hierarkisk struktur" [level=4] [ref=e137]
+          - paragraph [ref=e138]: "DNS er organisert i et tre-hierarki:"
+          - code [ref=e140]:
+            - generic [ref=e141]: . (rot)
+            - generic [ref=e142]: / \
+            - generic [ref=e143]: .no .com
+            - generic [ref=e144]: / \
+            - generic [ref=e145]: ndla.no google.com
+            - generic [ref=e146]: /
+            - generic [ref=e147]: www.ndla.no
+          - list [ref=e148]:
+            - listitem [ref=e149]:
+              - strong [ref=e150]: Rotservere
+              - text: "(13 stk. globalt): vet om alle toppdomener"
+            - listitem [ref=e151]:
+              - strong [ref=e152]: Toppdomeneservere (TLD)
+              - text: ":"
+              - code [ref=e153]: .no
+              - text: ","
+              - code [ref=e154]: .com
+              - text: ","
+              - code [ref=e155]: .org
+              - text: osv.
+            - listitem [ref=e156]:
+              - strong [ref=e157]: Autoritative navneservere
+              - text: ": ansvarlige for spesifikke domener"
+            - listitem [ref=e158]:
+              - strong [ref=e159]: Rekursive resolvere
+              - text: ": gjør jobben for klientene (typisk din ISP eller Google 8.8.8.8)"
+          - heading "DNS-posttyper" [level=4] [ref=e160]
+          - table [ref=e161]:
+            - rowgroup [ref=e162]:
+              - row "Post Navn Funksjon Eksempel" [ref=e163]:
+                - columnheader "Post" [ref=e164]
+                - columnheader "Navn" [ref=e165]
+                - columnheader "Funksjon" [ref=e166]
+                - columnheader "Eksempel" [ref=e167]
+            - rowgroup [ref=e168]:
+              - row "A Address Navn → IPv4-adresse ndla.no → 185.45.32.10" [ref=e169]:
+                - cell "A" [ref=e170]
+                - cell "Address" [ref=e171]
+                - cell "Navn → IPv4-adresse" [ref=e172]
+                - cell "ndla.no → 185.45.32.10" [ref=e173]:
+                  - code [ref=e174]: ndla.no → 185.45.32.10
+              - row "AAAA IPv6 Address Navn → IPv6-adresse ndla.no → 2001:db8::1" [ref=e175]:
+                - cell "AAAA" [ref=e176]
+                - cell "IPv6 Address" [ref=e177]
+                - cell "Navn → IPv6-adresse" [ref=e178]
+                - cell "ndla.no → 2001:db8::1" [ref=e179]:
+                  - code [ref=e180]: ndla.no → 2001:db8::1
+              - row "CNAME Canonical Name Alias → annet navn www.ndla.no → ndla.no" [ref=e181]:
+                - cell "CNAME" [ref=e182]
+                - cell "Canonical Name" [ref=e183]
+                - cell "Alias → annet navn" [ref=e184]
+                - cell "www.ndla.no → ndla.no" [ref=e185]:
+                  - code [ref=e186]: www.ndla.no → ndla.no
+              - row "MX Mail Exchanger Domene → e-postserver ndla.no → mail.ndla.no" [ref=e187]:
+                - cell "MX" [ref=e188]
+                - cell "Mail Exchanger" [ref=e189]
+                - cell "Domene → e-postserver" [ref=e190]
+                - cell "ndla.no → mail.ndla.no" [ref=e191]:
+                  - code [ref=e192]: ndla.no → mail.ndla.no
+              - row "PTR Pointer IP → navn (omvendt oppslag) 10.1.168.192.in-addr.arpa → pc01.lab.lan" [ref=e193]:
+                - cell "PTR" [ref=e194]
+                - cell "Pointer" [ref=e195]
+                - cell "IP → navn (omvendt oppslag)" [ref=e196]
+                - cell "10.1.168.192.in-addr.arpa → pc01.lab.lan" [ref=e197]:
+                  - code [ref=e198]: 10.1.168.192.in-addr.arpa → pc01.lab.lan
+              - row "NS Name Server Hvilke servere er autoritative ndla.no → ns1.domeneshop.no" [ref=e199]:
+                - cell "NS" [ref=e200]
+                - cell "Name Server" [ref=e201]
+                - cell "Hvilke servere er autoritative" [ref=e202]
+                - cell "ndla.no → ns1.domeneshop.no" [ref=e203]:
+                  - code [ref=e204]: ndla.no → ns1.domeneshop.no
+              - row "SOA Start of Authority Metadata om sonen Primær navneserver, serienummer" [ref=e205]:
+                - cell "SOA" [ref=e206]
+                - cell "Start of Authority" [ref=e207]
+                - cell "Metadata om sonen" [ref=e208]
+                - cell "Primær navneserver, serienummer" [ref=e209]
+          - paragraph [ref=e210]:
+            - text: En
+            - strong [ref=e211]: A-Record
+            - text: (A-post) kobler altså et vertsnavn til en spesifikk IPv4-adresse — dette er den vanligste og viktigste DNS-posttypen.
+          - heading "DNS i Active Directory" [level=4] [ref=e212]
+          - paragraph [ref=e213]:
+            - text: I et AD-nettverk installeres DNS på domenekontrolleren. Denne DNS-serveren er
+            - strong [ref=e214]: autoritativ
+            - text: for det lokale domenet (f.eks.
+            - code [ref=e215]: lab.lan
+            - text: ) og kjenner alle maskiner som er innmeldt i domenet.
+          - paragraph [ref=e216]:
+            - text: For oppslag utenfor lokalt domene (f.eks.
+            - code [ref=e217]: google.com
+            - text: ) brukes
+            - strong [ref=e218]: forwarders
+            - text: ": DNS-serveren sender uløste oppslag videre til ruterens IP eller en ekstern DNS-server (f.eks."
+            - code [ref=e219]: 8.8.8.8
+            - text: ).
+          - heading "Port og protokoll" [level=4] [ref=e220]
+          - paragraph [ref=e221]:
+            - text: DNS bruker primært
+            - strong [ref=e222]: UDP på port 53
+            - text: for vanlige oppslag (rask, liten overhead). For soneoverføringer mellom DNS-servere brukes
+            - strong [ref=e223]: TCP på port 53
+            - text: .
+          - 'heading "Sikkerhet: DNS-spoofing og DHCP-snooping" [level=4] [ref=e224]'
+          - paragraph [ref=e225]:
+            - text: DNS-spoofing er et angrep der en angriper sender falske DNS-svar for å omdirigere brukere til ondsinnede nettsteder. DNSSEC (DNS Security Extensions) kan brukes til å beskytte mot dette. I svitsjer brukes
+            - strong [ref=e226]: DHCP snooping
+            - text: "for å hindre falske DHCP-servere: svitsjen blokkerer DHCP-svar fra porter som ikke er konfigurert som betrodde."
+          - heading "Eksempel / lab" [level=2] [ref=e227]
+          - 'heading "Lab: nslookup-kommandoer" [level=3] [ref=e228]'
+          - paragraph [ref=e229]:
+            - code [ref=e230]: nslookup
+            - text: "er et kommandolinjeverktøy for DNS-feilsøking. Kjør fra CMD eller PowerShell:"
+          - code [ref=e232]:
+            - generic [ref=e233]: "# Slå opp IP-adresse for et domene"
+            - generic [ref=e234]: nslookup ndla.no
+            - generic [ref=e235]: "# Angi en bestemt DNS-server for oppslaget"
+            - generic [ref=e236]: nslookup ndla.no 8.8.8.8
+            - generic [ref=e237]: "# Slå opp MX-post (e-postserver)"
+            - generic [ref=e238]: nslookup -type=MX ndla.no
+            - generic [ref=e239]: "# Omvendt oppslag (IP til navn)"
+            - generic [ref=e240]: nslookup 185.45.32.10
+            - generic [ref=e241]: "# Interaktiv modus"
+            - generic [ref=e242]: nslookup
+            - generic [ref=e243]: "> set type=A"
+            - generic [ref=e244]: "> google.com"
+            - generic [ref=e245]: "> exit"
+          - paragraph [ref=e246]:
+            - text: Eksempel på output fra
+            - code [ref=e247]: nslookup ndla.no
+            - text: ":"
+          - code [ref=e249]:
+            - generic [ref=e250]: "Server: UnKnown"
+            - generic [ref=e251]: "Address: 192.168.1.1"
+            - generic [ref=e252]: "Non-authoritative answer:"
+            - generic [ref=e253]: "Name: ndla.no"
+            - generic [ref=e254]: "Addresses: 185.45.32.10"
+          - paragraph [ref=e255]: “Non-authoritative answer” betyr at svaret kom fra cache, ikke direkte fra autoritativ server.
+          - 'heading "Lab: DHCP-sjekk" [level=3] [ref=e256]'
+          - code [ref=e258]:
+            - generic [ref=e259]: "# Vis full IP-konfigurasjon inkl. DHCP-server og leasetid"
+            - generic [ref=e260]: ipconfig /all
+            - generic [ref=e261]: "# Frigjør DHCP-lease"
+            - generic [ref=e262]: ipconfig /release
+            - generic [ref=e263]: "# Hent ny DHCP-lease"
+            - generic [ref=e264]: ipconfig /renew
+            - generic [ref=e265]: "# Tøm DNS-cache på klienten"
+            - generic [ref=e266]: ipconfig /flushdns
+          - heading "Praktisk feilsøking" [level=3] [ref=e267]
+          - paragraph [ref=e268]: "Vanlige problemer og tiltak:"
+          - list [ref=e269]:
+            - listitem [ref=e270]:
+              - strong [ref=e271]: Ingen IP-adresse
+              - text: ": klienten har ikke nådd DHCP-serveren (sjekk om scope er aktivt, om DHCP på ruter er av, om det er nok ledige adresser)"
+            - listitem [ref=e272]:
+              - strong [ref=e273]: Kan ikke nå ndla.no
+              - text: ": sjekk med"
+              - code [ref=e274]: nslookup ndla.no
+              - text: — hvis DNS-oppslaget feiler, er problemet DNS. Hvis DNS gir svar men siden ikke åpner, er problemet i nettverksforbindelsen.
+            - listitem [ref=e275]:
+              - strong [ref=e276]: 169.254.x.x-adresse
+              - text: ": APIPA-adresse — klienten fikk ikke svar fra DHCP-server"
+          - heading "Study guide" [level=2] [ref=e277]
+          - paragraph [ref=e278]:
+            - strong [ref=e279]: DHCP — kjerneforståelse
+            - text: DHCP automatiserer IP-konfigurasjonen. DORA-prosessen (Discover → Offer → Request → Acknowledge) er den mekanismen som skjer i bakgrunnen. Et scope definerer adresserommet. Leasetid styrer hvor lenge en adresse holdes av en klient.
+          - paragraph [ref=e280]:
+            - strong [ref=e281]: DNS — kjerneforståelse
+            - text: DNS er hierarkisk (rot → TLD → domene → vertsnavn). A-posten er den viktigste. CNAME brukes til alias. MX peker til e-postserver. PTR brukes til omvendt oppslag. I AD er DNS-serveren autoritativ for det lokale domenet.
+          - paragraph [ref=e282]:
+            - strong [ref=e283]: Vanlige eksamenspoeng
+          - list [ref=e284]:
+            - listitem [ref=e285]: DORA-prosessen steg for steg
+            - listitem [ref=e286]: Hva de ulike DNS-posttypene gjør (A, AAAA, CNAME, MX, PTR)
+            - listitem [ref=e287]: Forskjellen mellom autoritativ DNS-server og rekursiv resolver
+            - listitem [ref=e288]: Hva en forwarder er
+            - listitem [ref=e289]: Kommandoene ipconfig, nslookup
+          - heading "FAQ" [level=2] [ref=e290]
+          - paragraph [ref=e291]:
+            - strong [ref=e292]: Hva betyr forkortelsen DORA i DHCP-sammenheng?
+            - text: DORA står for Discover, Offer, Request, Acknowledge — de fire meldingene i DHCP-prosessen der klienten finner en server, mottar et tilbud, aksepterer det og serveren bekrefter tildelingen.
+          - paragraph [ref=e293]:
+            - strong [ref=e294]: Hva er en DNS A-post?
+            - text: En A-post (Address) er en DNS-post som kobler et domenenavn til en IPv4-adresse. F.eks.
+            - code [ref=e295]: ndla.no → 185.45.32.10
+            - text: .
+          - paragraph [ref=e296]:
+            - strong [ref=e297]: Hvorfor sendes DHCP Discover som broadcast?
+            - text: Fordi klienten ikke har en IP-adresse ennå og ikke vet hvilken adresse DHCP-serveren har. Broadcast (
+            - code [ref=e298]: 255.255.255.255
+            - text: ) når alle enheter på det lokale nettverket, inkludert DHCP-serveren.
+          - paragraph [ref=e299]:
+            - strong [ref=e300]: Hva er en DNS forwarder?
+            - text: "En forwarder er en konfigurasjon på DNS-serveren som sier: “Oppslag jeg ikke kan besvare selv, sender jeg videre til denne andre DNS-serveren.” I AD-nettverk peker forwarderen typisk mot ruterens IP for å løse opp internettadresser."
+          - paragraph [ref=e301]:
+            - strong [ref=e302]: Hva er forskjellen mellom en PTR-post og en A-post i DNS?
+            - text: En A-post oversetter navn til IP (fremover-oppslag). En PTR-post (Pointer) gjør det motsatte — den oversetter IP-adresse til navn (omvendt oppslag/reverse lookup). PTR-poster brukes bl.a. av e-postservere og logger.
+          - paragraph [ref=e303]:
+            - strong [ref=e304]: Hva er scope og lease i DHCP?
+            - text: Scope er adresserommet DHCP-serveren kan dele ut. Lease er tidsavtalen — klienten “låner” adressen for en bestemt periode. Når leaseperioden nærmer seg slutten, fornyes den automatisk.
+          - paragraph [ref=e305]:
+            - strong [ref=e306]: Hva skjer hvis det er to DHCP-servere på samme nettverk?
+            - text: Det gir IP-adressekonflikter. Begge serverne kan tildele samme adresse til ulike klienter, noe som skaper kaos. I domenenettverk deaktiveres alltid DHCP på ruteren når Windows Server-DHCP er konfigurert.
+          - paragraph [ref=e307]:
+            - strong [ref=e308]: Hva er DHCP-snooping og DNS-spoofing?
+            - text: DNS-spoofing er et angrep der falske DNS-svar omdirigerer brukere til ondsinnede nettsteder. DHCP-snooping er en svitsjefunksjon som blokkerer falske DHCP-servere ved å godkjenne DHCP-svar kun fra betrodde porter.
+          - heading "Quiz" [level=2] [ref=e309]
+          - group [ref=e310]:
+            - 'generic "Spørsmål 1: Hva betyr forkortelsen DORA i DHCP-sammenheng?" [ref=e311]'
+          - group [ref=e312]:
+            - 'generic "Spørsmål 2: Hva er en DNS A-post?" [ref=e313]'
+          - group [ref=e314]:
+            - 'generic "Spørsmål 3: Hvorfor sendes DHCP Discover som broadcast?" [ref=e315]'
+          - group [ref=e316]:
+            - 'generic "Spørsmål 4: Hva er en DNS forwarder?" [ref=e317]'
+          - group [ref=e318]:
+            - 'generic "Spørsmål 5: Hva er forskjellen mellom en PTR-post og en A-post i DNS?" [ref=e319]'
+          - heading "Flashcards" [level=2] [ref=e320]
+          - paragraph [ref=e321]: "DHCP :: Dynamic Host Configuration Protocol — tildeler automatisk IP-konfigurasjon til klienter DORA :: De fire stegene i DHCP: Discover, Offer, Request, Acknowledge DNS :: Domain Name System — oversetter domenenavn til IP-adresser DNS A-post :: DNS-post som kobler domenenavn til IPv4-adresse DNS CNAME :: DNS-post som lager et alias/peker til et annet domenenavn DNS MX-post :: DNS-post som angir hvilken server som håndterer e-post for domenet DNS PTR-post :: DNS-post for omvendt oppslag: IP-adresse → domenenavn DHCP scope :: Adresserommet DHCP-serveren administrerer og tildeler fra DHCP lease :: Tidsavtalen mellom DHCP-server og klient om bruk av en IP-adresse Forwarder :: DNS-konfigurasjon som videresender uløste oppslag til en annen DNS-server Lease-tid :: Tiden en klient får beholde en tildelt IP-adresse før den må be om fornyelse fra DHCP-serveren A-Record :: En ressurs-oppføring i DNS som kobler et vertsnavn til en spesifikk IPv4-adresse"
+          - heading "Ressurser" [level=2] [ref=e322]
+          - list [ref=e323]:
+            - listitem [ref=e324]:
+              - link "Deaktivere eksisterende DHCP-server — NDLA" [ref=e325] [cursor=pointer]:
+                - /url: https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7
+            - listitem [ref=e326]:
+              - link "Installasjon av DNS-server — NDLA" [ref=e327] [cursor=pointer]:
+                - /url: https://ndla.no/nn/r/driftsstotte-im-itk-vg2/installasjon-av-dns-server/4246401a38
+            - listitem [ref=e328]:
+              - 'link "windowsnett.no — leksjon 11: DHCP og DNS" [ref=e329] [cursor=pointer]':
+                - /url: https://www.windowsnett.no/
+            - listitem [ref=e330]:
+              - link "DHCP Overview — Microsoft Learn" [ref=e331] [cursor=pointer]:
+                - /url: https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top
+        - complementary "Sidepanel" [ref=e332]

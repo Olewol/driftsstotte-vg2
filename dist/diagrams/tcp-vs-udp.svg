@@ -1,0 +1,27 @@
+<svg width="100%" viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;height:auto;background:transparent;">
+<style>
+  .t { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #1a1a18; }
+  .ts { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #5f5e5a; }
+  .th { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #1a1a18; font-weight: 500; }
+  .tcp > rect { fill: #E6F1FB; stroke: #185FA5; stroke-width: 0.5px; rx: 10; }
+  .udp > rect { fill: #FAECE7; stroke: #993C1D; stroke-width: 0.5px; rx: 10; }
+  .vs { fill: #F1EFE8; stroke: #5F5E5A; stroke-width: 0.5px; rx: 50; }
+</style>
+<text class="th" x="340" y="24" text-anchor="middle" font-size="16">TCP vs UDP</text>
+<g class="tcp"><rect x="30" y="50" width="290" height="170"/>
+<text class="th" x="175" y="74" text-anchor="middle">TCP — pålitelig</text>
+<circle cx="55" cy="96" r="4" fill="#185FA5"/><text class="ts" x="68" y="100">Forbindelsesorientert (3-way handshake)</text>
+<circle cx="55" cy="120" r="4" fill="#185FA5"/><text class="ts" x="68" y="124">Bekreftelse (ACK) på alle pakker</text>
+<circle cx="55" cy="144" r="4" fill="#185FA5"/><text class="ts" x="68" y="148">Sender på nytt ved tap</text>
+<circle cx="55" cy="168" r="4" fill="#185FA5"/><text class="ts" x="68" y="172">Bevarer rekkefølge</text>
+<text class="th" x="175" y="200" text-anchor="middle" font-size="13">Brukes til: Web, e-post, SSH, filoverføring</text>
+</g>
+<g class="udp"><rect x="360" y="50" width="290" height="170"/>
+<text class="th" x="505" y="74" text-anchor="middle">UDP — rask</text>
+<circle cx="385" cy="96" r="4" fill="#993C1D"/><text class="ts" x="398" y="100">Forbindelsesløs — bare sender</text>
+<circle cx="385" cy="120" r="4" fill="#993C1D"/><text class="ts" x="398" y="124">Ingen garanti (best effort)</text>
+<circle cx="385" cy="144" r="4" fill="#993C1D"/><text class="ts" x="398" y="148">Kan komme i feil rekkefølge</text>
+<circle cx="385" cy="168" r="4" fill="#993C1D"/><text class="ts" x="398" y="172">Minimale headers — lav overhead</text>
+<text class="th" x="505" y="200" text-anchor="middle" font-size="13">Brukes til: Streaming, VoIP, DNS, spill</text>
+</g>
+</svg>

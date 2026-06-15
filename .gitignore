@@ -13,13 +13,3 @@ structure_check.py
 # Backup dirs
 src/content-bak-*/
 .astro-stale-*/
-
-# Build output
-dist/
-
-# pnpm store
-/tmp/pnpm-store-*
-
-# Editor
-.npmrc
-pnpm-workspace.yaml

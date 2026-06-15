@@ -1,0 +1,399 @@
+- generic [active] [ref=e1]:
+  - link "Hopp til innhold" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - navigation "Hovednavigasjon" [ref=e3]:
+    - link "Driftsstøtte VG2 – forside" [ref=e4] [cursor=pointer]:
+      - /url: /driftsstotte-vg2/
+      - generic [ref=e5]: DS
+      - generic [ref=e6]:
+        - generic [ref=e7]: Driftsstøtte
+        - generic [ref=e8]: VG2 Informasjonsteknologi
+    - generic [ref=e9]:
+      - link "Årsplan" [ref=e10] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/
+      - link "Nettverk" [ref=e11] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/nettverk
+      - link "Sikkerhet" [ref=e12] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sikkerhet
+      - link "Operativsystem" [ref=e13] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/operativsystem
+      - link "Skripting" [ref=e14] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/skripting
+      - link "Databaser" [ref=e15] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/databaser
+      - link "IT-drift" [ref=e16] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/it-drift
+      - link "Kompetansemål" [ref=e17] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/kompetansemaal
+    - generic [ref=e18]:
+      - link "Søk" [ref=e19] [cursor=pointer]:
+        - /url: /driftsstotte-vg2/sok
+        - generic [ref=e20]: 🔍
+        - generic [ref=e21]: Søk…
+        - generic [ref=e22]: ⌘K
+      - button "Bytt til mørk modus" [ref=e23] [cursor=pointer]: ☀️
+  - main [ref=e24]:
+    - article [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]: Nettverk
+        - heading "OSI-modellen" [level=1] [ref=e28]
+        - generic [ref=e30]: 🎯 km-05
+      - toolbar "Opplesing" [ref=e31]:
+        - generic [ref=e32]: 🔊
+        - button "Les opp innholdet" [ref=e33] [cursor=pointer]: ▶ Les opp
+        - button "Stopp opplesing" [ref=e34] [cursor=pointer]: ⏹ Stopp
+        - generic [ref=e35]:
+          - generic [ref=e36]: "Hastighet:"
+          - combobox "Hastighet:" [ref=e37] [cursor=pointer]:
+            - option "Sakte"
+            - option "Normal" [selected]
+            - option "Rask"
+            - option "Veldig rask"
+          - generic [ref=e38]: Innebygd i nettleseren
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - heading "OSI-modellen" [level=1] [ref=e41]
+          - heading "Introduksjon" [level=2] [ref=e42]
+          - paragraph [ref=e43]:
+            - text: OSI-modellen (Open Systems Interconnection) er en 7-lags referansemodell utviklet av ISO på slutten av 1970-tallet. Den ble aldri den dominerende implementasjonen i praksis — det ble TCP/IP — men OSI er blitt den universelle standarden for å
+            - emphasis [ref=e44]: beskrive og forstå
+            - text: nettverkskommunikasjon. I feilsøking er spørsmålet “på hvilket lag oppstår problemet?” en av de mest nyttige du kan stille.
+          - paragraph [ref=e45]:
+            - text: OSI-modellen er tett knyttet til
+            - link "tcp-ip-modellen" [ref=e46] [cursor=pointer]:
+              - /url: /driftsstotte-vg2/tcp-ip-modellen
+            - text: ", som er det rammeverket internett faktisk bruker i praksis. Å forstå OSI er nøkkelen til å forstå protokoller som"
+            - link "nettverksprotokoller" [ref=e47] [cursor=pointer]:
+              - /url: /driftsstotte-vg2/nettverksprotokoller
+            - text: beskriver, samt tjenestene i
+            - link "dns-og-dhcp" [ref=e48] [cursor=pointer]:
+              - /url: /driftsstotte-vg2/dns-og-dhcp
+            - text: og
+            - link "serverroller" [ref=e49] [cursor=pointer]:
+              - /url: /driftsstotte-vg2/serverroller
+            - text: .
+          - heading "Teori" [level=2] [ref=e50]
+          - heading "De 7 lagene" [level=3] [ref=e51]
+          - table [ref=e52]:
+            - rowgroup [ref=e53]:
+              - row "Lag Navn Norsk Funksjon Protokolleksempler" [ref=e54]:
+                - columnheader "Lag" [ref=e55]
+                - columnheader "Navn" [ref=e56]
+                - columnheader "Norsk" [ref=e57]
+                - columnheader "Funksjon" [ref=e58]
+                - columnheader "Protokolleksempler" [ref=e59]
+            - rowgroup [ref=e60]:
+              - row "7 Application Applikasjonslaget Brukergrensesnitt og applikasjonsprotokoller HTTP, HTTPS, FTP, SMTP, DNS" [ref=e61]:
+                - cell "7" [ref=e62]
+                - cell "Application" [ref=e63]
+                - cell "Applikasjonslaget" [ref=e64]
+                - cell "Brukergrensesnitt og applikasjonsprotokoller" [ref=e65]
+                - cell "HTTP, HTTPS, FTP, SMTP, DNS" [ref=e66]
+              - row "6 Presentation Presentasjonslaget Formatering, kryptering, komprimering TLS/SSL, JPEG, ASCII, MPEG" [ref=e67]:
+                - cell "6" [ref=e68]
+                - cell "Presentation" [ref=e69]
+                - cell "Presentasjonslaget" [ref=e70]
+                - cell "Formatering, kryptering, komprimering" [ref=e71]
+                - cell "TLS/SSL, JPEG, ASCII, MPEG" [ref=e72]
+              - row "5 Session Sesjonslaget Oppretting, vedlikehold og avslutning av sesjoner NetBIOS, RPC, SQL" [ref=e73]:
+                - cell "5" [ref=e74]
+                - cell "Session" [ref=e75]
+                - cell "Sesjonslaget" [ref=e76]
+                - cell "Oppretting, vedlikehold og avslutning av sesjoner" [ref=e77]
+                - cell "NetBIOS, RPC, SQL" [ref=e78]
+              - row "4 Transport Transportlaget Ende-til-ende-kommunikasjon, segmentering TCP, UDP" [ref=e79]:
+                - cell "4" [ref=e80]
+                - cell "Transport" [ref=e81]
+                - cell "Transportlaget" [ref=e82]
+                - cell "Ende-til-ende-kommunikasjon, segmentering" [ref=e83]
+                - cell "TCP, UDP" [ref=e84]
+              - row "3 Network Nettverkslaget Logisk adressering og ruting IP, ICMP, OSPF, BGP" [ref=e85]:
+                - cell "3" [ref=e86]
+                - cell "Network" [ref=e87]
+                - cell "Nettverkslaget" [ref=e88]
+                - cell "Logisk adressering og ruting" [ref=e89]
+                - cell "IP, ICMP, OSPF, BGP" [ref=e90]
+              - row "2 Data Link Datalinklaget Frames, MAC-adresser, feildeteksjon Ethernet, ARP, 802.11" [ref=e91]:
+                - cell "2" [ref=e92]
+                - cell "Data Link" [ref=e93]
+                - cell "Datalinklaget" [ref=e94]
+                - cell "Frames, MAC-adresser, feildeteksjon" [ref=e95]
+                - cell "Ethernet, ARP, 802.11" [ref=e96]
+              - row "1 Physical Fysisk lag Bitsending over medium UTP-kabel, fiber, WiFi-radio" [ref=e97]:
+                - cell "1" [ref=e98]
+                - cell "Physical" [ref=e99]
+                - cell "Fysisk lag" [ref=e100]
+                - cell "Bitsending over medium" [ref=e101]
+                - cell "UTP-kabel, fiber, WiFi-radio" [ref=e102]
+          - heading "Detaljert beskrivelse av hvert lag" [level=3] [ref=e103]
+          - paragraph [ref=e104]:
+            - strong [ref=e105]: Lag 1 — Fysisk lag
+            - text: Det fysiske laget definerer de elektriske, optiske og trådløse signalene som representerer biter (0 og 1). Det inkluderer kontakttyper (RJ-45), kabeltyper (Cat5e, Cat6, fiber), og overføringsmetoder. Ingenting her kjenner til adresser eller logisk struktur — det er bare bits.
+          - paragraph [ref=e106]:
+            - strong [ref=e107]: Lag 2 — Datalinklaget
+            - text: Pakker biter inn i
+            - emphasis [ref=e108]: frames
+            - text: "og håndterer overføring innenfor ett nettverkssegment. Delt i to underlag:"
+          - list [ref=e109]:
+            - listitem [ref=e110]:
+              - strong [ref=e111]: MAC (Media Access Control)
+              - text: ": adressering med 48-bits MAC-adresser, kontroll av tilgang til mediet"
+            - listitem [ref=e112]:
+              - strong [ref=e113]: LLC (Logical Link Control)
+              - text: ": feildeteksjon, flomstyring"
+          - paragraph [ref=e114]: En svitsj opererer på lag 2. Ethernet er den dominerende lag 2-protokollen i kablede nettverk.
+          - paragraph [ref=e115]:
+            - strong [ref=e116]: Lag 3 — Nettverkslaget
+            - text: Introduserer logisk adressering (IP-adresser) og ruting mellom nettverk. En ruter opererer på lag 3. Nettverkslaget bestemmer den beste veien fra kilde til destinasjon gjennom potensielt mange mellomliggende nettverk.
+          - paragraph [ref=e117]:
+            - strong [ref=e118]: Lag 4 — Transportlaget
+            - text: Segmenterer data fra applikasjonslaget og håndterer ende-til-ende-kommunikasjon. TCP gir pålitelig levering med sekvensnumre og bekreftelser (ACK). UDP er rask og enkel uten slike garantier. Portnumre identifiserer hvilken applikasjon trafikken tilhører.
+          - paragraph [ref=e119]:
+            - strong [ref=e120]: Lag 5 — Sesjonslaget
+            - text: Administrerer
+            - emphasis [ref=e121]: sesjoner
+            - text: — vedvarende forbindelser mellom applikasjoner. Sesjonslaget oppretter, vedlikeholder og avslutter dialogen mellom to systemer. I praksis er mye av denne funksjonaliteten integrert i applikasjonsprotokoller i TCP/IP.
+          - paragraph [ref=e122]:
+            - strong [ref=e123]: Lag 6 — Presentasjonslaget
+            - text: "Oversetter data mellom applikasjonens format og nettverkets format. Ansvarlig for:"
+          - list [ref=e124]:
+            - listitem [ref=e125]:
+              - strong [ref=e126]: Kryptering/dekryptering
+              - text: ": TLS/SSL krypterer HTTP-trafikk til HTTPS"
+            - listitem [ref=e127]:
+              - strong [ref=e128]: Komprimering
+              - text: ": reduserer datamengden som sendes"
+            - listitem [ref=e129]:
+              - strong [ref=e130]: Formatkonvertering
+              - text: ": sikrer at f.eks. tegnsett (UTF-8, ASCII) tolkes likt på begge sider"
+          - paragraph [ref=e131]:
+            - strong [ref=e132]: Lag 7 — Applikasjonslaget
+            - text: "Det øverste laget er det brukeren møter. Her befinner seg protokollene som applikasjoner bruker direkte: HTTP for nettlesing, SMTP for e-postsending, FTP for filoverføring, DNS for navneoppløsning."
+          - heading "Innkapsling og PDU" [level=3] [ref=e133]
+          - paragraph [ref=e134]:
+            - text: Når data sendes nedover gjennom OSI-lagene, legger hvert lag til sin egen kontrollinformasjon (header). Denne prosessen kalles
+            - strong [ref=e135]: innkapsling (encapsulation)
+            - text: . Hvert lag opererer med sin egen
+            - strong [ref=e136]: PDU (Protocol Data Unit)
+            - text: ": på lag 4 kalles den"
+            - emphasis [ref=e137]: Segment
+            - text: ", på lag 3"
+            - emphasis [ref=e138]: Pakke
+            - text: ", og på lag 2"
+            - emphasis [ref=e139]: Ramme
+            - text: . Ved mottak pakkes det ut i omvendt rekkefølge — hvert lag leser og fjerner sin header.
+          - heading "Huskeregel" [level=3] [ref=e140]
+          - paragraph [ref=e141]: "En populær huskeregel for lagene nedenfra og opp (lag 1 → 7):"
+          - blockquote [ref=e142]:
+            - paragraph [ref=e143]:
+              - strong [ref=e144]: P
+              - text: lease
+              - strong [ref=e145]: D
+              - text: o
+              - strong [ref=e146]: "N"
+              - text: ot
+              - strong [ref=e147]: T
+              - text: hrow
+              - strong [ref=e148]: S
+              - text: ausage
+              - strong [ref=e149]: P
+              - text: izza
+              - strong [ref=e150]: A
+              - text: way (Physical, Data Link, Network, Transport, Session, Presentation, Application)
+          - paragraph [ref=e151]: "Og ovenfra og ned (lag 7 → 1):"
+          - blockquote [ref=e152]:
+            - paragraph [ref=e153]:
+              - strong [ref=e154]: A
+              - text: ll
+              - strong [ref=e155]: P
+              - text: eople
+              - strong [ref=e156]: S
+              - text: eem
+              - strong [ref=e157]: T
+              - text: o
+              - strong [ref=e158]: "N"
+              - text: eed
+              - strong [ref=e159]: D
+              - text: ata
+              - strong [ref=e160]: P
+              - text: rocessing
+          - heading "OSI vs. TCP/IP" [level=3] [ref=e161]
+          - table [ref=e162]:
+            - rowgroup [ref=e163]:
+              - row "OSI Lag nr. TCP/IP (5-lag)" [ref=e164]:
+                - columnheader "OSI" [ref=e165]
+                - columnheader "Lag nr." [ref=e166]
+                - columnheader "TCP/IP (5-lag)" [ref=e167]
+            - rowgroup [ref=e168]:
+              - row "Applikasjonslaget 7 Applikasjonslaget" [ref=e169]:
+                - cell "Applikasjonslaget" [ref=e170]
+                - cell "7" [ref=e171]
+                - cell "Applikasjonslaget" [ref=e172]
+              - row "Presentasjonslaget 6 Applikasjonslaget" [ref=e173]:
+                - cell "Presentasjonslaget" [ref=e174]
+                - cell "6" [ref=e175]
+                - cell "Applikasjonslaget" [ref=e176]
+              - row "Sesjonslaget 5 Applikasjonslaget" [ref=e177]:
+                - cell "Sesjonslaget" [ref=e178]
+                - cell "5" [ref=e179]
+                - cell "Applikasjonslaget" [ref=e180]
+              - row "Transportlaget 4 Transportlaget" [ref=e181]:
+                - cell "Transportlaget" [ref=e182]
+                - cell "4" [ref=e183]
+                - cell "Transportlaget" [ref=e184]
+              - row "Nettverkslaget 3 Nettverkslaget" [ref=e185]:
+                - cell "Nettverkslaget" [ref=e186]
+                - cell "3" [ref=e187]
+                - cell "Nettverkslaget" [ref=e188]
+              - row "Datalinklaget 2 Datalinklaget" [ref=e189]:
+                - cell "Datalinklaget" [ref=e190]
+                - cell "2" [ref=e191]
+                - cell "Datalinklaget" [ref=e192]
+              - row "Fysisk lag 1 Fysisk lag" [ref=e193]:
+                - cell "Fysisk lag" [ref=e194]
+                - cell "1" [ref=e195]
+                - cell "Fysisk lag" [ref=e196]
+          - paragraph [ref=e197]: OSI-modellens lag 5, 6 og 7 tilsvarer samlet applikasjonslaget i TCP/IP. I praksis er funksjonene fra presentasjons- og sesjonslaget implementert direkte i applikasjonsprotokoller eller i TLS.
+          - heading "OSI i feilsøking" [level=3] [ref=e198]
+          - paragraph [ref=e199]: "OSI-modellen er særlig nyttig ved feilsøking. Tenk deg et problem der en bruker ikke kommer på internett:"
+          - list [ref=e200]:
+            - listitem [ref=e201]:
+              - strong [ref=e202]: Lag 1
+              - text: — Er kabelen plugget inn? Lyser linklys?
+            - listitem [ref=e203]:
+              - strong [ref=e204]: Lag 2
+              - text: — Svitsjen ser MAC-adressen? Feil VLAN?
+            - listitem [ref=e205]:
+              - strong [ref=e206]: Lag 3
+              - text: — Har maskinen riktig IP-adresse og gateway? Kan du pinge gateway?
+            - listitem [ref=e207]:
+              - strong [ref=e208]: Lag 4
+              - text: — Blokkeres TCP-port 443 av brannmur?
+            - listitem [ref=e209]:
+              - strong [ref=e210]: Lag 7
+              - text: — Feil i nettleserens konfigurasjon? DNS fungerer men HTTP feiler?
+          - paragraph [ref=e211]: Ved å jobbe systematisk nedenfra og opp (eller ovenfra og ned) isolerer du problemet raskt.
+          - heading "Eksempel / lab" [level=2] [ref=e212]
+          - heading "Identifiser laget" [level=3] [ref=e213]
+          - paragraph [ref=e214]: "Avgjør hvilket OSI-lag hvert scenario tilhører:"
+          - table [ref=e215]:
+            - rowgroup [ref=e216]:
+              - row "Scenario Lag" [ref=e217]:
+                - columnheader "Scenario" [ref=e218]
+                - columnheader "Lag" [ref=e219]
+            - rowgroup [ref=e220]:
+              - row "Ethernet-kabel ikke plugget inn Lag 1 — Fysisk" [ref=e221]:
+                - cell "Ethernet-kabel ikke plugget inn" [ref=e222]
+                - cell "Lag 1 — Fysisk" [ref=e223]
+              - row "Feil IP-adresse konfigurert Lag 3 — Nettverk" [ref=e224]:
+                - cell "Feil IP-adresse konfigurert" [ref=e225]
+                - cell "Lag 3 — Nettverk" [ref=e226]
+              - row "HTTPS-kryptering (TLS) Lag 6 — Presentasjon" [ref=e227]:
+                - cell "HTTPS-kryptering (TLS)" [ref=e228]
+                - cell "Lag 6 — Presentasjon" [ref=e229]
+              - row "Svitsj videresender basert på MAC Lag 2 — Datalink" [ref=e230]:
+                - cell "Svitsj videresender basert på MAC" [ref=e231]
+                - cell "Lag 2 — Datalink" [ref=e232]
+              - row "TCP three-way handshake Lag 4 — Transport" [ref=e233]:
+                - cell "TCP three-way handshake" [ref=e234]
+                - cell "Lag 4 — Transport" [ref=e235]
+              - row "DNS-oppslag feiler Lag 7 — Applikasjon" [ref=e236]:
+                - cell "DNS-oppslag feiler" [ref=e237]
+                - cell "Lag 7 — Applikasjon" [ref=e238]
+              - row "WiFi-signal for svakt Lag 1 — Fysisk" [ref=e239]:
+                - cell "WiFi-signal for svakt" [ref=e240]
+                - cell "Lag 1 — Fysisk" [ref=e241]
+          - heading "Feilsøkingsøvelse" [level=3] [ref=e242]
+          - paragraph [ref=e243]:
+            - text: "Scenario: En PC kan pinge"
+            - code [ref=e244]: 192.168.1.1
+            - text: (gateway) men ikke åpne
+            - code [ref=e245]: https://ndla.no
+            - text: .
+          - paragraph [ref=e246]: "Analyser:"
+          - list [ref=e247]:
+            - listitem [ref=e248]: Lag 1–3 fungerer (ping til gateway virker → fysisk forbindelse, datalink og IP er OK)
+            - listitem [ref=e249]: Problemet er på lag 4 (TCP-port blokkert?), lag 6 (TLS-feil?) eller lag 7 (DNS feiler? HTTP-feil?)
+            - listitem [ref=e250]:
+              - text: "Test:"
+              - code [ref=e251]: nslookup ndla.no
+              - text: — hvis DNS ikke svarer er problemet lag 7 (DNS-tjenesten) eller lag 3 (ruting mot DNS-server)
+          - heading "Study guide" [level=2] [ref=e252]
+          - paragraph [ref=e253]:
+            - strong [ref=e254]: OSI-modellens formål
+            - text: OSI er en
+            - emphasis [ref=e255]: referansemodell
+            - text: ", ikke en implementasjon. Den brukes som felles referansespråk for å forstå og feilsøke nettverkskommunikasjon. Hvert lag har et klart ansvarsområde og kommuniserer kun med laget direkte over og under."
+          - paragraph [ref=e256]:
+            - strong [ref=e257]: Kjerneforståelse per lag
+          - list [ref=e258]:
+            - listitem [ref=e259]: Lag 1–2 handler om fysisk og lokal overføring (kabel, WiFi, svitsjer, MAC-adresser)
+            - listitem [ref=e260]: Lag 3 introduserer logisk adressering og ruting (IP, rutere)
+            - listitem [ref=e261]: Lag 4 håndterer ende-til-ende pålitelighet og applikasjonsidentifikasjon (TCP/UDP, portnumre)
+            - listitem [ref=e262]: Lag 5–7 er applikasjonsrelaterte (sesjoner, formatering, brukerprotokoller)
+          - paragraph [ref=e263]:
+            - strong [ref=e264]: Vanlige eksamenspoeng
+          - list [ref=e265]:
+            - listitem [ref=e266]: Forskjellen mellom svitsj (lag 2) og ruter (lag 3)
+            - listitem [ref=e267]: TCP vs. UDP og når man bruker hva
+            - listitem [ref=e268]: OSI-lagene ovenfra og ned vs. nedenfra og opp
+            - listitem [ref=e269]: "Innkapsling: hva skjer med data når det sendes nedover i stakken"
+          - heading "FAQ" [level=2] [ref=e270]
+          - paragraph [ref=e271]:
+            - strong [ref=e272]: Hvorfor bruker vi OSI-modellen når TCP/IP er det som faktisk brukes?
+            - text: OSI gir oss et presist og delt referansespråk for å snakke om nettverksproblemer og protokoller. Når en teknikker sier “problemet er på lag 2”, forstår alle hva det betyr — selv om nettverket kjører TCP/IP.
+          - paragraph [ref=e273]:
+            - strong [ref=e274]: Hva er forskjellen mellom lag 3 og lag 2-adresser?
+            - text: Lag 2 bruker MAC-adresser (fysiske, hardkodede) for kommunikasjon innenfor ett nettverk. Lag 3 bruker IP-adresser (logiske, konfigurerbare) for kommunikasjon mellom ulike nettverk.
+          - paragraph [ref=e275]:
+            - strong [ref=e276]: Hva skjer på lag 6 (presentasjonslaget) i praksis?
+            - text: Kryptering via TLS/SSL er det vanligste eksemplet. Når du besøker en HTTPS-side, krypterer lag 6 dataene. Komprimering (gzip) og tegnkonvertering (UTF-8) er andre eksempler.
+          - paragraph [ref=e277]:
+            - strong [ref=e278]: Kan ett stykke maskinvare operere på flere lag?
+            - text: Ja. En “lag 3-svitsj” opererer på både lag 2 og lag 3 — den kan route mellom VLAN-er i tillegg til å fungere som vanlig svitsj. Brannmurer opererer ofte på lag 3–7.
+          - paragraph [ref=e279]:
+            - strong [ref=e280]: Hva er PDU, og hvorfor er begrepet nyttig?
+            - text: "PDU (Protocol Data Unit) er betegnelsen på dataenheten på et gitt lag: Segment (lag 4), Pakke (lag 3), Ramme (lag 2), Bit (lag 1). Det gjør det enklere å beskrive nøyaktig hva som behandles på hvert trinn."
+          - paragraph [ref=e281]:
+            - strong [ref=e282]: Hva er innkapsling?
+            - text: Innkapsling er prosessen der data pakkes inn i kontrollinformasjon (headers) fra hvert lag i OSI-modellen når de sendes nedover i stakken. På mottakersiden pakkes det ut lag for lag.
+          - paragraph [ref=e283]:
+            - strong [ref=e284]: Hvorfor er sesjonslaget (lag 5) viktig?
+            - text: Sesjonslaget administrerer dialogen mellom applikasjoner — hvem snakker, i hvilken rekkefølge, og hvordan avslutter man ryddig. I praksis er dette ofte integrert i TLS og applikasjonsprotokoller.
+          - paragraph [ref=e285]:
+            - strong [ref=e286]: Hvordan bruker jeg OSI aktivt i feilsøking?
+            - text: "Start fra lag 1 og jobb oppover: sjekk kabel → svitsj → IP-adresse → brannmur-porter → applikasjonsinnstillinger. Eller start fra lag 7 og jobb nedover hvis du vet at nettverket fungerer."
+          - heading "Quiz" [level=2] [ref=e287]
+          - group [ref=e288]:
+            - 'generic "Spørsmål 1: Hvilke lag i OSI tilsvarer applikasjonslaget i TCP/IP?" [ref=e289]'
+          - group [ref=e290]:
+            - 'generic "Spørsmål 2: Hva er presentasjonslagets (lag 6) oppgave?" [ref=e291]'
+          - group [ref=e292]:
+            - 'generic "Spørsmål 3: Hva er forskjellen mellom en svitsj og en ruter sett fra OSI-modellen?" [ref=e293]'
+          - group [ref=e294]:
+            - 'generic "Spørsmål 4: Hva er sesjonslaget (lag 5) ansvarlig for?" [ref=e295]'
+          - group [ref=e296]:
+            - 'generic "Spørsmål 5: Beskriv huskeregelen for OSI-lagene nedenfra og opp." [ref=e297]'
+          - heading "Flashcards" [level=2] [ref=e298]
+          - paragraph [ref=e299]: "OSI-modellen :: ISO-standardens 7-lags referansemodell for nettverkskommunikasjon Fysisk lag (OSI 1) :: Bitsending over fysisk medium (kabel, fiber, WiFi-radio) Datalinklaget (OSI 2) :: Frames og MAC-adressering innenfor ett nettverkssegment Nettverkslaget (OSI 3) :: IP-adressering og ruting mellom ulike nettverk Transportlaget (OSI 4) :: Ende-til-ende-kommunikasjon med TCP eller UDP og portnumre Sesjonslaget (OSI 5) :: Oppretting, vedlikehold og avslutning av applikasjonssesjoner Presentasjonslaget (OSI 6) :: Formatering, kryptering (TLS) og komprimering av data Applikasjonslaget (OSI 7) :: Brukervendte protokoller som HTTP, FTP, SMTP og DNS OSI vs TCP/IP :: OSI har 7 lag og er referansemodell; TCP/IP har 4–5 lag og er det internett faktisk bruker Innkapsling (Encapsulation) :: Prosessen der data pakkes inn i kontrollinformasjon (headers) fra hvert lag i OSI-modellen når de sendes nedover i stakken PDU (Protocol Data Unit) :: Betegnelsen på informasjonsenheten på et spesifikt lag: Segment (lag 4), Pakke (lag 3), Ramme (lag 2) Lag (Layers) :: De syv logiske nivåene i OSI-modellen som deler opp oppgavene i nettverkskommunikasjon for å sikre standardisering og forenkle feilsøking Referansemodell :: Et teoretisk rammeverk som brukes for å forstå og beskrive hvordan komplekse prosesser som nettverkskommunikasjon fungerer"
+          - heading "Ressurser" [level=2] [ref=e300]
+          - list [ref=e301]:
+            - listitem [ref=e302]:
+              - link "TCP/IP 5-lagsmodell (nevner OSI) — NDLA" [ref=e303] [cursor=pointer]:
+                - /url: https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6
+            - listitem [ref=e304]:
+              - link "OSI-modellen — Imperva" [ref=e305] [cursor=pointer]:
+                - /url: https://www.imperva.com/learn/application-security/osi-model/
+            - listitem [ref=e306]:
+              - link "OSI-modellen — Cloudflare" [ref=e307] [cursor=pointer]:
+                - /url: https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/
+            - listitem [ref=e308]:
+              - link "TCP/IP og OSI sammenligning — Cisco Press" [ref=e309] [cursor=pointer]:
+                - /url: https://www.ciscopress.com/articles/article.asp?p=1757634&seqNum=2
+            - listitem [ref=e310]:
+              - link "The OSI Model Explained | Animation — NetworkChuck (15 min)" [ref=e311] [cursor=pointer]:
+                - /url: https://www.youtube.com/watch?v=vv4y_uOneC0
+            - listitem [ref=e312]:
+              - link "OSI-modellen — SNL" [ref=e313] [cursor=pointer]:
+                - /url: https://snl.no/OSI-modellen
+        - complementary "Sidepanel" [ref=e314]
