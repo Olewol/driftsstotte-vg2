@@ -5,6 +5,7 @@ kompetansemaal:
   - km-06
 kilder:
   - https://www.udir.no/lk20/itk02-01/kompetansemaal-og-vurdering/kv372
+  - https://www.digdir.no/informasjonssikkerhet/
   - https://www.itil.org/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 tags: [km-06, dokumentasjon, planlegging, arbeidsprosesser]
@@ -34,13 +35,13 @@ Dokumentasjon er «bruksanvisningen» for IT-systemer. Uten dokumentasjon blir s
 - **Feilsøkingsguide** — Hva gjør vi når noe går galt?
 - **Nedetidsplan** — Hva gjør vi ved strømbrudd, brann eller cyberangrep?
 
-**Planleggingsmetodikk:**
-- **ITIL** — Beste praksis for IT-tjenestehåndtering
+**Planleggingsmetodikk:**[^4]
+- **ITIL**[^3] — Beste praksis for IT-tjenestehåndtering
 - **PDCA (Plan-Do-Check-Act)** — Sirkulær forbedringsprosess
 - **Tidsestimering** — Å kunne anslå hvor lang tid oppgaver tar
 
 ### English
-Documentation is the "instruction manual" for IT systems. Without documentation, systems depend on individual knowledge — this is called the "bus factor" (what happens if that one person leaves?)[^1].
+Documentation is the "instruction manual" for IT systems. Without documentation, systems depend on individual knowledge — this is called the "bus factor" (what happens if that one person leaves?)[^1][^2].
 
 **Good documentation should include:**
 - **System overview** — What systems exist and how do they connect?
@@ -49,8 +50,8 @@ Documentation is the "instruction manual" for IT systems. Without documentation,
 - **Troubleshooting guide** — What do we do when something goes wrong?
 - **Disaster recovery plan** — What do we do during power outages, fires, or cyberattacks?
 
-**Planning methodology:**
-- **ITIL** — Best practice for IT service management
+**Planning methodology:**[^4]
+- **ITIL**[^3] — Best practice for IT service management
 - **PDCA (Plan-Do-Check-Act)** — Continuous improvement cycle
 - **Time estimation** — Being able to estimate how long tasks will take
 
@@ -148,3 +149,4 @@ Plan moving a file server from the server room to a data center:
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 [^3]: AXELOS. ITIL Foundation. https://www.itil.org/
+[^4]: Digdir. Informasjonssikkerhet. https://www.digdir.no/informasjonssikkerhet/

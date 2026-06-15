@@ -94,7 +94,7 @@ A teacher needs to install software on classroom PCs. IT adds the teacher to the
 Bruk en Windows Server-lab (eller virtuell maskin med AD DS).
 - Opprett 5 brukere i riktig OU-struktur:
   - `elev1`-`elev3` i OU=Elever
-  - `larer1` i OU=Laerere
+  - `laerer1` i OU=Laerere
   - `admin1` i OU=IT-avdeling
 - Opprett 3 sikkerhetsgrupper: G\_Elever, G\_Laerere, G\_IT
 - Plasser brukere i riktige grupper

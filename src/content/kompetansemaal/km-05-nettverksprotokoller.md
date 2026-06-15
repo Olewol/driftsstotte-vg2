@@ -36,7 +36,8 @@ Nettverksprotokoller er «språkene» som datamaskiner bruker for å kommunisere
 | DNS | 53 | Navneoppløsning (domenenavn → IP) |
 | DHCP | 67/68 | Automatisk IP-tildeling |
 | SSH | 22 | Sikker fjernpålogging |
-| FTP/SFTP | 21/22 | Filoverføring |
+| SFTP | 22 | Sikker filoverføring (via SSH) |
+| FTP | 20/21 | Filoverføring (20=data, 21=kontroll) |
 | SMTP | 25 | E-postutsending |
 | IMAP/POP3 | 143/110 | E-postmottak |
 
@@ -56,7 +57,8 @@ Network protocols are the "languages" that computers use to communicate. Without
 | DNS | 53 | Name resolution (domain name → IP) |
 | DHCP | 67/68 | Automatic IP assignment |
 | SSH | 22 | Secure remote login |
-| FTP/SFTP | 21/22 | File transfer |
+| SFTP | 22 | Secure file transfer (over SSH) |
+| FTP | 20/21 | File transfer (20=data, 21=control) |
 | SMTP | 25 | Email sending |
 | IMAP/POP3 | 143/110 | Email receiving |
 

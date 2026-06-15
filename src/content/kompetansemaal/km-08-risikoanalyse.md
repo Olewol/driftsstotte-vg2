@@ -79,14 +79,14 @@ Skolens hjemmeside kan bli utsatt for DDoS-angrep. Det er middels sannsynlig, me
 
 ### English
 
-**Example: Risk Matrix for School Systems**
+**Example 1: Risk Matrix for School Systems**
 | Risk | Probability | Impact | Risk Level | Measure |
 |------|------------|--------|------------|---------|
 | Power outage | Medium | High | High | UPS + generator |
 | Phishing | High | Medium | High | Staff training |
 | Server room fire | Low | Very high | Medium | Fire suppression + backup |
 
-**Example: Risk Analysis of School Website**
+**Example 2: Risk Analysis of School Website**
 The school's website could be targeted by a DDoS attack. The probability is medium, but the impact is low (the site is not critical). The risk is accepted without measures.
 
 ---
