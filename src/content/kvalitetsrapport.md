@@ -4,8 +4,6 @@ emne: driftsstotte
 public: true
 ---
 
-# Kvalitetsrapport — Driftsstøtte VG2
-
 Generert: 2026-05-20
 
 ## Målgruppeanalyse

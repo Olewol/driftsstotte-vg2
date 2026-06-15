@@ -14,14 +14,13 @@ flashcards: false
 public: true
 ---
 
-## Bærekraft / Sustainability
+# KM-12: Bærekraft / Sustainability
 
 ## 🎯 Mål / Competency Goal
 
 **Norsk:** Utforske dataindustriens miljøavtrykk og vurdere tiltak for å sikre bærekraftige valg i IT-løsninger
 
-**English:** Explore the environmental footprint of the data industry and evaluate
-measures to ensure sustainable choices in IT solutions
+**English:** Explore the environmental footprint of the data industry and evaluate measures to ensure sustainable choices in IT solutions
 
 ---
 
@@ -29,9 +28,7 @@ measures to ensure sustainable choices in IT solutions
 
 ### Norsk
 
-Dataindustrien har et betydelig miljøavtrykk — faktisk står den for omtrent like mye
-CO₂-utslipp som flyindustrien[^1][^4]. Hvert søk, hver e-post, hver video du
-strømmer, bruker strøm i datasentre over hele verden.
+Dataindustrien har et betydelig miljøavtrykk — faktisk står den for omtrent like mye CO₂-utslipp som flyindustrien[^1][^4]. Hvert søk, hver e-post, hver video du strømmer, bruker strøm i datasentre over hele verden.
 
 **Hvorfor bruker IT så mye energi?**
 
@@ -49,14 +46,11 @@ strømmer, bruker strøm i datasentre over hele verden.
 - Forlenge levetiden på utstyr (reparere i stedet for å kjøpe nytt)
 - Resirkulere ansvarlig
 
-**Grønn IT / Green Computing** handler om å designe, produsere, bruke og kaste
-IT-utstyr på en måte som minimerer miljøpåvirkningen[^2].
+**Grønn IT / Green Computing** handler om å designe, produsere, bruke og kaste IT-utstyr på en måte som minimerer miljøpåvirkningen[^2].
 
 ### English
 
-The data industry has a significant environmental footprint — it accounts for roughly
-as much CO₂ emissions as the aviation industry[^1]. Every search, email, and video
-you stream uses electricity in data centers worldwide.
+The data industry has a significant environmental footprint — it accounts for roughly as much CO₂ emissions as the aviation industry[^1]. Every search, email, and video you stream uses electricity in data centers worldwide.
 
 **Why does IT use so much energy?**
 
@@ -74,41 +68,34 @@ you stream uses electricity in data centers worldwide.
 - Extend equipment lifespan (repair instead of buying new)
 - Recycle responsibly
 
-**Green IT / Green Computing** is about designing, producing, using, and disposing
-of IT equipment in a way that minimizes environmental impact[^2].
+**Green IT / Green Computing** is about designing, producing, using, and disposing of IT equipment in a way that minimizes environmental impact[^2].
 
 ---
 
 ## 💡 Eksempler / Examples
 
-### Norsk — Eksempler
+### Norsk
 
 **Eksempel 1: Google og fornybar energi**
-Google kjøper nok fornybar energi til å dekke alt strømforbruket i sine datasentre.
-De bruker AI for å optimalisere kjøling og har redusert strømforbruket til kjøling
-med 40 %[^3].
+Google kjøper nok fornybar energi til å dekke alt strømforbruket i sine datasentre. De bruker AI for å optimalisere kjøling og har redusert strømforbruket til kjøling med 40 %[^3].
 
 **Eksempel 2: Gjenbruk av skole-PCer**
-I stedet for å kaste gamle PC-er, oppgraderer en skole dem med SSD og mer RAM.
-De holder i 3 år til, og skolen sparer både penger og miljø.
+I stedet for å kaste gamle PC-er, oppgraderer en skole dem med SSD og mer RAM. De holder i 3 år til, og skolen sparer både penger og miljø.
 
-### English — Examples
+### English
 
 **Example 1: Google's Renewable Energy**
-Google buys enough renewable energy to cover all its data center electricity
-consumption. They use AI to optimize cooling and have reduced cooling energy
-by 40%[^3].
+Google buys enough renewable energy to cover all its data center electricity consumption. They use AI to optimize cooling and have reduced cooling energy by 40%[^3].
 
 **Example 2: Reusing School PCs**
-Instead of throwing away old PCs, a school upgrades them with SSDs and more
-RAM. They last 3 more years, saving both money and the environment.
+Instead of throwing away old PCs, a school upgrades them with SSDs and more RAM. They last 3 more years, saving both money and the environment.
 
 ---
 
 ## 📝 Oppsummering / Summary
 
 | Norsk | English |
-| ------- | --------- |
+|-------|---------|
 | Dataindustrien har stort miljøavtrykk | The data industry has a large environmental footprint |
 | Strømforbruk i datasentre og kjøling er hovedkilden | Data center power consumption and cooling are the main sources |
 | Velg energieffektiv maskinvare og fornybar energi | Choose energy-efficient hardware and renewable energy |
@@ -124,12 +111,10 @@ RAM. They last 3 more years, saving both money and the environment.
 **Oppgave 1: Beregn skolens IT-miljøavtrykk**
 Eleven skal beregne energiforbruket og CO₂-avtrykket til skolens IT-utstyr.
 
-- Kartlegg: Hvor mange PC-er (bærbar/stasjonær)? Hvor mange servere?
-  Svitsjer/rutere? Skjermer?
+- Kartlegg: Hvor mange PC-er (bærbar/stasjonær)? Hvor mange servere? Svitsjer/rutere? Skjermer?
 - Slå opp typisk strømforbruk for hver enhet (Watt)
 - Beregn: Totalt strømforbruk per dag og per år (kWh)
-- Beregn CO₂-avtrykk (norsk strømmiks: ~30 g CO₂/kWh,
-  EU-snitt: ~250 g CO₂/kWh)
+- Beregn CO₂-avtrykk (norsk strømmiks: ~30 g CO₂/kWh, EU-snitt: ~250 g CO₂/kWh)
 - Sammenlign med: Hvor mange km med bil tilsvarer dette? (120 g CO₂/km)
 - Reflekter: Hvor kan skolen spare mest strøm? Hva er lavthengende frukt?
 - Lag et forslag til IT-sjefen om tiltak for å redusere miljøavtrykket
@@ -144,21 +129,13 @@ Sjekkliste:
 - Hva skjer med gammelt utstyr? (resirkulering / gjenbruk / kastes?)
 - Bruker skolen skytjenester som kjører på fornybar energi?
 - Printes det unødvendig mye?
-
 For hvert punkt: Gi en karakter (1-5), begrunnelse, og et forbedringsforslag.
 Lag en handlingsplan med 5 konkrete anbefalinger.
 
 **Veiledning / Solution Guidelines:**
 
-- Oppgave 1: Eksempel: 100 bærbare PC-er × 50W × 6t/dag × 190 dager =
-  5 700 kWh/år. Server: 4 × 200W × 24/7 = 7 008 kWh/år.
-  Totalt: ~13 000 kWh/år. Norsk strømmiks: ~390 kg CO₂/år.
-  Bil: ~3 250 km. EU-strømmiks: ~3 250 kg CO₂ — enorm forskjell.
-  Lavthengende frukt: slå av PC-er om natten, reduser standby-tap.
-- Oppgave 2: Poengskala: 5 = utmerket, 3 = gjennomsnitt, 1 = kritisk.
-  Strømstyring: score 2 hvis PC-er står på hele tiden → gruppepolicy.
-  Gjenbruk: score 4 hvis utstyr doneres.
-  Handlingsplan: prioriter høy effekt/lav kostnad først.
+- Oppgave 1: Eksempel: 100 bærbare PC-er × 50W × 6t/dag × 190 dager = 5 700 kWh/år. Server: 4 × 200W × 24/7 = 7 008 kWh/år. Totalt: ~13 000 kWh/år. Norsk strømmiks: ~390 kg CO₂/år. Bil: ~3 250 km. EU-strømmiks: ~3 250 kg CO₂ — enorm forskjell. Lavthengende frukt: slå av PC-er om natten, reduser standby-tap.
+- Oppgave 2: Poengskala: 5 = utmerket, 3 = gjennomsnitt, 1 = kritisk. Strømstyring: score 2 hvis PC-er står på hele tiden → gruppepolicy. Gjenbruk: score 4 hvis utstyr doneres. Handlingsplan: prioriter høy effekt/lav kostnad først.
 
 ### English — Practical Exercises
 
@@ -168,29 +145,20 @@ Audit the school's IT equipment:
 - Count PCs (laptop/desktop), servers, switches/routers, monitors
 - Look up typical power consumption (Watts)
 - Calculate daily and yearly electricity consumption (kWh)
-- Calculate CO₂ footprint (Norwegian grid: ~30 g CO₂/kWh,
-  EU: ~250 g CO₂/kWh)
+- Calculate CO₂ footprint (Norwegian grid: ~30 g CO₂/kWh, EU: ~250 g CO₂/kWh)
 - Compare with car emissions (120 g CO₂/km)
 - Propose energy-saving measures to the IT manager
 
 **Exercise 2: Green IT Audit of the School**
 Act as an IT consultant assessing the school's IT sustainability.
-Checklist: Equipment age, Energy Star certification, power management,
-e-waste handling, cloud providers' renewable energy, printing habits.
+Checklist: Equipment age, Energy Star certification, power management, e-waste handling, cloud providers' renewable energy, printing habits.
 Rate each area (1-5), justify, and propose improvements.
 Create an action plan with 5 specific recommendations.
 
 **Solution Guidelines:**
 
-- Exercise 1: Example: 100 laptops × 50W × 6h/day × 190 days =
-  5,700 kWh/year. Servers: 4 × 200W × 24/7 = 7,008 kWh/year.
-  Total: ~13,000 kWh/year. Norwegian grid: ~390 kg CO₂/year.
-  EU grid: ~3,250 kg CO₂/year. Low-hanging fruit: power management
-  settings, turn off PCs at night.
-- Exercise 2: Scale: 5 = excellent, 3 = average, 1 = critical.
-  Power management score 2 if PCs stay on → implement via group policy.
-  Reuse score 4 if equipment donated. Action plan: prioritize
-  high-impact/low-cost measures first.
+- Exercise 1: Example: 100 laptops × 50W × 6h/day × 190 days = 5,700 kWh/year. Servers: 4 × 200W × 24/7 = 7,008 kWh/year. Total: ~13,000 kWh/year. Norwegian grid: ~390 kg CO₂/year. EU grid: ~3,250 kg CO₂/year. Low-hanging fruit: power management settings, turn off PCs at night.
+- Exercise 2: Scale: 5 = excellent, 3 = average, 1 = critical. Power management score 2 if PCs stay on → implement via group policy. Reuse score 4 if equipment donated. Action plan: prioritize high-impact/low-cost measures first.
 
 ## 🔗 Relevante artikler / Related Articles
 

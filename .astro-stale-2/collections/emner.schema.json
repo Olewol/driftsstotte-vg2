@@ -1,0 +1,194 @@
+{
+  "$ref": "#/definitions/emner",
+  "definitions": {
+    "emner": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "public": {
+          "type": "boolean",
+          "default": true
+        },
+        "emne": {
+          "type": "string"
+        },
+        "uke": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "default": []
+        },
+        "kompetansemaal": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "default": []
+        },
+        "kilder": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "flashcards": {
+          "anyOf": [
+            {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": false
+        },
+        "notebooklm": {
+          "anyOf": [
+            {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": false
+        },
+        "podcast": {
+          "anyOf": [
+            {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": false
+        },
+        "video": {
+          "anyOf": [
+            {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": false
+        },
+        "quiz": {
+          "anyOf": [
+            {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": false
+        },
+        "infographic": {
+          "anyOf": [
+            {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": false
+        },
+        "relatert": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "ressursar": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "lenke",
+                  "video",
+                  "notat",
+                  "oppgave"
+                ]
+              },
+              "tittel": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "lengde": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "tittel"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "oppgaaver": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "emne"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
