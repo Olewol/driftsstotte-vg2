@@ -16,6 +16,11 @@ export async function getStaticPaths() {
 const { note } = Astro.props;
 const { Content } = await render(note);
 const { title, emne, uke, kompetansemaal, relatert, ressursar, oppgaaver, notebooklm, flashcards, podcast, video, quiz, infographic } = note.data;
+const optionalProps = { notebooklm, flashcards, podcast, video, quiz, infographic };
+// Coerce null to undefined for optional ContentLayout props
+const clean = Object.fromEntries(
+  Object.entries(optionalProps).map(([k, v]) => [k, v === null ? undefined : v])
+);
 const pageLang = note.id.endsWith('-en.md') ? 'en' : 'no';
 const slug = note.id.split('/').pop()!.replace(/\.mdx?$/, '');
 ---
@@ -27,12 +32,12 @@ const slug = note.id.split('/').pop()!.replace(/\.mdx?$/, '');
   relatert={relatert}
   ressursar={ressursar}
   oppgaaver={oppgaaver}
-  notebooklm={notebooklm}
-  flashcards={flashcards}
-  podcast={podcast}
-  video={video}
-  quiz={quiz}
-  infographic={infographic}
+  notebooklm={clean.notebooklm}
+  flashcards={clean.flashcards}
+  podcast={clean.podcast}
+  video={clean.video}
+  quiz={clean.quiz}
+  infographic={clean.infographic}
   language={pageLang}
   flashcardSlug={slug}
 >

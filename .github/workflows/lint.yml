@@ -54,4 +54,23 @@ jobs:
 
       - name: Kjør Astro-sjekk
         run: npx astro check
-        continue-on-error: true
+
+  test:
+    name: Enhetstester
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sjekk ut kode
+        uses: actions/checkout@v4
+
+      - name: Sett opp Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Installer avhengigheiter
+        run: npm ci
+
+      - name: Kjør vitest
+        run: npm test

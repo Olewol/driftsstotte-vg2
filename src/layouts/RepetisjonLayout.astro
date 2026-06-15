@@ -12,11 +12,6 @@ const topics = [
 const topicIndex = topics.findIndex(t => path.includes(t)) + 1;
 const totalTopics = topics.length;
 const topicSlug = topics[topicIndex - 1] || '';
-const topicLabels = [
-  'Brukeradministrasjon', 'Infrastruktur', 'Nettverkssegmentering',
-  'Nettverkssikkerhet', 'Servermodeller', 'Backup',
-  'Dokumentasjon', 'Nettverksprotokoller', 'Sikkerhetsprinsipper',
-];
 ---
 
 <BaseLayout title={title} description={description} lang="no">
@@ -631,6 +626,12 @@ const topicLabels = [
 </style>
 
 <script>
+  // Global type declaration for custom window property
+  declare global {
+    interface Window {
+      toggleCompletion: (el: HTMLElement) => void;
+    }
+  }
   // === TOC generation (h2 + h3) ===
   const toc = document.getElementById('toc-list');
   const prose = document.querySelector('.rep-prose');
@@ -664,7 +665,7 @@ const topicLabels = [
     entries.forEach(entry => {
       const id = entry.target.id;
       if (!id) return;
-      const link = toc?.querySelector(`a[href="#${id}"]`);
+      const link = toc?.querySelector(`a[href="#${id}"]`) as HTMLElement | null;
       if (!link) return;
       if (entry.isIntersecting) {
         link.style.color = 'var(--text)';
@@ -680,7 +681,7 @@ const topicLabels = [
 
   // === Scroll-to-top visibility ===
   const scrollBtn = document.getElementById('scroll-top');
-  let scrollTimer;
+  let scrollTimer: ReturnType<typeof setTimeout> | null = null;
   if (scrollBtn) {
     window.addEventListener('scroll', () => {
       if (scrollTimer) return;
@@ -692,7 +693,7 @@ const topicLabels = [
   }
 
   // === Completion toggling (localStorage) ===
-  window.toggleCompletion = function(el) {
+  window.toggleCompletion = function(el: HTMLElement) {
     const slug = el.dataset.slug;
     if (!slug) return;
     const key = `rep-complete-${slug}`;

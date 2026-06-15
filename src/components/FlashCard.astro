@@ -56,9 +56,10 @@ const uid = Math.random().toString(36).slice(2, 8);
       card.setAttribute('aria-label', isFlipped ? `Svar: ${a}` : `Spørsmål: ${q}`);
     });
     card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      const ke = e as KeyboardEvent;
+      if (ke.key === 'Enter' || ke.key === ' ') {
         e.preventDefault();
-        card.click();
+        (card as HTMLElement).click();
       }
     });
   });
