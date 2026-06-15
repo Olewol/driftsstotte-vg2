@@ -8,21 +8,21 @@ kompetansemaal:
 kilder:
 
   - ndla
-  - <https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:66547>
-  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
-  - <https://www.professormesser.com/network-plus/>
-  - <https://www.cloudflare.com/learning/>
-  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+  - <<<https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:665>4>7>
+  - <<<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a>2>/>
+  - <<<https://www.professormesser.com/network-plu>s>/>
+  - <<<https://www.cloudflare.com/learnin>g>/>
+  - <<<https://learn.microsoft.com/en-us/training/paths/networking-fundamental>s>/>
 
 tags: [vlan, subnetting, cidr, segmentering, nettverk, 802.1q]
-flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
+flashcards: <<<https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8>e>1>
 relaterte-oppgaver:
 
   - tittel: "IP-plan og nettverkskart for Nordic Cloud Solutions"
     url: "https://olewol.github.io/oppgaver-for-2IT/driftsstotte/ip-plan-nettverkskart"
     fag: driftsstotte
 public: true
-video: <https://www.youtube.com/watch?v=MzwV67L_6f8>
+video: <<<https://www.youtube.com/watch?v=MzwV67L_6>f>8>
 notebooklm: true
 ---
 
@@ -36,7 +36,9 @@ EEkontrollert. I praksis gjøres dette med subnetting (lag 3) og VLAN (lag 2). D
 Eer fundamentale for alle som skal planlegge og drifte et profesjonelt nettverk.
 
 FFor å forstå segmentering er det nyttig å se det i sammenheng med [[osi-modellen]] og de standardiserte protokollene
-FFbeskrevet i [[nettverksprotokoller]]. VLAN er særlig sentralt i virtuelle infrastrukturer der virtuelle svitsjer bruker
+FFbeskrevet i [[nettverksprotokoller]]. VLAN er særlig sentralt i virtuelle infrastrukturer der virtuelle svitsjer
+bruker
+
 FIEEE 802.1Q-tagging for å separere trafikk logisk.
 
 ## Teori
@@ -68,14 +70,21 @@ En IP-adresse er delt i to:
 CCIDR (Classless Inter-Domain Routing) er en kompakt måte å skrive subnettmasken på[^1] — som et suffiks etter
 CIP-adressen:
 
-|| CIDR | Subnettmaske | Antall verter | Typisk bruk |
-|| ------ | ------------- | --------------- | ------------- |
-|| /8 | 255.0.0.0 | 16 777 214 | Svært store nettverk |
-|| /16 | 255.255.0.0 | 65 534 | Mellomstore nettverk |
-|| /24 | 255.255.255.0 | 254 | Vanlig LAN |
-|| /25 | 255.255.255.128 | 126 | Halvdelt /24 |
-|| /26 | 255.255.255.192 | 62 | Kvartal av /24 |
-|| /30 | 255.255.255.252 | 2 | Point-to-point-lenker |
+| | CIDR | Subnettmaske | Antall verter | Typisk bruk |
+
+| | ------ | ------------- | --------------- | ------------- |
+
+| | /8 | 255.0.0.0 | 16 777 214 | Svært store nettverk |
+
+| | /16 | 255.255.0.0 | 65 534 | Mellomstore nettverk |
+
+| | /24 | 255.255.255.0 | 254 | Vanlig LAN |
+
+| | /25 | 255.255.255.128 | 126 | Halvdelt /24 |
+
+| | /26 | 255.255.255.192 | 62 | Kvartal av /24 |
+
+| | /30 | 255.255.255.252 | 2 | Point-to-point-lenker |
 
 Antall verter = 2^(antall vertsbit) − 2 (nettverk- og broadcast-adresse er reservert).
 
@@ -86,22 +95,31 @@ SServere, Admin.
 
 Hvert subnett kan bruke /26 (62 verter per subnett):
 
-|| Subnett | Nettverksadresse | Første host | Siste host | Broadcast |
-|| --------- | ----------------- | ------------- | ------------ | ----------- |
-|| Ansatte | 192.168.1.0/26 | 192.168.1.1 | 192.168.1.62 | 192.168.1.63 |
-|| Gjest | 192.168.1.64/26 | 192.168.1.65 | 192.168.1.126 | 192.168.1.127 |
-|| Servere | 192.168.1.128/26 | 192.168.1.129 | 192.168.1.190 | 192.168.1.191 |
-|| Admin | 192.168.1.192/26 | 192.168.1.193 | 192.168.1.254 | 192.168.1.255 |
+| | Subnett | Nettverksadresse | Første host | Siste host | Broadcast |
+
+| | --------- | ----------------- | ------------- | ------------ | ----------- |
+
+| | Ansatte | 192.168.1.0/26 | 192.168.1.1 | 192.168.1.62 | 192.168.1.63 |
+
+| | Gjest | 192.168.1.64/26 | 192.168.1.65 | 192.168.1.126 | 192.168.1.127 |
+
+| | Servere | 192.168.1.128/26 | 192.168.1.129 | 192.168.1.190 | 192.168.1.191 |
+
+| | Admin | 192.168.1.192/26 | 192.168.1.193 | 192.168.1.254 | 192.168.1.255 |
 
 #### Private adresserom
 
 Disse adressene rutes ikke på internett og brukes til interne nettverk[^2]:
 
-|| Adresseblokk | CIDR | Antall adresser |
-|| -------------- | ------ | ----------------- |
-|| 10.0.0.0–10.255.255.255 | 10.0.0.0/8 | ~16,7 mill. |
-|| 172.16.0.0–172.31.255.255 | 172.16.0.0/12 | ~1,05 mill. |
-|| 192.168.0.0–192.168.255.255 | 192.168.0.0/16 | 65 536 |
+| | Adresseblokk | CIDR | Antall adresser |
+
+| | -------------- | ------ | ----------------- |
+
+| | 10.0.0.0–10.255.255.255 | 10.0.0.0/8 | ~16,7 mill. |
+
+| | 172.16.0.0–172.31.255.255 | 172.16.0.0/12 | ~1,05 mill. |
+
+| | 192.168.0.0–192.168.255.255 | 192.168.0.0/16 | 65 536 |
 
 ---
 
@@ -128,10 +146,13 @@ VVLAN-tagging i Ethernet-rammer — den muliggjør flere logiske nettverk på é
 
 #### Access-porter vs. trunk-porter
 
-|| Port-type | Funksjon | Tagging | Brukes til |
-|| ----------- | ---------- | --------- | ------------ |
-|| **Access-port** | Tilhører ett VLAN | Untagged (taggen fjernes) | Sluttenheter (PC, printer) |
-|| **Trunk-port** | Bærer trafikk for flere VLAN | Tagged (taggen beholdes) | Forbindelser mellom svitsjer og til ruter |
+| | Port-type | Funksjon | Tagging | Brukes til |
+
+| | ----------- | ---------- | --------- | ------------ |
+
+| | **Access-port** | Tilhører ett VLAN | Untagged (taggen fjernes) | Sluttenheter (PC, printer) |
+
+| | **Trunk-port** | Bærer trafikk for flere VLAN | Tagged (taggen beholdes) | Forbindelser mellom svitsjer og til ruter |
 
 EEn PC på en access-port "vet" ikke at den er i et VLAN[^4] — den ser bare et vanlig nettverk.
 ETaggen legges til av svitsjen og fjernes på mottakersiden.
@@ -150,18 +171,26 @@ EVLAN-taggene i datapakken.
 ***Ytelse**: Hvert VLAN er sitt eget broadcast-domene. Broadcast-trafikk (ARP, DHCP Discover) sendes bare innenfor
 *VLAN-et — ikke til alle enheter i hele nettverket.
 
-***Fleksibilitet**: En ansatt som flytter til et annet rom trenger bare å endre port-VLAN-tilordningen i svitsjen — ingen
+***Fleksibilitet**: En ansatt som flytter til et annet rom trenger bare å endre port-VLAN-tilordningen i svitsjen —
+ingen
+
 *ny kabling.
 
 **Typisk VLAN-struktur i en skole/bedrift**:
 
-|| VLAN | Navn | Adresserom | Formål |
-|| ------ | ------ | ----------- | -------- |
-|| 10 | Ansatte | 192.168.10.0/24 | Arbeidsmaskiner |
-|| 20 | Gjest | 192.168.20.0/24 | Besøkende, IoT |
-|| 30 | Servere | 192.168.30.0/24 | Interne servere |
-|| 40 | Admin | 192.168.40.0/24 | IT-avdelingen |
-|| 99 | Mgmt | 192.168.99.0/24 | Nettverksutstyr |
+| | VLAN | Navn | Adresserom | Formål |
+
+| | ------ | ------ | ----------- | -------- |
+
+| | 10 | Ansatte | 192.168.10.0/24 | Arbeidsmaskiner |
+
+| | 20 | Gjest | 192.168.20.0/24 | Besøkende, IoT |
+
+| | 30 | Servere | 192.168.30.0/24 | Interne servere |
+
+| | 40 | Admin | 192.168.40.0/24 | IT-avdelingen |
+
+| | 99 | Mgmt | 192.168.99.0/24 | Nettverksutstyr |
 
 ## Eksempel / lab
 
@@ -183,8 +212,8 @@ EVLAN-taggene i datapakken.
 2. Gå til Ports-fanen
 3. Klikk på ønsket port
 4. Velg "Switch Port Profile" eller sett manuelt:
-   - Native VLAN: VLAN-et for utagget trafikk (access-port: velg VLAN 20)
-   - Tagged VLANs: VLAN-ene som skal tagges gjennom porten (trunk-port)
+  - Native VLAN: VLAN-et for utagget trafikk (access-port: velg VLAN 20)
+  - Tagged VLANs: VLAN-ene som skal tagges gjennom porten (trunk-port)
 
 *## Trådløst VLAN (SSID):
 
@@ -199,7 +228,9 @@ SSForstå forskjellen mellom nettverksadresse, broadcast-adresse og brukbare hos
 SHusk formelen: 2^(vertsbit) − 2.
 
 *## Kjerneforståelse: VLAN
-VVLAN er logisk nettverkssegmentering på lag 2 (datalink). IEEE 802.1Q-taggen (4 bytes) legges i Ethernet-rammen med VLAN
+VVLAN er logisk nettverkssegmentering på lag 2 (datalink). IEEE 802.1Q-taggen (4 bytes) legges i Ethernet-rammen med
+VLAN
+
 VID. Access-porter fjerner taggen for sluttenheter; trunk-porter beholder den for å bære flere VLAN.
 
 *## Vanlige eksamenspoeng
@@ -280,7 +311,9 @@ JWiFi kobles til VLAN 10 — trafikken holdes separert selv om begge bruker samm
 <details>
 <summary>Spørsmål 4: Hvorfor er VLAN nyttig for nettverkssikkerhet?</summary>
 
-***Svar:**VLAN skaper separate broadcast-domener. En enhet i ett VLAN kan ikke kommunisere direkte med enheter i et annet
+***Svar:**VLAN skaper separate broadcast-domener. En enhet i ett VLAN kan ikke kommunisere direkte med enheter i et
+annet
+
 **VLAN uten å passere en ruter eller brannmur med eksplisitte tillatelsesregler. Dette begrenser spredning av trusler og
 *hindrer uautorisert tilgang mellom nettverk.
 </details>
@@ -295,17 +328,33 @@ JWiFi kobles til VLAN 10 — trafikken holdes separert selv om begge bruker samm
 
 ## Kilder
 
-[^1]: NDLA. (2024). IPv4. <https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02>
-[^2]: Cloudflare Learning. (2025). What is IP? <https://www.cloudflare.com/learning/network-layer/what-is-an-ip-address/>
-[^3]: Professor Messer. (2025). Network+ Study Guide — VLANs and Switching. <https://www.professormesser.com/network-plus/>
-[^4]: NDLA. (2024). Virtuelt lokalnettverk VLAN. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88>
-[^5]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+[^1]: NDLA. (2024). IPv4. <<https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec0>2>
+[^2]: Cloudflare Learning. (2025). What is IP?
+<<https://www.cloudflare.com/learning/network-layer/what-is-an-ip-address>/>
+
+[^3]: Professor Messer. (2025). Network+ Study Guide — VLANs and Switching.
+<<https://www.professormesser.com/network-plus>/>
+
+[^4]: NDLA. (2024). Virtuelt lokalnettverk VLAN.
+<<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa8>8>
+
+[^5]: Microsoft Learn. (2025). Networking fundamentals.
+<<https://learn.microsoft.com/en-us/training/paths/networking-fundamentals>/>
 
 ## Ressurser
 
-- [Virtuelt lokalnettverk VLAN — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88>)
+- [Virtuelt lokalnettverk VLAN —
+
+  NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88>)
+
 - [IPv4 — NDLA](<https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02>)
-- [Creating Virtual Networks (VLANs) — Ubiquiti UniFi](<https://help.ui.com/hc/en-us/articles/9761080275607-Creating-Virtual-Networks-VLANs>)
-- [Switch Port VLAN Assignment — Ubiquiti UniFi](<https://help.ui.com/hc/en-us/articles/26136855808919-Switch-Port-VLAN-Assignment-Trunk-Access-Ports>)
+- [Creating Virtual Networks (VLANs) — Ubiquiti
+
+  UniFi](<https://help.ui.com/hc/en-us/articles/9761080275607-Creating-Virtual-Networks-VLANs>)
+
+- [Switch Port VLAN Assignment — Ubiquiti
+
+  UniFi](<https://help.ui.com/hc/en-us/articles/26136855808919-Switch-Port-VLAN-Assignment-Trunk-Access-Ports>)
+
 - [Svitsj — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/svitsj/a33b4b015c>)
 - [VLAN — SNL](<https://snl.no/VLAN>)

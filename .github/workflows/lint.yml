@@ -54,7 +54,6 @@ jobs:
 
       - name: Kjør Astro-sjekk
         run: npx astro check
-        continue-on-error: true
 
   test:
     name: Enhetstester
