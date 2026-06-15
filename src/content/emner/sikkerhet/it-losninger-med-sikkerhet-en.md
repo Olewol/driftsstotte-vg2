@@ -2,20 +2,24 @@
 title: "IT Solutions with Built-in Security"
 emne: sikkerhet
 kompetansemaal:
+
   - km-10
+
 kilder:
+
   - ndla
   - nsm
   - microsoft
-  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-  - https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054
-  - https://www.datatilsynet.no/
-  - https://owasp.org/www-project-top-ten/
-  - https://www.digdir.no/informasjonssikkerhet/
-video: https://www.youtube.com/watch?v=R9NCYvR3h3w
+  - <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+  - <https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054>
+  - <https://www.datatilsynet.no/>
+  - <https://owasp.org/www-project-top-ten/>
+  - <https://www.digdir.no/informasjonssikkerhet/>
+
+video: <https://www.youtube.com/watch?v=R9NCYvR3h3w>
 notebooklm: true
 tags: []
-flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
+flashcards: <https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9>
 public: true
 language: en
 original: it-losninger-med-sikkerhet.md
@@ -35,9 +39,10 @@ The principles in this article are closely linked to [[brannmur-en|firewall and 
 
 ### Security by Design
 
-**Security by Design** is the principle that security is integrated into all phases of system development and operations – from requirements specification, design, development, and testing, to production and decommissioning.
+**Security by Design**is the principle that security is integrated into all phases of system development and operations – from requirements specification, design, development, and testing, to production and decommissioning.
 
-Microsoft's **SDL (Security Development Lifecycle)** is a reference model with these phases:
+Microsoft's**SDL (Security Development Lifecycle)**is a reference model with these phases:
+
 1. Training in secure coding
 2. Requirements specification including security requirements
 3. Threat modeling
@@ -52,9 +57,9 @@ The opposite – adding security after the system is built – is more expensive
 
 ### Zero Trust Model
 
-**Zero Trust** is a security architecture based on the principle:
+**Zero Trust**is a security architecture based on the principle:
 
-> **"Never trust, always verify"**
+>**"Never trust, always verify"**
 
 Traditional security thinking assumed that everything inside the corporate network was safe. Zero Trust rejects this assumption and treats all access as potentially dangerous – regardless of whether the user is inside or outside the corporate network.
 
@@ -62,11 +67,12 @@ Traditional security thinking assumed that everything inside the corporate netwo
 
 | Principle | What it means in practice |
 |---|---|
-| **Verify explicitly** | Authenticate based on all available data points: user identity, device, location, time |
-| **Use least privilege** | Grant only the access that is strictly necessary. Use JIT (Just-In-Time) and JEA (Just-Enough-Access) |
-| **Assume breach** | Design the system as if it is already compromised. Segment access, encrypt end-to-end, monitor actively |
+|**Verify explicitly**| Authenticate based on all available data points: user identity, device, location, time |
+|**Use least privilege**| Grant only the access that is strictly necessary. Use JIT (Just-In-Time) and JEA (Just-Enough-Access) |
+|**Assume breach**| Design the system as if it is already compromised. Segment access, encrypt end-to-end, monitor actively |
 
 **Practical Zero Trust measures:**
+
 - MFA (multi-factor authentication) for all users – always
 - Conditional Access: grant access only from approved devices with updated software
 - Microsegmentation: limit which systems users and applications can reach
@@ -81,18 +87,19 @@ The Norwegian Digitalisation Directorate (Digdir) has published a Norwegian guid
 Known vulnerabilities in software are one of the most common entry points for attackers. Patch management is the systematic process of keeping all software, firmware, and operating systems up to date.
 
 **Patch cycle:**
-1. **Identify:** map which systems and versions are in use (inventory list)
-2. **Evaluate:** assess the severity of new patches (critical / important / moderate)
-3. **Test:** test patches in a staging environment before production rollout
-4. **Deploy:** distribute patches via management tools (WSUS, Intune, apt/yum)
-5. **Verify:** confirm that patches are installed and systems are functioning
+1.**Identify:**map which systems and versions are in use (inventory list)
+2.**Evaluate:**assess the severity of new patches (critical / important / moderate)
+3.**Test:**test patches in a staging environment before production rollout
+4.**Deploy:**distribute patches via management tools (WSUS, Intune, apt/yum)
+5.**Verify:**confirm that patches are installed and systems are functioning
 
 **Tools:**
-- Windows: **WSUS** (Windows Server Update Services), **Microsoft Intune**
-- Linux: `apt update && apt upgrade` (Debian/Ubuntu), `dnf update` (RHEL/Fedora)
+
+- Windows:**WSUS**(Windows Server Update Services),**Microsoft Intune**
+- Linux: `apt update && apt upgrade`(Debian/Ubuntu),`dnf update` (RHEL/Fedora)
 - Network: vendor management portal for firmware
 
-**NSM recommendation:** Critical patches should be installed within 24–72 hours. OWASP A06 (Vulnerable and Outdated Components) highlights that outdated components are one of the most common attack vectors.
+**NSM recommendation:**Critical patches should be installed within 24–72 hours. OWASP A06 (Vulnerable and Outdated Components) highlights that outdated components are one of the most common attack vectors.
 
 Automating the patch process is key to reducing the vulnerability window – the shorter the time from a patch being available to it being installed, the less time attackers have to exploit known holes.
 
@@ -103,6 +110,7 @@ Automating the patch process is key to reducing the vulnerability window – the
 Logging is the recording of events in an IT system. Without logging, it is impossible to detect attacks, reconstruct event sequences, or investigate breaches.
 
 **What should be logged:**
+
 - Login attempts (successful and failed)
 - Access changes (new users, modified permissions)
 - System changes and configuration changes
@@ -112,9 +120,9 @@ Logging is the recording of events in an IT system. Without logging, it is impos
 **SIEM (Security Information and Event Management):**
 SIEM collects logs from all systems in a central location, correlates events, and alerts on suspicious activity.
 
-- **Azure Monitor / Microsoft Sentinel:** cloud-based SIEM. Sentinel uses ML-based anomaly detection and can automatically trigger response.
-- **Splunk, IBM QRadar:** commercial SIEM solutions
-- **Wazuh, Graylog:** open-source alternatives
+-**Azure Monitor / Microsoft Sentinel:**cloud-based SIEM. Sentinel uses ML-based anomaly detection and can automatically trigger response.
+-**Splunk, IBM QRadar:**commercial SIEM solutions
+-**Wazuh, Graylog:**open-source alternatives
 
 OWASP identifies insufficient logging and monitoring (A09) as a critical vulnerability – without logs, you don't know you are being attacked.
 
@@ -122,7 +130,7 @@ OWASP identifies insufficient logging and monitoring (A09) as a critical vulnera
 
 ### Access Control and IAM
 
-**IAM (Identity and Access Management)** is about controlling who can do what in IT systems.
+**IAM (Identity and Access Management)**is about controlling who can do what in IT systems.
 
 **Principle of least privilege:**
 Users, applications, and services should only have the access rights that are strictly necessary for their job. No user should have domain administrator rights on a daily basis.
@@ -131,9 +139,9 @@ Users, applications, and services should only have the access rights that are st
 Permissions are tied to roles (e.g., "Helpdesk," "Accounting Staff," "IT Admin"), not to individual users. Users are assigned roles.
 
 **Tools:**
-- **Active Directory (AD):** user accounts, groups, and permissions management on-premises. See [[active-directory-en]].
-- **Azure Entra ID (formerly Azure AD):** cloud-based IAM. Supports SSO (Single Sign-On), MFA, and Conditional Access.
-- **MFA:** combines something you know (password), something you have (authenticator app/SMS), and/or something you are (biometrics). Blocks over 99% of account takeovers according to Microsoft.
+-**Active Directory (AD):**user accounts, groups, and permissions management on-premises. See [[active-directory-en]].
+-**Azure Entra ID (formerly Azure AD):**cloud-based IAM. Supports SSO (Single Sign-On), MFA, and Conditional Access.
+-**MFA:**combines something you know (password), something you have (authenticator app/SMS), and/or something you are (biometrics). Blocks over 99% of account takeovers according to Microsoft.
 
 See also [[bruker-og-tilgangsstyring-en|user and access management]] for a practical walkthrough of access management.
 
@@ -144,11 +152,13 @@ See also [[bruker-og-tilgangsstyring-en|user and access management]] for a pract
 Backup is not just an operational routine – it is a security measure and the most important reactive measure against ransomware.
 
 **The 3-2-1 rule:**
-- **3** copies of the data
-- on **2** different media (e.g., disk + tape or disk + cloud)
-- with **1** offsite copy (physical or cloud-based)
+-**3**copies of the data
+
+- on**2**different media (e.g., disk + tape or disk + cloud)
+- with**1**offsite copy (physical or cloud-based)
 
 **Practical:**
+
 - Test recovery regularly – a backup is worthless if it cannot be restored
 - Isolate backup systems from the production network (ransomware encrypts everything it can reach)
 - Azure Backup: integrated cloud backup for virtual machines, databases, and file servers
@@ -159,17 +169,17 @@ See [[backup-og-gjenoppretting-en|backup and recovery]] for a detailed review of
 
 ### BCDR – Business Continuity and Disaster Recovery
 
-**Business Continuity (BC)** is about maintaining critical functions during a crisis.
-**Disaster Recovery (DR)** is about restoring IT systems after a catastrophic event.
+**Business Continuity (BC)**is about maintaining critical functions during a crisis.
+**Disaster Recovery (DR)**is about restoring IT systems after a catastrophic event.
 
 Key terms:
 
 | Term | Explanation |
 |---|---|
-| **RTO (Recovery Time Objective)** | Maximum acceptable downtime – how long does recovery take? |
-| **RPO (Recovery Point Objective)** | Maximum acceptable data loss – how old can the latest backup be? |
-| **Failover** | Automatic transition to a redundant system upon failure |
-| **DR plan** | Documented recovery procedure – tested regularly |
+|**RTO (Recovery Time Objective)**| Maximum acceptable downtime – how long does recovery take? |
+|**RPO (Recovery Point Objective)**| Maximum acceptable data loss – how old can the latest backup be? |
+|**Failover**| Automatic transition to a redundant system upon failure |
+|**DR plan**| Documented recovery procedure – tested regularly |
 
 Example: A hospital may have RTO = 4 hours and RPO = 1 hour for its patient records system. This requires data replication at intervals of no more than 1 hour and a tested recovery procedure that takes under 4 hours.
 
@@ -177,7 +187,7 @@ Example: A hospital may have RTO = 4 hours and RPO = 1 hour for its patient reco
 
 ### Defense in Depth
 
-**Defense in Depth** (layered defense) is the principle that no single security mechanism is sufficient – security is built in layers, so that even if one layer fails, the next layer stops the attacker.
+**Defense in Depth**(layered defense) is the principle that no single security mechanism is sufficient – security is built in layers, so that even if one layer fails, the next layer stops the attacker.
 
 ```
 Layer 7: Data          → Encryption, access control, DLP
@@ -200,6 +210,7 @@ Microsegmentation is a concrete measure for implementing Defense in Depth at the
 **Scenario: Assess the security level of a fictional school network**
 
 Solberg Upper Secondary School has the following IT infrastructure:
+
 - Windows Server 2022 (AD, file server, WSUS)
 - 350 Windows 11 clients managed via Intune
 - Microsoft 365 with Entra ID and MFA enabled for employees
@@ -219,7 +230,7 @@ Solberg Upper Secondary School has the following IT infrastructure:
 | Application | WSUS patching | Application software patched manually |
 | Data | Azure Backup | Backup recovery not tested in the last 6 months |
 
-**Conclusion:** Good basic security. Priority improvements: enable MFA for students, implement IDS, integrate student PCs into Intune, and plan quarterly DR testing.
+**Conclusion:**Good basic security. Priority improvements: enable MFA for students, implement IDS, integrate student PCs into Intune, and plan quarterly DR testing.
 
 ---
 
@@ -279,31 +290,31 @@ Logging alone gives you raw data – you cannot manually read through millions o
 
 <details><summary>Question 1: What are the three core principles of Zero Trust?</summary>
 
-**Answer:** Verify explicitly, Use least privilege, and Assume breach. Together, this means no user, device, or network is automatically trusted – all access is verified and limited.
+**Answer:**Verify explicitly, Use least privilege, and Assume breach. Together, this means no user, device, or network is automatically trusted – all access is verified and limited.
 
 </details>
 
 <details><summary>Question 2: What is the 3-2-1 rule for backup?</summary>
 
-**Answer:** 3 copies of the data, on 2 different media, with 1 offsite copy. The offsite copy ensures that backups survive local disasters such as fire or ransomware attacks.
+**Answer:**3 copies of the data, on 2 different media, with 1 offsite copy. The offsite copy ensures that backups survive local disasters such as fire or ransomware attacks.
 
 </details>
 
 <details><summary>Question 3: What is the difference between RTO and RPO?</summary>
 
-**Answer:** RTO (Recovery Time Objective) is the maximum acceptable downtime – how long recovery can take. RPO (Recovery Point Objective) is the maximum acceptable data loss – how old the latest backup can be.
+**Answer:**RTO (Recovery Time Objective) is the maximum acceptable downtime – how long recovery can take. RPO (Recovery Point Objective) is the maximum acceptable data loss – how old the latest backup can be.
 
 </details>
 
 <details><summary>Question 4: Why is patch management important for security?</summary>
 
-**Answer:** Known vulnerabilities in software are one of the most common attack vectors. Patches close these vulnerabilities. Outdated components (OWASP A06) are consistently among the most frequent causes of compromises.
+**Answer:**Known vulnerabilities in software are one of the most common attack vectors. Patches close these vulnerabilities. Outdated components (OWASP A06) are consistently among the most frequent causes of compromises.
 
 </details>
 
 <details><summary>Question 5: What is SIEM, and which vulnerability does OWASP associate with insufficient logging?</summary>
 
-**Answer:** SIEM (Security Information and Event Management) collects logs from all systems centrally, correlates events, and alerts on suspicious activity. OWASP Top 10 A09 identifies insufficient logging and monitoring as a critical vulnerability – without logs, you cannot detect attacks.
+**Answer:**SIEM (Security Information and Event Management) collects logs from all systems centrally, correlates events, and alerts on suspicious activity. OWASP Top 10 A09 identifies insufficient logging and monitoring as a critical vulnerability – without logs, you cannot detect attacks.
 
 </details>
 
@@ -311,11 +322,11 @@ Logging alone gives you raw data – you cannot manually read through millions o
 
 ## Resources
 
-- [Microsoft – Zero Trust Overview](https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview)
-- [Microsoft – Azure Security Overview](https://learn.microsoft.com/en-us/azure/security/fundamentals/overview)
-- [NSM Fundamental Principles – Protect and Maintain](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
-- [NDLA – Updating Linux with APT](https://ndla.no)
-- [NDLA – User Accounts in Active Directory](https://ndla.no)
-- [NSM – Fundamental Principles for ICT Security (full version)](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
-- [Digdir – Zero Trust Architecture (Norwegian)](https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054)
-- [YouTube: What is Zero Trust? (IBM Technology, 6 min)](https://www.youtube.com/watch?v=R9NCYvR3h3w)
+- [Microsoft – Zero Trust Overview](<https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview>)
+- [Microsoft – Azure Security Overview](<https://learn.microsoft.com/en-us/azure/security/fundamentals/overview>)
+- [NSM Fundamental Principles – Protect and Maintain](<https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>)
+- [NDLA – Updating Linux with APT](<https://ndla.no>)
+- [NDLA – User Accounts in Active Directory](<https://ndla.no>)
+- [NSM – Fundamental Principles for ICT Security (full version)](<https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>)
+- [Digdir – Zero Trust Architecture (Norwegian)](<https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054>)
+- [YouTube: What is Zero Trust? (IBM Technology, 6 min)](<https://www.youtube.com/watch?v=R9NCYvR3h3w>)

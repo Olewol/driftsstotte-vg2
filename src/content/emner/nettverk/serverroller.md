@@ -2,18 +2,22 @@
 title: "Serverroller"
 emne: nettverk
 kompetansemaal:
+
   - km-05
+
 kilder:
+
   - ndla
-  - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [server, ad, dns, dhcp, filserver, webserver, windows-server, serverrolle]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=vVbrlNlqJP4
+video: <https://www.youtube.com/watch?v=vVbrlNlqJP4>
 notebooklm: true
 ---
 
@@ -29,7 +33,7 @@ Serverroller er tett koblet til [[active-directory]], [[bruker-og-tilgangsstyrin
 
 ### Hva er en serverrolle?
 
-En **serverrolle** er en tilleggsfunksjon man installerer i Windows Server[^1] via:
+En**serverrolle**er en tilleggsfunksjon man installerer i Windows Server[^1] via:
 `Server Manager → Manage → Add Roles and Features`
 
 Én fysisk server kan ha flere roller installert, men av ytelsesmessige og sikkerhetsmessige grunner anbefales det å holde rollene separate — spesielt i produksjon. I skolelab er det vanlig å ha AD DS, DNS og DHCP på samme domenekontroller.
@@ -50,12 +54,12 @@ En **serverrolle** er en tilleggsfunksjon man installerer i Windows Server[^1] v
 
 ### Active Directory Domain Services (AD DS)
 
-AD DS er grunnmuren i et Windows-domenenettverk[^1]. En server med AD DS-rollen kalles en **domenekontroller** og administrerer:
-- **Autentisering**: logger inn brukere med brukernavn og passord
-- **Autorisasjon**: kontrollerer hva brukere har tilgang til
-- **Katalog**: sentralt register over alle brukere, datamaskiner og ressurser
+AD DS er grunnmuren i et Windows-domenenettverk[^1]. En server med AD DS-rollen kalles en**domenekontroller**og administrerer:
+-**Autentisering**: logger inn brukere med brukernavn og passord
+-**Autorisasjon**: kontrollerer hva brukere har tilgang til
+-**Katalog**: sentralt register over alle brukere, datamaskiner og ressurser
 
-**AD DS** — Active Directory Domain Services — er altså en katalogtjeneste som sentraliserer administrasjon av brukere, grupper og datamaskiner i et nettverk[^2].
+**AD DS**— Active Directory Domain Services — er altså en katalogtjeneste som sentraliserer administrasjon av brukere, grupper og datamaskiner i et nettverk[^2].
 
 #### AD-hierarkiet
 
@@ -69,17 +73,17 @@ Skog (Forest)
                     └── OU: Bergen
 ```
 
-- **Skog**: øverste nivå, inneholder ett eller flere trær
-- **Tre**: domene med underdomener som deler et navnerom
-- **Domene**: administrativ grense (f.eks. `lab.lan`)
-- **OU (Organizational Unit)**: logisk mappe for organisering av objekter, støtter Group Policy
-- **FQDN**: Fully Qualified Domain Name — f.eks. `pc01.lab.lan`
+-**Skog**: øverste nivå, inneholder ett eller flere trær
+-**Tre**: domene med underdomener som deler et navnerom
+-**Domene**: administrativ grense (f.eks. `lab.lan`)
+-**OU (Organizational Unit)**: logisk mappe for organisering av objekter, støtter Group Policy
+-**FQDN**: Fully Qualified Domain Name — f.eks. `pc01.lab.lan`
 
 #### Brukere og grupper
 
-- **Brukerkontoer**: tilordnes individuelt til ressurser, eller via gruppmedlemskap
-- **Sikkerhetsgrupper**: en konto kan tilhøre flere grupper → skalerbar tilgangsstyring
-- **OU vs. mappe**: OU støtter Group Policy Objects (GPO) og delegert administrasjon
+-**Brukerkontoer**: tilordnes individuelt til ressurser, eller via gruppmedlemskap
+-**Sikkerhetsgrupper**: en konto kan tilhøre flere grupper → skalerbar tilgangsstyring
+-**OU vs. mappe**: OU støtter Group Policy Objects (GPO) og delegert administrasjon
 
 Domenekontrolleren krever DNS — DNS-serverrollen installeres automatisk eller manuelt under AD DS-oppsett.
 
@@ -87,11 +91,12 @@ Domenekontrolleren krever DNS — DNS-serverrollen installeres automatisk eller 
 
 ### DNS-server
 
-DNS-serveren oversetter domenenavn til IP-adresser. I et AD-nettverk er domenekontrollerens DNS **autoritativ** for det lokale domenet og kjenner alle AD-objekter.
+DNS-serveren oversetter domenenavn til IP-adresser. I et AD-nettverk er domenekontrollerens DNS**autoritativ**for det lokale domenet og kjenner alle AD-objekter.
 
 Konfigurasjon i Windows Server:
+
 - Soner (Zones): primærsone for `lab.lan` opprettes automatisk med AD DS
-- Forwarders: oppslag utenfor `lab.lan` videresendes til ruter (f.eks. `192.168.1.1`) eller offentlig DNS (`8.8.8.8`)
+- Forwarders: oppslag utenfor `lab.lan`videresendes til ruter (f.eks.`192.168.1.1`) eller offentlig DNS (`8.8.8.8`)
 - Dynamisk oppdatering: klienter registrerer seg automatisk i DNS ved domene-join
 
 Se [[dns-og-dhcp]] for full gjennomgang av DNS.
@@ -102,9 +107,10 @@ Se [[dns-og-dhcp]] for full gjennomgang av DNS.
 
 DHCP-serveren tildeler automatisk IP-konfigurasjon til nettverksklienter. I domenemiljø overtar denne rollen fra ruterens innebygde DHCP.
 
-Et **DHCP Scope** er et definert område med IP-adresser som DHCP-serveren kan tildele klienter på et bestemt subnett.
+Et**DHCP Scope**er et definert område med IP-adresser som DHCP-serveren kan tildele klienter på et bestemt subnett.
 
 Viktige steg:
+
 1. Deaktiver DHCP på ruteren
 2. Installer DHCP Server-rollen i Windows Server
 3. Opprett et scope (f.eks. `192.168.1.100`–`192.168.1.200`)
@@ -117,18 +123,20 @@ Se [[dns-og-dhcp]] for full gjennomgang av DHCP.
 
 ### Webserver — IIS (Internet Information Services)
 
-**IIS** (Internet Information Services) er Microsofts webserver-rolle som brukes til å hoste nettsider eller webapplikasjoner[^5]. Det er en serverrolle tilgjengelig i Windows Server.
+**IIS**(Internet Information Services) er Microsofts webserver-rolle som brukes til å hoste nettsider eller webapplikasjoner[^5]. Det er en serverrolle tilgjengelig i Windows Server.
 
 **Funksjon**: betjener HTTP/HTTPS-forespørsler fra nettlesere. Brukes til:
+
 - Interne portaler og intranett-sider
 - Nettapplikasjoner (ASP.NET, PHP)
 - Administratorgrensesnitt for andre tjenester
 
 **Konkurrenter**:
-- **Apache HTTP Server** — åpen kildekode, dominerende på Linux
-- **Nginx** — åpen kildekode, kjent for høy ytelse og reverse proxy-bruk
+-**Apache HTTP Server**— åpen kildekode, dominerende på Linux
+-**Nginx**— åpen kildekode, kjent for høy ytelse og reverse proxy-bruk
 
 **Oppsett av nettsted i IIS**:
+
 1. Server Manager → Add Roles → Web Server (IIS)
 2. IIS Manager → Sites → Add Website
 3. Angi navn, fysisk mappe (f.eks. `C:\inetpub\wwwroot\minside`), port og eventuelt hostnavn
@@ -140,20 +148,23 @@ Se [[dns-og-dhcp]] for full gjennomgang av DHCP.
 
 En filserver gjør mapper tilgjengelig over nettverket slik at brukere kan lagre og hente filer fra en sentral plassering.
 
-**SMB (Server Message Block)** er Windows-standarden for nettverksdeling, port 445[^4].
+**SMB (Server Message Block)**er Windows-standarden for nettverksdeling, port 445[^4].
 
 **Sette opp en delt mappe (share)**:
+
 1. Høyreklikk mappe → Properties → Sharing → Advanced Sharing
 2. Hak av "Share this folder", gi sharenavn (f.eks. `Dokumenter`)
 3. Sett delingsrettigheter (hvem kan lese/skrive via share)
 4. Sett NTFS-rettigheter for finmasket tilgangskontroll
 
-**NTFS-rettigheter** er filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver[^1]. De er mer granulære enn share-rettigheter og gjelder også ved lokal tilgang.
+**NTFS-rettigheter**er filsystem-nivå rettigheter som bestemmer hvilken tilgang brukere og grupper har til filer og mapper på en filserver[^1]. De er mer granulære enn share-rettigheter og gjelder også ved lokal tilgang.
 
 Tilgang fra klient:
+
 ```
 \\servernavn\Dokumenter
 ```
+
 Eller via "Map network drive" for å tilordne en stasjonsbokstav (f.eks. Z:).
 
 **NFS (Network File System)**: Linux-/Unix-standard for fildeling. Brukes i hetrogene miljøer. Windows Server støtter NFS via "File Services"-rollen.
@@ -182,7 +193,7 @@ En printserver deler én eller flere skrivere i nettverket slik at alle brukere 
 
 I Windows Server: Add Roles → Print and Document Services → Print Server.
 
-Administrasjon via **Print Management**-konsollen: se køer, administrer drivere, overvåk status.
+Administrasjon via**Print Management**-konsollen: se køer, administrer drivere, overvåk status.
 
 ---
 
@@ -208,19 +219,22 @@ Statisk IP på server: `192.168.1.10/24`, gateway `192.168.1.1`, DNS `192.168.1.
 
 ### Lab: Installer AD DS og koble en klient til domenet
 
-1. **Installer AD DS-rollen** på Windows Server:
+1.**Installer AD DS-rollen**på Windows Server:
+
    - Server Manager → Add Roles → Active Directory Domain Services
    - Etterpå: Promote this server to a domain controller
    - Velg "Add a new forest", domenenavn: `lab.lan`
    - Sett DSRM-passord, fullfør veiviseren, start om
 
-2. **Koble en Windows-klient til domenet**:
+2.**Koble en Windows-klient til domenet**:
+
    - Klientmaskin → Settings → System → About → Join a domain
    - Skriv inn `lab.lan`, oppgi domenekontrollerens administrator-legitimasjon
    - Restart klienten
    - Logg inn med domenebrukernavn: `lab\brukernavn`
 
-3. **Opprett en bruker i AD**:
+3.**Opprett en bruker i AD**:
+
    - Server Manager → Tools → Active Directory Users and Computers
    - Naviger til ønsket OU → New → User
    - Fyll inn fornavn, etternavn og påloggingsnavn
@@ -237,6 +251,7 @@ AD DS er fundamentet. Det samler brukerkontoer, datamaskiner og policyer i ett s
 NTFS-rettigheter gjelder alltid, share-rettigheter gjelder kun ved nettverkstilgang. Når begge er satt, er det den mest restriktive kombinasjonen som gjelder. Mappestruktur og rettigheter henger tett sammen med [[bruker-og-tilgangsstyring]].
 
 **Vanlige eksamenspoeng**
+
 - Forskjellen mellom OU og en vanlig mappe i AD
 - Hva FQDN betyr og eksempel
 - Stegene for å koble en klient til et domene
@@ -254,7 +269,7 @@ SMB (Server Message Block), port 445 (TCP). Eldre versjoner brukte port 139 (via
 Alle tre er webservere. IIS er Microsofts løsning for Windows Server. Apache er den mest brukte åpen kildekode-webserveren, primært på Linux. Nginx er kjent for høy ytelse og brukes mye som reverse proxy og lastbalanserer, i tillegg til webserver. IIS er integrert med Windows-autentisering og .NET.
 
 **Hva er et FQDN, og gi et eksempel?**
-FQDN (Fully Qualified Domain Name) er det fullstendige domenenavnet til en enhet, inkludert alle ledd frem til roten. Eksempel: `pc01.lab.lan` — her er `pc01` maskinnavnet, `lab` er domenet og `lan` er toppdomenet.
+FQDN (Fully Qualified Domain Name) er det fullstendige domenenavnet til en enhet, inkludert alle ledd frem til roten. Eksempel: `pc01.lab.lan`— her er`pc01`maskinnavnet,`lab`er domenet og`lan` er toppdomenet.
 
 **Hvorfor trenger en domenekontroller DNS-serverrollen?**
 Active Directory er avhengig av DNS for at klienter skal finne domenekontrolleren (via SRV-poster i DNS). Uten DNS kan klienter ikke logge inn, finne AD-tjenester eller kommunisere med domenet. DNS-rollen installeres derfor alltid i kombinasjon med AD DS.
@@ -273,48 +288,48 @@ Share-rettigheter gjelder kun når man kobler til mappen via nettverket. NTFS-re
 <details>
 <summary>Spørsmål 1: Hva er forskjellen mellom en OU og en mappe i Active Directory?</summary>
 
-**Svar:** En OU (Organizational Unit) er en logisk container i AD som støtter delegert administrasjon og Group Policy Objects (GPO). En vanlig mappe støtter ikke dette. OU-er brukes til å strukturere AD og styre policyer for grupper av brukere eller datamaskiner.
+**Svar:**En OU (Organizational Unit) er en logisk container i AD som støtter delegert administrasjon og Group Policy Objects (GPO). En vanlig mappe støtter ikke dette. OU-er brukes til å strukturere AD og styre policyer for grupper av brukere eller datamaskiner.
 </details>
 
 <details>
 <summary>Spørsmål 2: Hvilken protokoll bruker en Windows-filserver for nettverksdeling, og hvilken port?</summary>
 
-**Svar:** SMB (Server Message Block), port 445 (TCP). Eldre versjoner brukte port 139 (via NetBIOS).
+**Svar:**SMB (Server Message Block), port 445 (TCP). Eldre versjoner brukte port 139 (via NetBIOS).
 </details>
 
 <details>
 <summary>Spørsmål 3: Hva er forskjellen mellom IIS, Apache og Nginx?</summary>
 
-**Svar:** Alle tre er webservere. IIS er Microsofts løsning for Windows Server. Apache er den mest brukte åpen kildekode-webserveren, primært på Linux. Nginx er kjent for høy ytelse og brukes mye som reverse proxy og lastbalanserer, i tillegg til webserver. IIS er integrert med Windows-autentisering og .NET.
+**Svar:**Alle tre er webservere. IIS er Microsofts løsning for Windows Server. Apache er den mest brukte åpen kildekode-webserveren, primært på Linux. Nginx er kjent for høy ytelse og brukes mye som reverse proxy og lastbalanserer, i tillegg til webserver. IIS er integrert med Windows-autentisering og .NET.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hva er et FQDN, og gi et eksempel?</summary>
 
-**Svar:** FQDN (Fully Qualified Domain Name) er det fullstendige domenenavnet til en enhet, inkludert alle ledd frem til roten. Eksempel: `pc01.lab.lan` — her er `pc01` maskinnavnet, `lab` er domenet og `lan` er toppdomenet.
+**Svar:**FQDN (Fully Qualified Domain Name) er det fullstendige domenenavnet til en enhet, inkludert alle ledd frem til roten. Eksempel: `pc01.lab.lan`— her er`pc01`maskinnavnet,`lab`er domenet og`lan` er toppdomenet.
 </details>
 
 <details>
 <summary>Spørsmål 5: Hvorfor trenger en domenekontroller DNS-serverrollen?</summary>
 
-**Svar:** Active Directory er avhengig av DNS for at klienter skal finne domenekontrolleren (via SRV-poster i DNS). Uten DNS kan klienter ikke logge inn, finne AD-tjenester eller kommunisere med domenet. DNS-rollen installeres derfor alltid i kombinasjon med AD DS.
+**Svar:**Active Directory er avhengig av DNS for at klienter skal finne domenekontrolleren (via SRV-poster i DNS). Uten DNS kan klienter ikke logge inn, finne AD-tjenester eller kommunisere med domenet. DNS-rollen installeres derfor alltid i kombinasjon med AD DS.
 </details>
 
 ## Kilder
 
-[^1]: Microsoft Learn. (2025). Getting Started with AD DS. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started
-[^2]: NDLA. (2024). Brukerkontoer, grupper og struktur i AD. https://ndla.no/r/driftsstotte-im-itk-vg2/brukerkontoer-grupper-og-struktur-i-active-directory/2c7a25f92e
-[^3]: NDLA. (2024). Domener og hierarkiet i Active Directory. https://ndla.no/en/r/driftsstotte-im-itk-vg2/domener-og-hierarkiet-i-active-directory/db58e9da66
-[^4]: Professor Messer. (2025). Network+ Study Guide — Server Roles. https://www.professormesser.com/network-plus/
-[^5]: Cloudflare Learning. (2025). What is a Web Server? https://www.cloudflare.com/learning/ddos/glossary/web-server/
-[^6]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^1]: Microsoft Learn. (2025). Getting Started with AD DS. <https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started>
+[^2]: NDLA. (2024). Brukerkontoer, grupper og struktur i AD. <https://ndla.no/r/driftsstotte-im-itk-vg2/brukerkontoer-grupper-og-struktur-i-active-directory/2c7a25f92e>
+[^3]: NDLA. (2024). Domener og hierarkiet i Active Directory. <https://ndla.no/en/r/driftsstotte-im-itk-vg2/domener-og-hierarkiet-i-active-directory/db58e9da66>
+[^4]: Professor Messer. (2025). Network+ Study Guide — Server Roles. <https://www.professormesser.com/network-plus/>
+[^5]: Cloudflare Learning. (2025). What is a Web Server? <https://www.cloudflare.com/learning/ddos/glossary/web-server/>
+[^6]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 
-- [Brukerkontoer, grupper og struktur i AD — NDLA](https://ndla.no/r/driftsstotte-im-itk-vg2/brukerkontoer-grupper-og-struktur-i-active-directory/2c7a25f92e)
-- [Domener og hierarkiet i Active Directory — NDLA](https://ndla.no/en/r/driftsstotte-im-itk-vg2/domener-og-hierarkiet-i-active-directory/db58e9da66)
-- [Koble opp share i Windows 10 — NDLA](https://ndla.no/en/r/driftsstotte-im-itk-vg2/koble-opp-share-i-windows-10/5a04d2403d)
-- [HTTP og IIS — windowsnett.no](http://www.windowsnett.no/leksjoner/L09/Leksjon%209%20beskrivelse.htm)
-- [windowsnett.no — leksjon 5–7: AD, grupper, delte mapper](https://www.windowsnett.no/)
-- [Active Directory, DNS & DHCP Roles Installation & Configuration on Server 2022 — PowerUser (15 min)](https://www.youtube.com/watch?v=vVbrlNlqJP4)
-- [Getting Started with AD DS — Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started)
+- [Brukerkontoer, grupper og struktur i AD — NDLA](<https://ndla.no/r/driftsstotte-im-itk-vg2/brukerkontoer-grupper-og-struktur-i-active-directory/2c7a25f92e>)
+- [Domener og hierarkiet i Active Directory — NDLA](<https://ndla.no/en/r/driftsstotte-im-itk-vg2/domener-og-hierarkiet-i-active-directory/db58e9da66>)
+- [Koble opp share i Windows 10 — NDLA](<https://ndla.no/en/r/driftsstotte-im-itk-vg2/koble-opp-share-i-windows-10/5a04d2403d>)
+- [HTTP og IIS — windowsnett.no](<http://www.windowsnett.no/leksjoner/L09/Leksjon%209%20beskrivelse.htm>)
+- [windowsnett.no — leksjon 5–7: AD, grupper, delte mapper](<https://www.windowsnett.no/>)
+- [Active Directory, DNS & DHCP Roles Installation & Configuration on Server 2022 — PowerUser (15 min)](<https://www.youtube.com/watch?v=vVbrlNlqJP4>)
+- [Getting Started with AD DS — Microsoft Learn](<https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started>)

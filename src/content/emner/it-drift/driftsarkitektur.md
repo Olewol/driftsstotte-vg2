@@ -2,18 +2,22 @@
 title: "Driftsarkitektur"
 emne: it-drift
 kompetansemaal:
+
   - km-01
   - km-03
+
 kilder:
+
   - ndla
-  - https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358
-  - https://snl.no/skytjeneste
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
-  - https://learn.microsoft.com/en-us/azure/architecture/framework/
-video: https://www.youtube.com/watch?v=mxT23V-pS0I
+  - <https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358>
+  - <https://snl.no/skytjeneste>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>
+  - <https://learn.microsoft.com/en-us/azure/architecture/framework/>
+
+video: <https://www.youtube.com/watch?v=mxT23V-pS0I>
 tags: []
-flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
+flashcards: <https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd>
 public: true
 notebooklm: true
 ---
@@ -30,17 +34,17 @@ I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infr
 
 ### On-premise, sky og hybrid
 
-**On-premise** betyr at all infrastruktur er plassert lokalt – i virksomhetens egne rom eller leide serverrom. Virksomheten eier og drifter alt selv: servere, nettverk, lagring og programvare.
+**On-premise**betyr at all infrastruktur er plassert lokalt – i virksomhetens egne rom eller leide serverrom. Virksomheten eier og drifter alt selv: servere, nettverk, lagring og programvare.
 
 - Fordeler: full kontroll, forutsigbare kostnader over tid, ingen avhengighet av internettforbindelse
 - Ulemper: høye investeringskostnader (CAPEX), krever kompetanse internt, skalering tar tid
 
-**Skybasert infrastruktur (public cloud)** betyr at ressurser leies av en ekstern skyleverandør (Microsoft Azure, Amazon Web Services, Google Cloud).[^2] Virksomheten betaler for det den bruker (OPEX-modell).
+**Skybasert infrastruktur (public cloud)**betyr at ressurser leies av en ekstern skyleverandør (Microsoft Azure, Amazon Web Services, Google Cloud).[^2] Virksomheten betaler for det den bruker (OPEX-modell).
 
 - Fordeler: elastisk skalering, betaler kun for bruk, lavt vedlikeholdsansvar
 - Ulemper: løpende kostnader, avhengighet av leverandør og internett, spørsmål om datalagring og GDPR
 
-**Hybrid sky** kombinerer on-premise og sky. Kritiske data og tjenester kan ligge lokalt, mens variable arbeidsbelastninger kjøres i skyen. Dette er den vanligste modellen for mellomstore og store norske virksomheter i dag.
+**Hybrid sky**kombinerer on-premise og sky. Kritiske data og tjenester kan ligge lokalt, mens variable arbeidsbelastninger kjøres i skyen. Dette er den vanligste modellen for mellomstore og store norske virksomheter i dag.
 
 > Koblingen til km-03: Skytjenester er en integrert del av moderne driftsarkitektur. IaaS (Infrastructure as a Service) er i praksis en forlengelse av on-premise – man leier virtuelle maskiner og nettverk i stedet for å eie fysisk utstyr. Se [[skytjenester]] for en fullstendig gjennomgang.
 
@@ -48,17 +52,17 @@ I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infr
 
 ### Servere: fysiske og virtuelle
 
-En **fysisk server** er dedikert maskinvare som kjører ett eller flere operativsystemer. I et datasenter plasseres servere i **rack** (metallstativer), og mange rack samles i en serversal.
+En**fysisk server**er dedikert maskinvare som kjører ett eller flere operativsystemer. I et datasenter plasseres servere i**rack**(metallstativer), og mange rack samles i en serversal.
 
-**Virtualisering** gjør det mulig å kjøre flere virtuelle maskiner (VM-er) på én fysisk server.[^3] En **hypervisor** er programvaren som administrerer VM-ene. De vanligste hypervisorene er:
+**Virtualisering**gjør det mulig å kjøre flere virtuelle maskiner (VM-er) på én fysisk server.[^3] En**hypervisor**er programvaren som administrerer VM-ene. De vanligste hypervisorene er:
 
-- **VMware ESXi** – industristandard, mye brukt i bedrifter
-- **Microsoft Hyper-V** – innebygget i Windows Server
-- **KVM** – åpen kildekode, brukt i Linux-miljøer
+-**VMware ESXi**– industristandard, mye brukt i bedrifter
+-**Microsoft Hyper-V**– innebygget i Windows Server
+-**KVM**– åpen kildekode, brukt i Linux-miljøer
 
 Virtualisering gir bedre ressursutnyttelse, enklere administrasjon og raskere utrulling av nye servere. Se [[virtuelle-losninger]] for en dypere gjennomgang av virtualiseringsteknologi.
 
-**Containere** (f.eks. Docker) er en lettere form for virtualisering som deler operativsystemkjernen mellom applikasjoner. Kubernetes brukes til å orkestrere containere i stor skala.
+**Containere**(f.eks. Docker) er en lettere form for virtualisering som deler operativsystemkjernen mellom applikasjoner. Kubernetes brukes til å orkestrere containere i stor skala.
 
 ---
 
@@ -68,12 +72,12 @@ Et lokalt nettverk (LAN) består av flere nøkkelkomponenter:
 
 | Komponent | Funksjon |
 |-----------|----------|
-| **Svitsj (switch)** | Kobler enheter i et lokalt nettverk. Opererer på lag 2 (MAC-adresser). |
-| **Ruter** | Kobler ulike nettverk. Opererer på lag 3 (IP-adresser). Sender trafikk mellom LAN og WAN. |
-| **Brannmur** | Kontrollerer og filtrerer nettverkstrafikk basert på regler. Første forsvarslinje mot angrep. |
-| **DMZ** | Demilitarisert sone – et isolert nettverkssegment for tjenester som er tilgjengelige fra internett (f.eks. webserver). |
-| **VLAN** | Logisk segmentering av nettverket uten fysisk separasjon. Brukes for sikkerhet og ytelse. |
-| **Trådløst aksesspunkt (AP)** | Gir Wi-Fi-tilgang til nettverket. |
+|**Svitsj (switch)**| Kobler enheter i et lokalt nettverk. Opererer på lag 2 (MAC-adresser). |
+|**Ruter**| Kobler ulike nettverk. Opererer på lag 3 (IP-adresser). Sender trafikk mellom LAN og WAN. |
+|**Brannmur**| Kontrollerer og filtrerer nettverkstrafikk basert på regler. Første forsvarslinje mot angrep. |
+|**DMZ**| Demilitarisert sone – et isolert nettverkssegment for tjenester som er tilgjengelige fra internett (f.eks. webserver). |
+|**VLAN**| Logisk segmentering av nettverket uten fysisk separasjon. Brukes for sikkerhet og ytelse. |
+|**Trådløst aksesspunkt (AP)**| Gir Wi-Fi-tilgang til nettverket. |
 
 Se [[brannmur]] og [[segmentering-og-vlan]] for mer om disse komponentene.
 
@@ -100,6 +104,7 @@ Lagring i skyen (f.eks. Azure Blob Storage, AWS S3) egner seg for store mengder 
 ### Klientutstyr
 
 Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
+
 - PC-er og bærbare datamaskiner
 - Nettbrett og mobiltelefoner (BYOD – Bring Your Own Device)
 - Tynne klienter (thin clients) – billige enheter som kobler til en terminalserver
@@ -108,9 +113,10 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 
 ### UPS og redundans
 
-**UPS (Uninterruptible Power Supply)** er et batterisystem som gir strøm ved strømbrudd. Det sikrer at servere og nettverksutstyr kan slå seg ned kontrollert – eller fortsette å kjøre – når strømmen går.
+**UPS (Uninterruptible Power Supply)**er et batterisystem som gir strøm ved strømbrudd. Det sikrer at servere og nettverksutstyr kan slå seg ned kontrollert – eller fortsette å kjøre – når strømmen går.
 
-**Redundans** betyr at kritiske komponenter finnes i duplikat, slik at systemet fortsetter å fungere om én komponent feiler:[^5]
+**Redundans**betyr at kritiske komponenter finnes i duplikat, slik at systemet fortsetter å fungere om én komponent feiler:[^5]
+
 - Redundante strømforsyninger i servere
 - Redundante nettverkskoblinger (bonding/failover)
 - RAID (Redundant Array of Independent Disks) for lagring
@@ -120,9 +126,10 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 
 ### Infrastruktur som kode (IaC)
 
-Moderne driftsarkitektur handler ikke bare om hvilke komponenter som finnes – det handler også om hvordan de konfigureres og vedlikeholdes. **Infrastruktur som kode (IaC)** er en metode der IT-infrastruktur beskrives og styres via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering.[^4]
+Moderne driftsarkitektur handler ikke bare om hvilke komponenter som finnes – det handler også om hvordan de konfigureres og vedlikeholdes.**Infrastruktur som kode (IaC)**er en metode der IT-infrastruktur beskrives og styres via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering.[^4]
 
 Fordeler med IaC:
+
 - Reproduserbar infrastruktur – samme konfigurasjon gir alltid samme resultat
 - Versjonskontroll – endringer spores som kode
 - Automatisert utrulling – raskere og mer pålitelig enn manuelt arbeid
@@ -175,24 +182,27 @@ Se på et eksempel på en Azure ARM-mal eller Terraform-konfigurasjon (finnes ma
 Driftsarkitektur handler om hvordan IT-systemer er bygget opp og hvilke valg som tas for plassering, skalering og sikring av infrastruktur.
 
 **De tre modellene:**
-- **On-premise** – full kontroll, høy CAPEX, ingen avhengighet av internett
-- **Public cloud** – elastisk, OPEX-modell, avhengig av leverandør
-- **Hybrid** – kombinasjon, mest utbredt i norske virksomheter
+-**On-premise**– full kontroll, høy CAPEX, ingen avhengighet av internett
+-**Public cloud**– elastisk, OPEX-modell, avhengig av leverandør
+-**Hybrid**– kombinasjon, mest utbredt i norske virksomheter
 
 **Servere og virtualisering:**
+
 - Hypervisor muliggjør flere VM-er på én fysisk server (VMware, Hyper-V, KVM)
 - Containere (Docker/Kubernetes) er lettere enn VM-er og deler OS-kjernen
 - IaC automatiserer og versjonskontrollerer infrastrukturoppsettet
 
 **Nettverkskomponenter:**
+
 - Svitsj (lag 2), ruter (lag 3), brannmur (filtrering), VLAN (segmentering), DMZ (offentlige tjenester)
 - Redundans og UPS sikrer kontinuitet ved feil
 
 **Lagring:**
+
 - DAS (direkte tilkoblet, kun én server), NAS (nettverksdeling, SMB/NFS), SAN (høyhastighets blokklagring, Fibre Channel/iSCSI)
 - Objektlagring i sky for ustrukturerte data og backup
 
-**Husk:** CAPEX vs. OPEX er ikke bare en kostnadsbeslutning – det er en strategisk beslutning om kontroll, fleksibilitet og risiko. Hybridsky er en bevisst kombinasjon, ikke en kompromissløsning.
+**Husk:**CAPEX vs. OPEX er ikke bare en kostnadsbeslutning – det er en strategisk beslutning om kontroll, fleksibilitet og risiko. Hybridsky er en bevisst kombinasjon, ikke en kompromissløsning.
 
 ---
 
@@ -222,31 +232,31 @@ DMZ (Demilitarisert sone) er et isolert nettverk mellom internett og det interne
 
 <details><summary>Spørsmål 1: Hva er forskjellen på CAPEX og OPEX i forbindelse med IT-drift?</summary>
 
-**Svar:** CAPEX (Capital Expenditure) er store engangsutgifter til kjøp av utstyr og infrastruktur, typisk for on-premise. OPEX (Operational Expenditure) er løpende driftsutgifter, typisk for sky-tjenester der man betaler månedlig for det man bruker.
+**Svar:**CAPEX (Capital Expenditure) er store engangsutgifter til kjøp av utstyr og infrastruktur, typisk for on-premise. OPEX (Operational Expenditure) er løpende driftsutgifter, typisk for sky-tjenester der man betaler månedlig for det man bruker.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva gjør en hypervisor?</summary>
 
-**Svar:** En hypervisor er programvare som lar én fysisk server kjøre flere virtuelle maskiner (VM-er) samtidig. Den fordeler ressurser (CPU, minne, lagring) mellom VM-ene og isolerer dem fra hverandre.
+**Svar:**En hypervisor er programvare som lar én fysisk server kjøre flere virtuelle maskiner (VM-er) samtidig. Den fordeler ressurser (CPU, minne, lagring) mellom VM-ene og isolerer dem fra hverandre.
 
 </details>
 
 <details><summary>Spørsmål 3: Hva er forskjellen på NAS og SAN?</summary>
 
-**Svar:** NAS (Network Attached Storage) er en filserver tilkoblet det vanlige nettverket og tilbyr fildeling via SMB/NFS. SAN (Storage Area Network) er et dedikert høyhastighetsnettverk for lagring som gir serverne blokkbasert tilgang – som om disken var lokalt montert. SAN er raskere og brukes til ytelseskrevende applikasjoner.
+**Svar:**NAS (Network Attached Storage) er en filserver tilkoblet det vanlige nettverket og tilbyr fildeling via SMB/NFS. SAN (Storage Area Network) er et dedikert høyhastighetsnettverk for lagring som gir serverne blokkbasert tilgang – som om disken var lokalt montert. SAN er raskere og brukes til ytelseskrevende applikasjoner.
 
 </details>
 
 <details><summary>Spørsmål 4: Hva er en DMZ i nettverksarkitektur?</summary>
 
-**Svar:** DMZ (Demilitarisert sone) er et isolert nettverkssegment mellom internett og det interne nettverket. Tjenester som skal være tilgjengelige fra internett (f.eks. webservere) plasseres her, slik at et angrep mot disse ikke gir direkte tilgang til det interne nettverket.
+**Svar:**DMZ (Demilitarisert sone) er et isolert nettverkssegment mellom internett og det interne nettverket. Tjenester som skal være tilgjengelige fra internett (f.eks. webservere) plasseres her, slik at et angrep mot disse ikke gir direkte tilgang til det interne nettverket.
 
 </details>
 
 <details><summary>Spørsmål 5: Hva er hybridsky og hvorfor er det vanlig i norske virksomheter?</summary>
 
-**Svar:** Hybridsky kombinerer lokal on-premise infrastruktur med offentlige skytjenester. Det er vanlig fordi det gir fleksibilitet: sensitive data og systemer med strenge GDPR-krav kan ligge lokalt, mens skalerbare tjenester og backup kan ligge i skyen. Det gir også kostnadsoptimalisering.
+**Svar:**Hybridsky kombinerer lokal on-premise infrastruktur med offentlige skytjenester. Det er vanlig fordi det gir fleksibilitet: sensitive data og systemer med strenge GDPR-krav kan ligge lokalt, mens skalerbare tjenester og backup kan ligge i skyen. Det gir også kostnadsoptimalisering.
 
 </details>
 
@@ -254,21 +264,21 @@ DMZ (Demilitarisert sone) er et isolert nettverk mellom internett og det interne
 
 ## Ressurser
 
-- [Microsoft Azure: Hva er IaaS?](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas/)
-- [Microsoft Learn AZ-900: IaaS](https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service)
-- [AWS: What is cloud computing?](https://aws.amazon.com/what-is-cloud-computing/)
-- [NDLA: Driftsarkitektur](https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358)
-- [SNL: Skytjeneste](https://snl.no/skytjeneste)
-- [YouTube: What is Cloud Computing? – Amazon Web Services](https://www.youtube.com/watch?v=mxT23V-pS0I)
+- [Microsoft Azure: Hva er IaaS?](<https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas/>)
+- [Microsoft Learn AZ-900: IaaS](<https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service>)
+- [AWS: What is cloud computing?](<https://aws.amazon.com/what-is-cloud-computing/>)
+- [NDLA: Driftsarkitektur](<https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358>)
+- [SNL: Skytjeneste](<https://snl.no/skytjeneste>)
+- [YouTube: What is Cloud Computing? – Amazon Web Services](<https://www.youtube.com/watch?v=mxT23V-pS0I>)
 - [[skytjenester]]
 - [[backup-og-gjenoppretting]]
 - [[dokumentasjon-og-planlegging]]
 
 ## Kilder
 
-[^1]: [NDLA: Driftsarkitektur](https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358) – Introduksjon til driftsarkitektur og infrastruktur.
-[^2]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – Om offentlig sky og skytjenester.
-[^3]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Virtualisering og hypervisor-teknologi.
-[^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – Infrastruktur som kode (IaC) og beste praksis.
-[^5]: [NSM: Grunnprinsipper for IKT-sikkerhet](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/) – Redundans og kontinuitet i IT-drift.
+[^1]: [NDLA: Driftsarkitektur](<https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358>) – Introduksjon til driftsarkitektur og infrastruktur.
+[^2]: [Digdir: Skytjenester i offentlig sektor](<https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>) – Om offentlig sky og skytjenester.
+[^3]: [NDLA: Sikkerhet og sårbarhet](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Virtualisering og hypervisor-teknologi.
+[^4]: [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>) – Infrastruktur som kode (IaC) og beste praksis.
+[^5]: [NSM: Grunnprinsipper for IKT-sikkerhet](<https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/>) – Redundans og kontinuitet i IT-drift.
 

@@ -40,6 +40,7 @@ driftsstotte-vault (Obsidian, private)
 ## Status per emne
 
 ### Video (YouTube/NDLA)
+
 | Emne | Video | Kommentar |
 |------|-------|-----------|
 | Backup og gjenoppretting | ✅ | |
@@ -59,21 +60,24 @@ driftsstotte-vault (Obsidian, private)
 | Personvern | ✅ | |
 | Bash | ✅ | |
 | PowerShell | ✅ | |
-| **Mangler video:** SQL, dokumentasjon, Active Directory, brukerstyring, filsystem, Linux, risikoanalyse, trusselbildet, automatisering | ❌ 9 stk | Trenger YouTube/NDLA |
+|**Mangler video:**SQL, dokumentasjon, Active Directory, brukerstyring, filsystem, Linux, risikoanalyse, trusselbildet, automatisering | ❌ 9 stk | Trenger YouTube/NDLA |
 
 ### Tospråklig
+
 | Status | Antall |
 |--------|--------|
 | Kun norsk | 27/27 |
-| Engelsk versjon | **0/27** ❌ |
+| Engelsk versjon |**0/27**❌ |
 
 ### Inline kildehenvisning
+
 | Status | Antall |
 |--------|--------|
-| Med fotnoter i brødtekst | **0/27** ❌ |
+| Med fotnoter i brødtekst |**0/27**❌ |
 | Kun i frontmatter | 27/27 |
 
 ### NotebookLM
+
 | Kategori | Notebook ID | Artifacts |
 |----------|------------|-----------|
 | Nettverk | f7e5ad6c... | 1 video, 1 infographic, 2 flashcards, 2 reports |
@@ -83,20 +87,21 @@ driftsstotte-vault (Obsidian, private)
 | Operativsystem | 70aa7fff... | ✅ Eksisterer |
 | Sikkerhet | 3e72e53a... | ✅ Eksisterer |
 
-**Mangler:** Audio Overviews (podcast) i ALLE notebooks ❌
+**Mangler:**Audio Overviews (podcast) i ALLE notebooks ❌
 
 ## TTS (taleopplesning)
+
 ✅ Implementert via TTSBar.astro — Web Speech API, norsk stemme, hastighetskontroll.
 
 ## Hull som må fylles
 
-1. **🌐 Engelsk versjon** av alle 27 emner
-2. **🎧 NotebookLM Audio Overviews** for alle 6 kategorier (både norsk og engelsk)
-3. **📹 Video til 9 emner** som mangler
-4. **📝 Inline kildehenvisning** i alle emner
-5. **🃏 Interaktive flashcards** — Astro-komponent eller NotebookLM
-6. **🔗 Brobygging til oppgaver-for-2IT**
-7. **🔌 Astro-plugins** — vurder @astrojs/mdx, astro-embed-youtube, astro-expressive-code
+1.**🌐 Engelsk versjon**av alle 27 emner
+2.**🎧 NotebookLM Audio Overviews**for alle 6 kategorier (både norsk og engelsk)
+3.**📹 Video til 9 emner**som mangler
+4.**📝 Inline kildehenvisning**i alle emner
+5.**🃏 Interaktive flashcards**— Astro-komponent eller NotebookLM
+6.**🔗 Brobygging til oppgaver-for-2IT**
+7.**🔌 Astro-plugins**— vurder @astrojs/mdx, astro-embed-youtube, astro-expressive-code
 
 ## Anbefalt rekkefølge
 

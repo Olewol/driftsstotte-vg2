@@ -2,18 +2,22 @@
 title: "TCP/IP-modellen"
 emne: nettverk
 kompetansemaal:
+
   - km-05
+
 kilder:
+
   - ndla
-  - https://ndla.no/nb/subject:1:430c00b5-773a-4933-9f2d-8647038e2f05/topic:2:183060/topic:2:183350/resource:1:115995
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://ndla.no/nb/subject:1:430c00b5-773a-4933-9f2d-8647038e2f05/topic:2:183060/topic:2:183350/resource:1:115995>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [tcp, ip, protokoll, modell, lag]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=6cG9qrKB9x0
+video: <https://www.youtube.com/watch?v=6cG9qrKB9x0>
 notebooklm: true
 ---
 
@@ -29,7 +33,7 @@ TCP/IP-modellen er nært beslektet med [[osi-modellen]], som er referansemodelle
 
 ### Lagene i TCP/IP-modellen
 
-NDLA og mange norske lærebøker bruker en **5-lagsmodell** for TCP/IP[^2]. Den klassiske internettmodellen har 4 lag (der de to nederste slås sammen). Begge variantene er gyldige; 5-lagsmodellen er mer pedagogisk og mer lik OSI.
+NDLA og mange norske lærebøker bruker en**5-lagsmodell**for TCP/IP[^2]. Den klassiske internettmodellen har 4 lag (der de to nederste slås sammen). Begge variantene er gyldige; 5-lagsmodellen er mer pedagogisk og mer lik OSI.
 
 | Lag | Navn | Funksjon | Protokolleksempler |
 |-----|------|----------|--------------------|
@@ -45,29 +49,29 @@ NDLA og mange norske lærebøker bruker en **5-lagsmodell** for TCP/IP[^2]. Den 
 Ansvarlig for selve bitsendingen: spenningsnivåer på kobberledning, lyspulser i fiber, radiosignaler i WiFi. Protokoller på dette laget definerer kontakter, kabler og signalstandarder (f.eks. 10BASE-T, 1000BASE-T).
 
 **Lag 2 — Datalinklaget**
-Pakker biter inn i *frames* (rammer). Ethernet er dominerende her. Hvert nettverkskort har en unik **MAC-adresse** (48 bit, skrevet som f.eks. `00:1A:2B:3C:4D:5E`). En svitsj opererer på lag 2 og videresender frames basert på MAC-adresser. ARP (Address Resolution Protocol) brukes til å finne MAC-adressen til en kjent IP-adresse.
+Pakker biter inn i*frames*(rammer). Ethernet er dominerende her. Hvert nettverkskort har en unik**MAC-adresse**(48 bit, skrevet som f.eks. `00:1A:2B:3C:4D:5E`). En svitsj opererer på lag 2 og videresender frames basert på MAC-adresser. ARP (Address Resolution Protocol) brukes til å finne MAC-adressen til en kjent IP-adresse.
 
-En **MAC-adresse** er en unik fysisk adresse på datalinklaget (lag 2) som er brent inn i nettverkskortet for identifikasjon i et lokalt nettverk[^3].
+En**MAC-adresse**er en unik fysisk adresse på datalinklaget (lag 2) som er brent inn i nettverkskortet for identifikasjon i et lokalt nettverk[^3].
 
 **Lag 3 — Nettverkslaget**
-Håndterer logisk adressering med **IP-adresser** og ruting mellom ulike nettverk. En ruter opererer på lag 3. IPv4-adresser er 32 bit (f.eks. `192.168.1.10`), IPv6-adresser er 128 bit. ICMP brukes til feilmeldinger og diagnostikk (`ping`).
+Håndterer logisk adressering med**IP-adresser**og ruting mellom ulike nettverk. En ruter opererer på lag 3. IPv4-adresser er 32 bit (f.eks. `192.168.1.10`), IPv6-adresser er 128 bit. ICMP brukes til feilmeldinger og diagnostikk (`ping`).
 
-En **IP-adresse** er en logisk adresse på nettverkslaget (lag 3) som identifiserer en enhet unikt i et nettverk og muliggjør ruting mellom nettverk.
+En**IP-adresse**er en logisk adresse på nettverkslaget (lag 3) som identifiserer en enhet unikt i et nettverk og muliggjør ruting mellom nettverk.
 
 **Lag 4 — Transportlaget**
-Ansvarlig for ende-til-ende-kommunikasjon mellom applikasjoner på to maskiner. Bruker **portnumre** for å identifisere hvilken applikasjon trafikken tilhører.
+Ansvarlig for ende-til-ende-kommunikasjon mellom applikasjoner på to maskiner. Bruker**portnumre**for å identifisere hvilken applikasjon trafikken tilhører.
 
-En **port** er et numerisk identifikasjonsnummer på transportlaget som brukes til å dirigere trafikk til riktig applikasjon eller tjeneste på en maskin.
+En**port**er et numerisk identifikasjonsnummer på transportlaget som brukes til å dirigere trafikk til riktig applikasjon eller tjeneste på en maskin.
 
-- **TCP (Transmission Control Protocol)**: forbindelsesorientert, garanterer leveringsrekkefølge og feilretting[^1]. Brukes der pålitelighet er viktig (nettsider, e-post, filoverføring).
-- **UDP (User Datagram Protocol)**: forbindelseløs, rask men uten garantier[^1]. Brukes der hastighet er viktigere enn nøyaktighet (videostrømming, VoIP, DNS-oppslag).
+-**TCP (Transmission Control Protocol)**: forbindelsesorientert, garanterer leveringsrekkefølge og feilretting[^1]. Brukes der pålitelighet er viktig (nettsider, e-post, filoverføring).
+-**UDP (User Datagram Protocol)**: forbindelseløs, rask men uten garantier[^1]. Brukes der hastighet er viktigere enn nøyaktighet (videostrømming, VoIP, DNS-oppslag).
 
 **Lag 5 — Applikasjonslaget**
 Her befinner seg protokollene som programmer bruker direkte: HTTP for web, SMTP for e-post, DNS for navneoppløsning, osv. Dette laget "snakker" med brukernes applikasjoner (nettleser, e-postklient, terminalprogram).
 
 ### Innkapsling
 
-Når data sendes nedover gjennom lagene, legger hvert lag til sin egen **header** (topptekst) med styringsinformasjon. Dette kalles innkapsling[^1]:
+Når data sendes nedover gjennom lagene, legger hvert lag til sin egen**header**(topptekst) med styringsinformasjon. Dette kalles innkapsling[^1]:
 
 ```
 Applikasjon:  [DATA]
@@ -97,19 +101,22 @@ TCP/IP er den modellen internett faktisk bruker[^1]. OSI er referansemodellen so
 
 ### Pakkeflyt: hva skjer når du åpner ndla.no?
 
-1. Du skriver `https://ndla.no` i nettleseren.
-2. **Applikasjonslaget**: Nettleseren lager en HTTP GET-forespørsel. Først må den løse opp domenenavnet — den sender et DNS-oppslag (UDP, port 53) og får tilbake IP-adressen til ndla.no (f.eks. `185.45.32.10`).
-3. **Transportlaget**: TCP oppretter en forbindelse til port 443 (HTTPS) på serveren via en *three-way handshake* (SYN → SYN-ACK → ACK). HTTP-forespørselen pakkes inn i TCP-segmenter.
-4. **Nettverkslaget**: Hvert TCP-segment pakkes inn i en IP-pakke med din IP-adresse som kilde og `185.45.32.10` som destinasjon.
-5. **Datalinklaget**: IP-pakken pakkes inn i en Ethernet-frame med din MAC-adresse og ruterens MAC-adresse.
-6. **Fysisk lag**: Biter sendes ut over kabelen eller WiFi til ruteren.
-7. Ruteren (lag 3) leser IP-headeren, finner riktig rute, og sender pakken videre mot internett.
-8. Prosessen gjentas gjennom flere rutere til pakken når NDLAs server.
-9. Serveren pakker ut forespørselen, behandler den, og sender HTML-innholdet tilbake — gjennom de samme lagene i omvendt rekkefølge.
+1. Du skriver `<https://ndla.no`> i nettleseren.
+
+2.**Applikasjonslaget**: Nettleseren lager en HTTP GET-forespørsel. Først må den løse opp domenenavnet — den sender et DNS-oppslag (UDP, port 53) og får tilbake IP-adressen til ndla.no (f.eks. `185.45.32.10`).
+3.**Transportlaget**: TCP oppretter en forbindelse til port 443 (HTTPS) på serveren via en*three-way handshake*(SYN → SYN-ACK → ACK). HTTP-forespørselen pakkes inn i TCP-segmenter.
+4.**Nettverkslaget**: Hvert TCP-segment pakkes inn i en IP-pakke med din IP-adresse som kilde og `185.45.32.10` som destinasjon.
+5.**Datalinklaget**: IP-pakken pakkes inn i en Ethernet-frame med din MAC-adresse og ruterens MAC-adresse.
+6.**Fysisk lag**: Biter sendes ut over kabelen eller WiFi til ruteren.
+
+1. 
+2. 
+3. 
 
 ## Study guide
 
 **Kjerneforståelse per lag**
+
 - Lag 1: bits og signaler (kabel, WiFi, fiber)
 - Lag 2: frames og MAC-adresser (svitsjer, Ethernet)
 - Lag 3: IP-adresser og ruting (rutere, IPv4/IPv6)
@@ -123,6 +130,7 @@ Forstå at hvert lag legger til sin header. Data fra applikasjonslaget er payloa
 4-lagsmodellen slår sammen lag 1 og 2 til "Network Access Layer". 5-lagsmodellen skiller disse og er pedagogisk mer lik OSI. Begge er korrekte.
 
 **Vanlige eksamenspoeng**
+
 - Hvilket lag er ansvarlig for hva (IP = lag 3, MAC = lag 2, TCP = lag 4, HTTP = lag 5)
 - Innkapsling: hva legges til på hvert lag
 - Forskjellen mellom TCP og UDP
@@ -159,42 +167,42 @@ ICMP (Internet Control Message Protocol) er en protokoll på lag 3 som brukes ti
 <details>
 <summary>Spørsmål 1: Hva er forskjellen mellom TCP og UDP?</summary>
 
-**Svar:** TCP er forbindelsesorientert og garanterer at data leveres i riktig rekkefølge uten tap. UDP er forbindelseløs og rask, men gir ingen garantier for levering. TCP brukes der pålitelighet er viktig (web, e-post), UDP der hastighet er viktigere (streaming, DNS).
+**Svar:**TCP er forbindelsesorientert og garanterer at data leveres i riktig rekkefølge uten tap. UDP er forbindelseløs og rask, men gir ingen garantier for levering. TCP brukes der pålitelighet er viktig (web, e-post), UDP der hastighet er viktigere (streaming, DNS).
 </details>
 
 <details>
 <summary>Spørsmål 2: Hvilket lag er ansvarlig for IP-adressering og ruting?</summary>
 
-**Svar:** Lag 3 — Nettverkslaget (også kalt internetlaget i klassisk 4-lagsmodell).
+**Svar:**Lag 3 — Nettverkslaget (også kalt internetlaget i klassisk 4-lagsmodell).
 </details>
 
 <details>
 <summary>Spørsmål 3: Hva menes med innkapsling i TCP/IP?</summary>
 
-**Svar:** Innkapsling betyr at hvert lag legger til sin egen header med styringsinformasjon når data sendes nedover gjennom lagene. Ved mottak pakkes det ut i omvendt rekkefølge.
+**Svar:**Innkapsling betyr at hvert lag legger til sin egen header med styringsinformasjon når data sendes nedover gjennom lagene. Ved mottak pakkes det ut i omvendt rekkefølge.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hva brukes MAC-adresser til, og på hvilket lag finner vi dem?</summary>
 
-**Svar:** MAC-adresser identifiserer nettverkskort unikt og brukes til adressering innenfor ett lokalt nettverk. De finnes på lag 2 (datalinklaget). En svitsj bruker MAC-adresser til å videresende frames til riktig port.
+**Svar:**MAC-adresser identifiserer nettverkskort unikt og brukes til adressering innenfor ett lokalt nettverk. De finnes på lag 2 (datalinklaget). En svitsj bruker MAC-adresser til å videresende frames til riktig port.
 </details>
 
 <details>
 <summary>Spørsmål 5: Hvorfor er TCP/IP-modellen organisert i lag?</summary>
 
-**Svar:** Lagdeling gjør at hvert lag kan utvikles og oppdateres uavhengig av de andre. F.eks. kan man bytte fra IPv4 til IPv6 på lag 3 uten å endre TCP på lag 4 eller HTTP på lag 5. Det forenkler også feilsøking — man kan isolere problemet til ett lag.
+**Svar:**Lagdeling gjør at hvert lag kan utvikles og oppdateres uavhengig av de andre. F.eks. kan man bytte fra IPv4 til IPv6 på lag 3 uten å endre TCP på lag 4 eller HTTP på lag 5. Det forenkler også feilsøking — man kan isolere problemet til ett lag.
 </details>
 
 ## Kilder
 
-[^1]: Cloudflare Learning. (2025). What is TCP/IP? https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/
-[^2]: NDLA. (2024). 5-lags TCP/IP-modell. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6
-[^3]: Professor Messer. (2025). Network+ Study Guide — TCP/IP Model. https://www.professormesser.com/network-plus/
-[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^1]: Cloudflare Learning. (2025). What is TCP/IP? <https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/>
+[^2]: NDLA. (2024). 5-lags TCP/IP-modell. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>
+[^3]: Professor Messer. (2025). Network+ Study Guide — TCP/IP Model. <https://www.professormesser.com/network-plus/>
+[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 
-- [TCP/IP 5-lagsmodell — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6)
-- [TCP, UDP og porter — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e)
-- [Transportlaget TCP og UDP — windowsnett.no](http://windowsnett.no/leksjoner/L08/8b%20Transportlaget%20TCP%20og%20UDP%20skjerm.pdf)
+- [TCP/IP 5-lagsmodell — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>)
+- [TCP, UDP og porter — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e>)
+- [Transportlaget TCP og UDP — windowsnett.no](<http://windowsnett.no/leksjoner/L08/8b%20Transportlaget%20TCP%20og%20UDP%20skjerm.pdf>)

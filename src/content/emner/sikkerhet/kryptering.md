@@ -2,20 +2,24 @@
 title: "Kryptering"
 emne: sikkerhet
 kompetansemaal:
+
   - km-10
+
 kilder:
+
   - ndla
   - nsm
   - microsoft
-  - https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/
-  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-  - https://www.datatilsynet.no/
-  - https://owasp.org/www-project-top-ten/
-  - https://www.digdir.no/informasjonssikkerhet/
-video: https://www.youtube.com/watch?v=N6Tf1_27n0A
+  - <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/>
+  - <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+  - <https://www.datatilsynet.no/>
+  - <https://owasp.org/www-project-top-ten/>
+  - <https://www.digdir.no/informasjonssikkerhet/>
+
+video: <https://www.youtube.com/watch?v=N6Tf1_27n0A>
 notebooklm: true
 tags: []
-flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
+flashcards: <https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9>
 public: true
 ---
 
@@ -33,13 +37,14 @@ Kryptering er tett knyttet til [[personvern]] – GDPR krever at personopplysnin
 
 ### Symmetrisk kryptering
 
-Ved symmetrisk kryptering brukes **samme nøkkel** til å kryptere og dekryptere data.
+Ved symmetrisk kryptering brukes**samme nøkkel**til å kryptere og dekryptere data.
 
 - Fordel: svært rask – egnet for å kryptere store datamengder
-- Ulempe: **nøkkeldistribusjonsproblemet** – nøkkelen må deles trygt mellom sender og mottaker, noe som er utfordrende over åpne nettverk
-- Eksempel: **AES-256** (Advanced Encryption Standard med 256-bits nøkkel) – regnes som uknekket og er industristandarden for kryptering av data i ro (filsystemer, databaser, backuper)[^3]
+- Ulempe:**nøkkeldistribusjonsproblemet**– nøkkelen må deles trygt mellom sender og mottaker, noe som er utfordrende over åpne nettverk
+- Eksempel:**AES-256**(Advanced Encryption Standard med 256-bits nøkkel) – regnes som uknekket og er industristandarden for kryptering av data i ro (filsystemer, databaser, backuper)[^3]
 
 **Illustrasjon:**
+
 ```
 Avsender: Klartekst → [AES-nøkkel] → Chiffertekst
 Mottaker: Chiffertekst → [AES-nøkkel] → Klartekst
@@ -49,16 +54,16 @@ Mottaker: Chiffertekst → [AES-nøkkel] → Klartekst
 
 ### Asymmetrisk kryptering
 
-Asymmetrisk kryptering bruker et **nøkkelpar**: en offentlig nøkkel (public key) og en privat nøkkel (private key). Det som krypteres med den ene nøkkelen, kan bare dekrypteres med den andre.
+Asymmetrisk kryptering bruker et**nøkkelpar**: en offentlig nøkkel (public key) og en privat nøkkel (private key). Det som krypteres med den ene nøkkelen, kan bare dekrypteres med den andre.
 
-- **Offentlig nøkkel:** kan deles fritt med hvem som helst
-- **Privat nøkkel:** holdes hemmelig av eieren – må aldri deles
+-**Offentlig nøkkel:**kan deles fritt med hvem som helst
+-**Privat nøkkel:**holdes hemmelig av eieren – må aldri deles
 
 Brukes til to formål:
-1. **Kryptering:** Avsender krypterer med mottakerens offentlige nøkkel → bare mottakeren kan dekryptere med sin private nøkkel
-2. **Digital signatur:** Avsenderen signerer med sin private nøkkel → hvem som helst kan verifisere signaturen med avsenderens offentlige nøkkel
+1.**Kryptering:**Avsender krypterer med mottakerens offentlige nøkkel → bare mottakeren kan dekryptere med sin private nøkkel
+2.**Digital signatur:**Avsenderen signerer med sin private nøkkel → hvem som helst kan verifisere signaturen med avsenderens offentlige nøkkel
 
-- Eksempler: **RSA** (2048 eller 4096-bits nøkler), **ECC** (Elliptic Curve Cryptography – kortere nøkler, samme sikkerhet)
+- Eksempler:**RSA**(2048 eller 4096-bits nøkler),**ECC**(Elliptic Curve Cryptography – kortere nøkler, samme sikkerhet)
 - Ulempe: mye tregere enn symmetrisk kryptering – egner seg dårlig for store datamengder
 
 ---
@@ -67,8 +72,8 @@ Brukes til to formål:
 
 Hybrid kryptering kombinerer det beste fra begge metoder:
 
-1. **Asymmetrisk kryptering** brukes til å utveksle en midlertidig symmetrisk nøkkel (sesjonsnøkkel) trygt
-2. **Symmetrisk kryptering** (AES) brukes for selve datakommunikasjonen – effektiv og rask
+1.**Asymmetrisk kryptering**brukes til å utveksle en midlertidig symmetrisk nøkkel (sesjonsnøkkel) trygt
+2.**Symmetrisk kryptering**(AES) brukes for selve datakommunikasjonen – effektiv og rask
 
 Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon på internett er basert på hybrid kryptering.[^4]
 
@@ -76,11 +81,12 @@ Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon 
 
 ### TLS 1.3 og HTTPS
 
-**TLS (Transport Layer Security)** er protokollen som sikrer kommunikasjon over internett. TLS 1.3 (2018) er gjeldende standard og har erstattet de sårbare SSL og eldre TLS-versjoner.
+**TLS (Transport Layer Security)**er protokollen som sikrer kommunikasjon over internett. TLS 1.3 (2018) er gjeldende standard og har erstattet de sårbare SSL og eldre TLS-versjoner.
 
 **TLS 1.3 handshake (forenklet):**
 
 ```
+
 1. Klienten sender støttede cipher suites og en tilfeldig verdi
 2. Serveren sender valgt cipher suite, sertifikat og en tilfeldig verdi
 3. Klienten verifiserer serverens sertifikat mot en CA (Certificate Authority)
@@ -89,6 +95,7 @@ Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon 
 ```
 
 Forbedringer i TLS 1.3 vs 1.2:
+
 - Raskere handshake (1 round-trip i stedet for 2)
 - Alle utdaterte cipher suites fjernet (ingen RC4, DES, 3DES, MD5)
 - Forward secrecy er obligatorisk – gamle sesjoner kan ikke dekrypteres selv om nøkkelen later kompromitteres[^4]
@@ -99,12 +106,13 @@ Hashing er en enveisprosess – i motsetning til kryptering kan man ikke reverse
 
 ### PKI – Public Key Infrastructure
 
-**PKI** er infrastrukturen som gjør asymmetrisk kryptering praktisk brukbar i stor skala. Problemet PKI løser: Hvordan vet du at en offentlig nøkkel faktisk tilhører den den utgir seg for å være?
+**PKI**er infrastrukturen som gjør asymmetrisk kryptering praktisk brukbar i stor skala. Problemet PKI løser: Hvordan vet du at en offentlig nøkkel faktisk tilhører den den utgir seg for å være?
 
 **Sertifikater (X.509):**
-Et digitalt sertifikat binder en offentlig nøkkel til en identitet (f.eks. et domenenavn). Sertifikatet er signert av en **Certificate Authority (CA)**.
+Et digitalt sertifikat binder en offentlig nøkkel til en identitet (f.eks. et domenenavn). Sertifikatet er signert av en**Certificate Authority (CA)**.
 
 **CA-hierarki (tillitskjede):**
+
 ```
 Root CA (selvsignert, innebygget i OS/nettleser)
     └── Intermediate CA (signert av Root CA)
@@ -119,16 +127,17 @@ Kjente CA-er: DigiCert, Let's Encrypt (gratis, automatisert), Sectigo, GlobalSig
 
 ### Hashing
 
-Hashing er en **enveisfunksjon** – du kan lage en hash fra data, men ikke rekonstruere dataene fra hashen. Hashing brukes ikke til kryptering, men til **integritetskontroll**.
+Hashing er en**enveisfunksjon**– du kan lage en hash fra data, men ikke rekonstruere dataene fra hashen. Hashing brukes ikke til kryptering, men til**integritetskontroll**.
 
 | Algoritme | Hash-lengde | Status |
 |---|---|---|
-| MD5 | 128 bit | **Utdatert** – kollisjoner er funnet |
-| SHA-1 | 160 bit | **Utdatert** – ikke lenger anbefalt |
-| SHA-256 | 256 bit | **Anbefalt** – brukes i TLS, sertifikater, Git |
-| bcrypt / Argon2 | variabel | **Anbefalt for passord** – langsom med vilje |[^6]
+| MD5 | 128 bit |**Utdatert**– kollisjoner er funnet |
+| SHA-1 | 160 bit |**Utdatert**– ikke lenger anbefalt |
+| SHA-256 | 256 bit |**Anbefalt**– brukes i TLS, sertifikater, Git |
+| bcrypt / Argon2 | variabel |**Anbefalt for passord**– langsom med vilje |[^6]
 
 Typiske bruksområder:
+
 - Passordlagring: aldri lagre klartekstpassord – lagre hashen (med salt)
 - Filintegritet: SHA-256-sum av en fil avslører om filen er endret
 - Digital signatur: man signerer hashen av dokumentet, ikke selve dokumentet
@@ -147,17 +156,17 @@ E2EE er spesielt relevant for [[personvern]] – selv om serveren hackes, er inn
 
 ### Sjekk HTTPS-sertifikat i nettleser (Chrome/Edge)
 
-1. Gå til en nettside, f.eks. [https://www.nav.no](https://www.nav.no)
+1. Gå til en nettside, f.eks. [<https://www.nav.no](https://www.nav.no>)
 2. Klikk på låseikonet (eller informasjonsikonet) til venstre i adresselinjen
-3. Velg **«Tilkoblingen er sikker»** → **«Sertifikatet er gyldig»**
+3. Velg**«Tilkoblingen er sikker»**→**«Sertifikatet er gyldig»**
 
 Sjekk følgende i sertifikatet:
-- **Utstedt til:** bekrefter at domenet stemmer
-- **Utstedt av:** hvilken CA som har signert sertifikatet
-- **Gyldig fra / til:** sertifikater utløper (typisk 1 år for kommersielle, 90 dager for Let's Encrypt)
-- **SHA-256 fingeravtrykk:** unik identifikator for sertifikatet
+-**Utstedt til:**bekrefter at domenet stemmer
+-**Utstedt av:**hvilken CA som har signert sertifikatet
+-**Gyldig fra / til:**sertifikater utløper (typisk 1 år for kommersielle, 90 dager for Let's Encrypt)
+-**SHA-256 fingeravtrykk:**unik identifikator for sertifikatet
 
-**Bonus:** Åpne nettleserens utviklerverktøy (F12) → Sikkerhet-fanen for å se hvilken TLS-versjon og cipher suite som brukes.
+**Bonus:**Åpne nettleserens utviklerverktøy (F12) → Sikkerhet-fanen for å se hvilken TLS-versjon og cipher suite som brukes.
 
 ---
 
@@ -181,6 +190,7 @@ Hashing er en enveisprosess og brukes til integritetskontroll og passordlagring 
 Ende-til-ende-kryptering sikrer at kun avsender og mottaker kan lese innholdet – ikke tjenesteleverandøren. Kritisk for personvern i kommunikasjonstjenester.
 
 **Praktisk sjekkliste:**
+
 - Alltid HTTPS på nettsider (TLS 1.3 foretrukket)
 - AES-256 for data i ro (filer, databaser, backuper)
 - Aldri lagre passord i klartekst – bruk bcrypt/Argon2 med salt
@@ -217,31 +227,31 @@ Salt er en tilfeldig verdi som legges til passordet før hashing. Uten salt vil 
 
 <details><summary>Spørsmål 1: Hva er nøkkeldistribusjonsproblemet ved symmetrisk kryptering?</summary>
 
-**Svar:** Nøkkeldistribusjonsproblemet er at sender og mottaker må dele nøkkelen trygt på forhånd. Over åpne nettverk er dette vanskelig – hvis nøkkelen avlyttes under utveksling, er krypteringen kompromittert.
+**Svar:**Nøkkeldistribusjonsproblemet er at sender og mottaker må dele nøkkelen trygt på forhånd. Over åpne nettverk er dette vanskelig – hvis nøkkelen avlyttes under utveksling, er krypteringen kompromittert.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva brukes den private nøkkelen til i asymmetrisk kryptering?</summary>
 
-**Svar:** Den private nøkkelen brukes til to ting: (1) å dekryptere meldinger som er kryptert med din offentlige nøkkel, og (2) å signere meldinger digitalt slik at andre kan verifisere at de kom fra deg.
+**Svar:**Den private nøkkelen brukes til to ting: (1) å dekryptere meldinger som er kryptert med din offentlige nøkkel, og (2) å signere meldinger digitalt slik at andre kan verifisere at de kom fra deg.
 
 </details>
 
 <details><summary>Spørsmål 3: Hvorfor bruker TLS hybrid kryptering i stedet for kun asymmetrisk?</summary>
 
-**Svar:** Asymmetrisk kryptering er svært treg og egner seg dårlig for store datamengder. TLS bruker asymmetrisk kryptering bare til nøkkelutveksling (for å dele en sesjonsnøkkel trygt), deretter brukes den raske symmetriske AES-krypteringen for selve datatrafikken.
+**Svar:**Asymmetrisk kryptering er svært treg og egner seg dårlig for store datamengder. TLS bruker asymmetrisk kryptering bare til nøkkelutveksling (for å dele en sesjonsnøkkel trygt), deretter brukes den raske symmetriske AES-krypteringen for selve datatrafikken.
 
 </details>
 
 <details><summary>Spørsmål 4: Hva er hensikten med hashing av passord?</summary>
 
-**Svar:** Passord lagres aldri i klartekst. I stedet lagres en hash av passordet (gjerne med salt). Når brukeren logger inn, hashes det oppgitte passordet og sammenlignes med den lagrede hashen. Selv om databasen stjeles, kan ikke passordene leses direkte.
+**Svar:**Passord lagres aldri i klartekst. I stedet lagres en hash av passordet (gjerne med salt). Når brukeren logger inn, hashes det oppgitte passordet og sammenlignes med den lagrede hashen. Selv om databasen stjeles, kan ikke passordene leses direkte.
 
 </details>
 
 <details><summary>Spørsmål 5: Hva er en Certificate Authority (CA)?</summary>
 
-**Svar:** En CA er en betrodd tredjepart som utsteder og signerer digitale sertifikater. CA-en bekrefter at en offentlig nøkkel faktisk tilhører den identiteten (f.eks. det domenet) den utgir seg for å representere. Nettlesere stoler på CA-er som er forhåndsinstallert i operativsystemet.
+**Svar:**En CA er en betrodd tredjepart som utsteder og signerer digitale sertifikater. CA-en bekrefter at en offentlig nøkkel faktisk tilhører den identiteten (f.eks. det domenet) den utgir seg for å representere. Nettlesere stoler på CA-er som er forhåndsinstallert i operativsystemet.
 
 </details>
 
@@ -249,20 +259,20 @@ Salt er en tilfeldig verdi som legges til passordet før hashing. Uten salt vil 
 
 ## Ressurser
 
-- [NDLA – Kryptering](https://ndla.no)
-- [NSM Grunnprinsipper – Beskytt data i ro og under overføring](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
-- [Mozilla – TLS 1.3 forklart (engelsk)](https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/)
-- [Azure kryptering og nøkkelhåndtering](https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview)
-- [Datatilsynet – Kryptering av personopplysninger](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/)
-- [YouTube: Kryptering (NDLA, 6 min)](https://www.youtube.com/watch?v=N6Tf1_27n0A)
+- [NDLA – Kryptering](<https://ndla.no>)
+- [NSM Grunnprinsipper – Beskytt data i ro og under overføring](<https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>)
+- [Mozilla – TLS 1.3 forklart (engelsk)](<https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/>)
+- [Azure kryptering og nøkkelhåndtering](<https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview>)
+- [Datatilsynet – Kryptering av personopplysninger](<https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/>)
+- [YouTube: Kryptering (NDLA, 6 min)](<https://www.youtube.com/watch?v=N6Tf1_27n0A>)
 
 ## Kilder
 
-[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). «Beskytt data i ro og under overføring». https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-[^2]: Datatilsynet – Kryptering av personopplysninger. https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/
-[^3]: NDLA – Kryptering. https://ndla.no
-[^4]: TLS 1.3 (RFC 8446). Mozilla Hacks – Introducing TLS 1.3. https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/
-[^5]: Let's Encrypt – How It Works. https://letsencrypt.org/how-it-works/
-[^6]: OWASP Top 10:2021 – A02: Cryptographic Failures. https://owasp.org/www-project-top-ten/
-[^7]: Signal – Technical Information. https://signal.org/docs/
-[^8]: NIST – Post-Quantum Cryptography Standardization. https://csrc.nist.gov/projects/post-quantum-cryptography
+[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). «Beskytt data i ro og under overføring». <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+[^2]: Datatilsynet – Kryptering av personopplysninger. <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/>
+[^3]: NDLA – Kryptering. <https://ndla.no>
+[^4]: TLS 1.3 (RFC 8446). Mozilla Hacks – Introducing TLS 1.3. <https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/>
+[^5]: Let's Encrypt – How It Works. <https://letsencrypt.org/how-it-works/>
+[^6]: OWASP Top 10:2021 – A02: Cryptographic Failures. <https://owasp.org/www-project-top-ten/>
+[^7]: Signal – Technical Information. <https://signal.org/docs/>
+[^8]: NIST – Post-Quantum Cryptography Standardization. <https://csrc.nist.gov/projects/post-quantum-cryptography>

@@ -2,17 +2,21 @@
 title: "Bash – Basic Scripting"
 emne: skripting
 kompetansemaal:
+
   - km-09
+
 kilder:
+
   - ndla
-  - https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844
-  - https://learnxinyminutes.com/docs/bash/
-  - https://learn.microsoft.com/nb-no/powershell/scripting/
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - <https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844>
+  - <https://learnxinyminutes.com/docs/bash/>
+  - <https://learn.microsoft.com/nb-no/powershell/scripting/>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+
 tags: []
-flashcards: https://notebooklm.google.com/notebook/15678f10-b24e-462c-b837-076df87bd4b7
+flashcards: <https://notebooklm.google.com/notebook/15678f10-b24e-462c-b837-076df87bd4b7>
 public: true
-video: https://www.youtube.com/watch?v=e7BufAVwgyM
+video: <https://www.youtube.com/watch?v=e7BufAVwgyM>
 notebooklm: true
 language: en
 original: bash-grunnleggende.md
@@ -32,7 +36,7 @@ Bash is closely tied to [[linux-grunnleggende-en|Linux basics]] and is actively 
 
 ### Shebang — `#!/bin/bash`
 
-The very first line of a Bash script is called the **shebang** (or hashbang). It tells the operating system which program should interpret the file.
+The very first line of a Bash script is called the**shebang**(or hashbang). It tells the operating system which program should interpret the file.
 
 ```bash
 #!/bin/bash
@@ -67,11 +71,12 @@ echo "You are $AGE years old"
 ```
 
 **Important rules:**
+
 - No spaces around `=` when assigning (`VAR="value"`, not `VAR = "value"`).
 - Use double quotes `"..."` around variables to handle spaces in values.
-- Single quotes `'...'` do not interpret variables — `'$NAME'` gives the literal `$NAME`.
+- Single quotes `'...'`do not interpret variables —`'$NAME'`gives the literal`$NAME`.
 
-**Built-in variables** (environment variables):
+**Built-in variables**(environment variables):
 
 | Variable | Content |
 |---|---|
@@ -84,7 +89,7 @@ echo "You are $AGE years old"
 | `$?` | Exit code from the previous command (0 = success) |
 | `$$` | Process ID (PID) of the script |
 
-**Command substitution** — store the output of a command in a variable:
+**Command substitution**— store the output of a command in a variable:
 
 ```bash
 DATE=$(date +%Y-%m-%d)
@@ -204,6 +209,7 @@ say_hello "Jane"
 - `local` is used for variables that should only exist inside the function:
 
 ```bash
+
 function calculate_sum {
     local A=$1
     local B=$2
@@ -229,21 +235,24 @@ Bash has powerful built-in commands for file handling:
 
 ### Shellcheck — Static Analysis of Scripts
 
-**Shellcheck** is a free tool that analyzes Bash scripts and points out potential bugs, bad practices, and security issues — without you needing to run the script.
+**Shellcheck**is a free tool that analyzes Bash scripts and points out potential bugs, bad practices, and security issues — without you needing to run the script.
 
 ```bash
+
 # Install on Ubuntu/Debian
+
 sudo apt install shellcheck
 
 # Analyze a script
+
 shellcheck backup.sh
 ```
 
-Shellcheck will, for example, warn about missing quotation marks around variables (`"$VAR"` instead of `$VAR`), which can cause unexpected errors when filenames contain spaces. It is good practice to run shellcheck on all scripts before putting them into production.
+Shellcheck will, for example, warn about missing quotation marks around variables (`"$VAR"`instead of`$VAR`), which can cause unexpected errors when filenames contain spaces. It is good practice to run shellcheck on all scripts before putting them into production.
 
 ### Error Handling
 
-The special variable `$?` contains the exit code of the previous command. `0` means success, anything else is an error.
+The special variable `$?`contains the exit code of the previous command.`0` means success, anything else is an error.
 
 ```bash
 cp /important/file /backup/
@@ -269,35 +278,44 @@ set -e
 ### Lab: Complete Backup Script
 
 We will write a script that:
+
 1. Defines source and destination folders
 2. Creates a date-based backup folder
 3. Copies the content
 4. Confirms success
 
 ```bash
+
 #!/bin/bash
+
 # backup.sh — Daily backup of documents
+
 # Usage: ./backup.sh
 
 set -e  # Stop on first error
 
 # ─── Configuration ───────────────────────────────────────────
+
 SOURCE="/home/user/documents"
 TARGET="/backup/$(date +%Y-%m-%d)"
 
 # ─── Check that source folder exists ─────────────────────────
+
 if [ ! -d "$SOURCE" ]; then
     echo "ERROR: Source folder '$SOURCE' does not exist." >&2
     exit 1
 fi
 
 # ─── Create destination folder ────────────────────────────────
+
 mkdir -p "$TARGET"
 
 # ─── Perform copy ─────────────────────────────────────────────
+
 cp -r "$SOURCE" "$TARGET"
 
 # ─── Confirmation ─────────────────────────────────────────────
+
 echo "Backup completed: $TARGET"
 ```
 
@@ -308,25 +326,29 @@ echo "Backup completed: $TARGET"
 | `#!/bin/bash` | Shebang — run with Bash |
 | `set -e` | Stop the script immediately if a command fails |
 | `SOURCE=...` | Variable for the source folder to be backed up |
-| `TARGET=...` | Variable for the destination folder; `$(date +%Y-%m-%d)` gives today's date as folder name |
-| `if [ ! -d "$SOURCE" ]` | Check that the source folder actually exists (`!` means NOT, `-d` checks for directory) |
+| `TARGET=...`| Variable for the destination folder;`$(date +%Y-%m-%d)` gives today's date as folder name |
+| `if [ ! -d "$SOURCE" ]` | Check that the source folder actually exists (`!`means NOT,`-d` checks for directory) |
 | `exit 1` | Exit the script with error code 1 (indicates error) |
-| `mkdir -p "$TARGET"` | Create the destination folder; `-p` also creates parent folders without error if they exist |
+| `mkdir -p "$TARGET"`| Create the destination folder;`-p` also creates parent folders without error if they exist |
 | `cp -r "$SOURCE" "$TARGET"` | Copy recursively from source to destination |
 | `echo "Backup completed: $TARGET"` | Print confirmation message with the path to the backup folder |
 
 **How to test the script:**
 
 ```bash
+
 # Give execute permissions
+
 chmod +x backup.sh
 
 # Test with a safe source folder
+
 SOURCE="/tmp/testdocuments"
 mkdir -p "$SOURCE"
 echo "testcontent" > "$SOURCE/test.txt"
 
 # Run the script
+
 ./backup.sh
 ```
 
@@ -339,37 +361,38 @@ echo "testcontent" > "$SOURCE/test.txt"
 Bash is the shell language you encounter on all Linux systems. A Bash script is a text file with commands that are executed line by line by the Bash interpreter.
 
 **Structure of a script:**
-1. **Shebang** (`#!/bin/bash`) — always the first line, points to the interpreter.
-2. **Variables** — store data. Assigned without spaces (`NAME="value"`), read with `$NAME`.
-3. **Conditional statements** — `if [ condition ]; then ... fi` controls flow. Use file tests (`-f`, `-d`) and comparisons (`-eq`, `==`).
-4. **Loops** — `for` loop iterates over lists; `while` loop runs as long as a condition is true.
-5. **Functions** — named blocks of reusable code. Arguments are accessed with `$1`, `$2`, etc. Use `local` for local variables.
-6. **File operations** — `mkdir -p`, `cp -r`, `mv`, `rm -r`, `find`.
-7. **Error handling** — `$?` is the exit code (0 = ok). `set -e` stops the script at the first error. `>&2` sends error messages to stderr.
+1.**Shebang**(`#!/bin/bash`) — always the first line, points to the interpreter.
+2.**Variables**— store data. Assigned without spaces (`NAME="value"`), read with `$NAME`.
+3.**Conditional statements**— `if [ condition ]; then ... fi` controls flow. Use file tests (`-f`, `-d`) and comparisons (`-eq`, `==`).
+4.**Loops**— `for`loop iterates over lists;`while` loop runs as long as a condition is true.
+5.**Functions**— named blocks of reusable code. Arguments are accessed with `$1`, `$2`, etc. Use `local` for local variables.
+6.**File operations**— `mkdir -p`, `cp -r`, `mv`, `rm -r`, `find`.
+7.**Error handling**— `$?`is the exit code (0 = ok).`set -e`stops the script at the first error.`>&2` sends error messages to stderr.
 
 **Good practices:**
+
 - Always use `"$VAR"` (double quotes) around variables — protects against spaces in values.
 - Run `shellcheck script.sh` to find errors before execution.
 - Use absolute paths in scripts called by cron or automated systems.
 - Command substitution `$(command)` stores output from a command in a variable.
 
-**Typical use cases in operations:** backup scripts, log rotation, user creation, system monitoring — see [[automatisering-en|automation]] for how such scripts are scheduled.
+**Typical use cases in operations:**backup scripts, log rotation, user creation, system monitoring — see [[automatisering-en|automation]] for how such scripts are scheduled.
 
 ---
 
 ## FAQ
 
-**What is the difference between `[ ]` and `[[ ]]` in Bash?**
-`[ ]` is the POSIX-compatible test that works in all Unix shells. `[[ ]]` is a Bash extension that provides additional features like pattern matching with `=~` and logical operators without needing `&&`/`||` inside. For VG2 level, `[ ]` is sufficient, but it is good to know that `[[ ]]` is safer against edge cases.
+**What is the difference between `[ ]`and`[[ ]]` in Bash?**
+`[ ]`is the POSIX-compatible test that works in all Unix shells.`[[ ]]`is a Bash extension that provides additional features like pattern matching with`=~`and logical operators without needing`&&`/`||`inside. For VG2 level,`[ ]`is sufficient, but it is good to know that`[[ ]]` is safer against edge cases.
 
 **What happens if I forget spaces inside `[ ]`?**
-It fails. `[$VARIABLE -eq 5]` gives a syntax error because `[` is a command that requires spaces around all arguments. The correct form is `[ $VARIABLE -eq 5 ]`.
+It fails. `[$VARIABLE -eq 5]`gives a syntax error because`[`is a command that requires spaces around all arguments. The correct form is`[ $VARIABLE -eq 5 ]`.
 
 **Can I run a Bash script without `chmod +x`?**
-Yes, by calling the interpreter explicitly: `bash myscript.sh`. You do not need execute permissions then. `chmod +x` is only necessary if you want to run the script directly with `./myscript.sh`.
+Yes, by calling the interpreter explicitly: `bash myscript.sh`. You do not need execute permissions then. `chmod +x`is only necessary if you want to run the script directly with`./myscript.sh`.
 
 **What does `>&2` mean in an error message?**
-`2` is the file descriptor for stderr (standard error), and `>&2` redirects output to stderr. This allows error messages to be separated from normal output when the script runs in automated systems.
+`2`is the file descriptor for stderr (standard error), and`>&2` redirects output to stderr. This allows error messages to be separated from normal output when the script runs in automated systems.
 
 **What is an exit code and why is 0 success?**
 An exit code is a number (0–255) that a program returns when it terminates. The convention in Unix is that 0 means "everything went well" and anything else means some form of error. Bash scripts can read the previous command's exit code with `$?`.
@@ -378,7 +401,7 @@ An exit code is a number (0–255) that a program returns when it terminates. Th
 Add `set -e` at the top (after the shebang). The script will then automatically exit with an error if a command returns a non-zero exit code — instead of continuing with a failed state.
 
 **What is command substitution and when is it used?**
-`$(command)` runs the command and inserts the output in place of the substitution itself. Typical use: `DATE=$(date +%Y-%m-%d)` stores today's date in a variable, which is used in filenames for backup folders.
+`$(command)`runs the command and inserts the output in place of the substitution itself. Typical use:`DATE=$(date +%Y-%m-%d)` stores today's date in a variable, which is used in filenames for backup folders.
 
 ---
 
@@ -386,31 +409,31 @@ Add `set -e` at the top (after the shebang). The script will then automatically 
 
 <details><summary>Question 1: What does the shebang line `#!/bin/bash` at the top of a script do?</summary>
 
-**Answer:** It tells the operating system that the file should be interpreted by the program `/bin/bash`. Without the shebang, the script may be run by the wrong interpreter or not at all.
+**Answer:**It tells the operating system that the file should be interpreted by the program `/bin/bash`. Without the shebang, the script may be run by the wrong interpreter or not at all.
 
 </details>
 
 <details><summary>Question 2: What is the value of `$?` after a command that succeeded?</summary>
 
-**Answer:** `0`. In Bash (and Unix in general), exit code `0` means success. All other values indicate an error.
+**Answer:**`0`. In Bash (and Unix in general), exit code `0` means success. All other values indicate an error.
 
 </details>
 
-<details><summary>Question 3: Why do we use `mkdir -p` instead of just `mkdir`?</summary>
+<details><summary>Question 3: Why do we use `mkdir -p`instead of just`mkdir`?</summary>
 
-**Answer:** `-p` (parents) also creates any missing parent folders in the path, and does not give an error if the folder already exists. `mkdir /backup/2024-01-01` would fail if `/backup` does not exist, but `mkdir -p /backup/2024-01-01` works regardless.
+**Answer:**`-p`(parents) also creates any missing parent folders in the path, and does not give an error if the folder already exists.`mkdir /backup/2024-01-01`would fail if`/backup`does not exist, but`mkdir -p /backup/2024-01-01` works regardless.
 
 </details>
 
-<details><summary>Question 4: What is the difference between `$1` in the script's main part and `$1` inside a function?</summary>
+<details><summary>Question 4: What is the difference between `$1`in the script's main part and`$1` inside a function?</summary>
 
-**Answer:** In the script's main part, `$1` refers to the first argument given to the *script* when it runs (e.g., `./script.sh argument1`). Inside a function, `$1` refers to the first argument given to the *function* when called.
+**Answer:**In the script's main part, `$1`refers to the first argument given to the*script*when it runs (e.g.,`./script.sh argument1`). Inside a function, `$1` refers to the first argument given to the*function*when called.
 
 </details>
 
 <details><summary>Question 5: What does `set -e` do at the top of a Bash script?</summary>
 
-**Answer:** It makes the script abort immediately if a command returns a non-zero exit code (i.e., an error). This prevents the script from continuing in a partially failed state.
+**Answer:**It makes the script abort immediately if a command returns a non-zero exit code (i.e., an error). This prevents the script from continuing in a partially failed state.
 
 </details>
 
@@ -418,9 +441,9 @@ Add `set -e` at the top (after the shebang). The script will then automatically 
 
 ## Resources
 
-- [TLDP Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
-- [TLDP – Bash if/else syntax](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
-- [SS64 – Bash A–Z reference](https://ss64.com/bash/)
-- [NDLA – Bash and Linux scripting](https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844)
-- [Learn X in Y Minutes – Bash](https://learnxinyminutes.com/docs/bash/) — compact syntax overview
-- [YouTube – You need to learn Bash Scripting RIGHT NOW!! (NetworkChuck, ~21 min)](https://www.youtube.com/watch?v=e7BufAVwgyM)
+- [TLDP Bash Beginners Guide](<https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html>)
+- [TLDP – Bash if/else syntax](<https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html>)
+- [SS64 – Bash A–Z reference](<https://ss64.com/bash/>)
+- [NDLA – Bash and Linux scripting](<https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844>)
+- [Learn X in Y Minutes – Bash](<https://learnxinyminutes.com/docs/bash/>) — compact syntax overview
+- [YouTube – You need to learn Bash Scripting RIGHT NOW!! (NetworkChuck, ~21 min)](<https://www.youtube.com/watch?v=e7BufAVwgyM>)

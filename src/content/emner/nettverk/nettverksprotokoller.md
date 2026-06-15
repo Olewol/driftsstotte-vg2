@@ -2,18 +2,22 @@
 title: "Nettverksprotokoller"
 emne: nettverk
 kompetansemaal:
+
   - km-05
+
 kilder:
+
   - ndla
-  - https://snl.no/protokoll_-_it
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://snl.no/protokoll_-_it>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [protokoller, http, ftp, ssh, smtp, dns, porter, tcp, udp]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=uwoD5YskPmc
+video: <https://www.youtube.com/watch?v=uwoD5YskPmc>
 notebooklm: true
 ---
 
@@ -33,25 +37,25 @@ Alle applikasjonsprotokoller kjører enten over TCP eller UDP på transportlaget
 
 | | TCP | UDP |
 |---|---|---|
-| **Type** | Forbindelsesorientert | Forbindelseløs |
-| **Pålitelighet** | Garantert levering, rekkefølge | Ingen garanti |
-| **Hastighet** | Tregere (overhead for ack/retransmit) | Raskere |
-| **Bruksområde** | Web, e-post, filoverføring, SSH | DNS, streaming, VoIP, spill |
+|**Type**| Forbindelsesorientert | Forbindelseløs |
+|**Pålitelighet**| Garantert levering, rekkefølge | Ingen garanti |
+|**Hastighet**| Tregere (overhead for ack/retransmit) | Raskere |
+|**Bruksområde**| Web, e-post, filoverføring, SSH | DNS, streaming, VoIP, spill |
 
-**TCP (Transmission Control Protocol)** er en tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll og bekreftelser[^2].
+**TCP (Transmission Control Protocol)**er en tilkoblingsorientert og pålitelig protokoll som sikrer at data når frem i riktig rekkefølge og uten feil ved hjelp av feilkontroll og bekreftelser[^2].
 
-**UDP (User Datagram Protocol)** er en forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak, ofte brukt til streaming og gaming[^2].
+**UDP (User Datagram Protocol)**er en forbindelsesløs protokoll som prioriterer hastighet fremfor pålitelighet; sender data uten å bekrefte mottak, ofte brukt til streaming og gaming[^2].
 
 ### Portnumre
 
-Et **portnummer** er et tall fra 0–65535 (16 bit) som identifiserer hvilken tjeneste en nettverkspakke er ment for på en maskin. IP-adressen finner maskinen; portnummeret finner riktig tjeneste på maskinen.
+Et**portnummer**er et tall fra 0–65535 (16 bit) som identifiserer hvilken tjeneste en nettverkspakke er ment for på en maskin. IP-adressen finner maskinen; portnummeret finner riktig tjeneste på maskinen.
 
 Kategorier:
-- **Well-known ports (0–1023)**: standardporter for kjente tjenester (HTTP, SMTP, DNS, osv.)
-- **Registered ports (1024–49151)**: brukt av applikasjoner
-- **Dynamic/ephemeral ports (49152–65535)**: tildeles midlertidig til klientforbindelser
+-**Well-known ports (0–1023)**: standardporter for kjente tjenester (HTTP, SMTP, DNS, osv.)
+-**Registered ports (1024–49151)**: brukt av applikasjoner
+-**Dynamic/ephemeral ports (49152–65535)**: tildeles midlertidig til klientforbindelser
 
-En **three-way handshake** er prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN → SYN-ACK → ACK)[^3].
+En**three-way handshake**er prosessen TCP bruker for å etablere en stabil forbindelse mellom sender og mottaker (SYN → SYN-ACK → ACK)[^3].
 
 ### Viktige protokoller
 
@@ -75,7 +79,7 @@ En **three-way handshake** er prosessen TCP bruker for å etablere en stabil for
 
 #### HTTP og HTTPS (port 80/443)
 
-HTTP (Hypertext Transfer Protocol) er grunnlaget for webkommunikasjon[^2]. Protokollen bruker en **forespørsel/svar-modell**:
+HTTP (Hypertext Transfer Protocol) er grunnlaget for webkommunikasjon[^2]. Protokollen bruker en**forespørsel/svar-modell**:
 
 ```
 Klient → Server:
@@ -91,18 +95,19 @@ Content-Type: text/html
 **HTTP-metoder**: GET (hent ressurs), POST (send data), PUT (oppdater), DELETE (slett)
 
 **HTTP-statuskoder**:
+
 - 2xx Suksess: `200 OK`, `201 Created`
 - 3xx Omdirigering: `301 Moved Permanently`, `302 Found`
 - 4xx Klientfeil: `400 Bad Request`, `403 Forbidden`, `404 Not Found`
 - 5xx Serverfeil: `500 Internal Server Error`, `503 Service Unavailable`
 
-**HTTPS** = HTTP + TLS. Forbindelsen krypteres med TLS (Transport Layer Security) — det er dette hengelåsikonet i nettleseren betyr[^2]. All moderne webtrafikk bør bruke HTTPS.
+**HTTPS**= HTTP + TLS. Forbindelsen krypteres med TLS (Transport Layer Security) — det er dette hengelåsikonet i nettleseren betyr[^2]. All moderne webtrafikk bør bruke HTTPS.
 
 #### FTP og SFTP (port 21/22)
 
-FTP (File Transfer Protocol) bruker to separate forbindelser: **kontrollkanal** (port 21) for kommandoer og **datakanal** (port 20) for selve filoverføringen[^2]. FTP er ukryptert — brukernavn og passord sendes i klartekst.
+FTP (File Transfer Protocol) bruker to separate forbindelser:**kontrollkanal**(port 21) for kommandoer og**datakanal**(port 20) for selve filoverføringen[^2]. FTP er ukryptert — brukernavn og passord sendes i klartekst.
 
-**SFTP** (SSH File Transfer Protocol) er en komplett erstatning som kjører over SSH (port 22) og er kryptert fra start til slutt. SFTP er standarden i dag.
+**SFTP**(SSH File Transfer Protocol) er en komplett erstatning som kjører over SSH (port 22) og er kryptert fra start til slutt. SFTP er standarden i dag.
 
 Verktøy: FileZilla (grafisk klient for FTP/SFTP), WinSCP (Windows), scp-kommandoen (Linux/terminal).
 
@@ -111,10 +116,13 @@ Verktøy: FileZilla (grafisk klient for FTP/SFTP), WinSCP (Windows), scp-kommand
 SSH (Secure Shell) gir sikker fjerntilgang til en kommandolinje[^3] — primært på Linux/Unix-servere, men også nettverksutstyr som svitsjer og rutere.
 
 ```bash
+
 # Koble til server via SSH
+
 ssh brukernavn@192.168.30.10
 
 # Kopiere fil sikkert (SCP over SSH)
+
 scp fil.txt brukernavn@192.168.30.10:/home/brukernavn/
 ```
 
@@ -130,19 +138,20 @@ E-postsystemet bruker forskjellige protokoller for sending og mottak:
                                                                [Mottaker-klient] ←--IMAP(993)--
 ```
 
-- **SMTP** sender e-post (klient til server og mellom servere)
-- **IMAP** synkroniserer e-post — e-posten forblir på serveren (anbefalt)
-- **POP3** laster ned og sletter fra server — gammel løsning, brukes sjelden
+-**SMTP**sender e-post (klient til server og mellom servere)
+-**IMAP**synkroniserer e-post — e-posten forblir på serveren (anbefalt)
+-**POP3**laster ned og sletter fra server — gammel løsning, brukes sjelden
 
 #### SNMP (port 161/162)
 
-SNMP (Simple Network Management Protocol) brukes til å overvåke og administrere nettverksenheter (svitsjer, rutere, servere). En SNMP-**agent** kjører på hver enhet og rapporterer tilstand. En **NMS** (Network Management Station) poller agentene på port 161. Agenter kan sende alarmer (**traps**) til NMS på port 162 ved hendelser.
+SNMP (Simple Network Management Protocol) brukes til å overvåke og administrere nettverksenheter (svitsjer, rutere, servere). En SNMP-**agent**kjører på hver enhet og rapporterer tilstand. En**NMS**(Network Management Station) poller agentene på port 161. Agenter kan sende alarmer (**traps**) til NMS på port 162 ved hendelser.
 
-SNMPv1 og v2c bruker "community strings" (passord i klartekst). **SNMPv3** er den sikre versjonen med kryptering og autentisering[^3].
+SNMPv1 og v2c bruker "community strings" (passord i klartekst).**SNMPv3**er den sikre versjonen med kryptering og autentisering[^3].
 
 ### Sikkerhet og porter
 
 Kjente portnumre er også kjente angrepsmål. SSH (port 22) og RDP (port 3389) utsettes konstant for automatiserte innloggingsforsøk (brute force). Tiltak:
+
 - Bruk VPN — bare tillat RDP/SSH fra internt nett eller VPN
 - Begrens med IP-restriksjoner i brannmur
 - Bruk nøkkelbasert autentisering for SSH (ikke passord)
@@ -153,19 +162,25 @@ Kjente portnumre er også kjente angrepsmål. SSH (port 22) og RDP (port 3389) u
 ### Test protokoller fra kommandolinje
 
 ```cmd
+
 # Test HTTP-tilgang med curl
-curl -I http://ndla.no
+
+curl -I <http://ndla.no>
 
 # Test om en port er åpen (PowerShell)
+
 Test-NetConnection -ComputerName ndla.no -Port 443
 
 # Test om en port er åpen (CMD/nmap)
+
 nmap -p 80,443,22 192.168.1.10
 
 # Vis aktive forbindelser og porter
+
 netstat -an
 
 # Koble til SSH (fra Windows Terminal/PowerShell)
+
 ssh admin@192.168.1.1
 ```
 
@@ -184,6 +199,7 @@ Svar: SSH/SFTP, HTTP, HTTPS, RDP, SMTP
 ### Analysere pakker med Wireshark
 
 Wireshark er et nettverksanalyseverktøy som lar deg se faktisk nettverkstrafikk. Start et opptak og filtrer på protokoll:
+
 - `http` — se HTTP-forespørsler
 - `dns` — se DNS-oppslag
 - `tcp.port == 443` — se HTTPS-trafikk (kryptert innhold, men metadata synlig)
@@ -199,6 +215,7 @@ TCP er pålitelig og forbindelsesorientert (three-way handshake, ACK). UDP er ra
 Lag en tabell: HTTP=80, HTTPS=443, SSH=22, FTP=21/20, SMTP=25/587, IMAP=143/993, DNS=53, RDP=3389, DHCP=67/68.
 
 **Vanlige eksamenspoeng**
+
 - Identifiser hvilken protokoll og port som brukes til en gitt oppgave
 - Forskjellen mellom FTP og SFTP (sikkerhet)
 - Hva HTTP-statuskodene betyr (2xx, 4xx, 5xx)
@@ -213,7 +230,7 @@ HTTPS bruker port 443. Det betyr at HTTP-trafikken er kryptert med TLS (Transpor
 FTP (port 21) overfører filer uten kryptering — brukernavn, passord og filer sendes i klartekst og kan avlyttes. SFTP er sikker filoverføring over SSH (port 22) der alt krypteres. SFTP er standarden i dag.
 
 **Forklar forskjellen mellom SMTP og IMAP.**
-SMTP brukes til å *sende* e-post (fra klient til server og mellom servere). IMAP brukes til å *hente og synkronisere* e-post fra server til klient — e-posten forblir på serveren slik at du kan lese den fra flere enheter.
+SMTP brukes til å*sende*e-post (fra klient til server og mellom servere). IMAP brukes til å*hente og synkronisere*e-post fra server til klient — e-posten forblir på serveren slik at du kan lese den fra flere enheter.
 
 **Hva er en HTTP 404-feil?**
 HTTP 404 Not Found betyr at serveren mottok forespørselen, men ikke fant den etterspurte ressursen (f.eks. siden eller filen finnes ikke på den adressen). Det er en klientfeil (4xx).
@@ -235,45 +252,45 @@ Well-known ports er portnumre 0–1023 som er reservert for standardiserte tjene
 <details>
 <summary>Spørsmål 1: Hvilken port bruker HTTPS, og hva betyr det at en forbindelse er HTTPS?</summary>
 
-**Svar:** HTTPS bruker port 443. Det betyr at HTTP-trafikken er kryptert med TLS (Transport Layer Security). Innholdet kan ikke leses av noen som avlytter forbindelsen.
+**Svar:**HTTPS bruker port 443. Det betyr at HTTP-trafikken er kryptert med TLS (Transport Layer Security). Innholdet kan ikke leses av noen som avlytter forbindelsen.
 </details>
 
 <details>
 <summary>Spørsmål 2: Hva er forskjellen mellom FTP og SFTP?</summary>
 
-**Svar:** FTP (port 21) overfører filer uten kryptering — brukernavn, passord og filer sendes i klartekst og kan avlyttes. SFTP er sikker filoverføring over SSH (port 22) der alt krypteres. SFTP er standarden i dag.
+**Svar:**FTP (port 21) overfører filer uten kryptering — brukernavn, passord og filer sendes i klartekst og kan avlyttes. SFTP er sikker filoverføring over SSH (port 22) der alt krypteres. SFTP er standarden i dag.
 </details>
 
 <details>
 <summary>Spørsmål 3: Forklar forskjellen mellom SMTP og IMAP.</summary>
 
-**Svar:** SMTP brukes til å *sende* e-post (fra klient til server og mellom servere). IMAP brukes til å *hente og synkronisere* e-post fra server til klient — e-posten forblir på serveren slik at du kan lese den fra flere enheter.
+**Svar:**SMTP brukes til å*sende*e-post (fra klient til server og mellom servere). IMAP brukes til å*hente og synkronisere*e-post fra server til klient — e-posten forblir på serveren slik at du kan lese den fra flere enheter.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hva er en HTTP 404-feil?</summary>
 
-**Svar:** HTTP 404 Not Found betyr at serveren mottok forespørselen, men ikke fant den etterspurte ressursen (f.eks. siden eller filen finnes ikke på den adressen). Det er en klientfeil (4xx).
+**Svar:**HTTP 404 Not Found betyr at serveren mottok forespørselen, men ikke fant den etterspurte ressursen (f.eks. siden eller filen finnes ikke på den adressen). Det er en klientfeil (4xx).
 </details>
 
 <details>
 <summary>Spørsmål 5: Hvorfor er det en sikkerhetsrisiko å ha RDP (port 3389) åpen mot internett?</summary>
 
-**Svar:** RDP er et populært angrepsmål. Automatiserte verktøy skanner konstant internett etter åpen port 3389 og forsøker brute force-innlogging. Dersom det lykkes, får angriperen grafisk tilgang til Windows-maskinen. Løsningen er å bare tillate RDP fra VPN eller IP-adressen til administratorer.
+**Svar:**RDP er et populært angrepsmål. Automatiserte verktøy skanner konstant internett etter åpen port 3389 og forsøker brute force-innlogging. Dersom det lykkes, får angriperen grafisk tilgang til Windows-maskinen. Løsningen er å bare tillate RDP fra VPN eller IP-adressen til administratorer.
 </details>
 
 ## Kilder
 
-[^1]: SNL. (2024). Protokoll — IT. https://snl.no/protokoll_-_it
-[^2]: Cloudflare Learning. (2025). What is TCP/IP? https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/
-[^3]: Professor Messer. (2025). Network+ Study Guide — Protocols and Ports. https://www.professormesser.com/network-plus/
-[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
-[^5]: NDLA. (2024). TCP, UDP og porter. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e
+[^1]: SNL. (2024). Protokoll — IT. <https://snl.no/protokoll_-_it>
+[^2]: Cloudflare Learning. (2025). What is TCP/IP? <https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/>
+[^3]: Professor Messer. (2025). Network+ Study Guide — Protocols and Ports. <https://www.professormesser.com/network-plus/>
+[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+[^5]: NDLA. (2024). TCP, UDP og porter. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e>
 
 ## Ressurser
 
-- [TCP, UDP og porter — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e)
-- [SSH — NDLA](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/topic:6e8a2eaf-4983-4d42-a9b0-911b5921b44a/resource:db7b7d9d-9894-418a-8458-74a5cfec1e60)
-- [Transportlaget TCP og UDP — windowsnett.no](http://windowsnett.no/leksjoner/L08/8b%20Transportlaget%20TCP%20og%20UDP%20skjerm.pdf)
-- [HTTP og IIS — windowsnett.no](http://www.windowsnett.no/leksjoner/L09/Leksjon%209%20beskrivelse.htm)
-- [Protokoll — SNL](https://snl.no/protokoll_-_it)
+- [TCP, UDP og porter — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e>)
+- [SSH — NDLA](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/topic:6e8a2eaf-4983-4d42-a9b0-911b5921b44a/resource:db7b7d9d-9894-418a-8458-74a5cfec1e60>)
+- [Transportlaget TCP og UDP — windowsnett.no](<http://windowsnett.no/leksjoner/L08/8b%20Transportlaget%20TCP%20og%20UDP%20skjerm.pdf>)
+- [HTTP og IIS — windowsnett.no](<http://www.windowsnett.no/leksjoner/L09/Leksjon%209%20beskrivelse.htm>)
+- [Protokoll — SNL](<https://snl.no/protokoll_-_it>)

@@ -2,20 +2,24 @@
 title: "Risk Analysis"
 emne: sikkerhet
 kompetansemaal:
+
   - km-08
+
 kilder:
+
   - ndla
   - nsm
   - datatilsynet
-  - https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/
-  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-  - https://www.datatilsynet.no/
-  - https://owasp.org/www-project-top-ten/
-  - https://www.digdir.no/informasjonssikkerhet/
+  - <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/>
+  - <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+  - <https://www.datatilsynet.no/>
+  - <https://owasp.org/www-project-top-ten/>
+  - <https://www.digdir.no/informasjonssikkerhet/>
+
 notebooklm: true
-video: https://www.youtube.com/watch?v=DejxGE91xJY
+video: <https://www.youtube.com/watch?v=DejxGE91xJY>
 tags: []
-flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
+flashcards: <https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9>
 public: true
 language: en
 original: risikoanalyse.md
@@ -35,12 +39,12 @@ Risk analysis is the foundation that connects [[trusselbildet-en|the threat land
 
 ### What is Risk?
 
-**Risk** is defined as the product of probability and consequence:
+**Risk**is defined as the product of probability and consequence:
 
-> **Risk = Probability × Consequence**
+>**Risk = Probability × Consequence**
 
-- **Probability:** How likely is it that the event will occur? (very low / low / medium / high / very high)
-- **Consequence:** What is the extent of damage if the event occurs? (negligible / minor / moderate / serious / very serious)
+-**Probability:**How likely is it that the event will occur? (very low / low / medium / high / very high)
+-**Consequence:**What is the extent of damage if the event occurs? (negligible / minor / moderate / serious / very serious)
 
 An event with low probability but catastrophic consequences can be just as important to address as an event that occurs frequently but causes minor damage.
 
@@ -50,14 +54,16 @@ An event with low probability but catastrophic consequences can be just as impor
 
 #### Step 1: Identify Assets and Threats
 
-**Assets** are everything that has value and could be affected:
+**Assets**are everything that has value and could be affected:
+
 - Hardware (servers, network equipment, PCs)
 - Software and systems
 - Data (personal data, financial records, intellectual property)
 - Services (email, ERP, website)
 - Employees and competence
 
-**Threats** are events that can harm the assets:
+**Threats**are events that can harm the assets:
+
 - Ransomware attacks
 - Phishing targeting employees
 - Fire or flooding in the server room
@@ -68,6 +74,7 @@ An event with low probability but catastrophic consequences can be just as impor
 #### Step 2: Identify Vulnerabilities
 
 A vulnerability is a weakness that allows a threat to materialize:
+
 - Outdated software without patches
 - Weak passwords or missing MFA
 - Missing firewall
@@ -76,15 +83,15 @@ A vulnerability is a weakness that allows a threat to materialize:
 
 #### Step 3: Assess and Rank Risk
 
-Use the **risk matrix** (5×5) to place and rank risk scenarios:
+Use the**risk matrix**(5×5) to place and rank risk scenarios:
 
-| | **1 Negligible** | **2 Minor** | **3 Moderate** | **4 Serious** | **5 Very serious** |
+| |**1 Negligible**|**2 Minor**|**3 Moderate**|**4 Serious**|**5 Very serious**|
 |---|---|---|---|---|---|
-| **5 Very high** | 5 | 10 | 15 | 20 | **25** |
-| **4 High** | 4 | 8 | 12 | **16** | **20** |
-| **3 Medium** | 3 | 6 | **9** | 12 | 15 |
-| **2 Low** | 2 | 4 | 6 | 8 | 10 |
-| **1 Very low** | 1 | 2 | 3 | 4 | 5 |
+|**5 Very high**| 5 | 10 | 15 | 20 |**25**|
+|**4 High**| 4 | 8 | 12 |**16**|**20**|
+|**3 Medium**| 3 | 6 |**9**| 12 | 15 |
+|**2 Low**| 2 | 4 | 6 | 8 | 10 |
+|**1 Very low**| 1 | 2 | 3 | 4 | 5 |
 
 *Color code: 1–4 = low (green), 5–9 = medium (yellow), 10–19 = high (orange), 20–25 = critical (red)*
 
@@ -96,12 +103,12 @@ For each high or critically ranked risk scenario, the organization chooses one o
 
 | Strategy | Explanation |
 |---|---|
-| **Reduce** | Implement measures that lower probability or consequence |
-| **Avoid** | Stop the activity that creates the risk |
-| **Transfer** | Insure against the risk (e.g., cyber insurance) |
-| **Accept** | Management approves that the risk is within an acceptable level |
+|**Reduce**| Implement measures that lower probability or consequence |
+|**Avoid**| Stop the activity that creates the risk |
+|**Transfer**| Insure against the risk (e.g., cyber insurance) |
+|**Accept**| Management approves that the risk is within an acceptable level |
 
-**Residual risk** is the risk that remains after measures have been implemented. Management must formally accept the residual risk. The acceptable risk level should be defined in advance – this makes it clear to everyone when residual risk is "good enough."
+**Residual risk**is the risk that remains after measures have been implemented. Management must formally accept the residual risk. The acceptable risk level should be defined in advance – this makes it clear to everyone when residual risk is "good enough."
 
 ---
 
@@ -109,9 +116,9 @@ For each high or critically ranked risk scenario, the organization chooses one o
 
 | Type | Description | Example |
 |---|---|---|
-| **Preventive** | Prevents the event from occurring | Patches, MFA, firewall |
-| **Detective** | Detects that something is happening | Logging, IDS, antivirus monitoring |
-| **Reactive (corrective)** | Limits damage after the event | Backup, incident response plan, DR plan |
+|**Preventive**| Prevents the event from occurring | Patches, MFA, firewall |
+|**Detective**| Detects that something is happening | Logging, IDS, antivirus monitoring |
+|**Reactive (corrective)**| Limits damage after the event | Backup, incident response plan, DR plan |
 
 Good security practice combines all three types – you cannot only prevent; you must also detect and react. Organizational measures (training, routines, policies) are just as important as technical measures.
 
@@ -132,7 +139,7 @@ This means risk analysis is not just good practice – it is a legal requirement
 
 ### Risk Analysis for Bakke Upper Secondary School – School Network
 
-**Scenario:** Bakke vgs has a school network with the following components: Active Directory server, file server with student work, wireless guest network, 350 student computers, and staff PCs.
+**Scenario:**Bakke vgs has a school network with the following components: Active Directory server, file server with student work, wireless guest network, 350 student computers, and staff PCs.
 
 **Step 1 – Identify assets and threats:**
 
@@ -144,6 +151,7 @@ This means risk analysis is not just good practice – it is a legal requirement
 | Staff PCs | Phishing, malware via USB |
 
 **Step 2 – Identify vulnerabilities:**
+
 - AD server runs Windows Server 2016 without automatic patching
 - Staff use simple passwords without MFA
 - Guest network has no VLAN isolation from the internet
@@ -153,10 +161,10 @@ This means risk analysis is not just good practice – it is a legal requirement
 
 | Scenario | Probability | Consequence | Risk value |
 |---|---|---|---|
-| Ransomware against file server | 3 (medium) | 5 (very serious) | **15 – high** |
-| Phishing targeting staff | 4 (high) | 3 (moderate) | **12 – high** |
-| Fire in server room | 1 (very low) | 5 (very serious) | **5 – medium** |
-| Student connects malware via USB | 3 (medium) | 2 (minor) | **6 – medium** |
+| Ransomware against file server | 3 (medium) | 5 (very serious) |**15 – high**|
+| Phishing targeting staff | 4 (high) | 3 (moderate) |**12 – high**|
+| Fire in server room | 1 (very low) | 5 (very serious) |**5 – medium**|
+| Student connects malware via USB | 3 (medium) | 2 (minor) |**6 – medium**|
 
 **Step 4 – Measures:**
 
@@ -167,29 +175,29 @@ This means risk analysis is not just good practice – it is a legal requirement
 | Fire in server room | Fire suppression system, offsite backup, DR plan | Preventive + reactive |
 | USB use | Disable USB ports via GPO, only allow approved devices | Preventive |
 
-**Residual risk:** The ransomware risk is reduced from 15 to approximately 6 (medium) after measures. Management accepts the residual risk.
+**Residual risk:**The ransomware risk is reduced from 15 to approximately 6 (medium) after measures. Management accepts the residual risk.
 
 ---
 
 ### Classroom Case: Risk Assessment for MediaHuset AS
 
-> **Source:** Classroom notes (2ITA)
+>**Source:**Classroom notes (2ITA)
 >
 > In class, students conduct a risk assessment for a fictional Dark Web lab that investigative journalists at "MediaHuset AS" plan to use. The case illustrates structured risk management:
 >
-> **Three assets to protect:**
+>**Three assets to protect:**
 > - The company's main network
 > - Source protection / journalist anonymity
 > - Company reputation
 >
-> **Three identified threats:**
+>**Three identified threats:**
 > - Journalist downloads malware that spreads to the corporate network
 > - Journalist logs into personal Facebook via Tor and is exposed (breaking anonymity)
 > - Cleaner inserts an infected USB drive into the lab machine
 >
-> **Assessment:** For each threat, probability and consequence are evaluated (Low/Medium/High). The most dangerous combination (typically malware spread with High consequence) requires a concrete measure – for example, physically disconnecting the lab machine from the corporate network and using a dedicated 4G router.
+>**Assessment:**For each threat, probability and consequence are evaluated (Low/Medium/High). The most dangerous combination (typically malware spread with High consequence) requires a concrete measure – for example, physically disconnecting the lab machine from the corporate network and using a dedicated 4G router.
 >
-> **The point of the case:** Risk management is not gut feeling, but a structured process: define assets → identify threats → assess probability and consequence → propose measures.
+>**The point of the case:**Risk management is not gut feeling, but a structured process: define assets → identify threats → assess probability and consequence → propose measures.
 
 ---
 
@@ -201,6 +209,7 @@ This means risk analysis is not just good practice – it is a legal requirement
 Risk = Probability × Consequence. Both are typically assessed on a scale of 1–5. A risk value of 1–4 is low (green), 5–9 medium (yellow), 10–19 high (orange), 20–25 critical (red).
 
 **The 4-step model:**
+
 1. Identify assets and threats – what is worth protecting, and what could harm it?
 2. Identify vulnerabilities – what weaknesses make the threats possible?
 3. Assess and rank risk – use the risk matrix
@@ -216,6 +225,7 @@ Not all risk can be eliminated. Management formally accepts the risk that remain
 Risk assessment is a legal requirement for anyone processing personal data. Measures must be proportionate to the risk to data subjects' rights.
 
 **Practical advice:**
+
 - Always include organizational measures (training, routines), not just technical ones
 - Document the analysis and measures – accountability requires documentation
 - Review and update the analysis regularly, not just once
@@ -251,13 +261,14 @@ At least once a year, and always after significant changes in the IT environment
 
 <details><summary>Question 1: What is the formula for risk?</summary>
 
-**Answer:** Risk = Probability × Consequence. Both factors are typically assessed on a scale from 1 to 5.
+**Answer:**Risk = Probability × Consequence. Both factors are typically assessed on a scale from 1 to 5.
 
 </details>
 
 <details><summary>Question 2: What are the four steps in a risk analysis process?</summary>
 
 **Answer:**
+
 1. Identify assets and threats
 2. Identify vulnerabilities
 3. Assess and rank risk (risk matrix)
@@ -267,19 +278,19 @@ At least once a year, and always after significant changes in the IT environment
 
 <details><summary>Question 3: What is the difference between preventive, detective, and reactive measures?</summary>
 
-**Answer:** Preventive measures stop the event from occurring (e.g., firewall, MFA). Detective measures reveal that something is happening (e.g., logging, IDS). Reactive measures limit damage after the event (e.g., backup, incident response plan).
+**Answer:**Preventive measures stop the event from occurring (e.g., firewall, MFA). Detective measures reveal that something is happening (e.g., logging, IDS). Reactive measures limit damage after the event (e.g., backup, incident response plan).
 
 </details>
 
 <details><summary>Question 4: What does GDPR Article 32 require?</summary>
 
-**Answer:** GDPR Article 32 requires organizations that process personal data to conduct a risk assessment and implement appropriate technical and organizational security measures based on that assessment.
+**Answer:**GDPR Article 32 requires organizations that process personal data to conduct a risk assessment and implement appropriate technical and organizational security measures based on that assessment.
 
 </details>
 
 <details><summary>Question 5: What is residual risk?</summary>
 
-**Answer:** Residual risk is the risk that remains after measures have been implemented. It is not possible to eliminate all risk – management must formally accept the remaining risk.
+**Answer:**Residual risk is the risk that remains after measures have been implemented. It is not possible to eliminate all risk – management must formally accept the remaining risk.
 
 </details>
 
@@ -287,7 +298,7 @@ At least once a year, and always after significant changes in the IT environment
 
 ## Resources
 
-- [NSM Fundamental Principles for ICT Security (Norwegian)](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
-- [Datatilsynet – Risk Assessment and Privacy (Norwegian)](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/risikovurdering/)
-- [NDLA – Risk Assessment for Office Administration (Norwegian)](https://ndla.no)
-- [Datatilsynet – Guide for Risk Assessment of Personal Data (Norwegian)](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/)
+- [NSM Fundamental Principles for ICT Security (Norwegian)](<https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>)
+- [Datatilsynet – Risk Assessment and Privacy (Norwegian)](<https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/risikovurdering/>)
+- [NDLA – Risk Assessment for Office Administration (Norwegian)](<https://ndla.no>)
+- [Datatilsynet – Guide for Risk Assessment of Personal Data (Norwegian)](<https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/>)

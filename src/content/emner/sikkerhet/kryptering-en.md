@@ -2,20 +2,24 @@
 title: "Encryption"
 emne: sikkerhet
 kompetansemaal:
+
   - km-10
+
 kilder:
+
   - ndla
   - nsm
   - microsoft
-  - https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/
-  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-  - https://www.datatilsynet.no/
-  - https://owasp.org/www-project-top-ten/
-  - https://www.digdir.no/informasjonssikkerhet/
-video: https://www.youtube.com/watch?v=N6Tf1_27n0A
+  - <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/>
+  - <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+  - <https://www.datatilsynet.no/>
+  - <https://owasp.org/www-project-top-ten/>
+  - <https://www.digdir.no/informasjonssikkerhet/>
+
+video: <https://www.youtube.com/watch?v=N6Tf1_27n0A>
 notebooklm: true
 tags: []
-flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
+flashcards: <https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9>
 public: true
 language: en
 original: kryptering.md
@@ -35,13 +39,14 @@ Encryption is closely tied to [[personvern-en|privacy]] – GDPR requires that p
 
 ### Symmetric Encryption
 
-Symmetric encryption uses the **same key** to encrypt and decrypt data.
+Symmetric encryption uses the**same key**to encrypt and decrypt data.
 
 - Advantage: very fast – suitable for encrypting large amounts of data
-- Disadvantage: the **key distribution problem** – the key must be shared securely between sender and receiver, which is challenging over open networks
-- Example: **AES-256** (Advanced Encryption Standard with 256-bit key) – considered unbreakable and is the industry standard for encrypting data at rest (file systems, databases, backups)
+- Disadvantage: the**key distribution problem**– the key must be shared securely between sender and receiver, which is challenging over open networks
+- Example:**AES-256**(Advanced Encryption Standard with 256-bit key) – considered unbreakable and is the industry standard for encrypting data at rest (file systems, databases, backups)
 
 **Illustration:**
+
 ```
 Sender: Plaintext → [AES key] → Ciphertext
 Receiver: Ciphertext → [AES key] → Plaintext
@@ -51,16 +56,16 @@ Receiver: Ciphertext → [AES key] → Plaintext
 
 ### Asymmetric Encryption
 
-Asymmetric encryption uses a **key pair**: a public key and a private key. What is encrypted with one key can only be decrypted with the other.
+Asymmetric encryption uses a**key pair**: a public key and a private key. What is encrypted with one key can only be decrypted with the other.
 
-- **Public key:** can be shared freely with anyone
-- **Private key:** kept secret by the owner – must never be shared
+-**Public key:**can be shared freely with anyone
+-**Private key:**kept secret by the owner – must never be shared
 
 Used for two purposes:
-1. **Encryption:** Sender encrypts with the receiver's public key → only the receiver can decrypt with their private key
-2. **Digital signature:** The sender signs with their private key → anyone can verify the signature using the sender's public key
+1.**Encryption:**Sender encrypts with the receiver's public key → only the receiver can decrypt with their private key
+2.**Digital signature:**The sender signs with their private key → anyone can verify the signature using the sender's public key
 
-- Examples: **RSA** (2048 or 4096-bit keys), **ECC** (Elliptic Curve Cryptography – shorter keys, same security)
+- Examples:**RSA**(2048 or 4096-bit keys),**ECC**(Elliptic Curve Cryptography – shorter keys, same security)
 - Disadvantage: much slower than symmetric encryption – poorly suited for large data volumes
 
 ---
@@ -69,8 +74,8 @@ Used for two purposes:
 
 Hybrid encryption combines the best of both methods:
 
-1. **Asymmetric encryption** is used to securely exchange a temporary symmetric key (session key)
-2. **Symmetric encryption** (AES) is used for the actual data communication – efficient and fast
+1.**Asymmetric encryption**is used to securely exchange a temporary symmetric key (session key)
+2.**Symmetric encryption**(AES) is used for the actual data communication – efficient and fast
 
 This is the model used by TLS (and therefore HTTPS). Almost all secure communication on the internet is based on hybrid encryption.
 
@@ -78,11 +83,12 @@ This is the model used by TLS (and therefore HTTPS). Almost all secure communica
 
 ### TLS 1.3 and HTTPS
 
-**TLS (Transport Layer Security)** is the protocol that secures communication over the internet. TLS 1.3 (2018) is the current standard and has replaced the vulnerable SSL and older TLS versions.
+**TLS (Transport Layer Security)**is the protocol that secures communication over the internet. TLS 1.3 (2018) is the current standard and has replaced the vulnerable SSL and older TLS versions.
 
 **TLS 1.3 handshake (simplified):**
 
 ```
+
 1. Client sends supported cipher suites and a random value
 2. Server sends chosen cipher suite, certificate, and a random value
 3. Client verifies the server's certificate against a CA (Certificate Authority)
@@ -91,6 +97,7 @@ This is the model used by TLS (and therefore HTTPS). Almost all secure communica
 ```
 
 Improvements in TLS 1.3 vs 1.2:
+
 - Faster handshake (1 round trip instead of 2)
 - All outdated cipher suites removed (no RC4, DES, 3DES, MD5)
 - Forward secrecy is mandatory – old sessions cannot be decrypted even if the long-term key is later compromised
@@ -101,12 +108,13 @@ Hashing is a one-way process – unlike encryption, you cannot reverse a hash to
 
 ### PKI – Public Key Infrastructure
 
-**PKI** is the infrastructure that makes asymmetric encryption practically usable at scale. The problem PKI solves: How do you know that a public key actually belongs to whom it claims to represent?
+**PKI**is the infrastructure that makes asymmetric encryption practically usable at scale. The problem PKI solves: How do you know that a public key actually belongs to whom it claims to represent?
 
 **Certificates (X.509):**
-A digital certificate binds a public key to an identity (e.g., a domain name). The certificate is signed by a **Certificate Authority (CA)**.
+A digital certificate binds a public key to an identity (e.g., a domain name). The certificate is signed by a**Certificate Authority (CA)**.
 
 **CA hierarchy (chain of trust):**
+
 ```
 Root CA (self-signed, built into OS/browser)
     └── Intermediate CA (signed by Root CA)
@@ -121,16 +129,17 @@ Well-known CAs: DigiCert, Let's Encrypt (free, automated), Sectigo, GlobalSign.
 
 ### Hashing
 
-Hashing is a **one-way function** – you can create a hash from data, but you cannot reconstruct the data from the hash. Hashing is not used for encryption, but for **integrity verification**.
+Hashing is a**one-way function**– you can create a hash from data, but you cannot reconstruct the data from the hash. Hashing is not used for encryption, but for**integrity verification**.
 
 | Algorithm | Hash length | Status |
 |---|---|---|
-| MD5 | 128 bit | **Outdated** – collisions found |
-| SHA-1 | 160 bit | **Outdated** – no longer recommended |
-| SHA-256 | 256 bit | **Recommended** – used in TLS, certificates, Git |
-| bcrypt / Argon2 | variable | **Recommended for passwords** – intentionally slow |
+| MD5 | 128 bit |**Outdated**– collisions found |
+| SHA-1 | 160 bit |**Outdated**– no longer recommended |
+| SHA-256 | 256 bit |**Recommended**– used in TLS, certificates, Git |
+| bcrypt / Argon2 | variable |**Recommended for passwords**– intentionally slow |
 
 Typical use cases:
+
 - Password storage: never store plaintext passwords – store the hash (with salt)
 - File integrity: SHA-256 checksum of a file reveals whether it has been modified
 - Digital signatures: you sign the hash of the document, not the document itself
@@ -149,17 +158,17 @@ E2EE is especially relevant for [[personvern-en|privacy]] – even if the server
 
 ### Check HTTPS Certificate in Browser (Chrome/Edge)
 
-1. Go to a website, e.g., [https://www.nav.no](https://www.nav.no)
+1. Go to a website, e.g., [<https://www.nav.no](https://www.nav.no>)
 2. Click the padlock icon (or info icon) to the left in the address bar
-3. Select **"Connection is secure"** → **"Certificate is valid"**
+3. Select**"Connection is secure"**→**"Certificate is valid"**
 
 Check the following in the certificate:
-- **Issued to:** confirms the domain matches
-- **Issued by:** which CA signed the certificate
-- **Valid from / to:** certificates expire (typically 1 year for commercial, 90 days for Let's Encrypt)
-- **SHA-256 fingerprint:** unique identifier for the certificate
+-**Issued to:**confirms the domain matches
+-**Issued by:**which CA signed the certificate
+-**Valid from / to:**certificates expire (typically 1 year for commercial, 90 days for Let's Encrypt)
+-**SHA-256 fingerprint:**unique identifier for the certificate
 
-**Bonus:** Open the browser's developer tools (F12) → Security tab to see which TLS version and cipher suite is in use.
+**Bonus:**Open the browser's developer tools (F12) → Security tab to see which TLS version and cipher suite is in use.
 
 ---
 
@@ -183,6 +192,7 @@ Hashing is a one-way process used for integrity verification and password storag
 End-to-end encryption ensures that only the sender and receiver can read the content – not the service provider. Critical for privacy in communication services.
 
 **Practical checklist:**
+
 - Always use HTTPS on websites (TLS 1.3 preferred)
 - AES-256 for data at rest (files, databases, backups)
 - Never store passwords in plaintext – use bcrypt/Argon2 with salt
@@ -219,31 +229,31 @@ Salt is a random value added to the password before hashing. Without salt, two u
 
 <details><summary>Question 1: What is the key distribution problem in symmetric encryption?</summary>
 
-**Answer:** The key distribution problem is that the sender and receiver must share the key securely in advance. Over open networks, this is difficult – if the key is intercepted during exchange, the encryption is compromised.
+**Answer:**The key distribution problem is that the sender and receiver must share the key securely in advance. Over open networks, this is difficult – if the key is intercepted during exchange, the encryption is compromised.
 
 </details>
 
 <details><summary>Question 2: What is the private key used for in asymmetric encryption?</summary>
 
-**Answer:** The private key is used for two things: (1) to decrypt messages that have been encrypted with your public key, and (2) to digitally sign messages so others can verify they came from you.
+**Answer:**The private key is used for two things: (1) to decrypt messages that have been encrypted with your public key, and (2) to digitally sign messages so others can verify they came from you.
 
 </details>
 
 <details><summary>Question 3: Why does TLS use hybrid encryption instead of only asymmetric?</summary>
 
-**Answer:** Asymmetric encryption is very slow and poorly suited for large data volumes. TLS uses asymmetric encryption only for key exchange (to share a session key securely), then uses fast symmetric AES encryption for the actual data traffic.
+**Answer:**Asymmetric encryption is very slow and poorly suited for large data volumes. TLS uses asymmetric encryption only for key exchange (to share a session key securely), then uses fast symmetric AES encryption for the actual data traffic.
 
 </details>
 
 <details><summary>Question 4: What is the purpose of hashing passwords?</summary>
 
-**Answer:** Passwords are never stored in plaintext. Instead, a hash of the password is stored (preferably with salt). When the user logs in, the entered password is hashed and compared to the stored hash. Even if the database is stolen, the passwords cannot be read directly.
+**Answer:**Passwords are never stored in plaintext. Instead, a hash of the password is stored (preferably with salt). When the user logs in, the entered password is hashed and compared to the stored hash. Even if the database is stolen, the passwords cannot be read directly.
 
 </details>
 
 <details><summary>Question 5: What is a Certificate Authority (CA)?</summary>
 
-**Answer:** A CA is a trusted third party that issues and signs digital certificates. The CA confirms that a public key actually belongs to the identity (e.g., the domain) it claims to represent. Browsers trust CAs that are pre-installed in the operating system.
+**Answer:**A CA is a trusted third party that issues and signs digital certificates. The CA confirms that a public key actually belongs to the identity (e.g., the domain) it claims to represent. Browsers trust CAs that are pre-installed in the operating system.
 
 </details>
 
@@ -251,9 +261,9 @@ Salt is a random value added to the password before hashing. Without salt, two u
 
 ## Resources
 
-- [NDLA – Encryption](https://ndla.no)
-- [NSM Fundamental Principles – Protect data at rest and in transit](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)
-- [Mozilla – TLS 1.3 Explained](https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/)
-- [Azure Encryption and Key Management](https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview)
-- [Datatilsynet – Encryption of Personal Data (Norwegian)](https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/)
-- [YouTube: Encryption (NDLA, 6 min)](https://www.youtube.com/watch?v=N6Tf1_27n0A)
+- [NDLA – Encryption](<https://ndla.no>)
+- [NSM Fundamental Principles – Protect data at rest and in transit](<https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>)
+- [Mozilla – TLS 1.3 Explained](<https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/>)
+- [Azure Encryption and Key Management](<https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview>)
+- [Datatilsynet – Encryption of Personal Data (Norwegian)](<https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/>)
+- [YouTube: Encryption (NDLA, 6 min)](<https://www.youtube.com/watch?v=N6Tf1_27n0A>)

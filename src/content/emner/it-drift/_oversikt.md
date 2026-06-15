@@ -2,16 +2,20 @@
 title: "IT-drift – oversikt"
 emne: it-drift
 kompetansemaal:
+
   - km-01
   - km-03
   - km-06
   - km-12
+
 kilder:
+
   - ndla
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
-  - https://learn.microsoft.com/en-us/azure/architecture/framework/
-  - https://snl.no/skytjeneste
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>
+  - <https://learn.microsoft.com/en-us/azure/architecture/framework/>
+  - <https://snl.no/skytjeneste>
+
 tags: []
 flashcards: false
 public: true
@@ -27,14 +31,14 @@ I faget Driftsstøtte VG2 (ITK02-01) lærer du å forstå og jobbe med de viktig
 
 ## Hva er IT-drift?
 
-IT-drift (på engelsk: *IT operations* eller *ITOps*) er alle aktiviteter som sikrer at IT-miljøet i en virksomhet fungerer som det skal. Typiske arbeidsoppgaver inkluderer:
+IT-drift (på engelsk:*IT operations*eller*ITOps*) er alle aktiviteter som sikrer at IT-miljøet i en virksomhet fungerer som det skal. Typiske arbeidsoppgaver inkluderer:
 
-- **Overvåking** – sjekke at servere, nettverk og tjenester er tilgjengelige
-- **Oppdateringer og patchhåndtering** – holde programvare og operativsystemer oppdatert
-- **Feilsøking og brukerstøtte** – løse problemer når noe går galt
-- **Sikkerhetskopiering** – ta regelmessige backup og verifisere at de kan gjenopprettes
-- **Kapasitetsplanlegging** – vurdere om ressursene (lagring, prosessorkraft, båndbredde) er tilstrekkelige
-- **Dokumentasjon og endringslogging** – holde oversikt over hva som er gjort og hvorfor
+-**Overvåking**– sjekke at servere, nettverk og tjenester er tilgjengelige
+-**Oppdateringer og patchhåndtering**– holde programvare og operativsystemer oppdatert
+-**Feilsøking og brukerstøtte**– løse problemer når noe går galt
+-**Sikkerhetskopiering**– ta regelmessige backup og verifisere at de kan gjenopprettes
+-**Kapasitetsplanlegging**– vurdere om ressursene (lagring, prosessorkraft, båndbredde) er tilstrekkelige
+-**Dokumentasjon og endringslogging**– holde oversikt over hva som er gjort og hvorfor
 
 Et driftsteam kan bestå av systemadministratorer, nettverksteknikere, sikkerhetsspesialister og brukerstøtte. I mindre virksomheter kan én person ha alle disse rollene.
 
@@ -84,8 +88,8 @@ Norske virksomheter bruker både lokale datasentre og internasjonale skyleverand
 
 ## Ressurser
 
-- [AWS: What is cloud computing?](https://aws.amazon.com/what-is-cloud-computing/)
-- [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131)
+- [AWS: What is cloud computing?](<https://aws.amazon.com/what-is-cloud-computing/>)
+- [Digdir: Referansearkitektur for datadeling](<https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131>)
 - [[driftsarkitektur]]
 - [[skytjenester]]
 - [[backup-og-gjenoppretting]]

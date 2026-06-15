@@ -2,18 +2,22 @@
 title: "OSI-modellen"
 emne: nettverk
 kompetansemaal:
+
   - km-05
+
 kilder:
+
   - ndla
-  - https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [osi, modell, lag, protokoll, nettverk]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=vv4y_uOneC0
+video: <https://www.youtube.com/watch?v=vv4y_uOneC0>
 notebooklm: true
 ---
 
@@ -21,7 +25,7 @@ notebooklm: true
 
 ## Introduksjon
 
-OSI-modellen (Open Systems Interconnection) er en 7-lags referansemodell utviklet av ISO på slutten av 1970-tallet[^1]. Den ble aldri den dominerende implementasjonen i praksis — det ble TCP/IP — men OSI er blitt den universelle standarden for å *beskrive og forstå* nettverkskommunikasjon. I feilsøking er spørsmålet "på hvilket lag oppstår problemet?" en av de mest nyttige du kan stille.
+OSI-modellen (Open Systems Interconnection) er en 7-lags referansemodell utviklet av ISO på slutten av 1970-tallet[^1]. Den ble aldri den dominerende implementasjonen i praksis — det ble TCP/IP — men OSI er blitt den universelle standarden for å*beskrive og forstå*nettverkskommunikasjon. I feilsøking er spørsmålet "på hvilket lag oppstår problemet?" en av de mest nyttige du kan stille.
 
 OSI-modellen er tett knyttet til [[tcp-ip-modellen]], som er det rammeverket internett faktisk bruker i praksis. Å forstå OSI er nøkkelen til å forstå protokoller som [[nettverksprotokoller]] beskriver, samt tjenestene i [[dns-og-dhcp]] og [[serverroller]].
 
@@ -45,9 +49,9 @@ OSI-modellen er tett knyttet til [[tcp-ip-modellen]], som er det rammeverket int
 Det fysiske laget definerer de elektriske, optiske og trådløse signalene som representerer biter (0 og 1). Det inkluderer kontakttyper (RJ-45), kabeltyper (Cat5e, Cat6, fiber), og overføringsmetoder. Ingenting her kjenner til adresser eller logisk struktur — det er bare bits.
 
 **Lag 2 — Datalinklaget**
-Pakker biter inn i *frames* og håndterer overføring innenfor ett nettverkssegment. Delt i to underlag:
-- **MAC (Media Access Control)**: adressering med 48-bits MAC-adresser, kontroll av tilgang til mediet
-- **LLC (Logical Link Control)**: feildeteksjon, flomstyring
+Pakker biter inn i*frames*og håndterer overføring innenfor ett nettverkssegment. Delt i to underlag:
+-**MAC (Media Access Control)**: adressering med 48-bits MAC-adresser, kontroll av tilgang til mediet
+-**LLC (Logical Link Control)**: feildeteksjon, flomstyring
 
 En svitsj opererer på lag 2. Ethernet er den dominerende lag 2-protokollen i kablede nettverk.
 
@@ -58,31 +62,31 @@ Introduserer logisk adressering (IP-adresser) og ruting mellom nettverk. En rute
 Segmenterer data fra applikasjonslaget og håndterer ende-til-ende-kommunikasjon. TCP gir pålitelig levering med sekvensnumre og bekreftelser (ACK). UDP er rask og enkel uten slike garantier. Portnumre identifiserer hvilken applikasjon trafikken tilhører.
 
 **Lag 5 — Sesjonslaget**
-Administrerer *sesjoner* — vedvarende forbindelser mellom applikasjoner. Sesjonslaget oppretter, vedlikeholder og avslutter dialogen mellom to systemer. I praksis er mye av denne funksjonaliteten integrert i applikasjonsprotokoller i TCP/IP.
+Administrerer*sesjoner*— vedvarende forbindelser mellom applikasjoner. Sesjonslaget oppretter, vedlikeholder og avslutter dialogen mellom to systemer. I praksis er mye av denne funksjonaliteten integrert i applikasjonsprotokoller i TCP/IP.
 
 **Lag 6 — Presentasjonslaget**
 Oversetter data mellom applikasjonens format og nettverkets format. Ansvarlig for:
-- **Kryptering/dekryptering**: TLS/SSL krypterer HTTP-trafikk til HTTPS
-- **Komprimering**: reduserer datamengden som sendes
-- **Formatkonvertering**: sikrer at f.eks. tegnsett (UTF-8, ASCII) tolkes likt på begge sider
+-**Kryptering/dekryptering**: TLS/SSL krypterer HTTP-trafikk til HTTPS
+-**Komprimering**: reduserer datamengden som sendes
+-**Formatkonvertering**: sikrer at f.eks. tegnsett (UTF-8, ASCII) tolkes likt på begge sider
 
 **Lag 7 — Applikasjonslaget**
 Det øverste laget er det brukeren møter. Her befinner seg protokollene som applikasjoner bruker direkte: HTTP for nettlesing, SMTP for e-postsending, FTP for filoverføring, DNS for navneoppløsning.
 
 ### Innkapsling og PDU
 
-Når data sendes nedover gjennom OSI-lagene, legger hvert lag til sin egen kontrollinformasjon (header). Denne prosessen kalles **innkapsling (encapsulation)**[^1]. Hvert lag opererer med sin egen **PDU (Protocol Data Unit)**[^2]: på lag 4 kalles den *Segment*, på lag 3 *Pakke*, og på lag 2 *Ramme*. Ved mottak pakkes det ut i omvendt rekkefølge — hvert lag leser og fjerner sin header.
+Når data sendes nedover gjennom OSI-lagene, legger hvert lag til sin egen kontrollinformasjon (header). Denne prosessen kalles**innkapsling (encapsulation)**[^1]. Hvert lag opererer med sin egen**PDU (Protocol Data Unit)**[^2]: på lag 4 kalles den*Segment*, på lag 3*Pakke*, og på lag 2*Ramme*. Ved mottak pakkes det ut i omvendt rekkefølge — hvert lag leser og fjerner sin header.
 
 ### Huskeregel
 
 En populær huskeregel for lagene nedenfra og opp (lag 1 → 7):
 
-> **P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way
+>**P**lease**D**o**N**ot**T**hrow**S**ausage**P**izza**A**way
 > (Physical, Data Link, Network, Transport, Session, Presentation, Application)
 
 Og ovenfra og ned (lag 7 → 1):
 
-> **A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing
+>**A**ll**P**eople**S**eem**T**o**N**eed**D**ata**P**rocessing
 
 ### OSI vs. TCP/IP
 
@@ -102,11 +106,11 @@ OSI-modellens lag 5, 6 og 7 tilsvarer samlet applikasjonslaget i TCP/IP[^3]. I p
 
 OSI-modellen er særlig nyttig ved feilsøking. Tenk deg et problem der en bruker ikke kommer på internett:
 
-- **Lag 1** — Er kabelen plugget inn? Lyser linklys?
-- **Lag 2** — Svitsjen ser MAC-adressen? Feil VLAN?
-- **Lag 3** — Har maskinen riktig IP-adresse og gateway? Kan du pinge gateway?
-- **Lag 4** — Blokkeres TCP-port 443 av brannmur?
-- **Lag 7** — Feil i nettleserens konfigurasjon? DNS fungerer men HTTP feiler?
+-**Lag 1**— Er kabelen plugget inn? Lyser linklys?
+-**Lag 2**— Svitsjen ser MAC-adressen? Feil VLAN?
+-**Lag 3**— Har maskinen riktig IP-adresse og gateway? Kan du pinge gateway?
+-**Lag 4**— Blokkeres TCP-port 443 av brannmur?
+-**Lag 7**— Feil i nettleserens konfigurasjon? DNS fungerer men HTTP feiler?
 
 Ved å jobbe systematisk nedenfra og opp (eller ovenfra og ned) isolerer du problemet raskt.
 
@@ -128,9 +132,10 @@ Avgjør hvilket OSI-lag hvert scenario tilhører:
 
 ### Feilsøkingsøvelse
 
-Scenario: En PC kan pinge `192.168.1.1` (gateway) men ikke åpne `https://ndla.no`.
+Scenario: En PC kan pinge `192.168.1.1`(gateway) men ikke åpne`<https://ndla.no`.>
 
 Analyser:
+
 - Lag 1–3 fungerer (ping til gateway virker → fysisk forbindelse, datalink og IP er OK)
 - Problemet er på lag 4 (TCP-port blokkert?), lag 6 (TLS-feil?) eller lag 7 (DNS feiler? HTTP-feil?)
 - Test: `nslookup ndla.no` — hvis DNS ikke svarer er problemet lag 7 (DNS-tjenesten) eller lag 3 (ruting mot DNS-server)
@@ -138,15 +143,17 @@ Analyser:
 ## Study guide
 
 **OSI-modellens formål**
-OSI er en *referansemodell*, ikke en implementasjon. Den brukes som felles referansespråk for å forstå og feilsøke nettverkskommunikasjon. Hvert lag har et klart ansvarsområde og kommuniserer kun med laget direkte over og under.
+OSI er en*referansemodell*, ikke en implementasjon. Den brukes som felles referansespråk for å forstå og feilsøke nettverkskommunikasjon. Hvert lag har et klart ansvarsområde og kommuniserer kun med laget direkte over og under.
 
 **Kjerneforståelse per lag**
+
 - Lag 1–2 handler om fysisk og lokal overføring (kabel, WiFi, svitsjer, MAC-adresser)
 - Lag 3 introduserer logisk adressering og ruting (IP, rutere)
 - Lag 4 håndterer ende-til-ende pålitelighet og applikasjonsidentifikasjon (TCP/UDP, portnumre)
 - Lag 5–7 er applikasjonsrelaterte (sesjoner, formatering, brukerprotokoller)
 
 **Vanlige eksamenspoeng**
+
 - Forskjellen mellom svitsj (lag 2) og ruter (lag 3)
 - TCP vs. UDP og når man bruker hva
 - OSI-lagene ovenfra og ned vs. nedenfra og opp
@@ -183,45 +190,45 @@ Start fra lag 1 og jobb oppover: sjekk kabel → svitsj → IP-adresse → brann
 <details>
 <summary>Spørsmål 1: Hvilke lag i OSI tilsvarer applikasjonslaget i TCP/IP?</summary>
 
-**Svar:** Lag 5 (sesjon), lag 6 (presentasjon) og lag 7 (applikasjon) i OSI tilsvarer samlet applikasjonslaget i TCP/IP-modellen.
+**Svar:**Lag 5 (sesjon), lag 6 (presentasjon) og lag 7 (applikasjon) i OSI tilsvarer samlet applikasjonslaget i TCP/IP-modellen.
 </details>
 
 <details>
 <summary>Spørsmål 2: Hva er presentasjonslagets (lag 6) oppgave?</summary>
 
-**Svar:** Presentasjonslaget håndterer formatering, kryptering/dekryptering og komprimering av data. TLS/SSL som krypterer HTTP-trafikk til HTTPS er et eksempel på funksjonalitet fra dette laget.
+**Svar:**Presentasjonslaget håndterer formatering, kryptering/dekryptering og komprimering av data. TLS/SSL som krypterer HTTP-trafikk til HTTPS er et eksempel på funksjonalitet fra dette laget.
 </details>
 
 <details>
 <summary>Spørsmål 3: Hva er forskjellen mellom en svitsj og en ruter sett fra OSI-modellen?</summary>
 
-**Svar:** En svitsj opererer primært på lag 2 (datalinklaget) og bruker MAC-adresser for å videresende frames innenfor ett nettverk. En ruter opererer på lag 3 (nettverkslaget) og bruker IP-adresser for å rute pakker mellom ulike nettverk.
+**Svar:**En svitsj opererer primært på lag 2 (datalinklaget) og bruker MAC-adresser for å videresende frames innenfor ett nettverk. En ruter opererer på lag 3 (nettverkslaget) og bruker IP-adresser for å rute pakker mellom ulike nettverk.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hva er sesjonslaget (lag 5) ansvarlig for?</summary>
 
-**Svar:** Sesjonslaget administrerer opprettelse, vedlikehold og avslutning av sesjoner (vedvarende forbindelser) mellom applikasjoner på to systemer.
+**Svar:**Sesjonslaget administrerer opprettelse, vedlikehold og avslutning av sesjoner (vedvarende forbindelser) mellom applikasjoner på to systemer.
 </details>
 
 <details>
 <summary>Spørsmål 5: Beskriv huskeregelen for OSI-lagene nedenfra og opp.</summary>
 
-**Svar:** "Please Do Not Throw Sausage Pizza Away" — Physical, Data Link, Network, Transport, Session, Presentation, Application (lag 1 til 7).
+**Svar:**"Please Do Not Throw Sausage Pizza Away" — Physical, Data Link, Network, Transport, Session, Presentation, Application (lag 1 til 7).
 </details>
 
 ## Kilder
 
-[^1]: Cloudflare Learning. (2025). What is the OSI Model? https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/
-[^2]: Professor Messer. (2025). Network+ Study Guide — OSI Model. https://www.professormesser.com/network-plus/
-[^3]: NDLA. (2024). 5-lags TCP/IP-modell. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6
-[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^1]: Cloudflare Learning. (2025). What is the OSI Model? <https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/>
+[^2]: Professor Messer. (2025). Network+ Study Guide — OSI Model. <https://www.professormesser.com/network-plus/>
+[^3]: NDLA. (2024). 5-lags TCP/IP-modell. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>
+[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 
-- [TCP/IP 5-lagsmodell (nevner OSI) — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6)
-- [OSI-modellen — Imperva](https://www.imperva.com/learn/application-security/osi-model/)
-- [OSI-modellen — Cloudflare](https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/)
-- [TCP/IP og OSI sammenligning — Cisco Press](https://www.ciscopress.com/articles/article.asp?p=1757634&seqNum=2)
-- [The OSI Model Explained | Animation — NetworkChuck (15 min)](https://www.youtube.com/watch?v=vv4y_uOneC0)
-- [OSI-modellen — SNL](https://snl.no/OSI-modellen)
+- [TCP/IP 5-lagsmodell (nevner OSI) — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>)
+- [OSI-modellen — Imperva](<https://www.imperva.com/learn/application-security/osi-model/>)
+- [OSI-modellen — Cloudflare](<https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/>)
+- [TCP/IP og OSI sammenligning — Cisco Press](<https://www.ciscopress.com/articles/article.asp?p=1757634&seqNum=2>)
+- [The OSI Model Explained | Animation — NetworkChuck (15 min)](<https://www.youtube.com/watch?v=vv4y_uOneC0>)
+- [OSI-modellen — SNL](<https://snl.no/OSI-modellen>)

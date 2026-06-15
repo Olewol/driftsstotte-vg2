@@ -2,18 +2,22 @@
 title: "Virtuelle løsninger"
 emne: nettverk
 kompetansemaal:
+
   - km-02
+
 kilder:
+
   - ndla
-  - https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [virtualisering, hyper-v, virtualbox, hypervisor, vm, nettverk]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=GidreS70z0U
+video: <https://www.youtube.com/watch?v=GidreS70z0U>
 notebooklm: true
 ---
 
@@ -31,26 +35,26 @@ Virtuelle løsninger henger tett sammen med [[segmentering-og-vlan]], siden virt
 
 Virtualisering er teknologien som lar en fysisk datamaskin kjøre flere isolerte virtuelle maskiner (VM-er) samtidig[^4]. Hver VM kjører sitt eget operativsystem og sine egne applikasjoner, og "tror" at den er en selvstendig fysisk maskin.
 
-En **hypervisor** er programvaren som administrerer de virtuelle maskinene og fordeler fysiske ressurser (CPU, RAM, disk, nettverk) mellom dem[^2].
+En**hypervisor**er programvaren som administrerer de virtuelle maskinene og fordeler fysiske ressurser (CPU, RAM, disk, nettverk) mellom dem[^2].
 
 ### Type 1 vs. Type 2 hypervisorer
 
 | | Type 1 (Bare Metal) | Type 2 (Hosted) |
 |---|---|---|
-| **Kjører på** | Direkte på maskinvaren | Oppå et vertsoperativsystem |
-| **Ytelse** | Høy (ingen OS-overhead) | Lavere (OS-lag i veien) |
-| **Bruksområde** | Produksjonsservere, datasentre | Utvikling, testing, undervisning |
-| **Eksempler** | Hyper-V, VMware ESXi, Proxmox | VirtualBox, VMware Workstation |
-| **Administrasjon** | Via nettgrensesnitt eller mgmt-verktøy | Fra vertsoperativsystemet |
+|**Kjører på**| Direkte på maskinvaren | Oppå et vertsoperativsystem |
+|**Ytelse**| Høy (ingen OS-overhead) | Lavere (OS-lag i veien) |
+|**Bruksområde**| Produksjonsservere, datasentre | Utvikling, testing, undervisning |
+|**Eksempler**| Hyper-V, VMware ESXi, Proxmox | VirtualBox, VMware Workstation |
+|**Administrasjon**| Via nettgrensesnitt eller mgmt-verktøy | Fra vertsoperativsystemet |
 
 #### Type 1: Microsoft Hyper-V
 
 Hyper-V er Microsofts Type 1-hypervisor og er tilgjengelig som en serverrolle i Windows Server[^1]. Den kan også aktiveres som funksjon i Windows 10/11 Pro.
 
 Nøkkelbegreper i Hyper-V:
-- **Root partition**: Windows Server-installasjonen med tilgang til faktisk maskinvare
-- **Child partition (Guest VM)**: Den virtuelle maskinen som kun ser emulert/virtuell maskinvare
-- **Generation 1 vs. Generation 2**: Gen 2 støtter UEFI og Secure Boot, anbefalt for moderne OS
+-**Root partition**: Windows Server-installasjonen med tilgang til faktisk maskinvare
+-**Child partition (Guest VM)**: Den virtuelle maskinen som kun ser emulert/virtuell maskinvare
+-**Generation 1 vs. Generation 2**: Gen 2 støtter UEFI og Secure Boot, anbefalt for moderne OS
 
 #### Type 2: Oracle VirtualBox
 
@@ -59,43 +63,43 @@ VirtualBox er gratis og plattformuavhengig (Windows, macOS, Linux). Godt egnet f
 ### Virtuelle maskiner — egenskaper
 
 Hver VM har:
-- **Virtuell CPU** (vCPU) — én eller flere kjerner
-- **Virtuelt RAM** — allokert fra fysisk RAM
-- **Virtuell harddisk** — lagret som en fil (.vhd, .vhdx, .vmdk) på fysisk disk
-- **Virtuelt nettverkskort** — koblet til en virtuell svitsj
+-**Virtuell CPU**(vCPU) — én eller flere kjerner
+-**Virtuelt RAM**— allokert fra fysisk RAM
+-**Virtuell harddisk**— lagret som en fil (.vhd, .vhdx, .vmdk) på fysisk disk
+-**Virtuelt nettverkskort**— koblet til en virtuell svitsj
 
 Fordeler med VM-er:
-- **Isolasjon**: feil eller kompromittering i én VM påvirker ikke andre
-- **Ressurseffektivitet**: unngår "én server per tjeneste"-overforbruk
-- **Portabilitet**: en VM kan eksporteres og importeres på annen hardware
-- **Snapshots**: ta øyeblikksbilde av tilstanden — rull tilbake ved feil
-- **Skalerbarhet**: enkel å klone og skalere opp
-- **Bærekraft**: serverkonsolidering reduserer strømforbruk og behov for fysisk maskinvare
+-**Isolasjon**: feil eller kompromittering i én VM påvirker ikke andre
+-**Ressurseffektivitet**: unngår "én server per tjeneste"-overforbruk
+-**Portabilitet**: en VM kan eksporteres og importeres på annen hardware
+-**Snapshots**: ta øyeblikksbilde av tilstanden — rull tilbake ved feil
+-**Skalerbarhet**: enkel å klone og skalere opp
+-**Bærekraft**: serverkonsolidering reduserer strømforbruk og behov for fysisk maskinvare
 
-**Isolasjon** er prinsippet om at en virtuell maskin er separert fra andre maskiner og vertssystemet, slik at feil eller virus i én VM ikke sprer seg til resten av infrastrukturen.
+**Isolasjon**er prinsippet om at en virtuell maskin er separert fra andre maskiner og vertssystemet, slik at feil eller virus i én VM ikke sprer seg til resten av infrastrukturen.
 
 ### Virtuelle nettverk
 
 Hypervisorer tilbyr virtuelle svitsjer (virtual switches / vSwitch) som kobler VM-er sammen og mot fysiske nettverk.
 
-En **virtuell svitsj (vSwitch)** er en programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med hverandre og fysiske nettverk via VLAN.
+En**virtuell svitsj (vSwitch)**er en programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med hverandre og fysiske nettverk via VLAN.
 
 #### Hyper-V Virtual Switch — tre typer
 
 | Type | Beskrivelse | Bruksscenario |
 |------|-------------|---------------|
-| **Ekstern** | Koblet til fysisk nettverkskort — VM-er når det fysiske nettverket | Produksjon, lab mot reelt nett |
-| **Intern** | Kommunikasjon mellom host og VM-er — ikke ut på fysisk nettverk | Host administrerer VM-er, delt nett |
-| **Privat** | Kun mellom VM-er — host har ikke tilgang | Isolerte testmiljøer |
+|**Ekstern**| Koblet til fysisk nettverkskort — VM-er når det fysiske nettverket | Produksjon, lab mot reelt nett |
+|**Intern**| Kommunikasjon mellom host og VM-er — ikke ut på fysisk nettverk | Host administrerer VM-er, delt nett |
+|**Privat**| Kun mellom VM-er — host har ikke tilgang | Isolerte testmiljøer |
 
 #### VirtualBox nettverksmodi[^1]
 
 | Modus | VM ser | VM nås fra | Typisk bruk |
 |-------|--------|-----------|-------------|
-| **NAT** | Internett via host | Kun host (port-forward) | Enkel internett-tilgang fra VM |
-| **Bridged** | Fysisk nettverk direkte | Andre maskiner på nettverket | VM oppfører seg som fysisk maskin |
-| **Host-only** | Kun host og andre VM-er | Kun host | Isolert lab-nettverk |
-| **Internal Network** | Kun andre VM-er | Ingen | Fullstendig isolerte VM-er |
+|**NAT**| Internett via host | Kun host (port-forward) | Enkel internett-tilgang fra VM |
+|**Bridged**| Fysisk nettverk direkte | Andre maskiner på nettverket | VM oppfører seg som fysisk maskin |
+|**Host-only**| Kun host og andre VM-er | Kun host | Isolert lab-nettverk |
+|**Internal Network**| Kun andre VM-er | Ingen | Fullstendig isolerte VM-er |
 
 ### VLAN i virtuelle nettverk
 
@@ -106,6 +110,7 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 ### Praktisk bruk i VG2
 
 **Opprette VM i Hyper-V (forenklet):**
+
 1. Hyper-V Manager → Action → New → Virtual Machine
 2. Gi VM-en et navn (f.eks. `WinServer01`)
 3. Velg Generasjon (Gen 2 for Windows Server 2019/2022)
@@ -116,6 +121,7 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 8. Fullfør og start VM-en
 
 **Snapshots/kontrollpunkter:**
+
 - Høyreklikk VM → Checkpoint (tar øyeblikksbilde)
 - Rull tilbake: høyreklikk checkpoint → Apply
 - Slett foreldede checkpoints for å frigjøre diskplass
@@ -124,13 +130,13 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 
 ### Lab: Todelt tjenestearkitektur med Linux (WebServer + DBServer)
 
-> **Kilde:** Klasseromsnotater (2ITA)
+>**Kilde:**Klasseromsnotater (2ITA)
 >
 > I undervisningen setter elevene opp en todelt tjenestearkitektur med to Ubuntu Server-VM-er i VirtualBox. Målet er å få ticketsystemet osTicket til å kjøre med webserver og database på separate maskiner.
 >
-> **VM-oppsett:** Begge VM-er (WebServer og DBServer) konfigureres med min. 4 GB RAM, 2 CPU-er og 25 GB disk. Nettverksmodus settes til **Bridged Adapter** slik at VM-ene får egne IP-adresser på skolenettverket.
+>**VM-oppsett:**Begge VM-er (WebServer og DBServer) konfigureres med min. 4 GB RAM, 2 CPU-er og 25 GB disk. Nettverksmodus settes til**Bridged Adapter**slik at VM-ene får egne IP-adresser på skolenettverket.
 >
-> **Statisk IP med Netplan (Ubuntu Server):**
+>**Statisk IP med Netplan (Ubuntu Server):**
 > ```yaml
 > network:
 >   ethernets:
@@ -147,9 +153,9 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 > ```
 > Aktiver med `sudo netplan apply`.
 >
-> **WebServer:** Apache installeres (`sudo apt install apache2 -y`) og PHP-moduler som kreves av osTicket. osTicket lastes ned og legges i `/var/www/html/`.
+>**WebServer:**Apache installeres (`sudo apt install apache2 -y`) og PHP-moduler som kreves av osTicket. osTicket lastes ned og legges i `/var/www/html/`.
 >
-> **DBServer:** MariaDB installeres (`sudo apt install mariadb-server -y`). For at WebServer skal nå databasen må `bind-address` i `/etc/mysql/mariadb.conf.d/50-server.cnf` endres fra `127.0.0.1` til `0.0.0.0`, etterfulgt av `sudo systemctl restart mariadb`.
+>**DBServer:**MariaDB installeres (`sudo apt install mariadb-server -y`). For at WebServer skal nå databasen må `bind-address`i`/etc/mysql/mariadb.conf.d/50-server.cnf`endres fra`127.0.0.1`til`0.0.0.0`, etterfulgt av `sudo systemctl restart mariadb`.
 
 ### Lab-scenario: To VM-er på isolert nettverk
 
@@ -176,6 +182,7 @@ NAT: VM deler hostens IP, ikke synlig utenfra. Bridged: VM får egen IP, oppfør
 Virtuelle svitsjer støtter VLAN-tagging. En VM kan tilhøre et VLAN akkurat som en fysisk maskin. Dette er sentralt for å integrere virtuelle servere i segmenterte nettverksarkitekturer.
 
 **Vanlige eksamenspoeng**
+
 - Forskjellen mellom Type 1 og Type 2 hypervisor
 - Hva et snapshot er og når man bruker det
 - Forskjellen mellom NAT og Bridged i VirtualBox
@@ -212,43 +219,43 @@ Isolasjon betyr at en VM er separert fra andre VM-er og fra vertssystemet. Hvis 
 <details>
 <summary>Spørsmål 1: Hva er forskjellen mellom en Type 1 og Type 2 hypervisor?</summary>
 
-**Svar:** En Type 1-hypervisor (bare metal) kjører direkte på maskinvaren uten underliggende OS, noe som gir bedre ytelse. Den brukes i produksjon (Hyper-V, VMware ESXi). En Type 2-hypervisor kjører som et program oppå et vertsoperativsystem (VirtualBox, VMware Workstation) — enklere å sette opp, men med noe dårligere ytelse.
+**Svar:**En Type 1-hypervisor (bare metal) kjører direkte på maskinvaren uten underliggende OS, noe som gir bedre ytelse. Den brukes i produksjon (Hyper-V, VMware ESXi). En Type 2-hypervisor kjører som et program oppå et vertsoperativsystem (VirtualBox, VMware Workstation) — enklere å sette opp, men med noe dårligere ytelse.
 </details>
 
 <details>
 <summary>Spørsmål 2: Hva er et snapshot/kontrollpunkt i en VM, og hvorfor er det nyttig?</summary>
 
-**Svar:** Et snapshot (kontrollpunkt) er et øyeblikksbilde av en VM-s tilstand på et bestemt tidspunkt. Det lar deg rulle VM-en tilbake til den tilstanden hvis noe går galt — f.eks. etter en mislykket oppdatering eller feilkonfigurasjon. Uunnværlig i lab-miljøer.
+**Svar:**Et snapshot (kontrollpunkt) er et øyeblikksbilde av en VM-s tilstand på et bestemt tidspunkt. Det lar deg rulle VM-en tilbake til den tilstanden hvis noe går galt — f.eks. etter en mislykket oppdatering eller feilkonfigurasjon. Uunnværlig i lab-miljøer.
 </details>
 
 <details>
 <summary>Spørsmål 3: Hva er forskjellen mellom NAT og Bridged nettverksmodus i VirtualBox?</summary>
 
-**Svar:** I NAT-modus deler VM-en hostmaskinens IP-adresse og når internett gjennom den — men er ikke direkte synlig fra andre maskiner på nettverket. I Bridged-modus kobles VM-en direkte til det fysiske nettverket og får sin egen IP-adresse, som om den var en fysisk maskin.
+**Svar:**I NAT-modus deler VM-en hostmaskinens IP-adresse og når internett gjennom den — men er ikke direkte synlig fra andre maskiner på nettverket. I Bridged-modus kobles VM-en direkte til det fysiske nettverket og får sin egen IP-adresse, som om den var en fysisk maskin.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hvilke tre typer virtuelle svitsjer finnes i Hyper-V?</summary>
 
-**Svar:** Ekstern (kobler VM-er til det fysiske nettverket via vertsmaskinens nettverkskort), Intern (kommunikasjon mellom host og VM-er, ikke ut på fysisk nett) og Privat (kun mellom VM-er, host har ikke tilgang).
+**Svar:**Ekstern (kobler VM-er til det fysiske nettverket via vertsmaskinens nettverkskort), Intern (kommunikasjon mellom host og VM-er, ikke ut på fysisk nett) og Privat (kun mellom VM-er, host har ikke tilgang).
 </details>
 
 <details>
 <summary>Spørsmål 5: Nevn tre fordeler med virtualisering i IT-drift.</summary>
 
-**Svar:** (Velg tre av): Ressurseffektivitet (færre fysiske servere), isolasjon mellom tjenester, portabilitet (eksport/import av VM-er), snapshots for enkel feilretting, enkel skalering, raskere utrulling av nye servere.
+**Svar:**(Velg tre av): Ressurseffektivitet (færre fysiske servere), isolasjon mellom tjenester, portabilitet (eksport/import av VM-er), snapshots for enkel feilretting, enkel skalering, raskere utrulling av nye servere.
 </details>
 
 ## Kilder
 
-[^1]: Microsoft Learn. (2025). Hyper-V Technology Overview. https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview
-[^2]: Professor Messer. (2025). Network+ Study Guide — Virtualization. https://www.professormesser.com/network-plus/
-[^3]: NDLA. (2024). Virtualisering i Windows Server. https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb
-[^4]: Cloudflare Learning. (2025). What is Virtualization? https://www.cloudflare.com/learning/cloud/what-is-virtualization/
+[^1]: Microsoft Learn. (2025). Hyper-V Technology Overview. <https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview>
+[^2]: Professor Messer. (2025). Network+ Study Guide — Virtualization. <https://www.professormesser.com/network-plus/>
+[^3]: NDLA. (2024). Virtualisering i Windows Server. <https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb>
+[^4]: Cloudflare Learning. (2025). What is Virtualization? <https://www.cloudflare.com/learning/cloud/what-is-virtualization/>
 
 ## Ressurser
 
-- [Virtualisering i Windows Server — NDLA](https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb)
-- [Opprett virtuell maskin i Hyper-V — NDLA](https://ndla.no/nb/r/yrkesfaglig-fordypning-im-ikm-vg1/opprett-virtuell-maskin-i-hyper-v/23c398aac8)
-- [windowsnett.no — leksjon 1: virtualisering og Windows Server](https://www.windowsnett.no/)
-- [Hyper-V Technology Overview — Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview)
+- [Virtualisering i Windows Server — NDLA](<https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb>)
+- [Opprett virtuell maskin i Hyper-V — NDLA](<https://ndla.no/nb/r/yrkesfaglig-fordypning-im-ikm-vg1/opprett-virtuell-maskin-i-hyper-v/23c398aac8>)
+- [windowsnett.no — leksjon 1: virtualisering og Windows Server](<https://www.windowsnett.no/>)
+- [Hyper-V Technology Overview — Microsoft Learn](<https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview>)

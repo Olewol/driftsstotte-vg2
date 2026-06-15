@@ -2,18 +2,22 @@
 title: "Operations Architecture"
 emne: it-drift
 competence_goals:
+
   - km-01
   - km-03
+
 sources:
+
   - ndla
-  - https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358
-  - https://snl.no/skytjeneste
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
-  - https://learn.microsoft.com/en-us/azure/architecture/framework/
-video: https://www.youtube.com/watch?v=mxT23V-pS0I
+  - <https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358>
+  - <https://snl.no/skytjeneste>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>
+  - <https://learn.microsoft.com/en-us/azure/architecture/framework/>
+
+video: <https://www.youtube.com/watch?v=mxT23V-pS0I>
 tags: []
-flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
+flashcards: <https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd>
 public: true
 notebooklm: true
 language: en
@@ -32,17 +36,17 @@ Today, there are three main models: on-premise infrastructure, cloud-based infra
 
 ### On-premise, Cloud, and Hybrid
 
-**On-premise** means all infrastructure is located locally – in the organization's own rooms or rented server rooms. The organization owns and operates everything itself: servers, network, storage, and software.
+**On-premise**means all infrastructure is located locally – in the organization's own rooms or rented server rooms. The organization owns and operates everything itself: servers, network, storage, and software.
 
 - Advantages: full control, predictable costs over time, no dependence on internet connection
 - Disadvantages: high capital costs (CAPEX), requires in-house expertise, scaling takes time
 
-**Cloud-based infrastructure (public cloud)** means resources are rented from an external cloud provider (Microsoft Azure, Amazon Web Services, Google Cloud). The organization pays for what it uses (OPEX model).
+**Cloud-based infrastructure (public cloud)**means resources are rented from an external cloud provider (Microsoft Azure, Amazon Web Services, Google Cloud). The organization pays for what it uses (OPEX model).
 
 - Advantages: elastic scaling, pay only for usage, low maintenance responsibility
 - Disadvantages: ongoing costs, dependence on provider and internet, concerns about data storage and GDPR
 
-**Hybrid cloud** combines on-premise and cloud. Critical data and services can remain local, while variable workloads run in the cloud. This is the most common model for medium-sized and large Norwegian enterprises today.
+**Hybrid cloud**combines on-premise and cloud. Critical data and services can remain local, while variable workloads run in the cloud. This is the most common model for medium-sized and large Norwegian enterprises today.
 
 > Connection to km-03: Cloud services are an integrated part of modern operations architecture. IaaS (Infrastructure as a Service) is effectively an extension of on-premise – you rent virtual machines and networks instead of owning physical equipment. See [[skytjenester-en]] for a complete overview.
 
@@ -50,17 +54,17 @@ Today, there are three main models: on-premise infrastructure, cloud-based infra
 
 ### Servers: Physical and Virtual
 
-A **physical server** is dedicated hardware that runs one or more operating systems. In a data center, servers are placed in **racks** (metal cabinets), and many racks are collected in a server hall.
+A**physical server**is dedicated hardware that runs one or more operating systems. In a data center, servers are placed in**racks**(metal cabinets), and many racks are collected in a server hall.
 
-**Virtualization** makes it possible to run multiple virtual machines (VMs) on one physical server. A **hypervisor** is the software that manages the VMs. The most common hypervisors are:
+**Virtualization**makes it possible to run multiple virtual machines (VMs) on one physical server. A**hypervisor**is the software that manages the VMs. The most common hypervisors are:
 
-- **VMware ESXi** – industry standard, widely used in enterprises
-- **Microsoft Hyper-V** – built into Windows Server
-- **KVM** – open source, used in Linux environments
+-**VMware ESXi**– industry standard, widely used in enterprises
+-**Microsoft Hyper-V**– built into Windows Server
+-**KVM**– open source, used in Linux environments
 
 Virtualization provides better resource utilization, easier administration, and faster deployment of new servers. See [[virtuelle-losninger-en]] for a deeper look at virtualization technology.
 
-**Containers** (e.g., Docker) are a lighter form of virtualization that share the operating system kernel between applications. Kubernetes is used to orchestrate containers at scale.
+**Containers**(e.g., Docker) are a lighter form of virtualization that share the operating system kernel between applications. Kubernetes is used to orchestrate containers at scale.
 
 ---
 
@@ -70,12 +74,12 @@ A local network (LAN) consists of several key components:
 
 | Component | Function |
 |-----------|----------|
-| **Switch** | Connects devices in a local network. Operates at layer 2 (MAC addresses). |
-| **Router** | Connects different networks. Operates at layer 3 (IP addresses). Routes traffic between LAN and WAN. |
-| **Firewall** | Controls and filters network traffic based on rules. First line of defense against attacks. |
-| **DMZ** | Demilitarized zone – an isolated network segment for services accessible from the internet (e.g., web server). |
-| **VLAN** | Logical network segmentation without physical separation. Used for security and performance. |
-| **Wireless Access Point (AP)** | Provides Wi-Fi access to the network. |
+|**Switch**| Connects devices in a local network. Operates at layer 2 (MAC addresses). |
+|**Router**| Connects different networks. Operates at layer 3 (IP addresses). Routes traffic between LAN and WAN. |
+|**Firewall**| Controls and filters network traffic based on rules. First line of defense against attacks. |
+|**DMZ**| Demilitarized zone – an isolated network segment for services accessible from the internet (e.g., web server). |
+|**VLAN**| Logical network segmentation without physical separation. Used for security and performance. |
+|**Wireless Access Point (AP)**| Provides Wi-Fi access to the network. |
 
 See [[brannmur-en]] and [[segmentering-og-vlan-en]] for more on these components.
 
@@ -102,6 +106,7 @@ Cloud storage (e.g., Azure Blob Storage, AWS S3) is suitable for large amounts o
 ### Client Equipment
 
 End-user equipment is called client equipment and includes:
+
 - PCs and laptops
 - Tablets and mobile phones (BYOD – Bring Your Own Device)
 - Thin clients – inexpensive devices that connect to a terminal server
@@ -110,9 +115,10 @@ End-user equipment is called client equipment and includes:
 
 ### UPS and Redundancy
 
-**UPS (Uninterruptible Power Supply)** is a battery system that provides power during outages. It ensures that servers and network equipment can shut down gracefully – or continue running – when the power goes out.
+**UPS (Uninterruptible Power Supply)**is a battery system that provides power during outages. It ensures that servers and network equipment can shut down gracefully – or continue running – when the power goes out.
 
-**Redundancy** means that critical components exist in duplicate, so the system continues to function if one component fails:
+**Redundancy**means that critical components exist in duplicate, so the system continues to function if one component fails:
+
 - Redundant power supplies in servers
 - Redundant network connections (bonding/failover)
 - RAID (Redundant Array of Independent Disks) for storage
@@ -122,9 +128,10 @@ End-user equipment is called client equipment and includes:
 
 ### Infrastructure as Code (IaC)
 
-Modern operations architecture is not only about which components exist – it is also about how they are configured and maintained. **Infrastructure as Code (IaC)** is a method where IT infrastructure is described and managed via machine-readable configuration files instead of manual configuration.
+Modern operations architecture is not only about which components exist – it is also about how they are configured and maintained.**Infrastructure as Code (IaC)**is a method where IT infrastructure is described and managed via machine-readable configuration files instead of manual configuration.
 
 Advantages of IaC:
+
 - Reproducible infrastructure – the same configuration always produces the same result
 - Version control – changes are tracked as code
 - Automated deployment – faster and more reliable than manual work
@@ -177,24 +184,27 @@ Look at an example of an Azure ARM template or Terraform configuration (many ope
 Operations architecture is about how IT systems are built and what choices are made for the placement, scaling, and security of infrastructure.
 
 **The three models:**
-- **On-premise** – full control, high CAPEX, no dependence on internet
-- **Public cloud** – elastic, OPEX model, dependent on provider
-- **Hybrid** – combination, most common in Norwegian enterprises
+-**On-premise**– full control, high CAPEX, no dependence on internet
+-**Public cloud**– elastic, OPEX model, dependent on provider
+-**Hybrid**– combination, most common in Norwegian enterprises
 
 **Servers and virtualization:**
+
 - Hypervisor enables multiple VMs on one physical server (VMware, Hyper-V, KVM)
 - Containers (Docker/Kubernetes) are lighter than VMs and share the OS kernel
 - IaC automates and version-controls infrastructure setup
 
 **Network components:**
+
 - Switch (layer 2), router (layer 3), firewall (filtering), VLAN (segmentation), DMZ (public services)
 - Redundancy and UPS ensure continuity during failures
 
 **Storage:**
+
 - DAS (directly attached, one server only), NAS (network sharing, SMB/NFS), SAN (high-speed block storage, Fibre Channel/iSCSI)
 - Cloud object storage for unstructured data and backups
 
-**Remember:** CAPEX vs. OPEX is not just a cost decision – it is a strategic decision about control, flexibility, and risk. Hybrid cloud is a deliberate combination, not a compromise.
+**Remember:**CAPEX vs. OPEX is not just a cost decision – it is a strategic decision about control, flexibility, and risk. Hybrid cloud is a deliberate combination, not a compromise.
 
 ---
 
@@ -224,31 +234,31 @@ A DMZ (Demilitarized Zone) is an isolated network between the internet and the i
 
 <details><summary>Question 1: What is the difference between CAPEX and OPEX in relation to IT operations?</summary>
 
-**Answer:** CAPEX (Capital Expenditure) is large one-time expenses for purchasing equipment and infrastructure, typically for on-premise. OPEX (Operational Expenditure) is ongoing operating expenses, typically for cloud services where you pay monthly for what you use.
+**Answer:**CAPEX (Capital Expenditure) is large one-time expenses for purchasing equipment and infrastructure, typically for on-premise. OPEX (Operational Expenditure) is ongoing operating expenses, typically for cloud services where you pay monthly for what you use.
 
 </details>
 
 <details><summary>Question 2: What does a hypervisor do?</summary>
 
-**Answer:** A hypervisor is software that allows one physical server to run multiple virtual machines (VMs) simultaneously. It allocates resources (CPU, memory, storage) between the VMs and isolates them from each other.
+**Answer:**A hypervisor is software that allows one physical server to run multiple virtual machines (VMs) simultaneously. It allocates resources (CPU, memory, storage) between the VMs and isolates them from each other.
 
 </details>
 
 <details><summary>Question 3: What is the difference between NAS and SAN?</summary>
 
-**Answer:** NAS (Network Attached Storage) is a file server connected to the regular network and offers file sharing via SMB/NFS. SAN (Storage Area Network) is a dedicated high-speed network for storage that provides block-based access to servers – as if the disk were locally attached. SAN is faster and used for performance-intensive applications.
+**Answer:**NAS (Network Attached Storage) is a file server connected to the regular network and offers file sharing via SMB/NFS. SAN (Storage Area Network) is a dedicated high-speed network for storage that provides block-based access to servers – as if the disk were locally attached. SAN is faster and used for performance-intensive applications.
 
 </details>
 
 <details><summary>Question 4: What is a DMZ in network architecture?</summary>
 
-**Answer:** A DMZ (Demilitarized Zone) is an isolated network segment between the internet and the internal network. Services that need to be accessible from the internet (e.g., web servers) are placed here, so that an attack against these does not provide direct access to the internal network.
+**Answer:**A DMZ (Demilitarized Zone) is an isolated network segment between the internet and the internal network. Services that need to be accessible from the internet (e.g., web servers) are placed here, so that an attack against these does not provide direct access to the internal network.
 
 </details>
 
 <details><summary>Question 5: What is hybrid cloud and why is it common in Norwegian organizations?</summary>
 
-**Answer:** Hybrid cloud combines local on-premise infrastructure with public cloud services. It is common because it provides flexibility: sensitive data and systems with strict GDPR requirements can remain local, while scalable services and backups can reside in the cloud. It also enables cost optimization.
+**Answer:**Hybrid cloud combines local on-premise infrastructure with public cloud services. It is common because it provides flexibility: sensitive data and systems with strict GDPR requirements can remain local, while scalable services and backups can reside in the cloud. It also enables cost optimization.
 
 </details>
 
@@ -256,12 +266,12 @@ A DMZ (Demilitarized Zone) is an isolated network between the internet and the i
 
 ## Resources
 
-- [Microsoft Azure: What is IaaS?](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas/)
-- [Microsoft Learn AZ-900: IaaS](https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service)
-- [AWS: What is cloud computing?](https://aws.amazon.com/what-is-cloud-computing/)
-- [NDLA: Driftsarkitektur](https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358)
-- [SNL: Skytjeneste](https://snl.no/skytjeneste)
-- [YouTube: What is Cloud Computing? – Amazon Web Services](https://www.youtube.com/watch?v=mxT23V-pS0I)
+- [Microsoft Azure: What is IaaS?](<https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas/>)
+- [Microsoft Learn AZ-900: IaaS](<https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service>)
+- [AWS: What is cloud computing?](<https://aws.amazon.com/what-is-cloud-computing/>)
+- [NDLA: Driftsarkitektur](<https://ndla.no/nb/subject:1:34375b6a-9a99-4d64-884d-2a3164a27521/topic:2:183915/resource:1:160358>)
+- [SNL: Skytjeneste](<https://snl.no/skytjeneste>)
+- [YouTube: What is Cloud Computing? – Amazon Web Services](<https://www.youtube.com/watch?v=mxT23V-pS0I>)
 - [[skytjenester-en]]
 - [[backup-og-gjenoppretting-en]]
 - [[dokumentasjon-og-planlegging-en]]

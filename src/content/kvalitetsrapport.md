@@ -10,7 +10,7 @@ Generert: 2026-05-20
 
 ## Målgruppeanalyse
 
-**Målgruppe:** VG2 Informasjonsteknologi-elever, 16-17 år.
+**Målgruppe:**VG2 Informasjonsteknologi-elever, 16-17 år.
 
 ### Vurdering av målgruppetilpasning
 
@@ -26,22 +26,23 @@ Generert: 2026-05-20
 ## Struktursjekk
 
 ### 8-seksjoners struktur (emnefiler)
-- **Introduksjon** — ✅ alle filer
-- **Teori** — ✅ alle filer (med h3/h4 underoverskrifter)
-- **Eksempel / lab** — ⚠️ mangler i noen filer
-- **Study guide** — ✅ alle filer
-- **FAQ** — ✅ alle filer
-- **Quiz** — ✅ alle filer
-- **Flashcards** — ✅ alle filer (i brødtekst + NotebookLM-genererte)
-- **Ressurser / Kilder** — ✅ frontmatter, ⚠️ inline mangler i 26/27 filer
+
+-**Introduksjon**— ✅ alle filer
+-**Teori**— ✅ alle filer (med h3/h4 underoverskrifter)
+-**Eksempel / lab**— ⚠️ mangler i noen filer
+-**Study guide**— ✅ alle filer
+-**FAQ**— ✅ alle filer
+-**Quiz**— ✅ alle filer
+-**Flashcards**— ✅ alle filer (i brødtekst + NotebookLM-genererte)
+-**Ressurser / Kilder**— ✅ frontmatter, ⚠️ inline mangler i 26/27 filer
 
 ### Forbedringspunkter
 
-1. **Inline kildehenvisning** — kun brannmur.md har fotnoter. 26 filer gjenstår.
-2. **Lange avsnitt** — 7 avsnitt over 500 tegn bør splittes
-3. **Video** — 9 emner mangler videoressurs (SQL, AD, brukerstyring, filsystem, Linux, dokumentasjon, risikoanalyse, trusselbildet, automatisering)
-4. **Audio** — 0/12 podcaster generert (Google rate limited, cron 08:00)
-5. **Flere oppgaver** — kun 1 oppgave i oppgaver-for-2IT, trengs for alle KM
+1.**Inline kildehenvisning**— kun brannmur.md har fotnoter. 26 filer gjenstår.
+2.**Lange avsnitt**— 7 avsnitt over 500 tegn bør splittes
+3.**Video**— 9 emner mangler videoressurs (SQL, AD, brukerstyring, filsystem, Linux, dokumentasjon, risikoanalyse, trusselbildet, automatisering)
+4.**Audio**— 0/12 podcaster generert (Google rate limited, cron 08:00)
+5.**Flere oppgaver**— kun 1 oppgave i oppgaver-for-2IT, trengs for alle KM
 
 ## Universell utforming
 
@@ -56,8 +57,8 @@ Generert: 2026-05-20
 
 ## Anbefalinger
 
-1. **A:** Fullfør inline kildehenvisning i alle filer
-2. **B:** Generér Audio Overviews når kvote resetter
-3. **C:** Finn videoer til de 9 manglende emnene
-4. **D:** Lag flere oppgaver i oppgaver-for-2IT
-5. **E:** Bygg interaktiv flashcard-komponent i Astro
+1.**A:**Fullfør inline kildehenvisning i alle filer
+2.**B:**Generér Audio Overviews når kvote resetter
+3.**C:**Finn videoer til de 9 manglende emnene
+4.**D:**Lag flere oppgaver i oppgaver-for-2IT
+5.**E:**Bygg interaktiv flashcard-komponent i Astro

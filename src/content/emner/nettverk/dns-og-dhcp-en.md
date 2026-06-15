@@ -2,21 +2,25 @@
 title: "DNS and DHCP"
 emne: nettverk
 competence_goals:
+
   - km-05
+
 language: en
 original: dns-og-dhcp.md
 kilder:
+
   - ndla
-  - https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top
-  - https://ndla.no/resource/130129
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top>
+  - <https://ndla.no/resource/130129>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [dns, dhcp, network services, ip, name resolution]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=S374jTRz4hU
+video: <https://www.youtube.com/watch?v=S374jTRz4hU>
 notebooklm: true
 ---
 
@@ -35,11 +39,11 @@ DHCP automates the assignment of IP configuration to clients. Without DHCP, an a
 #### What DHCP Distributes
 
 A DHCP server assigns clients:
-- **IP address** (e.g. `192.168.1.50`)
-- **Subnet mask** (e.g. `255.255.255.0`)
-- **Default gateway** (e.g. `192.168.1.1`)
-- **DNS server address** (e.g. `192.168.1.10`)
-- **Lease time** (how long the client can keep the address)
+-**IP address**(e.g. `192.168.1.50`)
+-**Subnet mask**(e.g. `255.255.255.0`)
+-**Default gateway**(e.g. `192.168.1.1`)
+-**DNS server address**(e.g. `192.168.1.10`)
+-**Lease time**(how long the client can keep the address)
 
 #### The DORA Process
 
@@ -47,18 +51,18 @@ DHCP uses a four-step process called DORA:
 
 | Step | Message | Description |
 |------|---------|-------------|
-| 1 | **D**iscover | Client sends broadcast: "Is there a DHCP server here?" |
-| 2 | **O**ffer | DHCP server replies with an IP address offer |
-| 3 | **R**equest | Client accepts the offer: "I want this address" |
-| 4 | **A**cknowledge | Server confirms: "The address is yours for X hours/days" |
+| 1 |**D**iscover | Client sends broadcast: "Is there a DHCP server here?" |
+| 2 |**O**ffer | DHCP server replies with an IP address offer |
+| 3 |**R**equest | Client accepts the offer: "I want this address" |
+| 4 |**A**cknowledge | Server confirms: "The address is yours for X hours/days" |
 
 Steps 1 and 3 are sent as broadcasts (to `255.255.255.255`) because the client does not yet have an IP address.
 
 #### Scope and Leasing
 
-A **scope** is the address range the DHCP server manages — e.g. `192.168.1.100`–`192.168.1.200`. Addresses outside this range can be assigned statically to servers and network equipment.
+A**scope**is the address range the DHCP server manages — e.g. `192.168.1.100`–`192.168.1.200`. Addresses outside this range can be assigned statically to servers and network equipment.
 
-A **lease time** is the time agreement between the DHCP server and client that the client may use the address for a specific period. When the lease period nears its end, the client tries to renew it. The default lease period in Windows Server is 8 days.
+A**lease time**is the time agreement between the DHCP server and client that the client may use the address for a specific period. When the lease period nears its end, the client tries to renew it. The default lease period in Windows Server is 8 days.
 
 #### Static vs. Dynamic Assignment
 
@@ -70,9 +74,10 @@ A **lease time** is the time agreement between the DHCP server and client that t
 
 #### DHCP in Business Networks
 
-In a simple home network, DHCP runs on the router. In a business network with Windows Server, DHCP should be moved to the domain controller. The DHCP on the router must then be **disabled** to avoid conflicts (two DHCP servers on the same network creates chaos).
+In a simple home network, DHCP runs on the router. In a business network with Windows Server, DHCP should be moved to the domain controller. The DHCP on the router must then be**disabled**to avoid conflicts (two DHCP servers on the same network creates chaos).
 
 Check current IP configuration from the client:
+
 ```cmd
 ipconfig /all
 ```
@@ -81,7 +86,7 @@ ipconfig /all
 
 ### DNS — Domain Name System
 
-DNS is the internet's "phone book." It translates human-friendly domain names like `ndla.no` into machine-friendly IP addresses like `185.45.32.10`. Without DNS, you'd have to remember the IP address of every website you visit.
+DNS is the internet's "phone book." It translates human-friendly domain names like `ndla.no`into machine-friendly IP addresses like`185.45.32.10`. Without DNS, you'd have to remember the IP address of every website you visit.
 
 #### Hierarchical Structure
 
@@ -97,10 +102,10 @@ DNS is organized in a tree hierarchy:
     www.ndla.no
 ```
 
-- **Root servers** (13 globally): know about all top-level domains
-- **Top-Level Domain servers (TLD)**: `.no`, `.com`, `.org`, etc.
-- **Authoritative name servers**: responsible for specific domains
-- **Recursive resolvers**: do the work for clients (typically your ISP or Google 8.8.8.8)
+-**Root servers**(13 globally): know about all top-level domains
+-**Top-Level Domain servers (TLD)**: `.no`, `.com`, `.org`, etc.
+-**Authoritative name servers**: responsible for specific domains
+-**Recursive resolvers**: do the work for clients (typically your ISP or Google 8.8.8.8)
 
 #### DNS Record Types
 
@@ -114,21 +119,21 @@ DNS is organized in a tree hierarchy:
 | NS | Name Server | Which servers are authoritative | `ndla.no → ns1.domeneshop.no` |
 | SOA | Start of Authority | Zone metadata | Primary name server, serial number |
 
-An **A Record** connects a hostname to a specific IPv4 address — this is the most common and important DNS record type.
+An**A Record**connects a hostname to a specific IPv4 address — this is the most common and important DNS record type.
 
 #### DNS in Active Directory
 
-In an AD network, DNS is installed on the domain controller. This DNS server is **authoritative** for the local domain (e.g. `lab.lan`) and knows all machines that are joined to the domain.
+In an AD network, DNS is installed on the domain controller. This DNS server is**authoritative**for the local domain (e.g. `lab.lan`) and knows all machines that are joined to the domain.
 
-For lookups outside the local domain (e.g. `google.com`), **forwarders** are used: the DNS server sends unresolved lookups to the router's IP or an external DNS server (e.g. `8.8.8.8`).
+For lookups outside the local domain (e.g. `google.com`),**forwarders**are used: the DNS server sends unresolved lookups to the router's IP or an external DNS server (e.g. `8.8.8.8`).
 
 #### Port and Protocol
 
-DNS primarily uses **UDP on port 53** for regular lookups (fast, low overhead). For zone transfers between DNS servers, it uses **TCP on port 53**.
+DNS primarily uses**UDP on port 53**for regular lookups (fast, low overhead). For zone transfers between DNS servers, it uses**TCP on port 53**.
 
 #### Security: DNS Spoofing and DHCP Snooping
 
-DNS spoofing is an attack where an attacker sends fake DNS responses to redirect users to malicious websites. DNSSEC (DNS Security Extensions) can be used to protect against this. On switches, **DHCP snooping** is used to prevent rogue DHCP servers: the switch blocks DHCP responses from ports that are not configured as trusted.
+DNS spoofing is an attack where an attacker sends fake DNS responses to redirect users to malicious websites. DNSSEC (DNS Security Extensions) can be used to protect against this. On switches,**DHCP snooping**is used to prevent rogue DHCP servers: the switch blocks DHCP responses from ports that are not configured as trusted.
 
 ## Example / Lab
 
@@ -137,19 +142,25 @@ DNS spoofing is an attack where an attacker sends fake DNS responses to redirect
 `nslookup` is a command-line tool for DNS troubleshooting. Run from CMD or PowerShell:
 
 ```cmd
+
 # Look up IP address for a domain
+
 nslookup ndla.no
 
 # Specify a particular DNS server for the lookup
+
 nslookup ndla.no 8.8.8.8
 
 # Look up MX record (mail server)
+
 nslookup -type=MX ndla.no
 
 # Reverse lookup (IP to name)
+
 nslookup 185.45.32.10
 
 # Interactive mode
+
 nslookup
 > set type=A
 > google.com
@@ -157,6 +168,7 @@ nslookup
 ```
 
 Example output from `nslookup ndla.no`:
+
 ```
 Server:  UnKnown
 Address:  192.168.1.1
@@ -171,25 +183,30 @@ Addresses:  185.45.32.10
 ### Lab: DHCP Check
 
 ```cmd
+
 # View full IP configuration including DHCP server and lease time
+
 ipconfig /all
 
 # Release DHCP lease
+
 ipconfig /release
 
 # Get new DHCP lease
+
 ipconfig /renew
 
 # Flush DNS cache on the client
+
 ipconfig /flushdns
 ```
 
 ### Practical Troubleshooting
 
 Common problems and solutions:
-- **No IP address**: client hasn't reached the DHCP server (check if scope is active, if DHCP on router is off, if there are enough available addresses)
-- **Can't reach ndla.no**: check with `nslookup ndla.no` — if the DNS lookup fails, the problem is DNS. If DNS responds but the page won't open, the problem is the network connection.
-- **169.254.x.x address**: APIPA address — client didn't get a response from the DHCP server
+-**No IP address**: client hasn't reached the DHCP server (check if scope is active, if DHCP on router is off, if there are enough available addresses)
+-**Can't reach ndla.no**: check with `nslookup ndla.no` — if the DNS lookup fails, the problem is DNS. If DNS responds but the page won't open, the problem is the network connection.
+-**169.254.x.x address**: APIPA address — client didn't get a response from the DHCP server
 
 ## Study Guide
 
@@ -200,6 +217,7 @@ DHCP automates IP configuration. The DORA process (Discover → Offer → Reques
 DNS is hierarchical (root → TLD → domain → hostname). The A record is the most important. CNAME is used for aliases. MX points to the mail server. PTR is used for reverse lookups. In AD, the DNS server is authoritative for the local domain.
 
 **Common Exam Points**
+
 - The DORA process step by step
 - What the different DNS record types do (A, AAAA, CNAME, MX, PTR)
 - The difference between authoritative DNS server and recursive resolver
@@ -237,36 +255,36 @@ DNS spoofing is an attack where fake DNS responses redirect users to malicious w
 <details>
 <summary>Question 1: What does the abbreviation DORA stand for in DHCP context?</summary>
 
-**Answer:** DORA stands for Discover, Offer, Request, Acknowledge — the four messages in the DHCP process where the client finds a server, receives an offer, accepts it, and the server confirms the assignment.
+**Answer:**DORA stands for Discover, Offer, Request, Acknowledge — the four messages in the DHCP process where the client finds a server, receives an offer, accepts it, and the server confirms the assignment.
 </details>
 
 <details>
 <summary>Question 2: What is a DNS A record?</summary>
 
-**Answer:** An A record (Address) is a DNS record that connects a domain name to an IPv4 address. E.g. `ndla.no → 185.45.32.10`.
+**Answer:**An A record (Address) is a DNS record that connects a domain name to an IPv4 address. E.g. `ndla.no → 185.45.32.10`.
 </details>
 
 <details>
 <summary>Question 3: Why is DHCP Discover sent as a broadcast?</summary>
 
-**Answer:** Because the client does not yet have an IP address and does not know the DHCP server's address. Broadcast (`255.255.255.255`) reaches all devices on the local network, including the DHCP server.
+**Answer:**Because the client does not yet have an IP address and does not know the DHCP server's address. Broadcast (`255.255.255.255`) reaches all devices on the local network, including the DHCP server.
 </details>
 
 <details>
 <summary>Question 4: What is a DNS forwarder?</summary>
 
-**Answer:** A forwarder is a configuration on the DNS server that says: "Lookups I cannot answer myself, I send on to this other DNS server." In AD networks, the forwarder typically points to the router's IP to resolve internet addresses.
+**Answer:**A forwarder is a configuration on the DNS server that says: "Lookups I cannot answer myself, I send on to this other DNS server." In AD networks, the forwarder typically points to the router's IP to resolve internet addresses.
 </details>
 
 <details>
 <summary>Question 5: What is the difference between a PTR record and an A record in DNS?</summary>
 
-**Answer:** An A record translates name to IP (forward lookup). A PTR record (Pointer) does the opposite — it translates an IP address to a name (reverse lookup). PTR records are used by email servers and logs among other things.
+**Answer:**An A record translates name to IP (forward lookup). A PTR record (Pointer) does the opposite — it translates an IP address to a name (reverse lookup). PTR records are used by email servers and logs among other things.
 </details>
 
 ## Resources
 
-- [Deactivate existing DHCP server — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7)
-- [DNS Server Installation — NDLA](https://ndla.no/nn/r/driftsstotte-im-itk-vg2/installasjon-av-dns-server/4246401a38)
-- [windowsnett.no — lesson 11: DHCP and DNS](https://www.windowsnett.no/)
-- [DHCP Overview — Microsoft Learn](https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top)
+- [Deactivate existing DHCP server — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7>)
+- [DNS Server Installation — NDLA](<https://ndla.no/nn/r/driftsstotte-im-itk-vg2/installasjon-av-dns-server/4246401a38>)
+- [windowsnett.no — lesson 11: DHCP and DNS](<https://www.windowsnett.no/>)
+- [DHCP Overview — Microsoft Learn](<https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top>)

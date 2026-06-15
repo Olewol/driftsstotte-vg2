@@ -2,17 +2,21 @@
 title: "Backup og gjenoppretting"
 emne: it-drift
 kompetansemaal:
+
   - km-01
+
 kilder:
+
   - ndla
-  - https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
-  - https://learn.microsoft.com/en-us/azure/architecture/framework/
-  - https://snl.no/skytjeneste
-video: https://www.youtube.com/watch?v=iL8Lp8w0UIs
+  - <https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>
+  - <https://learn.microsoft.com/en-us/azure/architecture/framework/>
+  - <https://snl.no/skytjeneste>
+
+video: <https://www.youtube.com/watch?v=iL8Lp8w0UIs>
 tags: []
-flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
+flashcards: <https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd>
 public: true
 notebooklm: true
 ---
@@ -31,9 +35,9 @@ Backup handler ikke bare om å ta kopier. Det handler om å ha en strategi som s
 
 3-2-1-regelen er den enkleste og mest anerkjente retningslinjen for backup-strategi:[^1]
 
-- **3** – Ha minst 3 kopier av data (1 primær + 2 backup)
-- **2** – Lagre på minst 2 ulike medietyper (f.eks. intern disk + ekstern disk eller NAS)
-- **1** – Ha minst 1 kopi lagret offsite (utenfor bygningen – f.eks. i skyen eller i et annet lokale)
+-**3**– Ha minst 3 kopier av data (1 primær + 2 backup)
+-**2**– Lagre på minst 2 ulike medietyper (f.eks. intern disk + ekstern disk eller NAS)
+-**1**– Ha minst 1 kopi lagret offsite (utenfor bygningen – f.eks. i skyen eller i et annet lokale)
 
 Offsite-kopien beskytter mot fysiske hendelser som brann, flom eller innbrudd som kan ødelegge alt lokalt utstyr.
 
@@ -41,8 +45,8 @@ Offsite-kopien beskytter mot fysiske hendelser som brann, flom eller innbrudd so
 
 Veeam og andre eksperter anbefaler en utvidet versjon:[^2]
 
-- **+1** – Ha én immutable (uforanderlig) eller air-gapped kopi som ikke kan slettes av ransomware
-- **+0** – Null feil ved gjenopprettingstesting (automatisk verifisering av backup)
+-**+1**– Ha én immutable (uforanderlig) eller air-gapped kopi som ikke kan slettes av ransomware
+-**+0**– Null feil ved gjenopprettingstesting (automatisk verifisering av backup)
 
 Immutable backup betyr at data er låst og ikke kan endres eller slettes i en periode. AWS S3 Object Lock er ett eksempel på dette. Air-gapped backup er isolert fra nettverket, slik at angripere ikke kan nå den.
 
@@ -61,14 +65,14 @@ En komplett kopi av alle valgte data. Tar lengst tid og krever mest lagringsplas
 
 #### Inkrementell backup
 
-Tar kun en kopi av data som har endret seg siden **siste backup** (uansett type – full eller inkrementell).
+Tar kun en kopi av data som har endret seg siden**siste backup**(uansett type – full eller inkrementell).
 
 - Fordeler: rask og lagringsvennlig, liten datastørrelse per backup
 - Ulemper: gjenoppretting krever den siste fulle backup + alle påfølgende inkrementelle backuper – tidkrevende og sårbart for feil i kjeden
 
 #### Differensiell backup
 
-Tar en kopi av alt som har endret seg siden **siste fulle backup**.
+Tar en kopi av alt som har endret seg siden**siste fulle backup**.
 
 - Fordeler: raskere gjenoppretting enn inkrementell (kun full backup + én differensiell)
 - Ulemper: vokser i størrelse for hvert pass frem til neste fulle backup
@@ -88,22 +92,22 @@ To begreper er avgjørende for å designe en backup-strategi:[^3]
 **RPO – Recovery Point Objective**
 > "The maximum acceptable amount of data loss measured in time." – Microsoft Azure
 
-RPO svarer på: *Hvor mye data har vi råd til å miste?*
+RPO svarer på:*Hvor mye data har vi råd til å miste?*
 
 Eksempel: Hvis en virksomhet har RPO på 4 timer, betyr det at data fra de siste 4 timene kan gå tapt uten at det er kritisk. Backup må da kjøres minst hvert 4. time.
 
 **RTO – Recovery Time Objective**
 > "The maximum acceptable time to restore business operations after a disaster occurs." – Microsoft Azure
 
-RTO svarer på: *Hvor lenge kan vi ha nedetid?*
+RTO svarer på:*Hvor lenge kan vi ha nedetid?*
 
 Eksempel: Dersom RTO er 2 timer, må IT-teamet ha systemene oppe igjen innen 2 timer etter en hendelse.
 
 #### Praktisk eksempel
 
 En skole lagrer elevdata og karaktersystemer:
-- **RPO: 24 timer** – karakterer kan ikke mates inn på nytt lenger tilbake enn én dag
-- **RTO: 8 timer** – systemet må være oppe igjen innen én arbeidsdag
+-**RPO: 24 timer**– karakterer kan ikke mates inn på nytt lenger tilbake enn én dag
+-**RTO: 8 timer**– systemet må være oppe igjen innen én arbeidsdag
 
 Løsning: daglig full backup lagret lokalt og i sky, med klart gjenopprettingsprosedyre dokumentert og testet.
 
@@ -130,6 +134,7 @@ Amazon S3 brukes for aktiv backup-lagring; Glacier er et billigere arkivlagrings
 Manuell backup er utsatt for menneskelig svikt – den som er syk den dagen backupen skal kjøres, glemmer det, eller hopper over det «for én gangs skyld». Automatiserte backup-rutiner eliminerer denne risikoen.
 
 Gode praksiser for automatisert backup:
+
 - Planlegg backup-jobber utenfor arbeidstid (f.eks. kl. 02:00) for lavt påvirkning på systemer
 - Konfigurer automatisk varsling ved feil i backup-jobben
 - Bruk skriptbasert backup (f.eks. [[powershell-grunnleggende]]) for tilpassede behov
@@ -154,9 +159,9 @@ Veeam og Azure Backup støtter automatisk verifisering (SureBackup / Instant Res
 
 Disaster Recovery (DR) er en bredere plan for hva som skjer hvis store deler av infrastrukturen feiler.[^4] DR-strategi inkluderer:
 
-- **Cold standby** – backup-infrastruktur som settes opp manuelt ved behov. Billig, men lang RTO.
-- **Warm standby** – et delvis ferdigkonfigurert miljø som kan aktiveres raskt.
-- **Hot standby / active-passive** – et fullstendig parallelt miljø som alltid er klart. Laveste RTO, men dyrest.
+-**Cold standby**– backup-infrastruktur som settes opp manuelt ved behov. Billig, men lang RTO.
+-**Warm standby**– et delvis ferdigkonfigurert miljø som kan aktiveres raskt.
+-**Hot standby / active-passive**– et fullstendig parallelt miljø som alltid er klart. Laveste RTO, men dyrest.
 
 DR-planen skal dokumenteres og øves regelmessig. Se [[dokumentasjon-og-planlegging]] for maler og prosedyredokumentasjon.
 
@@ -186,23 +191,27 @@ Diskuter: Bør en backup kun inneholde datafiler, eller bør den også inkludere
 Backup og gjenoppretting handler om å sikre at data kan gjenopprettes ved tap eller feil – og at dette faktisk fungerer i praksis.
 
 **3-2-1-regelen (og 3-2-1-1-0):**
+
 - 3 kopier, 2 medier, 1 offsite
 - + 1 immutable/air-gapped, + 0 feil i testing
 - Beskytter mot fysiske hendelser OG ransomware
 
 **Backupstrategier:**
+
 - Full: størst, enklest å gjenopprette
 - Inkrementell: minst, raskest å kjøre, kompleks å gjenopprette
 - Differensiell: midt imellom – enkel gjenoppretting (full + én diff)
 
 **RPO og RTO:**
+
 - RPO = maks akseptabelt datatap i tid (bestemmer backup-frekvens)
 - RTO = maks akseptabel nedetid (bestemmer krav til gjenopprettingshastighet)
 
 **DR-strategier:**
+
 - Cold standby (billigst, lengst RTO) → Warm standby → Hot standby (dyrest, korteste RTO)
 
-**Nøkkelprinsipp:** Backup som ikke testes jevnlig er ikke pålitelig. Test, dokumenter, repeter.
+**Nøkkelprinsipp:**Backup som ikke testes jevnlig er ikke pålitelig. Test, dokumenter, repeter.
 
 ---
 
@@ -232,31 +241,31 @@ RPO: "Vi tåler å miste maks 4 timers data." – Backup må kjøres minst hvert
 
 <details><summary>Spørsmål 1: Hva betyr 3-2-1-regelen?</summary>
 
-**Svar:** 3 kopier av data, lagret på 2 ulike medietyper, der 1 kopi er offsite (utenfor bygningen). Sikrer mot lokale katastrofer og mediesvikt.
+**Svar:**3 kopier av data, lagret på 2 ulike medietyper, der 1 kopi er offsite (utenfor bygningen). Sikrer mot lokale katastrofer og mediesvikt.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva er forskjellen på RPO og RTO?</summary>
 
-**Svar:** RPO (Recovery Point Objective) er maksimalt akseptabelt datatap målt i tid – altså hvor gammel en gjenopprettet backup kan være. RTO (Recovery Time Objective) er maksimalt akseptabel nedetid – altså hvor lang tid det tar å gjenopprette systemet.
+**Svar:**RPO (Recovery Point Objective) er maksimalt akseptabelt datatap målt i tid – altså hvor gammel en gjenopprettet backup kan være. RTO (Recovery Time Objective) er maksimalt akseptabel nedetid – altså hvor lang tid det tar å gjenopprette systemet.
 
 </details>
 
 <details><summary>Spørsmål 3: Hva er forskjellen på inkrementell og differensiell backup?</summary>
 
-**Svar:** Inkrementell backup tar kun endringer siden forrige backup (uansett type). Differensiell backup tar alle endringer siden siste fulle backup. Inkrementell er mer lagringseffektiv, men gjenoppretting er mer kompleks. Differensiell er enklere å gjenopprette fra.
+**Svar:**Inkrementell backup tar kun endringer siden forrige backup (uansett type). Differensiell backup tar alle endringer siden siste fulle backup. Inkrementell er mer lagringseffektiv, men gjenoppretting er mer kompleks. Differensiell er enklere å gjenopprette fra.
 
 </details>
 
 <details><summary>Spørsmål 4: Hva er en immutable backup og hvorfor er den viktig mot ransomware?</summary>
 
-**Svar:** En immutable backup er låst og kan ikke endres eller slettes i en definert periode. Dette gjør at ransomware ikke kan kryptere eller slette backup-dataene, selv om angriperne får tilgang til backup-systemet.
+**Svar:**En immutable backup er låst og kan ikke endres eller slettes i en definert periode. Dette gjør at ransomware ikke kan kryptere eller slette backup-dataene, selv om angriperne får tilgang til backup-systemet.
 
 </details>
 
 <details><summary>Spørsmål 5: Hvorfor er det viktig å teste backup regelmessig?</summary>
 
-**Svar:** En backup garanterer ingenting før den er testet. Filer kan være korrupte, backup-programvaren kan ha feil, eller gjenopprettingsprosessen kan ta lengre tid enn RTO tillater. Regelmessig testing avdekker disse problemene før de oppstår i en reell krisesituasjon.
+**Svar:**En backup garanterer ingenting før den er testet. Filer kan være korrupte, backup-programvaren kan ha feil, eller gjenopprettingsprosessen kan ta lengre tid enn RTO tillater. Regelmessig testing avdekker disse problemene før de oppstår i en reell krisesituasjon.
 
 </details>
 
@@ -264,18 +273,18 @@ RPO: "Vi tåler å miste maks 4 timers data." – Backup må kjøres minst hvert
 
 ## Ressurser
 
-- [Veeam: 3-2-1 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html)
-- [Microsoft Azure Well-Architected: Disaster Recovery](https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery)
-- [NSM: Sikre og gjenopprette data](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/)
-- [YouTube: 3-2-1-regelen for backup – NetNordic](https://www.youtube.com/watch?v=iL8Lp8w0UIs)
+- [Veeam: 3-2-1 Backup Rule](<https://www.veeam.com/blog/321-backup-rule.html>)
+- [Microsoft Azure Well-Architected: Disaster Recovery](<https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery>)
+- [NSM: Sikre og gjenopprette data](<https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/>)
+- [YouTube: 3-2-1-regelen for backup – NetNordic](<https://www.youtube.com/watch?v=iL8Lp8w0UIs>)
 - [[driftsarkitektur]]
 - [[dokumentasjon-og-planlegging]]
 
 ## Kilder
 
-[^1]: [Veeam: 3-2-1 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html) – Bransjestandarden for backup-strategi.
-[^2]: [Veeam: 3-2-1-1-0 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html) – Utvidet versjon med immutable og verifisering.
-[^3]: [Microsoft Azure Well-Architected Framework: Disaster Recovery](https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery) – Definisjoner av RPO og RTO.
-[^4]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Om katastrofegjenoppretting og beredskap.
-[^5]: [NSM: Grunnprinsipper for IKT-sikkerhet – Sikre og gjenopprette data](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/) – RAID er ikke backup.
+[^1]: [Veeam: 3-2-1 Backup Rule](<https://www.veeam.com/blog/321-backup-rule.html>) – Bransjestandarden for backup-strategi.
+[^2]: [Veeam: 3-2-1-1-0 Backup Rule](<https://www.veeam.com/blog/321-backup-rule.html>) – Utvidet versjon med immutable og verifisering.
+[^3]: [Microsoft Azure Well-Architected Framework: Disaster Recovery](<https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery>) – Definisjoner av RPO og RTO.
+[^4]: [NDLA: Sikkerhet og sårbarhet](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Om katastrofegjenoppretting og beredskap.
+[^5]: [NSM: Grunnprinsipper for IKT-sikkerhet – Sikre og gjenopprette data](<https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/>) – RAID er ikke backup.
 

@@ -2,12 +2,16 @@
 title: "Operativsystem – oversikt"
 emne: operativsystem
 kompetansemaal:
+
   - km-04
+
 kilder:
+
   - ndla
-  - https://learn.microsoft.com/nb-no/windows-server/
-  - https://documentation.ubuntu.com/server/
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - <https://learn.microsoft.com/nb-no/windows-server/>
+  - <https://documentation.ubuntu.com/server/>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+
 tags: []
 flashcards: false
 public: true
@@ -15,9 +19,9 @@ public: true
 
 ## Introduksjon
 
-Et **operativsystem (OS)** er programvaren som styrer maskinvaren og danner grunnlaget for alle andre programmer. I et profesjonelt IT-driftsmiljø er valg av operativsystem avgjørende for hvordan brukere, tjenester og ressurser administreres.
+Et**operativsystem (OS)**er programvaren som styrer maskinvaren og danner grunnlaget for alle andre programmer. I et profesjonelt IT-driftsmiljø er valg av operativsystem avgjørende for hvordan brukere, tjenester og ressurser administreres.
 
-I driftsstøtte VG2 arbeider vi primært med **Windows Server 2019** som domenekontroller og **Windows 10/11** som klientmaskin på samme domene. Vi bruker også **Ubuntu Linux** for å lære Linux-administrasjon i parallell.
+I driftsstøtte VG2 arbeider vi primært med**Windows Server 2019**som domenekontroller og**Windows 10/11**som klientmaskin på samme domene. Vi bruker også**Ubuntu Linux**for å lære Linux-administrasjon i parallell.
 
 ---
 
@@ -37,7 +41,7 @@ I driftsstøtte VG2 arbeider vi primært med **Windows Server 2019** som domenek
 ### Vanlige OS i profesjonelle miljøer
 
 **Windows Server 2019 / 2022**
-Den dominerende serverplattformen i norske bedrifter. Kjører Active Directory Domain Services (AD DS), som sentraliserer bruker- og maskinkontroll for hele organisasjonen. En server med AD DS kalles en **domenekontroller (DC)**.
+Den dominerende serverplattformen i norske bedrifter. Kjører Active Directory Domain Services (AD DS), som sentraliserer bruker- og maskinkontroll for hele organisasjonen. En server med AD DS kalles en**domenekontroller (DC)**.
 
 **Windows 10 / 11 (klient)**
 Arbeidsstasjoner som kobles til domenet. Etter domenekobling styres de av domenepolicyer (GPO) og brukerne logger inn med domenekontoer.
@@ -58,12 +62,12 @@ Brukes mye som webserver, filserver og i skyinfrastruktur. Administreres primær
 
 ### Virtualisering i datalabmiljøet
 
-I skolelab kjøres operativsystemene som regel som **virtuelle maskiner (VM)**. En hypervisor (f.eks. VirtualBox eller Hyper-V) simulerer maskinvare slik at flere OS kan kjøre på én fysisk maskin. Dette reduserer kostnader og gjør det enkelt å tilbakestille miljøer.
+I skolelab kjøres operativsystemene som regel som**virtuelle maskiner (VM)**. En hypervisor (f.eks. VirtualBox eller Hyper-V) simulerer maskinvare slik at flere OS kan kjøre på én fysisk maskin. Dette reduserer kostnader og gjør det enkelt å tilbakestille miljøer.
 
 ### Administratorkontoen
 
-- **Windows**: Den innebygde `Administrator`-kontoen har full kontroll over systemet. I et domene er `Domain Admins`-gruppen den øverste administrative rollen.
-- **Linux**: `root`-brukeren tilsvarer Administrator. På Ubuntu brukes `sudo` i stedet for å logge direkte inn som root.
+-**Windows**: Den innebygde `Administrator`-kontoen har full kontroll over systemet. I et domene er `Domain Admins`-gruppen den øverste administrative rollen.
+-**Linux**: `root`-brukeren tilsvarer Administrator. På Ubuntu brukes `sudo` i stedet for å logge direkte inn som root.
 
 ---
 
@@ -72,6 +76,7 @@ I skolelab kjøres operativsystemene som regel som **virtuelle maskiner (VM)**. 
 Se læringsmiljøet i datalaben: [[active-directory]] beskriver oppsett av domenekontroller. For Linux-administrasjon, se [[linux-grunnleggende]].
 
 Typisk labboppsett:
+
 1. Windows Server 2019 VM — domenekontroller
 2. Windows 10/11 VM — klientmaskin koblet til domenet
 3. Ubuntu Server VM — Linux-praksis
@@ -80,8 +85,8 @@ Typisk labboppsett:
 
 ## Ressurser
 
-- [NDLA: Datalab med Windows Server og generisk nettverk](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/datalab-med-windows-server-og-generisk-nettverk/6fbbe0f727)
-- [NDLA: Datalab med Windows Server og UniFi-nettverk](https://ndla.no/r/driftsstotte-im-itk-vg2/datalab-med-windows-server-og-unifi-nettverk/c4391765e8)
+- [NDLA: Datalab med Windows Server og generisk nettverk](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/datalab-med-windows-server-og-generisk-nettverk/6fbbe0f727>)
+- [NDLA: Datalab med Windows Server og UniFi-nettverk](<https://ndla.no/r/driftsstotte-im-itk-vg2/datalab-med-windows-server-og-unifi-nettverk/c4391765e8>)
 
 ### Artiklene i dette emnet
 

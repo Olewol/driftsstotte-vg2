@@ -2,20 +2,24 @@
 title: "The Threat Landscape"
 emne: sikkerhet
 kompetansemaal:
+
   - km-07
+
 kilder:
+
   - ndla
   - nsm
   - owasp
-  - https://nsm.no/regelverk-og-hjelp/risiko-2024
-  - https://owasp.org/www-project-top-ten/
-  - https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-  - https://www.datatilsynet.no/
-  - https://www.digdir.no/informasjonssikkerhet/
+  - <https://nsm.no/regelverk-og-hjelp/risiko-2024>
+  - <https://owasp.org/www-project-top-ten/>
+  - <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+  - <https://www.datatilsynet.no/>
+  - <https://www.digdir.no/informasjonssikkerhet/>
+
 notebooklm: true
-video: https://www.youtube.com/watch?v=nG9v3RSSXTo
+video: <https://www.youtube.com/watch?v=nG9v3RSSXTo>
 tags: []
-flashcards: https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9
+flashcards: <https://notebooklm.google.com/notebook/3e72e53a-b0ca-4f05-a597-a8eea5ea7ea9>
 public: true
 language: en
 original: trusselbildet.md
@@ -59,12 +63,12 @@ A rootkit hides its own presence and the presence of other malware deep within t
 
 ### Phishing and Social Engineering
 
-**Phishing** is an attempt to trick users into revealing sensitive information (passwords, credit card details) by posing as a legitimate entity – a bank, employer, the tax authorities, or postal service.
+**Phishing**is an attempt to trick users into revealing sensitive information (passwords, credit card details) by posing as a legitimate entity – a bank, employer, the tax authorities, or postal service.
 
-- **Spear phishing:** Targeted phishing against one specific person or organization, based on collected information about the victim. Far more effective than mass emails.
-- **Vishing:** Voice phishing – fraud via phone. The attacker pretends to be IT support, a bank, or the police.
-- **Smishing:** SMS phishing. Typical example: "Your package is on hold, click here to pay customs fees."
-- **Pretexting:** The attacker constructs a believable false background story to manipulate the victim.
+-**Spear phishing:**Targeted phishing against one specific person or organization, based on collected information about the victim. Far more effective than mass emails.
+-**Vishing:**Voice phishing – fraud via phone. The attacker pretends to be IT support, a bank, or the police.
+-**Smishing:**SMS phishing. Typical example: "Your package is on hold, click here to pay customs fees."
+-**Pretexting:**The attacker constructs a believable false background story to manipulate the victim.
 
 The human factor is the most common attack vector. Most successful cyber attacks start with social engineering, not technical hacking.
 
@@ -72,7 +76,7 @@ The human factor is the most common attack vector. Most successful cyber attacks
 
 ### DDoS – Denial of Service Attacks
 
-**DDoS (Distributed Denial of Service)** floods a service with so many requests that it cannot serve legitimate users. The attack is coordinated from thousands of compromised machines (a botnet).
+**DDoS (Distributed Denial of Service)**floods a service with so many requests that it cannot serve legitimate users. The attack is coordinated from thousands of compromised machines (a botnet).
 
 NSM and NCSC regularly warn about DDoS attacks against Norwegian critical infrastructure, particularly in the wake of geopolitical events. In 2022, following Norway's support for Ukraine, several Norwegian public websites were hit by DDoS attacks from pro-Russian hacker groups.
 
@@ -82,7 +86,7 @@ Consequences: online banking unavailable, public portals down, communication ser
 
 ### Zero-Day Vulnerabilities
 
-A **zero-day** is an unknown weakness in software that the vendor has not yet discovered or patched. The attacker exploits the vulnerability *before* a patch exists – hence "zero days" of defense.
+A**zero-day**is an unknown weakness in software that the vendor has not yet discovered or patched. The attacker exploits the vulnerability*before*a patch exists – hence "zero days" of defense.
 
 Zero-day exploits are highly valuable and traded on criminal markets. State-sponsored actors have the resources to purchase or develop such tools themselves.
 
@@ -90,10 +94,10 @@ Zero-day exploits are highly valuable and traded on criminal markets. State-spon
 
 ### Insider Threats
 
-Not all threats come from outside. **Insider threats** can be:
+Not all threats come from outside.**Insider threats**can be:
 
-- **Unintentional:** An employee clicks a phishing link, uses a weak password, or sends confidential documents to the wrong email address.
-- **Intentional:** A disgruntled employee sabotages systems, steals data for competitors, or sells access to criminals.
+-**Unintentional:**An employee clicks a phishing link, uses a weak password, or sends confidential documents to the wrong email address.
+-**Intentional:**A disgruntled employee sabotages systems, steals data for competitors, or sells access to criminals.
 
 Measures: principle of least privilege, logging of user activity, access management, and background checks for employees in sensitive roles.
 
@@ -101,7 +105,7 @@ Measures: principle of least privilege, logging of user activity, access managem
 
 ### APT – Advanced Persistent Threats
 
-**APT** are long-term, sophisticated attacks carried out by resourceful actors – typically state-sponsored hacker groups. Characteristics:
+**APT**are long-term, sophisticated attacks carried out by resourceful actors – typically state-sponsored hacker groups. Characteristics:
 
 - Planned over months
 - Uses tailored tools and zero-days
@@ -137,11 +141,11 @@ OWASP (Open Web Application Security Project) publishes a list of the ten most c
 
 Digital threats do not stop at organizations. They affect democracy and public discourse:
 
-**Disinformation campaigns:** State-sponsored actors spread fake news via social media to sow doubt, polarize populations, and undermine trust in institutions. Election interference in the US (2016), France (2017), and alleged influence on Norwegian public opinion are documented examples.
+**Disinformation campaigns:**State-sponsored actors spread fake news via social media to sow doubt, polarize populations, and undermine trust in institutions. Election interference in the US (2016), France (2017), and alleged influence on Norwegian public opinion are documented examples.
 
-**Attacks on critical infrastructure:** Power, water, healthcare, and communications depend on IT systems. A successful attack on the power grid or hospital systems can cost lives.
+**Attacks on critical infrastructure:**Power, water, healthcare, and communications depend on IT systems. A successful attack on the power grid or hospital systems can cost lives.
 
-**Psychological warfare:** Threatening or debilitating cyber attacks can be used as leverage in diplomatic conflicts without a single soldier crossing a border.
+**Psychological warfare:**Threatening or debilitating cyber attacks can be used as leverage in diplomatic conflicts without a single soldier crossing a border.
 
 NSM emphasizes that digital security is national security. This is why ICT competence is a societal need, not just a vocational field.
 
@@ -153,16 +157,17 @@ NSM emphasizes that digital security is national security. This is why ICT compe
 
 You receive the following emails. Assess which ones are phishing and why:
 
-1. *"Dear customer, your account has been temporarily blocked. Click here to verify your identity: www.dnb-sikkerhet.net"*
+1.*"Dear customer, your account has been temporarily blocked. Click here to verify your identity: www.dnb-sikkerhet.net"*
    → Suspicious: the domain is not dnb.no. Urgency appeal. Link to unknown website.
 
-2. *"Hi Kari, here are the minutes from yesterday's meeting. See attached PDF."* – sender is colleague@company.no
+2.*"Hi Kari, here are the minutes from yesterday's meeting. See attached PDF."*– sender is colleague@company.no
    → Could be legitimate, but: check if the attachment is expected, and whether the sender address matches exactly.
 
-3. *"You have won an iPhone 15. Enter your credit card info to pay shipping."*
+3.*"You have won an iPhone 15. Enter your credit card info to pay shipping."*
    → Classic scam. No legitimate prize requires paying shipping with a credit card in advance.
 
 **Phishing defense measures:**
+
 - Use MFA (multi-factor authentication) – even if the password is stolen, login is blocked
 - Email filtering with SPF, DKIM, and DMARC
 - Security awareness training for employees
@@ -225,31 +230,31 @@ State-sponsored actors can use social media to systematically spread fake news, 
 
 <details><summary>Question 1: What distinguishes a worm from a virus?</summary>
 
-**Answer:** A worm spreads automatically over networks without user action, while a virus requires an infected file to be opened or shared to spread.
+**Answer:**A worm spreads automatically over networks without user action, while a virus requires an infected file to be opened or shared to spread.
 
 </details>
 
 <details><summary>Question 2: What is spear phishing?</summary>
 
-**Answer:** Spear phishing is targeted phishing against a specific person or organization, based on collected information about the victim. It is far more effective than general mass emails.
+**Answer:**Spear phishing is targeted phishing against a specific person or organization, based on collected information about the victim. It is far more effective than general mass emails.
 
 </details>
 
 <details><summary>Question 3: What is meant by a zero-day vulnerability?</summary>
 
-**Answer:** A zero-day is an unknown weakness in software that the vendor has not yet discovered or created a patch for. The attacker can exploit the vulnerability without the defender having the ability to patch.
+**Answer:**A zero-day is an unknown weakness in software that the vendor has not yet discovered or created a patch for. The attacker can exploit the vulnerability without the defender having the ability to patch.
 
 </details>
 
 <details><summary>Question 4: What is APT, and who typically stands behind it?</summary>
 
-**Answer:** APT (Advanced Persistent Threat) refers to long-term, sophisticated attacks carried out by resourceful actors – typically state-sponsored hacker groups. They use advanced tools and can remain hidden in a network for months or years.
+**Answer:**APT (Advanced Persistent Threat) refers to long-term, sophisticated attacks carried out by resourceful actors – typically state-sponsored hacker groups. They use advanced tools and can remain hidden in a network for months or years.
 
 </details>
 
 <details><summary>Question 5: How can disinformation campaigns threaten democracy?</summary>
 
-**Answer:** State-sponsored actors can spread fake news via social media to polarize populations, undermine trust in democratic institutions, and influence elections. This is a form of digital warfare that does not require traditional military means.
+**Answer:**State-sponsored actors can spread fake news via social media to polarize populations, undermine trust in democratic institutions, and influence elections. This is a form of digital warfare that does not require traditional military means.
 
 </details>
 
@@ -257,9 +262,9 @@ State-sponsored actors can use social media to systematically spread fake news, 
 
 ## Resources
 
-- [NSM – Digital Security (Norwegian)](https://nsm.no/fagomrader/digital-sikkerhet/)
-- [NCSC – Norwegian Notification Center for Digital Infrastructure](https://nsm.no/ncsc)
-- [OWASP Top 10:2021](https://owasp.org/Top10/)
-- [NDLA – Information Security (Norwegian)](https://ndla.no)
-- [NSM – Risk Assessment 2024 (annual report, Norwegian)](https://nsm.no/regelverk-og-hjelp/risiko-2024)
-- [OWASP – Top 10 Project Page (full documentation)](https://owasp.org/www-project-top-ten/)
+- [NSM – Digital Security (Norwegian)](<https://nsm.no/fagomrader/digital-sikkerhet/>)
+- [NCSC – Norwegian Notification Center for Digital Infrastructure](<https://nsm.no/ncsc>)
+- [OWASP Top 10:2021](<https://owasp.org/Top10/>)
+- [NDLA – Information Security (Norwegian)](<https://ndla.no>)
+- [NSM – Risk Assessment 2024 (annual report, Norwegian)](<https://nsm.no/regelverk-og-hjelp/risiko-2024>)
+- [OWASP – Top 10 Project Page (full documentation)](<https://owasp.org/www-project-top-ten/>)

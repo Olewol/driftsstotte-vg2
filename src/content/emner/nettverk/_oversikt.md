@@ -2,14 +2,18 @@
 title: "Nettverk — oversikt"
 emne: nettverk
 kompetansemaal:
+
   - km-02
   - km-05
+
 kilder:
+
   - ndla
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: []
 flashcards: false
 public: true
@@ -22,9 +26,9 @@ public: true
 Et datanettverk er et system der to eller flere enheter er koblet sammen for å dele ressurser og kommunisere. I driftsstøtte-faget er nettverksforståelse fundamentalt — du kan ikke drifte det du ikke forstår.
 
 Nettverk deles gjerne inn etter størrelse:
-- **LAN (Local Area Network)** — lokalt nettverk, f.eks. i et klasserom eller kontorbygg
-- **WAN (Wide Area Network)** — nettverk over store geografiske avstander, f.eks. internett
-- **WLAN (Wireless LAN)** — trådløst lokalnettverk (WiFi)
+-**LAN (Local Area Network)**— lokalt nettverk, f.eks. i et klasserom eller kontorbygg
+-**WAN (Wide Area Network)**— nettverk over store geografiske avstander, f.eks. internett
+-**WLAN (Wireless LAN)**— trådløst lokalnettverk (WiFi)
 
 ## Nettverkskomponenter
 
@@ -38,7 +42,7 @@ Nettverk deles gjerne inn etter størrelse:
 
 ## Logisk vs. fysisk struktur
 
-Den **fysiske strukturen** beskriver hvordan kabler og utstyr er koblet sammen. Den **logiske strukturen** beskriver hvordan datatrafikken flyter og hvordan nettverk er segmentert — f.eks. med VLAN.
+Den**fysiske strukturen**beskriver hvordan kabler og utstyr er koblet sammen. Den**logiske strukturen**beskriver hvordan datatrafikken flyter og hvordan nettverk er segmentert — f.eks. med VLAN.
 
 En god driftstøtter behersker begge.
 
@@ -46,15 +50,16 @@ En god driftstøtter behersker begge.
 
 For å forstå kommunikasjon i nettverk bruker vi to referansemodeller:
 
-- **[[tcp-ip-modellen]]** — den praktiske modellen med 4–5 lag som internett faktisk bygger på
-- **[[osi-modellen]]** — ISO-standardmodellen med 7 lag, brukt som referanse og ved feilsøking
+-**[[tcp-ip-modellen]]**— den praktiske modellen med 4–5 lag som internett faktisk bygger på
+-**[[osi-modellen]]**— ISO-standardmodellen med 7 lag, brukt som referanse og ved feilsøking
 
 ## Segmentering og VLAN
 
 Segmentering handler om å dele nettverket opp i logiske soner. Dette gir:
-- Bedre **sikkerhet** (angrep sprer seg ikke på tvers av segmenter)
-- Bedre **ytelse** (mindre broadcast-trafikk)
-- Enklere **administrasjon**
+
+- Bedre**sikkerhet**(angrep sprer seg ikke på tvers av segmenter)
+- Bedre**ytelse**(mindre broadcast-trafikk)
+- Enklere**administrasjon**
 
 Les mer: [[segmentering-og-vlan]]
 
@@ -68,16 +73,16 @@ Les mer: [[virtuelle-losninger]]
 
 Nettverksprotokoller er "språket" enhetene bruker for å kommunisere. Sentrale tjenester inkluderer:
 
-- **DNS** og **DHCP** — navneoppløsning og automatisk IP-tildeling: [[dns-og-dhcp]]
-- **HTTP, FTP, SSH, SMTP** og mange flere: [[nettverksprotokoller]]
-- **Serverroller** som webserver, filserver og domenekontroller: [[serverroller]]
+-**DNS**og**DHCP**— navneoppløsning og automatisk IP-tildeling: [[dns-og-dhcp]]
+-**HTTP, FTP, SSH, SMTP**og mange flere: [[nettverksprotokoller]]
+-**Serverroller**som webserver, filserver og domenekontroller: [[serverroller]]
 
 ## Kobling til kompetansemål
 
 | Kompetansemål | Artikler |
 |---------------|---------|
-| **km-02** — Planlegge, implementere og drifte fysiske og virtuelle løsninger med segmenterte nettverk | [[segmentering-og-vlan]], [[virtuelle-losninger]] |
-| **km-05** — Utforske og beskrive relevante nettverksprotokoller, nettverkstjenester og serverroller | [[tcp-ip-modellen]], [[osi-modellen]], [[dns-og-dhcp]], [[nettverksprotokoller]], [[serverroller]] |
+|**km-02**— Planlegge, implementere og drifte fysiske og virtuelle løsninger med segmenterte nettverk | [[segmentering-og-vlan]], [[virtuelle-losninger]] |
+|**km-05**— Utforske og beskrive relevante nettverksprotokoller, nettverkstjenester og serverroller | [[tcp-ip-modellen]], [[osi-modellen]], [[dns-og-dhcp]], [[nettverksprotokoller]], [[serverroller]] |
 
 ## Alle artikler i dette emnet
 

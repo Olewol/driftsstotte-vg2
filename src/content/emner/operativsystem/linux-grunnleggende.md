@@ -2,16 +2,20 @@
 title: "Linux – grunnleggende"
 emne: operativsystem
 kompetansemaal:
+
   - km-04
+
 kilder:
+
   - ndla
-  - https://documentation.ubuntu.com/server/how-to/security/user-management/
-  - https://learn.microsoft.com/nb-no/windows-server/
-  - https://documentation.ubuntu.com/server/
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-video: https://www.youtube.com/watch?v=pkZEKIXe3u4
+  - <https://documentation.ubuntu.com/server/how-to/security/user-management/>
+  - <https://learn.microsoft.com/nb-no/windows-server/>
+  - <https://documentation.ubuntu.com/server/>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+
+video: <https://www.youtube.com/watch?v=pkZEKIXe3u4>
 tags: []
-flashcards: https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f
+flashcards: <https://notebooklm.google.com/notebook/70aa7fff-78f3-4825-aeed-bc879a29770f>
 public: true
 notebooklm: true
 ---
@@ -28,20 +32,20 @@ Denne artikkelen dekker Linux-filstrukturen, filrettighetsmodellen (rwx), bruker
 
 ### Linux-filstruktur
 
-Linux har én enkelt filtre med rot i `/` — det finnes ingen `C:\`-stasjon slik som i Windows. Alt er montert inn i dette treet.
+Linux har én enkelt filtre med rot i `/`— det finnes ingen`C:\`-stasjon slik som i Windows. Alt er montert inn i dette treet.
 
 | Katalog | Innhold og formål |
 |---|---|
 | `/` | Rotkatalogen — toppen av hele filsystemet |
-| `/etc` | Konfigurasjonsfiler for systemet og tjenester (f.eks. `/etc/passwd`, `/etc/ssh/sshd_config`) |
-| `/home` | Hjemmemapper for vanlige brukere (f.eks. `/home/elev01`) |
-| `/root` | Hjemmemappen til root-brukeren (ikke under `/home`) |
+| `/etc`| Konfigurasjonsfiler for systemet og tjenester (f.eks.`/etc/passwd`, `/etc/ssh/sshd_config`) |
+| `/home`| Hjemmemapper for vanlige brukere (f.eks.`/home/elev01`) |
+| `/root`| Hjemmemappen til root-brukeren (ikke under`/home`) |
 | `/var` | Variable data — loggfiler (`/var/log`), spool-filer, databaser |
-| `/bin` | Grunnleggende systemkommandoer tilgjengelig for alle brukere (f.eks. `ls`, `cp`) |
+| `/bin`| Grunnleggende systemkommandoer tilgjengelig for alle brukere (f.eks.`ls`, `cp`) |
 | `/usr/bin` | Brukerprogrammer og kommandoer installert av pakkebehandleren |
-| `/sbin` | Systemadministrasjonskommandoer (krever root, f.eks. `fdisk`, `iptables`) |
+| `/sbin`| Systemadministrasjonskommandoer (krever root, f.eks.`fdisk`, `iptables`) |
 | `/tmp` | Midlertidige filer — tømmes ved omstart |
-| `/dev` | Enhetsfiler (f.eks. `/dev/sda` for harddisk) |
+| `/dev`| Enhetsfiler (f.eks.`/dev/sda` for harddisk) |
 | `/proc` | Virtuelt filsystem med informasjon om kjørende prosesser |
 | `/mnt` | Midlertidige monteringspunkter for eksterne disker |
 
@@ -50,9 +54,9 @@ Linux har én enkelt filtre med rot i `/` — det finnes ingen `C:\`-stasjon sli
 Hver fil og mappe i Linux har tre sett med tillatelser for tre kategorier:
 
 **Kategorier:**
-- **Eier (user/u)** — brukeren som eier filen
-- **Gruppe (group/g)** — gruppen som er tilknyttet filen
-- **Andre (other/o)** — alle andre brukere
+-**Eier (user/u)**— brukeren som eier filen
+-**Gruppe (group/g)**— gruppen som er tilknyttet filen
+-**Andre (other/o)**— alle andre brukere
 
 **Tillatelser:**
 | Symbol | Tall | Fil | Mappe |
@@ -67,7 +71,7 @@ Hver fil og mappe i Linux har tre sett med tillatelser for tre kategorier:
 -rwxr-xr-- 1 elev01 lærere 4096 mars 20 10:00 skript.sh
 ```
 
-- `-` → vanlig fil (mappe vises som `d`)
+- `-`→ vanlig fil (mappe vises som`d`)
 - `rwx` → eier (elev01) har les, skriv og kjør
 - `r-x` → gruppe (lærere) har les og kjør, ikke skriv
 - `r--` → andre har kun les
@@ -84,6 +88,7 @@ rwx------ = 7  0  0 → chmod 700
 ### chmod — endre tillatelser
 
 **Oktalnotasjon:**
+
 ```bash
 chmod 755 mappe/       # eier: rwx, gruppe: r-x, andre: r-x
 chmod 644 dokument.txt # eier: rw-, gruppe: r--, andre: r--
@@ -91,6 +96,7 @@ chmod 700 privat/      # kun eier har tilgang
 ```
 
 **Symbolsk notasjon:**
+
 ```bash
 chmod u+x skript.sh    # legg til kjøretillatelse for eier
 chmod g-w fil.txt      # fjern skrivetillatelse for gruppe
@@ -99,6 +105,7 @@ chmod a+r offentlig    # alle (all) får lesetillatelse
 ```
 
 **Rekursivt (alle filer i mappen):**
+
 ```bash
 chmod -R 755 /var/www/
 ```
@@ -125,9 +132,10 @@ ls -ld /felles/           # vises som 't' på slutten: drwxrwxrwt
 
 ### sudo og root
 
-**Root-brukeren** (UID 0) er den allmektige superbrukeren i Linux — tilsvarer `Administrator` i Windows, men uten noen UAC-lignende begrensning. Root kan gjøre alt.[^2]
+**Root-brukeren**(UID 0) er den allmektige superbrukeren i Linux — tilsvarer `Administrator` i Windows, men uten noen UAC-lignende begrensning. Root kan gjøre alt.[^2]
 
-**sudo** (Superuser Do) lar vanlige brukere kjøre enkeltkommandoer med root-rettigheter:[^2]
+**sudo**(Superuser Do) lar vanlige brukere kjøre enkeltkommandoer med root-rettigheter:[^2]
+
 ```bash
 sudo apt update           # kjør som root
 sudo -i                   # åpne root-shell (vær forsiktig)
@@ -135,11 +143,13 @@ sudo -u elev01 kommando   # kjør som en annen bruker
 ```
 
 Hvem som kan bruke sudo styres av `/etc/sudoers`. Redigeres alltid med `visudo` (kontrollerer syntaks før lagring):
+
 ```bash
 sudo visudo
 ```
 
 På Ubuntu legges brukere til i `sudo`-gruppen for å gi dem sudo-tilgang:
+
 ```bash
 sudo usermod -aG sudo elev01
 ```
@@ -147,23 +157,29 @@ sudo usermod -aG sudo elev01
 ### Brukeradministrasjon
 
 **Opprett bruker:**
+
 ```bash
 sudo useradd -m -s /bin/bash elev01
+
 # -m: opprett hjemmemappe
+
 # -s: sett standard shell
 ```
 
 Mer komplett:
+
 ```bash
 sudo useradd -m -s /bin/bash -c "Elev Elevsen" -G sudo elev01
 ```
 
 **Sett/endre passord:**
+
 ```bash
 sudo passwd elev01
 ```
 
 **Endre brukerinnstillinger:**
+
 ```bash
 sudo usermod -aG lærere elev01    # legg til i gruppe
 sudo usermod -s /bin/sh elev01    # endre shell
@@ -172,12 +188,14 @@ sudo usermod -U elev01            # lås opp konto (Unlock)
 ```
 
 **Slett bruker:**
+
 ```bash
 sudo userdel elev01               # slett konto
 sudo userdel -r elev01            # slett konto og hjemmemappe
 ```
 
 **Gruppekommandoer:**
+
 ```bash
 sudo groupadd lærere              # opprett gruppe
 sudo gpasswd -a elev01 lærere    # legg bruker til i gruppe
@@ -186,16 +204,19 @@ sudo gpasswd -d elev01 lærere    # fjern bruker fra gruppe
 
 ### /etc/passwd og /etc/group
 
-**/etc/passwd** — én linje per bruker:
+**/etc/passwd**— én linje per bruker:
+
 ```
 brukernavn:passord:UID:GID:kommentar:hjemmemappe:shell
 elev01:x:1001:1001:Elev Elevsen:/home/elev01:/bin/bash
 root:x:0:0:root:/root:/bin/bash
 ```
-- Passordet er `x` — faktisk hash lagres i `/etc/shadow`
+
+- Passordet er `x`— faktisk hash lagres i`/etc/shadow`
 - UID 0 = root, 1–999 = systembrukere, 1000+ = vanlige brukere
 
-**/etc/group** — én linje per gruppe:
+**/etc/group**— én linje per gruppe:
+
 ```
 gruppenavn:passord:GID:medlemmer
 sudo:x:27:elev01,admin
@@ -219,19 +240,22 @@ stat fil.txt             # detaljert informasjon inkl. inode
 
 I tillegg til sticky bit finnes to andre spesielle tillatelsesbit som er viktige å kjenne til:
 
-**SUID (Set User ID)** — når SUID er satt på en kjørbar fil, kjøres programmet med **filens eiers** rettigheter, ikke den innloggede brukerens. Brukes f.eks. på `passwd`-kommandoen slik at vanlige brukere kan endre sitt eget passord (som krever skriving til `/etc/shadow`).
+**SUID (Set User ID)**— når SUID er satt på en kjørbar fil, kjøres programmet med**filens eiers**rettigheter, ikke den innloggede brukerens. Brukes f.eks. på `passwd`-kommandoen slik at vanlige brukere kan endre sitt eget passord (som krever skriving til `/etc/shadow`).
 
 ```bash
 ls -l /usr/bin/passwd
+
 # -rwsr-xr-x  → 's' i eierposisjonen betyr SUID
+
 chmod u+s program       # sett SUID
 ```
 
-**SGID (Set Group ID)** — på en fil: programmet kjøres med gruppens rettigheter. På en mappe: nye filer og undermapper i mappen arver mappens gruppe i stedet for oppretterens primærgruppe. Nyttig for delte arbeidsmapper.
+**SGID (Set Group ID)**— på en fil: programmet kjøres med gruppens rettigheter. På en mappe: nye filer og undermapper i mappen arver mappens gruppe i stedet for oppretterens primærgruppe. Nyttig for delte arbeidsmapper.
 
 ```bash
 chmod g+s /felles/prosjekt   # sett SGID på mappe
 ls -ld /felles/prosjekt
+
 # drwxrwsr-x  → 's' i gruppeposisjonen betyr SGID
 ```
 
@@ -246,7 +270,7 @@ Linux logger systemhendelser til `/var/log/`. Viktige loggfiler:
 | `/var/log/kern.log` | Kjernemeldinger |
 | `/var/log/dpkg.log` | Pakkeinstallasjon og -oppdatering |
 
-Moderne Linux bruker **journald** (systemd) for logging. Spørringer via `journalctl`:
+Moderne Linux bruker**journald**(systemd) for logging. Spørringer via `journalctl`:
 
 ```bash
 journalctl -u ssh          # logg for SSH-tjenesten
@@ -262,28 +286,37 @@ journalctl -f              # følg logg live (tilsvarende tail -f)
 ### Lab: Opprett bruker og sett tillatelser
 
 ```bash
+
 # 1. Opprett bruker med hjemmemappe
+
 sudo useradd -m -s /bin/bash elev01
 
 # 2. Sett passord
+
 sudo passwd elev01
 
 # 3. Opprett gruppe
+
 sudo groupadd klasse2a
 
 # 4. Legg bruker til i gruppe
+
 sudo usermod -aG klasse2a elev01
 
 # 5. Verifiser
+
 id elev01
 
 # 6. Opprett delt mappe
+
 sudo mkdir /felles/klasse2a
 sudo chown :klasse2a /felles/klasse2a
 sudo chmod 770 /felles/klasse2a
+
 # Kun eier og klasse2a-gruppen har tilgang
 
 # 7. Aktiver sticky bit (brukere kan ikke slette andres filer)
+
 sudo chmod +t /felles/klasse2a
 ```
 
@@ -291,67 +324,70 @@ sudo chmod +t /felles/klasse2a
 
 | Oppgave | Windows | Linux |
 |---|---|---|
-| Opprett bruker | `New-LocalUser` | `useradd` |
+| Opprett bruker | `New-LocalUser`|`useradd` |
 | Sett passord | (del av New-LocalUser) | `passwd` |
-| Legg til gruppe | `Add-LocalGroupMember` | `usermod -aG` |
-| Vis brukerinfo | `Get-LocalUser` | `id`, `cat /etc/passwd` |
-| Endre tillatelser | NTFS-egenskaper / `icacls` | `chmod` |
-| Endre eier | `takeown` | `chown` |
+| Legg til gruppe | `Add-LocalGroupMember`|`usermod -aG` |
+| Vis brukerinfo | `Get-LocalUser`|`id`, `cat /etc/passwd` |
+| Endre tillatelser | NTFS-egenskaper / `icacls`|`chmod` |
+| Endre eier | `takeown`|`chown` |
 | Admin-rettigheter | UAC / Administrator | `sudo` / root |
 
 ---
 
 ## Study guide
 
-**Linux** er et åpen kildekode-operativsystem basert på Unix. Det er dominerende på servere, i sky og på nettverksenheter. Som IT-driftsteknikker bruker du Linux via terminalen.
+**Linux**er et åpen kildekode-operativsystem basert på Unix. Det er dominerende på servere, i sky og på nettverksenheter. Som IT-driftsteknikker bruker du Linux via terminalen.
 
-**Filstrukturen** er ett enkelt tre med rot i `/`. Viktige kataloger:
-- `/etc` — konfigurasjonsfiler (inkl. `/etc/passwd`, `/etc/shadow`, `/etc/sudoers`)
+**Filstrukturen**er ett enkelt tre med rot i `/`. Viktige kataloger:
+
+- `/etc`— konfigurasjonsfiler (inkl.`/etc/passwd`, `/etc/shadow`, `/etc/sudoers`)
 - `/home` — hjemmemapper for vanlige brukere
 - `/var/log` — loggfiler fra systemet og tjenester
 - `/tmp` — midlertidige filer, tømmes ved omstart
-- `/bin` og `/usr/bin` — kommandoer og programmer
+- `/bin`og`/usr/bin` — kommandoer og programmer
 
-**Tillatelsesmodellen (rwx)** gir tre sett av tre tillatelser:
-- **r** (read=4), **w** (write=2), **x** (execute=1)
-- For **eier**, **gruppe** og **andre**
+**Tillatelsesmodellen (rwx)**gir tre sett av tre tillatelser:
+-**r**(read=4),**w**(write=2),**x**(execute=1)
+
+- For**eier**,**gruppe**og**andre**
 - Oktalsummering: `rwx = 7`, `r-x = 5`, `rw- = 6`
-- Vanlige mønstre: `755` (mapper/programmer), `644` (vanlige filer), `700` (private filer)
+- Vanlige mønstre: `755`(mapper/programmer),`644`(vanlige filer),`700` (private filer)
 
 **Brukeradministrasjon**:
+
 - `useradd -m -s /bin/bash elev01` — opprett bruker
 - `passwd elev01` — sett passord
 - `usermod -aG sudo elev01` — gi sudo-tilgang
 - `userdel -r elev01` — slett bruker og hjemmemappe
 
-**Sudo og root**: Root (UID 0) er allmektig. Aldri logg inn som root direkte — bruk `sudo` for enkeltstående administrative kommandoer. `/etc/sudoers` styrer hvem som kan bruke sudo; redigeres alltid med `visudo`.
+**Sudo og root**: Root (UID 0) er allmektig. Aldri logg inn som root direkte — bruk `sudo`for enkeltstående administrative kommandoer.`/etc/sudoers`styrer hvem som kan bruke sudo; redigeres alltid med`visudo`.
 
-Spesielle tillatelsesbit: **sticky bit** (hindrer sletting av andres filer i delt mappe), **SUID** (programmet kjøres med filens eiers rettigheter), **SGID** (filer arver mappens gruppe).
+Spesielle tillatelsesbit:**sticky bit**(hindrer sletting av andres filer i delt mappe),**SUID**(programmet kjøres med filens eiers rettigheter),**SGID**(filer arver mappens gruppe).
 
 ---
 
 ## FAQ
 
-**Hva er forskjellen mellom `useradd` og `adduser`?**
-`useradd` er det lave systemverktøyet tilgjengelig på alle Linux-distribusjoner. `adduser` er et mer brukervennlig skript (tilgjengelig på Debian/Ubuntu) som stiller spørsmål interaktivt og setter opp hjemmemappe og passord automatisk. I skript brukes `useradd`.
+**Hva er forskjellen mellom `useradd`og`adduser`?**
+`useradd`er det lave systemverktøyet tilgjengelig på alle Linux-distribusjoner.`adduser`er et mer brukervennlig skript (tilgjengelig på Debian/Ubuntu) som stiller spørsmål interaktivt og setter opp hjemmemappe og passord automatisk. I skript brukes`useradd`.
 
 **Hvorfor starter systembrukere på UID 1–999 og vanlige brukere på UID 1000?**
-Systembrukere (UID 1–999) er kontoer opprettet for tjenester og prosesser, ikke for mennesker som logger inn (f.eks. `www-data` for Apache, `postgres` for databasetjenesten). De separeres fra vanlige brukere for sikkerhets- og administrasjonsformål.
+Systembrukere (UID 1–999) er kontoer opprettet for tjenester og prosesser, ikke for mennesker som logger inn (f.eks. `www-data`for Apache,`postgres` for databasetjenesten). De separeres fra vanlige brukere for sikkerhets- og administrasjonsformål.
 
-**Hva skjer hvis jeg glemmer `-a` i `usermod -aG`?**
-Uten `-a` vil `usermod -G sudo elev01` erstatte alle eksisterende gruppemedlemskap med kun `sudo`. Brukeren mister alle andre grupper de var medlem av. Bruk alltid `-aG` for å legge til.
+**Hva skjer hvis jeg glemmer `-a`i`usermod -aG`?**
+Uten `-a`vil`usermod -G sudo elev01`erstatte alle eksisterende gruppemedlemskap med kun`sudo`. Brukeren mister alle andre grupper de var medlem av. Bruk alltid `-aG` for å legge til.
 
 **Kan jeg sette passord for root og logge inn direkte?**
-Teknisk ja, men det anbefales sterkt ikke i produksjonsmiljøer. SSH bør konfigureres til å nekte root-pålogging (`PermitRootLogin no` i `/etc/ssh/sshd_config`). Bruk alltid sudo fra en vanlig brukerkonto.
+Teknisk ja, men det anbefales sterkt ikke i produksjonsmiljøer. SSH bør konfigureres til å nekte root-pålogging (`PermitRootLogin no`i`/etc/ssh/sshd_config`). Bruk alltid sudo fra en vanlig brukerkonto.
 
 **Hva betyr 'd' fremst i `ls -l` output?**
-Det første tegnet angir filtypen: `-` = vanlig fil, `d` = katalog (directory), `l` = symbolsk lenke, `b` = blokkenhetsf il, `c` = tegnenhetsfil.
+Det første tegnet angir filtypen: `-`= vanlig fil,`d`= katalog (directory),`l`= symbolsk lenke,`b`= blokkenhetsf il,`c` = tegnenhetsfil.
 
-**Hva er forskjellen mellom `/bin` og `/usr/bin`?**
-`/bin` inneholder grunnleggende systemkommandoer som må være tilgjengelige tidlig i oppstartsprosessen og ved systemgjenoppretting (f.eks. `ls`, `cp`, `bash`). `/usr/bin` inneholder programmer installert av pakkebehandleren. På moderne Linux er `/bin` ofte en symbolsk lenke til `/usr/bin`.
+**Hva er forskjellen mellom `/bin`og`/usr/bin`?**
+`/bin`inneholder grunnleggende systemkommandoer som må være tilgjengelige tidlig i oppstartsprosessen og ved systemgjenoppretting (f.eks.`ls`, `cp`, `bash`). `/usr/bin`inneholder programmer installert av pakkebehandleren. På moderne Linux er`/bin`ofte en symbolsk lenke til`/usr/bin`.
 
 **Hva er `journalctl` og hvorfor er det bedre enn å lese loggfiler direkte?**
-`journalctl` er kommandoen for å lese loggene fra systemd's journald. Fordeler: strukturerte logger med metadata, enkel filtrering per tjeneste og tidsrom, binært format som er mer effektivt enn tekstfiler. For eldre systemer brukes fortsatt tekstfiler i `/var/log/`.
+`journalctl`er kommandoen for å lese loggene fra systemd's journald. Fordeler: strukturerte logger med metadata, enkel filtrering per tjeneste og tidsrom, binært format som er mer effektivt enn tekstfiler. For eldre systemer brukes fortsatt tekstfiler i`/var/log/`.
 
 ---
 
@@ -359,31 +395,31 @@ Det første tegnet angir filtypen: `-` = vanlig fil, `d` = katalog (directory), 
 
 <details><summary>Spørsmål 1: Hva betyr tillatelseskoden `chmod 755`?</summary>
 
-**Svar:** Eier får rwx (7 = 4+2+1), gruppe får r-x (5 = 4+0+1), andre får r-x (5 = 4+0+1). Eieren kan lese, skrive og kjøre; gruppe og andre kan lese og kjøre, men ikke skrive.
+**Svar:**Eier får rwx (7 = 4+2+1), gruppe får r-x (5 = 4+0+1), andre får r-x (5 = 4+0+1). Eieren kan lese, skrive og kjøre; gruppe og andre kan lese og kjøre, men ikke skrive.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva lagres i /etc/shadow?</summary>
 
-**Svar:** Krypterte (hashede) passord for alle brukere. Filen er kun lesbar av root, i motsetning til `/etc/passwd` som er lesbar for alle.
+**Svar:**Krypterte (hashede) passord for alle brukere. Filen er kun lesbar av root, i motsetning til `/etc/passwd` som er lesbar for alle.
 
 </details>
 
-<details><summary>Spørsmål 3: Hva er forskjellen mellom `useradd` og `usermod`?</summary>
+<details><summary>Spørsmål 3: Hva er forskjellen mellom `useradd`og`usermod`?</summary>
 
-**Svar:** `useradd` oppretter en ny brukerkonto. `usermod` endrer innstillingene på en eksisterende konto (f.eks. legger til gruppemedlemskap, endrer shell eller låser kontoen).
+**Svar:**`useradd`oppretter en ny brukerkonto.`usermod` endrer innstillingene på en eksisterende konto (f.eks. legger til gruppemedlemskap, endrer shell eller låser kontoen).
 
 </details>
 
 <details><summary>Spørsmål 4: Hva gjør sticky bit på en mappe?</summary>
 
-**Svar:** Sticky bit hindrer at brukere kan slette filer i mappen de ikke selv eier, selv om de har skrivetillatelse til mappen. Brukes typisk på `/tmp` og delte mapper.
+**Svar:**Sticky bit hindrer at brukere kan slette filer i mappen de ikke selv eier, selv om de har skrivetillatelse til mappen. Brukes typisk på `/tmp` og delte mapper.
 
 </details>
 
 <details><summary>Spørsmål 5: Hva er katalogen /etc brukt til?</summary>
 
-**Svar:** `/etc` inneholder konfigurasjonsfiler for systemet og installerte tjenester, bl.a. `/etc/passwd` (brukerkontoer), `/etc/group` (grupper), `/etc/hosts` (vertsnavn) og `/etc/ssh/sshd_config` (SSH-konfigurasjon).
+**Svar:**`/etc`inneholder konfigurasjonsfiler for systemet og installerte tjenester, bl.a.`/etc/passwd`(brukerkontoer),`/etc/group`(grupper),`/etc/hosts`(vertsnavn) og`/etc/ssh/sshd_config` (SSH-konfigurasjon).
 
 </details>
 
@@ -391,13 +427,13 @@ Det første tegnet angir filtypen: `-` = vanlig fil, `d` = katalog (directory), 
 
 ## Ressurser
 
-- [Ubuntu Community Wiki: Filrettigheter](https://help.ubuntu.com/community/FilePermissions)
-- [Ubuntu Community Wiki: POSIX ACL](https://help.ubuntu.com/community/FilePermissionsACLs)
-- [Ubuntu Server: Brukerhåndtering](https://documentation.ubuntu.com/server/how-to/security/user-management/)
+- [Ubuntu Community Wiki: Filrettigheter](<https://help.ubuntu.com/community/FilePermissions>)
+- [Ubuntu Community Wiki: POSIX ACL](<https://help.ubuntu.com/community/FilePermissionsACLs>)
+- [Ubuntu Server: Brukerhåndtering](<https://documentation.ubuntu.com/server/how-to/security/user-management/>)
 
 ## Kilder
 
-[^1]: NDLA. *Driftsstøtte VG2*. [ndla.no](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/)
-[^2]: Ubuntu. *Server Documentation – User Management*. [documentation.ubuntu.com](https://documentation.ubuntu.com/server/how-to/security/user-management/)
-[^3]: Microsoft. *Windows Server-dokumentasjon*. [learn.microsoft.com](https://learn.microsoft.com/nb-no/windows-server/)
-[^4]: Ubuntu. *Server Documentation*. [documentation.ubuntu.com](https://documentation.ubuntu.com/server/)
+[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
+[^2]: Ubuntu.*Server Documentation – User Management*. [documentation.ubuntu.com](<https://documentation.ubuntu.com/server/how-to/security/user-management/>)
+[^3]: Microsoft.*Windows Server-dokumentasjon*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/windows-server/>)
+[^4]: Ubuntu.*Server Documentation*. [documentation.ubuntu.com](<https://documentation.ubuntu.com/server/>)

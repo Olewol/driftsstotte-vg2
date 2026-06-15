@@ -2,20 +2,24 @@
 title: "Segmentation and VLAN"
 emne: nettverk
 competence_goals:
+
   - km-02
+
 language: en
 original: segmentering-og-vlan.md
 kilder:
+
   - ndla
-  - https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:66547
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:66547>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [vlan, subnetting, cidr, segmentation, network, 802.1q]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=MzwV67L_6f8
+video: <https://www.youtube.com/watch?v=MzwV67L_6f8>
 notebooklm: true
 ---
 
@@ -40,15 +44,15 @@ An IPv4 address is 32 bits long and is written as four decimal numbers separated
 11000000.10101000.00000001.00001010
 ```
 
-Each number (octet) can range from 0 to 255 (8 bits). This gives theoretically about **4.29 billion** unique addresses — a number that has been exhausted, which is one of the reasons for IPv6.
+Each number (octet) can range from 0 to 255 (8 bits). This gives theoretically about**4.29 billion**unique addresses — a number that has been exhausted, which is one of the reasons for IPv6.
 
 #### Network Part and Host Part
 
 An IP address is divided into two parts:
-- **Network part**: identifies the network
-- **Host part**: identifies the specific device in the network
+-**Network part**: identifies the network
+-**Host part**: identifies the specific device in the network
 
-The **subnet mask** determines the boundary between the parts. The mask is always contiguous 1s followed by 0s in binary form.
+The**subnet mask**determines the boundary between the parts. The mask is always contiguous 1s followed by 0s in binary form.
 
 #### CIDR Notation
 
@@ -98,7 +102,7 @@ A VLAN (Virtual Local Area Network) is a logical division of a physical network.
 
 #### IEEE 802.1Q — VLAN Tagging
 
-The standard for VLANs is **IEEE 802.1Q**. It defines how a VLAN tag is added to the Ethernet frame:
+The standard for VLANs is**IEEE 802.1Q**. It defines how a VLAN tag is added to the Ethernet frame:
 
 ```
 [Dest MAC][Src MAC][802.1Q tag][EtherType][Data][FCS]
@@ -106,20 +110,20 @@ The standard for VLANs is **IEEE 802.1Q**. It defines how a VLAN tag is added to
                   4 bytes: includes 12-bit VLAN ID (0–4094)
 ```
 
-VLAN IDs 0 and 4095 are reserved; usable VLAN IDs are 1–4094. **IEEE 802.1Q** is the international standard for VLAN tagging in Ethernet frames — it enables multiple logical networks on a single physical connection.
+VLAN IDs 0 and 4095 are reserved; usable VLAN IDs are 1–4094.**IEEE 802.1Q**is the international standard for VLAN tagging in Ethernet frames — it enables multiple logical networks on a single physical connection.
 
 #### Access Ports vs. Trunk Ports
 
 | Port Type | Function | Tagging | Used for |
 |-----------|----------|---------|----------|
-| **Access port** | Belongs to one VLAN | Untagged (tag is removed) | End devices (PC, printer) |
-| **Trunk port** | Carries traffic for multiple VLANs | Tagged (tag is kept) | Connections between switches and to router |
+|**Access port**| Belongs to one VLAN | Untagged (tag is removed) | End devices (PC, printer) |
+|**Trunk port**| Carries traffic for multiple VLANs | Tagged (tag is kept) | Connections between switches and to router |
 
 A PC on an access port doesn't "know" it's on a VLAN — it just sees a regular network. The tag is added by the switch and removed on the receiving end.
 
-A **trunk port** is a switch port configured to carry traffic from multiple VLANs simultaneously by keeping the VLAN tags in the data packet.
+A**trunk port**is a switch port configured to carry traffic from multiple VLANs simultaneously by keeping the VLAN tags in the data packet.
 
-**Native VLAN** is the VLAN that receives *untagged* traffic on a trunk port (default is VLAN 1). It is recommended to change the native VLAN from 1 for security reasons.
+**Native VLAN**is the VLAN that receives*untagged*traffic on a trunk port (default is VLAN 1). It is recommended to change the native VLAN from 1 for security reasons.
 
 #### Why Segment with VLANs?
 
@@ -144,6 +148,7 @@ A **trunk port** is a switch port configured to carry traffic from multiple VLAN
 ### Configuration in UniFi
 
 **Creating a VLAN:**
+
 1. UniFi Network → Settings → Networks
 2. Click "Create New Network"
 3. Select "Virtual Network (VLAN)"
@@ -153,6 +158,7 @@ A **trunk port** is a switch port configured to carry traffic from multiple VLAN
 7. Save
 
 **Assigning VLAN to Switch Port:**
+
 1. UniFi Network → Devices → select the switch
 2. Go to the Ports tab
 3. Click the desired port
@@ -161,6 +167,7 @@ A **trunk port** is a switch port configured to carry traffic from multiple VLAN
    - Tagged VLANs: VLANs to be tagged through the port (trunk port)
 
 **Wireless VLAN (SSID):**
+
 1. Settings → WiFi → create new WiFi network
 2. Bind SSID to desired VLAN (e.g. "Guest-WiFi" → VLAN 20)
 
@@ -173,6 +180,7 @@ Subnetting divides an IP address space into smaller, isolated networks. /24 is t
 VLAN is logical network segmentation at layer 2 (data link). The IEEE 802.1Q tag (4 bytes) is inserted into the Ethernet frame with a VLAN ID. Access ports remove the tag for end devices; trunk ports keep it to carry multiple VLANs.
 
 **Common Exam Points**
+
 - Calculate network address, broadcast, and usable addresses from CIDR notation
 - The difference between access port and trunk port
 - What native VLAN is and why VLAN 1 as native VLAN is a security risk
@@ -193,6 +201,7 @@ Broadcasts (e.g. DHCP Discover, ARP) are only sent within the same VLAN. This me
 The native VLAN is the VLAN that handles untagged traffic on a trunk port. VLAN 1 is the default, but it is known as a security risk (VLAN hopping attacks). Best practice is to choose an unused VLAN number as the native VLAN.
 
 **How do you configure VLANs on a Cisco switch (basic)?**
+
 ```
 Switch(config)# vlan 10
 Switch(config-vlan)# name Employees
@@ -215,42 +224,44 @@ Yes. Modern access points support SSID-to-VLAN mapping. The guest WiFi network c
 <details>
 <summary>Question 1: What is the network address, first usable IP, and broadcast for 192.168.5.0/26?</summary>
 
-**Answer:** /26 gives subnet mask 255.255.255.192 (64 addresses per block).
+**Answer:**/26 gives subnet mask 255.255.255.192 (64 addresses per block).
+
 - Network address: `192.168.5.0`
 - First usable host: `192.168.5.1`
 - Last usable host: `192.168.5.62`
 - Broadcast: `192.168.5.63`
+
 </details>
 
 <details>
 <summary>Question 2: What is the difference between an access port and a trunk port?</summary>
 
-**Answer:** An access port belongs to one VLAN and sends untagged traffic to end devices. A trunk port carries tagged traffic for multiple VLANs and is used between switches and to routers.
+**Answer:**An access port belongs to one VLAN and sends untagged traffic to end devices. A trunk port carries tagged traffic for multiple VLANs and is used between switches and to routers.
 </details>
 
 <details>
 <summary>Question 3: Which IEEE standard defines VLAN tagging?</summary>
 
-**Answer:** IEEE 802.1Q defines VLAN tagging in Ethernet frames. The tag is 4 bytes and contains, among other things, a 12-bit VLAN ID (1–4094).
+**Answer:**IEEE 802.1Q defines VLAN tagging in Ethernet frames. The tag is 4 bytes and contains, among other things, a 12-bit VLAN ID (1–4094).
 </details>
 
 <details>
 <summary>Question 4: Why is VLAN useful for network security?</summary>
 
-**Answer:** VLANs create separate broadcast domains. A device in one VLAN cannot communicate directly with devices in another VLAN without passing through a router or firewall with explicit allow rules. This limits the spread of threats and prevents unauthorized access between networks.
+**Answer:**VLANs create separate broadcast domains. A device in one VLAN cannot communicate directly with devices in another VLAN without passing through a router or firewall with explicit allow rules. This limits the spread of threats and prevents unauthorized access between networks.
 </details>
 
 <details>
 <summary>Question 5: What is a private address range, and why is it used?</summary>
 
-**Answer:** Private address ranges (10.x.x.x, 172.16-31.x.x, 192.168.x.x) are IP addresses that are not routed on the internet. They are used for internal networks and are translated to a public IP via NAT when traffic goes to the internet. This saves address space and provides an extra layer of concealment from the internet.
+**Answer:**Private address ranges (10.x.x.x, 172.16-31.x.x, 192.168.x.x) are IP addresses that are not routed on the internet. They are used for internal networks and are translated to a public IP via NAT when traffic goes to the internet. This saves address space and provides an extra layer of concealment from the internet.
 </details>
 
 ## Resources
 
-- [Virtual Local Area Network VLAN — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88)
-- [IPv4 — NDLA](https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02)
-- [Creating Virtual Networks (VLANs) — Ubiquiti UniFi](https://help.ui.com/hc/en-us/articles/9761080275607-Creating-Virtual-Networks-VLANs)
-- [Switch Port VLAN Assignment — Ubiquiti UniFi](https://help.ui.com/hc/en-us/articles/26136855808919-Switch-Port-VLAN-Assignment-Trunk-Access-Ports)
-- [Switch — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/svitsj/a33b4b015c)
-- [VLAN — SNL](https://snl.no/VLAN)
+- [Virtual Local Area Network VLAN — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88>)
+- [IPv4 — NDLA](<https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02>)
+- [Creating Virtual Networks (VLANs) — Ubiquiti UniFi](<https://help.ui.com/hc/en-us/articles/9761080275607-Creating-Virtual-Networks-VLANs>)
+- [Switch Port VLAN Assignment — Ubiquiti UniFi](<https://help.ui.com/hc/en-us/articles/26136855808919-Switch-Port-VLAN-Assignment-Trunk-Access-Ports>)
+- [Switch — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/svitsj/a33b4b015c>)
+- [VLAN — SNL](<https://snl.no/VLAN>)

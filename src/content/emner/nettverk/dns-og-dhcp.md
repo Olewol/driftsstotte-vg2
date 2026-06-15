@@ -2,19 +2,23 @@
 title: "DNS og DHCP"
 emne: nettverk
 kompetansemaal:
+
   - km-05
+
 kilder:
+
   - ndla
-  - https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top
-  - https://ndla.no/resource/130129
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top>
+  - <https://ndla.no/resource/130129>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [dns, dhcp, nettverkstjenester, ip, navneoppløsning]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=S374jTRz4hU
+video: <https://www.youtube.com/watch?v=S374jTRz4hU>
 notebooklm: true
 ---
 
@@ -33,11 +37,11 @@ DHCP automatiserer tildeling av IP-konfigurasjonen til klienter. Uten DHCP mått
 #### Hva DHCP deler ut
 
 En DHCP-server tildeler klienter:
-- **IP-adresse** (f.eks. `192.168.1.50`)
-- **Subnettmaske** (f.eks. `255.255.255.0`)
-- **Standard gateway** (f.eks. `192.168.1.1`)
-- **DNS-serveradresse** (f.eks. `192.168.1.10`)
-- **Leasetid** (hvor lenge klienten kan beholde adressen)
+-**IP-adresse**(f.eks. `192.168.1.50`)
+-**Subnettmaske**(f.eks. `255.255.255.0`)
+-**Standard gateway**(f.eks. `192.168.1.1`)
+-**DNS-serveradresse**(f.eks. `192.168.1.10`)
+-**Leasetid**(hvor lenge klienten kan beholde adressen)
 
 #### DORA-prosessen
 
@@ -45,18 +49,18 @@ DHCP bruker en fire-stegs prosess kalt DORA[^1]:
 
 | Steg | Melding | Beskrivelse |
 |------|---------|-------------|
-| 1 | **D**iscover | Klienten sender broadcast: "Er det noen DHCP-server her?" |
-| 2 | **O**ffer | DHCP-serveren svarer med et tilbud om en IP-adresse |
-| 3 | **R**equest | Klienten aksepterer tilbudet: "Jeg vil ha denne adressen" |
-| 4 | **A**cknowledge | Serveren bekrefter: "Adressen er din i X timer/dager" |
+| 1 |**D**iscover | Klienten sender broadcast: "Er det noen DHCP-server her?" |
+| 2 |**O**ffer | DHCP-serveren svarer med et tilbud om en IP-adresse |
+| 3 |**R**equest | Klienten aksepterer tilbudet: "Jeg vil ha denne adressen" |
+| 4 |**A**cknowledge | Serveren bekrefter: "Adressen er din i X timer/dager" |
 
 Steg 1 og 3 sendes som broadcast (til `255.255.255.255`) fordi klienten ikke har IP-adresse ennå.
 
 #### Scope og leasing
 
-Et **scope** er adresserommet DHCP-serveren administrerer — f.eks. `192.168.1.100`–`192.168.1.200`. Adresser utenfor dette kan tildeles statisk til servere og nettverksutstyr.
+Et**scope**er adresserommet DHCP-serveren administrerer — f.eks. `192.168.1.100`–`192.168.1.200`. Adresser utenfor dette kan tildeles statisk til servere og nettverksutstyr.
 
-En **lease-tid** er tidsavtalen mellom DHCP-server og klient om at klienten bruker adressen en bestemt periode. Når leaseperioden nærmer seg slutten, forsøker klienten å fornye den. Standardleaseperiode i Windows Server er 8 dager[^2].
+En**lease-tid**er tidsavtalen mellom DHCP-server og klient om at klienten bruker adressen en bestemt periode. Når leaseperioden nærmer seg slutten, forsøker klienten å fornye den. Standardleaseperiode i Windows Server er 8 dager[^2].
 
 #### Statisk vs. dynamisk tildeling
 
@@ -68,9 +72,10 @@ En **lease-tid** er tidsavtalen mellom DHCP-server og klient om at klienten bruk
 
 #### DHCP i bedriftsnettverk
 
-I et enkelt hjemmenettverk kjører DHCP på ruteren. I et bedriftsnettverk med Windows Server bør DHCP flyttes til domenekontrolleren[^6]. Da må DHCP på ruteren **deaktiveres** for å unngå konflikter (to DHCP-servere på samme nett gir kaos).
+I et enkelt hjemmenettverk kjører DHCP på ruteren. I et bedriftsnettverk med Windows Server bør DHCP flyttes til domenekontrolleren[^6]. Da må DHCP på ruteren**deaktiveres**for å unngå konflikter (to DHCP-servere på samme nett gir kaos).
 
 Sjekk nåværende IP-konfigurasjon fra klienten:
+
 ```cmd
 ipconfig /all
 ```
@@ -79,7 +84,7 @@ ipconfig /all
 
 ### DNS — Domain Name System
 
-DNS er internettets "telefonbok"[^3]. Det oversetter menneskevennlige domenenavn som `ndla.no` til maskineslige IP-adresser som `185.45.32.10`. Uten DNS måtte du huske IP-adressen til hvert nettsted du besøker.
+DNS er internettets "telefonbok"[^3]. Det oversetter menneskevennlige domenenavn som `ndla.no`til maskineslige IP-adresser som`185.45.32.10`. Uten DNS måtte du huske IP-adressen til hvert nettsted du besøker.
 
 #### Hierarkisk struktur
 
@@ -95,10 +100,10 @@ DNS er organisert i et tre-hierarki:
     www.ndla.no
 ```
 
-- **Rotservere** (13 stk. globalt)[^3]: vet om alle toppdomener
-- **Toppdomeneservere (TLD)**: `.no`, `.com`, `.org` osv.
-- **Autoritative navneservere**: ansvarlige for spesifikke domener
-- **Rekursive resolvere**: gjør jobben for klientene (typisk din ISP eller Google 8.8.8.8)
+-**Rotservere**(13 stk. globalt)[^3]: vet om alle toppdomener
+-**Toppdomeneservere (TLD)**: `.no`, `.com`, `.org` osv.
+-**Autoritative navneservere**: ansvarlige for spesifikke domener
+-**Rekursive resolvere**: gjør jobben for klientene (typisk din ISP eller Google 8.8.8.8)
 
 #### DNS-posttyper
 
@@ -112,21 +117,21 @@ DNS er organisert i et tre-hierarki:
 | NS | Name Server | Hvilke servere er autoritative | `ndla.no → ns1.domeneshop.no` |
 | SOA | Start of Authority | Metadata om sonen | Primær navneserver, serienummer |
 
-En **A-Record** (A-post) kobler altså et vertsnavn til en spesifikk IPv4-adresse — dette er den vanligste og viktigste DNS-posttypen[^3].
+En**A-Record**(A-post) kobler altså et vertsnavn til en spesifikk IPv4-adresse — dette er den vanligste og viktigste DNS-posttypen[^3].
 
 #### DNS i Active Directory
 
-I et AD-nettverk installeres DNS på domenekontrolleren. Denne DNS-serveren er **autoritativ** for det lokale domenet (f.eks. `lab.lan`) og kjenner alle maskiner som er innmeldt i domenet.
+I et AD-nettverk installeres DNS på domenekontrolleren. Denne DNS-serveren er**autoritativ**for det lokale domenet (f.eks. `lab.lan`) og kjenner alle maskiner som er innmeldt i domenet.
 
-For oppslag utenfor lokalt domene (f.eks. `google.com`) brukes **forwarders**: DNS-serveren sender uløste oppslag videre til ruterens IP eller en ekstern DNS-server (f.eks. `8.8.8.8`).
+For oppslag utenfor lokalt domene (f.eks. `google.com`) brukes**forwarders**: DNS-serveren sender uløste oppslag videre til ruterens IP eller en ekstern DNS-server (f.eks. `8.8.8.8`).
 
 #### Port og protokoll
 
-DNS bruker primært **UDP på port 53** for vanlige oppslag (rask, liten overhead). For soneoverføringer mellom DNS-servere brukes **TCP på port 53**.
+DNS bruker primært**UDP på port 53**for vanlige oppslag (rask, liten overhead). For soneoverføringer mellom DNS-servere brukes**TCP på port 53**.
 
 #### Sikkerhet: DNS-spoofing og DHCP-snooping
 
-DNS-spoofing er et angrep der en angriper sender falske DNS-svar for å omdirigere brukere til ondsinnede nettsteder[^4]. DNSSEC (DNS Security Extensions) kan brukes til å beskytte mot dette. I svitsjer brukes **DHCP snooping** for å hindre falske DHCP-servere: svitsjen blokkerer DHCP-svar fra porter som ikke er konfigurert som betrodde.
+DNS-spoofing er et angrep der en angriper sender falske DNS-svar for å omdirigere brukere til ondsinnede nettsteder[^4]. DNSSEC (DNS Security Extensions) kan brukes til å beskytte mot dette. I svitsjer brukes**DHCP snooping**for å hindre falske DHCP-servere: svitsjen blokkerer DHCP-svar fra porter som ikke er konfigurert som betrodde.
 
 ## Eksempel / lab
 
@@ -135,19 +140,25 @@ DNS-spoofing er et angrep der en angriper sender falske DNS-svar for å omdirige
 `nslookup` er et kommandolinjeverktøy for DNS-feilsøking. Kjør fra CMD eller PowerShell:
 
 ```cmd
+
 # Slå opp IP-adresse for et domene
+
 nslookup ndla.no
 
 # Angi en bestemt DNS-server for oppslaget
+
 nslookup ndla.no 8.8.8.8
 
 # Slå opp MX-post (e-postserver)
+
 nslookup -type=MX ndla.no
 
 # Omvendt oppslag (IP til navn)
+
 nslookup 185.45.32.10
 
 # Interaktiv modus
+
 nslookup
 > set type=A
 > google.com
@@ -155,6 +166,7 @@ nslookup
 ```
 
 Eksempel på output fra `nslookup ndla.no`:
+
 ```
 Server:  UnKnown
 Address:  192.168.1.1
@@ -169,25 +181,30 @@ Addresses:  185.45.32.10
 ### Lab: DHCP-sjekk
 
 ```cmd
+
 # Vis full IP-konfigurasjon inkl. DHCP-server og leasetid
+
 ipconfig /all
 
 # Frigjør DHCP-lease
+
 ipconfig /release
 
 # Hent ny DHCP-lease
+
 ipconfig /renew
 
 # Tøm DNS-cache på klienten
+
 ipconfig /flushdns
 ```
 
 ### Praktisk feilsøking
 
 Vanlige problemer og tiltak:
-- **Ingen IP-adresse**: klienten har ikke nådd DHCP-serveren (sjekk om scope er aktivt, om DHCP på ruter er av, om det er nok ledige adresser)
-- **Kan ikke nå ndla.no**: sjekk med `nslookup ndla.no` — hvis DNS-oppslaget feiler, er problemet DNS. Hvis DNS gir svar men siden ikke åpner, er problemet i nettverksforbindelsen.
-- **169.254.x.x-adresse**: APIPA-adresse[^5] — klienten fikk ikke svar fra DHCP-server
+-**Ingen IP-adresse**: klienten har ikke nådd DHCP-serveren (sjekk om scope er aktivt, om DHCP på ruter er av, om det er nok ledige adresser)
+-**Kan ikke nå ndla.no**: sjekk med `nslookup ndla.no` — hvis DNS-oppslaget feiler, er problemet DNS. Hvis DNS gir svar men siden ikke åpner, er problemet i nettverksforbindelsen.
+-**169.254.x.x-adresse**: APIPA-adresse[^5] — klienten fikk ikke svar fra DHCP-server
 
 ## Study guide
 
@@ -198,6 +215,7 @@ DHCP automatiserer IP-konfigurasjonen. DORA-prosessen (Discover → Offer → Re
 DNS er hierarkisk (rot → TLD → domene → vertsnavn). A-posten er den viktigste. CNAME brukes til alias. MX peker til e-postserver. PTR brukes til omvendt oppslag. I AD er DNS-serveren autoritativ for det lokale domenet.
 
 **Vanlige eksamenspoeng**
+
 - DORA-prosessen steg for steg
 - Hva de ulike DNS-posttypene gjør (A, AAAA, CNAME, MX, PTR)
 - Forskjellen mellom autoritativ DNS-server og rekursiv resolver
@@ -235,45 +253,45 @@ DNS-spoofing er et angrep der falske DNS-svar omdirigerer brukere til ondsinnede
 <details>
 <summary>Spørsmål 1: Hva betyr forkortelsen DORA i DHCP-sammenheng?</summary>
 
-**Svar:** DORA står for Discover, Offer, Request, Acknowledge — de fire meldingene i DHCP-prosessen der klienten finner en server, mottar et tilbud, aksepterer det og serveren bekrefter tildelingen.
+**Svar:**DORA står for Discover, Offer, Request, Acknowledge — de fire meldingene i DHCP-prosessen der klienten finner en server, mottar et tilbud, aksepterer det og serveren bekrefter tildelingen.
 </details>
 
 <details>
 <summary>Spørsmål 2: Hva er en DNS A-post?</summary>
 
-**Svar:** En A-post (Address) er en DNS-post som kobler et domenenavn til en IPv4-adresse. F.eks. `ndla.no → 185.45.32.10`.
+**Svar:**En A-post (Address) er en DNS-post som kobler et domenenavn til en IPv4-adresse. F.eks. `ndla.no → 185.45.32.10`.
 </details>
 
 <details>
 <summary>Spørsmål 3: Hvorfor sendes DHCP Discover som broadcast?</summary>
 
-**Svar:** Fordi klienten ikke har en IP-adresse ennå og ikke vet hvilken adresse DHCP-serveren har. Broadcast (`255.255.255.255`) når alle enheter på det lokale nettverket, inkludert DHCP-serveren.
+**Svar:**Fordi klienten ikke har en IP-adresse ennå og ikke vet hvilken adresse DHCP-serveren har. Broadcast (`255.255.255.255`) når alle enheter på det lokale nettverket, inkludert DHCP-serveren.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hva er en DNS forwarder?</summary>
 
-**Svar:** En forwarder er en konfigurasjon på DNS-serveren som sier: "Oppslag jeg ikke kan besvare selv, sender jeg videre til denne andre DNS-serveren." I AD-nettverk peker forwarderen typisk mot ruterens IP for å løse opp internettadresser.
+**Svar:**En forwarder er en konfigurasjon på DNS-serveren som sier: "Oppslag jeg ikke kan besvare selv, sender jeg videre til denne andre DNS-serveren." I AD-nettverk peker forwarderen typisk mot ruterens IP for å løse opp internettadresser.
 </details>
 
 <details>
 <summary>Spørsmål 5: Hva er forskjellen mellom en PTR-post og en A-post i DNS?</summary>
 
-**Svar:** En A-post oversetter navn til IP (fremover-oppslag). En PTR-post (Pointer) gjør det motsatte — den oversetter IP-adresse til navn (omvendt oppslag/reverse lookup). PTR-poster brukes bl.a. av e-postservere og logger.
+**Svar:**En A-post oversetter navn til IP (fremover-oppslag). En PTR-post (Pointer) gjør det motsatte — den oversetter IP-adresse til navn (omvendt oppslag/reverse lookup). PTR-poster brukes bl.a. av e-postservere og logger.
 </details>
 
 ## Kilder
 
-[^1]: NDLA. (2024). Driftsstøtte IM-ITK VG2 — nettverksfag. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-[^2]: Microsoft Learn. (2024). DHCP Overview. https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top
-[^3]: Cloudflare Learning. (2025). What is DNS? https://www.cloudflare.com/learning/dns/what-is-dns/
-[^4]: Professor Messer. (2025). Network+ Study Guide — Network Security. https://www.professormesser.com/network-plus/
-[^5]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
-[^6]: NDLA. (2024). Deaktivere eksisterende DHCP-server. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7
+[^1]: NDLA. (2024). Driftsstøtte IM-ITK VG2 — nettverksfag. <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+[^2]: Microsoft Learn. (2024). DHCP Overview. <https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top>
+[^3]: Cloudflare Learning. (2025). What is DNS? <https://www.cloudflare.com/learning/dns/what-is-dns/>
+[^4]: Professor Messer. (2025). Network+ Study Guide — Network Security. <https://www.professormesser.com/network-plus/>
+[^5]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+[^6]: NDLA. (2024). Deaktivere eksisterende DHCP-server. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7>
 
 ## Ressurser
 
-- [Deaktivere eksisterende DHCP-server — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7)
-- [Installasjon av DNS-server — NDLA](https://ndla.no/nn/r/driftsstotte-im-itk-vg2/installasjon-av-dns-server/4246401a38)
-- [windowsnett.no — leksjon 11: DHCP og DNS](https://www.windowsnett.no/)
-- [DHCP Overview — Microsoft Learn](https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top)
+- [Deaktivere eksisterende DHCP-server — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7>)
+- [Installasjon av DNS-server — NDLA](<https://ndla.no/nn/r/driftsstotte-im-itk-vg2/installasjon-av-dns-server/4246401a38>)
+- [windowsnett.no — leksjon 11: DHCP og DNS](<https://www.windowsnett.no/>)
+- [DHCP Overview — Microsoft Learn](<https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top>)

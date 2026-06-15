@@ -2,20 +2,24 @@
 title: "The TCP/IP Model"
 emne: nettverk
 competence_goals:
+
   - km-05
+
 language: en
 original: tcp-ip-modellen.md
 kilder:
+
   - ndla
-  - https://ndla.no/nb/subject:1:430c00b5-773a-4933-9f2d-8647038e2f05/topic:2:183060/topic:2:183350/resource:1:115995
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.professormesser.com/network-plus/
-  - https://www.cloudflare.com/learning/
-  - https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+  - <https://ndla.no/nb/subject:1:430c00b5-773a-4933-9f2d-8647038e2f05/topic:2:183060/topic:2:183350/resource:1:115995>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.professormesser.com/network-plus/>
+  - <https://www.cloudflare.com/learning/>
+  - <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+
 tags: [tcp, ip, protocol, model, layers]
-flashcards: https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1
+flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f8e1>
 public: true
-video: https://www.youtube.com/watch?v=6cG9qrKB9x0
+video: <https://www.youtube.com/watch?v=6cG9qrKB9x0>
 notebooklm: true
 ---
 
@@ -31,7 +35,7 @@ The TCP/IP model is closely related to the [[osi-modellen-en|OSI model]], which 
 
 ### The Layers of the TCP/IP Model
 
-NDLA and many Norwegian textbooks use a **5-layer model** for TCP/IP. The classic internet model has 4 layers (where the bottom two are combined). Both variants are valid; the 5-layer model is more pedagogical and closer to OSI.
+NDLA and many Norwegian textbooks use a**5-layer model**for TCP/IP. The classic internet model has 4 layers (where the bottom two are combined). Both variants are valid; the 5-layer model is more pedagogical and closer to OSI.
 
 | Layer | Name | Function | Protocol Examples |
 |-------|------|----------|------------------|
@@ -47,29 +51,29 @@ NDLA and many Norwegian textbooks use a **5-layer model** for TCP/IP. The classi
 Responsible for the actual bit transmission: voltage levels on copper wire, light pulses in fiber, radio signals in WiFi. Protocols at this layer define connectors, cables, and signal standards (e.g. 10BASE-T, 1000BASE-T).
 
 **Layer 2 — Data Link Layer**
-Wraps bits into *frames*. Ethernet is dominant here. Each network card has a unique **MAC address** (48 bits, written as e.g. `00:1A:2B:3C:4D:5E`). A switch operates at layer 2 and forwards frames based on MAC addresses. ARP (Address Resolution Protocol) is used to find the MAC address for a known IP address.
+Wraps bits into*frames*. Ethernet is dominant here. Each network card has a unique**MAC address**(48 bits, written as e.g. `00:1A:2B:3C:4D:5E`). A switch operates at layer 2 and forwards frames based on MAC addresses. ARP (Address Resolution Protocol) is used to find the MAC address for a known IP address.
 
-A **MAC address** is a unique physical address at the data link layer (layer 2) that is burned into the network interface card for identification in a local network.
+A**MAC address**is a unique physical address at the data link layer (layer 2) that is burned into the network interface card for identification in a local network.
 
 **Layer 3 — Network Layer**
-Handles logical addressing with **IP addresses** and routing between different networks. A router operates at layer 3. IPv4 addresses are 32 bits (e.g. `192.168.1.10`), IPv6 addresses are 128 bits. ICMP is used for error messages and diagnostics (`ping`).
+Handles logical addressing with**IP addresses**and routing between different networks. A router operates at layer 3. IPv4 addresses are 32 bits (e.g. `192.168.1.10`), IPv6 addresses are 128 bits. ICMP is used for error messages and diagnostics (`ping`).
 
-An **IP address** is a logical address at the network layer (layer 3) that uniquely identifies a device in a network and enables routing between networks.
+An**IP address**is a logical address at the network layer (layer 3) that uniquely identifies a device in a network and enables routing between networks.
 
 **Layer 4 — Transport Layer**
-Responsible for end-to-end communication between applications on two machines. Uses **port numbers** to identify which application the traffic belongs to.
+Responsible for end-to-end communication between applications on two machines. Uses**port numbers**to identify which application the traffic belongs to.
 
-A **port** is a numerical identifier at the transport layer used to direct traffic to the correct application or service on a machine.
+A**port**is a numerical identifier at the transport layer used to direct traffic to the correct application or service on a machine.
 
-- **TCP (Transmission Control Protocol)**: connection-oriented, guarantees delivery order and error correction. Used where reliability is important (websites, email, file transfer).
-- **UDP (User Datagram Protocol)**: connectionless, fast but without guarantees. Used where speed is more important than accuracy (video streaming, VoIP, DNS lookups).
+-**TCP (Transmission Control Protocol)**: connection-oriented, guarantees delivery order and error correction. Used where reliability is important (websites, email, file transfer).
+-**UDP (User Datagram Protocol)**: connectionless, fast but without guarantees. Used where speed is more important than accuracy (video streaming, VoIP, DNS lookups).
 
 **Layer 5 — Application Layer**
 This is where protocols that programs use directly reside: HTTP for web, SMTP for email, DNS for name resolution, etc. This layer "talks" to user applications (browser, email client, terminal program).
 
 ### Encapsulation
 
-When data is sent down through the layers, each layer adds its own **header** with control information. This is called encapsulation:
+When data is sent down through the layers, each layer adds its own**header**with control information. This is called encapsulation:
 
 ```
 Application:  [DATA]
@@ -99,19 +103,22 @@ TCP/IP is the model the internet actually uses. OSI is the reference model used 
 
 ### Packet Flow: What Happens When You Open ndla.no?
 
-1. You type `https://ndla.no` in the browser.
-2. **Application Layer**: The browser creates an HTTP GET request. First, it must resolve the domain name — it sends a DNS lookup (UDP, port 53) and receives the IP address of ndla.no back (e.g. `185.45.32.10`).
-3. **Transport Layer**: TCP establishes a connection to port 443 (HTTPS) on the server via a *three-way handshake* (SYN → SYN-ACK → ACK). The HTTP request is wrapped in TCP segments.
-4. **Network Layer**: Each TCP segment is wrapped in an IP packet with your IP address as source and `185.45.32.10` as destination.
-5. **Data Link Layer**: The IP packet is wrapped in an Ethernet frame with your MAC address and the router's MAC address.
-6. **Physical Layer**: Bits are sent out over the cable or WiFi to the router.
-7. The router (layer 3) reads the IP header, finds the correct route, and forwards the packet toward the internet.
-8. The process repeats through several routers until the packet reaches NDLA's server.
-9. The server unpacks the request, processes it, and sends the HTML content back — through the same layers in reverse order.
+1. You type `<https://ndla.no`> in the browser.
+
+2.**Application Layer**: The browser creates an HTTP GET request. First, it must resolve the domain name — it sends a DNS lookup (UDP, port 53) and receives the IP address of ndla.no back (e.g. `185.45.32.10`).
+3.**Transport Layer**: TCP establishes a connection to port 443 (HTTPS) on the server via a*three-way handshake*(SYN → SYN-ACK → ACK). The HTTP request is wrapped in TCP segments.
+4.**Network Layer**: Each TCP segment is wrapped in an IP packet with your IP address as source and `185.45.32.10` as destination.
+5.**Data Link Layer**: The IP packet is wrapped in an Ethernet frame with your MAC address and the router's MAC address.
+6.**Physical Layer**: Bits are sent out over the cable or WiFi to the router.
+
+1. 
+2. 
+3. 
 
 ## Study Guide
 
 **Core Understanding Per Layer**
+
 - Layer 1: bits and signals (cable, WiFi, fiber)
 - Layer 2: frames and MAC addresses (switches, Ethernet)
 - Layer 3: IP addresses and routing (routers, IPv4/IPv6)
@@ -125,6 +132,7 @@ Understand that each layer adds its own header. Data from the application layer 
 The 4-layer model merges layers 1 and 2 into a "Network Access Layer." The 5-layer model separates them and is pedagogically closer to OSI. Both are correct.
 
 **Common Exam Points**
+
 - Which layer is responsible for what (IP = layer 3, MAC = layer 2, TCP = layer 4, HTTP = layer 5)
 - Encapsulation: what is added at each layer
 - The difference between TCP and UDP
@@ -161,35 +169,35 @@ ICMP (Internet Control Message Protocol) is a protocol at layer 3 used for error
 <details>
 <summary>Question 1: What is the difference between TCP and UDP?</summary>
 
-**Answer:** TCP is connection-oriented and guarantees that data is delivered in the correct order without loss. UDP is connectionless and fast, but gives no delivery guarantees. TCP is used where reliability is important (web, email), UDP where speed is more important (streaming, DNS).
+**Answer:**TCP is connection-oriented and guarantees that data is delivered in the correct order without loss. UDP is connectionless and fast, but gives no delivery guarantees. TCP is used where reliability is important (web, email), UDP where speed is more important (streaming, DNS).
 </details>
 
 <details>
 <summary>Question 2: Which layer is responsible for IP addressing and routing?</summary>
 
-**Answer:** Layer 3 — the Network layer (also called the Internet layer in the classic 4-layer model).
+**Answer:**Layer 3 — the Network layer (also called the Internet layer in the classic 4-layer model).
 </details>
 
 <details>
 <summary>Question 3: What is meant by encapsulation in TCP/IP?</summary>
 
-**Answer:** Encapsulation means that each layer adds its own header with control information as data is sent down through the layers. On the receiving end, it is unpacked in reverse order.
+**Answer:**Encapsulation means that each layer adds its own header with control information as data is sent down through the layers. On the receiving end, it is unpacked in reverse order.
 </details>
 
 <details>
 <summary>Question 4: What are MAC addresses used for, and at which layer do we find them?</summary>
 
-**Answer:** MAC addresses uniquely identify network cards and are used for addressing within a local network. They are found at layer 2 (data link layer). A switch uses MAC addresses to forward frames to the correct port.
+**Answer:**MAC addresses uniquely identify network cards and are used for addressing within a local network. They are found at layer 2 (data link layer). A switch uses MAC addresses to forward frames to the correct port.
 </details>
 
 <details>
 <summary>Question 5: Why is the TCP/IP model organized in layers?</summary>
 
-**Answer:** Layering allows each layer to be developed and updated independently of the others. For example, you can switch from IPv4 to IPv6 at layer 3 without changing TCP at layer 4 or HTTP at layer 5. It also simplifies troubleshooting — you can isolate a problem to a single layer.
+**Answer:**Layering allows each layer to be developed and updated independently of the others. For example, you can switch from IPv4 to IPv6 at layer 3 without changing TCP at layer 4 or HTTP at layer 5. It also simplifies troubleshooting — you can isolate a problem to a single layer.
 </details>
 
 ## Resources
 
-- [TCP/IP 5-layer Model — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6)
-- [TCP, UDP and Ports — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e)
-- [Transport Layer TCP and UDP — windowsnett.no](http://windowsnett.no/leksjoner/L08/8b%20Transportlaget%20TCP%20og%20UDP%20skjerm.pdf)
+- [TCP/IP 5-layer Model — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>)
+- [TCP, UDP and Ports — NDLA](<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e>)
+- [Transport Layer TCP and UDP — windowsnett.no](<http://windowsnett.no/leksjoner/L08/8b%20Transportlaget%20TCP%20og%20UDP%20skjerm.pdf>)

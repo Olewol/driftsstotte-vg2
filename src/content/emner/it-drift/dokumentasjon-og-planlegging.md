@@ -2,17 +2,21 @@
 title: "Dokumentasjon og planlegging"
 emne: it-drift
 kompetansemaal:
+
   - km-06
+
 kilder:
+
   - ndla
-  - https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131
-  - https://learn.microsoft.com/en-us/azure/architecture/framework/
-  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
-  - https://snl.no/skytjeneste
+  - <https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131>
+  - <https://learn.microsoft.com/en-us/azure/architecture/framework/>
+  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+  - <https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>
+  - <https://snl.no/skytjeneste>
+
 video: null
 tags: []
-flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
+flashcards: <https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd>
 public: true
 notebooklm: true
 ---
@@ -31,11 +35,11 @@ Dokumentasjon og planlegging handler om å ha oversikt: over hva som finnes, hvo
 
 Dokumentasjon tjener flere formål i IT-drift:
 
-- **Feilsøking** – vet vi hva som er normal konfigurasjon, er det lettere å finne avvik
-- **Onboarding** – ny kollega eller vikar kan ta over uten å starte fra null
-- **Revisjoner og compliance** – myndigheter og kunder kan kreve dokumentasjon (f.eks. etter GDPR)
-- **Endringstyring** – sporing av hva som er endret, hvem som endret det og hvorfor
-- **Kontinuitet** – virksomheten er ikke avhengig av én person som bærer all kunnskap i hodet
+-**Feilsøking**– vet vi hva som er normal konfigurasjon, er det lettere å finne avvik
+-**Onboarding**– ny kollega eller vikar kan ta over uten å starte fra null
+-**Revisjoner og compliance**– myndigheter og kunder kan kreve dokumentasjon (f.eks. etter GDPR)
+-**Endringstyring**– sporing av hva som er endret, hvem som endret det og hvorfor
+-**Kontinuitet**– virksomheten er ikke avhengig av én person som bærer all kunnskap i hodet
 
 Digdir understreker at god dokumentasjon er grunnlaget for interoperabilitet i norsk offentlig sektor.[^2]
 
@@ -87,7 +91,7 @@ En IP-adresseplan er en strukturert oversikt over alle IP-adresser, subnett og t
 
 #### Eksempel: IP-adresseplan for et skolenettverk
 
-**Nettverksinfo:** 192.168.1.0/24 (254 brukbare adresser)
+**Nettverksinfo:**192.168.1.0/24 (254 brukbare adresser)
 
 | VLAN | Navn | Subnett | Nettadresse | Gateway | DNS | DHCP-område | Kommentar |
 |------|------|---------|-------------|---------|-----|-------------|-----------|
@@ -116,12 +120,12 @@ En driftslogg (change log) er en kronologisk registrering av alle endringer som 
 #### Format
 
 Loggen bør inneholde:
-- **Dato og klokkeslett** – når ble endringen gjort?
-- **Utført av** – hvem gjorde det?
-- **Hva ble gjort** – konkret beskrivelse av endringen
-- **Hvorfor** – årsak/begrunnelse
-- **Resultat** – ble det som forventet? Noen problemer?
-- **Saksnummer / ticket** – referanse til helpdesk-saken om det er relevant
+-**Dato og klokkeslett**– når ble endringen gjort?
+-**Utført av**– hvem gjorde det?
+-**Hva ble gjort**– konkret beskrivelse av endringen
+-**Hvorfor**– årsak/begrunnelse
+-**Resultat**– ble det som forventet? Noen problemer?
+-**Saksnummer / ticket**– referanse til helpdesk-saken om det er relevant
 
 #### Eksempel på endringslogg
 
@@ -145,15 +149,18 @@ Ansvarlig rolle: Systemadministrator
 Frekvens: Hver 1. mandag i måneden
 
 Steg:
+
 1. Logg inn på Veeam Backup & Replication.
 2. Naviger til siste fulle backup av FILESERVER01.
 3. Høyreklikk → «Instant Recovery» → velg isolert test-nettverk.
 4. Start gjenoppretting og vent til VM er tilgjengelig (ca. 5 min).
 5. Logg inn på den gjenopprettede VM og verifiser:
+
    a. At tjenestene (fileshare, DNS) kjører.
    b. At en tilfeldig valgt fil fra siste uke er tilgjengelig og lesbar.
-6. Dokumenter resultatet i driftsloggen.
-7. Slå av test-VM.
+
+1. 
+2. 
 
 Forventet resultat: VM starter, filer tilgjengelige, ingen feil.
 ```
@@ -164,21 +171,22 @@ Forventet resultat: VM starter, filer tilgjengelige, ingen feil.
 
 | Verktøy | Bruksområde |
 |---------|-------------|
-| **draw.io / Lucidchart** | Nettverkstopologier, arkitekturdiagrammer |
-| **Markdown / Obsidian** | Driftslogg, prosedyrer, intern wiki |
-| **Confluence** | Teambasert wiki, brukt i store IT-avdelinger |
-| **IT Glue** | Profesjonelt MSP-verktøy for IT-dokumentasjon. Integrerer passordhåndtering, enhetsregister og prosedyrer. |
-| **CMDB** | Configuration Management Database – register over all IT-infrastruktur (enheter, konfigurasjon, relasjoner) |
-| **Excel/Google Sheets** | IP-adresseplaner og inventarlister (enkel, men ikke skalerbar) |
+|**draw.io / Lucidchart**| Nettverkstopologier, arkitekturdiagrammer |
+|**Markdown / Obsidian**| Driftslogg, prosedyrer, intern wiki |
+|**Confluence**| Teambasert wiki, brukt i store IT-avdelinger |
+|**IT Glue**| Profesjonelt MSP-verktøy for IT-dokumentasjon. Integrerer passordhåndtering, enhetsregister og prosedyrer. |
+|**CMDB**| Configuration Management Database – register over all IT-infrastruktur (enheter, konfigurasjon, relasjoner) |
+|**Excel/Google Sheets**| IP-adresseplaner og inventarlister (enkel, men ikke skalerbar) |
 
 ---
 
 ### ITIL og endringstyring
 
-**ITIL** (IT Infrastructure Library) er et rammeverk for god IT-driftspraksis som er mye brukt i norsk og internasjonal IT-bransje.[^5] Selv om man ikke behøver å innføre hele ITIL på VG2-nivå, er noen begreper sentrale:
+**ITIL**(IT Infrastructure Library) er et rammeverk for god IT-driftspraksis som er mye brukt i norsk og internasjonal IT-bransje.[^5] Selv om man ikke behøver å innføre hele ITIL på VG2-nivå, er noen begreper sentrale:
 
 **Change Management (endringstyring)**
 En strukturert prosess for å håndtere endringer i IT-miljøet på en kontrollert måte:
+
 1. Endringen planlegges og dokumenteres
 2. Risikovurdering gjennomføres
 3. Endringen godkjennes (av riktig person/rolle)
@@ -194,14 +202,14 @@ Uten endringstyring kan ukontrollerte endringer bli den hyppigste årsaken til d
 
 God planlegging reduserer risiko og gjør prosjektet mer forutsigbart. En enkel planleggingsprosess kan se slik ut:
 
-1. **Behovskartlegging** – hva ønsker virksomheten å oppnå?
-2. **Kravspesifikasjon** – tekniske og funksjonelle krav
-3. **Risikovurdering (ROS-analyse)** – hva kan gå galt, og hva er konsekvensen?
-4. **Løsningsforslag og valg** – vurder alternativer
-5. **Prosjektplan** – tidsplan, ansvar, milepæler
-6. **Implementering og testing**
-7. **Dokumentasjon og overlevering**
-8. **Evaluering** – ble kravene oppfylt?
+1.**Behovskartlegging**– hva ønsker virksomheten å oppnå?
+2.**Kravspesifikasjon**– tekniske og funksjonelle krav
+3.**Risikovurdering (ROS-analyse)**– hva kan gå galt, og hva er konsekvensen?
+4.**Løsningsforslag og valg**– vurder alternativer
+5.**Prosjektplan**– tidsplan, ansvar, milepæler
+6.**Implementering og testing**
+7.**Dokumentasjon og overlevering**
+8.**Evaluering**– ble kravene oppfylt?
 
 Se [[risikoanalyse]] for mer om ROS-analyser i IT-sammenheng.
 
@@ -211,18 +219,18 @@ Se [[risikoanalyse]] for mer om ROS-analyser i IT-sammenheng.
 
 ### Systematisk feilsøking i 5 steg
 
-> **Kilde:** Klasseromsnotater (2ITA)
+>**Kilde:**Klasseromsnotater (2ITA)
 >
 > Når noe stopper opp, ikke få panikk. Gå systematisk til verks med disse stegene:
 >
-> 1. **Observer** – Hva skjer (og hva skjer ikke)? Les hele feilmeldingen, ikke bare de første ordene.
-> 2. **Analyser** – Hva var det siste som fungerte? Hvilken endring ble gjort rett før feilen? Ofte ligger feilen der.
-> 3. **Still hypoteser** – Hva trenger datamaskinen for å gjøre dette? Test hypotesen med konkrete kommandoer (f.eks. `ping 8.8.8.8` for å teste nettverkstilgang).
-> 4. **Bruk verktøy og les feilmeldingen** – Vanlige mønstre:
->    - `Permission denied` → glemt `sudo`
+> 1.**Observer**– Hva skjer (og hva skjer ikke)? Les hele feilmeldingen, ikke bare de første ordene.
+> 2.**Analyser**– Hva var det siste som fungerte? Hvilken endring ble gjort rett før feilen? Ofte ligger feilen der.
+> 3.**Still hypoteser**– Hva trenger datamaskinen for å gjøre dette? Test hypotesen med konkrete kommandoer (f.eks. `ping 8.8.8.8` for å teste nettverkstilgang).
+> 4.**Bruk verktøy og les feilmeldingen**– Vanlige mønstre:
+>    - `Permission denied`→ glemt`sudo`
 >    - `Could not resolve host` → nettverk eller DNS-problem
->    - `No such file or directory` → feil filnavn eller feil mappe (sjekk med `ls`)
-> 5. **Søk etter kunnskap** – Kopier hele feilmeldingen (uten brukernavn) til Google eller en AI. Gi alltid kontekst: OS-versjon, hva du prøver å gjøre, og hva som skjer.
+>    - `No such file or directory`→ feil filnavn eller feil mappe (sjekk med`ls`)
+> 5.**Søk etter kunnskap**– Kopier hele feilmeldingen (uten brukernavn) til Google eller en AI. Gi alltid kontekst: OS-versjon, hva du prøver å gjøre, og hva som skjer.
 >
 > Dokumenter alltid løsningen i loggen din — det er gull verdt neste gang samme problem oppstår.
 
@@ -250,13 +258,14 @@ Velg én kritisk IT-operasjon (f.eks. legge til en ny bruker i Active Directory,
 Dokumentasjon og planlegging handler om å skape og vedlikeholde oversikt over IT-miljøet – slik at drift, feilsøking og endringer kan gjøres kontrollert og effektivt.
 
 **Dokumentasjonstyper:**
-- **IP-adresseplan** – oversikt over VLAN, subnett, gateway, DNS, DHCP og statiske adresser
-- **Nettverkstopologi** – visuelt kart over nettverkskomponenter og koblinger (draw.io)
-- **Driftslogg/endringslogg** – kronologisk register over alle endringer
-- **Prosedyredokumentasjon** – steg-for-steg instrukser for kritiske operasjoner
-- **CMDB** – register over all infrastruktur
+-**IP-adresseplan**– oversikt over VLAN, subnett, gateway, DNS, DHCP og statiske adresser
+-**Nettverkstopologi**– visuelt kart over nettverkskomponenter og koblinger (draw.io)
+-**Driftslogg/endringslogg**– kronologisk register over alle endringer
+-**Prosedyredokumentasjon**– steg-for-steg instrukser for kritiske operasjoner
+-**CMDB**– register over all infrastruktur
 
 **Nettverkstopologier:**
+
 - Stjerne (vanligst): sentralisert svitsj, enkel å feilsøke
 - Mesh: alle koblet til alle, robust men kompleks
 - Buss: historisk, brukes ikke i moderne nettverk
@@ -267,7 +276,7 @@ Behovskartlegging → Krav → ROS-analyse → Løsningsvalg → Prosjektplan �
 **ITIL endringstyring:**
 Alle endringer planlegges, risikovurderes, godkjennes, gjennomføres, dokumenteres. Rollback-plan alltid klar.
 
-**Husk:** Uten dokumentasjon er IT-avdelingen avhengig av enkeltpersoners hukommelse. God dokumentasjon er en kollektiv forsikring.
+**Husk:**Uten dokumentasjon er IT-avdelingen avhengig av enkeltpersoners hukommelse. God dokumentasjon er en kollektiv forsikring.
 
 ---
 
@@ -297,31 +306,31 @@ draw.io er gratis, nettbasert, og lagrer diagrammer som XML-filer som kan versjo
 
 <details><summary>Spørsmål 1: Hvorfor er en endringslogg viktig i IT-drift?</summary>
 
-**Svar:** Endringsloggen gir en historikk over alle endringer som er gjort i systemet. Dette er uunnværlig ved feilsøking (hva endret vi rett før problemet oppsto?), revisjoner, onboarding av ny kollega og for å opprettholde kontinuitet når folk slutter.
+**Svar:**Endringsloggen gir en historikk over alle endringer som er gjort i systemet. Dette er uunnværlig ved feilsøking (hva endret vi rett før problemet oppsto?), revisjoner, onboarding av ny kollega og for å opprettholde kontinuitet når folk slutter.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva er en stjernetopologi og hva er dens svakhet?</summary>
 
-**Svar:** En stjernetopologi kobler alle enheter til en sentral svitsj. Det er enkelt å feilsøke og utvide. Svakheten er at svitsjen er et single point of failure – feiler svitsjen, mister alle enheter kontakten. Dette avhjelpes med redundante svitsjer.
+**Svar:**En stjernetopologi kobler alle enheter til en sentral svitsj. Det er enkelt å feilsøke og utvide. Svakheten er at svitsjen er et single point of failure – feiler svitsjen, mister alle enheter kontakten. Dette avhjelpes med redundante svitsjer.
 
 </details>
 
 <details><summary>Spørsmål 3: Hva skal en IP-adresseplan inneholde?</summary>
 
-**Svar:** En IP-adresseplan skal minst inneholde: nettverksadresse og subnettmaske, gateway-adresse, DNS-server(e), DHCP-område, og oversikt over statiske adresser (servere, printere, nettverksutstyr). Den kan også inkludere VLAN-informasjon og MAC-adresser.
+**Svar:**En IP-adresseplan skal minst inneholde: nettverksadresse og subnettmaske, gateway-adresse, DNS-server(e), DHCP-område, og oversikt over statiske adresser (servere, printere, nettverksutstyr). Den kan også inkludere VLAN-informasjon og MAC-adresser.
 
 </details>
 
 <details><summary>Spørsmål 4: Hva er CMDB?</summary>
 
-**Svar:** CMDB (Configuration Management Database) er et register over all IT-infrastruktur i en virksomhet: enheter, programvare, konfigurasjoner og relasjonene mellom dem. Det er grunnlaget for god endringstyring og feilsøking.
+**Svar:**CMDB (Configuration Management Database) er et register over all IT-infrastruktur i en virksomhet: enheter, programvare, konfigurasjoner og relasjonene mellom dem. Det er grunnlaget for god endringstyring og feilsøking.
 
 </details>
 
 <details><summary>Spørsmål 5: Nevn to verktøy som brukes til nettverksdokumentasjon og beskriv hva de brukes til.</summary>
 
-**Svar:** draw.io brukes til å tegne nettverkstopologier og arkitekturdiagrammer – visuelt og gratis. IT Glue er et profesjonelt dokumentasjonsverktøy brukt av driftsselskaper (MSP-er) som samler alt fra passordhåndtering til prosedyrer og enhetsregister i ett system.
+**Svar:**draw.io brukes til å tegne nettverkstopologier og arkitekturdiagrammer – visuelt og gratis. IT Glue er et profesjonelt dokumentasjonsverktøy brukt av driftsselskaper (MSP-er) som samler alt fra passordhåndtering til prosedyrer og enhetsregister i ett system.
 
 </details>
 
@@ -329,9 +338,9 @@ draw.io er gratis, nettbasert, og lagrer diagrammer som XML-filer som kan versjo
 
 ## Ressurser
 
-- [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131)
-- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/)
-- [draw.io (diagramtegning)](https://app.diagrams.net/)
+- [Digdir: Referansearkitektur for datadeling](<https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131>)
+- [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>)
+- [draw.io (diagramtegning)](<https://app.diagrams.net/>)
 - [[driftsarkitektur]]
 - [[backup-og-gjenoppretting]]
 - [[risikoanalyse]]
@@ -340,9 +349,9 @@ draw.io er gratis, nettbasert, og lagrer diagrammer som XML-filer som kan versjo
 
 ## Kilder
 
-[^1]: [NDLA: Dokumentasjon og planlegging](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Betydningen av dokumentasjon i IT-drift.
-[^2]: [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131) – Dokumentasjon som grunnlag for interoperabilitet.
-[^3]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Nettverkstopologier og nettverksstruktur.
-[^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – Prinsipper for driftslogg og endringssporing.
-[^5]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – ITIL og endringstyring i offentlig sektor.
+[^1]: [NDLA: Dokumentasjon og planlegging](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Betydningen av dokumentasjon i IT-drift.
+[^2]: [Digdir: Referansearkitektur for datadeling](<https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131>) – Dokumentasjon som grunnlag for interoperabilitet.
+[^3]: [NDLA: Sikkerhet og sårbarhet](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Nettverkstopologier og nettverksstruktur.
+[^4]: [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>) – Prinsipper for driftslogg og endringssporing.
+[^5]: [Digdir: Skytjenester i offentlig sektor](<https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>) – ITIL og endringstyring i offentlig sektor.
 
