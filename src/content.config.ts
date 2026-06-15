@@ -67,4 +67,11 @@ const ressursar = defineCollection({
   }),
 });
 
-export const collections = { aarsplan, emner, oppgaver, ressursar };
+const flashcards = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string().optional(),
+  }),
+});
+
+export const collections = { aarsplan, emner, oppgaver, ressursar, flashcards };
