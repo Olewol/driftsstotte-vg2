@@ -28,6 +28,9 @@
     "remark-wiki-link": "^2.0.1",
     "tailwindcss": "^3.4.19"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
+  },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "markdownlint-cli2": "^0.22.1",
