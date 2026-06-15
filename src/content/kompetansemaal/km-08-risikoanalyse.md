@@ -26,7 +26,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Risikoanalyse er en systematisk metode for å identifisere, vurdere og prioritere risikoer. Målet er å finne ut hva som kan gå galt, hvor sannsynlig det er, og hvor alvorlig konsekvensen vil bli[^1].
+Risikoanalyse er en systematisk metode for å identifisere, vurdere og prioritere risikoer. Målet er å finne ut hva som kan gå galt, hvor sannsynlig det er, og hvor alvorlig konsekvensen vil bli[^1][^3].
 
 **Risiko = Sannsynlighet × Konsekvens** — jo høyere sannsynlighet og/eller alvorligere konsekvens, desto høyere risiko.
 
@@ -155,4 +155,5 @@ Assess the school's website for 5 scenarios (DDoS, hacking, data leak, content h
 
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: NSM. Grunnprinsipper for IKT-sikkerhet. https://nsm.no/
-[^3]: Digdir. Informasjonssikkerhet. https://www.digdir.no/informasjonssikkerhet/
+[^3]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^4]: Digdir. Informasjonssikkerhet. https://www.digdir.no/informasjonssikkerhet/

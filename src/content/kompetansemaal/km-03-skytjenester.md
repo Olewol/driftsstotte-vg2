@@ -27,7 +27,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Skytjenester (cloud services) betyr at IT-ressurser som servere, lagring, databaser og programvare leveres over internett — i stedet for å være fysisk installert hos deg[^1]. Du betaler for det du bruker, og slipper å drifte maskinvaren selv.
+Skytjenester (cloud services) betyr at IT-ressurser som servere, lagring, databaser og programvare leveres over internett — i stedet for å være fysisk installert hos deg[^1][^5]. Du betaler for det du bruker, og slipper å drifte maskinvaren selv.
 
 **Tre hovedtyper skytjenester:**
 - **IaaS (Infrastructure as a Service)** — Virtuelle maskiner, lagring, nettverk (f.eks. Azure VM, AWS EC2)
@@ -154,3 +154,4 @@ Classify 6 scenarios and justify each choice:
 [^2]: Cloudflare. What is the cloud? https://www.cloudflare.com/learning/cloud/what-is-the-cloud/
 [^3]: AWS. What is cloud computing? https://aws.amazon.com/what-is-cloud-computing/
 [^4]: Microsoft Learn. Azure fundamentals. https://learn.microsoft.com/en-us/training/azure/
+[^5]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/

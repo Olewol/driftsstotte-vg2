@@ -26,7 +26,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Automatisering betyr å få datamaskiner til å gjøre repetitive oppgaver for deg — slik at du slipper å gjøre dem manuelt. I IT-drift er automatisering helt avgjørende for effektivitet og pålitelighet[^1].
+Automatisering betyr å få datamaskiner til å gjøre repetitive oppgaver for deg — slik at du slipper å gjøre dem manuelt. I IT-drift er automatisering helt avgjørende for effektivitet og pålitelighet[^1][^2].
 
 **Hvorfor automatisere?**
 - **Tidsbesparelse** — En jobb som tar 1 time manuelt kan gjøres på 1 sekund med et skript
@@ -159,5 +159,6 @@ Create an automated backup solution:
 ## 📚 Kilder / Sources
 
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
-[^2]: GNU. Bash Reference Manual. https://www.gnu.org/software/bash/
-[^3]: Microsoft. PowerShell Documentation. https://learn.microsoft.com/en-us/powershell/
+[^2]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^3]: GNU. Bash Reference Manual. https://www.gnu.org/software/bash/
+[^4]: Microsoft. PowerShell Documentation. https://learn.microsoft.com/en-us/powershell/

@@ -26,7 +26,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Segmenterte nettverk betyr å dele opp et større nettverk i mindre, isolerte deler (segmenter). Dette gjøres for å forbedre sikkerhet, ytelse og oversiktlighet[^1].
+Segmenterte nettverk betyr å dele opp et større nettverk i mindre, isolerte deler (segmenter). Dette gjøres for å forbedre sikkerhet, ytelse og oversiktlighet[^1][^4].
 
 Hovedverktøyene for nettverkssegmentering:
 - **VLAN (Virtual LAN)** — Logisk segmentering på svitsjnivå
@@ -140,3 +140,4 @@ Deliver: VLAN table, IP address ranges, and firewall rule set.
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: Cloudflare. What is a VLAN? https://www.cloudflare.com/learning/network-layer/what-is-a-vlan/
 [^3]: Microsoft Learn. Introduction to virtualization. https://learn.microsoft.com/en-us/training/modules/introduction-to-virtualization/
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/

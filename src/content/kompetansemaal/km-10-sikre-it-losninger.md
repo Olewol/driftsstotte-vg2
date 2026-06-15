@@ -27,7 +27,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Å bygge sikre IT-løsninger handler om å tenke sikkerhet fra starten — ikke som en ettertanke. Dette kalles **Security by Design**[^1].
+Å bygge sikre IT-løsninger handler om å tenke sikkerhet fra starten — ikke som en ettertanke. Dette kalles **Security by Design**[^1][^4].
 
 **Sentrale sikkerhetstiltak:**
 

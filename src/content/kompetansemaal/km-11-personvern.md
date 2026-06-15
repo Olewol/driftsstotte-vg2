@@ -27,7 +27,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Personvern handler om retten til å bestemme over egne personopplysninger — hvem som skal få vite hva om deg, til hvilket formål, og hvor lenge opplysningene skal lagres[^1].
+Personvern handler om retten til å bestemme over egne personopplysninger — hvem som skal få vite hva om deg, til hvilket formål, og hvor lenge opplysningene skal lagres[^1][^4].
 
 **Konsekvenser av personvernbrudd:**
 - **For enkeltmennesker:** Identitetstyveri, økonomisk tap, sosial utstøting, psykisk belastning
@@ -137,4 +137,5 @@ Conduct a simplified DPIA of a known system (ItsLearning, Visma Flyt Skole, or a
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: GDPR.eu. What is GDPR? https://gdpr.eu/
 [^3]: Datatilsynet. Personvern. https://www.datatilsynet.no/
-[^4]: Dubestemmer.no. Personvern for unge. https://www.dubestemmer.no/
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^5]: Dubestemmer.no. Personvern for unge. https://www.dubestemmer.no/

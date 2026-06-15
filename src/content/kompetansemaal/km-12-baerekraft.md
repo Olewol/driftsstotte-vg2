@@ -6,7 +6,7 @@ kompetansemaal:
 kilder:
   - https://www.udir.no/lk20/itk02-01/kompetansemaal-og-vurdering/kv372
   - https://www.energystar.gov/
-  - https://www.statnett.no/
+  - https://www.google.com/about/datacenters/efficiency/
   - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
   - https://www.sintef.no/
 tags: [km-12, bærekraft, miljø, dataindustri, klima]
@@ -27,7 +27,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Dataindustrien har et betydelig miljøavtrykk — faktisk står den for omtrent like mye CO₂-utslipp som flyindustrien[^1]. Hvert søk, hver e-post, hver video du strømmer, bruker strøm i datasentre over hele verden.
+Dataindustrien har et betydelig miljøavtrykk — faktisk står den for omtrent like mye CO₂-utslipp som flyindustrien[^1][^4]. Hvert søk, hver e-post, hver video du strømmer, bruker strøm i datasentre over hele verden.
 
 **Hvorfor bruker IT så mye energi?**
 - **Datasentre** — Tusenvis av servere som kjører 24/7 og må kjøles ned
@@ -159,4 +159,5 @@ Create an action plan with 5 specific recommendations.
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: Energy Star. Energy-efficient products and practices. https://www.energystar.gov/
 [^3]: Google. AI-powered efficiency in data centers. https://www.google.com/about/datacenters/efficiency/
-[^4]: SINTEF. Energibruk i datasentre. https://www.sintef.no/
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^5]: SINTEF. Energibruk i datasentre. https://www.sintef.no/

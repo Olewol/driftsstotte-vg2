@@ -26,7 +26,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Brukeradministrasjon handler om å opprette, endre og slette brukerkontoer, og å gi hver bruker akkurat de tilgangene de trenger — verken mer eller mindre. Dette kalles **least privilege principle** (minsterettighetsprinsippet)[^1].
+Brukeradministrasjon handler om å opprette, endre og slette brukerkontoer, og å gi hver bruker akkurat de tilgangene de trenger — verken mer eller mindre. Dette kalles **least privilege principle** (minsterettighetsprinsippet)[^1][^4].
 
 **Hvem styrer hva?**
 - **Active Directory (AD DS)** — Microsofts katalogtjeneste for å administrere brukere, datamaskiner og grupper i et Windows-domenenettverk
@@ -153,3 +153,4 @@ On an Ubuntu server:
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: Microsoft Learn. Active Directory Domain Services overview. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/
 [^3]: Microsoft Learn. Implement user and group management. https://learn.microsoft.com/en-us/training/modules/implement-user-group-management/
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/

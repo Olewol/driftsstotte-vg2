@@ -27,7 +27,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Nettverksprotokoller er «språkene» som datamaskiner bruker for å kommunisere. Uten protokoller kunne ikke en PC snakke med en webserver, sende e-post eller finne en skriver på nettverket[^1].
+Nettverksprotokoller er «språkene» som datamaskiner bruker for å kommunisere. Uten protokoller kunne ikke en PC snakke med en webserver, sende e-post eller finne en skriver på nettverket[^1][^5].
 
 **Protokollene du må kjenne:**
 | Protokoll | Port | Bruk |
@@ -168,3 +168,4 @@ Windows Server (DNS role) or Linux (BIND9):
 [^2]: Cloudflare. What is a network protocol? https://www.cloudflare.com/learning/network-layer/what-is-a-protocol/
 [^3]: Professor Messer. Network+ Study Guide. https://www.professormesser.com/network-plus/
 [^4]: Microsoft Learn. Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^5]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/

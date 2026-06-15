@@ -25,7 +25,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Dokumentasjon er «bruksanvisningen» for IT-systemer. Uten dokumentasjon blir systemer avhengige av enkeltpersoners kunnskap — det kalles «bus factor» (hva skjer om den ene personen blir borte?)[^1].
+Dokumentasjon er «bruksanvisningen» for IT-systemer. Uten dokumentasjon blir systemer avhengige av enkeltpersoners kunnskap — det kalles «bus factor» (hva skjer om den ene personen blir borte?)[^1][^2].
 
 **God dokumentasjon bør inneholde:**
 - **Systemoversikt** — Hvilke systemer finnes og hvordan henger de sammen?

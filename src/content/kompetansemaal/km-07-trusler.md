@@ -27,7 +27,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Trusselbildet innen datasikkerhet endrer seg raskt. En trussel er alt som kan utnytte en sårbarhet til å skade et system eller stjele data[^1]. De viktigste truslene i dag inkluderer:
+Trusselbildet innen datasikkerhet endrer seg raskt. En trussel er alt som kan utnytte en sårbarhet til å skade et system eller stjele data[^1][^5]. De viktigste truslene i dag inkluderer:
 
 **Tekniske trusler:**
 - **Malware** — Skadevare som virus, ormer, trojanere og ransomware
@@ -140,3 +140,4 @@ Choose one recent security threat from the news (last 12 months). How did the at
 [^2]: NSM. Grunnprinsipper for IKT-sikkerhet (v2.1). https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
 [^3]: ENISA. Threat Landscape Report. https://www.enisa.europa.eu/
 [^4]: OWASP. Top Ten Web Application Security Risks. https://owasp.org/www-project-top-ten/
+[^5]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/

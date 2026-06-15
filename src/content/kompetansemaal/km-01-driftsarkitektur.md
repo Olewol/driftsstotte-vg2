@@ -26,7 +26,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
-Driftsarkitektur er «skjelettet» i en IT-organisasjon. Det handler om å forstå hvordan ulike komponenter — servere, lagring, nettverk, programvare, backup-løsninger — henger sammen og samspiller for å levere pålitelige IT-tjenester[^1].
+Driftsarkitektur er «skjelettet» i en IT-organisasjon. Det handler om å forstå hvordan ulike komponenter — servere, lagring, nettverk, programvare, backup-løsninger — henger sammen og samspiller for å levere pålitelige IT-tjenester[^1][^4].
 
 En driftsarkitekt må kunne:
 - Identifisere fysiske og logiske komponenter i en infrastruktur
@@ -133,3 +133,4 @@ Deliver: architecture sketch + justification for each component.
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi, kompetansemål etter driftsstøtte. https://www.udir.no/lk20/itk02-01/
 [^2]: Cloudflare Learning Center. What is network architecture? https://www.cloudflare.com/learning/
 [^3]: Microsoft Learn. Introduction to IT infrastructure. https://learn.microsoft.com/en-us/training/
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
