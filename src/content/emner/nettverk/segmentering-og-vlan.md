@@ -8,22 +8,21 @@ kompetansemaal:
 kilder:
 
   - ndla
-  - <<<<https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:66>5>4>7>
-  - <<<<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52>a>2>/>
-  - <<<<https://www.professormesser.com/network-pl>u>s>/>
-  - <<<<https://www.cloudflare.com/learni>n>g>/>
-  - <<<<https://learn.microsoft.com/en-us/training/paths/networking-fundamenta>l>s>/>
+  - <<<<<https://ndla.no/nb/subject:1:f5471415-32e6-4299-813c-0466099b0577/topic:1:43d57d77-628d-4a12-8857-4b77f884693a/resource:1:6>6>5>4>7>
+  - <<<<<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a5>2>a>2>/>
+  - <<<<<https://www.professormesser.com/network-p>l>u>s>/>
+  - <<<<<https://www.cloudflare.com/learn>i>n>g>/>
+  - <<<<<https://learn.microsoft.com/en-us/training/paths/networking-fundament>a>l>s>/>
 
 tags: [vlan, subnetting, cidr, segmentering, nettverk, 802.1q]
-flashcards: <<<<https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540f>8>e>1>
+flashcards: <<<<<https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41b540>f>8>e>1>
 relaterte-oppgaver:
 
   - tittel: "IP-plan og nettverkskart for Nordic Cloud Solutions"
-
     url: "https://olewol.github.io/oppgaver-for-2IT/driftsstotte/ip-plan-nettverkskart"
     fag: driftsstotte
 public: true
-video: <<<<https://www.youtube.com/watch?v=MzwV67L_>6>f>8>
+video: <<<<<https://www.youtube.com/watch?v=MzwV67L>_>6>f>8>
 notebooklm: true
 ---
 
@@ -329,18 +328,18 @@ annet
 
 ## Kilder
 
-[^1]: NDLA. (2024). IPv4. <<<https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec>0>2>
+[^1]: NDLA. (2024). IPv4. <<<<https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefe>c>0>2>
 [^2]: Cloudflare Learning. (2025). What is IP?
-<<<https://www.cloudflare.com/learning/network-layer/what-is-an-ip-addres>s>/>
+<<<<https://www.cloudflare.com/learning/network-layer/what-is-an-ip-addre>s>s>/>
 
 [^3]: Professor Messer. (2025). Network+ Study Guide — VLANs and Switching.
-<<<https://www.professormesser.com/network-plu>s>/>
+<<<<https://www.professormesser.com/network-pl>u>s>/>
 
 [^4]: NDLA. (2024). Virtuelt lokalnettverk VLAN.
-<<<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa>8>8>
+<<<<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865af>a>8>8>
 
 [^5]: Microsoft Learn. (2025). Networking fundamentals.
-<<<https://learn.microsoft.com/en-us/training/paths/networking-fundamental>s>/>
+<<<<https://learn.microsoft.com/en-us/training/paths/networking-fundamenta>l>s>/>
 
 ## Ressurser
 
