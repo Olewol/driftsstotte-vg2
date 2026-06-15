@@ -196,7 +196,7 @@ You receive the following emails. Assess which ones are phishing and why:
 1www.dnb-sikkerhet.net"*
    → Suspicious: the domain is not dnb.no. Urgency appeal. Link to unknown website.
 
-2.*"Hi Kari, here are the minutes from yesterday's meeting. See attached PDF."*– sender is colleague@company.no
+2.*"Hi Kari, here are the minutes from yesterday's meeting. See attached PDF."*– sender is <colleague@company.no>
    → Could be legitimate, but: check if the attachment is expected, and whether the sender address matches exactly.
 
 3.*"You have won an iPhone 15. Enter your credit card info to pay shipping."*

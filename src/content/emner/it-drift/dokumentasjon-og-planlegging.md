@@ -238,9 +238,10 @@ Se [[risikoanalyse]] for mer om ROS-analyser i IT-sammenheng.
 > 2.**Analyser**– Hva var det siste som fungerte? Hvilken endring ble gjort rett før feilen? Ofte ligger feilen der.
 > 3.**Still hypoteser**– Hva trenger datamaskinen for å gjøre dette? Test hypotesen med konkrete kommandoer (f.eks. `ping 8.8.8.8` for å teste nettverkstilgang).
 > 4.**Bruk verktøy og les feilmeldingen**– Vanlige mønstre:
->    - `Permission denied`→ glemt`sudo`
->    - `Could not resolve host` → nettverk eller DNS-problem
->    - `No such file or directory`→ feil filnavn eller feil mappe (sjekk med`ls`)
+>
+> - `Permission denied`→ glemt`sudo`
+> - `Could not resolve host` → nettverk eller DNS-problem
+> - `No such file or directory`→ feil filnavn eller feil mappe (sjekk med`ls`)
 > 5.**Søk etter kunnskap**– Kopier hele feilmeldingen (uten brukernavn) til Google eller en AI. Gi alltid kontekst: OS-versjon, hva du prøver å gjøre, og hva som skjer.
 >
 > Dokumenter alltid løsningen i loggen din — det er gull verdt neste gang samme problem oppstår.
@@ -387,4 +388,3 @@ ddeles og oppdateres enkelt.
 [^3]: [NDLA: Sikkerhet og sårbarhet](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Nettverkstopologier og nettverksstruktur.
 [^4]: [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>) – Prinsipper for driftslogg og endringssporing.
 [^5]: [Digdir: Skytjenester i offentlig sektor](<https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>) – ITIL og endringstyring i offentlig sektor.
-

@@ -242,9 +242,10 @@ See [[risikoanalyse-en]] for more on ROS analyses in an IT context.
 > 2.**Analyze**– What was the last thing that worked? What change was made just before the error? Often that is where the problem lies.
 > 3.**Form hypotheses**– What does the computer need to do this? Test the hypothesis with concrete commands (e.g., `ping 8.8.8.8` to test network access).
 > 4.**Use tools and read the error message**– Common patterns:
->    - `Permission denied`→ forgot`sudo`
->    - `Could not resolve host` → network or DNS problem
->    - `No such file or directory`→ wrong filename or wrong directory (check with`ls`)
+>
+> - `Permission denied`→ forgot`sudo`
+> - `Could not resolve host` → network or DNS problem
+> - `No such file or directory`→ wrong filename or wrong directory (check with`ls`)
 > 5.**Search for knowledge**– Copy the entire error message (without usernames) into Google or an AI. Always provide context: OS version, what you are trying to do, and what is happening.
 >
 > Always document the solution in your log – it is worth its weight in gold the next time the same problem occurs.

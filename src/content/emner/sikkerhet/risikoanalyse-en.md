@@ -204,11 +204,13 @@ Tdata.
 > In class, students conduct a risk assessment for a fictional Dark Web lab that investigative journalists at "MediaHuset AS" plan to use. The case illustrates structured risk management:
 >
 >**Three assets to protect:**
+>
 > - The company's main network
 > - Source protection / journalist anonymity
 > - Company reputation
 >
 >**Three identified threats:**
+>
 > - Journalist downloads malware that spreads to the corporate network
 > - Journalist logs into personal Facebook via Tor and is exposed (breaking anonymity)
 > - Cleaner inserts an infected USB drive into the lab machine

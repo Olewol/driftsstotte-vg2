@@ -135,9 +135,9 @@ Tmen 5-lagsmodellen er mer pedagogisk fordi den skiller mellom fysisk lag og dat
 5.**Datalinklaget**: IP-pakken pakkes inn i en Ethernet-frame med din MAC-adresse og ruterens MAC-adresse.
 6.**Fysisk lag**: Biter sendes ut over kabelen eller WiFi til ruteren.
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## Study guide
 
@@ -244,7 +244,6 @@ Inåbar.
 [^1]: Cloudflare Learning. (2025). What is TCP/IP? <https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/>
 [^2]: NDLA. (2024). 5-lags TCP/IP-modell. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>
 [^3]: Professor Messer. (2025). Network+ Study Guide — TCP/IP Model. <https://www.professormesser.com/network-plus/>
-[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 

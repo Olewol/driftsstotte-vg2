@@ -90,7 +90,7 @@ Npraktisk veileder for sikker drift. NSM har fire kategorier av grunnprinsipper:
 4. Håndter og gjenopprett
 
 *## NCSC – Norwegian Cyber Security Centre
-Opereres av NSM. Tilbyr 24/7 hendelseshåndtering og varsling. Kontakt: cert@ncsc.no
+Opereres av NSM. Tilbyr 24/7 hendelseshåndtering og varsling. Kontakt: <cert@ncsc.no>
 
 *## Datatilsynet
 NNorsk tilsynsmyndighet for personvern. Håndhever GDPR og personopplysningsloven. Ressurser for unge:

@@ -26,15 +26,18 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
+
 Automatisering betyr å få datamaskiner til å gjøre repetitive oppgaver for deg — slik at du slipper å gjøre dem manuelt. I IT-drift er automatisering helt avgjørende for effektivitet og pålitelighet[^1][^2].
 
 **Hvorfor automatisere?**
+
 - **Tidsbesparelse** — En jobb som tar 1 time manuelt kan gjøres på 1 sekund med et skript
 - **Færre feil** — Datamaskiner gjør samme operasjon likt hver gang
 - **Dokumentasjon** — Skriptet i seg selv dokumenterer hva som ble gjort
 - **Skalerbarhet** — Samme skript fungerer på 1 eller 1000 datamaskiner
 
 **Verktøy for automatisering:**
+
 - **Bash** — Linux/Unix shell-skripting, perfekt for filoperasjoner og systemadministrasjon
 - **PowerShell** — Microsofts avanserte skriptspråk for Windows-serveradministrasjon
 - **Ansible** — Konfigurasjonsstyringsverktøy (agentløst, bruker YAML)
@@ -42,15 +45,18 @@ Automatisering betyr å få datamaskiner til å gjøre repetitive oppgaver for d
 - **Task Scheduler** — Planlagte oppgaver i Windows
 
 ### English
+
 Automation means making computers do repetitive tasks for you — so you don't have to do them manually. In IT operations, automation is critical for efficiency and reliability[^1].
 
 **Why automate?**
+
 - **Saves time** — A 1-hour manual job takes 1 second with a script
 - **Fewer errors** — Computers perform the same operation consistently
 - **Documentation** — The script itself documents what was done
 - **Scalability** — Same script works on 1 or 1000 computers
 
 **Tools for automation:**
+
 - **Bash** — Linux/Unix shell scripting, perfect for file operations and system administration
 - **PowerShell** — Microsoft's advanced scripting language for Windows server administration
 - **Ansible** — Configuration management tool (agentless, uses YAML playbooks)
@@ -67,10 +73,12 @@ Automation means making computers do repetitive tasks for you — so you don't h
 I stedet for å klikke i AD-brukergrensesnittet 100 ganger, skriver du et PowerShell-skript som oppretter alle brukerne fra en CSV-fil. Ferdig på 10 sekunder.
 
 **Eksempel 2: Backup-skript i Bash**
+
 ```bash
 #!/bin/bash
 tar -czf /backup/hjemmeomrader-$(date +%Y%m%d).tar.gz /home/
 ```
+
 Dette skriptet kan kjøres automatisk hver natt via cron.
 
 ### English
@@ -79,10 +87,12 @@ Dette skriptet kan kjøres automatisk hver natt via cron.
 Instead of clicking in the AD interface 100 times, you write a PowerShell script that creates all users from a CSV file. Done in 10 seconds.
 
 **Example 2: Backup Script in Bash**
+
 ```bash
 #!/bin/bash
 tar -czf /backup/homes-$(date +%Y%m%d).tar.gz /home/
 ```
+
 This script can run automatically every night via cron.
 
 ---
@@ -104,6 +114,7 @@ This script can run automatically every night via cron.
 
 **Oppgave 1: PowerShell-skript for masseopprettelse av AD-brukere**
 IT-avdelingen skal opprette 30 nye elevkontoer ved skolestart.
+
 - Lag en CSV-fil med kolonner: Fornavn, Etternavn, Klasse, Brukernavn
 - Skriv et PowerShell-skript som:
   - Leser CSV-filen
@@ -117,6 +128,7 @@ IT-avdelingen skal opprette 30 nye elevkontoer ved skolestart.
 
 **Oppgave 2: Bash-skript for backup med cron-jobb**
 Skolen trenger automatisert backup av hjemmeområdene.
+
 - Skriv et Bash-skript som:
   - Tar en komprimert tar-arkiv-backup av `/home/`
   - Lagrer til `/backup/` med dato i filnavnet (f.eks. backup-20260608.tar.gz)
@@ -128,6 +140,7 @@ Skolen trenger automatisert backup av hjemmeområdene.
 - Verifiser at cron-jobben kjører og at backup-filen opprettes
 
 **Veiledning / Solution Guidelines:**
+
 - Oppgave 1 (PowerShell): `Import-Csv .\elever.csv | ForEach-Object { New-ADUser ... }`. OU: `OU=$($_.Klasse),OU=Elever,DC=skole,DC=local`. Logging: `Add-Content -Path .\logg.txt -Value "$(Get-Date) - Opprettet $($_.Brukernavn)"`. Feilhåndtering: `try { New-ADUser ... } catch { Write-Warning ... }`.
 - Oppgave 2 (Bash): `tar -czf /backup/backup-$(date +%Y%m%d).tar.gz /home/`. Sletting: `find /backup/ -name "backup-*.tar.gz" -mtime +14 -delete`. Cron: `0 2 * * * /usr/local/bin/backup.sh`. Verifiser: `ls -la /backup/` og `cat /var/log/backup.log`.
 
@@ -135,6 +148,7 @@ Skolen trenger automatisert backup av hjemmeområdene.
 
 **Exercise 1: PowerShell Script for Bulk AD User Creation**
 The IT department needs to create 30 new student accounts.
+
 - Create a CSV with columns: FirstName, LastName, Class, Username
 - Write a PowerShell script that reads the CSV, creates users in AD, places them in correct OUs, sets temporary password, forces password change at first login, logs all operations
 - Test with 3 users first
@@ -142,11 +156,13 @@ The IT department needs to create 30 new student accounts.
 
 **Exercise 2: Bash Backup Script with Cron**
 Create an automated backup solution:
+
 - Bash script: compressed tar archive of /home/, date-stamped filenames, delete backups older than 14 days, log to /var/log/backup.log
 - Make it executable, set up cron job for nightly 02:00
 - Verify the backup file is created
 
 **Solution Guidelines:**
+
 - Exercise 1 (PowerShell): `Import-Csv | ForEach-Object { New-ADUser ... }`. Error handling with try/catch.
 - Exercise 2 (Bash): `tar -czf`, `find ... -mtime +14 -delete`, cron: `0 2 * * *`.
 
@@ -158,7 +174,5 @@ Create an automated backup solution:
 
 ## 📚 Kilder / Sources
 
-[^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
-[^2]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-[^3]: GNU. Bash Reference Manual. https://www.gnu.org/software/bash/
-[^4]: Microsoft. PowerShell Documentation. https://learn.microsoft.com/en-us/powershell/
+[^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. <https://www.udir.no/lk20/itk02-01/>
+[^2]: NDLA. Fagstoff for driftsstøtte VG2. <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>

@@ -239,23 +239,23 @@ Statisk IP på server: `192.168.1.10/24`, gateway `192.168.1.1`, DNS `192.168.1.
 
 1.**Installer AD DS-rollen**på Windows Server:
 
-   - Server Manager → Add Roles → Active Directory Domain Services
-   - Etterpå: Promote this server to a domain controller
-   - Velg "Add a new forest", domenenavn: `lab.lan`
-   - Sett DSRM-passord, fullfør veiviseren, start om
+- Server Manager → Add Roles → Active Directory Domain Services
+- Etterpå: Promote this server to a domain controller
+- Velg "Add a new forest", domenenavn: `lab.lan`
+- Sett DSRM-passord, fullfør veiviseren, start om
 
 2.**Koble en Windows-klient til domenet**:
 
-   - Klientmaskin → Settings → System → About → Join a domain
-   - Skriv inn `lab.lan`, oppgi domenekontrollerens administrator-legitimasjon
-   - Restart klienten
-   - Logg inn med domenebrukernavn: `lab\brukernavn`
+- Klientmaskin → Settings → System → About → Join a domain
+- Skriv inn `lab.lan`, oppgi domenekontrollerens administrator-legitimasjon
+- Restart klienten
+- Logg inn med domenebrukernavn: `lab\brukernavn`
 
 3.**Opprett en bruker i AD**:
 
-   - Server Manager → Tools → Active Directory Users and Computers
-   - Naviger til ønsket OU → New → User
-   - Fyll inn fornavn, etternavn og påloggingsnavn
+- Server Manager → Tools → Active Directory Users and Computers
+- Naviger til ønsket OU → New → User
+- Fyll inn fornavn, etternavn og påloggingsnavn
 
 ## Study guide
 
@@ -362,10 +362,8 @@ Stilgangskontrollen.
 
 [^1]: Microsoft Learn. (2025). Getting Started with AD DS. <https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/ad-ds-getting-started>
 [^2]: NDLA. (2024). Brukerkontoer, grupper og struktur i AD. <https://ndla.no/r/driftsstotte-im-itk-vg2/brukerkontoer-grupper-og-struktur-i-active-directory/2c7a25f92e>
-[^3]: NDLA. (2024). Domener og hierarkiet i Active Directory. <https://ndla.no/en/r/driftsstotte-im-itk-vg2/domener-og-hierarkiet-i-active-directory/db58e9da66>
 [^4]: Professor Messer. (2025). Network+ Study Guide — Server Roles. <https://www.professormesser.com/network-plus/>
 [^5]: Cloudflare Learning. (2025). What is a Web Server? <https://www.cloudflare.com/learning/ddos/glossary/web-server/>
-[^6]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 

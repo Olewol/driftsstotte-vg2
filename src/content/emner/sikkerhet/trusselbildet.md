@@ -190,10 +190,10 @@ Nyrkesfag.
 
 Du mottar følgende e-poster. Vurder hvilke som er phishing og hvorfor:
 
-1.*«Kjære kunde, kontoen din er midlertidig sperret. Klikk her for å bekrefte identiteten din: www.dnb-sikkerhet.net»*
+1.*«Kjære kunde, kontoen din er midlertidig sperret. Klikk her for å bekrefte identiteten din: <www.dnb-sikkerhet.net»>*
    → Mistenkelig: domenet er ikke dnb.no. Hasteappell. Lenke til ukjent nettside.
 
-2.*«Hei Kari, her er referat fra møtet i går. Se vedlagt PDF.»*– avsender er kollega@bedrift.no
+2.*«Hei Kari, her er referat fra møtet i går. Se vedlagt PDF.»*– avsender er <kollega@bedrift.no>
    → Kan være legitimt, men: sjekk om vedlegget er forventet, og om avsenderadressen stemmer nøyaktig.
 
 3.*«Du har vunnet en iPhone 15. Skriv inn kredittkortinfo for å betale frakt.»*

@@ -208,7 +208,7 @@ Bi praksis.
 *## 3-2-1-regelen (og 3-2-1-1-0):
 
 - 3 kopier, 2 medier, 1 offsite
-- + 1 immutable/air-gapped, + 0 feil i testing
+- - 1 immutable/air-gapped, + 0 feil i testing
 - Beskytter mot fysiske hendelser OG ransomware
 
 *## Backupstrategier:
@@ -322,4 +322,3 @@ Rmin.
 [^3]: [Microsoft Azure Well-Architected Framework: Disaster Recovery](<https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery>) – Definisjoner av RPO og RTO.
 [^4]: [NDLA: Sikkerhet og sårbarhet](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Om katastrofegjenoppretting og beredskap.
 [^5]: [NSM: Grunnprinsipper for IKT-sikkerhet – Sikre og gjenopprette data](<https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/>) – RAID er ikke backup.
-

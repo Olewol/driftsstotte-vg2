@@ -154,6 +154,7 @@ E— exactly as physical machines would be placed.
 >**VM Setup:**Both VMs (WebServer and DBServer) are configured with min. 4 GB RAM, 2 CPUs, and 25 GB disk. Network mode is set to**Bridged Adapter**so the VMs get their own IP addresses on the school network.
 >
 >**Static IP with Netplan (Ubuntu Server):**
+>
 > ```yaml
 > network:
 >   ethernets:
@@ -168,6 +169,7 @@ E— exactly as physical machines would be placed.
 >         addresses: [192.168.52.5, 8.8.8.8]
 >   version: 2
 > ```
+>
 > Activate with `sudo netplan apply`.
 >
 >**WebServer:**Apache is installed (`sudo apt install apache2 -y`) along with PHP modules required by osTicket. osTicket is downloaded and placed in `/var/www/html/`.

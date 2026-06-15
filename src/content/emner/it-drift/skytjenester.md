@@ -342,4 +342,3 @@ Sarbeidsoppgaver som kjøres av og til, ikke kontinuerlig.
 [^3]: [Digdir: Skytjenester i offentlig sektor](<https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>) – Shared Responsibility Model og ansvarsdeling.
 [^4]: [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>) – FinOps og kostnadsstyring i sky.
 [^5]: [Digdir: Skytjenester i offentlig sektor](<https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>) – GDPR og datasuverenitet ved bruk av skytjenester.
-

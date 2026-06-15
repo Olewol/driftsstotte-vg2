@@ -81,7 +81,7 @@ A**task**in Task Scheduler consists of three parts:
 6. Browse to your script, e.g., `C:\Scripts\backup.ps1`.
    - Program: `powershell.exe`
    - Arguments: `-NonInteractive -File "C:\Scripts\backup.ps1"`
-1. 
+7.
 
 #### Command Line with `schtasks`
 

@@ -476,7 +476,4 @@ Likke-null exit-kode — i stedet for å fortsette med feil tilstand.
 
 ## Kilder
 
-[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
-[^2]: NDLA.*Bash og Linux-skripting*. [ndla.no](<https://ndla.no/nb/subject:1:89932061-799d-499d-948c-399738003791/topic:1:185333/resource:1:153844>)
 [^3]: Learn X in Y Minutes.*Bash*. [learnxinyminutes.com](<https://learnxinyminutes.com/docs/bash/>)
-[^4]: Microsoft.*PowerShell Scripting*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/powershell/scripting/>)

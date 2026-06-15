@@ -27,6 +27,7 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
+
 Å bygge sikre IT-løsninger handler om å tenke sikkerhet fra starten — ikke som en ettertanke. Dette kalles **Security by Design**[^1][^4].
 
 **Sentrale sikkerhetstiltak:**
@@ -40,9 +41,11 @@ public: true
 **Personvern (GDPR):** Alle IT-løsninger som behandler personopplysninger må følge personvernforordningen. Det betyr blant annet at data skal lagres sikkert, ikke oppbevares lenger enn nødvendig, og brukere skal ha innsyn i egne data.
 
 ### English
+
 Building secure IT solutions means thinking about security from the start — not as an afterthought. This is called **Security by Design**[^1].
 
 **Key security measures:**
+
 - **Encryption** — Makes data unreadable to unauthorized users. Used for data in transit (TLS/HTTPS) and data at rest (BitLocker, FileVault)
 - **Firewall** — Controls traffic in and out of the network based on rules. Can be hardware-based or software-based
 - **Access control** — Who gets access to what? Managed with RBAC (role-based access control), Active Directory groups, and NTFS permissions
@@ -91,6 +94,7 @@ A teacher loses their laptop. Because the hard drive was encrypted with BitLocke
 **Oppgave 1: Konfigurer en brannmur for skolens nettverk**
 Bruk en brannmursimulator (f.eks. pfSense VM eller iptables på Linux).
 Scenario: Skolen har tre soner — LAN (elever/lærere), DMZ (webserver), WAN (internett).
+
 - Sett opp NAT slik at LAN har tilgang til internett
 - Opprett brannmurregler:
   - Tillat HTTP/HTTPS (80/443) fra LAN til internett
@@ -103,6 +107,7 @@ Scenario: Skolen har tre soner — LAN (elever/lærere), DMZ (webserver), WAN (i
 
 **Oppgave 2: Sett opp HTTPS på en webserver**
 Eleven har en Apache/Nginx-webserver (fra KM-03 lab'en).
+
 - Generer et selvsignert SSL-sertifikat med OpenSSL
 - Konfigurer Apache/Nginx til å bruke sertifikatet
 - Tving omdirigering fra HTTP (80) til HTTPS (443)
@@ -111,6 +116,7 @@ Eleven har en Apache/Nginx-webserver (fra KM-03 lab'en).
 - Refleksjon: Hvorfor er HTTPS viktig for personvernet?
 
 **Veiledning / Solution Guidelines:**
+
 - Oppgave 1 (iptables): `iptables -A FORWARD -i lan -o wan -p tcp --dport 80 -j ACCEPT`. Standard policy: DROP på inngående fra WAN. Test med curl/wget fra ulike soner. Dokumentasjon: tegn et regelsett-diagram.
 - Oppgave 2 (Apache): `a2enmod ssl`, konfigurer VirtualHost med `SSLEngine on`, `SSLCertificateFile`, `SSLCertificateKeyFile`. Redirect: `Redirect permanent / https://server/`. HSTS: `Header always set Strict-Transport-Security "max-age=31536000"`. HTTPS krypterer all data — uten HTTPS kan alle på nettverket lese passord og personopplysninger.
 
@@ -118,6 +124,7 @@ Eleven har en Apache/Nginx-webserver (fra KM-03 lab'en).
 
 **Exercise 1: Configure a Firewall for the School Network**
 Using pfSense VM or iptables:
+
 - Set up NAT rules for LAN internet access
 - Create firewall rules for HTTP/HTTPS, SSH, ICMP across LAN/DMZ/WAN zones
 - Test allowed and blocked connections
@@ -125,6 +132,7 @@ Using pfSense VM or iptables:
 
 **Exercise 2: Set Up HTTPS on a Web Server**
 Using the Apache/Nginx server from KM-03 lab:
+
 - Generate a self-signed SSL certificate
 - Configure the web server to use HTTPS
 - Force redirect from HTTP to HTTPS
@@ -132,6 +140,7 @@ Using the Apache/Nginx server from KM-03 lab:
 - Reflect: Why is HTTPS important for privacy?
 
 **Solution Guidelines:**
+
 - Exercise 1 (iptables): Default policy DROP on WAN inbound. Test with curl from different zones.
 - Exercise 2 (Apache): Enable SSL module, configure VirtualHost with certificate paths, redirect HTTP to HTTPS. Without HTTPS, anyone on the network can read passwords and personal data.
 
@@ -144,8 +153,5 @@ Using the Apache/Nginx server from KM-03 lab:
 
 ## 📚 Kilder / Sources
 
-[^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
-[^2]: NSM. Grunnprinsipper for IKT-sikkerhet. https://nsm.no/
-[^3]: Cloudflare. Security Glossary. https://www.cloudflare.com/learning/security/glossary/
-[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-[^5]: GDPR.eu. Complete guide to GDPR compliance. https://gdpr.eu/
+[^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. <https://www.udir.no/lk20/itk02-01/>
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>

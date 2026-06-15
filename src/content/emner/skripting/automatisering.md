@@ -79,7 +79,7 @@ En**oppgave**(task) i Task Scheduler består av tre deler:
 6. Bla til skriptet ditt, f.eks. `C:\Scripts\backup.ps1`.
    - Program: `powershell.exe`
    - Argumenter: `-NonInteractive -File "C:\Scripts\backup.ps1"`
-1. 
+7.
 
 #### Kommandolinje med `schtasks`
 
@@ -592,7 +592,5 @@ Sen dedikert vault-løsning for sensitiv informasjon.
 
 ## Kilder
 
-[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
 [^2]: Microsoft.*PowerShell Scripting Overview*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/powershell/scripting/overview>)
-[^3]: Microsoft.*PowerShell Scripting*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/powershell/scripting/>)
 [^4]: Learn X in Y Minutes.*Bash*. [learnxinyminutes.com](<https://learnxinyminutes.com/docs/bash/>)

@@ -497,8 +497,6 @@ RGjør det mye enklere å administrere mange brukere med like tilgangsbehov.
 
 ## Kilder
 
-[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
 [^2]: NDLA.*Databaseadministrasjon*. [ndla.no](<https://ndla.no/subject:1:7e101f30-891d-4076-a70e-1100f9156475/topic:1:a6e7039a-5e1a-4c92-b05b-439f72765366/resource:73797690-3486-444c-bc6d-62725e173e97>)
 [^3]: MySQL.*Optimization*. [dev.mysql.com](<https://dev.mysql.com/doc/refman/8.0/en/optimization.html>)
-[^4]: W3Schools.*SQL Tutorial*. [w3schools.com](<https://www.w3schools.com/sql/>)
 [^5]: MySQL.*Documentation*. [dev.mysql.com](<https://dev.mysql.com/doc/>)

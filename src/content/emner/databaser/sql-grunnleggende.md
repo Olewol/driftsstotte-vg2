@@ -115,7 +115,7 @@ ORDER BY navn ASC
 LIMIT 5;
 ```
 
-``WHERE` støtter sammenligningsoperatorer (`=`, `<>`, `<`, `>`, `<=`, `>=`), logiske operatorer (`AND`, `OR`, `NOT`), og
+``WHERE`støtter sammenligningsoperatorer (`=`,`<>`,`<`,`>`,`<=`,`>=`), logiske operatorer (`AND`,`OR`,`NOT`), og
 `mønstersøk med `LIKE`:
 
 ```sql
@@ -331,7 +331,7 @@ KKritisk regel for `UPDATE`og`DELETE`: bruk alltid `WHERE`. Uten `WHERE` påvirk
 Kfarlig feil.
 
 *## SELECT og filtrering
-``WHERE`filtrerer rader med sammenligningsoperatorer,`AND`/`OR`/`NOT`, og `LIKE`for mønstersøk.`ORDER
+``WHERE`filtrerer rader med sammenligningsoperatorer,`AND`/`OR`/`NOT`, og`LIKE`for mønstersøk.`ORDER
 `BY`sorterer,`LIMIT`begrenser antall rader. Unngå`SELECT*` — spesifiser kolonner eksplisitt.
 
 *## JOIN — kombinere tabeller
@@ -431,8 +431,6 @@ E`SELECT*FROM utstyr WHERE type = 'PC'` er et eksempel på en spørring som hent
 
 ## Kilder
 
-[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
 [^2]: W3Schools.*SQL Tutorial*. [w3schools.com](<https://www.w3schools.com/sql/default.asp>)
 [^3]: MySQL.*Tutorial*. [dev.mysql.com](<https://dev.mysql.com/doc/refman/8.0/en/tutorial.html>)
 [^4]: W3Schools.*SQL*. [w3schools.com](<https://www.w3schools.com/sql/>)
-[^5]: MySQL.*Documentation*. [dev.mysql.com](<https://dev.mysql.com/doc/>)

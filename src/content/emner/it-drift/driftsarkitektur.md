@@ -326,4 +326,3 @@ DSlik er et kompromiss av en DMZ-server ikke automatisk inngangsbillett til det 
 [^3]: [NDLA: Sikkerhet og sårbarhet](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Virtualisering og hypervisor-teknologi.
 [^4]: [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>) – Infrastruktur som kode (IaC) og beste praksis.
 [^5]: [NSM: Grunnprinsipper for IKT-sikkerhet](<https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/>) – Redundans og kontinuitet i IT-drift.
-

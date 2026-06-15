@@ -199,11 +199,13 @@ DDatatilsynet har publisert en konkret veileder for risikovurdering av personopp
 > I undervisningen gjennomfører elevene en ROS-analyse for en tenkt Dark Web-lab som gravejournalistene i «MediaHuset AS» skal bruke. Caset illustrerer strukturert risikostyring:
 >
 >**Tre verdier å beskytte:**
+>
 > - Hovednettverket til bedriften
 > - Kildevern / journalistenes anonymitet
 > - Bedriftens omdømme
 >
 >**Tre identifiserte trusler:**
+>
 > - Journalist laster ned malware som sprer seg til bedriftsnettet
 > - Journalist logger på privat Facebook i Tor og avsløres (bryter anonymitet)
 > - Renholder setter inn infisert minnepenn i lab-maskinen

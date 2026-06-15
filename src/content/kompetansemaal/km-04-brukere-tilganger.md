@@ -26,29 +26,35 @@ public: true
 ## 📘 Forklaring / Explanation
 
 ### Norsk
+
 Brukeradministrasjon handler om å opprette, endre og slette brukerkontoer, og å gi hver bruker akkurat de tilgangene de trenger — verken mer eller mindre. Dette kalles **least privilege principle** (minsterettighetsprinsippet)[^1][^4].
 
 **Hvem styrer hva?**
+
 - **Active Directory (AD DS)** — Microsofts katalogtjeneste for å administrere brukere, datamaskiner og grupper i et Windows-domenenettverk
 - **Linux-brukere** — Lokale brukere på Linux-systemer, styrt via `/etc/passwd` og `/etc/sudoers`
 - **Databaser** — Egne brukere og tilganger i SQL Server, MySQL, PostgreSQL
 - **Filsystem** — NTFS-tillatelser (Windows) og `chmod`/`chown` (Linux)
 
 **Prinsipper:**
+
 - **Least privilege** — Minst nødvendig tilgang for å utføre jobben
 - **Role-Based Access Control (RBAC)** — Tilganger gis basert på rolle, ikke enkeltperson
 - **Separation of duties** — Ingen skal ha fullmakt alene til kritiske oppgaver
 
 ### English
+
 User administration is about creating, modifying, and deleting user accounts, and giving each user exactly the access they need — no more, no less. This is called the **least privilege principle**[^1].
 
 **What controls what?**
+
 - **Active Directory (AD DS)** — Microsoft's directory service for managing users, computers, and groups in a Windows domain network
 - **Linux users** — Local users on Linux systems, managed via `/etc/passwd` and `/etc/sudoers`
 - **Databases** — Own users and permissions in SQL Server, MySQL, PostgreSQL
 - **File systems** — NTFS permissions (Windows) and `chmod`/`chown` (Linux)
 
 **Principles:**
+
 - **Least privilege** — Minimum necessary access to do the job
 - **Role-Based Access Control (RBAC)** — Permissions given based on role, not individual
 - **Separation of duties** — No one should have sole authority over critical tasks
@@ -92,6 +98,7 @@ A teacher needs to install software on classroom PCs. IT adds the teacher to the
 
 **Oppgave 1: Opprett brukere i Active Directory**
 Bruk en Windows Server-lab (eller virtuell maskin med AD DS).
+
 - Opprett 5 brukere i riktig OU-struktur:
   - `elev1`-`elev3` i OU=Elever
   - `laerer1` i OU=Laerere
@@ -106,6 +113,7 @@ Bruk en Windows Server-lab (eller virtuell maskin med AD DS).
 
 **Oppgave 2: Linux-brukeradministrasjon**
 Gjennomfør følgende på en Ubuntu-server:
+
 - Opprett brukerne: `ole`, `kari`, `per` med `useradd -m -s /bin/bash`
 - Sett passord med `passwd`
 - Opprett gruppene: `utviklere` og `operatorer`
@@ -116,6 +124,7 @@ Gjennomfør følgende på en Ubuntu-server:
 - Dokumenter alle kommandoer i en rapport
 
 **Veiledning / Solution Guidelines:**
+
 - Oppgave 1 (AD): `New-ADUser -Name "elev1" -Path "OU=Elever,DC=skole,DC=local"`. NTFS: Properties → Security → Add gruppe → velg tillatelser. Test: logg inn som elev1, prøv å skrive til lærermappe — skal feile.
 - Oppgave 2 (Linux): `sudo useradd -m -s /bin/bash ole`. `sudo groupadd utviklere`. `sudo usermod -aG utviklere ole`. `sudo chmod 775 /opt/prosjekt`. `sudo chown root:utviklere /opt/prosjekt`.
 
@@ -123,6 +132,7 @@ Gjennomfør følgende på en Ubuntu-server:
 
 **Exercise 1: Create Users in Active Directory**
 Using a Windows Server lab (or VM with AD DS):
+
 - Create 5 users in proper OU structure: 3 students, 1 teacher, 1 admin
 - Create 3 security groups
 - Share a folder with correct NTFS permissions
@@ -130,12 +140,14 @@ Using a Windows Server lab (or VM with AD DS):
 
 **Exercise 2: Linux User Administration**
 On an Ubuntu server:
+
 - Create users: `ole`, `kari`, `per`
 - Create groups: `developers` and `operators`
 - Set up directory `/opt/project` with permissions 775
 - Document all commands in a report
 
 **Solution Guidelines:**
+
 - Exercise 1 (AD): `New-ADUser`, `New-ADGroup`, NTFS security tab testing. Students should not be able to write to teacher folders.
 - Exercise 2 (Linux): `useradd -m -s /bin/bash`, `groupadd`, `usermod -aG`, `chmod 775`, `chown root:developers /opt/project`.
 
@@ -150,7 +162,5 @@ On an Ubuntu server:
 
 ## 📚 Kilder / Sources
 
-[^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
-[^2]: Microsoft Learn. Active Directory Domain Services overview. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/
-[^3]: Microsoft Learn. Implement user and group management. https://learn.microsoft.com/en-us/training/modules/implement-user-group-management/
-[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. <https://www.udir.no/lk20/itk02-01/>
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>

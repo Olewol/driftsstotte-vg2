@@ -212,8 +212,9 @@ ingen
 2. Gå til Ports-fanen
 3. Klikk på ønsket port
 4. Velg "Switch Port Profile" eller sett manuelt:
-  - Native VLAN: VLAN-et for utagget trafikk (access-port: velg VLAN 20)
-  - Tagged VLANs: VLAN-ene som skal tagges gjennom porten (trunk-port)
+
+- Native VLAN: VLAN-et for utagget trafikk (access-port: velg VLAN 20)
+- Tagged VLANs: VLAN-ene som skal tagges gjennom porten (trunk-port)
 
 *## Trådløst VLAN (SSID):
 
@@ -338,7 +339,6 @@ annet
 [^4]: NDLA. (2024). Virtuelt lokalnettverk VLAN.
 <<<<https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865af>a>8>8>
 
-[^5]: Microsoft Learn. (2025). Networking fundamentals.
 <<<<https://learn.microsoft.com/en-us/training/paths/networking-fundamenta>l>s>/>
 
 ## Ressurser

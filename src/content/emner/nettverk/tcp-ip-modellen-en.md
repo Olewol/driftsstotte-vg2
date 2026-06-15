@@ -139,9 +139,9 @@ Tdata link layer.
 5.**Data Link Layer**: The IP packet is wrapped in an Ethernet frame with your MAC address and the router's MAC address.
 6.**Physical Layer**: Bits are sent out over the cable or WiFi to the router.
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## Study Guide
 

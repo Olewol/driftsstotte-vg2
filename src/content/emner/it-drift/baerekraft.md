@@ -352,4 +352,3 @@ TLefdal Mine Datacenter i en norsk fjordside er et konkret eksempel.
 [^3]: [Nkom: Digital infrastruktur og miljø](<https://www.nkom.no/aktuelt/digital-infrastruktur-og-miljo-hvordan-paivirker-vi-klimaet>) – Mørke data og energibruk.
 [^4]: [Elretur: E-avfall i Norge](<https://www.elretur.no/>) – WEEE-direktivet og håndtering av e-avfall.
 [^5]: [IEA: Data Centres and Data Transmission Networks](<https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks>) – Mål om halverte utslipp innen 2030.
-

@@ -240,23 +240,23 @@ Static IP on server: `192.168.1.10/24`, gateway `192.168.1.1`, DNS `192.168.1.10
 
 1.**Install the AD DS role**on Windows Server:
 
-   - Server Manager → Add Roles → Active Directory Domain Services
-   - After: Promote this server to a domain controller
-   - Choose "Add a new forest", domain name: `lab.lan`
-   - Set DSRM password, complete the wizard, restart
+- Server Manager → Add Roles → Active Directory Domain Services
+- After: Promote this server to a domain controller
+- Choose "Add a new forest", domain name: `lab.lan`
+- Set DSRM password, complete the wizard, restart
 
 2.**Join a Windows client to the domain**:
 
-   - Client machine → Settings → System → About → Join a domain
-   - Type `lab.lan`, provide domain controller administrator credentials
-   - Restart the client
-   - Log in with domain username: `lab\username`
+- Client machine → Settings → System → About → Join a domain
+- Type `lab.lan`, provide domain controller administrator credentials
+- Restart the client
+- Log in with domain username: `lab\username`
 
 3.**Create a user in AD**:
 
-   - Server Manager → Tools → Active Directory Users and Computers
-   - Navigate to desired OU → New → User
-   - Fill in first name, last name, and logon name
+- Server Manager → Tools → Active Directory Users and Computers
+- Navigate to desired OU → New → User
+- Fill in first name, last name, and logon name
 
 ## Study Guide
 

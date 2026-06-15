@@ -358,7 +358,5 @@ Aå gjøre etter du er autentisert. Et system kan autentisere deg uten å gi deg
 
 ## Kilder
 
-[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
 [^2]: Microsoft.*Active Directory Domain Services*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/windows-server/identity/ad-ds/active-directory-domain-services>)
 [^3]: Microsoft.*Windows Server-dokumentasjon*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/windows-server/>)
-[^4]: Ubuntu.*Server Documentation – User Management*. [documentation.ubuntu.com](<https://documentation.ubuntu.com/server/>)

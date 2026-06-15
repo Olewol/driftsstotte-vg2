@@ -254,7 +254,6 @@ SEller start fra lag 7 og jobb nedover hvis du vet at nettverket fungerer.
 [^1]: Cloudflare Learning. (2025). What is the OSI Model? <https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/>
 [^2]: Professor Messer. (2025). Network+ Study Guide — OSI Model. <https://www.professormesser.com/network-plus/>
 [^3]: NDLA. (2024). 5-lags TCP/IP-modell. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>
-[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 

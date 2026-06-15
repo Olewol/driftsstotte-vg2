@@ -302,7 +302,6 @@ ESystemet tar laveste felles nevner.
 
 ## Kilder
 
-[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
 [^2]: SNL.*Filsystem*. [snl.no](<https://snl.no/filsystem>)
 [^3]: Microsoft.*Windows Server-dokumentasjon*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/windows-server/>)
 [^4]: Ubuntu.*Server Documentation*. [documentation.ubuntu.com](<https://documentation.ubuntu.com/server/>)

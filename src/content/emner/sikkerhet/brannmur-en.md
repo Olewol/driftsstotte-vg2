@@ -182,7 +182,7 @@ OIt controls traffic in and out of the individual machine.
 2.**Inbound Rules:**control what can connect to the machine
 3.**Outbound Rules:**control what the machine can connect to
 
-1. 
+1.
 
 *## Two firewalls = better defense:
 AAn enterprise defense should include both a network firewall (at router level) and host-based firewalls on all machines.
@@ -318,6 +318,5 @@ WA regular firewall cannot inspect HTTPS content, but a WAF decrypts and inspect
 [^4]: Cloudflare. (2025).*What is a firewall?*<https://www.cloudflare.com/learning/security/what-is-a-firewall/>
 [^5]: PowerCert Animated Videos. (2022).*Stateful vs Stateless Firewall*. YouTube. <https://www.youtube.com/watch?v=nS7fOofT-f4>
 [^6]: OWASP. (2025).*Web Application Firewall*. <https://owasp.org/www-community/Web_Application_Firewall>
-[^7]: SANS Institute. (2024).*IDS vs IPS: What's the Difference?*<https://www.sans.org/blog/ids-vs-ips/>
 [^8]: Palo Alto Networks. (2025).*What is a Next-Generation Firewall?*<https://www.paloaltonetworks.com/cyberpedia/what-is-a-next-generation-firewall>
 [^9]: Microsoft. (2025).*Windows Defender Firewall with Advanced Security*. <https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security>

@@ -116,7 +116,7 @@ ORDER BY name ASC
 LIMIT 5;
 ```
 
-``WHERE` supports comparison operators (`=`, `<>`, `<`, `>`, `<=`, `>=`), logical operators (`AND`, `OR`, `NOT`), and
+``WHERE`supports comparison operators (`=`,`<>`,`<`,`>`,`<=`,`>=`), logical operators (`AND`,`OR`,`NOT`), and
 `pattern matching with `LIKE`:
 
 ```sql
@@ -331,7 +331,7 @@ CCritical rule for `UPDATE`and`DELETE`: always use `WHERE`. Without `WHERE`, all
 Ccommon and dangerous mistake.
 
 *## SELECT and filtering
-``WHERE`filters rows with comparison operators,`AND`/`OR`/`NOT`, and `LIKE`for pattern matching.`ORDER
+``WHERE`filters rows with comparison operators,`AND`/`OR`/`NOT`, and`LIKE`for pattern matching.`ORDER
 `BY`sorts,`LIMIT`limits the number of rows. Avoid`SELECT*` — specify columns explicitly.
 
 *## JOIN — combining tables

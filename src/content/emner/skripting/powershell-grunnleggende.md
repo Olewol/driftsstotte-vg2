@@ -477,8 +477,4 @@ Istøtter PowerShell 7+.
 
 ## Kilder
 
-[^1]: NDLA.*Driftsstøtte VG2*. [ndla.no](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>)
-[^2]: NDLA.*PowerShell og skripting for VG2 IT*. [ndla.no](<https://ndla.no/subject:1:7852b71f-506e-41a4-849c-f9f30b910488/topic:1:43d5483f-0f66-4c4f-a492-c94488b0a99c/resource:155075>)
 [^3]: Microsoft.*PowerShell Scripting Overview*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/powershell/scripting/overview>)
-[^4]: Microsoft.*PowerShell Scripting*. [learn.microsoft.com](<https://learn.microsoft.com/nb-no/powershell/scripting/>)
-[^5]: Learn X in Y Minutes.*Bash*. [learnxinyminutes.com](<https://learnxinyminutes.com/docs/bash/>)

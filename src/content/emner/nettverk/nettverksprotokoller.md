@@ -322,7 +322,6 @@ WHTTP=80, HTTPS=443, SSH=22. Disse portene er kjente angrepsmål og bør beskytt
 [^1]: SNL. (2024). Protokoll — IT. <https://snl.no/protokoll_-_it>
 [^2]: Cloudflare Learning. (2025). What is TCP/IP? <https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/>
 [^3]: Professor Messer. (2025). Network+ Study Guide — Protocols and Ports. <https://www.professormesser.com/network-plus/>
-[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 [^5]: NDLA. (2024). TCP, UDP og porter. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e>
 
 ## Ressurser

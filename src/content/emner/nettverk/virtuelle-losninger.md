@@ -151,6 +151,7 @@ Enøyaktig slik fysiske maskiner ville vært plassert.
 >**VM-oppsett:**Begge VM-er (WebServer og DBServer) konfigureres med min. 4 GB RAM, 2 CPU-er og 25 GB disk. Nettverksmodus settes til**Bridged Adapter**slik at VM-ene får egne IP-adresser på skolenettverket.
 >
 >**Statisk IP med Netplan (Ubuntu Server):**
+>
 > ```yaml
 > network:
 >   ethernets:
@@ -165,6 +166,7 @@ Enøyaktig slik fysiske maskiner ville vært plassert.
 >         addresses: [192.168.52.5, 8.8.8.8]
 >   version: 2
 > ```
+>
 > Aktiver med `sudo netplan apply`.
 >
 >**WebServer:**Apache installeres (`sudo apt install apache2 -y`) og PHP-moduler som kreves av osTicket. osTicket lastes ned og legges i `/var/www/html/`.
