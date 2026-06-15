@@ -31,7 +31,9 @@ public: true
 
 ### Norsk
 
-Driftsarkitektur er «skjelettet» i en IT-organisasjon. Det handler om å forstå hvordan ulike komponenter — servere, lagring, nettverk, programvare, backup-løsninger — henger sammen og samspiller for å levere pålitelige IT-tjenester[^1][^4].
+DDriftsarkitektur er «skjelettet» i en IT-organisasjon. Det handler om å forstå hvordan ulike komponenter — servere,
+DDlagring, nettverk, programvare, backup-løsninger — henger sammen og samspiller for å levere pålitelige
+DIT-tjenester[^1][^4].
 
 En driftsarkitekt må kunne:
 
@@ -42,7 +44,8 @@ En driftsarkitekt må kunne:
 
 ### English
 
-IT operations architecture is the "skeleton" of an IT organization. It's about understanding how different components — servers, storage, networks, software, backup solutions — interconnect and interact to deliver reliable IT services[^1].
+IIT operations architecture is the "skeleton" of an IT organization. It's about understanding how different components —
+Iservers, storage, networks, software, backup solutions — interconnect and interact to deliver reliable IT services[^1].
 
 An operations architect must be able to:
 
@@ -55,32 +58,38 @@ An operations architect must be able to:
 
 ## 💡 Eksempler / Examples
 
-### Norsk
+### Norsk (2)
 
-**Eksempel 1: Skole-nettverk**
-En skole har 200 PC-er, 10 servere, svitsjer, rutere og trådløse aksesspunkt. Driftsarkitekturen beskriver hvordan disse henger sammen: elevene kobler seg til via WiFi, trafikken går gjennom en brannmur, og serverene håndterer pålogging, filer og printertjenester.
+*## Eksempel 1: Skole-nettverk
+EEn skole har 200 PC-er, 10 servere, svitsjer, rutere og trådløse aksesspunkt. Driftsarkitekturen beskriver hvordan disse
+EEhenger sammen: elevene kobler seg til via WiFi, trafikken går gjennom en brannmur, og serverene håndterer pålogging,
+Efiler og printertjenester.
 
-**Eksempel 2: Netthandel**
-En nettbutikk har web-servere, databaseservere, betalingssystem og lagerstyring. Arkitekturen må vise hvordan en kunde klikker «Kjøp» og data flyter gjennom hele systemet.
+*## Eksempel 2: Netthandel
+EEn nettbutikk har web-servere, databaseservere, betalingssystem og lagerstyring. Arkitekturen må vise hvordan en kunde
+Eklikker «Kjøp» og data flyter gjennom hele systemet.
 
-### English
+### English (2)
 
-**Example 1: School Network**
-A school has 200 PCs, 10 servers, switches, routers, and wireless access points. The operations architecture describes how these connect: students connect via WiFi, traffic goes through a firewall, and servers handle login, files, and printing services.
+*## Example 1: School Network
+AA school has 200 PCs, 10 servers, switches, routers, and wireless access points. The operations architecture describes
+AAhow these connect: students connect via WiFi, traffic goes through a firewall, and servers handle login, files, and
+Aprinting services.
 
-**Example 2: E-commerce**
-An online store has web servers, database servers, payment systems, and inventory management. The architecture must show how a customer clicks "Buy" and data flows through the entire system.
+*## Example 2: E-commerce
+AAn online store has web servers, database servers, payment systems, and inventory management.
+AThe architecture must show how a customer clicks "Buy" and data flows through the entire system.
 
 ---
 
 ## 📝 Oppsummering / Summary
 
-| Norsk | English |
-|-------|---------|
-| Driftsarkitektur er hvordan IT-komponenter henger sammen | Operations architecture is how IT components interconnect |
-| Viktige komponenter: servere, nettverk, lagring, programvare | Key components: servers, networks, storage, software |
-| Dokumentasjon er avgjørende for å forstå helheten | Documentation is essential for understanding the big picture |
-| God arkitektur gir pålitelige og sikre tjenester | Good architecture delivers reliable and secure services |
+|| Norsk | English |
+|| ------- | --------- |
+|| Driftsarkitektur er hvordan IT-komponenter henger sammen | Operations architecture is how IT components interconnect |
+|| Viktige komponenter: servere, nettverk, lagring, programvare | Key components: servers, networks, storage, software |
+|| Dokumentasjon er avgjørende for å forstå helheten | Documentation is essential for understanding the big picture |
+|| God arkitektur gir pålitelige og sikre tjenester | Good architecture delivers reliable and secure services |
 
 ---
 
@@ -88,15 +97,16 @@ An online store has web servers, database servers, payment systems, and inventor
 
 ### Norsk — Praksisoppgaver
 
-**Oppgave 1: Tegn skolens driftsarkitektur**
-Eleven får en beskrivelse av skolens IT-system: 200 klient-PCer, 3 servere (domenekontroller, filserver, webserver), 6 svitsjer, 2 rutere, 10 WiFi-aksesspunkt, brannmur, og en nettverkskriver.
+*## Oppgave 1: Tegn skolens driftsarkitektur
+EEleven får en beskrivelse av skolens IT-system: 200 klient-PCer, 3 servere (domenekontroller, filserver, webserver), 6
+Esvitsjer, 2 rutere, 10 WiFi-aksesspunkt, brannmur, og en nettverkskriver.
 
 - Tegn en arkitekturskisse som viser hvordan komponentene henger sammen
 - Merk av alle fysiske og logiske komponenter
 - Beskriv dataflyten når en elev logger på skolens system
 - Identifiser single points of failure / enkeltpunkter for feil
 
-**Oppgave 2: Design en arkitektur for en liten bedrift**
+*## Oppgave 2: Design en arkitektur for en liten bedrift
 En bedrift med 15 ansatte trenger ny IT-infrastruktur. Krav:
 
 - Fildeling mellom ansatte
@@ -107,22 +117,23 @@ En bedrift med 15 ansatte trenger ny IT-infrastruktur. Krav:
 
 Lever: arkitekturskisse + begrunnelse for hver komponent.
 
-**Veiledning / Solution Guidelines:**
+*## Veiledning / Solution Guidelines:
 
 - Oppgave 1: Skissen bør inneholde klienter → svitsj → ruter → brannmur → internett, med servere på et eget segment. Eleven bør identifisere at én enkelt brannmur eller én server kan være SPOF.
 - Oppgave 2: En god løsning kan være skytjenester (SaaS) for e-post/Office, lokal filserver (eller sky), nettsted hos webhotell. Backup bør følge 3-2-1-regelen. Gjestenett bør være VLAN-isolert.
 
 ### English — Practical Exercises
 
-**Exercise 1: Draw the School's Operations Architecture**
-Students receive a description of the school's IT system: 200 client PCs, 3 servers (domain controller, file server, web server), 6 switches, 2 routers, 10 WiFi access points, firewall, and a network printer.
+*## Exercise 1: Draw the School's Operations Architecture
+SStudents receive a description of the school's IT system: 200 client PCs, 3 servers (domain controller, file server, web
+Sserver), 6 switches, 2 routers, 10 WiFi access points, firewall, and a network printer.
 
 - Draw an architecture diagram showing how components are connected
 - Label all physical and logical components
 - Describe the data flow when a student logs into the school system
 - Identify single points of failure
 
-**Exercise 2: Design an Architecture for a Small Business**
+*## Exercise 2: Design an Architecture for a Small Business
 A company with 15 employees needs new IT infrastructure. Requirements:
 
 - File sharing between employees
@@ -133,7 +144,7 @@ A company with 15 employees needs new IT infrastructure. Requirements:
 
 Deliver: architecture sketch + justification for each component.
 
-**Solution Guidelines:**
+*## Solution Guidelines:
 
 - Exercise 1: The sketch should show clients → switch → router → firewall → internet, with servers on a separate segment. Identify that a single firewall or single server can be a SPOF.
 - Exercise 2: A good solution: cloud services (SaaS) for email/Office, local file server (or cloud), website with web hosting. Backup should follow 3-2-1 rule. Guest network VLAN-isolated.

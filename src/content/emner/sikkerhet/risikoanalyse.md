@@ -25,11 +25,17 @@ public: true
 
 ## Introduksjon
 
-En risikoanalyse er et strukturert verktøy for å identifisere hva som kan gå galt med et IT-system, hvor sannsynlig det er, og hva konsekvensene vil være. Formålet er ikke å eliminere all risiko – det er umulig – men å forstå risikoen godt nok til å prioritere de riktige tiltakene.
+EEn risikoanalyse er et strukturert verktøy for å identifisere hva som kan gå galt med et IT-system, hvor sannsynlig det
+EEer, og hva konsekvensene vil være. Formålet er ikke å eliminere all risiko – det er umulig – men å forstå risikoen godt
+Enok til å prioritere de riktige tiltakene.
 
-NSM Grunnprinsipper for IKT-sikkerhet (v2.1, 2024) plasserer «Identifiser og kartlegg» som første og grunnleggende steg.[^1] GDPR artikkel 32 krever dessuten at alle virksomheter som behandler personopplysninger gjennomfører risikovurdering som grunnlag for sine sikkerhetstiltak.[^2]
+NNSM Grunnprinsipper for IKT-sikkerhet (v2.1, 2024) plasserer «Identifiser og kartlegg» som første og grunnleggende
+NNsteg.[^1] GDPR artikkel 32 krever dessuten at alle virksomheter som behandler personopplysninger gjennomfører
+Nrisikovurdering som grunnlag for sine sikkerhetstiltak.[^2]
 
-Risikoanalyse er grunnmuren som kobler [[trusselbildet]] (hvilke trusler finnes?) til [[it-losninger-med-sikkerhet]] (hvilke tiltak er riktige?). Uten risikoanalyse risikerer man å bruke ressurser på de gale problemene. Husk også at GDPR art. 32 gjør dette til et lovkrav der [[personvern]] er involvert.
+RRisikoanalyse er grunnmuren som kobler [[trusselbildet]] (hvilke trusler finnes?) til [[it-losninger-med-sikkerhet]]
+RR(hvilke tiltak er riktige?). Uten risikoanalyse risikerer man å bruke ressurser på de gale problemene.
+RHusk også at GDPR art. 32 gjør dette til et lovkrav der [[personvern]] er involvert.
 
 ---
 
@@ -42,9 +48,11 @@ Risikoanalyse er grunnmuren som kobler [[trusselbildet]] (hvilke trusler finnes?
 >**Risiko = Sannsynlighet × Konsekvens**
 
 -**Sannsynlighet:**Hvor trolig er det at hendelsen inntreffer? (svært liten / liten / middels / stor / svært stor)
--**Konsekvens:**Hva er skadeomfanget hvis hendelsen inntreffer? (ubetydelig / liten / moderat / alvorlig / svært alvorlig)
+--**Konsekvens:**Hva er skadeomfanget hvis hendelsen inntreffer? (ubetydelig / liten / moderat / alvorlig / svært
+-alvorlig)
 
-En hendelse med lav sannsynlighet men katastrofale konsekvenser kan være like viktig å håndtere som en hendelse som inntreffer ofte men med liten skade.
+EEn hendelse med lav sannsynlighet men katastrofale konsekvenser kan være like viktig å håndtere som en hendelse som
+Einntreffer ofte men med liten skade.
 
 ---
 
@@ -83,53 +91,58 @@ En sårbarhet er en svakhet som gjør at en trussel kan materialisere seg:
 
 Bruk**risikomatrisen**(5×5) til å plassere og rangere risikoscenarioer:
 
-| |**1 Ubetydelig**|**2 Liten**|**3 Moderat**|**4 Alvorlig**|**5 Svært alvorlig**|
-|---|---|---|---|---|---|
-|**5 Svært stor**| 5 | 10 | 15 | 20 |**25**|
-|**4 Stor**| 4 | 8 | 12 |**16**|**20**|
-|**3 Middels**| 3 | 6 |**9**| 12 | 15 |
-|**2 Liten**| 2 | 4 | 6 | 8 | 10 |
-|**1 Svært liten**| 1 | 2 | 3 | 4 | 5 |
+||  | **1 Ubetydelig** | **2 Liten** | **3 Moderat** | **4 Alvorlig** | **5 Svært alvorlig** |
+|| --- | --- | --- | --- | --- | --- |
+|| **5 Svært stor** | 5 | 10 | 15 | 20 | **25** |
+|| **4 Stor** | 4 | 8 | 12 | **16** | **20** |
+|| **3 Middels** | 3 | 6 | **9** | 12 | 15 |
+|| **2 Liten** | 2 | 4 | 6 | 8 | 10 |
+|| **1 Svært liten** | 1 | 2 | 3 | 4 | 5 |
 
 *Fargekode: 1–4 = lav (grønn), 5–9 = middels (gul), 10–19 = høy (oransje), 20–25 = kritisk (rød)*
 
-Bruk fargekodene aktivt i presentasjonen av risikomatrisen – røde risikoer må prioriteres umiddelbart, gule vurderes, grønne kan aksepteres med jevnlig revurdering.
+BBruk fargekodene aktivt i presentasjonen av risikomatrisen – røde risikoer må prioriteres umiddelbart, gule vurderes,
+Bgrønne kan aksepteres med jevnlig revurdering.
 
 #### Steg 4: Foreslå tiltak og aksepter restrisiko
 
 For hvert høyt- eller kritisk-rangert risikoscenario velger virksomheten ett av fire alternativer:
 
-| Strategi | Forklaring |
-|---|---|
-|**Reduser**| Innfør tiltak som senker sannsynlighet eller konsekvens |
-|**Unngå**| Slutt med aktiviteten som skaper risikoen |
-|**Overfør**| Forsikre deg mot risikoen (eks. cyberforsikring) |
-|**Aksepter**| Ledelsen godkjenner at risikoen er innenfor akseptabelt nivå |
+|| Strategi | Forklaring |
+|| --- | --- |
+|| **Reduser** | Innfør tiltak som senker sannsynlighet eller konsekvens |
+|| **Unngå** | Slutt med aktiviteten som skaper risikoen |
+|| **Overfør** | Forsikre deg mot risikoen (eks. cyberforsikring) |
+|| **Aksepter** | Ledelsen godkjenner at risikoen er innenfor akseptabelt nivå |
 
-**Restrisiko**er den risikoen som gjenstår etter at tiltak er innført. Ledelsen må formelt akseptere restrisikoen. Det akseptable risikonivået bør defineres på forhånd – dette gjør det tydelig for alle når restrisikoen er «god nok».
+***Restrisiko**er den risikoen som gjenstår etter at tiltak er innført. Ledelsen må formelt akseptere restrisikoen.
+*Det akseptable risikonivået bør defineres på forhånd – dette gjør det tydelig for alle når restrisikoen er «god nok».
 
 ---
 
 ### Tiltakstyper
 
-| Type | Beskrivelse | Eksempel |
-|---|---|---|
-|**Forebyggende (preventive)**| Hindrer at hendelsen inntreffer | Patcher, MFA, brannmur |
-|**Oppdagende (detektive)**| Oppdager at noe skjer | Logging, IDS, antivirusovervåkning |
-|**Reaktive (korrigerende)**| Begrenser skaden etter hendelsen | Backup, incident response-plan, DR-plan |
+|| Type | Beskrivelse | Eksempel |
+|| --- | --- | --- |
+|| **Forebyggende (preventive)** | Hindrer at hendelsen inntreffer | Patcher, MFA, brannmur |
+|| **Oppdagende (detektive)** | Oppdager at noe skjer | Logging, IDS, antivirusovervåkning |
+|| **Reaktive (korrigerende)** | Begrenser skaden etter hendelsen | Backup, incident response-plan, DR-plan |
 
-God sikkerhetspraksis kombinerer alle tre typer – du kan ikke bare forebygge, du må også oppdage og reagere. Organisatoriske tiltak (opplæring, rutiner, policyer) er like viktige som tekniske tiltak.
+GGod sikkerhetspraksis kombinerer alle tre typer – du kan ikke bare forebygge, du må også oppdage og reagere.
+GOrganisatoriske tiltak (opplæring, rutiner, policyer) er like viktige som tekniske tiltak.
 
 ---
 
 ### GDPR artikkel 32 og risikovurdering
 
-GDPR artikkel 32 krever at virksomheter som behandler personopplysninger skal implementere «egnede tekniske og organisatoriske sikkerhetstiltak» basert på en risikovurdering.[^2] Vurderingen skal ta hensyn til:
+GGDPR artikkel 32 krever at virksomheter som behandler personopplysninger skal implementere «egnede tekniske og
+Gorganisatoriske sikkerhetstiltak» basert på en risikovurdering.[^2] Vurderingen skal ta hensyn til:
 
 - Behandlingens art, omfang, sammenheng og formål
 - Sannsynligheten for og alvorligheten av risikoen for de registrertes rettigheter
 
-Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav dersom du behandler persondata. Datatilsynet har publisert en konkret veileder for risikovurdering av personopplysninger.[^3]
+DDette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav dersom du behandler persondata.
+DDatatilsynet har publisert en konkret veileder for risikovurdering av personopplysninger.[^3]
 
 ---
 
@@ -137,43 +150,45 @@ Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav ders
 
 ### Risikoanalyse for Bakke videregående skole – skolenettverk
 
-**Scenario:**Bakke vgs har et skolenettverk med følgende komponenter: Active Directory-server, filserver med elevarbeider, trådløst gjestenettverk, 350 elevmaskiner og ansatt-PC-er.
+***Scenario:**Bakke vgs har et skolenettverk med følgende komponenter: Active Directory-server, filserver med
+*elevarbeider, trådløst gjestenettverk, 350 elevmaskiner og ansatt-PC-er.
 
-**Steg 1 – Identifiser verdier og trusler:**
+*## Steg 1 – Identifiser verdier og trusler:
 
-| Verdi | Trussel |
-|---|---|
-| AD-server | Ransomware, passordangrep |
-| Filserver med elevarbeider | Ransomware, utilsiktet sletting, brann |
-| Trådløst gjestenettverk | Uautorisert tilgang, sniffer-angrep |
-| Ansatt-PC-er | Phishing, malware via USB |
+|| Verdi | Trussel |
+|| --- | --- |
+|| AD-server | Ransomware, passordangrep |
+|| Filserver med elevarbeider | Ransomware, utilsiktet sletting, brann |
+|| Trådløst gjestenettverk | Uautorisert tilgang, sniffer-angrep |
+|| Ansatt-PC-er | Phishing, malware via USB |
 
-**Steg 2 – Identifiser sårbarheter:**
+*## Steg 2 – Identifiser sårbarheter:
 
 - AD-server kjører Windows Server 2016 uten automatisk patching
 - Ansatte bruker enkle passord uten MFA
 - Gjestenettverk har ikke VLAN-isolasjon fra internett
 - Ingen backup-rutine testes jevnlig
 
-**Steg 3 – Risikomatrise (utvalg):**
+*## Steg 3 – Risikomatrise (utvalg):
 
-| Scenario | Sannsynlighet | Konsekvens | Risikoverdi |
-|---|---|---|---|
-| Ransomware mot filserver | 3 (middels) | 5 (svært alvorlig) |**15 – høy**|
-| Phishing mot ansatt | 4 (stor) | 3 (moderat) |**12 – høy**|
-| Brann i serverrom | 1 (svært liten) | 5 (svært alvorlig) |**5 – middels**|
-| Elev kobler til skadevare via USB | 3 (middels) | 2 (liten) |**6 – middels**|
+|| Scenario | Sannsynlighet | Konsekvens | Risikoverdi |
+|| --- | --- | --- | --- |
+|| Ransomware mot filserver | 3 (middels) | 5 (svært alvorlig) | **15 – høy** |
+|| Phishing mot ansatt | 4 (stor) | 3 (moderat) | **12 – høy** |
+|| Brann i serverrom | 1 (svært liten) | 5 (svært alvorlig) | **5 – middels** |
+|| Elev kobler til skadevare via USB | 3 (middels) | 2 (liten) | **6 – middels** |
 
-**Steg 4 – Tiltak:**
+*## Steg 4 – Tiltak:
 
-| Risiko | Tiltak | Type |
-|---|---|---|
-| Ransomware mot filserver | Innfør automatisk patching, installer backup med offsite-kopi | Forebyggende + reaktiv |
-| Phishing mot ansatt | Obligatorisk phishing-trening, aktiver MFA på alle kontoer | Forebyggende |
-| Brann i serverrom | Brannslukkingsanlegg, offsite backup, DR-plan | Forebyggende + reaktiv |
-| USB-bruk | Deaktiver USB-porter via GPO, tilat kun godkjente enheter | Forebyggende |
+|| Risiko | Tiltak | Type |
+|| --- | --- | --- |
+|| Ransomware mot filserver | Innfør automatisk patching, installer backup med offsite-kopi | Forebyggende + reaktiv |
+|| Phishing mot ansatt | Obligatorisk phishing-trening, aktiver MFA på alle kontoer | Forebyggende |
+|| Brann i serverrom | Brannslukkingsanlegg, offsite backup, DR-plan | Forebyggende + reaktiv |
+|| USB-bruk | Deaktiver USB-porter via GPO, tilat kun godkjente enheter | Forebyggende |
 
-**Restrisiko:**Ransomware-risikoen reduseres fra 15 til anslagsvis 6 (middels) etter tiltakene. Ledelsen aksepterer restrisikoen.
+***Restrisiko:**Ransomware-risikoen reduseres fra 15 til anslagsvis 6 (middels) etter tiltakene.
+*Ledelsen aksepterer restrisikoen.
 
 ---
 
@@ -203,26 +218,30 @@ Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav ders
 
 ### Risikoanalyse – kjerneinnhold
 
-**Grunnformelen:**
-Risiko = Sannsynlighet × Konsekvens. Begge vurderes typisk på en skala fra 1–5. En risikoverdi på 1–4 er lav (grønn), 5–9 middels (gul), 10–19 høy (oransje), 20–25 kritisk (rød).
+*## Grunnformelen:
+RRisiko = Sannsynlighet × Konsekvens. Begge vurderes typisk på en skala fra 1–5. En risikoverdi på 1–4 er lav (grønn),
+R5–9 middels (gul), 10–19 høy (oransje), 20–25 kritisk (rød).
 
-**4-stegsmodellen:**
+*## 4-stegsmodellen:
 
 1. Identifiser verdier og trusler – hva er verdt å beskytte, og hva kan ramme det?
 2. Identifiser sårbarheter – hvilke svakheter gjør truslene mulige?
 3. Vurder og ranger risiko – bruk risikomatrisen
 4. Foreslå tiltak og aksepter restrisiko – velg reduser/unngå/overfør/aksepter
 
-**Tre tiltakstyper:**
-Forebyggende (hindrer hendelsen), oppdagende (avslører at noe skjer), reaktive (begrenser skaden etterpå). Alle tre er nødvendige – de utfyller hverandre.
+*## Tre tiltakstyper:
+FForebyggende (hindrer hendelsen), oppdagende (avslører at noe skjer), reaktive (begrenser skaden etterpå).
+FAlle tre er nødvendige – de utfyller hverandre.
 
-**Restrisiko:**
-All risiko kan ikke elimineres. Ledelsen aksepterer formelt den risikoen som gjenstår etter tiltak. Det bør settes et akseptabelt risikonivå på forhånd.
+*## Restrisiko:
+AAll risiko kan ikke elimineres. Ledelsen aksepterer formelt den risikoen som gjenstår etter tiltak.
+ADet bør settes et akseptabelt risikonivå på forhånd.
 
-**GDPR art. 32:**
-Risikovurdering er et lovkrav for alle som behandler personopplysninger. Tiltakene må stå i forhold til risikoen for de registrertes rettigheter.
+*## GDPR art. 32:
+RRisikovurdering er et lovkrav for alle som behandler personopplysninger. Tiltakene må stå i forhold til risikoen for de
+Rregistrertes rettigheter.
 
-**Praktiske råd:**
+*## Praktiske råd:
 
 - Inkluder alltid organisatoriske tiltak (opplæring, rutiner), ikke bare tekniske
 - Dokumenter analysen og tiltakene – ansvarlighet krever dokumentasjon
@@ -232,26 +251,38 @@ Risikovurdering er et lovkrav for alle som behandler personopplysninger. Tiltake
 
 ## FAQ
 
-**Hva er forskjellen mellom en trussel og en sårbarhet?**
-En trussel er en potensiell hendelse som kan skade verdiene dine, f.eks. ransomware eller brann. En sårbarhet er en svakhet som gjør at trusselen kan materialisere seg, f.eks. manglende backup eller utdatert programvare. Trusselen finnes uansett – sårbarheten bestemmer om den faktisk rammer deg.
+*## Hva er forskjellen mellom en trussel og en sårbarhet?
+EEn trussel er en potensiell hendelse som kan skade verdiene dine, f.eks. ransomware eller brann.
+EEEn sårbarhet er en svakhet som gjør at trusselen kan materialisere seg, f.eks. manglende backup eller utdatert
+Eprogramvare. Trusselen finnes uansett – sårbarheten bestemmer om den faktisk rammer deg.
 
-**Hvorfor er det viktig å involvere ledelsen i risikoanalysen?**
-Ledelsen er de eneste som kan akseptere restrisiko på virksomhetens vegne. De bestemmer også ressurser til sikkerhetstiltak. En risikoanalyse som ikke når ledelsen, fører sjelden til faktiske forbedringer.
+*## Hvorfor er det viktig å involvere ledelsen i risikoanalysen?
+LLedelsen er de eneste som kan akseptere restrisiko på virksomhetens vegne. De bestemmer også ressurser til
+Lsikkerhetstiltak. En risikoanalyse som ikke når ledelsen, fører sjelden til faktiske forbedringer.
 
-**Hva er en ROS-analyse?**
-ROS (Risiko- og Sårbarhetsanalyse) er det norske begrepet for risikoanalyse. Det er den samme 4-stegsmodellen, men termen brukes særlig i norsk offentlig sektor og i NVEs krav til kritisk infrastruktur.[^4]
+*## Hva er en ROS-analyse?
+RROS (Risiko- og Sårbarhetsanalyse) er det norske begrepet for risikoanalyse. Det er den samme 4-stegsmodellen, men
+Rtermen brukes særlig i norsk offentlig sektor og i NVEs krav til kritisk infrastruktur.[^4]
 
-**Kan restrisiko alltid aksepteres?**
-Ikke alltid. Noen risikoer er for høye til å aksepteres – da må man enten redusere dem ytterligere, unngå aktiviteten helt, eller overføre risikoen (f.eks. gjennom cyberforsikring). Hvis restrisikoen fortsatt er kritisk (20–25) etter alle tiltak, bør aktiviteten vurderes på nytt.
+*## Kan restrisiko alltid aksepteres?
+IIkke alltid. Noen risikoer er for høye til å aksepteres – da må man enten redusere dem ytterligere, unngå aktiviteten
+IIhelt, eller overføre risikoen (f.eks. gjennom cyberforsikring). Hvis restrisikoen fortsatt er kritisk (20–25) etter
+Ialle tiltak, bør aktiviteten vurderes på nytt.
 
-**Hva er forskjellen mellom forebyggende og reaktive tiltak?**
-Forebyggende tiltak hindrer hendelsen i å inntreffe (f.eks. MFA, patcher, brannmur). Reaktive tiltak trer inn etter at hendelsen er et faktum og begrenser skaden (f.eks. backup-gjenoppretting, incident response-plan). Du trenger begge – forebygging reduserer sannsynligheten, reaktive tiltak reduserer konsekvensen.
+*## Hva er forskjellen mellom forebyggende og reaktive tiltak?
+FForebyggende tiltak hindrer hendelsen i å inntreffe (f.eks. MFA, patcher, brannmur).
+FFReaktive tiltak trer inn etter at hendelsen er et faktum og begrenser skaden (f.eks.
+FFbackup-gjenoppretting, incident response-plan). Du trenger begge – forebygging reduserer sannsynligheten, reaktive
+Ftiltak reduserer konsekvensen.
 
-**Hva betyr det at et tiltak er «egnet» etter GDPR art. 32?**
-Egnethet vurderes opp mot risikoen. Et sykehus som behandler sensitive helseopplysninger krever strengere tiltak enn en restaurant som lagrer kontaktinformasjon. Tiltakene skal stå i forhold til sannsynligheten for og alvorligheten av risikoen for de registrerte.
+*## Hva betyr det at et tiltak er «egnet» etter GDPR art. 32?
+EEgnethet vurderes opp mot risikoen. Et sykehus som behandler sensitive helseopplysninger krever strengere tiltak enn en
+EErestaurant som lagrer kontaktinformasjon. Tiltakene skal stå i forhold til sannsynligheten for og alvorligheten av
+Erisikoen for de registrerte.
 
-**Hvor ofte bør risikoanalysen oppdateres?**
-Minst én gang per år, og alltid ved vesentlige endringer i IT-miljøet (ny programvare, ny leverandør, nytt utstyr) eller etter en sikkerhetshendelse. Trusselbildet endrer seg – analysen må holde tritt.
+*## Hvor ofte bør risikoanalysen oppdateres?
+MMinst én gang per år, og alltid ved vesentlige endringer i IT-miljøet (ny programvare, ny leverandør, nytt utstyr) eller
+Metter en sikkerhetshendelse. Trusselbildet endrer seg – analysen må holde tritt.
 
 ---
 
@@ -265,7 +296,7 @@ Minst én gang per år, og alltid ved vesentlige endringer i IT-miljøet (ny pro
 
 <details><summary>Spørsmål 2: Hva er de fire stegene i en risikoanalyseprosess?</summary>
 
-**Svar:**
+*## Svar:
 
 1. Identifiser verdier og trusler
 2. Identifiser sårbarheter
@@ -276,19 +307,23 @@ Minst én gang per år, og alltid ved vesentlige endringer i IT-miljøet (ny pro
 
 <details><summary>Spørsmål 3: Hva er forskjellen mellom forebyggende, oppdagende og reaktive tiltak?</summary>
 
-**Svar:**Forebyggende tiltak hindrer at hendelsen inntreffer (f.eks. brannmur, MFA). Oppdagende tiltak avslører at noe skjer (f.eks. logging, IDS). Reaktive tiltak begrenser skaden etter hendelsen (f.eks. backup, incident response-plan).
+***Svar:**Forebyggende tiltak hindrer at hendelsen inntreffer (f.eks. brannmur, MFA).
+**Oppdagende tiltak avslører at noe skjer (f.eks. logging, IDS). Reaktive tiltak begrenser skaden etter hendelsen (f.eks.
+*backup, incident response-plan).
 
 </details>
 
 <details><summary>Spørsmål 4: Hva krever GDPR artikkel 32?</summary>
 
-**Svar:**GDPR artikkel 32 krever at virksomheter som behandler personopplysninger gjennomfører risikovurdering og implementerer egnede tekniske og organisatoriske sikkerhetstiltak basert på denne vurderingen.
+***Svar:**GDPR artikkel 32 krever at virksomheter som behandler personopplysninger gjennomfører risikovurdering og
+*implementerer egnede tekniske og organisatoriske sikkerhetstiltak basert på denne vurderingen.
 
 </details>
 
 <details><summary>Spørsmål 5: Hva er restrisiko?</summary>
 
-**Svar:**Restrisiko er den risikoen som gjenstår etter at tiltak er innført. Det er ikke mulig å eliminere all risiko – ledelsen må formelt akseptere den gjenværende risikoen.
+***Svar:**Restrisiko er den risikoen som gjenstår etter at tiltak er innført. Det er ikke mulig å eliminere all risiko –
+*ledelsen må formelt akseptere den gjenværende risikoen.
 
 </details>
 

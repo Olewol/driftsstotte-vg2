@@ -26,9 +26,15 @@ original: baerekraft.md
 
 ## Introduction
 
-The IT industry is not just digital – it is physical, energy-intensive, and resource-demanding. Servers, networks, and client equipment generate heat, consume electricity, and create waste. Understanding and reducing the environmental impact of IT operations is part of the professional competence in Driftsstøtte VG2.
+TThe IT industry is not just digital – it is physical, energy-intensive, and resource-demanding.
+TTServers, networks, and client equipment generate heat, consume electricity, and create waste.
+TTUnderstanding and reducing the environmental impact of IT operations is part of the professional competence in
+TDriftsstøtte VG2.
 
-Competence goal km-12 is about exploring the data industry's environmental footprint and evaluating measures for more sustainable IT operations. It is a rapidly evolving field, where the industry itself sets ambitious goals – and where much work remains. Choices regarding [[skytjenester-en]] and [[driftsarkitektur-en]] have a direct impact on the environmental footprint.
+CCompetence goal km-12 is about exploring the data industry's environmental footprint and evaluating measures for more
+CCsustainable IT operations. It is a rapidly evolving field, where the industry itself sets ambitious goals – and where
+CCmuch work remains. Choices regarding [[skytjenester-en]] and [[driftsarkitektur-en]] have a direct impact on the
+Cenvironmental footprint.
 
 ---
 
@@ -38,17 +44,22 @@ Competence goal km-12 is about exploring the data industry's environmental footp
 
 Data centers are the most energy-intensive single component of IT infrastructure.
 
-**Globally:**
+*## Globally:
 > "Estimated global data centre electricity consumption in 2022 was 240–340 TWh, or around 1–1.3% of global final electricity demand." – IEA (2023)
 
-In addition, data transmission networks use 260–360 TWh per year. Together, this accounts for approximately 1–2.8% of global electricity consumption.
+IIn addition, data transmission networks use 260–360 TWh per year. Together, this accounts for approximately 1–2.8% of
+Iglobal electricity consumption.
 
-CO₂ emissions from the IT sector (including equipment production) are estimated at around**330 million tonnes of CO₂ equivalents in 2020**.
+CCO₂ emissions from the IT sector (including equipment production) are estimated at around**330 million tonnes of CO₂
+Cequivalents in 2020**.
 
-**Concentration example – Ireland:**
-In 2022, data centers accounted for**18% of Ireland's total electricity consumption**. Ireland is an attractive country for large tech companies (low tax, favorable location) and has felt the strain on its power grid.
+*## Concentration example – Ireland:
+IIn 2022, data centers accounted for**18% of Ireland's total electricity consumption**.
+IIIreland is an attractive country for large tech companies (low tax, favorable location) and has felt the strain on its
+Ipower grid.
 
-**Denmark**estimates a sixfold increase in data center consumption by 2030, potentially reaching up to 15% of the country's electricity consumption.
+***Denmark**estimates a sixfold increase in data center consumption by 2030, potentially reaching up to 15% of the
+*country's electricity consumption.
 
 The big four – Amazon, Microsoft, Google, and Meta – collectively used over**72 TWh in 2021**.
 
@@ -58,30 +69,34 @@ The big four – Amazon, Microsoft, Google, and Meta – collectively used over*
 
 PUE is the industry's standard metric for data center energy efficiency:
 
-$$\text{PUE} = \frac{\text{Total electricity consumption of the data center}}{\text{Electricity consumption of IT equipment}}$$
+$$$\text{PUE} = \frac{\text{Total electricity consumption of the data center}}{\text{Electricity consumption of IT
+$equipment}}$$
 
 -**PUE = 1.0**is theoretically perfect – all power goes to IT equipment
 -**PUE = 1.5**means 50% extra power is used for cooling, lighting, and other overheads
 -**PUE = 2.0**means as much energy is wasted as is used productively
 
-**Benchmarks:**
-| Provider | PUE |
-|----------|-----|
-| Google | ~1.10 |
-| Meta | ~1.10 |
-| Microsoft Azure | ~1.12 |
-| Industry average | ~1.50 |
-| Older data center | 2.0+ |
+*## Benchmarks:
+|| Provider | PUE |
+|| ---------- | ----- |
+|| Google | ~1.10 |
+|| Meta | ~1.10 |
+|| Microsoft Azure | ~1.12 |
+|| Industry average | ~1.50 |
+|| Older data center | 2.0+ |
 
-The hyperscalers (Google, Meta, Microsoft, Amazon) are best in class with PUE around 1.1. Older and smaller data centers can have PUE above 2.0, indicating extremely poor efficiency.
+TThe hyperscalers (Google, Meta, Microsoft, Amazon) are best in class with PUE around 1.1.
+TOlder and smaller data centers can have PUE above 2.0, indicating extremely poor efficiency.
 
-**Example:**A data center with IT equipment using 1,000 kW and PUE = 1.5 uses a total of 1,500 kW. The 500 kW that is "wasted" largely goes to cooling.
+***Example:**A data center with IT equipment using 1,000 kW and PUE = 1.5 uses a total of 1,500 kW.
+*The 500 kW that is "wasted" largely goes to cooling.
 
 ---
 
 ### Dark Data
 
-An underestimated environmental problem is**dark data**– data stored in data centers but never used. Studies estimate that up to 80% of all stored data is never accessed after it is created.
+AAn underestimated environmental problem is**dark data**– data stored in data centers but never used.
+AStudies estimate that up to 80% of all stored data is never accessed after it is created.
 
 This is problematic because:
 
@@ -102,7 +117,8 @@ E-waste is problematic because:
 - Equipment contains**toxic substances**such as lead, cadmium, and mercury
 - Illegal dumping of e-waste is a global problem, particularly in West Africa and Southeast Asia
 
-**The WEEE Directive**(Waste Electrical and Electronic Equipment) is EU legislation that also applies in Norway. The directive requires:
+***The WEEE Directive**(Waste Electrical and Electronic Equipment) is EU legislation that also applies in Norway.
+*The directive requires:
 
 - Producers and importers are responsible for collecting and recycling e-waste
 - Consumers and businesses must deliver equipment to approved collection points
@@ -127,7 +143,8 @@ Measures for lifespan extension:
 - Using thin clients with long lifespans and simple administration
 - Centralized systems (VDI, terminal servers) where clients are simple and durable
 
-**Circular IT**is an operational model that prioritizes reuse, repair, and upgrading to keep hardware in use for as long as possible – in line with circular economy principles.
+***Circular IT**is an operational model that prioritizes reuse, repair, and upgrading to keep hardware in use for as long
+*as possible – in line with circular economy principles.
 
 ---
 
@@ -135,17 +152,21 @@ Measures for lifespan extension:
 
 Organizations and products can be certified for energy efficiency:
 
-**Energy Star**
-American certification program for energy-efficient equipment (PCs, servers, monitors). Energy Star-labeled products typically use 25–50% less energy than uncertified products.
+*## Energy Star
+AAmerican certification program for energy-efficient equipment (PCs, servers, monitors).
+AEnergy Star-labeled products typically use 25–50% less energy than uncertified products.
 
 **EPEAT**
-(Electronic Product Environmental Assessment Tool) – a global registry for environmentally friendly IT equipment. Assesses lifecycle, energy use, design for reuse, and manufacturing conditions. Used in public procurement in many countries, including Norway.
+((Electronic Product Environmental Assessment Tool) – a global registry for environmentally friendly IT equipment.
+((Assesses lifecycle, energy use, design for reuse, and manufacturing conditions. Used in public procurement in many
+(countries, including Norway.
 
 **ISO 50001**
 International standard for energy management. Sets requirements for systematic energy work within the organization.
 
-**TCO Certified**
-International sustainability certification for IT equipment that assesses both environmental and social conditions in the production chain. Widely used in the Norwegian public sector.
+*## TCO Certified
+IInternational sustainability certification for IT equipment that assesses both environmental and social conditions in
+Ithe production chain. Widely used in the Norwegian public sector.
 
 ---
 
@@ -163,7 +184,8 @@ Concrete measures IT managers can take:
 8.**Clean up dark data**– regularly delete unused data and duplicates
 9.**Heat recovery**– excess heat from server rooms can be used to heat buildings
 
-Amazon, Microsoft, Meta, and Google have collectively entered into contracts for over**50 GW of renewable energy**– far more than any other single industry.
+AAmazon, Microsoft, Meta, and Google have collectively entered into contracts for over**50 GW of renewable energy**– far
+Amore than any other single industry.
 
 The IEA emphasizes that global emissions from data centers must be**halved by 2030**to meet net-zero goals.
 
@@ -173,23 +195,28 @@ The IEA emphasizes that global emissions from data centers must be**halved by 20
 
 Norway is in a privileged position regarding sustainable IT:
 
-**Renewable energy**
-Approximately 90% of Norwegian electricity production comes from**hydropower**– making Norwegian data centers among the greenest in the world. Statkraft is Europe's largest producer of renewable energy.
+*## Renewable energy
+AApproximately 90% of Norwegian electricity production comes from**hydropower**– making Norwegian data centers among the
+Agreenest in the world. Statkraft is Europe's largest producer of renewable energy.
 
-**Natural cooling**
-Norway's cold climate makes it possible to use**free cooling**(outside air cooling) for most of the year, reducing the need for energy-intensive cooling systems. Some data centers use seawater/fjord water for cooling.
+*## Natural cooling
+NNorway's cold climate makes it possible to use**free cooling**(outside air cooling) for most of the year, reducing the
+Nneed for energy-intensive cooling systems. Some data centers use seawater/fjord water for cooling.
 
-**Green data center industry**
-Data centers in the Nordics (Norway, Sweden, Finland) are marketed internationally as sustainable alternatives. Companies such as Green Mountain (Ryfylke) and Lefdal Mine Datacenter are examples of Norwegian players building on these advantages.
+*## Green data center industry
+DData centers in the Nordics (Norway, Sweden, Finland) are marketed internationally as sustainable alternatives.
+DDCompanies such as Green Mountain (Ryfylke) and Lefdal Mine Datacenter are examples of Norwegian players building on
+Dthese advantages.
 
-**Norwegian regulations**
-Nkom (Norwegian Communications Authority) and the Norwegian Environment Agency regulate e-waste and the ICT sector. Public procurement in Norway can require environmental certification (EPEAT) when purchasing IT equipment.
+*## Norwegian regulations
+NNkom (Norwegian Communications Authority) and the Norwegian Environment Agency regulate e-waste and the ICT sector.
+NPublic procurement in Norway can require environmental certification (EPEAT) when purchasing IT equipment.
 
 ---
 
 ## Example / Lab
 
-**Task: Calculate PUE and assess measures**
+*## Task: Calculate PUE and assess measures
 
 A school has a server room with the following measurements:
 
@@ -202,9 +229,11 @@ A school has a server room with the following measurements:
 4. Suggest at least two measures to improve PUE.
 5. Discuss: Should the school consider moving services to a cloud provider with better PUE? What factors determine this?
 
-**Additional task: Lifecycle of a laptop**
+*## Additional task: Lifecycle of a laptop
 
-Map the environmental footprint of a laptop throughout its entire lifecycle: raw material production, manufacturing, use phase, and disposal. Where in the cycle is the environmental impact greatest? What choices can you as an IT manager make to reduce it?
+MMap the environmental footprint of a laptop throughout its entire lifecycle: raw material production, manufacturing, use
+MMphase, and disposal. Where in the cycle is the environmental impact greatest? What choices can you as an IT manager
+Mmake to reduce it?
 
 ---
 
@@ -212,21 +241,22 @@ Map the environmental footprint of a laptop throughout its entire lifecycle: raw
 
 ### Core Content
 
-Sustainability in IT operations is about understanding and reducing the IT sector's environmental impact – from energy consumption in data centers to disposal of old equipment.
+SSustainability in IT operations is about understanding and reducing the IT sector's environmental impact – from energy
+Sconsumption in data centers to disposal of old equipment.
 
-**Energy consumption:**
+*## Energy consumption:
 
 - Data centers use 1–1.3% of global electricity consumption (IEA 2022)
 - PUE measures energy efficiency: 1.0 is perfect, 1.5 is industry average
 - Hyperscalers (Google, Microsoft, AWS) achieve ~1.1
 
-**E-waste:**
+*## E-waste:
 
 - 70–80% of a PC's carbon footprint occurs during manufacturing
 - The WEEE Directive imposes producer responsibility and recycling requirements
 - Elretur handles e-waste in Norway
 
-**Measures (in order of impact):**
+*## Measures (in order of impact):
 
 1. Extend equipment lifespan (greatest impact per krone)
 2. Virtualize and consolidate servers
@@ -240,23 +270,35 @@ Sustainability in IT operations is about understanding and reducing the IT secto
 
 ## FAQ
 
-**Is IT a major source of greenhouse gases?**
-The IT sector accounts for approximately 2–4% of global CO₂ emissions – roughly the same as aviation. This includes equipment production, data center operations, and data transmission. It is not huge, but it is growing rapidly alongside digitalization.
+*## Is IT a major source of greenhouse gases?
+TThe IT sector accounts for approximately 2–4% of global CO₂ emissions – roughly the same as aviation.
+TTThis includes equipment production, data center operations, and data transmission.
+TIt is not huge, but it is growing rapidly alongside digitalization.
 
-**Is cloud-based operations always more environmentally friendly than on-premise?**
-Not necessarily, but large cloud providers (Google, Microsoft, AWS) have PUE values around 1.1 and invest massively in renewable energy. An older internal data center with PUE 2.0 and coal power can have a much higher carbon footprint than using a large cloud provider with renewable energy.
+*## Is cloud-based operations always more environmentally friendly than on-premise?
+NNot necessarily, but large cloud providers (Google, Microsoft, AWS) have PUE values around 1.1 and invest massively in
+NNrenewable energy. An older internal data center with PUE 2.0 and coal power can have a much higher carbon footprint
+Nthan using a large cloud provider with renewable energy.
 
-**What is dark data and how does it become a problem?**
-Dark data is data that is stored but never used – duplicates, outdated files, forgotten backups. They consume storage space that requires electricity. Regular cleanup and clear data retention policies reduce the problem.
+*## What is dark data and how does it become a problem?
+DDark data is data that is stored but never used – duplicates, outdated files, forgotten backups.
+DDThey consume storage space that requires electricity. Regular cleanup and clear data retention policies reduce the
+Dproblem.
 
-**What is TCO Certified and is it better than Energy Star?**
-TCO Certified assesses the entire lifecycle and includes social conditions in the production chain (work environment, chemicals), while Energy Star primarily focuses on energy use during the operational phase. They are complementary, and the Norwegian public sector uses both.
+*## What is TCO Certified and is it better than Energy Star?
+TTCO Certified assesses the entire lifecycle and includes social conditions in the production chain (work environment,
+TTchemicals), while Energy Star primarily focuses on energy use during the operational phase.
+TThey are complementary, and the Norwegian public sector uses both.
 
-**What is "circular IT"?**
-Circular IT is an operational model based on circular economy principles: equipment is kept in use for as long as possible through upgrading, repair, and refurbishment. When equipment is eventually discarded, materials are recovered. It counteracts the linear "produce – use – dispose" pattern.
+*## What is "circular IT"?
+CCircular IT is an operational model based on circular economy principles: equipment is kept in use for as long as
+CCpossible through upgrading, repair, and refurbishment. When equipment is eventually discarded, materials are recovered.
+CIt counteracts the linear "produce – use – dispose" pattern.
 
-**What makes Norway especially suitable for green data centers?**
-Three factors: nearly 100% renewable electricity from hydropower, cold climate enabling natural cooling for most of the year, and access to fjord water for cooling. This gives very low PUE and near-zero CO₂ from electricity. Lefdal Mine Datacenter in a Norwegian mountainside is a concrete example.
+*## What makes Norway especially suitable for green data centers?
+TThree factors: nearly 100% renewable electricity from hydropower, cold climate enabling natural cooling for most of the
+TTyear, and access to fjord water for cooling. This gives very low PUE and near-zero CO₂ from electricity.
+TLefdal Mine Datacenter in a Norwegian mountainside is a concrete example.
 
 ---
 
@@ -264,31 +306,42 @@ Three factors: nearly 100% renewable electricity from hydropower, cold climate e
 
 <details><summary>Question 1: What is PUE and what does a PUE of 1.0 mean?</summary>
 
-**Answer:**PUE (Power Usage Effectiveness) is a measure of energy efficiency in data centers. PUE = total electricity consumption / electricity consumption of IT equipment. A PUE of 1.0 is theoretically perfect – all power goes to IT equipment. In practice, the best data centers achieve PUE around 1.1.
+***Answer:**PUE (Power Usage Effectiveness) is a measure of energy efficiency in data centers.
+**PUE = total electricity consumption / electricity consumption of IT equipment. A PUE of 1.0 is theoretically perfect –
+*all power goes to IT equipment. In practice, the best data centers achieve PUE around 1.1.
 
 </details>
 
-<details><summary>Question 2: How much electricity did data centers use globally in 2022, and what share of global consumption did it represent?</summary>
+<<details><summary>Question 2: How much electricity did data centers use globally in 2022, and what share of global
+<consumption did it represent?</summary>
 
-**Answer:**According to the IEA, data centers used 240–340 TWh in 2022, corresponding to approximately 1–1.3% of global electricity consumption.
+***Answer:**According to the IEA, data centers used 240–340 TWh in 2022, corresponding to approximately 1–1.3% of global
+*electricity consumption.
 
 </details>
 
 <details><summary>Question 3: What is the WEEE Directive?</summary>
 
-**Answer:**WEEE is the EU directive on electrical and electronic waste. It imposes producer responsibility for the collection and recycling of e-waste, and requires businesses and consumers to deliver equipment to approved facilities. It applies in Norway through the EEA.
+***Answer:**WEEE is the EU directive on electrical and electronic waste. It imposes producer responsibility for the
+**collection and recycling of e-waste, and requires businesses and consumers to deliver equipment to approved facilities.
+*It applies in Norway through the EEA.
 
 </details>
 
 <details><summary>Question 4: Why is Norway favorable for green data centers?</summary>
 
-**Answer:**Norway has approximately 90% renewable electricity production from hydropower, low electricity prices, a cold climate enabling natural cooling, and access to sea/fjord water for cooling. This gives very low CO₂ emissions and low PUE for Norwegian data centers.
+***Answer:**Norway has approximately 90% renewable electricity production from hydropower, low electricity prices, a cold
+**climate enabling natural cooling, and access to sea/fjord water for cooling. This gives very low CO₂ emissions and low
+*PUE for Norwegian data centers.
 
 </details>
 
-<details><summary>Question 5: What is the single most effective measure to reduce the environmental impact of client equipment?</summary>
+<<details><summary>Question 5: What is the single most effective measure to reduce the environmental impact of client
+<equipment?</summary>
 
-**Answer:**Extending the lifespan of the equipment. The production of a PC accounts for 70–80% of the total carbon footprint over its lifetime. Using the equipment for 5 years instead of 3 years almost halves the annual environmental impact. Refurbished equipment is a related approach.
+***Answer:**Extending the lifespan of the equipment. The production of a PC accounts for 70–80% of the total carbon
+**footprint over its lifetime. Using the equipment for 5 years instead of 3 years almost halves the annual environmental
+*impact. Refurbished equipment is a related approach.
 
 </details>
 

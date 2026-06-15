@@ -22,9 +22,11 @@ public: true
 
 ## 🎯 Mål / Competency Goal
 
-**Norsk:**Planlegge, drifte og implementere IT-løsninger som ivaretar informasjonssikkerhet og gjeldende regelverk for personvern
+***Norsk:**Planlegge, drifte og implementere IT-løsninger som ivaretar informasjonssikkerhet og gjeldende regelverk for
+*personvern
 
-**English:**Plan, operate and implement IT solutions that maintain information security and comply with current privacy regulations
+***English:**Plan, operate and implement IT solutions that maintain information security and comply with current privacy
+*regulations
 
 ---
 
@@ -32,61 +34,75 @@ public: true
 
 ### Norsk
 
-Å bygge sikre IT-løsninger handler om å tenke sikkerhet fra starten — ikke som en ettertanke. Dette kalles**Security by Design**[^1][^4].
+ÅÅ bygge sikre IT-løsninger handler om å tenke sikkerhet fra starten — ikke som en ettertanke.
+ÅDette kalles**Security by Design**[^1][^4].
 
-**Sentrale sikkerhetstiltak:**
+*## Sentrale sikkerhetstiltak:
 
--**Kryptering**— Gjør data uleselig for uautoriserte. Brukes både for data i transit (TLS/HTTPS) og data i ro (BitLocker, FileVault)
--**Brannmur**— Kontrollerer trafikk inn og ut av nettverket basert på regler. Kan være maskinvarebasert eller programvarebasert
+--**Kryptering**— Gjør data uleselig for uautoriserte. Brukes både for data i transit (TLS/HTTPS) og data i ro
+-(BitLocker, FileVault)
+--**Brannmur**— Kontrollerer trafikk inn og ut av nettverket basert på regler. Kan være maskinvarebasert eller
+-programvarebasert
 -**Tilgangskontroll**— Hvem får tilgang til hva? Styres med RBAC, AD-grupper og NTFS-tillatelser
 -**Patching**— Holde programvare oppdatert for å tette sikkerhetshull
 -**Logging og overvåking (SIEM)**— Oppdage angrep ved å analysere logger
 
-**Personvern (GDPR):**Alle IT-løsninger som behandler personopplysninger må følge personvernforordningen. Det betyr blant annet at data skal lagres sikkert, ikke oppbevares lenger enn nødvendig, og brukere skal ha innsyn i egne data.
+***Personvern (GDPR):**Alle IT-løsninger som behandler personopplysninger må følge personvernforordningen.
+**Det betyr blant annet at data skal lagres sikkert, ikke oppbevares lenger enn nødvendig, og brukere skal ha innsyn i
+*egne data.
 
 ### English
 
-Building secure IT solutions means thinking about security from the start — not as an afterthought. This is called**Security by Design**[^1].
+BBuilding secure IT solutions means thinking about security from the start — not as an afterthought.
+BThis is called**Security by Design**[^1].
 
-**Key security measures:**
--**Encryption**— Makes data unreadable to unauthorized users. Used for data in transit (TLS/HTTPS) and data at rest (BitLocker, FileVault)
+*## Key security measures:
+--**Encryption**— Makes data unreadable to unauthorized users. Used for data in transit (TLS/HTTPS) and data at rest
+-(BitLocker, FileVault)
 -**Firewall**— Controls traffic in and out of the network based on rules. Can be hardware-based or software-based
--**Access control**— Who gets access to what? Managed with RBAC (role-based access control), Active Directory groups, and NTFS permissions
+--**Access control**— Who gets access to what? Managed with RBAC (role-based access control), Active Directory groups,
+-and NTFS permissions
 -**Patching**— Keeping software updated to close security vulnerabilities
 -**Logging and monitoring (SIEM)**— Detecting attacks by analyzing security logs from multiple sources
 
-**Privacy (GDPR):**All IT solutions that process personal data must comply with the General Data Protection Regulation. This means data must be stored securely, kept no longer than necessary, and users must have the right to access their own data.
+***Privacy (GDPR):**All IT solutions that process personal data must comply with the General Data Protection Regulation.
+**This means data must be stored securely, kept no longer than necessary, and users must have the right to access their
+*own data.
 
 ---
 
 ## 💡 Eksempler / Examples
 
-### Norsk
+### Norsk (2)
 
-**Eksempel 1: Sikker nettside for skolen**
-Skolens nettside bruker HTTPS (TLS-kryptering) slik at all trafikk mellom eleven og serveren er kryptert. En Web Application Firewall (WAF) blokkerer angrep.
+*## Eksempel 1: Sikker nettside for skolen
+SSkolens nettside bruker HTTPS (TLS-kryptering) slik at all trafikk mellom eleven og serveren er kryptert.
+SEn Web Application Firewall (WAF) blokkerer angrep.
 
-**Eksempel 2: Kryptert harddisk**
-En lærer mister bærbar-PC-en. Fordi harddisken var kryptert med BitLocker, kan ingen lese dataene på den — selv om de fjerner harddisken og setter den i en annen PC.
+*## Eksempel 2: Kryptert harddisk
+EEn lærer mister bærbar-PC-en. Fordi harddisken var kryptert med BitLocker, kan ingen lese dataene på den — selv om de
+Efjerner harddisken og setter den i en annen PC.
 
-### English
+### English (2)
 
-**Example 1: Secure School Website**
-The school's website uses HTTPS (TLS encryption) so all traffic between student and server is encrypted. A Web Application Firewall (WAF) blocks attacks.
+*## Example 1: Secure School Website
+TThe school's website uses HTTPS (TLS encryption) so all traffic between student and server is encrypted.
+TA Web Application Firewall (WAF) blocks attacks.
 
-**Example 2: Encrypted Hard Drive**
-A teacher loses their laptop. Because the hard drive was encrypted with BitLocker, no one can read the data — even if they remove the drive and put it in another PC.
+*## Example 2: Encrypted Hard Drive
+AA teacher loses their laptop. Because the hard drive was encrypted with BitLocker, no one can read the data — even if
+Athey remove the drive and put it in another PC.
 
 ---
 
 ## 📝 Oppsummering / Summary
 
-| Norsk | English |
-|-------|---------|
-| Security by Design = sikkerhet fra starten | Security by Design = security from the start |
-| Kryptering, brannmur og tilgangskontroll er grunnleggende tiltak | Encryption, firewalls, and access control are basic measures |
-| Regelmessig patching er avgjørende for sikkerhet | Regular patching is critical for security |
-| IT-løsninger må følge personvernregelverket (GDPR) | IT solutions must comply with privacy regulations (GDPR) |
+|| Norsk | English |
+|| ------- | --------- |
+|| Security by Design = sikkerhet fra starten | Security by Design = security from the start |
+|| Kryptering, brannmur og tilgangskontroll er grunnleggende tiltak | Encryption, firewalls, and access control are basic measures |
+|| Regelmessig patching er avgjørende for sikkerhet | Regular patching is critical for security |
+|| IT-løsninger må følge personvernregelverket (GDPR) | IT solutions must comply with privacy regulations (GDPR) |
 
 ---
 
@@ -94,7 +110,7 @@ A teacher loses their laptop. Because the hard drive was encrypted with BitLocke
 
 ### Norsk — Praksisoppgaver
 
-**Oppgave 1: Konfigurer en brannmur for skolens nettverk**
+*## Oppgave 1: Konfigurer en brannmur for skolens nettverk
 Bruk en brannmursimulator (f.eks. pfSense VM eller iptables på Linux).
 Scenario: Skolen har tre soner — LAN (elever/lærere), DMZ (webserver), WAN (internett).
 
@@ -108,7 +124,7 @@ Scenario: Skolen har tre soner — LAN (elever/lærere), DMZ (webserver), WAN (i
 - Test reglene ved å prøve forbindelser som skal tillates og blokkeres
 - Dokumenter regelsettet med begrunnelse for hver regel
 
-**Oppgave 2: Sett opp HTTPS på en webserver**
+*## Oppgave 2: Sett opp HTTPS på en webserver
 Eleven har en Apache/Nginx-webserver (fra KM-03 lab'en).
 
 - Generer et selvsignert SSL-sertifikat med OpenSSL
@@ -118,14 +134,14 @@ Eleven har en Apache/Nginx-webserver (fra KM-03 lab'en).
 - Bonus: Konfigurer HSTS (HTTP Strict Transport Security)
 - Refleksjon: Hvorfor er HTTPS viktig for personvernet?
 
-**Veiledning / Solution Guidelines:**
+*## Veiledning / Solution Guidelines:
 
 - Oppgave 1 (iptables): `iptables -A FORWARD -i lan -o wan -p tcp --dport 80 -j ACCEPT`. Standard policy: DROP på inngående fra WAN. Test med curl/wget fra ulike soner. Dokumentasjon: tegn et regelsett-diagram.
 - Oppgave 2 (Apache): `a2enmod ssl`, konfigurer VirtualHost med `SSLEngine on`, `SSLCertificateFile`, `SSLCertificateKeyFile`. Redirect: `Redirect permanent / <https://server/`.> HSTS: `Header always set Strict-Transport-Security "max-age=31536000"`. HTTPS krypterer all data — uten HTTPS kan alle på nettverket lese passord og personopplysninger.
 
 ### English — Practical Exercises
 
-**Exercise 1: Configure a Firewall for the School Network**
+*## Exercise 1: Configure a Firewall for the School Network
 Using pfSense VM or iptables:
 
 - Set up NAT rules for LAN internet access
@@ -133,7 +149,7 @@ Using pfSense VM or iptables:
 - Test allowed and blocked connections
 - Document the rule set with justifications
 
-**Exercise 2: Set Up HTTPS on a Web Server**
+*## Exercise 2: Set Up HTTPS on a Web Server
 Using the Apache/Nginx server from KM-03 lab:
 
 - Generate a self-signed SSL certificate
@@ -142,7 +158,7 @@ Using the Apache/Nginx server from KM-03 lab:
 - Bonus: Configure HSTS
 - Reflect: Why is HTTPS important for privacy?
 
-**Solution Guidelines:**
+*## Solution Guidelines:
 
 - Exercise 1 (iptables): Default policy DROP on WAN inbound. Test with curl from different zones.
 - Exercise 2 (Apache): Enable SSL module, configure VirtualHost with certificate paths, redirect HTTP to HTTPS. Without HTTPS, anyone on the network can read passwords and personal data.

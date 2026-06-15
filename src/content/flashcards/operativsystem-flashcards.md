@@ -2,7 +2,8 @@
 
 ## Card 1
 
-**Q:**Hva er Microsofts sentrale katalogtjeneste som lagrer informasjon om nettverksobjekter som brukerkontoer og datamaskiner?
+***Q:**Hva er Microsofts sentrale katalogtjeneste som lagrer informasjon om nettverksobjekter som brukerkontoer og
+*datamaskiner?
 
 **A:**Active Directory Domain Services (AD DS).
 
@@ -338,7 +339,8 @@
 
 ## Card 43
 
-**Q:**Hvilken Windows-tjeneste brukes for å knytte domenenavn til IP-adresser, noe som er kritisk for at Active Directory skal fungere?
+***Q:**Hvilken Windows-tjeneste brukes for å knytte domenenavn til IP-adresser, noe som er kritisk for at Active
+*Directory skal fungere?
 
 **A:**DNS (Domain Name System).
 
@@ -386,7 +388,8 @@
 
 ## Card 49
 
-**Q:**Hva kalles programvaren som lar deg kjøre flere virtuelle operativsystemer på én fysisk maskin (f.eks. VirtualBox)?
+***Q:**Hva kalles programvaren som lar deg kjøre flere virtuelle operativsystemer på én fysisk maskin (f.eks.
+*VirtualBox)?
 
 **A:**Hypervisor.
 
@@ -402,7 +405,8 @@
 
 ## Card 51
 
-**Q:**Hvilken Linux-funksjon gjør at et program kjøres med rettighetene til fileieren i stedet for brukeren som starter det?
+***Q:**Hvilken Linux-funksjon gjør at et program kjøres med rettighetene til fileieren i stedet for brukeren som starter
+*det?
 
 **A:**SUID (Set User ID).
 
@@ -522,7 +526,8 @@
 
 ## Card 66
 
-**Q:**Hvilket verktøy brukes i Windows for å administrere lokale brukere og grupper på en maskin som ikke er en domenekontroller?
+***Q:**Hvilket verktøy brukes i Windows for å administrere lokale brukere og grupper på en maskin som ikke er en
+*domenekontroller?
 
 **A:**Computer Management (lusrmgr.msc).
 
@@ -530,7 +535,8 @@
 
 ## Card 67
 
-**Q:**Hva skjer dersom en bruker er medlem av to grupper der den ene har NTFS 'Allow' og den andre har 'Deny' til samme mappe?
+***Q:**Hva skjer dersom en bruker er medlem av to grupper der den ene har NTFS 'Allow' og den andre har 'Deny' til samme
+*mappe?
 
 **A:**'Deny' overstyrer alltid 'Allow'.
 

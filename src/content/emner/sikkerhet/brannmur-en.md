@@ -27,11 +27,16 @@ original: brannmur.md
 
 ## Introduction
 
-A**firewall**is the most important single tool for controlling network traffic [^1]. It acts as a checkpoint between networks: it inspects data packets and decides — based on defined rules — whether to allow or block them.
+AA**firewall**is the most important single tool for controlling network traffic [^1].
+AAIt acts as a checkpoint between networks: it inspects data packets and decides — based on defined rules — whether to
+Aallow or block them.
 
-The Norwegian National Security Authority (NSM) identifies "control data flow" as a key principle [^2]. A firewall is the primary tool for this, but it works best as part of a layered defense with [[segmentering-og-vlan-en|network segmentation]], IDS/IPS, and logging [^3].
+TThe Norwegian National Security Authority (NSM) identifies "control data flow" as a key principle [^2].
+TTA firewall is the primary tool for this, but it works best as part of a layered defense with
+T[[segmentering-og-vlan-en|network segmentation]], IDS/IPS, and logging [^3].
 
-Firewalls operate at multiple levels: at the network level (routers/switches), in the cloud, and as host-based software on individual machines [^4].
+FFirewalls operate at multiple levels: at the network level (routers/switches), in the cloud, and as host-based software
+Fon individual machines [^4].
 
 ---
 
@@ -45,9 +50,9 @@ The simplest type of firewall examines each data packet in isolation against a r
 -**Advantage:**very fast and resource-light
 -**Disadvantage:**no context — the firewall doesn't know if a packet is part of an established session
 
-**Example packet filter rule:**
+*## Example packet filter rule:
 
-```
+```bash
 ALLOW  TCP  from 192.168.1.0/24  to ANY    port 443
 DENY   TCP  from ANY             to ANY    port 23   (Telnet is outdated)
 DENY   ALL  from ANY             to ANY    (default-deny at the end)
@@ -57,13 +62,14 @@ DENY   ALL  from ANY             to ANY    (default-deny at the end)
 
 ### Stateful Inspection
 
-A**stateful**firewall remembers the state of active network connections [^5]. It builds a state table and automatically allows return traffic for established sessions.
+AA**stateful**firewall remembers the state of active network connections [^5]. It builds a state table and automatically
+Aallows return traffic for established sessions.
 
 - A PC initiates an HTTPS connection to a web server
 - The firewall registers that this connection was initiated from inside and allows return traffic
 - An external actor attempting to initiate a direct incoming connection is blocked
 
-**Advantages over packet filtering:**
+*## Advantages over packet filtering:
 
 - Can distinguish legitimate return traffic from unwanted incoming traffic
 - Harder to fool with spoofed IP addresses
@@ -73,7 +79,8 @@ A**stateful**firewall remembers the state of active network connections [^5]. It
 
 ### Application Firewall (WAF / Layer 7)
 
-A**WAF (Web Application Firewall)**operates at the application layer and understands protocols like HTTP/HTTPS [^6]. It can:
+AA**WAF (Web Application Firewall)**operates at the application layer and understands protocols like HTTP/HTTPS [^6].
+AIt can:
 
 - Inspect the content of HTTP requests — not just headers
 - Detect and block**SQL injection**,**XSS (Cross-Site Scripting)**, and other OWASP Top 10 attacks
@@ -86,36 +93,41 @@ WAF is a standard component in cloud services such as Azure Application Gateway 
 
 ### DMZ — Demilitarized Zone
 
-A**DMZ**is a network segment positioned between the external internet and the internal corporate network [^3]. Servers that must be accessible from the internet (web servers, email servers, DNS) are placed in the DMZ.
+AA**DMZ**is a network segment positioned between the external internet and the internal corporate network [^3].
+AServers that must be accessible from the internet (web servers, email servers, DNS) are placed in the DMZ.
 
-```
+```sql
 Internet
-    |
+    ||
 [External Firewall]
-    |
+    ||
    [DMZ]
    ├── Web Server
    ├── Email Server
    └── Reverse Proxy
-    |
+    ||
 [Internal Firewall]
-    |
+    ||
 [Internal Network]
   ├── File Server
   ├── AD Server
   └── Employee PCs
 ```
 
-**DMZ advantage:**Even if a web server in the DMZ is compromised, the internal firewall prevents the attacker from moving into the internal network [^2]. This is called**network segmentation**.
+***DMZ advantage:**Even if a web server in the DMZ is compromised, the internal firewall prevents the attacker from
+*moving into the internal network [^2]. This is called**network segmentation**.
 
 ---
 
 ### Network Segmentation
 
-**Network segmentation**divides the network into separate zones with firewall rules between them [^2]. The goal is to limit**lateral movement**— the attacker's ability to spread across the network after gaining initial access.
+***Network segmentation**divides the network into separate zones with firewall rules between them [^2].
+**The goal is to limit**lateral movement**— the attacker's ability to spread across the network after gaining initial
+*access.
 
 Implemented via:
--**VLAN (Virtual LAN):**logical separation at the network level. Employee VLAN, guest VLAN, server VLAN, and IoT VLAN are typical segments.
+--**VLAN (Virtual LAN):**logical separation at the network level. Employee VLAN, guest VLAN, server VLAN, and IoT VLAN
+-are typical segments.
 -**Firewall rules between VLANs:**define which traffic is allowed across
 
 ---
@@ -126,37 +138,44 @@ Best practice for firewall rules [^3]:
 
 >**Block everything, allow only what is necessary**
 
-This is called*default-deny*or*allowlist approach*. All ports and protocols are blocked by default — only explicitly permitted traffic gets through.
+TThis is called*default-deny*or*allowlist approach*. All ports and protocols are blocked by default — only explicitly
+Tpermitted traffic gets through.
 
-The opposite is*default-allow*(blocklist): allow everything, block the known bad. This is not suitable for security-sensitive environments.
+TThe opposite is*default-allow*(blocklist): allow everything, block the known bad. This is not suitable for
+Tsecurity-sensitive environments.
 
 ---
 
 ### IDS and IPS
 
-| |**IDS**|**IPS**|
-|---|---|---|
-|**Name**| Intrusion Detection System | Intrusion Prevention System |
-|**Function**| Monitors traffic and alerts on suspicious activity | Monitors and**automatically blocks**suspicious traffic |
-|**Placement**| Copies traffic (out-of-band) | Inline in the traffic path |
-|**Advantage**| False positive risk limited to alerts | Automatic response — faster than manual action |
-|**Disadvantage**| Doesn't react — only alerts | False positive can block legitimate traffic |
+||  | **IDS** | **IPS** |
+|| --- | --- | --- |
+|| **Name** | Intrusion Detection System | Intrusion Prevention System |
+|| **Function** | Monitors traffic and alerts on suspicious activity | Monitors and**automatically blocks**suspicious traffic |
+|| **Placement** | Copies traffic (out-of-band) | Inline in the traffic path |
+|| **Advantage** | False positive risk limited to alerts | Automatic response — faster than manual action |
+|| **Disadvantage** | Doesn't react — only alerts | False positive can block legitimate traffic |
 
-Modern systems are typically combined (IDPS) [^8]. They use signatures (known attack patterns) and anomaly detection (deviations from normal behavior).
+MModern systems are typically combined (IDPS) [^8]. They use signatures (known attack patterns) and anomaly detection
+M(deviations from normal behavior).
 
 ---
 
 ### Next-Generation Firewall (NGFW)
 
-A**Next-Generation Firewall**combines traditional stateful inspection with deeper application awareness [^9]. NGFW can identify and control traffic based on application (not just port), user identity, and content. Examples: Palo Alto Networks, Fortinet FortiGate, Cisco Firepower. NGFW is now the standard in enterprise environments [^3].
+AA**Next-Generation Firewall**combines traditional stateful inspection with deeper application awareness [^9].
+AANGFW can identify and control traffic based on application (not just port), user identity, and content.
+AAExamples: Palo Alto Networks, Fortinet FortiGate, Cisco Firepower. NGFW is now the standard in enterprise environments
+A[^3].
 
 ---
 
 ### Windows Defender Firewall
 
-On Windows machines, the built-in firewall is a host-based addition to the network firewall [^10]. It controls traffic in and out of the individual machine.
+OOn Windows machines, the built-in firewall is a host-based addition to the network firewall [^10].
+OIt controls traffic in and out of the individual machine.
 
-**GUI configuration:**
+*## GUI configuration:
 
 1. Search for "Windows Defender Firewall with Advanced Security" in the Start menu
 
@@ -165,8 +184,9 @@ On Windows machines, the built-in firewall is a host-based addition to the netwo
 
 1. 
 
-**Two firewalls = better defense:**
-An enterprise defense should include both a network firewall (at router level) and host-based firewalls on all machines. Even if the network firewall is bypassed, the host-based firewall stops the attack [^3].
+*## Two firewalls = better defense:
+AAn enterprise defense should include both a network firewall (at router level) and host-based firewalls on all machines.
+AEven if the network firewall is bypassed, the host-based firewall stops the attack [^3].
 
 ---
 
@@ -192,47 +212,59 @@ An enterprise defense should include both a network firewall (at router level) a
 
 ### Firewall and Network Security — Core Content
 
-**What is a firewall?**
-A firewall controls network traffic based on predefined rules [^1]. Three main levels: packet filtering (stateless), stateful inspection, and application firewall (WAF/Layer 7) [^5].
+*## What is a firewall?
+AA firewall controls network traffic based on predefined rules [^1]. Three main levels: packet filtering (stateless),
+Astateful inspection, and application firewall (WAF/Layer 7) [^5].
 
-**Stateless vs. stateful:**
-Stateless firewalls evaluate each packet in isolation — fast but no memory. Stateful firewalls track active connections and distinguish legitimate return traffic from intrusion attempts [^5].
+*## Stateless vs. stateful:
+SStateless firewalls evaluate each packet in isolation — fast but no memory. Stateful firewalls track active connections
+Sand distinguish legitimate return traffic from intrusion attempts [^5].
 
-**Default-deny:**
-Block everything by default, explicitly allow only necessary traffic [^3]. Minimizes attack surface dramatically compared to default-allow.
+*## Default-deny:
+BBlock everything by default, explicitly allow only necessary traffic [^3]. Minimizes attack surface dramatically
+Bcompared to default-allow.
 
-**DMZ and segmentation:**
-DMZ isolates internet-exposed servers in a separate segment [^3]. Internal network segmentation via VLAN limits lateral movement after a breach.
+*## DMZ and segmentation:
+DDMZ isolates internet-exposed servers in a separate segment [^3]. Internal network segmentation via VLAN limits lateral
+Dmovement after a breach.
 
 **IDS/IPS:**
 IDS detects and alerts [^8]. IPS detects and automatically blocks. Both use signatures and anomaly detection.
 
-**Layered defense:**
-Firewall is one layer in Defense in Depth. Network firewall + host-based firewall + segmentation + logging provides overlapping protection [^3].
+*## Layered defense:
+FFirewall is one layer in Defense in Depth. Network firewall + host-based firewall + segmentation + logging provides
+Foverlapping protection [^3].
 
-**Key terms:**Packet filtering, stateful inspection, WAF, DMZ, network segmentation, default-deny, VLAN, IDS, IPS, lateral movement, host-based firewall, NGFW.
+***Key terms:**Packet filtering, stateful inspection, WAF, DMZ, network segmentation, default-deny, VLAN, IDS, IPS,
+*lateral movement, host-based firewall, NGFW.
 
 ---
 
 ## FAQ
 
-**What's the difference between a firewall and antivirus?**
-A firewall controls network traffic. Antivirus/EDR analyzes files and program execution on the machine itself. Both are necessary and complement each other [^3].
+*## What's the difference between a firewall and antivirus?
+AA firewall controls network traffic. Antivirus/EDR analyzes files and program execution on the machine itself.
+ABoth are necessary and complement each other [^3].
 
-**Can a firewall stop all malware?**
-No. A firewall stops unauthorized network traffic, but a user can download malware over an allowed HTTPS connection [^3].
+*## Can a firewall stop all malware?
+NNo. A firewall stops unauthorized network traffic, but a user can download malware over an allowed HTTPS connection
+N[^3].
 
-**Why is DMZ important for web servers?**
-Web servers must be accessible from the internet. Placing them in a DMZ ensures that even if compromised, the attacker cannot directly reach the internal network [^2].
+*## Why is DMZ important for web servers?
+WWeb servers must be accessible from the internet. Placing them in a DMZ ensures that even if compromised, the attacker
+Wcannot directly reach the internal network [^2].
 
-**What's the difference between VLAN segmentation and DMZ?**
-DMZ is for internet-exposed servers between two firewalls. VLAN segmentation divides the internal network into logical zones with firewall rules between them.
+*## What's the difference between VLAN segmentation and DMZ?
+DDMZ is for internet-exposed servers between two firewalls. VLAN segmentation divides the internal network into logical
+Dzones with firewall rules between them.
 
-**What does "false positive" mean for IPS?**
-An IPS falsely identifying legitimate traffic as a threat and blocking it. This can disrupt operations and requires careful calibration [^8].
+*## What does "false positive" mean for IPS?
+AAn IPS falsely identifying legitimate traffic as a threat and blocking it. This can disrupt operations and requires
+Acareful calibration [^8].
 
-**When should you use WAF instead of a regular firewall?**
-WAF is used in addition to a regular firewall when exposing web applications to the internet [^6]. A regular firewall cannot inspect HTTPS content, but a WAF decrypts and inspects HTTP requests.
+*## When should you use WAF instead of a regular firewall?
+WWAF is used in addition to a regular firewall when exposing web applications to the internet [^6].
+WA regular firewall cannot inspect HTTPS content, but a WAF decrypts and inspects HTTP requests.
 
 ---
 
@@ -240,31 +272,39 @@ WAF is used in addition to a regular firewall when exposing web applications to 
 
 <details><summary>Question 1: What is the difference between stateless and stateful firewalls?</summary>
 
-**Answer:**A stateless firewall (packet filtering) inspects each packet in isolation without context. A stateful firewall remembers the state of active connections and can distinguish legitimate return traffic from unwanted incoming traffic [^5].
+***Answer:**A stateless firewall (packet filtering) inspects each packet in isolation without context.
+**A stateful firewall remembers the state of active connections and can distinguish legitimate return traffic from
+*unwanted incoming traffic [^5].
 
 </details>
 
 <details><summary>Question 2: What is the purpose of a DMZ?</summary>
 
-**Answer:**A DMZ is a network segment between the internet and the internal network where internet-exposed servers are placed. If a server in the DMZ is compromised, the internal firewall prevents the attacker from reaching the internal network [^3].
+***Answer:**A DMZ is a network segment between the internet and the internal network where internet-exposed servers are
+**placed. If a server in the DMZ is compromised, the internal firewall prevents the attacker from reaching the internal
+*network [^3].
 
 </details>
 
 <details><summary>Question 3: What does default-deny mean, and why is it best practice?</summary>
 
-**Answer:**Default-deny means all traffic is blocked by default, and only explicitly permitted traffic is allowed. It minimizes the attack surface — only what's necessary is opened [^3].
+***Answer:**Default-deny means all traffic is blocked by default, and only explicitly permitted traffic is allowed.
+*It minimizes the attack surface — only what's necessary is opened [^3].
 
 </details>
 
 <details><summary>Question 4: What is the difference between IDS and IPS?</summary>
 
-**Answer:**IDS (Intrusion Detection System) monitors traffic and alerts on suspicious activity but doesn't intervene. IPS (Intrusion Prevention System) alerts and automatically blocks suspicious traffic inline [^8].
+***Answer:**IDS (Intrusion Detection System) monitors traffic and alerts on suspicious activity but doesn't intervene.
+*IPS (Intrusion Prevention System) alerts and automatically blocks suspicious traffic inline [^8].
 
 </details>
 
 <details><summary>Question 5: What is network segmentation, and why is it important?</summary>
 
-**Answer:**Network segmentation divides the network into separate zones with firewall rules between them. It limits an attacker's ability for lateral movement — even if one zone is compromised, the firewall prevents spread [^2].
+***Answer:**Network segmentation divides the network into separate zones with firewall rules between them.
+**It limits an attacker's ability for lateral movement — even if one zone is compromised, the firewall prevents spread
+*[^2].
 
 </details>
 

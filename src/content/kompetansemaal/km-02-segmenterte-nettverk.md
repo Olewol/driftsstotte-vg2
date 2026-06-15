@@ -31,56 +31,65 @@ public: true
 
 ### Norsk
 
-Segmenterte nettverk betyr å dele opp et større nettverk i mindre, isolerte deler (segmenter). Dette gjøres for å forbedre sikkerhet, ytelse og oversiktlighet[^1][^4].
+SSegmenterte nettverk betyr å dele opp et større nettverk i mindre, isolerte deler (segmenter).
+SDette gjøres for å forbedre sikkerhet, ytelse og oversiktlighet[^1][^4].
 
 Hovedverktøyene for nettverkssegmentering:
 -**VLAN (Virtual LAN)**— Logisk segmentering på svitsjnivå
 -**Subnett**— IP-basert segmentering med CIDR-notasjon
 -**Brannmurer**— Regelbasert trafikkontroll mellom segmenter
 
-Virtualisering spiller en nøkkelrolle: på én fysisk vert kan du kjøre flere virtuelle maskiner (VM-er) som hver har sitt eget virtuelle nettverkskort og kan plasseres i ulike VLAN.
+VVirtualisering spiller en nøkkelrolle: på én fysisk vert kan du kjøre flere virtuelle maskiner (VM-er) som hver har sitt
+Veget virtuelle nettverkskort og kan plasseres i ulike VLAN.
 
 ### English
 
-Segmented networks means dividing a larger network into smaller, isolated parts (segments). This improves security, performance, and manageability[^1].
+SSegmented networks means dividing a larger network into smaller, isolated parts (segments).
+SThis improves security, performance, and manageability[^1].
 
 Key tools for network segmentation:
 -**VLAN (Virtual LAN)**— Logical segmentation at the switch level
 -**Subnets**— IP-based segmentation using CIDR notation
 -**Firewalls**— Rule-based traffic control between segments
 
-Virtualization plays a key role: on one physical host you can run multiple virtual machines (VMs), each with its own virtual network card placed in different VLANs.
+VVirtualization plays a key role: on one physical host you can run multiple virtual machines (VMs), each with its own
+Vvirtual network card placed in different VLANs.
 
 ---
 
 ## 💡 Eksempler / Examples
 
-### Norsk
+### Norsk (2)
 
-**Eksempel 1: Skole-nettverk med VLAN**
-En skole har tre avdelinger: administrasjon, undervisning og IT-drift. Med VLAN kan alle være på samme fysiske svitsjer, men administrasjonens data kan ikke nås fra elevnettet. VLAN 10 = admin, VLAN 20 = undervisning, VLAN 30 = IT-drift.
+*## Eksempel 1: Skole-nettverk med VLAN
+EEn skole har tre avdelinger: administrasjon, undervisning og IT-drift. Med VLAN kan alle være på samme fysiske svitsjer,
+Emen administrasjonens data kan ikke nås fra elevnettet. VLAN 10 = admin, VLAN 20 = undervisning, VLAN 30 = IT-drift.
 
-**Eksempel 2: DMZ i en bedrift**
-En bedrift har websereren i et eget segment (DMZ) slik at selv om den blir hacket, har angriperen ikke direkte tilgang til interne dataserverer.
+*## Eksempel 2: DMZ i en bedrift
+EEn bedrift har websereren i et eget segment (DMZ) slik at selv om den blir hacket, har angriperen ikke direkte tilgang
+Etil interne dataserverer.
 
-### English
+### English (2)
 
-**Example 1: School Network with VLANs**
-A school has three departments: administration, teaching, and IT operations. With VLANs they can share the same physical switches, but administrative data can't be reached from the student network. VLAN 10 = admin, VLAN 20 = teaching, VLAN 30 = IT operations.
+*## Example 1: School Network with VLANs
+AA school has three departments: administration, teaching, and IT operations. With VLANs they can share the same physical
+AAswitches, but administrative data can't be reached from the student network. VLAN 10 = admin, VLAN 20 = teaching, VLAN
+A30 = IT operations.
 
-**Example 2: DMZ in a Company**
-A company places its web server in a separate segment (DMZ) so even if it gets hacked, the attacker has no direct access to internal database servers.
+*## Example 2: DMZ in a Company
+AA company places its web server in a separate segment (DMZ) so even if it gets hacked, the attacker has no direct access
+Ato internal database servers.
 
 ---
 
 ## 📝 Oppsummering / Summary
 
-| Norsk | English |
-|-------|---------|
-| Segmentering deler nettverk i isolerte soner | Segmentation divides networks into isolated zones |
-| VLAN er den vanligste metoden for logisk segmentering | VLAN is the most common method for logical segmentation |
-| Virtualisering gjør segmentering mer fleksibel | Virtualization makes segmentation more flexible |
-| God segmentering begrenser skade ved sikkerhetsbrudd | Good segmentation limits damage during security breaches |
+|| Norsk | English |
+|| ------- | --------- |
+|| Segmentering deler nettverk i isolerte soner | Segmentation divides networks into isolated zones |
+|| VLAN er den vanligste metoden for logisk segmentering | VLAN is the most common method for logical segmentation |
+|| Virtualisering gjør segmentering mer fleksibel | Virtualization makes segmentation more flexible |
+|| God segmentering begrenser skade ved sikkerhetsbrudd | Good segmentation limits damage during security breaches |
 
 ---
 
@@ -88,7 +97,7 @@ A company places its web server in a separate segment (DMZ) so even if it gets h
 
 ### Norsk — Praksisoppgaver
 
-**Oppgave 1: Konfigurer VLAN på en svitsj**
+*## Oppgave 1: Konfigurer VLAN på en svitsj
 Bruk Cisco Packet Tracer (eller en fysisk svitsj) til å sette opp:
 
 - VLAN 10 — Administrasjon (4 PC-er)
@@ -99,7 +108,7 @@ Bruk Cisco Packet Tracer (eller en fysisk svitsj) til å sette opp:
 - Verifiser at PC-er i ulike VLAN IKKE kan pinge hverandre
 - Sett opp en ruter på stilk (router-on-a-stick) for inter-VLAN-ruting
 
-**Oppgave 2: Design et segmentert nettverk for en videregående skole**
+*## Oppgave 2: Design et segmentert nettverk for en videregående skole
 Skolens IT-sjef har bedt deg om å tegne en segmenteringsplan:
 
 - 3 undervisningsavdelinger: IT, Helse, Elektro
@@ -110,14 +119,14 @@ Skolens IT-sjef har bedt deg om å tegne en segmenteringsplan:
 
 Lever: VLAN-tabell, IP-adresseområder, og brannmurregel-sett.
 
-**Veiledning / Solution Guidelines:**
+*## Veiledning / Solution Guidelines:
 
 - Oppgave 1: VLAN-konfigurasjon: `vlan 10`, `name Admin`, `interface range f0/1-4`, `switchport access vlan 10`. Trunk: `interface f0/24`, `switchport mode trunk`. Router-on-a-stick: subinterfaces med 802.1Q-innkapsling.
 - Oppgave 2: Eksempel: VLAN 10-19 for undervisning, VLAN 20 for administrasjon, VLAN 30 for servere, VLAN 40 for gjester. Hvert segment /24-nett. Brannmurregler: gjestenett kun internett, administrasjon tilgang til servere, undervisning begrenset tilgang.
 
 ### English — Practical Exercises
 
-**Exercise 1: Configure VLANs on a Switch**
+*## Exercise 1: Configure VLANs on a Switch
 Using Cisco Packet Tracer (or physical switch), set up:
 
 - VLAN 10 — Administration (4 PCs)
@@ -128,7 +137,7 @@ Using Cisco Packet Tracer (or physical switch), set up:
 - Verify that PCs in different VLANs CANNOT ping each other
 - Set up router-on-a-stick for inter-VLAN routing
 
-**Exercise 2: Design a Segmented Network for a High School**
+*## Exercise 2: Design a Segmented Network for a High School
 The school's IT manager asks you to design a segmentation plan:
 
 - 3 teaching departments: IT, Health, Electrical
@@ -138,7 +147,7 @@ The school's IT manager asks you to design a segmentation plan:
 
 Deliver: VLAN table, IP address ranges, and firewall rule set.
 
-**Solution Guidelines:**
+*## Solution Guidelines:
 
 - Exercise 1: VLAN config: `vlan 10`, `name Admin`, `interface range f0/1-4`, `switchport access vlan 10`. Trunk: `interface f0/24`, `switchport mode trunk`. Router-on-a-stick: subinterfaces with 802.1Q encapsulation.
 - Exercise 2: Example: VLAN 10-19 for teaching, VLAN 20 for admin, VLAN 30 for servers, VLAN 40 for guests. Each segment /24 network. Firewall rules: guest network internet-only, admin has server access, teaching limited access.

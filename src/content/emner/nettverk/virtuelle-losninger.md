@@ -25,31 +25,39 @@ notebooklm: true
 
 ## Introduksjon
 
-Virtualisering er en av de mest transformative teknologiene i moderne IT-drift. I stedet for å kjøpe én fysisk server per tjeneste, kan man kjøre ti, tjue eller hundre virtuelle servere på én fysisk maskin — med full isolasjon mellom dem. For driftstøtter er virtualisering grunnleggende: det er slik de fleste bedriftsservere og nettverksinfrastrukturer i dag er bygd opp.
+VVirtualisering er en av de mest transformative teknologiene i moderne IT-drift. I stedet for å kjøpe én fysisk server
+VVper tjeneste, kan man kjøre ti, tjue eller hundre virtuelle servere på én fysisk maskin — med full isolasjon mellom
+VVdem. For driftstøtter er virtualisering grunnleggende: det er slik de fleste bedriftsservere og
+Vnettverksinfrastrukturer i dag er bygd opp.
 
-Virtuelle løsninger henger tett sammen med [[segmentering-og-vlan]], siden virtuelle svitsjer støtter VLAN-tagging (IEEE 802.1Q) for å integrere VM-er i segmenterte nettverk. I større produksjonsmiljøer inngår virtualisering som et sentralt element i [[driftsarkitektur]].
+VVirtuelle løsninger henger tett sammen med [[segmentering-og-vlan]], siden virtuelle svitsjer støtter VLAN-tagging (IEEE
+VV802.1Q) for å integrere VM-er i segmenterte nettverk. I større produksjonsmiljøer inngår virtualisering som et sentralt
+Velement i [[driftsarkitektur]].
 
 ## Teori
 
 ### Hva er virtualisering?
 
-Virtualisering er teknologien som lar en fysisk datamaskin kjøre flere isolerte virtuelle maskiner (VM-er) samtidig[^4]. Hver VM kjører sitt eget operativsystem og sine egne applikasjoner, og "tror" at den er en selvstendig fysisk maskin.
+VVirtualisering er teknologien som lar en fysisk datamaskin kjøre flere isolerte virtuelle maskiner (VM-er) samtidig[^4].
+VHver VM kjører sitt eget operativsystem og sine egne applikasjoner, og "tror" at den er en selvstendig fysisk maskin.
 
-En**hypervisor**er programvaren som administrerer de virtuelle maskinene og fordeler fysiske ressurser (CPU, RAM, disk, nettverk) mellom dem[^2].
+EEn**hypervisor**er programvaren som administrerer de virtuelle maskinene og fordeler fysiske ressurser (CPU, RAM, disk,
+Enettverk) mellom dem[^2].
 
 ### Type 1 vs. Type 2 hypervisorer
 
-| | Type 1 (Bare Metal) | Type 2 (Hosted) |
-|---|---|---|
-|**Kjører på**| Direkte på maskinvaren | Oppå et vertsoperativsystem |
-|**Ytelse**| Høy (ingen OS-overhead) | Lavere (OS-lag i veien) |
-|**Bruksområde**| Produksjonsservere, datasentre | Utvikling, testing, undervisning |
-|**Eksempler**| Hyper-V, VMware ESXi, Proxmox | VirtualBox, VMware Workstation |
-|**Administrasjon**| Via nettgrensesnitt eller mgmt-verktøy | Fra vertsoperativsystemet |
+||  | Type 1 (Bare Metal) | Type 2 (Hosted) |
+|| --- | --- | --- |
+|| **Kjører på** | Direkte på maskinvaren | Oppå et vertsoperativsystem |
+|| **Ytelse** | Høy (ingen OS-overhead) | Lavere (OS-lag i veien) |
+|| **Bruksområde** | Produksjonsservere, datasentre | Utvikling, testing, undervisning |
+|| **Eksempler** | Hyper-V, VMware ESXi, Proxmox | VirtualBox, VMware Workstation |
+|| **Administrasjon** | Via nettgrensesnitt eller mgmt-verktøy | Fra vertsoperativsystemet |
 
 #### Type 1: Microsoft Hyper-V
 
-Hyper-V er Microsofts Type 1-hypervisor og er tilgjengelig som en serverrolle i Windows Server[^1]. Den kan også aktiveres som funksjon i Windows 10/11 Pro.
+HHyper-V er Microsofts Type 1-hypervisor og er tilgjengelig som en serverrolle i Windows Server[^1].
+HDen kan også aktiveres som funksjon i Windows 10/11 Pro.
 
 Nøkkelbegreper i Hyper-V:
 -**Root partition**: Windows Server-installasjonen med tilgang til faktisk maskinvare
@@ -58,7 +66,8 @@ Nøkkelbegreper i Hyper-V:
 
 #### Type 2: Oracle VirtualBox
 
-VirtualBox er gratis og plattformuavhengig (Windows, macOS, Linux). Godt egnet for laboratorieøvelser der man ikke har dedikert serverhardware.
+VVirtualBox er gratis og plattformuavhengig (Windows, macOS, Linux). Godt egnet for laboratorieøvelser der man ikke har
+Vdedikert serverhardware.
 
 ### Virtuelle maskiner — egenskaper
 
@@ -76,40 +85,45 @@ Fordeler med VM-er:
 -**Skalerbarhet**: enkel å klone og skalere opp
 -**Bærekraft**: serverkonsolidering reduserer strømforbruk og behov for fysisk maskinvare
 
-**Isolasjon**er prinsippet om at en virtuell maskin er separert fra andre maskiner og vertssystemet, slik at feil eller virus i én VM ikke sprer seg til resten av infrastrukturen.
+***Isolasjon**er prinsippet om at en virtuell maskin er separert fra andre maskiner og vertssystemet, slik at feil eller
+*virus i én VM ikke sprer seg til resten av infrastrukturen.
 
 ### Virtuelle nettverk
 
 Hypervisorer tilbyr virtuelle svitsjer (virtual switches / vSwitch) som kobler VM-er sammen og mot fysiske nettverk.
 
-En**virtuell svitsj (vSwitch)**er en programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med hverandre og fysiske nettverk via VLAN.
+EEn**virtuell svitsj (vSwitch)**er en programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med
+Ehverandre og fysiske nettverk via VLAN.
 
 #### Hyper-V Virtual Switch — tre typer
 
-| Type | Beskrivelse | Bruksscenario |
-|------|-------------|---------------|
-|**Ekstern**| Koblet til fysisk nettverkskort — VM-er når det fysiske nettverket | Produksjon, lab mot reelt nett |
-|**Intern**| Kommunikasjon mellom host og VM-er — ikke ut på fysisk nettverk | Host administrerer VM-er, delt nett |
-|**Privat**| Kun mellom VM-er — host har ikke tilgang | Isolerte testmiljøer |
+|| Type | Beskrivelse | Bruksscenario |
+|| ------ | ------------- | --------------- |
+|| **Ekstern** | Koblet til fysisk nettverkskort — VM-er når det fysiske nettverket | Produksjon, lab mot reelt nett |
+|| **Intern** | Kommunikasjon mellom host og VM-er — ikke ut på fysisk nettverk | Host administrerer VM-er, delt nett |
+|| **Privat** | Kun mellom VM-er — host har ikke tilgang | Isolerte testmiljøer |
 
 #### VirtualBox nettverksmodi[^1]
 
-| Modus | VM ser | VM nås fra | Typisk bruk |
-|-------|--------|-----------|-------------|
-|**NAT**| Internett via host | Kun host (port-forward) | Enkel internett-tilgang fra VM |
-|**Bridged**| Fysisk nettverk direkte | Andre maskiner på nettverket | VM oppfører seg som fysisk maskin |
-|**Host-only**| Kun host og andre VM-er | Kun host | Isolert lab-nettverk |
-|**Internal Network**| Kun andre VM-er | Ingen | Fullstendig isolerte VM-er |
+|| Modus | VM ser | VM nås fra | Typisk bruk |
+|| ------- | -------- | ----------- | ------------- |
+|| **NAT** | Internett via host | Kun host (port-forward) | Enkel internett-tilgang fra VM |
+|| **Bridged** | Fysisk nettverk direkte | Andre maskiner på nettverket | VM oppfører seg som fysisk maskin |
+|| **Host-only** | Kun host og andre VM-er | Kun host | Isolert lab-nettverk |
+|| **Internal Network** | Kun andre VM-er | Ingen | Fullstendig isolerte VM-er |
 
 ### VLAN i virtuelle nettverk
 
-Virtuelle svitsjer støtter VLAN-tagging[^3]. En VM kan tilordnes et bestemt VLAN-ID, slik at den logisk befinner seg i det samme VLAN-et som fysiske maskiner i samme segment. Dette er nøkkelen til kompetansemål km-02: virtuelle løsninger integreres i de segmenterte nettverkene.
+VVirtuelle svitsjer støtter VLAN-tagging[^3]. En VM kan tilordnes et bestemt VLAN-ID, slik at den logisk befinner seg i
+VVdet samme VLAN-et som fysiske maskiner i samme segment. Dette er nøkkelen til kompetansemål km-02: virtuelle løsninger
+Vintegreres i de segmenterte nettverkene.
 
-Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klient-VM-er tilordnes VLAN 10 (Ansatte) — nøyaktig slik fysiske maskiner ville vært plassert.
+EEksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klient-VM-er tilordnes VLAN 10 (Ansatte) —
+Enøyaktig slik fysiske maskiner ville vært plassert.
 
 ### Praktisk bruk i VG2
 
-**Opprette VM i Hyper-V (forenklet):**
+*## Opprette VM i Hyper-V (forenklet):
 
 1. Hyper-V Manager → Action → New → Virtual Machine
 2. Gi VM-en et navn (f.eks. `WinServer01`)
@@ -120,7 +134,7 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 7. Velg installasjons-ISO
 8. Fullfør og start VM-en
 
-**Snapshots/kontrollpunkter:**
+*## Snapshots/kontrollpunkter:
 
 - Høyreklikk VM → Checkpoint (tar øyeblikksbilde)
 - Rull tilbake: høyreklikk checkpoint → Apply
@@ -172,16 +186,19 @@ Dette simulerer et produksjonsmiljø uten risiko for det fysiske nettverket.
 
 ## Study guide
 
-**Kjerneforståelse: hypervisorer**
-Type 1 (bare metal) kjører direkte på maskinvaren — høy ytelse, brukes i produksjon (Hyper-V, ESXi, Proxmox). Type 2 kjører oppå et OS — enklere, brukes i lab og utvikling (VirtualBox, VMware Workstation).
+*## Kjerneforståelse: hypervisorer
+TType 1 (bare metal) kjører direkte på maskinvaren — høy ytelse, brukes i produksjon (Hyper-V, ESXi, Proxmox).
+TType 2 kjører oppå et OS — enklere, brukes i lab og utvikling (VirtualBox, VMware Workstation).
 
-**Nettverksmodi i VirtualBox**
-NAT: VM deler hostens IP, ikke synlig utenfra. Bridged: VM får egen IP, oppfører seg som fysisk maskin. Host-only: kun mellom host og VM-er. Internal Network: kun mellom VM-er.
+*## Nettverksmodi i VirtualBox
+NNAT: VM deler hostens IP, ikke synlig utenfra. Bridged: VM får egen IP, oppfører seg som fysisk maskin.
+NHost-only: kun mellom host og VM-er. Internal Network: kun mellom VM-er.
 
-**VLAN i virtuelle miljøer**
-Virtuelle svitsjer støtter VLAN-tagging. En VM kan tilhøre et VLAN akkurat som en fysisk maskin. Dette er sentralt for å integrere virtuelle servere i segmenterte nettverksarkitekturer.
+*## VLAN i virtuelle miljøer
+VVirtuelle svitsjer støtter VLAN-tagging. En VM kan tilhøre et VLAN akkurat som en fysisk maskin.
+VDette er sentralt for å integrere virtuelle servere i segmenterte nettverksarkitekturer.
 
-**Vanlige eksamenspoeng**
+*## Vanlige eksamenspoeng
 
 - Forskjellen mellom Type 1 og Type 2 hypervisor
 - Hva et snapshot er og når man bruker det
@@ -190,60 +207,80 @@ Virtuelle svitsjer støtter VLAN-tagging. En VM kan tilhøre et VLAN akkurat som
 
 ## FAQ
 
-**Hva er forskjellen mellom en Type 1 og Type 2 hypervisor?**
-En Type 1-hypervisor (bare metal) kjører direkte på maskinvaren uten underliggende OS, noe som gir bedre ytelse. Den brukes i produksjon (Hyper-V, VMware ESXi). En Type 2-hypervisor kjører som et program oppå et vertsoperativsystem (VirtualBox, VMware Workstation) — enklere å sette opp, men med noe dårligere ytelse.
+*## Hva er forskjellen mellom en Type 1 og Type 2 hypervisor?
+EEn Type 1-hypervisor (bare metal) kjører direkte på maskinvaren uten underliggende OS, noe som gir bedre ytelse.
+EEDen brukes i produksjon (Hyper-V, VMware ESXi). En Type 2-hypervisor kjører som et program oppå et vertsoperativsystem
+E(VirtualBox, VMware Workstation) — enklere å sette opp, men med noe dårligere ytelse.
 
-**Hva er et snapshot/kontrollpunkt i en VM, og hvorfor er det nyttig?**
-Et snapshot (kontrollpunkt) er et øyeblikksbilde av en VM-s tilstand på et bestemt tidspunkt. Det lar deg rulle VM-en tilbake til den tilstanden hvis noe går galt — f.eks. etter en mislykket oppdatering eller feilkonfigurasjon. Uunnværlig i lab-miljøer.
+*## Hva er et snapshot/kontrollpunkt i en VM, og hvorfor er det nyttig?
+EEt snapshot (kontrollpunkt) er et øyeblikksbilde av en VM-s tilstand på et bestemt tidspunkt.
+EEDet lar deg rulle VM-en tilbake til den tilstanden hvis noe går galt — f.eks. etter en mislykket oppdatering eller
+Efeilkonfigurasjon. Uunnværlig i lab-miljøer.
 
-**Hva er forskjellen mellom NAT og Bridged nettverksmodus i VirtualBox?**
-I NAT-modus deler VM-en hostmaskinens IP-adresse og når internett gjennom den — men er ikke direkte synlig fra andre maskiner på nettverket. I Bridged-modus kobles VM-en direkte til det fysiske nettverket og får sin egen IP-adresse, som om den var en fysisk maskin.
+*## Hva er forskjellen mellom NAT og Bridged nettverksmodus i VirtualBox?
+II NAT-modus deler VM-en hostmaskinens IP-adresse og når internett gjennom den — men er ikke direkte synlig fra andre
+IImaskiner på nettverket. I Bridged-modus kobles VM-en direkte til det fysiske nettverket og får sin egen IP-adresse, som
+Iom den var en fysisk maskin.
 
-**Hvilke tre typer virtuelle svitsjer finnes i Hyper-V?**
-Ekstern (kobler VM-er til det fysiske nettverket via vertsmaskinens nettverkskort), Intern (kommunikasjon mellom host og VM-er, ikke ut på fysisk nett) og Privat (kun mellom VM-er, host har ikke tilgang).
+*## Hvilke tre typer virtuelle svitsjer finnes i Hyper-V?
+EEkstern (kobler VM-er til det fysiske nettverket via vertsmaskinens nettverkskort), Intern (kommunikasjon mellom host og
+EVM-er, ikke ut på fysisk nett) og Privat (kun mellom VM-er, host har ikke tilgang).
 
-**Nevn tre fordeler med virtualisering i IT-drift.**
-(Velg tre av): Ressurseffektivitet (færre fysiske servere), isolasjon mellom tjenester, portabilitet (eksport/import av VM-er), snapshots for enkel feilretting, enkel skalering, raskere utrulling av nye servere.
+*## Nevn tre fordeler med virtualisering i IT-drift.
+((Velg tre av): Ressurseffektivitet (færre fysiske servere), isolasjon mellom tjenester, portabilitet (eksport/import av
+(VM-er), snapshots for enkel feilretting, enkel skalering, raskere utrulling av nye servere.
 
-**Hva er en virtuell svitsj (vSwitch)?**
-En programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med hverandre og med fysiske nettverk. Virtuelle svitsjer støtter VLAN-tagging slik at VM-er kan plasseres i logiske nettverkssegmenter på samme måte som fysiske maskiner.
+*## Hva er en virtuell svitsj (vSwitch)?
+EEn programvarebasert nettverkssvitsj som lar virtuelle maskiner kommunisere med hverandre og med fysiske nettverk.
+EEVirtuelle svitsjer støtter VLAN-tagging slik at VM-er kan plasseres i logiske nettverkssegmenter på samme måte som
+Efysiske maskiner.
 
-**Hvordan bidrar virtualisering til bærekraft?**
-Serverkonsolidering lar én fysisk server erstatte mange separate maskiner. Dette reduserer strømforbruk, kjølebehov og mengden fysisk maskinvare som må produseres og kasseres — direkte bidrag til redusert miljøbelastning i IT-drift.
+*## Hvordan bidrar virtualisering til bærekraft?
+SServerkonsolidering lar én fysisk server erstatte mange separate maskiner. Dette reduserer strømforbruk, kjølebehov og
+Smengden fysisk maskinvare som må produseres og kasseres — direkte bidrag til redusert miljøbelastning i IT-drift.
 
-**Hva betyr isolasjon i virtualisering?**
-Isolasjon betyr at en VM er separert fra andre VM-er og fra vertssystemet. Hvis en VM kompromitteres av malware, sprer det seg ikke automatisk til andre VM-er. Dette er en av de viktigste sikkerhetsfordelene med virtualisering.
+*## Hva betyr isolasjon i virtualisering?
+IIsolasjon betyr at en VM er separert fra andre VM-er og fra vertssystemet. Hvis en VM kompromitteres av malware, sprer
+Idet seg ikke automatisk til andre VM-er. Dette er en av de viktigste sikkerhetsfordelene med virtualisering.
 
 ## Quiz
 
 <details>
 <summary>Spørsmål 1: Hva er forskjellen mellom en Type 1 og Type 2 hypervisor?</summary>
 
-**Svar:**En Type 1-hypervisor (bare metal) kjører direkte på maskinvaren uten underliggende OS, noe som gir bedre ytelse. Den brukes i produksjon (Hyper-V, VMware ESXi). En Type 2-hypervisor kjører som et program oppå et vertsoperativsystem (VirtualBox, VMware Workstation) — enklere å sette opp, men med noe dårligere ytelse.
+***Svar:**En Type 1-hypervisor (bare metal) kjører direkte på maskinvaren uten underliggende OS, noe som gir bedre
+**ytelse. Den brukes i produksjon (Hyper-V, VMware ESXi). En Type 2-hypervisor kjører som et program oppå et
+*vertsoperativsystem (VirtualBox, VMware Workstation) — enklere å sette opp, men med noe dårligere ytelse.
 </details>
 
 <details>
 <summary>Spørsmål 2: Hva er et snapshot/kontrollpunkt i en VM, og hvorfor er det nyttig?</summary>
 
-**Svar:**Et snapshot (kontrollpunkt) er et øyeblikksbilde av en VM-s tilstand på et bestemt tidspunkt. Det lar deg rulle VM-en tilbake til den tilstanden hvis noe går galt — f.eks. etter en mislykket oppdatering eller feilkonfigurasjon. Uunnværlig i lab-miljøer.
+***Svar:**Et snapshot (kontrollpunkt) er et øyeblikksbilde av en VM-s tilstand på et bestemt tidspunkt.
+**Det lar deg rulle VM-en tilbake til den tilstanden hvis noe går galt — f.eks. etter en mislykket oppdatering eller
+*feilkonfigurasjon. Uunnværlig i lab-miljøer.
 </details>
 
 <details>
 <summary>Spørsmål 3: Hva er forskjellen mellom NAT og Bridged nettverksmodus i VirtualBox?</summary>
 
-**Svar:**I NAT-modus deler VM-en hostmaskinens IP-adresse og når internett gjennom den — men er ikke direkte synlig fra andre maskiner på nettverket. I Bridged-modus kobles VM-en direkte til det fysiske nettverket og får sin egen IP-adresse, som om den var en fysisk maskin.
+***Svar:**I NAT-modus deler VM-en hostmaskinens IP-adresse og når internett gjennom den — men er ikke direkte synlig fra
+**andre maskiner på nettverket. I Bridged-modus kobles VM-en direkte til det fysiske nettverket og får sin egen
+*IP-adresse, som om den var en fysisk maskin.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hvilke tre typer virtuelle svitsjer finnes i Hyper-V?</summary>
 
-**Svar:**Ekstern (kobler VM-er til det fysiske nettverket via vertsmaskinens nettverkskort), Intern (kommunikasjon mellom host og VM-er, ikke ut på fysisk nett) og Privat (kun mellom VM-er, host har ikke tilgang).
+***Svar:**Ekstern (kobler VM-er til det fysiske nettverket via vertsmaskinens nettverkskort), Intern (kommunikasjon
+*mellom host og VM-er, ikke ut på fysisk nett) og Privat (kun mellom VM-er, host har ikke tilgang).
 </details>
 
 <details>
 <summary>Spørsmål 5: Nevn tre fordeler med virtualisering i IT-drift.</summary>
 
-**Svar:**(Velg tre av): Ressurseffektivitet (færre fysiske servere), isolasjon mellom tjenester, portabilitet (eksport/import av VM-er), snapshots for enkel feilretting, enkel skalering, raskere utrulling av nye servere.
+***Svar:**(Velg tre av): Ressurseffektivitet (færre fysiske servere), isolasjon mellom tjenester, portabilitet
+*(eksport/import av VM-er), snapshots for enkel feilretting, enkel skalering, raskere utrulling av nye servere.
 </details>
 
 ## Kilder

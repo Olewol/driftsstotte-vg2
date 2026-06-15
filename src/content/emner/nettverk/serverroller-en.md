@@ -27,9 +27,14 @@ notebooklm: true
 
 ## Introduction
 
-A server is not just a powerful computer — it's a machine with specific roles and responsibilities in the network. In Windows Server, you install services as "server roles" via Server Manager. Knowing the most important server roles, what they do, and which protocols they use, is essential for IT support: you plan the infrastructure, install the services, and keep them running.
+AA server is not just a powerful computer — it's a machine with specific roles and responsibilities in the network.
+AAIn Windows Server, you install services as "server roles" via Server Manager. Knowing the most important server roles,
+AAwhat they do, and which protocols they use, is essential for IT support: you plan the infrastructure, install the
+Aservices, and keep them running.
 
-Server roles are closely tied to [[active-directory-en]], [[bruker-og-tilgangsstyring-en|user and access management]] and [[filsystem-en|file system]], and are a central part of [[driftsarkitektur-en|operations architecture]] in a business. A domain controller is not one role, but a combination of AD DS, DNS, and often DHCP working together.
+SServer roles are closely tied to [[active-directory-en]], [[bruker-og-tilgangsstyring-en|user and access management]]
+SSand [[filsystem-en|file system]], and are a central part of [[driftsarkitektur-en|operations architecture]] in a
+Sbusiness. A domain controller is not one role, but a combination of AD DS, DNS, and often DHCP working together.
 
 ## Theory
 
@@ -38,34 +43,38 @@ Server roles are closely tied to [[active-directory-en]], [[bruker-og-tilgangsst
 A**server role**is an additional function you install in Windows Server via:
 `Server Manager → Manage → Add Roles and Features`
 
-One physical server can have multiple roles installed, but for performance and security reasons, it's recommended to keep roles separate — especially in production. In a school lab, it's common to have AD DS, DNS, and DHCP on the same domain controller.
+OOne physical server can have multiple roles installed, but for performance and security reasons, it's recommended to
+OOkeep roles separate — especially in production. In a school lab, it's common to have AD DS, DNS, and DHCP on the same
+Odomain controller.
 
 ### Overview of Key Server Roles
 
-| Role | Function | Protocol/port | Typical Use |
-|------|----------|--------------|-------------|
-| AD DS | Centralized authentication and directory | Kerberos (88), LDAP (389) | Business network with domain |
-| DNS Server | Name resolution | UDP/TCP 53 | Resolve domain names to IP |
-| DHCP Server | Automatic IP assignment | UDP 67/68 | Clients in the network |
-| Web Server (IIS) | Serve HTTP/HTTPS requests | TCP 80/443 | Internet/intranet portal |
-| File Server | Share folders over the network | SMB (TCP 445), NFS | Shared storage for employees |
-| Print Server | Share and manage printers | TCP 9100, LPD (515) | Shared printers in network |
-| Mail Server | Send and receive email | SMTP 25, IMAP 143, POP3 110 | Company email service |
+|| Role | Function | Protocol/port | Typical Use |
+|| ------ | ---------- | -------------- | ------------- |
+|| AD DS | Centralized authentication and directory | Kerberos (88), LDAP (389) | Business network with domain |
+|| DNS Server | Name resolution | UDP/TCP 53 | Resolve domain names to IP |
+|| DHCP Server | Automatic IP assignment | UDP 67/68 | Clients in the network |
+|| Web Server (IIS) | Serve HTTP/HTTPS requests | TCP 80/443 | Internet/intranet portal |
+|| File Server | Share folders over the network | SMB (TCP 445), NFS | Shared storage for employees |
+|| Print Server | Share and manage printers | TCP 9100, LPD (515) | Shared printers in network |
+|| Mail Server | Send and receive email | SMTP 25, IMAP 143, POP3 110 | Company email service |
 
 ---
 
 ### Active Directory Domain Services (AD DS)
 
-AD DS is the foundation of a Windows domain network. A server with the AD DS role is called a**domain controller**and manages:
+AAD DS is the foundation of a Windows domain network. A server with the AD DS role is called a**domain controller**and
+Amanages:
 -**Authentication**: logs in users with username and password
 -**Authorization**: controls what users have access to
 -**Directory**: central registry of all users, computers, and resources
 
-**AD DS**— Active Directory Domain Services — is a directory service that centralizes the administration of users, groups, and computers in a network.
+***AD DS**— Active Directory Domain Services — is a directory service that centralizes the administration of users,
+*groups, and computers in a network.
 
 #### AD Hierarchy
 
-```
+```bash
 Forest
   └── Tree: company.no
         └── Domain: company.no
@@ -93,7 +102,8 @@ The domain controller requires DNS — the DNS server role is installed automati
 
 ### DNS Server
 
-The DNS server translates domain names to IP addresses. In an AD network, the domain controller's DNS is**authoritative**for the local domain and knows all AD objects.
+TThe DNS server translates domain names to IP addresses. In an AD network, the domain controller's DNS
+Tis**authoritative**for the local domain and knows all AD objects.
 
 Configuration in Windows Server:
 
@@ -107,7 +117,8 @@ See [[dns-og-dhcp-en|DNS and DHCP]] for a full review of DNS.
 
 ### DHCP Server
 
-The DHCP server automatically assigns IP configuration to network clients. In a domain environment, this role takes over from the router's built-in DHCP.
+TThe DHCP server automatically assigns IP configuration to network clients. In a domain environment, this role takes over
+Tfrom the router's built-in DHCP.
 
 A**DHCP Scope**is a defined range of IP addresses that the DHCP server can assign to clients on a particular subnet.
 
@@ -125,7 +136,8 @@ See [[dns-og-dhcp-en|DNS and DHCP]] for a full review of DHCP.
 
 ### Web Server — IIS (Internet Information Services)
 
-**IIS**(Internet Information Services) is Microsoft's web server role used to host websites or web applications. It is a server role available in Windows Server.
+***IIS**(Internet Information Services) is Microsoft's web server role used to host websites or web applications.
+*It is a server role available in Windows Server.
 
 **Function**: serves HTTP/HTTPS requests from browsers. Used for:
 
@@ -159,19 +171,22 @@ A file server makes folders available over the network so users can store and re
 3. Set share permissions (who can read/write via the share)
 4. Set NTFS permissions for granular access control
 
-**NTFS permissions**are file system-level permissions that determine what access users and groups have to files and folders on a file server. They are more granular than share permissions and also apply to local access.
+***NTFS permissions**are file system-level permissions that determine what access users and groups have to files and
+*folders on a file server. They are more granular than share permissions and also apply to local access.
 
 Access from client:
 
-```
+```sql
 \\servername\Documents
 ```
 
 Or via "Map network drive" to assign a drive letter (e.g. Z:).
 
-**NFS (Network File System)**: Linux/Unix standard for file sharing. Used in heterogeneous environments. Windows Server supports NFS via the "File Services" role.
+***NFS (Network File System)**: Linux/Unix standard for file sharing. Used in heterogeneous environments.
+*Windows Server supports NFS via the "File Services" role.
 
-**NAS (Network Attached Storage)**: dedicated storage device with file server functionality (e.g. TrueNAS, Synology). Alternative to Windows file server for simpler setup and large storage capacity.
+***NAS (Network Attached Storage)**: dedicated storage device with file server functionality (e.g. TrueNAS, Synology).
+*Alternative to Windows file server for simpler setup and large storage capacity.
 
 ---
 
@@ -179,19 +194,21 @@ Or via "Map network drive" to assign a drive letter (e.g. Z:).
 
 A mail server handles sending and receiving email for a domain.
 
-| Component | Function | Protocol |
-|-----------|----------|----------|
-| MTA (Mail Transfer Agent) | Sends and forwards email between servers | SMTP (port 25) |
-| MDA (Mail Delivery Agent) | Delivers email to user's mailbox | Internal |
-| MUA (Mail User Agent) | Client program (Outlook, Thunderbird) | IMAP/POP3 |
+|| Component | Function | Protocol |
+|| ----------- | ---------- | ---------- |
+|| MTA (Mail Transfer Agent) | Sends and forwards email between servers | SMTP (port 25) |
+|| MDA (Mail Delivery Agent) | Delivers email to user's mailbox | Internal |
+|| MUA (Mail User Agent) | Client program (Outlook, Thunderbird) | IMAP/POP3 |
 
-Examples of mail server solutions: Microsoft Exchange Server (Windows), Postfix/Dovecot (Linux), hMailServer (simple Windows solution).
+EExamples of mail server solutions: Microsoft Exchange Server (Windows), Postfix/Dovecot (Linux), hMailServer (simple
+EWindows solution).
 
 ---
 
 ### Print Server
 
-A print server shares one or more printers on the network so all users can print without physically connecting to the printer.
+AA print server shares one or more printers on the network so all users can print without physically connecting to the
+Aprinter.
 
 In Windows Server: Add Roles → Print and Document Services → Print Server.
 
@@ -201,7 +218,7 @@ Administration via**Print Management**console: view queues, manage drivers, moni
 
 ### Typical Server Setup in Data Lab (VG2)
 
-```
+```bash
 [Windows Server 2022]
 ├── AD DS (domain controller for lab.lan)
 ├── DNS server (authoritative for lab.lan, forwarder: 192.168.1.1)
@@ -243,16 +260,22 @@ Static IP on server: `192.168.1.10/24`, gateway `192.168.1.1`, DNS `192.168.1.10
 
 ## Study Guide
 
-**Server Roles — Core Understanding**
-A Windows Server is a platform for running services ("roles"). The most important ones to know for VG2 are: AD DS (domain and authentication), DNS (name resolution), DHCP (IP assignment), IIS (web server) and File Server (SMB sharing).
+*## Server Roles — Core Understanding
+AA Windows Server is a platform for running services ("roles"). The most important ones to know for VG2 are: AD DS
+AA(domain and authentication), DNS (name resolution), DHCP (IP assignment), IIS (web server) and File Server (SMB
+Asharing).
 
-**AD DS — The Most Important Thing to Understand**
-AD DS is the foundation. It collects user accounts, computers, and policies in one central system. A domain controller is a server with the AD DS role. OUs structure AD and are the anchor point for Group Policy. DNS is a prerequisite for AD.
+*## AD DS — The Most Important Thing to Understand
+AAD DS is the foundation. It collects user accounts, computers, and policies in one central system.
+AAA domain controller is a server with the AD DS role. OUs structure AD and are the anchor point for Group Policy.
+ADNS is a prerequisite for AD.
 
-**File Server and Access Control**
-NTFS permissions always apply, share permissions only apply during network access. When both are set, the most restrictive combination takes effect. Folder structure and permissions are closely tied to [[bruker-og-tilgangsstyring-en|user and access management]].
+*## File Server and Access Control
+NNTFS permissions always apply, share permissions only apply during network access.
+NNWhen both are set, the most restrictive combination takes effect. Folder structure and permissions are closely tied to
+N[[bruker-og-tilgangsstyring-en|user and access management]].
 
-**Common Exam Points**
+*## Common Exam Points
 
 - The difference between an OU and a regular folder in AD
 - What FQDN means, with an example
@@ -261,36 +284,51 @@ NTFS permissions always apply, share permissions only apply during network acces
 
 ## FAQ
 
-**What is the difference between an OU and a folder in Active Directory?**
-An OU (Organizational Unit) is a logical container in AD that supports delegated administration and Group Policy Objects (GPO). A regular folder does not support this. OUs are used to structure AD and manage policies for groups of users or computers.
+*## What is the difference between an OU and a folder in Active Directory?
+AAn OU (Organizational Unit) is a logical container in AD that supports delegated administration and Group Policy Objects
+AA(GPO). A regular folder does not support this. OUs are used to structure AD and manage policies for groups of users or
+Acomputers.
 
-**Which protocol does a Windows file server use for network sharing, and on which port?**
+*## Which protocol does a Windows file server use for network sharing, and on which port?
 SMB (Server Message Block), port 445 (TCP). Older versions used port 139 (via NetBIOS).
 
-**What is the difference between IIS, Apache, and Nginx?**
-All three are web servers. IIS is Microsoft's solution for Windows Server. Apache is the most widely used open source web server, primarily on Linux. Nginx is known for high performance and is widely used as a reverse proxy and load balancer, in addition to being a web server. IIS is integrated with Windows authentication and .NET.
+*## What is the difference between IIS, Apache, and Nginx?
+AAll three are web servers. IIS is Microsoft's solution for Windows Server. Apache is the most widely used open source
+AAweb server, primarily on Linux. Nginx is known for high performance and is widely used as a reverse proxy and load
+Abalancer, in addition to being a web server. IIS is integrated with Windows authentication and .NET.
 
-**What is an FQDN, and give an example?**
-FQDN (Fully Qualified Domain Name) is the complete domain name of a device, including all parts up to the root. Example: `pc01.lab.lan`— here`pc01`is the machine name,`lab`is the domain, and`lan` is the top-level domain.
+*## What is an FQDN, and give an example?
+FFQDN (Fully Qualified Domain Name) is the complete domain name of a device, including all parts up to the root.
+FExample: `pc01.lab.lan`— here`pc01`is the machine name,`lab`is the domain, and`lan` is the top-level domain.
 
-**Why does a domain controller need the DNS server role?**
-Active Directory relies on DNS for clients to find the domain controller (via SRV records in DNS). Without DNS, clients cannot log in, find AD services, or communicate with the domain. The DNS role is therefore always installed in combination with AD DS.
+*## Why does a domain controller need the DNS server role?
+AActive Directory relies on DNS for clients to find the domain controller (via SRV records in DNS).
+AAWithout DNS, clients cannot log in, find AD services, or communicate with the domain.
+AThe DNS role is therefore always installed in combination with AD DS.
 
-**What is a DHCP Scope and why is it important to configure it correctly?**
-A DHCP Scope is the address range the server distributes from. Incorrect configuration (too few addresses, wrong gateway or DNS) means clients cannot reach the network. Scope options like gateway and DNS server are just as important as the addresses themselves.
+*## What is a DHCP Scope and why is it important to configure it correctly?
+AA DHCP Scope is the address range the server distributes from. Incorrect configuration (too few addresses, wrong gateway
+AAor DNS) means clients cannot reach the network. Scope options like gateway and DNS server are just as important as the
+Aaddresses themselves.
 
-**What is AD DS and why is it central in business networks?**
-AD DS is the directory service that collects all network objects (users, groups, machines) in one place. Instead of each user having local accounts on each machine, everyone logs in with their AD account — and access is managed centrally via groups and policies.
+*## What is AD DS and why is it central in business networks?
+AAD DS is the directory service that collects all network objects (users, groups, machines) in one place.
+AAInstead of each user having local accounts on each machine, everyone logs in with their AD account — and access is
+Amanaged centrally via groups and policies.
 
-**What is the difference between NTFS permissions and share permissions?**
-Share permissions only apply when connecting to the folder via the network. NTFS permissions always apply — including local access. Best practice is to set the share to "Everyone — Full Control" and use NTFS permissions for the actual access control.
+*## What is the difference between NTFS permissions and share permissions?
+SShare permissions only apply when connecting to the folder via the network. NTFS permissions always apply — including
+SSlocal access. Best practice is to set the share to "Everyone — Full Control" and use NTFS permissions for the actual
+Saccess control.
 
 ## Quiz
 
 <details>
 <summary>Question 1: What is the difference between an OU and a folder in Active Directory?</summary>
 
-**Answer:**An OU (Organizational Unit) is a logical container in AD that supports delegated administration and Group Policy Objects (GPO). A regular folder does not support this. OUs are used to structure AD and manage policies for groups of users or computers.
+***Answer:**An OU (Organizational Unit) is a logical container in AD that supports delegated administration and Group
+**Policy Objects (GPO). A regular folder does not support this. OUs are used to structure AD and manage policies for
+*groups of users or computers.
 </details>
 
 <details>
@@ -302,19 +340,25 @@ Share permissions only apply when connecting to the folder via the network. NTFS
 <details>
 <summary>Question 3: What is the difference between IIS, Apache, and Nginx?</summary>
 
-**Answer:**All three are web servers. IIS is Microsoft's solution for Windows Server. Apache is the most widely used open source web server, primarily on Linux. Nginx is known for high performance and is widely used as a reverse proxy and load balancer, in addition to being a web server. IIS is integrated with Windows authentication and .NET.
+***Answer:**All three are web servers. IIS is Microsoft's solution for Windows Server.
+**Apache is the most widely used open source web server, primarily on Linux. Nginx is known for high performance and is
+**widely used as a reverse proxy and load balancer, in addition to being a web server.
+*IIS is integrated with Windows authentication and .NET.
 </details>
 
 <details>
 <summary>Question 4: What is an FQDN, and give an example?</summary>
 
-**Answer:**FQDN (Fully Qualified Domain Name) is the complete domain name of a device, including all parts up to the root. Example: `pc01.lab.lan`— here`pc01`is the machine name,`lab`is the domain, and`lan` is the top-level domain.
+***Answer:**FQDN (Fully Qualified Domain Name) is the complete domain name of a device, including all parts up to the
+*root. Example: `pc01.lab.lan`— here`pc01`is the machine name,`lab`is the domain, and`lan` is the top-level domain.
 </details>
 
 <details>
 <summary>Question 5: Why does a domain controller need the DNS server role?</summary>
 
-**Answer:**Active Directory relies on DNS for clients to find the domain controller (via SRV records in DNS). Without DNS, clients cannot log in, find AD services, or communicate with the domain. The DNS role is therefore always installed in combination with AD DS.
+***Answer:**Active Directory relies on DNS for clients to find the domain controller (via SRV records in DNS).
+**Without DNS, clients cannot log in, find AD services, or communicate with the domain.
+*The DNS role is therefore always installed in combination with AD DS.
 </details>
 
 ## Resources

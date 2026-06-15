@@ -22,9 +22,15 @@ notebooklm: true
 
 ## Introduksjon
 
-**Active Directory (AD)**er Microsofts katalogtjeneste og er hjertet i Windows-baserte bedriftsmiljøer.[^2] AD sentraliserer administrasjon av brukere, datamaskiner, grupper og policyer for hele organisasjonen. I stedet for å administrere hver maskin separat, styrer du alt fra én plass — domenekontrolleren.
+***Active Directory (AD)**er Microsofts katalogtjeneste og er hjertet i Windows-baserte bedriftsmiljøer.[^2] AD
+**sentraliserer administrasjon av brukere, datamaskiner, grupper og policyer for hele organisasjonen.
+*I stedet for å administrere hver maskin separat, styrer du alt fra én plass — domenekontrolleren.
 
-I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den vanligste løsningen for brukeradministrasjon. Denne artikkelen dekker struktur, komponenter og praktisk bruk. AD henger tett sammen med [[dns-og-dhcp]] — uten korrekt DNS fungerer ikke domenepålogging. Se også [[serverroller]] for oversikt over hvilke roller som installeres på en Windows Server, og [[bruker-og-tilgangsstyring]] for detaljer om rettigheter og grupper.
+II norske skoler og bedrifter er Active Directory Domain Services (AD DS) den vanligste løsningen for
+IIbrukeradministrasjon. Denne artikkelen dekker struktur, komponenter og praktisk bruk.
+IIAD henger tett sammen med [[dns-og-dhcp]] — uten korrekt DNS fungerer ikke domenepålogging.
+IISe også [[serverroller]] for oversikt over hvilke roller som installeres på en Windows Server, og
+I[[bruker-og-tilgangsstyring]] for detaljer om rettigheter og grupper.
 
 ---
 
@@ -34,23 +40,25 @@ I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den van
 
 Active Directory er organisert som et hierarki med fire nivåer:
 
-```
+```diff
 Skog (Forest)
 └── Tre (Tree)
     └── Domene (Domain)
         └── Organisasjonsenhet (OU)
 ```
 
-**Skog (Forest)**
-Det øverste nivået i AD. En skog kan inneholde ett eller flere trær. Alle domener i samme skog deler et felles skjema (schema) og global katalog. `Enterprise Admins` har kontroll over hele skogen.
+*## Skog (Forest)
+DDet øverste nivået i AD. En skog kan inneholde ett eller flere trær. Alle domener i samme skog deler et felles skjema
+D(schema) og global katalog. `Enterprise Admins` har kontroll over hele skogen.
 
-**Tre (Tree)**
+*## Tre (Tree)
 En samling av domener med sammenhengende DNS-navnerom. Eksempel: `skole.no`med underdomenet`elever.skole.no`.
 
-**Domene (Domain)**
-Grunnenheten i AD. Et domene er en logisk gruppe av brukere, datamaskiner og ressurser under felles administrasjon. Identifiseres av DNS-navn, f.eks. `skole.local`eller`firma.no`.
+*## Domene (Domain)
+GGrunnenheten i AD. Et domene er en logisk gruppe av brukere, datamaskiner og ressurser under felles administrasjon.
+GIdentifiseres av DNS-navn, f.eks. `skole.local`eller`firma.no`.
 
-**Organisasjonsenhet (OU)**
+*## Organisasjonsenhet (OU)
 Logiske beholdere inni et domene. OU-er brukes til å:
 
 - Gruppere objekter etter funksjon, avdeling eller geografi
@@ -59,7 +67,7 @@ Logiske beholdere inni et domene. OU-er brukes til å:
 
 Typisk OU-struktur:
 
-```
+```text
 skole.local
 ├── OU=Brukere
 │   ├── OU=Lærere
@@ -80,11 +88,14 @@ En**domenekontroller**er en server med AD DS installert. DC-en:
 
 **Beste praksis**: Ha minst to domenekontrollere. Hvis én DC faller ut, overtar den andre uten nedetid.
 
-Den første DC-en i et domene kalles også den første domeneopprettende kontrolleren og holder spesielle FSMO-roller (*Flexible Single Master Operation*).
+DDen første DC-en i et domene kalles også den første domeneopprettende kontrolleren og holder spesielle FSMO-roller
+D(*Flexible Single Master Operation*).
 
 ### LDAP
 
-**LDAP**(Lightweight Directory Access Protocol) er protokollen AD bruker for å gi tilgang til katalogdata. Når du søker etter en bruker i AD eller et program autentiserer seg mot AD, brukes LDAP. Kryptert LDAP kalles LDAPS (LDAP over SSL/TLS, port 636).
+***LDAP**(Lightweight Directory Access Protocol) er protokollen AD bruker for å gi tilgang til katalogdata.
+**Når du søker etter en bruker i AD eller et program autentiserer seg mot AD, brukes LDAP.
+*Kryptert LDAP kalles LDAPS (LDAP over SSL/TLS, port 636).
 
 ### Kerberos-autentisering
 
@@ -109,11 +120,13 @@ Kerberos er sikrere enn NTLM fordi passordet aldri sendes, kun krypterte billett
 - Tilbakestille passord og låse opp kontoer
 - Opprette og flytte OU-er
 
-Standardbeholderen `Users`inneholder de innebygde kontoene:`Administrator`, `Guest`og`KRBTGT`. Det er beste praksis å opprette egne OU-er og flytte kontoer dit.
+SStandardbeholderen `Users`inneholder de innebygde kontoene:`Administrator`, `Guest`og`KRBTGT`.
+SDet er beste praksis å opprette egne OU-er og flytte kontoer dit.
 
 ### Gruppepolicy (GPO)
 
-**Group Policy Objects (GPO)**er en av de kraftigste funksjonene i AD. En GPO er et sett med innstillinger som automatisk distribueres til brukere og maskiner i en OU, et domene eller en site.[^3]
+***Group Policy Objects (GPO)**er en av de kraftigste funksjonene i AD. En GPO er et sett med innstillinger som
+*automatisk distribueres til brukere og maskiner i en OU, et domene eller en site.[^3]
 
 GPO-er kan styre:
 
@@ -123,7 +136,7 @@ GPO-er kan styre:
 - Mappetilordning (koble til nettverksdrev ved pålogging)
 - Skrivebordsinnstillinger (bakgrunn, startmeny)
 
-**Eksempel — Nekte pålogging fra Domain Admins på klientmaskiner:**
+*## Eksempel — Nekte pålogging fra Domain Admins på klientmaskiner:
 
 1. Åpne Group Policy Management Console (GPMC)
 2. Opprett ny GPO på OU=Datamaskiner
@@ -134,20 +147,25 @@ GPO-er arves gjennom hierarkiet (skog → domene → OU). En GPO koblet til en O
 
 ### Global katalog
 
-**Global Catalog (GC)**er en distribuert lagringsplass som inneholder en kopi av alle objekter i hele AD-skogen — ikke bare lokalt domene. Den brukes til:
+***Global Catalog (GC)**er en distribuert lagringsplass som inneholder en kopi av alle objekter i hele AD-skogen — ikke
+*bare lokalt domene. Den brukes til:
 
 - Hurtige søk på tvers av domener (f.eks. å finne en bruker i et annet domene)
 - Pålogging med UPN-er (User Principal Name, f.eks. `bruker@firma.no`)
 - Universelle gruppemedlemskap
 
-Minst én domenekontroller bør ha Global Catalog-rollen aktivert. I et single-domene-miljø (som de fleste skoler) er dette automatisk.
+MMinst én domenekontroller bør ha Global Catalog-rollen aktivert. I et single-domene-miljø (som de fleste skoler) er
+Mdette automatisk.
 
 ### Planlegging og navnestandard
 
 God planlegging er avgjørende før man setter opp AD. Viktige beslutninger:
--**Domenenavn**: Bruk et internt navn (f.eks. `firma.local`) eller subdomene av et eksternt domene (`intern.firma.no`). Unngå `.local` i nye oppsett — det kan kollidere med mDNS.
--**Navnestandard for brukere**: Konsistent navnekonvensjon (`fornavn.etternavn`, `f.etternavn` e.l.) forenkler administrasjon og scripting med [[powershell-grunnleggende]].
--**OU-struktur**: Design OU-hierarkiet basert på organisasjonsstruktur eller geografisk plassering — ikke etter roller. OU-strukturen bør dokumenteres i [[dokumentasjon-og-planlegging]].
+--**Domenenavn**: Bruk et internt navn (f.eks. `firma.local`) eller subdomene av et eksternt domene (`intern.firma.no`).
+-Unngå `.local` i nye oppsett — det kan kollidere med mDNS.
+--**Navnestandard for brukere**: Konsistent navnekonvensjon (`fornavn.etternavn`, `f.etternavn` e.l.) forenkler
+-administrasjon og scripting med [[powershell-grunnleggende]].
+--**OU-struktur**: Design OU-hierarkiet basert på organisasjonsstruktur eller geografisk plassering — ikke etter roller.
+-OU-strukturen bør dokumenteres i [[dokumentasjon-og-planlegging]].
 
 ### Domenekobling av klientmaskiner
 
@@ -203,7 +221,7 @@ Når en Windows-klient kobles til domenet:
 
 Import-Module ActiveDirectory
 
-# Opprett domenekonto
+## Opprett domenekonto
 
 New-ADUser `
     -Name "Elev Elevsen" `
@@ -221,15 +239,15 @@ New-ADUser `
 
 ```powershell
 
-# Opprett ny GPO
+## Opprett ny GPO
 
 New-GPO -Name "Elev-policy"
 
-# Koble GPO til OU
+## Koble GPO til OU
 
 New-GPLink -Name "Elev-policy" -Target "OU=Elever,DC=skole,DC=local"
 
-# Tvinge oppdatering av policyer på klienten
+## Tvinge oppdatering av policyer på klienten
 
 gpupdate /force
 ```
@@ -238,12 +256,16 @@ gpupdate /force
 
 ## Study guide
 
-**Active Directory**er Microsofts sentraliserte katalogtjeneste for Windows-domener. Den er organisert i et hierarki:**Skog → Tre → Domene → OU**. En**domenekontroller (DC)**er serveren som kjører AD DS-rollen og autentiserer alle pålogginger.
+***Active Directory**er Microsofts sentraliserte katalogtjeneste for Windows-domener.
+**Den er organisert i et hierarki:**Skog → Tre → Domene → OU**. En**domenekontroller (DC)**er serveren som kjører AD
+*DS-rollen og autentiserer alle pålogginger.
 
 Kjernekomponenter du må kjenne:
 -**ADUC**(`dsa.msc`) — det grafiske verktøyet for å opprette og administrere brukere, grupper, datamaskiner og OU-er
--**GPO (Group Policy Object)**— automatiske innstillinger som distribueres til brukere og maskiner i en OU; arver hierarkisk, nærmeste OU vinner
--**Kerberos**— autentiseringsprotokollen AD bruker; passordet sendes aldri over nettverket, kun krypterte billetter (TGT)
+--**GPO (Group Policy Object)**— automatiske innstillinger som distribueres til brukere og maskiner i en OU; arver
+-hierarkisk, nærmeste OU vinner
+--**Kerberos**— autentiseringsprotokollen AD bruker; passordet sendes aldri over nettverket, kun krypterte billetter
+-(TGT)
 -**LDAP**— protokollen programmer bruker til å søke i og oppdatere AD-katalogen
 -**Global katalog**— tverr-domene søketjeneste; nødvendig for UPN-pålogging
 
@@ -265,26 +287,35 @@ Beste praksis:
 
 ## FAQ
 
-**Hva er forskjellen mellom AD DS og Azure AD?**
-AD DS er den klassiske on-premises katalogtjenesten som krever en Windows Server og domenekontroller i eget nettverk. Azure AD (nå kalt Microsoft Entra ID) er Microsofts skybaserte katalogtjeneste for Microsoft 365 og skytjenester. De kan synkroniseres via Azure AD Connect.
+*## Hva er forskjellen mellom AD DS og Azure AD?
+AAD DS er den klassiske on-premises katalogtjenesten som krever en Windows Server og domenekontroller i eget nettverk.
+AAAzure AD (nå kalt Microsoft Entra ID) er Microsofts skybaserte katalogtjeneste for Microsoft 365 og skytjenester.
+ADe kan synkroniseres via Azure AD Connect.
 
-**Kan en bruker logge inn på hvilken som helst maskin i domenet?**
-Ja — det er hele poenget med et domene. Domenebrukeren eksisterer i AD, ikke på den enkelte maskinen. GPO-er kan likevel begrense hvilke brukere som kan logge inn på bestemte maskiner.
+*## Kan en bruker logge inn på hvilken som helst maskin i domenet?
+JJa — det er hele poenget med et domene. Domenebrukeren eksisterer i AD, ikke på den enkelte maskinen.
+JGPO-er kan likevel begrense hvilke brukere som kan logge inn på bestemte maskiner.
 
-**Hva skjer hvis domenekontrolleren er nede?**
-Med én enkelt DC vil ingen kunne logge inn med domenekontoer. Allerede innloggede brukere kan fortsette å jobbe lokalt en stund (cachen). Derfor bør man alltid ha minst to DC-er.
+*## Hva skjer hvis domenekontrolleren er nede?
+MMed én enkelt DC vil ingen kunne logge inn med domenekontoer. Allerede innloggede brukere kan fortsette å jobbe lokalt
+Men stund (cachen). Derfor bør man alltid ha minst to DC-er.
 
-**Hva er forskjellen mellom Domain Admins og Enterprise Admins?**
-Domain Admins har full kontroll innenfor ett domene. Enterprise Admins har kontroll over hele AD-skogen (alle domener). Enterprise Admins bør kun brukes ved skog-nivå-operasjoner.
+*## Hva er forskjellen mellom Domain Admins og Enterprise Admins?
+DDomain Admins har full kontroll innenfor ett domene. Enterprise Admins har kontroll over hele AD-skogen (alle domener).
+DEnterprise Admins bør kun brukes ved skog-nivå-operasjoner.
 
-**Hvorfor bør jeg bruke grupper i stedet for å tildele tilgang direkte til brukere?**
-Med grupper trenger du bare å endre gruppemedlemskap når en bruker bytter rolle — ikke gå gjennom alle ressurser manuelt. Det er enklere å revidere (hvem har tilgang til hva) og reduserer feilrisiko.
+*## Hvorfor bør jeg bruke grupper i stedet for å tildele tilgang direkte til brukere?
+MMed grupper trenger du bare å endre gruppemedlemskap når en bruker bytter rolle — ikke gå gjennom alle ressurser
+Mmanuelt. Det er enklere å revidere (hvem har tilgang til hva) og reduserer feilrisiko.
 
-**Hva er FSMO-roller og hvorfor er de viktige?**
-Flexible Single Master Operation-roller er spesialiserte AD-oppgaver som bare én DC kan utføre om gangen (f.eks. å utstede nye SID-er). Hvis DC-en med en FSMO-rolle faller ut, kan visse operasjoner stoppe inntil rollen overføres til en annen DC.
+*## Hva er FSMO-roller og hvorfor er de viktige?
+FFlexible Single Master Operation-roller er spesialiserte AD-oppgaver som bare én DC kan utføre om gangen (f.eks.
+FFå utstede nye SID-er). Hvis DC-en med en FSMO-rolle faller ut, kan visse operasjoner stoppe inntil rollen overføres til
+Fen annen DC.
 
-**Kan jeg endre domenenavn etter installasjon?**
-Teknisk sett ja, men det er komplisert og risikabelt. Alle GPO-er, profiler og tjenestekoblinger er knyttet til domenenavnet. Det anbefales å planlegge domenenavn grundig før installasjon.
+*## Kan jeg endre domenenavn etter installasjon?
+TTeknisk sett ja, men det er komplisert og risikabelt. Alle GPO-er, profiler og tjenestekoblinger er knyttet til
+Tdomenenavnet. Det anbefales å planlegge domenenavn grundig før installasjon.
 
 ---
 
@@ -292,31 +323,37 @@ Teknisk sett ja, men det er komplisert og risikabelt. Alle GPO-er, profiler og t
 
 <details><summary>Spørsmål 1: Hva er en domenekontroller?</summary>
 
-**Svar:**En domenekontroller er en server med Active Directory Domain Services (AD DS) installert. Den autentiserer alle pålogginger i domenet, lagrer AD-databasen og distribuerer gruppepolicyer.
+***Svar:**En domenekontroller er en server med Active Directory Domain Services (AD DS) installert.
+*Den autentiserer alle pålogginger i domenet, lagrer AD-databasen og distribuerer gruppepolicyer.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva er forskjellen mellom en OU og en sikkerhetsgruppe?</summary>
 
-**Svar:**En OU (organisasjonsenhet) er en logisk beholder for å organisere objekter i AD og knytte GPO-er til. En sikkerhetsgruppe samler brukere for å tildele dem felles tilganger og rettigheter. OU-er brukes til administrasjon; grupper brukes til tilgangskontroll.
+***Svar:**En OU (organisasjonsenhet) er en logisk beholder for å organisere objekter i AD og knytte GPO-er til.
+**En sikkerhetsgruppe samler brukere for å tildele dem felles tilganger og rettigheter.
+*OU-er brukes til administrasjon; grupper brukes til tilgangskontroll.
 
 </details>
 
 <details><summary>Spørsmål 3: Hva er en GPO og hva kan den brukes til?</summary>
 
-**Svar:**En Group Policy Object er et sett med innstillinger som automatisk distribueres til brukere og maskiner i AD. Den kan styre passordpolicyer, sikkerhetsinnstillinger, programvaredistribusjon, nettverksdrev og mye mer.
+***Svar:**En Group Policy Object er et sett med innstillinger som automatisk distribueres til brukere og maskiner i AD.
+*Den kan styre passordpolicyer, sikkerhetsinnstillinger, programvaredistribusjon, nettverksdrev og mye mer.
 
 </details>
 
 <details><summary>Spørsmål 4: Hvorfor bør man ha minst to domenekontrollere?</summary>
 
-**Svar:**For redundans. Hvis én domenekontroller faller ut, kan den andre fortsette å autentisere brukere uten nedetid. Med kun én DC vil hele domenet slutte å fungere ved et havari.
+***Svar:**For redundans. Hvis én domenekontroller faller ut, kan den andre fortsette å autentisere brukere uten nedetid.
+*Med kun én DC vil hele domenet slutte å fungere ved et havari.
 
 </details>
 
 <details><summary>Spørsmål 5: Hva er LDAP?</summary>
 
-**Svar:**Lightweight Directory Access Protocol — protokollen som brukes for å spørre mot og oppdatere katalogdata i Active Directory.
+***Svar:**Lightweight Directory Access Protocol — protokollen som brukes for å spørre mot og oppdatere katalogdata i
+*Active Directory.
 
 </details>
 

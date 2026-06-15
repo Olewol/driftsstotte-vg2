@@ -32,66 +32,76 @@ public: true
 
 ### Norsk
 
-Skytjenester (cloud services) betyr at IT-ressurser som servere, lagring, databaser og programvare leveres over internett — i stedet for å være fysisk installert hos deg[^1][^5]. Du betaler for det du bruker, og slipper å drifte maskinvaren selv.
+SSkytjenester (cloud services) betyr at IT-ressurser som servere, lagring, databaser og programvare leveres over
+SSinternett — i stedet for å være fysisk installert hos deg[^1][^5]. Du betaler for det du bruker, og slipper å drifte
+Smaskinvaren selv.
 
-**Tre hovedtyper skytjenester:**
+*## Tre hovedtyper skytjenester:
 -**IaaS (Infrastructure as a Service)**— Virtuelle maskiner, lagring, nettverk (f.eks. Azure VM, AWS EC2)
 -**PaaS (Platform as a Service)**— Plattform for å utvikle og kjøre apper (f.eks. Azure App Services, Heroku)
 -**SaaS (Software as a Service)**— Ferdige programmer (f.eks. Office 365, Google Workspace)
 
-**Skydistribusjonsmodeller:**
+*## Skydistribusjonsmodeller:
 -**Public Cloud**— Delt infrastruktur, lavere kostnad
 -**Private Cloud**— Dedikert til én organisasjon, høyere sikkerhet
 -**Hybrid Cloud**— Kombinasjon av public og private sky
 
-Virtuelle tjenester bygger på hypervisor-teknologi (f.eks. Hyper-V, VMware, KVM) som gjør at én fysisk maskin kan kjøre flere virtuelle maskiner samtidig[^2].
+VVirtuelle tjenester bygger på hypervisor-teknologi (f.eks. Hyper-V, VMware, KVM) som gjør at én fysisk maskin kan kjøre
+Vflere virtuelle maskiner samtidig[^2].
 
 ### English
 
-Cloud services means IT resources like servers, storage, databases, and software are delivered over the internet — instead of being physically installed at your location[^1]. You pay for what you use and don't have to maintain the hardware yourself.
+CCloud services means IT resources like servers, storage, databases, and software are delivered over the internet —
+CCinstead of being physically installed at your location[^1]. You pay for what you use and don't have to maintain the
+Chardware yourself.
 
-**Three main cloud service types:**
+*## Three main cloud service types:
 -**IaaS**— Virtual machines, storage, networking (e.g., Azure VM, AWS EC2)
 -**PaaS**— Platform to develop and run apps (e.g., Azure App Services, Heroku)
 -**SaaS**— Ready-made applications (e.g., Office 365, Google Workspace)
 
-**Cloud deployment models:**
+*## Cloud deployment models:
 -**Public Cloud**— Shared infrastructure, lower cost
 -**Private Cloud**— Dedicated to one organization, higher security
 -**Hybrid Cloud**— Combination of public and private cloud
 
-Virtual services are built on hypervisor technology (e.g., Hyper-V, VMware, KVM) that lets one physical machine run multiple virtual machines simultaneously[^2].
+VVirtual services are built on hypervisor technology (e.g., Hyper-V, VMware, KVM) that lets one physical machine run
+Vmultiple virtual machines simultaneously[^2].
 
 ---
 
 ## 💡 Eksempler / Examples
 
-### Norsk
+### Norsk (2)
 
-**Eksempel 1: Skole som flytter til skyen**
-En skole bytter fra lokal e-postserver til Office 365. Elevene får tilgang fra hvor som helst, IT-avdelingen trenger ikke lenger vedlikeholde servermaskinvaren.
+*## Eksempel 1: Skole som flytter til skyen
+EEn skole bytter fra lokal e-postserver til Office 365. Elevene får tilgang fra hvor som helst, IT-avdelingen trenger
+Eikke lenger vedlikeholde servermaskinvaren.
 
-**Eksempel 2: Nettbutikk på AWS**
-En nettbutikk kjører webserveren på en EC2-instans (IaaS) og databasen i RDS (PaaS). Når Black Friday kommer, skalerer de automatisk opp antall servere.
+*## Eksempel 2: Nettbutikk på AWS
+EEn nettbutikk kjører webserveren på en EC2-instans (IaaS) og databasen i RDS (PaaS).
+ENår Black Friday kommer, skalerer de automatisk opp antall servere.
 
-### English
+### English (2)
 
-**Example 1: School Moving to the Cloud**
-A school switches from a local email server to Office 365. Students get access from anywhere, and IT no longer needs to maintain server hardware.
+*## Example 1: School Moving to the Cloud
+AA school switches from a local email server to Office 365. Students get access from anywhere, and IT no longer needs to
+Amaintain server hardware.
 
-**Example 2: Online Store on AWS**
-An online store runs its web server on EC2 (IaaS) and the database in RDS (PaaS). When Black Friday arrives, they automatically scale up the number of servers.
+*## Example 2: Online Store on AWS
+AAn online store runs its web server on EC2 (IaaS) and the database in RDS (PaaS). When Black Friday arrives, they
+Aautomatically scale up the number of servers.
 
 ---
 
 ## 📝 Oppsummering / Summary
 
-| Norsk | English |
-|-------|---------|
-| Skyen = IT-ressurser over internett | Cloud = IT resources over the internet |
-| IaaS/PaaS/SaaS er de tre tjenestemodellene | IaaS/PaaS/SaaS are the three service models |
-| Public/private/hybrid er distribusjonsmodeller | Public/private/hybrid are deployment models |
-| Virtualisering er teknologien bak skytjenester | Virtualization is the technology behind cloud services |
+|| Norsk | English |
+|| ------- | --------- |
+|| Skyen = IT-ressurser over internett | Cloud = IT resources over the internet |
+|| IaaS/PaaS/SaaS er de tre tjenestemodellene | IaaS/PaaS/SaaS are the three service models |
+|| Public/private/hybrid er distribusjonsmodeller | Public/private/hybrid are deployment models |
+|| Virtualisering er teknologien bak skytjenester | Virtualization is the technology behind cloud services |
 
 ---
 
@@ -99,7 +109,7 @@ An online store runs its web server on EC2 (IaaS) and the database in RDS (PaaS)
 
 ### Norsk — Praksisoppgaver
 
-**Oppgave 1: Sett opp en virtuell maskin i skyen**
+*## Oppgave 1: Sett opp en virtuell maskin i skyen
 Eleven oppretter en gratis Azure- eller AWS-konto (eller bruker skolens lab-miljø).
 
 - Opprett en VM (f.eks. Ubuntu Server 22.04 LTS)
@@ -110,7 +120,7 @@ Eleven oppretter en gratis Azure- eller AWS-konto (eller bruker skolens lab-milj
 - Verifiser at nettsiden er tilgjengelig fra internett
 - Reflekter: Hvilket skytjeneste-modell (IaaS/PaaS/SaaS) brukte du?
 
-**Oppgave 2: Klassifiser IT-tjenester som IaaS/PaaS/SaaS**
+*## Oppgave 2: Klassifiser IT-tjenester som IaaS/PaaS/SaaS
 Eleven får 6 scenarioer og skal klassifisere hver:
 
 1. Skolen bruker Office 365 for e-post og dokumenter
@@ -121,14 +131,14 @@ Eleven får 6 scenarioer og skal klassifisere hver:
 6. En bedrift bruker AWS RDS for database uten å administrere OS
 - For hver: begrunn valget og forklar hvordan ansvarsfordelingen er
 
-**Veiledning / Solution Guidelines:**
+*## Veiledning / Solution Guidelines:
 
 - Oppgave 1: Azure VM (B1s/B2s) eller AWS t2.micro (free tier). SSH: `ssh -i nokkel.pem ubuntu@<public-ip>`. Installere Apache: `sudo apt update && sudo apt install apache2 -y`. Dette er IaaS fordi vi administrerer OS og programvare selv.
 - Oppgave 2: IaaS = du styrer OS og apper (mest fleksibelt, mest ansvar). PaaS = du styrer appen, leverandøren styrer OS/plattform. SaaS = ferdig programvare, brukeren styrer ingenting teknisk.
 
 ### English — Practical Exercises
 
-**Exercise 1: Set Up a Virtual Machine in the Cloud**
+*## Exercise 1: Set Up a Virtual Machine in the Cloud
 Create a free Azure or AWS account (or use school lab).
 
 - Create a VM (e.g., Ubuntu Server 22.04 LTS)
@@ -139,7 +149,7 @@ Create a free Azure or AWS account (or use school lab).
 - Verify the website is accessible from the internet
 - Reflect: Which cloud service model (IaaS/PaaS/SaaS) did you use?
 
-**Exercise 2: Classify IT Services as IaaS/PaaS/SaaS**
+*## Exercise 2: Classify IT Services as IaaS/PaaS/SaaS
 Classify 6 scenarios and justify each choice:
 
 1. School uses Office 365 for email and documents
@@ -149,7 +159,7 @@ Classify 6 scenarios and justify each choice:
 5. School runs physical servers in a server room
 6. Company uses AWS RDS for database without managing the OS
 
-**Solution Guidelines:**
+*## Solution Guidelines:
 
 - Exercise 1: Azure B1s/B2s or AWS t2.micro (free tier). SSH + Apache install. This is IaaS because you manage the OS and software yourself.
 - Exercise 2: IaaS = you manage OS + apps. PaaS = you manage the app, provider manages OS/platform. SaaS = ready-made software, user manages nothing technical.

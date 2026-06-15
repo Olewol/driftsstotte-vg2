@@ -97,7 +97,8 @@ I VirtualBox, hva skjer når en virtuell maskin er satt til 'NAT'-modus?
 - [x] Den virtuelle maskinen deler hostens IP og når internett via en intern oversettelse.
 - [ ] Den virtuelle maskinen deaktiverer alt nettverk for å beskytte hosten.
 
-**Hint:**Tenk på hvordan rutere i hjemmenettverk vanligvis kobler mange enheter til internett ved bruk av bare én offentlig adresse.
+***Hint:**Tenk på hvordan rutere i hjemmenettverk vanligvis kobler mange enheter til internett ved bruk av bare én
+*offentlig adresse.
 
 ## Question 10
 

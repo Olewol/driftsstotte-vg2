@@ -26,7 +26,8 @@
 
 ## Card 4
 
-**Q:**The_____layer of the OSI model ensures end-to-end communication, flow control, and error recovery using protocols like TCP.
+***Q:**The_____layer of the OSI model ensures end-to-end communication, flow control, and error recovery using protocols
+*like TCP.
 
 **A:**Transport (Layer 4)
 
@@ -34,7 +35,8 @@
 
 ## Card 5
 
-**Q:**Which OSI layer manages the establishment, maintenance, and termination of communication sessions between applications?
+***Q:**Which OSI layer manages the establishment, maintenance, and termination of communication sessions between
+*applications?
 
 **A:**Layer 5 (Session Layer)
 
@@ -42,7 +44,8 @@
 
 ## Card 6
 
-**Q:**The_____layer handles data formatting, encryption, and compression to make data presentable for the application layer.
+***Q:**The_____layer handles data formatting, encryption, and compression to make data presentable for the application
+*layer.
 
 **A:**Presentation (Layer 6)
 
@@ -348,7 +351,8 @@
 
 **Q:**What is 'Router-on-a-stick'?
 
-**A:**A configuration where a single physical router interface is divided into sub-interfaces to route between multiple VLANs.
+***A:**A configuration where a single physical router interface is divided into sub-interfaces to route between multiple
+*VLANs.
 
 ---
 
@@ -362,7 +366,8 @@
 
 ## Card 46
 
-**Q:**Which software layer sits between physical hardware and virtual machines, allowing multiple OSs to share the same hardware?
+***Q:**Which software layer sits between physical hardware and virtual machines, allowing multiple OSs to share the same
+*hardware?
 
 **A:**Hypervisor
 

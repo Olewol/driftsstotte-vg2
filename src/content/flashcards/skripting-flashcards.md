@@ -18,7 +18,8 @@
 
 ## Card 3
 
-**Q:**Hva kalles den første linjen i et Bash-skript (f.eks. #!/bin/bash) som forteller systemet hvilken tolk som skal brukes?
+***Q:**Hva kalles den første linjen i et Bash-skript (f.eks. #!/bin/bash) som forteller systemet hvilken tolk som skal
+*brukes?
 
 **A:**Shebang (eller hashbang).
 
@@ -42,7 +43,8 @@
 
 ## Card 6
 
-**Q:**Hva kalles prinsippet om at et skript kan kjøres flere ganger uten å endre resultatet etter den første vellykkede kjøringen?
+***Q:**Hva kalles prinsippet om at et skript kan kjøres flere ganger uten å endre resultatet etter den første vellykkede
+*kjøringen?
 
 **A:**Idempotens
 
@@ -228,13 +230,15 @@
 
 **Q:**Hva er hovedforskjellen mellom PowerShell ISE og VS Code med PowerShell-utvidelse?
 
-**A:**PowerShell ISE støtter kun eldre Windows PowerShell, mens VS Code er det moderne verktøyet som støtter PowerShell 7+ og flere plattformer.
+***A:**PowerShell ISE støtter kun eldre Windows PowerShell, mens VS Code er det moderne verktøyet som støtter PowerShell
+*7+ og flere plattformer.
 
 ---
 
 ## Card 30
 
-**Q:**Hvilken parameter til 'mkdir' i både Linux og PowerShell (New-Item) sørger for at foreldremapper opprettes uten feilmelding?
+***Q:**Hvilken parameter til 'mkdir' i både Linux og PowerShell (New-Item) sørger for at foreldremapper opprettes uten
+*feilmelding?
 
 **A:**-p (Linux) eller -Force (PowerShell New-Item).
 
@@ -244,7 +248,8 @@
 
 **Q:**Hva betyr 'RemoteSigned' som Execution Policy i PowerShell?
 
-**A:**Lokale skript kan kjøres uten signatur, men skript lastet ned fra internett må være signert av en pålitelig utgiver.
+***A:**Lokale skript kan kjøres uten signatur, men skript lastet ned fra internett må være signert av en pålitelig
+*utgiver.
 
 ---
 

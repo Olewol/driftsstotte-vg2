@@ -14,14 +14,14 @@ Generert: 2026-05-20
 
 ### Vurdering av målgruppetilpasning
 
-| Kriterium | Status | Notat |
-|-----------|--------|-------|
-| Språknivå | ✅ OK | Fagbegreper forklares ved første bruk, aktiv setningsbygning |
-| Aktive setninger | ✅ OK | Korte, konsise forklaringer |
-| Eksempler fra virkeligheten | ✅ OK | Case-baserte eksempler (Østre Toten, NCS) |
-| Visuelle forklaringer | ✅ OK | ASCII-diagrammer, SVG, Mermaid |
-| Oppgaveintegrasjon | ⚠️ Delvis | 1 oppgave koblet — flere trengs |
-| Varierte læringsstiler | ⚠️ Delvis | Tekst: ✅, Visuelt: ✅, Lyd: ⏳ (audio mangler), Interaktivt: ⏳ |
+|| Kriterium | Status | Notat |
+|| ----------- | -------- | ------- |
+|| Språknivå | ✅ OK | Fagbegreper forklares ved første bruk, aktiv setningsbygning |
+|| Aktive setninger | ✅ OK | Korte, konsise forklaringer |
+|| Eksempler fra virkeligheten | ✅ OK | Case-baserte eksempler (Østre Toten, NCS) |
+|| Visuelle forklaringer | ✅ OK | ASCII-diagrammer, SVG, Mermaid |
+|| Oppgaveintegrasjon | ⚠️ Delvis | 1 oppgave koblet — flere trengs |
+|| Varierte læringsstiler | ⚠️ Delvis | Tekst: ✅, Visuelt: ✅, Lyd: ⏳ (audio mangler), Interaktivt: ⏳ |
 
 ## Struktursjekk
 
@@ -40,20 +40,21 @@ Generert: 2026-05-20
 
 1.**Inline kildehenvisning**— kun brannmur.md har fotnoter. 26 filer gjenstår.
 2.**Lange avsnitt**— 7 avsnitt over 500 tegn bør splittes
-3.**Video**— 9 emner mangler videoressurs (SQL, AD, brukerstyring, filsystem, Linux, dokumentasjon, risikoanalyse, trusselbildet, automatisering)
+33.**Video**— 9 emner mangler videoressurs (SQL, AD, brukerstyring, filsystem, Linux, dokumentasjon, risikoanalyse,
+3trusselbildet, automatisering)
 4.**Audio**— 0/12 podcaster generert (Google rate limited, cron 08:00)
 5.**Flere oppgaver**— kun 1 oppgave i oppgaver-for-2IT, trengs for alle KM
 
 ## Universell utforming
 
-| Format | Status |
-|--------|--------|
-| Lesbar (tekst) | ✅ Markdown, alle filer |
-| Hørbar (TTS) | ✅ TTSBar.astro med norsk stemme |
-| Hørbar (podcast) | ⏳ NotebookLM Audio (i morgen) |
-| Synlig (video) | ⚠️ 18/27 med YouTube/NDLA-video |
-| Interaktivt (flashcards) | ✅ NotebookLM-generert + egne filer |
-| Interaktivt (quiz) | ✅ Innebygd i hver fil |
+|| Format | Status |
+|| -------- | -------- |
+|| Lesbar (tekst) | ✅ Markdown, alle filer |
+|| Hørbar (TTS) | ✅ TTSBar.astro med norsk stemme |
+|| Hørbar (podcast) | ⏳ NotebookLM Audio (i morgen) |
+|| Synlig (video) | ⚠️ 18/27 med YouTube/NDLA-video |
+|| Interaktivt (flashcards) | ✅ NotebookLM-generert + egne filer |
+|| Interaktivt (quiz) | ✅ Innebygd i hver fil |
 
 ## Anbefalinger
 

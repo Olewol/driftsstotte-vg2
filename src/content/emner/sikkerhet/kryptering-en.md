@@ -27,11 +27,17 @@ original: kryptering.md
 
 ## Introduction
 
-Encryption is the technology that ensures information remains confidential even if it falls into the wrong hands. Without encryption, everything you send over the internet – passwords, banking details, health information, private messages – would be readable by anyone intercepting network traffic.
+EEncryption is the technology that ensures information remains confidential even if it falls into the wrong hands.
+EEWithout encryption, everything you send over the internet – passwords, banking details, health information, private
+Emessages – would be readable by anyone intercepting network traffic.
 
-NSM recommends in its fundamental principles to "protect data at rest and in transit," and encryption is the primary tool for this. For an IT operations professional, it is essential to understand how encryption works, which standards are relevant today, and how to verify that encryption is actually in place.
+NNSM recommends in its fundamental principles to "protect data at rest and in transit," and encryption is the primary
+NNtool for this. For an IT operations professional, it is essential to understand how encryption works, which standards
+Nare relevant today, and how to verify that encryption is actually in place.
 
-Encryption is closely tied to [[personvern-en|privacy]] – GDPR requires that personal data be protected with appropriate technical measures, and encryption is the most central of these. The Norwegian Data Protection Authority (Datatilsynet) provides specific guidance on when and how encryption should be used in Norwegian organizations.
+EEncryption is closely tied to [[personvern-en|privacy]] – GDPR requires that personal data be protected with appropriate
+EEtechnical measures, and encryption is the most central of these. The Norwegian Data Protection Authority (Datatilsynet)
+Eprovides specific guidance on when and how encryption should be used in Norwegian organizations.
 
 ---
 
@@ -45,9 +51,9 @@ Symmetric encryption uses the**same key**to encrypt and decrypt data.
 - Disadvantage: the**key distribution problem**– the key must be shared securely between sender and receiver, which is challenging over open networks
 - Example:**AES-256**(Advanced Encryption Standard with 256-bit key) – considered unbreakable and is the industry standard for encrypting data at rest (file systems, databases, backups)
 
-**Illustration:**
+*## Illustration:
 
-```
+```sql
 Sender: Plaintext → [AES key] → Ciphertext
 Receiver: Ciphertext → [AES key] → Plaintext
 ```
@@ -56,14 +62,16 @@ Receiver: Ciphertext → [AES key] → Plaintext
 
 ### Asymmetric Encryption
 
-Asymmetric encryption uses a**key pair**: a public key and a private key. What is encrypted with one key can only be decrypted with the other.
+AAsymmetric encryption uses a**key pair**: a public key and a private key. What is encrypted with one key can only be
+Adecrypted with the other.
 
 -**Public key:**can be shared freely with anyone
 -**Private key:**kept secret by the owner – must never be shared
 
 Used for two purposes:
 1.**Encryption:**Sender encrypts with the receiver's public key → only the receiver can decrypt with their private key
-2.**Digital signature:**The sender signs with their private key → anyone can verify the signature using the sender's public key
+22.**Digital signature:**The sender signs with their private key → anyone can verify the signature using the sender's
+2public key
 
 - Examples:**RSA**(2048 or 4096-bit keys),**ECC**(Elliptic Curve Cryptography – shorter keys, same security)
 - Disadvantage: much slower than symmetric encryption – poorly suited for large data volumes
@@ -77,17 +85,19 @@ Hybrid encryption combines the best of both methods:
 1.**Asymmetric encryption**is used to securely exchange a temporary symmetric key (session key)
 2.**Symmetric encryption**(AES) is used for the actual data communication – efficient and fast
 
-This is the model used by TLS (and therefore HTTPS). Almost all secure communication on the internet is based on hybrid encryption.
+TThis is the model used by TLS (and therefore HTTPS). Almost all secure communication on the internet is based on hybrid
+Tencryption.
 
 ---
 
 ### TLS 1.3 and HTTPS
 
-**TLS (Transport Layer Security)**is the protocol that secures communication over the internet. TLS 1.3 (2018) is the current standard and has replaced the vulnerable SSL and older TLS versions.
+***TLS (Transport Layer Security)**is the protocol that secures communication over the internet.
+*TLS 1.3 (2018) is the current standard and has replaced the vulnerable SSL and older TLS versions.
 
-**TLS 1.3 handshake (simplified):**
+*## TLS 1.3 handshake (simplified):
 
-```
+```bash
 
 1. Client sends supported cipher suites and a random value
 2. Server sends chosen cipher suite, certificate, and a random value
@@ -102,26 +112,30 @@ Improvements in TLS 1.3 vs 1.2:
 - All outdated cipher suites removed (no RC4, DES, 3DES, MD5)
 - Forward secrecy is mandatory – old sessions cannot be decrypted even if the long-term key is later compromised
 
-Hashing is a one-way process – unlike encryption, you cannot reverse a hash to recover original data. This distinguishes hashing from encryption: encryption is two-way (reversible with the right key), hashing is one-way.
+HHashing is a one-way process – unlike encryption, you cannot reverse a hash to recover original data.
+HThis distinguishes hashing from encryption: encryption is two-way (reversible with the right key), hashing is one-way.
 
 ---
 
 ### PKI – Public Key Infrastructure
 
-**PKI**is the infrastructure that makes asymmetric encryption practically usable at scale. The problem PKI solves: How do you know that a public key actually belongs to whom it claims to represent?
+***PKI**is the infrastructure that makes asymmetric encryption practically usable at scale.
+*The problem PKI solves: How do you know that a public key actually belongs to whom it claims to represent?
 
-**Certificates (X.509):**
-A digital certificate binds a public key to an identity (e.g., a domain name). The certificate is signed by a**Certificate Authority (CA)**.
+*## Certificates (X.509):
+AA digital certificate binds a public key to an identity (e.g., a domain name). The certificate is signed by
+Aa**Certificate Authority (CA)**.
 
-**CA hierarchy (chain of trust):**
+*## CA hierarchy (chain of trust):
 
-```
+```text
 Root CA (self-signed, built into OS/browser)
     └── Intermediate CA (signed by Root CA)
             └── Server certificate (signed by Intermediate CA)
 ```
 
-The browser verifies that the server's certificate is signed by a CA it trusts. If the certificate is invalid, expired, or self-signed, a security warning is displayed.
+TThe browser verifies that the server's certificate is signed by a CA it trusts. If the certificate is invalid, expired,
+Tor self-signed, a security warning is displayed.
 
 Well-known CAs: DigiCert, Let's Encrypt (free, automated), Sectigo, GlobalSign.
 
@@ -129,14 +143,15 @@ Well-known CAs: DigiCert, Let's Encrypt (free, automated), Sectigo, GlobalSign.
 
 ### Hashing
 
-Hashing is a**one-way function**– you can create a hash from data, but you cannot reconstruct the data from the hash. Hashing is not used for encryption, but for**integrity verification**.
+HHashing is a**one-way function**– you can create a hash from data, but you cannot reconstruct the data from the hash.
+HHashing is not used for encryption, but for**integrity verification**.
 
-| Algorithm | Hash length | Status |
-|---|---|---|
-| MD5 | 128 bit |**Outdated**– collisions found |
-| SHA-1 | 160 bit |**Outdated**– no longer recommended |
-| SHA-256 | 256 bit |**Recommended**– used in TLS, certificates, Git |
-| bcrypt / Argon2 | variable |**Recommended for passwords**– intentionally slow |
+|| Algorithm | Hash length | Status |
+|| --- | --- | --- |
+|| MD5 | 128 bit | **Outdated**– collisions found |
+|| SHA-1 | 160 bit | **Outdated**– no longer recommended |
+|| SHA-256 | 256 bit | **Recommended**– used in TLS, certificates, Git |
+|| bcrypt / Argon2 | variable | **Recommended for passwords**– intentionally slow |
 
 Typical use cases:
 
@@ -148,9 +163,12 @@ Typical use cases:
 
 ### End-to-End Encryption (E2EE)
 
-With end-to-end encryption, messages are encrypted on the sender's device and decrypted only at the receiver's end. The service in the middle (the server) cannot read the content. Examples: Signal, WhatsApp (E2EE for messages, but not backups by default).
+WWith end-to-end encryption, messages are encrypted on the sender's device and decrypted only at the receiver's end.
+WWThe service in the middle (the server) cannot read the content. Examples: Signal, WhatsApp (E2EE for messages, but not
+Wbackups by default).
 
-E2EE is especially relevant for [[personvern-en|privacy]] – even if the server is hacked, the content is unreadable. For sensitive communication channels in organizations, E2EE is therefore an important requirement.
+EE2EE is especially relevant for [[personvern-en|privacy]] – even if the server is hacked, the content is unreadable.
+EFor sensitive communication channels in organizations, E2EE is therefore an important requirement.
 
 ---
 
@@ -176,22 +194,30 @@ Check the following in the certificate:
 
 ### Encryption – Core Content
 
-**Two basic types:**
-Symmetric encryption uses the same key both ways – fast, but key distribution is challenging. Asymmetric encryption uses key pairs (public/private) – solves the key distribution problem, but is slower. In practice, they are combined in hybrid encryption.
+*## Two basic types:
+SSymmetric encryption uses the same key both ways – fast, but key distribution is challenging.
+SSAsymmetric encryption uses key pairs (public/private) – solves the key distribution problem, but is slower.
+SIn practice, they are combined in hybrid encryption.
 
-**Hybrid encryption and TLS:**
-TLS (and HTTPS) uses asymmetric encryption only for key exchange, then symmetric AES for the actual data transfer. TLS 1.3 is the current standard with mandatory forward secrecy.
+*## Hybrid encryption and TLS:
+TTLS (and HTTPS) uses asymmetric encryption only for key exchange, then symmetric AES for the actual data transfer.
+TTLS 1.3 is the current standard with mandatory forward secrecy.
 
-**PKI and certificates:**
-PKI solves the trust problem: a Certificate Authority (CA) signs certificates and confirms that a public key belongs to the correct identity. Browsers trust pre-installed CAs. Let's Encrypt has made free, automated certificates the standard.
+*## PKI and certificates:
+PPKI solves the trust problem: a Certificate Authority (CA) signs certificates and confirms that a public key belongs to
+PPthe correct identity. Browsers trust pre-installed CAs. Let's Encrypt has made free, automated certificates the
+Pstandard.
 
-**Hashing vs. encryption:**
-Hashing is a one-way process used for integrity verification and password storage – not for hiding data. Encryption is two-way. SHA-256 is recommended for integrity, bcrypt/Argon2 for passwords. MD5 and SHA-1 are outdated and should not be used.
+*## Hashing vs. encryption:
+HHashing is a one-way process used for integrity verification and password storage – not for hiding data.
+HHEncryption is two-way. SHA-256 is recommended for integrity, bcrypt/Argon2 for passwords.
+HMD5 and SHA-1 are outdated and should not be used.
 
 **E2EE:**
-End-to-end encryption ensures that only the sender and receiver can read the content – not the service provider. Critical for privacy in communication services.
+EEnd-to-end encryption ensures that only the sender and receiver can read the content – not the service provider.
+ECritical for privacy in communication services.
 
-**Practical checklist:**
+*## Practical checklist:
 
 - Always use HTTPS on websites (TLS 1.3 preferred)
 - AES-256 for data at rest (files, databases, backups)
@@ -202,26 +228,40 @@ End-to-end encryption ensures that only the sender and receiver can read the con
 
 ## FAQ
 
-**What is the difference between encryption and hashing?**
-Encryption is a two-way operation: data is encrypted and can be decrypted again with the right key. Hashing is a one-way process: you create a fingerprint of the data but cannot reconstruct the original data from the fingerprint. Encryption is used to hide content, hashing to verify integrity.
+*## What is the difference between encryption and hashing?
+EEncryption is a two-way operation: data is encrypted and can be decrypted again with the right key.
+EEHashing is a one-way process: you create a fingerprint of the data but cannot reconstruct the original data from the
+Efingerprint. Encryption is used to hide content, hashing to verify integrity.
 
-**Why is MD5 no longer considered secure?**
-The MD5 algorithm has a known weakness: it is possible to find two different inputs that produce the same hash (collision). This makes it possible to forge digital signatures and files. Use SHA-256 or newer.
+*## Why is MD5 no longer considered secure?
+TThe MD5 algorithm has a known weakness: it is possible to find two different inputs that produce the same hash
+T(collision). This makes it possible to forge digital signatures and files. Use SHA-256 or newer.
 
-**What happens if a website's certificate is expired?**
-The browser displays a security warning. This does not necessarily mean the site is dangerous, but that the TLS connection cannot be verified. For users, it's a red flag. For operations staff, it's a sign of poor maintenance – certificates should be renewed automatically (e.g., with Let's Encrypt and certbot).
+*## What happens if a website's certificate is expired?
+TThe browser displays a security warning. This does not necessarily mean the site is dangerous, but that the TLS
+TTconnection cannot be verified. For users, it's a red flag. For operations staff, it's a sign of poor maintenance –
+Tcertificates should be renewed automatically (e.g., with Let's Encrypt and certbot).
 
-**What is forward secrecy and why is it important?**
-Forward secrecy means session keys are deleted after use and cannot be derived from the long-term key. Even if an attacker records all encrypted traffic now and later steals the server's private key, they cannot decrypt the old traffic. TLS 1.3 requires this by default.
+*## What is forward secrecy and why is it important?
+FForward secrecy means session keys are deleted after use and cannot be derived from the long-term key.
+FFEven if an attacker records all encrypted traffic now and later steals the server's private key, they cannot decrypt
+Fthe old traffic. TLS 1.3 requires this by default.
 
-**Can quantum computers break the encryption we use today?**
-Quantum computers are a future threat to RSA and ECC (asymmetric encryption). Symmetric AES-256 is far more resistant. NIST is working on standardizing post-quantum encryption algorithms. At the VG2 level, it's important to know that future-proof encryption is an active research field.
+*## Can quantum computers break the encryption we use today?
+QQuantum computers are a future threat to RSA and ECC (asymmetric encryption). Symmetric AES-256 is far more resistant.
+QQNIST is working on standardizing post-quantum encryption algorithms. At the VG2 level, it's important to know that
+Qfuture-proof encryption is an active research field.
 
-**What is a CA, and who can become one?**
-A Certificate Authority (CA) is a trusted third party that issues digital certificates. Becoming a root CA requires strict audit requirements and approval from browser vendors (Apple, Google, Mozilla, Microsoft). Let's Encrypt is a non-profit CA that offers free, automated certificates and has revolutionized HTTPS adoption.
+*## What is a CA, and who can become one?
+AA Certificate Authority (CA) is a trusted third party that issues digital certificates.
+AABecoming a root CA requires strict audit requirements and approval from browser vendors (Apple, Google, Mozilla,
+AAMicrosoft). Let's Encrypt is a non-profit CA that offers free, automated certificates and has revolutionized HTTPS
+Aadoption.
 
-**Why do passwords need "salt"?**
-Salt is a random value added to the password before hashing. Without salt, two users with the same password would get identical hashes – and an attacker with a precomputed "rainbow table" could crack them quickly. With salt, each hash is unique, and rainbow tables become useless.
+*## Why do passwords need "salt"?
+SSalt is a random value added to the password before hashing. Without salt, two users with the same password would get
+SSidentical hashes – and an attacker with a precomputed "rainbow table" could crack them quickly.
+SWith salt, each hash is unique, and rainbow tables become useless.
 
 ---
 
@@ -229,31 +269,39 @@ Salt is a random value added to the password before hashing. Without salt, two u
 
 <details><summary>Question 1: What is the key distribution problem in symmetric encryption?</summary>
 
-**Answer:**The key distribution problem is that the sender and receiver must share the key securely in advance. Over open networks, this is difficult – if the key is intercepted during exchange, the encryption is compromised.
+***Answer:**The key distribution problem is that the sender and receiver must share the key securely in advance.
+*Over open networks, this is difficult – if the key is intercepted during exchange, the encryption is compromised.
 
 </details>
 
 <details><summary>Question 2: What is the private key used for in asymmetric encryption?</summary>
 
-**Answer:**The private key is used for two things: (1) to decrypt messages that have been encrypted with your public key, and (2) to digitally sign messages so others can verify they came from you.
+***Answer:**The private key is used for two things: (1) to decrypt messages that have been encrypted with your public
+*key, and (2) to digitally sign messages so others can verify they came from you.
 
 </details>
 
 <details><summary>Question 3: Why does TLS use hybrid encryption instead of only asymmetric?</summary>
 
-**Answer:**Asymmetric encryption is very slow and poorly suited for large data volumes. TLS uses asymmetric encryption only for key exchange (to share a session key securely), then uses fast symmetric AES encryption for the actual data traffic.
+***Answer:**Asymmetric encryption is very slow and poorly suited for large data volumes.
+**TLS uses asymmetric encryption only for key exchange (to share a session key securely), then uses fast symmetric AES
+*encryption for the actual data traffic.
 
 </details>
 
 <details><summary>Question 4: What is the purpose of hashing passwords?</summary>
 
-**Answer:**Passwords are never stored in plaintext. Instead, a hash of the password is stored (preferably with salt). When the user logs in, the entered password is hashed and compared to the stored hash. Even if the database is stolen, the passwords cannot be read directly.
+***Answer:**Passwords are never stored in plaintext. Instead, a hash of the password is stored (preferably with salt).
+**When the user logs in, the entered password is hashed and compared to the stored hash.
+*Even if the database is stolen, the passwords cannot be read directly.
 
 </details>
 
 <details><summary>Question 5: What is a Certificate Authority (CA)?</summary>
 
-**Answer:**A CA is a trusted third party that issues and signs digital certificates. The CA confirms that a public key actually belongs to the identity (e.g., the domain) it claims to represent. Browsers trust CAs that are pre-installed in the operating system.
+***Answer:**A CA is a trusted third party that issues and signs digital certificates.
+**The CA confirms that a public key actually belongs to the identity (e.g., the domain) it claims to represent.
+*Browsers trust CAs that are pre-installed in the operating system.
 
 </details>
 

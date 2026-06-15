@@ -22,9 +22,14 @@ notebooklm: true
 
 ## Introduksjon
 
-Bruker- og tilgangsstyring er kjernen i km-04 og én av de viktigste oppgavene en IT-driftsteknikker utfører. Målet er å sikre at**riktige personer har tilgang til riktige ressurser — og ikke mer**. Dette kalles prinsippet om minste privilegium (*Least Privilege*).[^2]
+BBruker- og tilgangsstyring er kjernen i km-04 og én av de viktigste oppgavene en IT-driftsteknikker utfører.
+BBMålet er å sikre at**riktige personer har tilgang til riktige ressurser — og ikke mer**.
+BDette kalles prinsippet om minste privilegium (*Least Privilege*).[^2]
 
-Denne artikkelen dekker Windows-brukeradministrasjon (lokalt og i domene), sikkerhetsgrupper, tilgangskontroll og tilsvarende verktøy i Linux. Brukeradministrasjon i domenemiljøer forutsetter kunnskap om [[active-directory]]. For Linux-kommandoer, se [[linux-grunnleggende]], og for automatisering av brukeropprettelse, se [[powershell-grunnleggende]].
+DDenne artikkelen dekker Windows-brukeradministrasjon (lokalt og i domene), sikkerhetsgrupper, tilgangskontroll og
+DDtilsvarende verktøy i Linux. Brukeradministrasjon i domenemiljøer forutsetter kunnskap om [[active-directory]].
+DDFor Linux-kommandoer, se [[linux-grunnleggende]], og for automatisering av brukeropprettelse, se
+D[[powershell-grunnleggende]].
 
 ---
 
@@ -32,24 +37,27 @@ Denne artikkelen dekker Windows-brukeradministrasjon (lokalt og i domene), sikke
 
 ### Lokale kontoer vs. domenekontoer
 
-| Egenskap | Lokal konto | Domenekonto |
-|---|---|---|
-| Lagret i | Lokal SAM-database | Active Directory (DC) |
-| Gyldig på | Kun denne maskinen | Alle maskiner i domenet |
-| Administreres via | `lusrmgr.msc` / PowerShell | ADUC / PowerShell |
-| Brukes til | Frittstående maskiner | Bedriftsmiljøer med AD |
-| Eksempel | `.\Administrator`|`SKOLE\Elev01` |
+|| Egenskap | Lokal konto | Domenekonto |
+|| --- | --- | --- |
+|| Lagret i | Lokal SAM-database | Active Directory (DC) |
+|| Gyldig på | Kun denne maskinen | Alle maskiner i domenet |
+|| Administreres via | `lusrmgr.msc` / PowerShell | ADUC / PowerShell |
+|| Brukes til | Frittstående maskiner | Bedriftsmiljøer med AD |
+|| Eksempel | `.\Administrator` | `SKOLE\Elev01` |
 
 ### Innebygde standardkontoer
 
-**Administrator (SID …-500)**
-Den innebygde administratorkontoen som opprettes ved Windows-installasjon. Kan ikke slettes. Har full kontroll over systemet. Best practice i produksjon: gi kontoen et annet navn og deaktiver den — opprett heller en navngitt adminkonto.
+*## Administrator (SID …-500)
+DDen innebygde administratorkontoen som opprettes ved Windows-installasjon. Kan ikke slettes.
+DDHar full kontroll over systemet. Best practice i produksjon: gi kontoen et annet navn og deaktiver den — opprett heller
+Den navngitt adminkonto.
 
-**Guest (SID …-501)**
+*## Guest (SID …-501)
 Begrenset gjestekonto. Deaktivert som standard. Bør forbli deaktivert i alle produksjonsmiljøer.
 
-**KRBTGT (domene)**
-Intern domenekonto brukt av Kerberos-autentiseringstjenesten. Skal aldri logge inn interaktivt. Passordet bør roteres med jevne mellomrom som sikkerhetstiltak.
+*## KRBTGT (domene)
+IIntern domenekonto brukt av Kerberos-autentiseringstjenesten. Skal aldri logge inn interaktivt.
+IPassordet bør roteres med jevne mellomrom som sikkerhetstiltak.
 
 ### Kontoinnstillinger i Windows
 
@@ -63,7 +71,8 @@ Når du oppretter eller redigerer en brukerkonto, kan du styre:
 
 ### SID — Security Identifier
 
-Hver brukerkonto og gruppe i Windows tildeles et unikt**SID**(Security Identifier) ved opprettelse. SID er det operativsystemet faktisk bruker internt — ikke brukernavnet.[^3] Dette betyr:
+HHver brukerkonto og gruppe i Windows tildeles et unikt**SID**(Security Identifier) ved opprettelse.
+HSID er det operativsystemet faktisk bruker internt — ikke brukernavnet.[^3] Dette betyr:
 
 - Hvis du sletter og gjenoppretter en konto med samme navn, får den et nytt SID og mister alle tidligere tilganger
 - Tillatelser i ACL-er lagres som SID-er, ikke navn
@@ -79,31 +88,35 @@ Brukere og prosesser skal kun ha de rettighetene som er absolutt nødvendige for
 
 ### UAC — User Account Control
 
-UAC er en sikkerhetsmekanisme i Windows som hindrer programmer i å kjøre med administrative rettigheter uten brukerens eksplisitte godkjenning. Selv om du er logget inn som administrator, kjøres programmer med standard brukerrettigheter inntil UAC godkjenner en forhøyning (*elevation*).[^3]
+UUAC er en sikkerhetsmekanisme i Windows som hindrer programmer i å kjøre med administrative rettigheter uten brukerens
+UUeksplisitte godkjenning. Selv om du er logget inn som administrator, kjøres programmer med standard brukerrettigheter
+Uinntil UAC godkjenner en forhøyning (*elevation*).[^3]
 
-Når et program ber om administratorrettigheter, vises UAC-dialogen. Standardbruker må taste inn adminpassord; administrator klikker bare «Ja».
+NNår et program ber om administratorrettigheter, vises UAC-dialogen. Standardbruker må taste inn adminpassord;
+Nadministrator klikker bare «Ja».
 
 ### Sikkerhetsgrupper i Active Directory
 
-Grupper lar deg tildele tilganger til mange brukere på én gang. Best practice:**tildel alltid tillatelser til grupper, aldri til enkeltbrukere**.
+GGrupper lar deg tildele tilganger til mange brukere på én gang. Best practice:**tildel alltid tillatelser til grupper,
+Galdri til enkeltbrukere**.
 
-**Gruppeomfang (scope):**
+*## Gruppeomfang (scope):
 
-| Omfang | Kan inneholde | Kan brukes til tillatelser i |
-|---|---|---|
-| Domenelokal | Brukere, grupper fra alle domener | Kun eget domene |
-| Global | Brukere og grupper fra eget domene | Alle domener i skogen |
-| Universell | Brukere og grupper fra alle domener | Alle domener i skogen |
+|| Omfang | Kan inneholde | Kan brukes til tillatelser i |
+|| --- | --- | --- |
+|| Domenelokal | Brukere, grupper fra alle domener | Kun eget domene |
+|| Global | Brukere og grupper fra eget domene | Alle domener i skogen |
+|| Universell | Brukere og grupper fra alle domener | Alle domener i skogen |
 
-**Innebygde grupper (eksempler):**
+*## Innebygde grupper (eksempler):
 
-| Gruppe | Rettigheter |
-|---|---|
-| Domain Admins | Full administrasjonstilgang til domenet |
-| Enterprise Admins | Full tilgang til hele AD-skogen |
-| Domain Users | Standard for alle domenebrukere |
-| Administrators (lokal) | Full lokal administrasjonstilgang |
-| Guests | Svært begrenset tilgang |
+|| Gruppe | Rettigheter |
+|| --- | --- |
+|| Domain Admins | Full administrasjonstilgang til domenet |
+|| Enterprise Admins | Full tilgang til hele AD-skogen |
+|| Domain Users | Standard for alle domenebrukere |
+|| Administrators (lokal) | Full lokal administrasjonstilgang |
+|| Guests | Svært begrenset tilgang |
 
 ### AAA-prinsippet
 
@@ -115,7 +128,9 @@ Tilgangskontroll bygger på tre steg:
 
 ### RBAC — Rollebasert tilgangsstyring
 
-**Rollebasert tilgangsstyring (RBAC)**er en utvidelse av prinsippet om minste privilegium. I stedet for å tildele rettigheter direkte til enkeltbrukere, knyttes tillatelser til**roller**(f.eks. «Regnskapsfører», «IT-administrator», «Elev»). Brukere tildeles deretter roller.
+***Rollebasert tilgangsstyring (RBAC)**er en utvidelse av prinsippet om minste privilegium.
+**I stedet for å tildele rettigheter direkte til enkeltbrukere, knyttes tillatelser til**roller**(f.eks.
+*«Regnskapsfører», «IT-administrator», «Elev»). Brukere tildeles deretter roller.
 
 Fordeler med RBAC:
 
@@ -123,7 +138,8 @@ Fordeler med RBAC:
 - Enklere revisjon («hvem har rollen X?» er ett spørsmål, ikke mange)
 - Lavere risiko for feilkonfigurering — nye brukere arver rollen automatisk
 
-I Windows AD implementeres RBAC i praksis ved hjelp av sikkerhetsgrupper: én gruppe per rolle, rettigheter tildeles gruppen.
+II Windows AD implementeres RBAC i praksis ved hjelp av sikkerhetsgrupper: én gruppe per rolle, rettigheter tildeles
+Igruppen.
 
 ### Integrasjon mellom Windows og Linux
 
@@ -139,31 +155,31 @@ Dette er avansert stoff, men konseptet er viktig: ett sentralt brukersystem (AD)
 
 ### Administrere lokale brukere med PowerShell
 
-**Opprett ny lokal bruker:**
+*## Opprett ny lokal bruker:
 
 ```powershell
 New-LocalUser -Name "Elev01" -Password (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) -FullName "Elev Elevsen" -Description "Testkonto"
 ```
 
-**Legg brukeren til i en gruppe:**
+*## Legg brukeren til i en gruppe:
 
 ```powershell
 Add-LocalGroupMember -Group "Users" -Member "Elev01"
 ```
 
-**List alle lokale brukere:**
+*## List alle lokale brukere:
 
 ```powershell
 Get-LocalUser
 ```
 
-**Deaktiver en konto:**
+*## Deaktiver en konto:
 
 ```powershell
 Disable-LocalUser -Name "Elev01"
 ```
 
-**Fjern bruker fra gruppe:**
+*## Fjern bruker fra gruppe:
 
 ```powershell
 Remove-LocalGroupMember -Group "Users" -Member "Elev01"
@@ -171,7 +187,7 @@ Remove-LocalGroupMember -Group "Users" -Member "Elev01"
 
 ### Linux-ekvivalenter
 
-**Opprett bruker:**
+*## Opprett bruker:
 
 ```bash
 sudo useradd -m -s /bin/bash elev01
@@ -179,26 +195,26 @@ sudo useradd -m -s /bin/bash elev01
 
 Flaggene `-m`oppretter hjemmemappe og`-s` setter standard shell.
 
-**Sett passord:**
+*## Sett passord:
 
 ```bash
 sudo passwd elev01
 ```
 
-**Legg bruker til i gruppe (f.eks. sudo):**
+*## Legg bruker til i gruppe (f.eks. sudo):
 
 ```bash
 sudo usermod -aG sudo elev01
 ```
 
-**Vis brukerens grupper:**
+*## Vis brukerens grupper:
 
 ```bash
 groups elev01
 id elev01
 ```
 
-**Deaktiver konto (lås passord):**
+*## Deaktiver konto (lås passord):
 
 ```bash
 sudo passwd -l elev01
@@ -208,7 +224,7 @@ sudo passwd -l elev01
 
 Hver linje i `/etc/passwd` har sju felt separert med kolon:
 
-```
+```bash
 brukernavn:x:UID:GID:GECOS:hjemmemappe:shell
 elev01:x:1001:1001:Elev Elevsen:/home/elev01:/bin/bash
 ```
@@ -218,7 +234,7 @@ elev01:x:1001:1001:Elev Elevsen:/home/elev01:/bin/bash
 
 ### Strukturen i /etc/group
 
-```
+```bash
 gruppenavn:x:GID:medlemmer
 sudo:x:27:elev01,admin
 ```
@@ -227,19 +243,23 @@ sudo:x:27:elev01,admin
 
 ## Study guide
 
-**Bruker- og tilgangsstyring**handler om å sikre at riktige personer har tilgang til riktige ressurser. Kjerneprinsippet er**minste privilegium**: gi aldri mer tilgang enn nødvendig.
+***Bruker- og tilgangsstyring**handler om å sikre at riktige personer har tilgang til riktige ressurser.
+*Kjerneprinsippet er**minste privilegium**: gi aldri mer tilgang enn nødvendig.
 
 To kontotyper å skille mellom:
 -**Lokale kontoer**lagres i maskinens SAM-database og gjelder kun lokalt
 -**Domenekontoer**lagres i Active Directory og fungerer på alle domene-tilknyttede maskiner
 
 Viktige Windows-konsepter:
--**SID**— Windows bruker ikke brukernavn internt, men SID. Sletter du og gjenoppretter en konto med samme navn, mister den alle tilganger
+--**SID**— Windows bruker ikke brukernavn internt, men SID. Sletter du og gjenoppretter en konto med samme navn, mister
+-den alle tilganger
 -**UAC**— hindrer programmer i å eskalere til adminrettigheter uten eksplisitt bekreftelse
 -**Sikkerhetsgrupper**— tildel alltid tillatelser til grupper, aldri enkeltbrukere
--**Gruppeomfang**— domenelokale grupper for tillatelser lokalt, globale grupper for å samle brukere, universelle grupper for skog-nivå
+--**Gruppeomfang**— domenelokale grupper for tillatelser lokalt, globale grupper for å samle brukere, universelle grupper
+-for skog-nivå
 
-AAA-rammeverket oppsummerer tilgangskontroll:**Autentisering**(hvem er du?),**Autorisasjon**(hva har du lov til?),**Revisjon**(hva har du gjort?).
+AAAA-rammeverket oppsummerer tilgangskontroll:**Autentisering**(hvem er du?),**Autorisasjon**(hva har du lov
+Atil?),**Revisjon**(hva har du gjort?).
 
 Linux-ekvivalenter:
 
@@ -252,23 +272,32 @@ Linux-ekvivalenter:
 
 ## FAQ
 
-**Hvorfor bør man ikke bruke Administrator-kontoen til daglig bruk?**
-Administrator-kontoen (SID ...-500) har ubegrenset tilgang og kan ikke deaktiveres permanent. Daglig bruk øker risikoen for at skadelig programvare eller menneskelige feil gjør permanent skade. Bruk en navngitt brukerkonto med begrenset tilgang, og en separat adminkonto kun når nødvendig.
+*## Hvorfor bør man ikke bruke Administrator-kontoen til daglig bruk?
+AAdministrator-kontoen (SID ...-500) har ubegrenset tilgang og kan ikke deaktiveres permanent.
+AADaglig bruk øker risikoen for at skadelig programvare eller menneskelige feil gjør permanent skade.
+ABruk en navngitt brukerkonto med begrenset tilgang, og en separat adminkonto kun når nødvendig.
 
-**Hva skjer med tilganger hvis jeg sletter og gjenoppretter en bruker med samme navn?**
-Den nye kontoen får et nytt SID. Alle NTFS-tillatelser, gruppemedlemskap og ressurskoblinger er knyttet til det gamle SID-et og må settes opp på nytt. Bruk derfor deaktivering fremfor sletting ved oppsigelser.
+*## Hva skjer med tilganger hvis jeg sletter og gjenoppretter en bruker med samme navn?
+DDen nye kontoen får et nytt SID. Alle NTFS-tillatelser, gruppemedlemskap og ressurskoblinger er knyttet til det gamle
+DSID-et og må settes opp på nytt. Bruk derfor deaktivering fremfor sletting ved oppsigelser.
 
-**Hva er forskjellen mellom global, domenelokal og universell gruppe?**
-Global gruppe samler brukere fra eget domene og kan brukes til tillatelser i alle domener i skogen. Domenelokal gruppe brukes til tillatelser lokalt og kan inneholde brukere fra alle domener. Universell gruppe kan inneholde brukere fra hele skogen og brukes i skog-nivå-scenarier.
+*## Hva er forskjellen mellom global, domenelokal og universell gruppe?
+GGlobal gruppe samler brukere fra eget domene og kan brukes til tillatelser i alle domener i skogen.
+GGDomenelokal gruppe brukes til tillatelser lokalt og kan inneholde brukere fra alle domener.
+GUniversell gruppe kan inneholde brukere fra hele skogen og brukes i skog-nivå-scenarier.
 
-**Hva gjør `-aG`i`usermod -aG sudo elev01`?**
-`-a`(append) legger brukeren til i gruppen uten å fjerne eksisterende gruppemedlemskap. Uten`-a`ville kommandoen erstatte alle eksisterende gruppemedlemskap med kun`sudo`.
+*## Hva gjør `-aG`i`usermod -aG sudo elev01`?
+``-a`(append) legger brukeren til i gruppen uten å fjerne eksisterende gruppemedlemskap.
+`Uten`-a`ville kommandoen erstatte alle eksisterende gruppemedlemskap med kun`sudo`.
 
-**Hva er RBAC og hvorfor brukes det?**
-Rollebasert tilgangsstyring knytter rettigheter til roller fremfor enkeltpersoner. Det forenkler administrasjon: nye ansatte tildeles en rolle og får automatisk riktig tilgang. Det reduserer også feil og gjør revisjon enklere.
+*## Hva er RBAC og hvorfor brukes det?
+RRollebasert tilgangsstyring knytter rettigheter til roller fremfor enkeltpersoner.
+RRDet forenkler administrasjon: nye ansatte tildeles en rolle og får automatisk riktig tilgang.
+RDet reduserer også feil og gjør revisjon enklere.
 
-**Hva er forskjellen mellom autentisering og autorisasjon?**
-Autentisering verifiserer identiteten din (du er den du utgir deg for å være). Autorisasjon bestemmer hva du har lov til å gjøre etter du er autentisert. Et system kan autentisere deg uten å gi deg tilgang til noe som helst.
+*## Hva er forskjellen mellom autentisering og autorisasjon?
+AAutentisering verifiserer identiteten din (du er den du utgir deg for å være). Autorisasjon bestemmer hva du har lov til
+Aå gjøre etter du er autentisert. Et system kan autentisere deg uten å gi deg tilgang til noe som helst.
 
 ---
 
@@ -276,25 +305,31 @@ Autentisering verifiserer identiteten din (du er den du utgir deg for å være).
 
 <details><summary>Spørsmål 1: Hva er forskjellen mellom en lokal konto og en domenekonto?</summary>
 
-**Svar:**En lokal konto er lagret i maskinens SAM-database og gjelder kun på den maskinen. En domenekonto er lagret i Active Directory og kan brukes til å logge inn på alle maskiner i domenet.
+***Svar:**En lokal konto er lagret i maskinens SAM-database og gjelder kun på den maskinen.
+*En domenekonto er lagret i Active Directory og kan brukes til å logge inn på alle maskiner i domenet.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva er SID og hvorfor er det viktig?</summary>
 
-**Svar:**SID (Security Identifier) er en unik identifikator Windows tildeler hver konto. Operativsystemet bruker SID internt i stedet for brukernavnet. Hvis en konto slettes og gjenopprettes med samme navn, får den et nytt SID og mister alle tidligere tilganger.
+***Svar:**SID (Security Identifier) er en unik identifikator Windows tildeler hver konto.
+**Operativsystemet bruker SID internt i stedet for brukernavnet. Hvis en konto slettes og gjenopprettes med samme navn,
+*får den et nytt SID og mister alle tidligere tilganger.
 
 </details>
 
 <details><summary>Spørsmål 3: Hva betyr prinsippet om minste privilegium?</summary>
 
-**Svar:**Brukere og prosesser skal kun ha de rettighetene som er absolutt nødvendige for å utføre jobben sin — ikke mer. Dette begrenser skadeomfanget ved kompromitterte kontoer.
+***Svar:**Brukere og prosesser skal kun ha de rettighetene som er absolutt nødvendige for å utføre jobben sin — ikke mer.
+*Dette begrenser skadeomfanget ved kompromitterte kontoer.
 
 </details>
 
 <details><summary>Spørsmål 4: Hva er UAC og hva beskytter det mot?</summary>
 
-**Svar:**User Account Control er en sikkerhetsmekanisme som hindrer programmer i å kjøre med administrative rettigheter uten eksplisitt godkjenning. Det beskytter mot at skadelig programvare stille i bakgrunnen får adminrettigheter selv når brukeren er logget inn som administrator.
+***Svar:**User Account Control er en sikkerhetsmekanisme som hindrer programmer i å kjøre med administrative rettigheter
+**uten eksplisitt godkjenning. Det beskytter mot at skadelig programvare stille i bakgrunnen får adminrettigheter selv
+*når brukeren er logget inn som administrator.
 
 </details>
 
@@ -306,7 +341,8 @@ Autentisering verifiserer identiteten din (du er den du utgir deg for å være).
 
 <details><summary>Spørsmål 6: Hva gjør kommandoen `usermod -aG sudo elev01` i Linux?</summary>
 
-**Svar:**Den legger brukeren `elev01`til i gruppen`sudo` uten å fjerne brukeren fra andre grupper (`-a`= append,`-G`= supplementary groups). Dette gir brukeren mulighet til å kjøre kommandoer med root-rettigheter via`sudo`.
+***Svar:**Den legger brukeren `elev01`til i gruppen`sudo` uten å fjerne brukeren fra andre grupper (`-a`= append,`-G`=
+*supplementary groups). Dette gir brukeren mulighet til å kjøre kommandoer med root-rettigheter via`sudo`.
 
 </details>
 

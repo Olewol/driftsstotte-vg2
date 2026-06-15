@@ -24,9 +24,14 @@ notebooklm: true
 
 ## Introduksjon
 
-En driftsarkitektur beskriver hvordan en virksomhets IT-infrastruktur er bygget opp – hvilke komponenter som finnes, hvordan de henger sammen, og hvor de er plassert.[^1] En gjennomtenkt arkitektur gjør systemet stabilt, sikkert og skalerbart.
+EEn driftsarkitektur beskriver hvordan en virksomhets IT-infrastruktur er bygget opp – hvilke komponenter som finnes,
+EEhvordan de henger sammen, og hvor de er plassert.[^1] En gjennomtenkt arkitektur gjør systemet stabilt, sikkert og
+Eskalerbart.
 
-I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infrastruktur, og en kombinasjon av begge (hybrid). Valget avhenger av krav til kontroll, kostnad, fleksibilitet og lovpålegg. En god driftsarkitektur tar alltid hensyn til hvem som er ansvarlig for hva – noe som er særlig viktig når tjenester flyttes til skyen (se [[skytjenester]] for Shared Responsibility Model).
+II dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infrastruktur, og en kombinasjon av begge
+II(hybrid). Valget avhenger av krav til kontroll, kostnad, fleksibilitet og lovpålegg.
+IIEn god driftsarkitektur tar alltid hensyn til hvem som er ansvarlig for hva – noe som er særlig viktig når tjenester
+Iflyttes til skyen (se [[skytjenester]] for Shared Responsibility Model).
 
 ---
 
@@ -34,17 +39,20 @@ I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infr
 
 ### On-premise, sky og hybrid
 
-**On-premise**betyr at all infrastruktur er plassert lokalt – i virksomhetens egne rom eller leide serverrom. Virksomheten eier og drifter alt selv: servere, nettverk, lagring og programvare.
+***On-premise**betyr at all infrastruktur er plassert lokalt – i virksomhetens egne rom eller leide serverrom.
+*Virksomheten eier og drifter alt selv: servere, nettverk, lagring og programvare.
 
 - Fordeler: full kontroll, forutsigbare kostnader over tid, ingen avhengighet av internettforbindelse
 - Ulemper: høye investeringskostnader (CAPEX), krever kompetanse internt, skalering tar tid
 
-**Skybasert infrastruktur (public cloud)**betyr at ressurser leies av en ekstern skyleverandør (Microsoft Azure, Amazon Web Services, Google Cloud).[^2] Virksomheten betaler for det den bruker (OPEX-modell).
+***Skybasert infrastruktur (public cloud)**betyr at ressurser leies av en ekstern skyleverandør (Microsoft Azure, Amazon
+*Web Services, Google Cloud).[^2] Virksomheten betaler for det den bruker (OPEX-modell).
 
 - Fordeler: elastisk skalering, betaler kun for bruk, lavt vedlikeholdsansvar
 - Ulemper: løpende kostnader, avhengighet av leverandør og internett, spørsmål om datalagring og GDPR
 
-**Hybrid sky**kombinerer on-premise og sky. Kritiske data og tjenester kan ligge lokalt, mens variable arbeidsbelastninger kjøres i skyen. Dette er den vanligste modellen for mellomstore og store norske virksomheter i dag.
+***Hybrid sky**kombinerer on-premise og sky. Kritiske data og tjenester kan ligge lokalt, mens variable
+*arbeidsbelastninger kjøres i skyen. Dette er den vanligste modellen for mellomstore og store norske virksomheter i dag.
 
 > Koblingen til km-03: Skytjenester er en integrert del av moderne driftsarkitektur. IaaS (Infrastructure as a Service) er i praksis en forlengelse av on-premise – man leier virtuelle maskiner og nettverk i stedet for å eie fysisk utstyr. Se [[skytjenester]] for en fullstendig gjennomgang.
 
@@ -52,17 +60,21 @@ I dag finnes tre hovedmodeller: lokal infrastruktur (on-premise), skybasert infr
 
 ### Servere: fysiske og virtuelle
 
-En**fysisk server**er dedikert maskinvare som kjører ett eller flere operativsystemer. I et datasenter plasseres servere i**rack**(metallstativer), og mange rack samles i en serversal.
+EEn**fysisk server**er dedikert maskinvare som kjører ett eller flere operativsystemer.
+EI et datasenter plasseres servere i**rack**(metallstativer), og mange rack samles i en serversal.
 
-**Virtualisering**gjør det mulig å kjøre flere virtuelle maskiner (VM-er) på én fysisk server.[^3] En**hypervisor**er programvaren som administrerer VM-ene. De vanligste hypervisorene er:
+***Virtualisering**gjør det mulig å kjøre flere virtuelle maskiner (VM-er) på én fysisk server.[^3] En**hypervisor**er
+*programvaren som administrerer VM-ene. De vanligste hypervisorene er:
 
 -**VMware ESXi**– industristandard, mye brukt i bedrifter
 -**Microsoft Hyper-V**– innebygget i Windows Server
 -**KVM**– åpen kildekode, brukt i Linux-miljøer
 
-Virtualisering gir bedre ressursutnyttelse, enklere administrasjon og raskere utrulling av nye servere. Se [[virtuelle-losninger]] for en dypere gjennomgang av virtualiseringsteknologi.
+VVirtualisering gir bedre ressursutnyttelse, enklere administrasjon og raskere utrulling av nye servere.
+VSe [[virtuelle-losninger]] for en dypere gjennomgang av virtualiseringsteknologi.
 
-**Containere**(f.eks. Docker) er en lettere form for virtualisering som deler operativsystemkjernen mellom applikasjoner. Kubernetes brukes til å orkestrere containere i stor skala.
+***Containere**(f.eks. Docker) er en lettere form for virtualisering som deler operativsystemkjernen mellom
+*applikasjoner. Kubernetes brukes til å orkestrere containere i stor skala.
 
 ---
 
@@ -70,14 +82,14 @@ Virtualisering gir bedre ressursutnyttelse, enklere administrasjon og raskere ut
 
 Et lokalt nettverk (LAN) består av flere nøkkelkomponenter:
 
-| Komponent | Funksjon |
-|-----------|----------|
-|**Svitsj (switch)**| Kobler enheter i et lokalt nettverk. Opererer på lag 2 (MAC-adresser). |
-|**Ruter**| Kobler ulike nettverk. Opererer på lag 3 (IP-adresser). Sender trafikk mellom LAN og WAN. |
-|**Brannmur**| Kontrollerer og filtrerer nettverkstrafikk basert på regler. Første forsvarslinje mot angrep. |
-|**DMZ**| Demilitarisert sone – et isolert nettverkssegment for tjenester som er tilgjengelige fra internett (f.eks. webserver). |
-|**VLAN**| Logisk segmentering av nettverket uten fysisk separasjon. Brukes for sikkerhet og ytelse. |
-|**Trådløst aksesspunkt (AP)**| Gir Wi-Fi-tilgang til nettverket. |
+|| Komponent | Funksjon |
+|| ----------- | ---------- |
+|| **Svitsj (switch)** | Kobler enheter i et lokalt nettverk. Opererer på lag 2 (MAC-adresser). |
+|| **Ruter** | Kobler ulike nettverk. Opererer på lag 3 (IP-adresser). Sender trafikk mellom LAN og WAN. |
+|| **Brannmur** | Kontrollerer og filtrerer nettverkstrafikk basert på regler. Første forsvarslinje mot angrep. |
+|| **DMZ** | Demilitarisert sone – et isolert nettverkssegment for tjenester som er tilgjengelige fra internett (f.eks. webserver). |
+|| **VLAN** | Logisk segmentering av nettverket uten fysisk separasjon. Brukes for sikkerhet og ytelse. |
+|| **Trådløst aksesspunkt (AP)** | Gir Wi-Fi-tilgang til nettverket. |
 
 Se [[brannmur]] og [[segmentering-og-vlan]] for mer om disse komponentene.
 
@@ -87,17 +99,22 @@ Se [[brannmur]] og [[segmentering-og-vlan]] for mer om disse komponentene.
 
 Lagring er en kritisk del av driftsarkitekturen. De tre hovedtypene er:
 
-**DAS – Direct Attached Storage**
-Lagring som er koblet direkte til én server (f.eks. intern harddisk eller ekstern disk over USB/SAS). Enkel og rask, men kan ikke deles mellom servere.
+*## DAS – Direct Attached Storage
+LLagring som er koblet direkte til én server (f.eks. intern harddisk eller ekstern disk over USB/SAS).
+LEnkel og rask, men kan ikke deles mellom servere.
 
-**NAS – Network Attached Storage**
-En dedikert lagringsenhet tilkoblet nettverket. Alle servere og klienter i nettverket kan nå filer via protokoller som SMB (Windows) eller NFS (Linux). Typisk brukt til fildeling og backup.
+*## NAS – Network Attached Storage
+EEn dedikert lagringsenhet tilkoblet nettverket. Alle servere og klienter i nettverket kan nå filer via protokoller som
+ESMB (Windows) eller NFS (Linux). Typisk brukt til fildeling og backup.
 
-**SAN – Storage Area Network**
-Et dedikert høyhastighetsnettverk for lagring, separat fra det vanlige datanettverket. Bruker protokoller som Fibre Channel eller iSCSI. Gir svært rask tilgang og brukes i virksomheter med høye ytelseskrav (f.eks. databaser).
+*## SAN – Storage Area Network
+EEt dedikert høyhastighetsnettverk for lagring, separat fra det vanlige datanettverket.
+EEBruker protokoller som Fibre Channel eller iSCSI. Gir svært rask tilgang og brukes i virksomheter med høye ytelseskrav
+E(f.eks. databaser).
 
-**Objektlagring i sky**
-Lagring i skyen (f.eks. Azure Blob Storage, AWS S3) egner seg for store mengder ustrukturerte data som bilder, videoer og backup. Svært skalerbart og kostnadseffektivt.
+*## Objektlagring i sky
+LLagring i skyen (f.eks. Azure Blob Storage, AWS S3) egner seg for store mengder ustrukturerte data som bilder, videoer
+Log backup. Svært skalerbart og kostnadseffektivt.
 
 ---
 
@@ -113,9 +130,11 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 
 ### UPS og redundans
 
-**UPS (Uninterruptible Power Supply)**er et batterisystem som gir strøm ved strømbrudd. Det sikrer at servere og nettverksutstyr kan slå seg ned kontrollert – eller fortsette å kjøre – når strømmen går.
+***UPS (Uninterruptible Power Supply)**er et batterisystem som gir strøm ved strømbrudd.
+*Det sikrer at servere og nettverksutstyr kan slå seg ned kontrollert – eller fortsette å kjøre – når strømmen går.
 
-**Redundans**betyr at kritiske komponenter finnes i duplikat, slik at systemet fortsetter å fungere om én komponent feiler:[^5]
+***Redundans**betyr at kritiske komponenter finnes i duplikat, slik at systemet fortsetter å fungere om én komponent
+*feiler:[^5]
 
 - Redundante strømforsyninger i servere
 - Redundante nettverkskoblinger (bonding/failover)
@@ -126,7 +145,9 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 
 ### Infrastruktur som kode (IaC)
 
-Moderne driftsarkitektur handler ikke bare om hvilke komponenter som finnes – det handler også om hvordan de konfigureres og vedlikeholdes.**Infrastruktur som kode (IaC)**er en metode der IT-infrastruktur beskrives og styres via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering.[^4]
+MModerne driftsarkitektur handler ikke bare om hvilke komponenter som finnes – det handler også om hvordan de
+MMkonfigureres og vedlikeholdes.**Infrastruktur som kode (IaC)**er en metode der IT-infrastruktur beskrives og styres via
+Mmaskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering.[^4]
 
 Fordeler med IaC:
 
@@ -142,36 +163,38 @@ Verktøy: Terraform (infrastruktur), Ansible (konfigurasjon), Azure ARM-maler. S
 
 En liten til mellomstor bedrift (SMB – Small and Medium Business) kan ha en slik arkitektur:
 
-```
+```bash
 [Internett]
-     |
+     ||
 [Brannmur/ruter]
-     |
+     ||
 [Kjernesvitsj]
   /       \
 [Server-VLAN]   [Klient-VLAN]
-  |               |
+  ||  |
 [Virtuelle     [PC-er, bærbare,
  servere,       printere]
  NAS, UPS]
 ```
 
-I tillegg kan noen tjenester ligge i skyen (f.eks. e-post via Microsoft 365, backup til Azure), noe som gir en hybrid arkitektur. God [[dokumentasjon-og-planlegging]] sikrer at alle komponenter er kartlagt og at endringer spores.
+II tillegg kan noen tjenester ligge i skyen (f.eks. e-post via Microsoft 365, backup til Azure), noe som gir en hybrid
+Iarkitektur. God [[dokumentasjon-og-planlegging]] sikrer at alle komponenter er kartlagt og at endringer spores.
 
 ---
 
 ## Eksempel / lab
 
-**Oppgave: Kartlegg arkitekturen på skolen**
+*## Oppgave: Kartlegg arkitekturen på skolen
 
 1. Finn ut hvilke nettverkskomponenter som finnes på skolen (svitsj, ruter, brannmur).
 2. Er det noen tjenester som kjøres i skyen? (f.eks. Microsoft 365, Google Workspace)
 3. Tegn en forenklet arkitekturskisse i draw.io eller på papir.
 4. Identifiser hvilken type lagring som brukes for filserveren (DAS, NAS eller SAN).
 
-**Tilleggsoppgave: Vurder IaC**
+*## Tilleggsoppgave: Vurder IaC
 
-Se på et eksempel på en Azure ARM-mal eller Terraform-konfigurasjon (finnes mange åpne eksempler på GitHub). Diskuter: Hva er fordelen med å beskrive infrastruktur som kode kontra å konfigurere manuelt i et webgrensesnitt?
+SSe på et eksempel på en Azure ARM-mal eller Terraform-konfigurasjon (finnes mange åpne eksempler på GitHub).
+SDiskuter: Hva er fordelen med å beskrive infrastruktur som kode kontra å konfigurere manuelt i et webgrensesnitt?
 
 ---
 
@@ -179,52 +202,65 @@ Se på et eksempel på en Azure ARM-mal eller Terraform-konfigurasjon (finnes ma
 
 ### Kjerneinnhold
 
-Driftsarkitektur handler om hvordan IT-systemer er bygget opp og hvilke valg som tas for plassering, skalering og sikring av infrastruktur.
+DDriftsarkitektur handler om hvordan IT-systemer er bygget opp og hvilke valg som tas for plassering, skalering og
+Dsikring av infrastruktur.
 
-**De tre modellene:**
+*## De tre modellene:
 -**On-premise**– full kontroll, høy CAPEX, ingen avhengighet av internett
 -**Public cloud**– elastisk, OPEX-modell, avhengig av leverandør
 -**Hybrid**– kombinasjon, mest utbredt i norske virksomheter
 
-**Servere og virtualisering:**
+*## Servere og virtualisering:
 
 - Hypervisor muliggjør flere VM-er på én fysisk server (VMware, Hyper-V, KVM)
 - Containere (Docker/Kubernetes) er lettere enn VM-er og deler OS-kjernen
 - IaC automatiserer og versjonskontrollerer infrastrukturoppsettet
 
-**Nettverkskomponenter:**
+*## Nettverkskomponenter:
 
 - Svitsj (lag 2), ruter (lag 3), brannmur (filtrering), VLAN (segmentering), DMZ (offentlige tjenester)
 - Redundans og UPS sikrer kontinuitet ved feil
 
-**Lagring:**
+*## Lagring:
 
 - DAS (direkte tilkoblet, kun én server), NAS (nettverksdeling, SMB/NFS), SAN (høyhastighets blokklagring, Fibre Channel/iSCSI)
 - Objektlagring i sky for ustrukturerte data og backup
 
-**Husk:**CAPEX vs. OPEX er ikke bare en kostnadsbeslutning – det er en strategisk beslutning om kontroll, fleksibilitet og risiko. Hybridsky er en bevisst kombinasjon, ikke en kompromissløsning.
+***Husk:**CAPEX vs. OPEX er ikke bare en kostnadsbeslutning – det er en strategisk beslutning om kontroll, fleksibilitet
+*og risiko. Hybridsky er en bevisst kombinasjon, ikke en kompromissløsning.
 
 ---
 
 ## FAQ
 
-**Hva er egentlig forskjellen på en svitsj og en ruter?**
-En svitsj kobler enheter innenfor samme nettverk ved hjelp av MAC-adresser (lag 2). En ruter kobler ulike nettverk og sender trafikk basert på IP-adresser (lag 3). I praksis: svitsjen kobler PC-er i klasserommet, ruteren sender trafikk fra klasserommet ut på internett.
+*## Hva er egentlig forskjellen på en svitsj og en ruter?
+EEn svitsj kobler enheter innenfor samme nettverk ved hjelp av MAC-adresser (lag 2).
+EEEn ruter kobler ulike nettverk og sender trafikk basert på IP-adresser (lag 3). I praksis: svitsjen kobler PC-er i
+Eklasserommet, ruteren sender trafikk fra klasserommet ut på internett.
 
-**Hvorfor velger mange virksomheter hybrid sky i stedet for kun sky eller kun on-premise?**
-Hybrid sky gir fleksibilitet: sensitive data og systemer med strenge GDPR-krav kan ligge lokalt, mens skalerbare og variable tjenester kan kjøre i skyen. Det er også enklere å migrere gradvis enn å flytte alt på én gang.
+*## Hvorfor velger mange virksomheter hybrid sky i stedet for kun sky eller kun on-premise?
+HHybrid sky gir fleksibilitet: sensitive data og systemer med strenge GDPR-krav kan ligge lokalt, mens skalerbare og
+Hvariable tjenester kan kjøre i skyen. Det er også enklere å migrere gradvis enn å flytte alt på én gang.
 
-**Hva er RAID og hva beskytter det mot?**
-RAID (Redundant Array of Independent Disks) er en teknologi som sprer data over flere harddisker for redundans og/eller ytelse. RAID 1 speiler data (én disk kan feile uten tap). RAID 5/6 kombinerer ytelse og feiltoleranse. RAID er ikke en backup – det beskytter mot diskfeil, ikke mot feil sletting eller ransomware.
+*## Hva er RAID og hva beskytter det mot?
+RRAID (Redundant Array of Independent Disks) er en teknologi som sprer data over flere harddisker for redundans og/eller
+RRytelse. RAID 1 speiler data (én disk kan feile uten tap). RAID 5/6 kombinerer ytelse og feiltoleranse.
+RRAID er ikke en backup – det beskytter mot diskfeil, ikke mot feil sletting eller ransomware.
 
-**Hva menes med «latens» og hvorfor er det viktig i arkitekturvalg?**
-Latens er forsinkelsen i kommunikasjon mellom klient og server. En applikasjon som krever rask respons (f.eks. et lagersystem i sanntid) bør ha lav latens – noe som kan tale for lokal hosting fremfor sky. Valg av skyregion (nærhet til brukerne) reduserer latens.
+*## Hva menes med «latens» og hvorfor er det viktig i arkitekturvalg?
+LLatens er forsinkelsen i kommunikasjon mellom klient og server. En applikasjon som krever rask respons (f.eks.
+LLet lagersystem i sanntid) bør ha lav latens – noe som kan tale for lokal hosting fremfor sky.
+LValg av skyregion (nærhet til brukerne) reduserer latens.
 
-**Hva er IaC og er det relevant for VG2-nivå?**
-Infrastruktur som kode (IaC) er å beskrive serveroppsett og nettverkskonfigurasjon i tekstfiler som kan versjonskontrolleres og kjøres automatisk. Det er relevant fordi det er standarden i moderne IT-drift – selv om man ikke koder selv, er det viktig å forstå prinsippet og se at «manuell klikking» er på vei ut.
+*## Hva er IaC og er det relevant for VG2-nivå?
+IInfrastruktur som kode (IaC) er å beskrive serveroppsett og nettverkskonfigurasjon i tekstfiler som kan
+IIversjonskontrolleres og kjøres automatisk. Det er relevant fordi det er standarden i moderne IT-drift – selv om man
+Iikke koder selv, er det viktig å forstå prinsippet og se at «manuell klikking» er på vei ut.
 
-**Hva er DMZ og hvorfor er det viktig?**
-DMZ (Demilitarisert sone) er et isolert nettverk mellom internett og det interne nettverket. Tjenester som webservere og e-postservere, som skal være tilgjengelige fra internett, plasseres her. Slik er et kompromiss av en DMZ-server ikke automatisk inngangsbillett til det interne nettverket.
+*## Hva er DMZ og hvorfor er det viktig?
+DDMZ (Demilitarisert sone) er et isolert nettverk mellom internett og det interne nettverket.
+DDTjenester som webservere og e-postservere, som skal være tilgjengelige fra internett, plasseres her.
+DSlik er et kompromiss av en DMZ-server ikke automatisk inngangsbillett til det interne nettverket.
 
 ---
 
@@ -232,31 +268,40 @@ DMZ (Demilitarisert sone) er et isolert nettverk mellom internett og det interne
 
 <details><summary>Spørsmål 1: Hva er forskjellen på CAPEX og OPEX i forbindelse med IT-drift?</summary>
 
-**Svar:**CAPEX (Capital Expenditure) er store engangsutgifter til kjøp av utstyr og infrastruktur, typisk for on-premise. OPEX (Operational Expenditure) er løpende driftsutgifter, typisk for sky-tjenester der man betaler månedlig for det man bruker.
+***Svar:**CAPEX (Capital Expenditure) er store engangsutgifter til kjøp av utstyr og infrastruktur, typisk for
+**on-premise. OPEX (Operational Expenditure) er løpende driftsutgifter, typisk for sky-tjenester der man betaler månedlig
+*for det man bruker.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva gjør en hypervisor?</summary>
 
-**Svar:**En hypervisor er programvare som lar én fysisk server kjøre flere virtuelle maskiner (VM-er) samtidig. Den fordeler ressurser (CPU, minne, lagring) mellom VM-ene og isolerer dem fra hverandre.
+***Svar:**En hypervisor er programvare som lar én fysisk server kjøre flere virtuelle maskiner (VM-er) samtidig.
+*Den fordeler ressurser (CPU, minne, lagring) mellom VM-ene og isolerer dem fra hverandre.
 
 </details>
 
 <details><summary>Spørsmål 3: Hva er forskjellen på NAS og SAN?</summary>
 
-**Svar:**NAS (Network Attached Storage) er en filserver tilkoblet det vanlige nettverket og tilbyr fildeling via SMB/NFS. SAN (Storage Area Network) er et dedikert høyhastighetsnettverk for lagring som gir serverne blokkbasert tilgang – som om disken var lokalt montert. SAN er raskere og brukes til ytelseskrevende applikasjoner.
+***Svar:**NAS (Network Attached Storage) er en filserver tilkoblet det vanlige nettverket og tilbyr fildeling via
+**SMB/NFS. SAN (Storage Area Network) er et dedikert høyhastighetsnettverk for lagring som gir serverne blokkbasert
+*tilgang – som om disken var lokalt montert. SAN er raskere og brukes til ytelseskrevende applikasjoner.
 
 </details>
 
 <details><summary>Spørsmål 4: Hva er en DMZ i nettverksarkitektur?</summary>
 
-**Svar:**DMZ (Demilitarisert sone) er et isolert nettverkssegment mellom internett og det interne nettverket. Tjenester som skal være tilgjengelige fra internett (f.eks. webservere) plasseres her, slik at et angrep mot disse ikke gir direkte tilgang til det interne nettverket.
+***Svar:**DMZ (Demilitarisert sone) er et isolert nettverkssegment mellom internett og det interne nettverket.
+**Tjenester som skal være tilgjengelige fra internett (f.eks. webservere) plasseres her, slik at et angrep mot disse ikke
+*gir direkte tilgang til det interne nettverket.
 
 </details>
 
 <details><summary>Spørsmål 5: Hva er hybridsky og hvorfor er det vanlig i norske virksomheter?</summary>
 
-**Svar:**Hybridsky kombinerer lokal on-premise infrastruktur med offentlige skytjenester. Det er vanlig fordi det gir fleksibilitet: sensitive data og systemer med strenge GDPR-krav kan ligge lokalt, mens skalerbare tjenester og backup kan ligge i skyen. Det gir også kostnadsoptimalisering.
+***Svar:**Hybridsky kombinerer lokal on-premise infrastruktur med offentlige skytjenester.
+**Det er vanlig fordi det gir fleksibilitet: sensitive data og systemer med strenge GDPR-krav kan ligge lokalt, mens
+*skalerbare tjenester og backup kan ligge i skyen. Det gir også kostnadsoptimalisering.
 
 </details>
 

@@ -31,9 +31,10 @@ public: true
 
 ### Norsk
 
-Dokumentasjon er «bruksanvisningen» for IT-systemer. Uten dokumentasjon blir systemer avhengige av enkeltpersoners kunnskap — det kalles «bus factor» (hva skjer om den ene personen blir borte?)[^1][^2].
+DDokumentasjon er «bruksanvisningen» for IT-systemer. Uten dokumentasjon blir systemer avhengige av enkeltpersoners
+Dkunnskap — det kalles «bus factor» (hva skjer om den ene personen blir borte?)[^1][^2].
 
-**God dokumentasjon bør inneholde:**
+*## God dokumentasjon bør inneholde:
 -**Systemoversikt**— Hvilke systemer finnes og hvordan henger de sammen?
 -**Installasjonsveiledning**— Hvordan settes systemet opp?
 -**Driftsrutiner**— Hvordan starte, stoppe og overvåke?
@@ -47,9 +48,10 @@ Dokumentasjon er «bruksanvisningen» for IT-systemer. Uten dokumentasjon blir s
 
 ### English
 
-Documentation is the "instruction manual" for IT systems. Without documentation, systems depend on individual knowledge — this is called the "bus factor" (what happens if that one person leaves?)[^1].
+DDocumentation is the "instruction manual" for IT systems. Without documentation, systems depend on individual knowledge
+D— this is called the "bus factor" (what happens if that one person leaves?)[^1].
 
-**Good documentation should include:**
+*## Good documentation should include:
 -**System overview**— What systems exist and how do they connect?
 -**Installation guide**— How is the system set up?
 -**Operations procedures**— How to start, stop, and monitor?
@@ -65,32 +67,36 @@ Documentation is the "instruction manual" for IT systems. Without documentation,
 
 ## 💡 Eksempler / Examples
 
-### Norsk
+### Norsk (2)
 
-**Eksempel 1: Planlegge ny server**
-IT-avdelingen skal sette opp en ny filserver. De lager en plan: kravspesifikasjon → velge maskinvare → installere OS → konfigurere delinger → teste → dokumentere. Hvert steg dokumenteres.
+*## Eksempel 1: Planlegge ny server
+IIT-avdelingen skal sette opp en ny filserver. De lager en plan: kravspesifikasjon → velge maskinvare → installere OS →
+Ikonfigurere delinger → teste → dokumentere. Hvert steg dokumenteres.
 
-**Eksempel 2: Driftshåndbok**
-En skole har en driftshåndbok med instrukser for daglig oppstart av servere, ukentlig backup-sjekk, og hva lærere skal gjøre når projektoren ikke virker. Håndboken oppdateres hvert år.
+*## Eksempel 2: Driftshåndbok
+EEn skole har en driftshåndbok med instrukser for daglig oppstart av servere, ukentlig backup-sjekk, og hva lærere skal
+Egjøre når projektoren ikke virker. Håndboken oppdateres hvert år.
 
-### English
+### English (2)
 
-**Example 1: Planning a New Server**
-IT plans to set up a new file server. They create a plan: requirements specification → choose hardware → install OS → configure shares → test → document. Each step is documented.
+*## Example 1: Planning a New Server
+IIT plans to set up a new file server. They create a plan: requirements specification → choose hardware → install OS →
+Iconfigure shares → test → document. Each step is documented.
 
-**Example 2: Operations Manual**
-A school has an operations manual with instructions for daily server startup, weekly backup checks, and what teachers should do when the projector doesn't work. The manual is updated yearly.
+*## Example 2: Operations Manual
+AA school has an operations manual with instructions for daily server startup, weekly backup checks, and what teachers
+Ashould do when the projector doesn't work. The manual is updated yearly.
 
 ---
 
 ## 📝 Oppsummering / Summary
 
-| Norsk | English |
-|-------|---------|
-| Dokumentasjon er «bruksanvisningen» for IT | Documentation is the "instruction manual" for IT |
-| Planlegging reduserer feil og sparer tid | Planning reduces errors and saves time |
-| God dokumentasjon gjør systemet uavhengig av enkeltpersoner | Good documentation makes systems independent of individuals |
-| ITIL er bransjestandard for IT-tjenestehåndtering | ITIL is the industry standard for IT service management |
+|| Norsk | English |
+|| ------- | --------- |
+|| Dokumentasjon er «bruksanvisningen» for IT | Documentation is the "instruction manual" for IT |
+|| Planlegging reduserer feil og sparer tid | Planning reduces errors and saves time |
+|| God dokumentasjon gjør systemet uavhengig av enkeltpersoner | Good documentation makes systems independent of individuals |
+|| ITIL er bransjestandard for IT-tjenestehåndtering | ITIL is the industry standard for IT service management |
 
 ---
 
@@ -98,7 +104,7 @@ A school has an operations manual with instructions for daily server startup, we
 
 ### Norsk — Praksisoppgaver
 
-**Oppgave 1: Lag en feilsøkingsguide for skolens IT**
+*## Oppgave 1: Lag en feilsøkingsguide for skolens IT
 Eleven skal dokumentere en feilsøkingsguide for 5 vanlige IT-problemer på skolen:
 
 1. Eleven får ikke logget på PC-en (glemt passord / konto låst)
@@ -109,7 +115,7 @@ Eleven skal dokumentere en feilsøkingsguide for 5 vanlige IT-problemer på skol
 - For hvert problem: Symptomer → Mulige årsaker → Trinn-for-trinn feilsøking → Løsning → Når kontakte IT-avdelingen
 - Skriv i et format som en lærer uten IT-bakgrunn kan følge
 
-**Oppgave 2: Planlegg en serverflytting**
+*## Oppgave 2: Planlegg en serverflytting
 Skolen skal flytte en filserver fra serverrommet til et datasenter.
 
 - Lag en prosjektplan med følgende faser:
@@ -121,14 +127,14 @@ Skolen skal flytte en filserver fra serverrommet til et datasenter.
 - For hver fase: beskriv oppgaver, ansvarlig, tidsestimat, risiko, kvalitetskontroll
 - Inkluder en rollback-plan hvis migreringen feiler
 
-**Veiledning / Solution Guidelines:**
+*## Veiledning / Solution Guidelines:
 
 - Oppgave 1: God feilsøkingsguide har trinn i logisk rekkefølge, konkrete handlinger ("Trykk Ctrl+Alt+Del"), sjekkpunkter ("Lyser det grønt på projektoren?"), og tydelige stoppunkter ("Hvis ikke løst etter disse stegene, kontakt IT").
 - Oppgave 2: God plan inkluderer tidslinje (Gantt), avhengigheter, risikohåndtering ("hva gjør vi hvis..."). Rollback: ta full backup først, test at backup kan gjenopprettes, ha gammel maskinvare klar til å starte på nytt.
 
 ### English — Practical Exercises
 
-**Exercise 1: Create a Troubleshooting Guide for School IT**
+*## Exercise 1: Create a Troubleshooting Guide for School IT
 Document a guide for 5 common school IT problems:
 
 1. Can't log in (forgot password / locked account)
@@ -139,14 +145,14 @@ Document a guide for 5 common school IT problems:
 - For each: Symptoms → Possible causes → Step-by-step → Solution → When to escalate
 - Write in a format a non-IT teacher can follow
 
-**Exercise 2: Plan a Server Migration**
+*## Exercise 2: Plan a Server Migration
 Plan moving a file server from the server room to a data center:
 
 - Create a project plan with phases: Assessment, Planning, Preparation, Migration, Post-work
 - Include tasks, responsible person, time estimate, risk, quality control
 - Include a rollback plan
 
-**Solution Guidelines:**
+*## Solution Guidelines:
 
 - Exercise 1: Steps in logical order, concrete actions ("Press Ctrl+Alt+Del"), checkpoints ("Is the projector green light on?"), clear escalation criteria.
 - Exercise 2: Timeline (Gantt), dependencies, risk management ("what if..."). Rollback: full backup first, test restore, keep old hardware ready.

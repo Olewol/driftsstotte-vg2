@@ -27,31 +27,40 @@ notebooklm: true
 
 ## Introduction
 
-Virtualization is one of the most transformative technologies in modern IT operations. Instead of buying one physical server per service, you can run ten, twenty, or a hundred virtual servers on a single physical machine — with full isolation between them. For IT support technicians, virtualization is fundamental: it's how most corporate servers and network infrastructures are built today.
+VVirtualization is one of the most transformative technologies in modern IT operations.
+VVInstead of buying one physical server per service, you can run ten, twenty, or a hundred virtual servers on a single
+VVphysical machine — with full isolation between them. For IT support technicians, virtualization is fundamental: it's
+Vhow most corporate servers and network infrastructures are built today.
 
-Virtual solutions are closely connected to [[segmentering-og-vlan-en|segmentation and VLANs]], since virtual switches support VLAN tagging (IEEE 802.1Q) to integrate VMs into segmented networks. In larger production environments, virtualization is a central element of [[driftsarkitektur-en|operations architecture]].
+VVirtual solutions are closely connected to [[segmentering-og-vlan-en|segmentation and VLANs]], since virtual switches
+VVsupport VLAN tagging (IEEE 802.1Q) to integrate VMs into segmented networks. In larger production environments,
+Vvirtualization is a central element of [[driftsarkitektur-en|operations architecture]].
 
 ## Theory
 
 ### What is Virtualization?
 
-Virtualization is the technology that allows a physical computer to run multiple isolated virtual machines (VMs) simultaneously. Each VM runs its own operating system and its own applications, and "thinks" it is an independent physical machine.
+VVirtualization is the technology that allows a physical computer to run multiple isolated virtual machines (VMs)
+VVsimultaneously. Each VM runs its own operating system and its own applications, and "thinks" it is an independent
+Vphysical machine.
 
-A**hypervisor**is the software that manages the virtual machines and distributes physical resources (CPU, RAM, disk, network) among them.
+AA**hypervisor**is the software that manages the virtual machines and distributes physical resources (CPU, RAM, disk,
+Anetwork) among them.
 
 ### Type 1 vs. Type 2 Hypervisors
 
-| | Type 1 (Bare Metal) | Type 2 (Hosted) |
-|---|---|---|
-|**Runs on**| Directly on hardware | On top of a host operating system |
-|**Performance**| High (no OS overhead) | Lower (OS layer in the way) |
-|**Use case**| Production servers, data centers | Development, testing, education |
-|**Examples**| Hyper-V, VMware ESXi, Proxmox | VirtualBox, VMware Workstation |
-|**Administration**| Via web interface or mgmt tools | From the host operating system |
+||  | Type 1 (Bare Metal) | Type 2 (Hosted) |
+|| --- | --- | --- |
+|| **Runs on** | Directly on hardware | On top of a host operating system |
+|| **Performance** | High (no OS overhead) | Lower (OS layer in the way) |
+|| **Use case** | Production servers, data centers | Development, testing, education |
+|| **Examples** | Hyper-V, VMware ESXi, Proxmox | VirtualBox, VMware Workstation |
+|| **Administration** | Via web interface or mgmt tools | From the host operating system |
 
 #### Type 1: Microsoft Hyper-V
 
-Hyper-V is Microsoft's Type 1 hypervisor and is available as a server role in Windows Server. It can also be enabled as a feature in Windows 10/11 Pro.
+HHyper-V is Microsoft's Type 1 hypervisor and is available as a server role in Windows Server.
+HIt can also be enabled as a feature in Windows 10/11 Pro.
 
 Key concepts in Hyper-V:
 -**Root partition**: The Windows Server installation with access to actual hardware
@@ -60,7 +69,8 @@ Key concepts in Hyper-V:
 
 #### Type 2: Oracle VirtualBox
 
-VirtualBox is free and cross-platform (Windows, macOS, Linux). Well suited for lab exercises where dedicated server hardware is not available.
+VVirtualBox is free and cross-platform (Windows, macOS, Linux). Well suited for lab exercises where dedicated server
+Vhardware is not available.
 
 ### Virtual Machines — Characteristics
 
@@ -78,40 +88,45 @@ Benefits of VMs:
 -**Scalability**: easy to clone and scale up
 -**Sustainability**: server consolidation reduces power consumption and need for physical hardware
 
-**Isolation**is the principle that a virtual machine is separated from other machines and the host system, so that faults or viruses in one VM do not spread to the rest of the infrastructure.
+***Isolation**is the principle that a virtual machine is separated from other machines and the host system, so that
+*faults or viruses in one VM do not spread to the rest of the infrastructure.
 
 ### Virtual Networks
 
 Hypervisors provide virtual switches (vSwitch) that connect VMs together and to physical networks.
 
-A**virtual switch (vSwitch)**is a software-based network switch that allows virtual machines to communicate with each other and physical networks via VLAN.
+AA**virtual switch (vSwitch)**is a software-based network switch that allows virtual machines to communicate with each
+Aother and physical networks via VLAN.
 
 #### Hyper-V Virtual Switch — Three Types
 
-| Type | Description | Use Scenario |
-|------|-------------|--------------|
-|**External**| Connected to physical network card — VMs reach the physical network | Production, lab against real network |
-|**Internal**| Communication between host and VMs — not out on physical network | Host manages VMs, shared network |
-|**Private**| Only between VMs — host has no access | Isolated test environments |
+|| Type | Description | Use Scenario |
+|| ------ | ------------- | -------------- |
+|| **External** | Connected to physical network card — VMs reach the physical network | Production, lab against real network |
+|| **Internal** | Communication between host and VMs — not out on physical network | Host manages VMs, shared network |
+|| **Private** | Only between VMs — host has no access | Isolated test environments |
 
 #### VirtualBox Network Modes
 
-| Mode | VM sees | VM reachable from | Typical Use |
-|------|---------|-------------------|-------------|
-|**NAT**| Internet via host | Only host (port forwarding) | Simple internet access from VM |
-|**Bridged**| Physical network directly | Other machines on the network | VM behaves like physical machine |
-|**Host-only**| Only host and other VMs | Only host | Isolated lab network |
-|**Internal Network**| Only other VMs | None | Fully isolated VMs |
+|| Mode | VM sees | VM reachable from | Typical Use |
+|| ------ | --------- | ------------------- | ------------- |
+|| **NAT** | Internet via host | Only host (port forwarding) | Simple internet access from VM |
+|| **Bridged** | Physical network directly | Other machines on the network | VM behaves like physical machine |
+|| **Host-only** | Only host and other VMs | Only host | Isolated lab network |
+|| **Internal Network** | Only other VMs | None | Fully isolated VMs |
 
 ### VLAN in Virtual Networks
 
-Virtual switches support VLAN tagging. A VM can be assigned a specific VLAN ID, meaning it logically resides in the same VLAN as physical machines in the same segment. This is the key to competence goal km-02: virtual solutions are integrated into the segmented networks.
+VVirtual switches support VLAN tagging. A VM can be assigned a specific VLAN ID, meaning it logically resides in the same
+VVVLAN as physical machines in the same segment. This is the key to competence goal km-02: virtual solutions are
+Vintegrated into the segmented networks.
 
-Example: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while client VMs are assigned VLAN 10 (Employees) — exactly as physical machines would be placed.
+EExample: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while client VMs are assigned VLAN 10 (Employees)
+E— exactly as physical machines would be placed.
 
 ### Practical Use in VG2
 
-**Creating a VM in Hyper-V (simplified):**
+*## Creating a VM in Hyper-V (simplified):
 
 1. Hyper-V Manager → Action → New → Virtual Machine
 2. Give the VM a name (e.g. `WinServer01`)
@@ -122,7 +137,7 @@ Example: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while cli
 7. Select installation ISO
 8. Complete and start the VM
 
-**Snapshots/checkpoints:**
+*## Snapshots/checkpoints:
 
 - Right-click VM → Checkpoint (takes a snapshot)
 - Rollback: right-click checkpoint → Apply
@@ -161,7 +176,8 @@ Example: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while cli
 
 ### Lab Scenario: Two VMs on an Isolated Network
 
-Goal: Set up a Windows Server VM and a Windows client VM that communicate only with each other (isolated from the internet).
+GGoal: Set up a Windows Server VM and a Windows client VM that communicate only with each other (isolated from the
+Ginternet).
 
 1. In VirtualBox: create two VMs
 2. Both VMs: network mode = "Internal Network", same network name (e.g. "labnet")
@@ -174,16 +190,19 @@ This simulates a production environment without risk to the physical network.
 
 ## Study Guide
 
-**Core Understanding: Hypervisors**
-Type 1 (bare metal) runs directly on hardware — high performance, used in production (Hyper-V, ESXi, Proxmox). Type 2 runs on top of an OS — simpler, used in labs and development (VirtualBox, VMware Workstation).
+*## Core Understanding: Hypervisors
+TType 1 (bare metal) runs directly on hardware — high performance, used in production (Hyper-V, ESXi, Proxmox).
+TType 2 runs on top of an OS — simpler, used in labs and development (VirtualBox, VMware Workstation).
 
-**Network Modes in VirtualBox**
-NAT: VM shares the host's IP, not visible from outside. Bridged: VM gets its own IP, behaves like a physical machine. Host-only: only between host and VMs. Internal Network: only between VMs.
+*## Network Modes in VirtualBox
+NNAT: VM shares the host's IP, not visible from outside. Bridged: VM gets its own IP, behaves like a physical machine.
+NHost-only: only between host and VMs. Internal Network: only between VMs.
 
-**VLAN in Virtual Environments**
-Virtual switches support VLAN tagging. A VM can belong to a VLAN just like a physical machine. This is central for integrating virtual servers into segmented network architectures.
+*## VLAN in Virtual Environments
+VVirtual switches support VLAN tagging. A VM can belong to a VLAN just like a physical machine.
+VThis is central for integrating virtual servers into segmented network architectures.
 
-**Common Exam Points**
+*## Common Exam Points
 
 - The difference between Type 1 and Type 2 hypervisors
 - What a snapshot is and when to use it
@@ -192,60 +211,78 @@ Virtual switches support VLAN tagging. A VM can belong to a VLAN just like a phy
 
 ## FAQ
 
-**What is the difference between a Type 1 and Type 2 hypervisor?**
-A Type 1 hypervisor (bare metal) runs directly on hardware without an underlying OS, providing better performance. It is used in production (Hyper-V, VMware ESXi). A Type 2 hypervisor runs as a program on top of a host operating system (VirtualBox, VMware Workstation) — easier to set up, but with somewhat lower performance.
+*## What is the difference between a Type 1 and Type 2 hypervisor?
+AA Type 1 hypervisor (bare metal) runs directly on hardware without an underlying OS, providing better performance.
+AAIt is used in production (Hyper-V, VMware ESXi). A Type 2 hypervisor runs as a program on top of a host operating
+Asystem (VirtualBox, VMware Workstation) — easier to set up, but with somewhat lower performance.
 
-**What is a snapshot/checkpoint in a VM, and why is it useful?**
-A snapshot (checkpoint) is a point-in-time image of a VM's state. It allows you to roll back the VM to that state if something goes wrong — e.g. after a failed update or misconfiguration. Indispensable in lab environments.
+*## What is a snapshot/checkpoint in a VM, and why is it useful?
+AA snapshot (checkpoint) is a point-in-time image of a VM's state. It allows you to roll back the VM to that state if
+Asomething goes wrong — e.g. after a failed update or misconfiguration. Indispensable in lab environments.
 
-**What is the difference between NAT and Bridged network mode in VirtualBox?**
-In NAT mode, the VM shares the host machine's IP address and reaches the internet through it — but is not directly visible from other machines on the network. In Bridged mode, the VM connects directly to the physical network and gets its own IP address, as if it were a physical machine.
+*## What is the difference between NAT and Bridged network mode in VirtualBox?
+IIn NAT mode, the VM shares the host machine's IP address and reaches the internet through it — but is not directly
+IIvisible from other machines on the network. In Bridged mode, the VM connects directly to the physical network and gets
+Iits own IP address, as if it were a physical machine.
 
-**What three types of virtual switches exist in Hyper-V?**
-External (connects VMs to the physical network via the host's network card), Internal (communication between host and VMs, not out on physical network), and Private (only between VMs, host has no access).
+*## What three types of virtual switches exist in Hyper-V?
+EExternal (connects VMs to the physical network via the host's network card), Internal (communication between host and
+EVMs, not out on physical network), and Private (only between VMs, host has no access).
 
-**Name three benefits of virtualization in IT operations.**
-(Choose three of): Resource efficiency (fewer physical servers), isolation between services, portability (export/import of VMs), snapshots for easy rollback, easy scaling, faster deployment of new servers.
+*## Name three benefits of virtualization in IT operations.
+((Choose three of): Resource efficiency (fewer physical servers), isolation between services, portability (export/import
+(of VMs), snapshots for easy rollback, easy scaling, faster deployment of new servers.
 
-**What is a virtual switch (vSwitch)?**
-A software-based network switch that allows virtual machines to communicate with each other and with physical networks. Virtual switches support VLAN tagging so VMs can be placed in logical network segments just like physical machines.
+*## What is a virtual switch (vSwitch)?
+AA software-based network switch that allows virtual machines to communicate with each other and with physical networks.
+AVirtual switches support VLAN tagging so VMs can be placed in logical network segments just like physical machines.
 
-**How does virtualization contribute to sustainability?**
-Server consolidation allows one physical server to replace many separate machines. This reduces power consumption, cooling needs, and the amount of physical hardware that must be produced and disposed of — a direct contribution to reduced environmental impact in IT operations.
+*## How does virtualization contribute to sustainability?
+SServer consolidation allows one physical server to replace many separate machines.
+SSThis reduces power consumption, cooling needs, and the amount of physical hardware that must be produced and disposed
+Sof — a direct contribution to reduced environmental impact in IT operations.
 
-**What does isolation mean in virtualization?**
-Isolation means a VM is separated from other VMs and from the host system. If a VM is compromised by malware, it does not automatically spread to other VMs. This is one of the most important security advantages of virtualization.
+*## What does isolation mean in virtualization?
+IIsolation means a VM is separated from other VMs and from the host system. If a VM is compromised by malware, it does
+Inot automatically spread to other VMs. This is one of the most important security advantages of virtualization.
 
 ## Quiz
 
 <details>
 <summary>Question 1: What is the difference between a Type 1 and Type 2 hypervisor?</summary>
 
-**Answer:**A Type 1 hypervisor (bare metal) runs directly on hardware without an underlying OS, providing better performance. It is used in production (Hyper-V, VMware ESXi). A Type 2 hypervisor runs as a program on top of a host operating system (VirtualBox, VMware Workstation) — easier to set up, but with somewhat lower performance.
+***Answer:**A Type 1 hypervisor (bare metal) runs directly on hardware without an underlying OS, providing better
+**performance. It is used in production (Hyper-V, VMware ESXi). A Type 2 hypervisor runs as a program on top of a host
+*operating system (VirtualBox, VMware Workstation) — easier to set up, but with somewhat lower performance.
 </details>
 
 <details>
 <summary>Question 2: What is a snapshot/checkpoint in a VM, and why is it useful?</summary>
 
-**Answer:**A snapshot (checkpoint) is a point-in-time image of a VM's state. It allows you to roll back the VM to that state if something goes wrong — e.g. after a failed update or misconfiguration. Indispensable in lab environments.
+***Answer:**A snapshot (checkpoint) is a point-in-time image of a VM's state. It allows you to roll back the VM to that
+*state if something goes wrong — e.g. after a failed update or misconfiguration. Indispensable in lab environments.
 </details>
 
 <details>
 <summary>Question 3: What is the difference between NAT and Bridged network mode in VirtualBox?</summary>
 
-**Answer:**In NAT mode, the VM shares the host machine's IP address and reaches the internet through it — but is not directly visible from other machines on the network. In Bridged mode, the VM connects directly to the physical network and gets its own IP address, as if it were a physical machine.
+***Answer:**In NAT mode, the VM shares the host machine's IP address and reaches the internet through it — but is not
+**directly visible from other machines on the network. In Bridged mode, the VM connects directly to the physical network
+*and gets its own IP address, as if it were a physical machine.
 </details>
 
 <details>
 <summary>Question 4: What three types of virtual switches exist in Hyper-V?</summary>
 
-**Answer:**External (connects VMs to the physical network via the host's network card), Internal (communication between host and VMs, not out on physical network), and Private (only between VMs, host has no access).
+***Answer:**External (connects VMs to the physical network via the host's network card), Internal (communication between
+*host and VMs, not out on physical network), and Private (only between VMs, host has no access).
 </details>
 
 <details>
 <summary>Question 5: Name three benefits of virtualization in IT operations.</summary>
 
-**Answer:**(Choose three of): Resource efficiency (fewer physical servers), isolation between services, portability (export/import of VMs), snapshots for easy rollback, easy scaling, faster deployment of new servers.
+***Answer:**(Choose three of): Resource efficiency (fewer physical servers), isolation between services, portability
+*(export/import of VMs), snapshots for easy rollback, easy scaling, faster deployment of new servers.
 </details>
 
 ## Resources

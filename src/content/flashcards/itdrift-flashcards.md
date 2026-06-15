@@ -42,7 +42,8 @@
 
 ## Card 6
 
-**Q:**Hvilken skymodell lar utviklere fokusere på applikasjonskoding uten å administrere underliggende servere eller operativsystemer?
+***Q:**Hvilken skymodell lar utviklere fokusere på applikasjonskoding uten å administrere underliggende servere eller
+*operativsystemer?
 
 **A:**PaaS (Platform as a Service).
 
@@ -274,7 +275,8 @@
 
 ## Card 35
 
-**Q:**Hva kalles metoden der IT-infrastruktur styres via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering?
+***Q:**Hva kalles metoden der IT-infrastruktur styres via maskinlesbare konfigurasjonsfiler i stedet for manuell
+*konfigurering?
 
 **A:**IaC (Infrastruktur som kode).
 

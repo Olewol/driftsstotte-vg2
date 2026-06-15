@@ -25,57 +25,73 @@ notebooklm: true
 
 ## Introduksjon
 
-OSI-modellen (Open Systems Interconnection) er en 7-lags referansemodell utviklet av ISO på slutten av 1970-tallet[^1]. Den ble aldri den dominerende implementasjonen i praksis — det ble TCP/IP — men OSI er blitt den universelle standarden for å*beskrive og forstå*nettverkskommunikasjon. I feilsøking er spørsmålet "på hvilket lag oppstår problemet?" en av de mest nyttige du kan stille.
+OOSI-modellen (Open Systems Interconnection) er en 7-lags referansemodell utviklet av ISO på slutten av 1970-tallet[^1].
+OODen ble aldri den dominerende implementasjonen i praksis — det ble TCP/IP — men OSI er blitt den universelle standarden
+OOfor å*beskrive og forstå*nettverkskommunikasjon. I feilsøking er spørsmålet "på hvilket lag oppstår problemet?" en av
+Ode mest nyttige du kan stille.
 
-OSI-modellen er tett knyttet til [[tcp-ip-modellen]], som er det rammeverket internett faktisk bruker i praksis. Å forstå OSI er nøkkelen til å forstå protokoller som [[nettverksprotokoller]] beskriver, samt tjenestene i [[dns-og-dhcp]] og [[serverroller]].
+OOSI-modellen er tett knyttet til [[tcp-ip-modellen]], som er det rammeverket internett faktisk bruker i praksis.
+OOÅ forstå OSI er nøkkelen til å forstå protokoller som [[nettverksprotokoller]] beskriver, samt tjenestene i
+O[[dns-og-dhcp]] og [[serverroller]].
 
 ## Teori
 
 ### De 7 lagene
 
-| Lag | Navn | Norsk | Funksjon | Protokolleksempler |
-|-----|------|-------|----------|--------------------|
-| 7 | Application | Applikasjonslaget | Brukergrensesnitt og applikasjonsprotokoller | HTTP, HTTPS, FTP, SMTP, DNS |
-| 6 | Presentation | Presentasjonslaget | Formatering, kryptering, komprimering | TLS/SSL, JPEG, ASCII, MPEG |
-| 5 | Session | Sesjonslaget | Oppretting, vedlikehold og avslutning av sesjoner | NetBIOS, RPC, SQL |
-| 4 | Transport | Transportlaget | Ende-til-ende-kommunikasjon, segmentering | TCP, UDP |
-| 3 | Network | Nettverkslaget | Logisk adressering og ruting | IP, ICMP, OSPF, BGP |
-| 2 | Data Link | Datalinklaget | Frames, MAC-adresser, feildeteksjon | Ethernet, ARP, 802.11 |
-| 1 | Physical | Fysisk lag | Bitsending over medium | UTP-kabel, fiber, WiFi-radio |
+|| Lag | Navn | Norsk | Funksjon | Protokolleksempler |
+|| ----- | ------ | ------- | ---------- | -------------------- |
+|| 7 | Application | Applikasjonslaget | Brukergrensesnitt og applikasjonsprotokoller | HTTP, HTTPS, FTP, SMTP, DNS |
+|| 6 | Presentation | Presentasjonslaget | Formatering, kryptering, komprimering | TLS/SSL, JPEG, ASCII, MPEG |
+|| 5 | Session | Sesjonslaget | Oppretting, vedlikehold og avslutning av sesjoner | NetBIOS, RPC, SQL |
+|| 4 | Transport | Transportlaget | Ende-til-ende-kommunikasjon, segmentering | TCP, UDP |
+|| 3 | Network | Nettverkslaget | Logisk adressering og ruting | IP, ICMP, OSPF, BGP |
+|| 2 | Data Link | Datalinklaget | Frames, MAC-adresser, feildeteksjon | Ethernet, ARP, 802.11 |
+|| 1 | Physical | Fysisk lag | Bitsending over medium | UTP-kabel, fiber, WiFi-radio |
 
 ### Detaljert beskrivelse av hvert lag[^1]
 
-**Lag 1 — Fysisk lag**
-Det fysiske laget definerer de elektriske, optiske og trådløse signalene som representerer biter (0 og 1). Det inkluderer kontakttyper (RJ-45), kabeltyper (Cat5e, Cat6, fiber), og overføringsmetoder. Ingenting her kjenner til adresser eller logisk struktur — det er bare bits.
+*## Lag 1 — Fysisk lag
+DDet fysiske laget definerer de elektriske, optiske og trådløse signalene som representerer biter (0 og 1).
+DDDet inkluderer kontakttyper (RJ-45), kabeltyper (Cat5e, Cat6, fiber), og overføringsmetoder.
+DIngenting her kjenner til adresser eller logisk struktur — det er bare bits.
 
-**Lag 2 — Datalinklaget**
+*## Lag 2 — Datalinklaget
 Pakker biter inn i*frames*og håndterer overføring innenfor ett nettverkssegment. Delt i to underlag:
 -**MAC (Media Access Control)**: adressering med 48-bits MAC-adresser, kontroll av tilgang til mediet
 -**LLC (Logical Link Control)**: feildeteksjon, flomstyring
 
 En svitsj opererer på lag 2. Ethernet er den dominerende lag 2-protokollen i kablede nettverk.
 
-**Lag 3 — Nettverkslaget**
-Introduserer logisk adressering (IP-adresser) og ruting mellom nettverk. En ruter opererer på lag 3. Nettverkslaget bestemmer den beste veien fra kilde til destinasjon gjennom potensielt mange mellomliggende nettverk.
+*## Lag 3 — Nettverkslaget
+IIntroduserer logisk adressering (IP-adresser) og ruting mellom nettverk. En ruter opererer på lag 3.
+INettverkslaget bestemmer den beste veien fra kilde til destinasjon gjennom potensielt mange mellomliggende nettverk.
 
-**Lag 4 — Transportlaget**
-Segmenterer data fra applikasjonslaget og håndterer ende-til-ende-kommunikasjon. TCP gir pålitelig levering med sekvensnumre og bekreftelser (ACK). UDP er rask og enkel uten slike garantier. Portnumre identifiserer hvilken applikasjon trafikken tilhører.
+*## Lag 4 — Transportlaget
+SSegmenterer data fra applikasjonslaget og håndterer ende-til-ende-kommunikasjon. TCP gir pålitelig levering med
+SSsekvensnumre og bekreftelser (ACK). UDP er rask og enkel uten slike garantier. Portnumre identifiserer hvilken
+Sapplikasjon trafikken tilhører.
 
-**Lag 5 — Sesjonslaget**
-Administrerer*sesjoner*— vedvarende forbindelser mellom applikasjoner. Sesjonslaget oppretter, vedlikeholder og avslutter dialogen mellom to systemer. I praksis er mye av denne funksjonaliteten integrert i applikasjonsprotokoller i TCP/IP.
+*## Lag 5 — Sesjonslaget
+AAdministrerer*sesjoner*— vedvarende forbindelser mellom applikasjoner. Sesjonslaget oppretter, vedlikeholder og
+AAavslutter dialogen mellom to systemer. I praksis er mye av denne funksjonaliteten integrert i applikasjonsprotokoller i
+ATCP/IP.
 
-**Lag 6 — Presentasjonslaget**
+*## Lag 6 — Presentasjonslaget
 Oversetter data mellom applikasjonens format og nettverkets format. Ansvarlig for:
 -**Kryptering/dekryptering**: TLS/SSL krypterer HTTP-trafikk til HTTPS
 -**Komprimering**: reduserer datamengden som sendes
 -**Formatkonvertering**: sikrer at f.eks. tegnsett (UTF-8, ASCII) tolkes likt på begge sider
 
-**Lag 7 — Applikasjonslaget**
-Det øverste laget er det brukeren møter. Her befinner seg protokollene som applikasjoner bruker direkte: HTTP for nettlesing, SMTP for e-postsending, FTP for filoverføring, DNS for navneoppløsning.
+*## Lag 7 — Applikasjonslaget
+DDet øverste laget er det brukeren møter. Her befinner seg protokollene som applikasjoner bruker direkte: HTTP for
+Dnettlesing, SMTP for e-postsending, FTP for filoverføring, DNS for navneoppløsning.
 
 ### Innkapsling og PDU
 
-Når data sendes nedover gjennom OSI-lagene, legger hvert lag til sin egen kontrollinformasjon (header). Denne prosessen kalles**innkapsling (encapsulation)**[^1]. Hvert lag opererer med sin egen**PDU (Protocol Data Unit)**[^2]: på lag 4 kalles den*Segment*, på lag 3*Pakke*, og på lag 2*Ramme*. Ved mottak pakkes det ut i omvendt rekkefølge — hvert lag leser og fjerner sin header.
+NNår data sendes nedover gjennom OSI-lagene, legger hvert lag til sin egen kontrollinformasjon (header).
+NNDenne prosessen kalles**innkapsling (encapsulation)**[^1]. Hvert lag opererer med sin egen**PDU (Protocol Data
+NNUnit)**[^2]: på lag 4 kalles den*Segment*, på lag 3*Pakke*, og på lag 2*Ramme*. Ved mottak pakkes det ut i omvendt
+Nrekkefølge — hvert lag leser og fjerner sin header.
 
 ### Huskeregel
 
@@ -90,17 +106,18 @@ Og ovenfra og ned (lag 7 → 1):
 
 ### OSI vs. TCP/IP
 
-| OSI | Lag nr. | TCP/IP (5-lag) |
-|-----|---------|----------------|
-| Applikasjonslaget | 7 | Applikasjonslaget |
-| Presentasjonslaget | 6 | Applikasjonslaget |
-| Sesjonslaget | 5 | Applikasjonslaget |
-| Transportlaget | 4 | Transportlaget |
-| Nettverkslaget | 3 | Nettverkslaget |
-| Datalinklaget | 2 | Datalinklaget |
-| Fysisk lag | 1 | Fysisk lag |
+|| OSI | Lag nr. | TCP/IP (5-lag) |
+|| ----- | --------- | ---------------- |
+|| Applikasjonslaget | 7 | Applikasjonslaget |
+|| Presentasjonslaget | 6 | Applikasjonslaget |
+|| Sesjonslaget | 5 | Applikasjonslaget |
+|| Transportlaget | 4 | Transportlaget |
+|| Nettverkslaget | 3 | Nettverkslaget |
+|| Datalinklaget | 2 | Datalinklaget |
+|| Fysisk lag | 1 | Fysisk lag |
 
-OSI-modellens lag 5, 6 og 7 tilsvarer samlet applikasjonslaget i TCP/IP[^3]. I praksis er funksjonene fra presentasjons- og sesjonslaget implementert direkte i applikasjonsprotokoller eller i TLS.
+OOSI-modellens lag 5, 6 og 7 tilsvarer samlet applikasjonslaget i TCP/IP[^3]. I praksis er funksjonene fra presentasjons-
+Oog sesjonslaget implementert direkte i applikasjonsprotokoller eller i TLS.
 
 ### OSI i feilsøking
 
@@ -120,15 +137,15 @@ Ved å jobbe systematisk nedenfra og opp (eller ovenfra og ned) isolerer du prob
 
 Avgjør hvilket OSI-lag hvert scenario tilhører:
 
-| Scenario | Lag |
-|----------|-----|
-| Ethernet-kabel ikke plugget inn | Lag 1 — Fysisk |
-| Feil IP-adresse konfigurert | Lag 3 — Nettverk |
-| HTTPS-kryptering (TLS) | Lag 6 — Presentasjon |
-| Svitsj videresender basert på MAC | Lag 2 — Datalink |
-| TCP three-way handshake | Lag 4 — Transport |
-| DNS-oppslag feiler | Lag 7 — Applikasjon |
-| WiFi-signal for svakt | Lag 1 — Fysisk |
+|| Scenario | Lag |
+|| ---------- | ----- |
+|| Ethernet-kabel ikke plugget inn | Lag 1 — Fysisk |
+|| Feil IP-adresse konfigurert | Lag 3 — Nettverk |
+|| HTTPS-kryptering (TLS) | Lag 6 — Presentasjon |
+|| Svitsj videresender basert på MAC | Lag 2 — Datalink |
+|| TCP three-way handshake | Lag 4 — Transport |
+|| DNS-oppslag feiler | Lag 7 — Applikasjon |
+|| WiFi-signal for svakt | Lag 1 — Fysisk |
 
 ### Feilsøkingsøvelse
 
@@ -142,17 +159,18 @@ Analyser:
 
 ## Study guide
 
-**OSI-modellens formål**
-OSI er en*referansemodell*, ikke en implementasjon. Den brukes som felles referansespråk for å forstå og feilsøke nettverkskommunikasjon. Hvert lag har et klart ansvarsområde og kommuniserer kun med laget direkte over og under.
+*## OSI-modellens formål
+OOSI er en*referansemodell*, ikke en implementasjon. Den brukes som felles referansespråk for å forstå og feilsøke
+Onettverkskommunikasjon. Hvert lag har et klart ansvarsområde og kommuniserer kun med laget direkte over og under.
 
-**Kjerneforståelse per lag**
+*## Kjerneforståelse per lag
 
 - Lag 1–2 handler om fysisk og lokal overføring (kabel, WiFi, svitsjer, MAC-adresser)
 - Lag 3 introduserer logisk adressering og ruting (IP, rutere)
 - Lag 4 håndterer ende-til-ende pålitelighet og applikasjonsidentifikasjon (TCP/UDP, portnumre)
 - Lag 5–7 er applikasjonsrelaterte (sesjoner, formatering, brukerprotokoller)
 
-**Vanlige eksamenspoeng**
+*## Vanlige eksamenspoeng
 
 - Forskjellen mellom svitsj (lag 2) og ruter (lag 3)
 - TCP vs. UDP og når man bruker hva
@@ -161,60 +179,74 @@ OSI er en*referansemodell*, ikke en implementasjon. Den brukes som felles refera
 
 ## FAQ
 
-**Hvorfor bruker vi OSI-modellen når TCP/IP er det som faktisk brukes?**
-OSI gir oss et presist og delt referansespråk for å snakke om nettverksproblemer og protokoller. Når en teknikker sier "problemet er på lag 2", forstår alle hva det betyr — selv om nettverket kjører TCP/IP.
+*## Hvorfor bruker vi OSI-modellen når TCP/IP er det som faktisk brukes?
+OOSI gir oss et presist og delt referansespråk for å snakke om nettverksproblemer og protokoller.
+ONår en teknikker sier "problemet er på lag 2", forstår alle hva det betyr — selv om nettverket kjører TCP/IP.
 
-**Hva er forskjellen mellom lag 3 og lag 2-adresser?**
-Lag 2 bruker MAC-adresser (fysiske, hardkodede) for kommunikasjon innenfor ett nettverk. Lag 3 bruker IP-adresser (logiske, konfigurerbare) for kommunikasjon mellom ulike nettverk.
+*## Hva er forskjellen mellom lag 3 og lag 2-adresser?
+LLag 2 bruker MAC-adresser (fysiske, hardkodede) for kommunikasjon innenfor ett nettverk.
+LLag 3 bruker IP-adresser (logiske, konfigurerbare) for kommunikasjon mellom ulike nettverk.
 
-**Hva skjer på lag 6 (presentasjonslaget) i praksis?**
-Kryptering via TLS/SSL er det vanligste eksemplet. Når du besøker en HTTPS-side, krypterer lag 6 dataene. Komprimering (gzip) og tegnkonvertering (UTF-8) er andre eksempler.
+*## Hva skjer på lag 6 (presentasjonslaget) i praksis?
+KKryptering via TLS/SSL er det vanligste eksemplet. Når du besøker en HTTPS-side, krypterer lag 6 dataene.
+KKomprimering (gzip) og tegnkonvertering (UTF-8) er andre eksempler.
 
-**Kan ett stykke maskinvare operere på flere lag?**
-Ja. En "lag 3-svitsj" opererer på både lag 2 og lag 3 — den kan route mellom VLAN-er i tillegg til å fungere som vanlig svitsj. Brannmurer opererer ofte på lag 3–7.
+*## Kan ett stykke maskinvare operere på flere lag?
+JJa. En "lag 3-svitsj" opererer på både lag 2 og lag 3 — den kan route mellom VLAN-er i tillegg til å fungere som vanlig
+Jsvitsj. Brannmurer opererer ofte på lag 3–7.
 
-**Hva er PDU, og hvorfor er begrepet nyttig?**
-PDU (Protocol Data Unit) er betegnelsen på dataenheten på et gitt lag: Segment (lag 4), Pakke (lag 3), Ramme (lag 2), Bit (lag 1). Det gjør det enklere å beskrive nøyaktig hva som behandles på hvert trinn.
+*## Hva er PDU, og hvorfor er begrepet nyttig?
+PPDU (Protocol Data Unit) er betegnelsen på dataenheten på et gitt lag: Segment (lag 4), Pakke (lag 3), Ramme (lag 2),
+PBit (lag 1). Det gjør det enklere å beskrive nøyaktig hva som behandles på hvert trinn.
 
-**Hva er innkapsling?**
-Innkapsling er prosessen der data pakkes inn i kontrollinformasjon (headers) fra hvert lag i OSI-modellen når de sendes nedover i stakken. På mottakersiden pakkes det ut lag for lag.
+*## Hva er innkapsling?
+IInnkapsling er prosessen der data pakkes inn i kontrollinformasjon (headers) fra hvert lag i OSI-modellen når de sendes
+Inedover i stakken. På mottakersiden pakkes det ut lag for lag.
 
-**Hvorfor er sesjonslaget (lag 5) viktig?**
-Sesjonslaget administrerer dialogen mellom applikasjoner — hvem snakker, i hvilken rekkefølge, og hvordan avslutter man ryddig. I praksis er dette ofte integrert i TLS og applikasjonsprotokoller.
+*## Hvorfor er sesjonslaget (lag 5) viktig?
+SSesjonslaget administrerer dialogen mellom applikasjoner — hvem snakker, i hvilken rekkefølge, og hvordan avslutter man
+Sryddig. I praksis er dette ofte integrert i TLS og applikasjonsprotokoller.
 
-**Hvordan bruker jeg OSI aktivt i feilsøking?**
-Start fra lag 1 og jobb oppover: sjekk kabel → svitsj → IP-adresse → brannmur-porter → applikasjonsinnstillinger. Eller start fra lag 7 og jobb nedover hvis du vet at nettverket fungerer.
+*## Hvordan bruker jeg OSI aktivt i feilsøking?
+SStart fra lag 1 og jobb oppover: sjekk kabel → svitsj → IP-adresse → brannmur-porter → applikasjonsinnstillinger.
+SEller start fra lag 7 og jobb nedover hvis du vet at nettverket fungerer.
 
 ## Quiz
 
 <details>
 <summary>Spørsmål 1: Hvilke lag i OSI tilsvarer applikasjonslaget i TCP/IP?</summary>
 
-**Svar:**Lag 5 (sesjon), lag 6 (presentasjon) og lag 7 (applikasjon) i OSI tilsvarer samlet applikasjonslaget i TCP/IP-modellen.
+***Svar:**Lag 5 (sesjon), lag 6 (presentasjon) og lag 7 (applikasjon) i OSI tilsvarer samlet applikasjonslaget i
+*TCP/IP-modellen.
 </details>
 
 <details>
 <summary>Spørsmål 2: Hva er presentasjonslagets (lag 6) oppgave?</summary>
 
-**Svar:**Presentasjonslaget håndterer formatering, kryptering/dekryptering og komprimering av data. TLS/SSL som krypterer HTTP-trafikk til HTTPS er et eksempel på funksjonalitet fra dette laget.
+***Svar:**Presentasjonslaget håndterer formatering, kryptering/dekryptering og komprimering av data.
+*TLS/SSL som krypterer HTTP-trafikk til HTTPS er et eksempel på funksjonalitet fra dette laget.
 </details>
 
 <details>
 <summary>Spørsmål 3: Hva er forskjellen mellom en svitsj og en ruter sett fra OSI-modellen?</summary>
 
-**Svar:**En svitsj opererer primært på lag 2 (datalinklaget) og bruker MAC-adresser for å videresende frames innenfor ett nettverk. En ruter opererer på lag 3 (nettverkslaget) og bruker IP-adresser for å rute pakker mellom ulike nettverk.
+***Svar:**En svitsj opererer primært på lag 2 (datalinklaget) og bruker MAC-adresser for å videresende frames innenfor
+**ett nettverk. En ruter opererer på lag 3 (nettverkslaget) og bruker IP-adresser for å rute pakker mellom ulike
+*nettverk.
 </details>
 
 <details>
 <summary>Spørsmål 4: Hva er sesjonslaget (lag 5) ansvarlig for?</summary>
 
-**Svar:**Sesjonslaget administrerer opprettelse, vedlikehold og avslutning av sesjoner (vedvarende forbindelser) mellom applikasjoner på to systemer.
+***Svar:**Sesjonslaget administrerer opprettelse, vedlikehold og avslutning av sesjoner (vedvarende forbindelser) mellom
+*applikasjoner på to systemer.
 </details>
 
 <details>
 <summary>Spørsmål 5: Beskriv huskeregelen for OSI-lagene nedenfra og opp.</summary>
 
-**Svar:**"Please Do Not Throw Sausage Pizza Away" — Physical, Data Link, Network, Transport, Session, Presentation, Application (lag 1 til 7).
+***Svar:**"Please Do Not Throw Sausage Pizza Away" — Physical, Data Link, Network, Transport, Session, Presentation,
+*Application (lag 1 til 7).
 </details>
 
 ## Kilder

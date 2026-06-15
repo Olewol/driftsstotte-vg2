@@ -25,9 +25,13 @@ original: dokumentasjon-og-planlegging.md
 
 ## Introduction
 
-Good documentation is the backbone of professional IT operations. Without up-to-date documentation, it is impossible to troubleshoot effectively, difficult to train new employees, and risky to make changes to the system.
+GGood documentation is the backbone of professional IT operations. Without up-to-date documentation, it is impossible to
+Gtroubleshoot effectively, difficult to train new employees, and risky to make changes to the system.
 
-Documentation and planning is about having an overview: of what exists, how things connect, what has been done, and what needs to be done. This is competence goal km-06 – one of the most practical parts of the subject. A good IT department treats documentation as living resources that are continuously updated, not as something written once and then left to gather dust.
+DDocumentation and planning is about having an overview: of what exists, how things connect, what has been done, and what
+DDneeds to be done. This is competence goal km-06 – one of the most practical parts of the subject.
+DDA good IT department treats documentation as living resources that are continuously updated, not as something written
+Donce and then left to gather dust.
 
 ---
 
@@ -53,13 +57,14 @@ A network topology describes how nodes (devices) are connected in a network.
 
 #### Star Topology (most common)
 
-All devices connect to a central switch or router. Easy to troubleshoot (isolate the cable to the faulty device) and easy to expand.
+AAll devices connect to a central switch or router. Easy to troubleshoot (isolate the cable to the faulty device) and
+Aeasy to expand.
 
-```
+```text
       [PC]
-       |
+       ||
 [PC]--[Switch]--[PC]
-       |
+       ||
       [Server]
 ```
 
@@ -68,13 +73,14 @@ All devices connect to a central switch or router. Easy to troubleshoot (isolate
 
 #### Mesh Topology
 
-All nodes are connected to all other nodes (full mesh) or to many others (partial mesh). Used in WAN networks and robust critical systems.
+AAll nodes are connected to all other nodes (full mesh) or to many others (partial mesh).
+AUsed in WAN networks and robust critical systems.
 
-```
+```bash
 [A]---[B]
- | \ / |
- | X  |
- |/ \ |
+ || \ / |
+ || X |
+ || / \ |
 [C]---[D]
 ```
 
@@ -83,41 +89,45 @@ All nodes are connected to all other nodes (full mesh) or to many others (partia
 
 #### Bus Topology (historical)
 
-All devices connected to one common cable (bus). No longer used in modern networks, but recognized from older Ethernet standards.
+AAll devices connected to one common cable (bus). No longer used in modern networks, but recognized from older Ethernet
+Astandards.
 
 ---
 
 ### IP Address Plan
 
-An IP address plan is a structured overview of all IP addresses, subnets, and related information in the network. It is a critical planning and operations document. See [[dns-og-dhcp-en]] and [[segmentering-og-vlan-en]] for related topics.
+AAn IP address plan is a structured overview of all IP addresses, subnets, and related information in the network.
+AAIt is a critical planning and operations document. See [[dns-og-dhcp-en]] and [[segmentering-og-vlan-en]] for related
+Atopics.
 
 #### Example: IP Address Plan for a School Network
 
 **Network info:**192.168.1.0/24 (254 usable addresses)
 
-| VLAN | Name | Subnet | Network Address | Gateway | DNS | DHCP Range | Comment |
-|------|------|--------|-----------------|---------|-----|-------------|---------|
-| 10 | Administration | /26 | 192.168.1.0 | 192.168.1.1 | 192.168.1.10 | .20–.62 | 42 addresses for staff |
-| 20 | Students | /25 | 192.168.1.128 | 192.168.1.129 | 192.168.1.10 | .140–.253 | 114 addresses, BYOD |
-| 30 | Servers | /27 | 192.168.1.64 | 192.168.1.65 | 192.168.1.66 | Static | File server, AD, backup |
-| 40 | Guest/IoT | /27 | 192.168.1.96 | 192.168.1.97 | 8.8.8.8 | .100–.126 | Isolated, internet only |
+|| VLAN | Name | Subnet | Network Address | Gateway | DNS | DHCP Range | Comment |
+|| ------ | ------ | -------- | ----------------- | --------- | ----- | ------------- | --------- |
+|| 10 | Administration | /26 | 192.168.1.0 | 192.168.1.1 | 192.168.1.10 | .20–.62 | 42 addresses for staff |
+|| 20 | Students | /25 | 192.168.1.128 | 192.168.1.129 | 192.168.1.10 | .140–.253 | 114 addresses, BYOD |
+|| 30 | Servers | /27 | 192.168.1.64 | 192.168.1.65 | 192.168.1.66 | Static | File server, AD, backup |
+|| 40 | Guest/IoT | /27 | 192.168.1.96 | 192.168.1.97 | 8.8.8.8 | .100–.126 | Isolated, internet only |
 
-**Static addresses (selection):**
+*## Static addresses (selection):
 
-| Device | IP Address | MAC Address | Location |
-|--------|-----------|-------------|----------|
-| Firewall (WAN interface) | 10.0.0.1 | – | Server Room |
-| Core Switch | 192.168.1.2 | aa:bb:cc:dd:ee:01 | Server Room |
-| Active Directory / DNS | 192.168.1.10 | aa:bb:cc:dd:ee:10 | Server Room |
-| File Server | 192.168.1.11 | aa:bb:cc:dd:ee:11 | Server Room |
-| NAS (backup) | 192.168.1.12 | aa:bb:cc:dd:ee:12 | Server Room |
-| Printer, 1st floor | 192.168.1.50 | aa:bb:cc:dd:ee:50 | Room 101 |
+|| Device | IP Address | MAC Address | Location |
+|| -------- | ----------- | ------------- | ---------- |
+|| Firewall (WAN interface) | 10.0.0.1 | – | Server Room |
+|| Core Switch | 192.168.1.2 | aa:bb:cc:dd:ee:01 | Server Room |
+|| Active Directory / DNS | 192.168.1.10 | aa:bb:cc:dd:ee:10 | Server Room |
+|| File Server | 192.168.1.11 | aa:bb:cc:dd:ee:11 | Server Room |
+|| NAS (backup) | 192.168.1.12 | aa:bb:cc:dd:ee:12 | Server Room |
+|| Printer, 1st floor | 192.168.1.50 | aa:bb:cc:dd:ee:50 | Room 101 |
 
 ---
 
 ### Operations Log and Change Log
 
-An operations log (change log) is a chronological record of all changes made to the IT environment. It is perhaps the single most important document in an operations organization.
+AAn operations log (change log) is a chronological record of all changes made to the IT environment.
+AIt is perhaps the single most important document in an operations organization.
 
 #### Format
 
@@ -131,21 +141,22 @@ The log should contain:
 
 #### Example of a Change Log
 
-| Date | Performed by | Change | Reason | Result |
-|------|--------------|--------|--------|--------|
-| 2025-11-12 08:30 | Erik H. | Updated Windows Server 2022 to KB5043050 | Monthly patch round | OK, server started normally |
-| 2025-11-14 14:00 | Sara L. | Added new PC (HP EliteBook) to AD, VLAN 20 | New student | Working, DHCP lease confirmed |
-| 2025-11-15 09:15 | Erik H. | Changed DHCP scope for VLAN 20: .140–.200 → .140–.253 | Capacity need | OK, new range active |
+|| Date | Performed by | Change | Reason | Result |
+|| ------ | -------------- | -------- | -------- | -------- |
+|| 2025-11-12 08:30 | Erik H. | Updated Windows Server 2022 to KB5043050 | Monthly patch round | OK, server started normally |
+|| 2025-11-14 14:00 | Sara L. | Added new PC (HP EliteBook) to AD, VLAN 20 | New student | Working, DHCP lease confirmed |
+|| 2025-11-15 09:15 | Erik H. | Changed DHCP scope for VLAN 20: .140–.200 → .140–.253 | Capacity need | OK, new range active |
 
 ---
 
 ### Procedure Documentation
 
-Critical operations should be documented as step-by-step procedures. This ensures the operation can be performed by anyone on the team – not just the person who originally set it up.
+CCritical operations should be documented as step-by-step procedures. This ensures the operation can be performed by
+Canyone on the team – not just the person who originally set it up.
 
-**Example: Procedure for Monthly Backup Test**
+*## Example: Procedure for Monthly Backup Test
 
-```
+```bash
 Title: Monthly Recovery Test of File Server Backup
 Responsible role: System Administrator
 Frequency: Every 1st Monday of the month
@@ -171,22 +182,24 @@ Expected result: VM starts, files accessible, no errors.
 
 ### Documentation Tools
 
-| Tool | Use Case |
-|------|----------|
-|**draw.io / Lucidchart**| Network topologies, architecture diagrams |
-|**Markdown / Obsidian**| Operations log, procedures, internal wiki |
-|**Confluence**| Team-based wiki, used in large IT departments |
-|**IT Glue**| Professional MSP tool for IT documentation. Integrates password management, device registry, and procedures. |
-|**CMDB**| Configuration Management Database – registry of all IT infrastructure (devices, configuration, relationships) |
-|**Excel/Google Sheets**| IP address plans and inventory lists (simple, but not scalable) |
+|| Tool | Use Case |
+|| ------ | ---------- |
+|| **draw.io / Lucidchart** | Network topologies, architecture diagrams |
+|| **Markdown / Obsidian** | Operations log, procedures, internal wiki |
+|| **Confluence** | Team-based wiki, used in large IT departments |
+|| **IT Glue** | Professional MSP tool for IT documentation. Integrates password management, device registry, and procedures. |
+|| **CMDB** | Configuration Management Database – registry of all IT infrastructure (devices, configuration, relationships) |
+|| **Excel/Google Sheets** | IP address plans and inventory lists (simple, but not scalable) |
 
 ---
 
 ### ITIL and Change Management
 
-**ITIL**(IT Infrastructure Library) is a framework for good IT operations practice that is widely used in the Norwegian and international IT industry. Although you do not need to implement the entire ITIL at VG2 level, some concepts are central:
+***ITIL**(IT Infrastructure Library) is a framework for good IT operations practice that is widely used in the Norwegian
+**and international IT industry. Although you do not need to implement the entire ITIL at VG2 level, some concepts are
+*central:
 
-**Change Management**
+*## Change Management
 A structured process for handling changes in the IT environment in a controlled manner:
 
 1. The change is planned and documented
@@ -236,7 +249,7 @@ See [[risikoanalyse-en]] for more on ROS analyses in an IT context.
 >
 > Always document the solution in your log – it is worth its weight in gold the next time the same problem occurs.
 
-**Task: Create an IP Address Plan for a School Network**
+*## Task: Create an IP Address Plan for a School Network
 
 Given: A school with 80 students, 20 staff, 3 servers, 2 printers, and a guest network.
 
@@ -247,9 +260,10 @@ Given: A school with 80 students, 20 staff, 3 servers, 2 printers, and a guest n
 5. Specify static addresses for the servers.
 6. Draw a simple topology in draw.io showing the VLAN structure.
 
-**Additional task: Write a procedure**
+*## Additional task: Write a procedure
 
-Choose one critical IT operation (e.g., adding a new user in Active Directory, or performing a backup). Document the operation as a step-by-step procedure with title, responsible role, frequency, and expected result.
+CChoose one critical IT operation (e.g., adding a new user in Active Directory, or performing a backup).
+CDocument the operation as a step-by-step procedure with title, responsible role, frequency, and expected result.
 
 ---
 
@@ -257,50 +271,62 @@ Choose one critical IT operation (e.g., adding a new user in Active Directory, o
 
 ### Core Content
 
-Documentation and planning is about creating and maintaining an overview of the IT environment – so that operations, troubleshooting, and changes can be done in a controlled and efficient manner.
+DDocumentation and planning is about creating and maintaining an overview of the IT environment – so that operations,
+Dtroubleshooting, and changes can be done in a controlled and efficient manner.
 
-**Types of documentation:**
+*## Types of documentation:
 -**IP address plan**– overview of VLANs, subnets, gateway, DNS, DHCP, and static addresses
 -**Network topology**– visual map of network components and connections (draw.io)
 -**Operations log / change log**– chronological register of all changes
 -**Procedure documentation**– step-by-step instructions for critical operations
 -**CMDB**– register of all infrastructure
 
-**Network topologies:**
+*## Network topologies:
 
 - Star (most common): centralized switch, easy to troubleshoot
 - Mesh: all connected to all, robust but complex
 - Bus: historical, not used in modern networks
 
-**Planning process:**
-Needs assessment → Requirements → ROS analysis → Solution selection → Project plan → Implementation → Documentation → Evaluation
+*## Planning process:
+NNeeds assessment → Requirements → ROS analysis → Solution selection → Project plan → Implementation → Documentation →
+NEvaluation
 
-**ITIL change management:**
+*## ITIL change management:
 All changes are planned, risk-assessed, approved, implemented, documented. Rollback plan always ready.
 
-**Remember:**Without documentation, the IT department depends on individuals' memory. Good documentation is a collective insurance policy.
+***Remember:**Without documentation, the IT department depends on individuals' memory.
+*Good documentation is a collective insurance policy.
 
 ---
 
 ## FAQ
 
-**Why is the change log more important than people think?**
-When something stops working, the first question is always: "What did we change last?" The change log provides the answer immediately. Without it, you have to guess – which can take hours or days.
+*## Why is the change log more important than people think?
+WWhen something stops working, the first question is always: "What did we change last?" The change log provides the
+Wanswer immediately. Without it, you have to guess – which can take hours or days.
 
-**What is the difference between an operations log and a change log?**
-In practice, the terms are used interchangeably, but a change log specifically focuses on changes made (patching, configuration, new user), while an operations log can include events, errors, and status more generally.
+*## What is the difference between an operations log and a change log?
+IIn practice, the terms are used interchangeably, but a change log specifically focuses on changes made (patching,
+Iconfiguration, new user), while an operations log can include events, errors, and status more generally.
 
-**What is CMDB and is it necessary for a small school?**
-CMDB (Configuration Management Database) is a detailed register of all IT infrastructure. For a small school, a simple Excel sheet or Markdown document is sufficient. Large organizations use dedicated CMDB tools (e.g., ServiceNow) because the number of components is too large for manual tracking.
+*## What is CMDB and is it necessary for a small school?
+CCMDB (Configuration Management Database) is a detailed register of all IT infrastructure.
+CCFor a small school, a simple Excel sheet or Markdown document is sufficient. Large organizations use dedicated CMDB
+Ctools (e.g., ServiceNow) because the number of components is too large for manual tracking.
 
-**What is ITIL and do we need it?**
-ITIL is a framework of best practices for IT operations, originally developed for large organizations. The principles (change management, incident management, service management) are relevant at all scales, even if you do not implement the entire framework. Having a change log and rollback process is ITIL thinking in its simplest form.
+*## What is ITIL and do we need it?
+IITIL is a framework of best practices for IT operations, originally developed for large organizations.
+IIThe principles (change management, incident management, service management) are relevant at all scales, even if you do
+Inot implement the entire framework. Having a change log and rollback process is ITIL thinking in its simplest form.
 
-**What is a ROS analysis in IT planning?**
-ROS (Risk and Vulnerability) analysis maps what can go wrong with a planned IT solution, how likely it is, and what the consequence would be. It provides a basis for prioritizing measures. See [[risikoanalyse-en]] for method and templates.
+*## What is a ROS analysis in IT planning?
+RROS (Risk and Vulnerability) analysis maps what can go wrong with a planned IT solution, how likely it is, and what the
+Rconsequence would be. It provides a basis for prioritizing measures. See [[risikoanalyse-en]] for method and templates.
 
-**What makes draw.io a good documentation tool?**
-draw.io is free, web-based, and saves diagrams as XML files that can be version-controlled with git. It has specific symbol libraries for network topologies. The result is visual, easy-to-read diagrams that can be shared and updated easily.
+*## What makes draw.io a good documentation tool?
+ddraw.io is free, web-based, and saves diagrams as XML files that can be version-controlled with git.
+ddIt has specific symbol libraries for network topologies. The result is visual, easy-to-read diagrams that can be shared
+dand updated easily.
 
 ---
 
@@ -308,31 +334,42 @@ draw.io is free, web-based, and saves diagrams as XML files that can be version-
 
 <details><summary>Question 1: Why is a change log important in IT operations?</summary>
 
-**Answer:**The change log provides a history of all changes made to the system. This is indispensable for troubleshooting (what did we change right before the problem occurred?), audits, onboarding new colleagues, and maintaining continuity when people leave.
+***Answer:**The change log provides a history of all changes made to the system. This is indispensable for
+**troubleshooting (what did we change right before the problem occurred?), audits, onboarding new colleagues, and
+*maintaining continuity when people leave.
 
 </details>
 
 <details><summary>Question 2: What is a star topology and what is its weakness?</summary>
 
-**Answer:**A star topology connects all devices to a central switch. It is easy to troubleshoot and expand. The weakness is that the switch is a single point of failure – if the switch fails, all devices lose connectivity. This is mitigated with redundant switches.
+***Answer:**A star topology connects all devices to a central switch. It is easy to troubleshoot and expand.
+**The weakness is that the switch is a single point of failure – if the switch fails, all devices lose connectivity.
+*This is mitigated with redundant switches.
 
 </details>
 
 <details><summary>Question 3: What should an IP address plan contain?</summary>
 
-**Answer:**An IP address plan should at minimum contain: network address and subnet mask, gateway address, DNS server(s), DHCP range, and an overview of static addresses (servers, printers, network equipment). It can also include VLAN information and MAC addresses.
+***Answer:**An IP address plan should at minimum contain: network address and subnet mask, gateway address, DNS
+**server(s), DHCP range, and an overview of static addresses (servers, printers, network equipment).
+*It can also include VLAN information and MAC addresses.
 
 </details>
 
 <details><summary>Question 4: What is CMDB?</summary>
 
-**Answer:**CMDB (Configuration Management Database) is a register of all IT infrastructure in an organization: devices, software, configurations, and the relationships between them. It is the foundation for good change management and troubleshooting.
+***Answer:**CMDB (Configuration Management Database) is a register of all IT infrastructure in an organization: devices,
+**software, configurations, and the relationships between them. It is the foundation for good change management and
+*troubleshooting.
 
 </details>
 
-<details><summary>Question 5: Name two tools used for network documentation and describe what they are used for.</summary>
+<<details><summary>Question 5: Name two tools used for network documentation and describe what they are used
+<for.</summary>
 
-**Answer:**draw.io is used to draw network topologies and architecture diagrams – visual and free. IT Glue is a professional documentation tool used by managed service providers (MSPs) that consolidates everything from password management to procedures and device registry in one system.
+***Answer:**draw.io is used to draw network topologies and architecture diagrams – visual and free.
+**IT Glue is a professional documentation tool used by managed service providers (MSPs) that consolidates everything from
+*password management to procedures and device registry in one system.
 
 </details>
 

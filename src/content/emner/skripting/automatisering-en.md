@@ -24,11 +24,17 @@ original: automatisering.md
 
 ## Introduction
 
-Writing a script is only half the job. The other half is making sure the script actually runs — at the right time, on the right machine, without anyone having to think about it. This is where**automation**truly shows its value.
+WWriting a script is only half the job. The other half is making sure the script actually runs — at the right time, on
+Wthe right machine, without anyone having to think about it. This is where**automation**truly shows its value.
 
-In this article, we learn two basic mechanisms for scheduling and running scripts automatically:**Windows Task Scheduler**for Windows and**cron**for Linux. We also look at**Infrastructure as Code (IaC)**— the next step beyond scripting, where entire IT infrastructures are described in code.
+IIn this article, we learn two basic mechanisms for scheduling and running scripts automatically:**Windows Task
+IIScheduler**for Windows and**cron**for Linux. We also look at**Infrastructure as Code (IaC)**— the next step beyond
+Iscripting, where entire IT infrastructures are described in code.
 
-Automation builds directly on the skills from [[bash-grunnleggende-en|Bash basics]] and [[powershell-grunnleggende-en|PowerShell basics]]. In larger operations environments, automation is closely linked to [[backup-og-gjenoppretting-en|backup and recovery]], [[serverroller-en|server roles]], and [[skytjenester-en|cloud services]].
+AAutomation builds directly on the skills from [[bash-grunnleggende-en|Bash basics]] and
+AA[[powershell-grunnleggende-en|PowerShell basics]]. In larger operations environments, automation is closely linked to
+AA[[backup-og-gjenoppretting-en|backup and recovery]], [[serverroller-en|server roles]], and [[skytjenester-en|cloud
+Aservices]].
 
 ---
 
@@ -36,7 +42,10 @@ Automation builds directly on the skills from [[bash-grunnleggende-en|Bash basic
 
 ### What is IT Automation?
 
-Automation in IT means replacing manual, repetitive tasks with systems that perform them on their own. A system administrator who manually logs into 50 servers to install updates spends hours. A script that runs automatically via Task Scheduler or cron does the same thing in minutes — without human intervention.
+AAutomation in IT means replacing manual, repetitive tasks with systems that perform them on their own.
+AAA system administrator who manually logs into 50 servers to install updates spends hours.
+AAA script that runs automatically via Task Scheduler or cron does the same thing in minutes — without human
+Aintervention.
 
 Typical tasks automated in operations:
 
@@ -80,15 +89,15 @@ A**task**in Task Scheduler consists of three parts:
 
 Basic commands:
 
-| Command | Description |
-|---|---|
-| `schtasks /create` | Create a new task |
-| `schtasks /query` | List tasks |
-| `schtasks /run` | Run a task immediately |
-| `schtasks /delete` | Delete a task |
-| `schtasks /change` | Modify an existing task |
+|| Command | Description |
+|| --- | --- |
+|| `schtasks /create` | Create a new task |
+|| `schtasks /query` | List tasks |
+|| `schtasks /run` | Run a task immediately |
+|| `schtasks /delete` | Delete a task |
+|| `schtasks /change` | Modify an existing task |
 
-**Example — create a daily backup task at 02:00:**
+*## Example — create a daily backup task at 02:00:
 
 ```cmd
 schtasks /create ^
@@ -100,24 +109,24 @@ schtasks /create ^
   /f
 ```
 
-**Parameter explanation:**
+*## Parameter explanation:
 
-| Parameter | Explanation |
-|---|---|
-| `/tn "DailyBackup"` | Task Name — name of the task |
-| `/tr "powershell.exe ..."` | Task Run — the program/script to execute |
-| `/sc DAILY` | Schedule — run frequency (DAILY, WEEKLY, MONTHLY, ONCE, etc.) |
-| `/st 02:00` | Start Time — time of execution |
-| `/ru SYSTEM` | Run User — user account under which the task runs |
-| `/f` | Force — overwrite without confirmation if the task already exists |
+|| Parameter | Explanation |
+|| --- | --- |
+|| `/tn "DailyBackup"` | Task Name — name of the task |
+|| `/tr "powershell.exe ..."` | Task Run — the program/script to execute |
+|| `/sc DAILY` | Schedule — run frequency (DAILY, WEEKLY, MONTHLY, ONCE, etc.) |
+|| `/st 02:00` | Start Time — time of execution |
+|| `/ru SYSTEM` | Run User — user account under which the task runs |
+|| `/f` | Force — overwrite without confirmation if the task already exists |
 
-**Verify the task:**
+*## Verify the task:
 
 ```cmd
 schtasks /query /tn "DailyBackup" /fo LIST /v
 ```
 
-**Run the task manually for testing:**
+*## Run the task manually for testing:
 
 ```cmd
 schtasks /run /tn "DailyBackup"
@@ -127,61 +136,62 @@ schtasks /run /tn "DailyBackup"
 
 ### Linux Cron
 
-**Cron**is the Linux daemon for running scheduled tasks. Tasks are defined in a**crontab**file (cron table) with a specific syntax.
+***Cron**is the Linux daemon for running scheduled tasks. Tasks are defined in a**crontab**file (cron table) with a
+*specific syntax.
 
 #### Crontab Syntax
 
 A crontab line consists of five time fields followed by the command:
 
-```
+```bash
 
 # min  hour  day-of-month  month  day-of-week  command
 
   *****/path/to/script.sh
 ```
 
-**The fields:**
+*## The fields:
 
-| Field | Value range | Description |
-|---|---|---|
-| Minute | 0–59 | Minute of the hour |
-| Hour | 0–23 | Hour of the day (24-hour) |
-| Day of month | 1–31 | Day of the month |
-| Month | 1–12 | Month |
-| Day of week | 0–7 | Day of the week (0 and 7 are both Sunday) |
+|| Field | Value range | Description |
+|| --- | --- | --- |
+|| Minute | 0–59 | Minute of the hour |
+|| Hour | 0–23 | Hour of the day (24-hour) |
+|| Day of month | 1–31 | Day of the month |
+|| Month | 1–12 | Month |
+|| Day of week | 0–7 | Day of the week (0 and 7 are both Sunday) |
 
-**Special values:**
+*## Special values:
 
-| Value | Meaning |
-|---|---|
-| `*` | All valid values |
-| `*/2` | Every two (e.g., every two minutes) |
-| `1,3,5` | Specific values (Monday, Wednesday, Friday) |
-| `1-5` | Range (Monday to Friday) |
+|| Value | Meaning |
+|| --- | --- |
+|| `*` | All valid values |
+|| `*/2` | Every two (e.g., every two minutes) |
+|| `1,3,5` | Specific values (Monday, Wednesday, Friday) |
+|| `1-5` | Range (Monday to Friday) |
 
-**Special strings (shortcuts):**
+*## Special strings (shortcuts):
 
-| String | Equivalent |
-|---|---|
-| `@reboot` | At system startup |
-| `@daily`|`0 0***` — midnight every day |
-| `@weekly`|`0 0**0` — Sunday midnight |
-| `@monthly`|`0 0 1**` — first day of the month |
-| `@hourly`|`0****` — every hour on the hour |
+|| String | Equivalent |
+|| --- | --- |
+|| `@reboot` | At system startup |
+|| `@daily` | `0 0***` — midnight every day |
+|| `@weekly` | `0 0**0` — Sunday midnight |
+|| `@monthly` | `0 0 1**` — first day of the month |
+|| `@hourly` | `0****` — every hour on the hour |
 
 #### Managing Crontab
 
 ```bash
 
-# Edit your crontab (opens in default text editor)
+## Edit your crontab (opens in default text editor)
 
 crontab -e
 
-# List current crontab
+## List current crontab
 
 crontab -l
 
-# Delete your entire crontab
+## Delete your entire crontab
 
 crontab -r
 ```
@@ -190,57 +200,58 @@ crontab -r
 
 ```bash
 
-# Daily backup at 02:00
+## Daily backup at 02:00
 
 0 2***/home/user/backup.sh
 
-# Weekly report every Sunday at 04:05
+## Weekly report every Sunday at 04:05
 
 5 4**0 /opt/weekly-report.sh
 
-# Log rotation on the first day of the month at 00:30
+## Log rotation on the first day of the month at 00:30
 
 30 0 1**/usr/local/bin/rotate-logs.sh
 
-# Check services every 5 minutes
+## Check services every 5 minutes
 
 */5****/home/user/check-services.sh
 
-# Restart web server every night at 03:00 (Monday–Friday)
+## Restart web server every night at 03:00 (Monday–Friday)
 
 0 3**1-5 systemctl restart nginx
 
-# Run at system startup
+## Run at system startup
 
 @reboot /home/user/start-agent.sh
 ```
 
-**Important:**Scripts run by cron have a limited environment (PATH is shorter than in your terminal). Always use**absolute paths**to programs and files in cron tasks:
+***Important:**Scripts run by cron have a limited environment (PATH is shorter than in your terminal).
+*Always use**absolute paths**to programs and files in cron tasks:
 
 ```bash
 
-# Wrong — cron may not find 'backup.sh'
+## Wrong — cron may not find 'backup.sh'
 
 *****backup.sh
 
-# Correct — explicit path
+## Correct — explicit path
 
 0 2***/home/user/backup.sh
 
-# Correct — also absolute path to the command itself
+## Correct — also absolute path to the command itself
 
 0 2***/bin/bash /home/user/backup.sh
 ```
 
-**Log cron output:**
+*## Log cron output:
 
 ```bash
 
-# Send output to log file (overwrites)
+## Send output to log file (overwrites)
 
 0 2***/home/user/backup.sh > /var/log/backup.log 2>&1
 
-# Send output to log file (appends)
+## Send output to log file (appends)
 
 0 2***/home/user/backup.sh >> /var/log/backup.log 2>&1
 ```
@@ -251,28 +262,31 @@ crontab -r
 
 ### Infrastructure as Code (IaC) — Introduction
 
-Scripting is powerful, but it has limitations: a script describes*actions*(do this, then that), not*states*(the system should look like this). Infrastructure as Code is the next step in the automation journey.
+SScripting is powerful, but it has limitations: a script describes*actions*(do this, then that), not*states*(the system
+Sshould look like this). Infrastructure as Code is the next step in the automation journey.
 
-**Definition:**IaC is the practice of defining and provisioning IT infrastructure through machine-readable configuration files rather than manual processes or interactive configuration tools.
+***Definition:**IaC is the practice of defining and provisioning IT infrastructure through machine-readable configuration
+*files rather than manual processes or interactive configuration tools.
 
 #### Benefits of IaC
 
-| Benefit | Explanation |
-|---|---|
-|**Consistency**| All environments (development, test, production) are identically configured |
-|**Repeatability**| The same environment can be set up from scratch in minutes |
-|**Version control**| Infrastructure code is stored in Git — history, rollback, code review |
-|**Documentation**| The code documents itself — what runs and why |
-|**Scaling**| One configuration file can provision 1 or 1000 servers |
+|| Benefit | Explanation |
+|| --- | --- |
+|| **Consistency** | All environments (development, test, production) are identically configured |
+|| **Repeatability** | The same environment can be set up from scratch in minutes |
+|| **Version control** | Infrastructure code is stored in Git — history, rollback, code review |
+|| **Documentation** | The code documents itself — what runs and why |
+|| **Scaling** | One configuration file can provision 1 or 1000 servers |
 
 #### From Scripting to IaC
 
-```
+```bash
 Manual operations → Scripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 ```
 
 -**Scripting**is*imperative*: "Create folder, copy file, start service."
--**IaC**is*declarative*: "The folder should exist, the file should be there, the service should run." The tool figures out what needs to be done.
+--**IaC**is*declarative*: "The folder should exist, the file should be there, the service should run." The tool figures
+-out what needs to be done.
 
 #### Key IaC Tools
 
@@ -284,7 +298,7 @@ Manual operations → Scripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 
 ```yaml
 
-# Example Ansible playbook (YAML)
+## Example Ansible playbook (YAML)
 
 - name: Install and start nginx
 
@@ -312,7 +326,7 @@ Manual operations → Scripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 
 ```hcl
 
-# Example Terraform configuration (HCL)
+## Example Terraform configuration (HCL)
 
 resource "azurerm_virtual_machine" "webserver" {
   name     = "webserver-01"
@@ -326,21 +340,28 @@ resource "azurerm_virtual_machine" "webserver" {
 - Microsoft's own IaC tool, integrated with Windows and Azure.
 - Describes desired state for Windows configurations.
 
-IaC is an advanced topic that builds directly on scripting knowledge from this subject. Bash and PowerShell are often used*inside*IaC tools for specific tasks.
+IIaC is an advanced topic that builds directly on scripting knowledge from this subject.
+IBash and PowerShell are often used*inside*IaC tools for specific tasks.
 
 #### Idempotence — A Key Principle
 
-An important concept in automation and IaC is**idempotence**: an operation is idempotent if it can be run many times without changing the result after the first successful run. Ansible and Terraform are idempotent — they always check the current state against the desired state and only make changes that are actually needed. A simple Bash script run twice could create duplicates or overwrite data. Design your own scripts with idempotence in mind (e.g., check if the folder already exists before creating it).
+AAn important concept in automation and IaC is**idempotence**: an operation is idempotent if it can be run many times
+AAwithout changing the result after the first successful run. Ansible and Terraform are idempotent — they always check
+AAthe current state against the desired state and only make changes that are actually needed.
+AAA simple Bash script run twice could create duplicates or overwrite data. Design your own scripts with idempotence in
+Amind (e.g., check if the folder already exists before creating it).
 
 #### Secure Handling of Secrets in Automated Scripts
 
-Scripts that run automatically often need passwords, API keys, or certificates.**Never store secrets directly in script code.**Good alternatives:
+SScripts that run automatically often need passwords, API keys, or certificates.**Never store secrets directly in script
+Scode.**Good alternatives:
 
 -**Environment variables**— Read the secret from the environment instead of hardcoding it.
 -**Windows Credential Manager / Secret Store**— PowerShell module `Microsoft.PowerShell.SecretManagement`.
 -**Vault solutions**— HashiCorp Vault or Azure Key Vault for production environments.
 
-This is especially important when scripts are stored in [[dokumentasjon-og-planlegging-en|documentation and planning]] or version control systems like Git.
+TThis is especially important when scripts are stored in [[dokumentasjon-og-planlegging-en|documentation and planning]]
+Tor version control systems like Git.
 
 ---
 
@@ -348,21 +369,22 @@ This is especially important when scripts are stored in [[dokumentasjon-og-planl
 
 ### Lab: Set Up Automatic Backup with Task Scheduler
 
-We will set up a Windows task that runs the PowerShell backup script (from [[powershell-grunnleggende-en|PowerShell basics]]) daily at 02:00.
+WWe will set up a Windows task that runs the PowerShell backup script (from [[powershell-grunnleggende-en|PowerShell
+Wbasics]]) daily at 02:00.
 
 **Prerequisite:**The backup script is located at `C:\Scripts\backup.ps1`.
 
-**Step 1 — Create the script folder and script:**
+*## Step 1 — Create the script folder and script:
 
 ```powershell
 
-# Run in PowerShell as administrator
+## Run in PowerShell as administrator
 
 New-Item -ItemType Directory -Path "C:\Scripts" -Force
 
 $scriptContent = @'
 
-# backup.ps1
+## backup.ps1
 
 $source = "C:\Users\$env:USERNAME\Documents"
 $target = "C:\Backup\$(Get-Date -Format 'yyyy-MM-dd')"
@@ -374,30 +396,30 @@ Write-Host "Backup completed: $target"
 Set-Content -Path "C:\Scripts\backup.ps1" -Value $scriptContent -Encoding UTF8
 ```
 
-**Step 2 — Create the Task Scheduler task:**
+*## Step 2 — Create the Task Scheduler task:
 
 ```powershell
 
-# Define action (what to run)
+## Define action (what to run)
 
 $action = New-ScheduledTaskAction `
     -Execute "powershell.exe" `
     -Argument "-NonInteractive -WindowStyle Hidden -File C:\Scripts\backup.ps1"
 
-# Define trigger (when to run)
+## Define trigger (when to run)
 
 $trigger = New-ScheduledTaskTrigger `
     -Daily `
     -At "02:00"
 
-# Define settings
+## Define settings
 
 $settings = New-ScheduledTaskSettingsSet `
     -ExecutionTimeLimit (New-TimeSpan -Hours 1) `
     -RestartCount 3 `
     -RestartInterval (New-TimeSpan -Minutes 5)
 
-# Register the task
+## Register the task
 
 Register-ScheduledTask `
     -TaskName "DailyBackup" `
@@ -408,36 +430,36 @@ Register-ScheduledTask `
     -Force
 ```
 
-**Line-by-line explanation:**
+*## Line-by-line explanation:
 
-| Command | Explanation |
-|---|---|
-| `New-ScheduledTaskAction` | Defines what to run — here PowerShell with the backup script |
-| `-NonInteractive` | The script should not show user interfaces or wait for input |
-| `-WindowStyle Hidden` | Hide the PowerShell window during execution |
-| `New-ScheduledTaskTrigger -Daily -At "02:00"` | The task runs daily at 02:00 |
-| `New-ScheduledTaskSettingsSet` | Extra settings: time limit and automatic restart on failure |
-| `Register-ScheduledTask` | Registers (saves) the task in Task Scheduler |
-| `-RunLevel Highest` | Run with elevated privileges (administrator) |
+|| Command | Explanation |
+|| --- | --- |
+|| `New-ScheduledTaskAction` | Defines what to run — here PowerShell with the backup script |
+|| `-NonInteractive` | The script should not show user interfaces or wait for input |
+|| `-WindowStyle Hidden` | Hide the PowerShell window during execution |
+|| `New-ScheduledTaskTrigger -Daily -At "02:00"` | The task runs daily at 02:00 |
+|| `New-ScheduledTaskSettingsSet` | Extra settings: time limit and automatic restart on failure |
+|| `Register-ScheduledTask` | Registers (saves) the task in Task Scheduler |
+|| `-RunLevel Highest` | Run with elevated privileges (administrator) |
 
-**Step 3 — Verify and test:**
+*## Step 3 — Verify and test:
 
 ```powershell
 
-# See the task
+## See the task
 
 Get-ScheduledTask -TaskName "DailyBackup"
 
-# Run the task manually to test
+## Run the task manually to test
 
 Start-ScheduledTask -TaskName "DailyBackup"
 
-# Check if the backup folder was created
+## Check if the backup folder was created
 
 Get-ChildItem "C:\Backup"
 ```
 
-**Equivalent with schtasks (command line):**
+*## Equivalent with schtasks (command line):
 
 ```cmd
 schtasks /create /tn "DailyBackup" /tr "powershell.exe -NonInteractive -File C:\Scripts\backup.ps1" /sc DAILY /st 02:00 /ru SYSTEM /f
@@ -449,15 +471,16 @@ schtasks /create /tn "DailyBackup" /tr "powershell.exe -NonInteractive -File C:\
 
 ### Automation – Scheduled Tasks and IaC
 
-Automation is about letting systems perform tasks on their own — at the right time, with the right permissions, without human intervention.
+AAutomation is about letting systems perform tasks on their own — at the right time, with the right permissions, without
+Ahuman intervention.
 
-**Two platforms for scheduling:**
+*## Two platforms for scheduling:
 
-| | Windows | Linux |
-|---|---|---|
-| Tool | Task Scheduler / `schtasks`| cron /`crontab -e` |
-| Syntax | GUI or command line | 5 time fields + command |
-| Example | `schtasks /create /sc DAILY /st 02:00`|`0 2***/path/to/script.sh` |
+||  | Windows | Linux |
+|| --- | --- | --- |
+|| Tool | Task Scheduler / `schtasks` | cron /`crontab -e` |
+|| Syntax | GUI or command line | 5 time fields + command |
+|| Example | `schtasks /create /sc DAILY /st 02:00` | `0 2***/path/to/script.sh` |
 
 **Cron syntax mnemonic**(5 fields): `minute hour day-of-month month day-of-week`
 
@@ -465,12 +488,12 @@ Automation is about letting systems perform tasks on their own — at the right 
 - Always use absolute paths in cron — the PATH environment is minimal.
 - Always log output: `>> /var/log/script.log 2>&1`
 
-**Task Scheduler — three parts of a task:**
+*## Task Scheduler — three parts of a task:
 1.**Trigger**— when (time, event, logon)
 2.**Action**— what (program, script)
 3.**Conditions**— additional requirements (power, network)
 
-**From scripting to IaC:**
+*## From scripting to IaC:
 
 - Scripting is*imperative*: "do A, B, C in sequence."
 - IaC is*declarative*: "the system should look like this — the tool handles the rest."
@@ -478,34 +501,47 @@ Automation is about letting systems perform tasks on their own — at the right 
 - Terraform (HCL) → cloud infrastructure
 - PowerShell DSC → Windows state management
 
-**Key principles:**idempotence (safe to run multiple times), secure secret management (never passwords in code), version control of scripts.
+***Key principles:**idempotence (safe to run multiple times), secure secret management (never passwords in code), version
+*control of scripts.
 
-Connect to [[backup-og-gjenoppretting-en|backup and recovery]] for examples of what is automated, and [[skytjenester-en|cloud services]] for cloud-based IaC.
+CConnect to [[backup-og-gjenoppretting-en|backup and recovery]] for examples of what is automated, and
+C[[skytjenester-en|cloud services]] for cloud-based IaC.
 
 ---
 
 ## FAQ
 
-**What happens if a cron job fails — will I be notified?**
-By default, cron sends the error message via email to the system user. In practice, it is better to log explicitly: `0 2***/path/script.sh >> /var/log/backup.log 2>&1`. Then you can check the log manually or with a monitoring tool.
+*## What happens if a cron job fails — will I be notified?
+BBy default, cron sends the error message via email to the system user. In practice, it is better to log explicitly: `0
+B2***/path/script.sh >> /var/log/backup.log 2>&1`. Then you can check the log manually or with a monitoring tool.
 
-**Can I run Task Scheduler tasks without being logged in?**
-Yes, if you set the user account to `SYSTEM` or a service account and check "Run whether user is logged on or not." The task then runs in the background regardless of logon status.
+*## Can I run Task Scheduler tasks without being logged in?
+YYes, if you set the user account to `SYSTEM` or a service account and check "Run whether user is logged on or not." The
+Ytask then runs in the background regardless of logon status.
 
-**How do I test a cron job without waiting for the scheduled time?**
-Run the script manually in the terminal with the same user that cron would use: `sudo -u www-data /path/to/script.sh`. This simulates the cron environment well. For Task Scheduler: `schtasks /run /tn "TaskName"`.
+*## How do I test a cron job without waiting for the scheduled time?
+RRun the script manually in the terminal with the same user that cron would use: `sudo -u www-data /path/to/script.sh`.
+RThis simulates the cron environment well. For Task Scheduler: `schtasks /run /tn "TaskName"`.
 
-**What is idempotence and why is it important in automation?**
-Idempotence means that an operation can be run many times without changing the result after the first successful run. A script that always checks `if [ ! -d "$FOLDER" ]; then mkdir "$FOLDER"; fi` is idempotent — it only creates the folder if it doesn't exist. This is crucial for reliable automation.
+*## What is idempotence and why is it important in automation?
+IIdempotence means that an operation can be run many times without changing the result after the first successful run.
+IIA script that always checks `if [ ! -d "$FOLDER" ]; then mkdir "$FOLDER"; fi` is idempotent — it only creates the
+Ifolder if it doesn't exist. This is crucial for reliable automation.
 
-**What is the difference between Ansible and Terraform?**
-Ansible is primarily used for configuration management — installing packages, starting services, editing configuration files on existing servers. Terraform is primarily used to*provision*infrastructure — creating VMs, networks, and databases in the cloud. In practice, they are often used together: Terraform creates the infrastructure, Ansible configures it.
+*## What is the difference between Ansible and Terraform?
+AAnsible is primarily used for configuration management — installing packages, starting services, editing configuration
+AAfiles on existing servers. Terraform is primarily used to*provision*infrastructure — creating VMs, networks, and
+AAdatabases in the cloud. In practice, they are often used together: Terraform creates the infrastructure, Ansible
+Aconfigures it.
 
-**Can a PowerShell script in Task Scheduler run without opening a window?**
-Yes, add `-WindowStyle Hidden`to the arguments:`-NonInteractive -WindowStyle Hidden -File C:\Scripts\script.ps1`. The script then runs in the background without a visible window.
+*## Can a PowerShell script in Task Scheduler run without opening a window?
+YYes, add `-WindowStyle Hidden`to the arguments:`-NonInteractive -WindowStyle Hidden -File C:\Scripts\script.ps1`.
+YThe script then runs in the background without a visible window.
 
-**Why should secrets never be hardcoded in scripts?**
-Scripts are often stored in version control (Git), log files, or shared with colleagues. Hardcoded passwords or API keys are then exposed uncontrollably. Use environment variables, Windows Credential Manager, or a dedicated vault solution for sensitive information.
+*## Why should secrets never be hardcoded in scripts?
+SScripts are often stored in version control (Git), log files, or shared with colleagues.
+SSHardcoded passwords or API keys are then exposed uncontrollably. Use environment variables, Windows Credential Manager,
+Sor a dedicated vault solution for sensitive information.
 
 ---
 
@@ -513,31 +549,40 @@ Scripts are often stored in version control (Git), log files, or shared with col
 
 <details><summary>Question 1: What are the three main parts of a Task Scheduler task?</summary>
 
-**Answer:**A task consists of (1)**Trigger**— when the task should run, (2)**Action**— what should run, and (3)**Conditions**— any additional requirements that must be met.
+***Answer:**A task consists of (1)**Trigger**— when the task should run, (2)**Action**— what should run, and
+*(3)**Conditions**— any additional requirements that must be met.
 
 </details>
 
 <details><summary>Question 2: What does `*/5` mean in crontab syntax?</summary>
 
-**Answer:**`*/5`means "every five" of the relevant time unit. In the minute field,`*/5` means every 5th minute (0, 5, 10, 15, ...). In the hour field, it would mean every 5th hour.
+***Answer:**`*/5`means "every five" of the relevant time unit. In the minute field,`*/5` means every 5th minute (0, 5,
+*10, 15, ...). In the hour field, it would mean every 5th hour.
 
 </details>
 
 <details><summary>Question 3: Why should you always use absolute paths in cron tasks?</summary>
 
-**Answer:**Cron runs with a minimal environment where the `PATH`variable is much shorter than in an interactive terminal. Commands that work normally in the terminal may not be found by cron. With absolute paths (e.g.,`/bin/bash`and`/home/user/backup.sh`), there is no ambiguity about which file is meant.
+***Answer:**Cron runs with a minimal environment where the `PATH`variable is much shorter than in an interactive
+**terminal. Commands that work normally in the terminal may not be found by cron. With absolute paths
+*(e.g.,`/bin/bash`and`/home/user/backup.sh`), there is no ambiguity about which file is meant.
 
 </details>
 
-<details><summary>Question 4: What is the fundamental difference between imperative scripting and declarative IaC?</summary>
+<<details><summary>Question 4: What is the fundamental difference between imperative scripting and declarative
+<IaC?</summary>
 
-**Answer:**Imperative scripting describes the*actions*to be performed in sequence ("do A, then B, then C"). Declarative IaC describes the*desired end state*("the system should look like this"), and the tool determines which actions are needed to reach that state.
+***Answer:**Imperative scripting describes the*actions*to be performed in sequence ("do A, then B, then C").
+**Declarative IaC describes the*desired end state*("the system should look like this"), and the tool determines which
+*actions are needed to reach that state.
 
 </details>
 
 <details><summary>Question 5: What does `2>&1` at the end of a cron command mean?</summary>
 
-**Answer:**It redirects**stderr**(file descriptor 2) to**stdout**(file descriptor 1). When combined with `>> /var/log/backup.log`, it means both normal output and error messages are written to the same log file.
+***Answer:**It redirects**stderr**(file descriptor 2) to**stdout**(file descriptor 1).
+**When combined with `>> /var/log/backup.log`, it means both normal output and error messages are written to the same log
+*file.
 
 </details>
 

@@ -11,7 +11,7 @@ Generert: 2026-05-20
 
 ## Arkitektur
 
-```
+```diff
 driftsstotte-vault (Obsidian, private)
   └── public/emner/ → GitHub Actions → driftsstotte-vg2 (Astro 5) → GitHub Pages
                                                        ↕
@@ -20,72 +20,72 @@ driftsstotte-vault (Obsidian, private)
 
 ## Dekningsoversikt
 
-| KM | Beskrivelse | Dekket av | Status |
-|----|------------|-----------|--------|
-| km-01 | Driftsarkitektur | backup-og-gjenoppretting, driftsarkitektur | ✅ |
-| km-02 | Segmenterte nettverk | segmentering-og-vlan, virtuelle-losninger | ✅ |
-| km-03 | Skytjenester | driftsarkitektur, skytjenester | ✅ |
-| km-04 | Brukere/tilganger | active-directory, bruker-og-tilgangsstyring, filsystem, linux-grunnleggende, databaseadministrasjon, sql-grunnleggende | ✅ |
-| km-05 | Nettverksprotokoller | osi-modellen, tcp-ip-modellen, nettverksprotokoller, dns-og-dhcp, serverroller | ✅ |
-| km-06 | Dokumentasjon | dokumentasjon-og-planlegging | ✅ |
-| km-07 | Trusler | trusselbildet | ✅ |
-| km-08 | Risikoanalyse | risikoanalyse | ✅ |
-| km-09 | Automatisering | automatisering, bash-grunnleggende, powershell-grunnleggende | ✅ |
-| km-10 | Sikkerhet | brannmur, it-losninger-med-sikkerhet, kryptering | ✅ |
-| km-11 | Personvern | personvern | ✅ |
-| km-12 | Bærekraft | baerekraft | ✅ |
+|| KM | Beskrivelse | Dekket av | Status |
+|| ---- | ------------ | ----------- | -------- |
+|| km-01 | Driftsarkitektur | backup-og-gjenoppretting, driftsarkitektur | ✅ |
+|| km-02 | Segmenterte nettverk | segmentering-og-vlan, virtuelle-losninger | ✅ |
+|| km-03 | Skytjenester | driftsarkitektur, skytjenester | ✅ |
+|| km-04 | Brukere/tilganger | active-directory, bruker-og-tilgangsstyring, filsystem, linux-grunnleggende, databaseadministrasjon, sql-grunnleggende | ✅ |
+|| km-05 | Nettverksprotokoller | osi-modellen, tcp-ip-modellen, nettverksprotokoller, dns-og-dhcp, serverroller | ✅ |
+|| km-06 | Dokumentasjon | dokumentasjon-og-planlegging | ✅ |
+|| km-07 | Trusler | trusselbildet | ✅ |
+|| km-08 | Risikoanalyse | risikoanalyse | ✅ |
+|| km-09 | Automatisering | automatisering, bash-grunnleggende, powershell-grunnleggende | ✅ |
+|| km-10 | Sikkerhet | brannmur, it-losninger-med-sikkerhet, kryptering | ✅ |
+|| km-11 | Personvern | personvern | ✅ |
+|| km-12 | Bærekraft | baerekraft | ✅ |
 
-**12/12 kompetansemål dekket ✅**
+*## 12/12 kompetansemål dekket ✅
 
 ## Status per emne
 
 ### Video (YouTube/NDLA)
 
-| Emne | Video | Kommentar |
-|------|-------|-----------|
-| Backup og gjenoppretting | ✅ | |
-| Bærekraft | ✅ | |
-| Driftsarkitektur | ✅ | |
-| Skytjenester | ✅ | NDLA-ressurs |
-| DNS og DHCP | ✅ | |
-| Nettverksprotokoller | ✅ | |
-| OSI-modellen | ✅ | |
-| Segmentering og VLAN | ✅ | |
-| Serverroller | ✅ | |
-| TCP/IP-modellen | ✅ | |
-| Virtuelle løsninger | ✅ | |
-| Brannmur | ✅ | |
-| IT-løsninger med sikkerhet | ✅ | |
-| Kryptering | ✅ | |
-| Personvern | ✅ | |
-| Bash | ✅ | |
-| PowerShell | ✅ | |
-|**Mangler video:**SQL, dokumentasjon, Active Directory, brukerstyring, filsystem, Linux, risikoanalyse, trusselbildet, automatisering | ❌ 9 stk | Trenger YouTube/NDLA |
+|| Emne | Video | Kommentar |
+|| ------ | ------- | ----------- |
+|| Backup og gjenoppretting | ✅ |  |
+|| Bærekraft | ✅ |  |
+|| Driftsarkitektur | ✅ |  |
+|| Skytjenester | ✅ | NDLA-ressurs |
+|| DNS og DHCP | ✅ |  |
+|| Nettverksprotokoller | ✅ |  |
+|| OSI-modellen | ✅ |  |
+|| Segmentering og VLAN | ✅ |  |
+|| Serverroller | ✅ |  |
+|| TCP/IP-modellen | ✅ |  |
+|| Virtuelle løsninger | ✅ |  |
+|| Brannmur | ✅ |  |
+|| IT-løsninger med sikkerhet | ✅ |  |
+|| Kryptering | ✅ |  |
+|| Personvern | ✅ |  |
+|| Bash | ✅ |  |
+|| PowerShell | ✅ |  |
+|| **Mangler video:**SQL, dokumentasjon, Active Directory, brukerstyring, filsystem, Linux, risikoanalyse, trusselbildet, automatisering | ❌ 9 stk | Trenger YouTube/NDLA |
 
 ### Tospråklig
 
-| Status | Antall |
-|--------|--------|
-| Kun norsk | 27/27 |
-| Engelsk versjon |**0/27**❌ |
+|| Status | Antall |
+|| -------- | -------- |
+|| Kun norsk | 27/27 |
+|| Engelsk versjon | **0/27**❌ |
 
 ### Inline kildehenvisning
 
-| Status | Antall |
-|--------|--------|
-| Med fotnoter i brødtekst |**0/27**❌ |
-| Kun i frontmatter | 27/27 |
+|| Status | Antall |
+|| -------- | -------- |
+|| Med fotnoter i brødtekst | **0/27**❌ |
+|| Kun i frontmatter | 27/27 |
 
 ### NotebookLM
 
-| Kategori | Notebook ID | Artifacts |
-|----------|------------|-----------|
-| Nettverk | f7e5ad6c... | 1 video, 1 infographic, 2 flashcards, 2 reports |
-| IT-drift | bc9a5656... | ✅ Eksisterer |
-| Skripting | 15678f10... | ✅ Eksisterer |
-| Databaser | e9134332... | ✅ Eksisterer |
-| Operativsystem | 70aa7fff... | ✅ Eksisterer |
-| Sikkerhet | 3e72e53a... | ✅ Eksisterer |
+|| Kategori | Notebook ID | Artifacts |
+|| ---------- | ------------ | ----------- |
+|| Nettverk | f7e5ad6c... | 1 video, 1 infographic, 2 flashcards, 2 reports |
+|| IT-drift | bc9a5656... | ✅ Eksisterer |
+|| Skripting | 15678f10... | ✅ Eksisterer |
+|| Databaser | e9134332... | ✅ Eksisterer |
+|| Operativsystem | 70aa7fff... | ✅ Eksisterer |
+|| Sikkerhet | 3e72e53a... | ✅ Eksisterer |
 
 **Mangler:**Audio Overviews (podcast) i ALLE notebooks ❌
 

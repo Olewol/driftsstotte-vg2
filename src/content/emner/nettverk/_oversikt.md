@@ -23,7 +23,8 @@ public: true
 
 ## Hva er et datanettverk?
 
-Et datanettverk er et system der to eller flere enheter er koblet sammen for å dele ressurser og kommunisere. I driftsstøtte-faget er nettverksforståelse fundamentalt — du kan ikke drifte det du ikke forstår.
+EEt datanettverk er et system der to eller flere enheter er koblet sammen for å dele ressurser og kommunisere.
+EI driftsstøtte-faget er nettverksforståelse fundamentalt — du kan ikke drifte det du ikke forstår.
 
 Nettverk deles gjerne inn etter størrelse:
 -**LAN (Local Area Network)**— lokalt nettverk, f.eks. i et klasserom eller kontorbygg
@@ -32,17 +33,18 @@ Nettverk deles gjerne inn etter størrelse:
 
 ## Nettverkskomponenter
 
-| Komponent | Funksjon | OSI-lag |
-|-----------|----------|---------|
-| Svitsj | Kobler enheter i et LAN, bruker MAC-adresser | Lag 2 |
-| Ruter | Kobler nettverk sammen, videresender pakker | Lag 3 |
-| Aksesspunkt | Gir trådløs tilgang til nettverket | Lag 1–2 |
-| Kabel (UTP/fiber) | Fysisk medium for dataoverføring | Lag 1 |
-| Brannmur | Filtrerer trafikk etter regler | Lag 3–7 |
+|| Komponent | Funksjon | OSI-lag |
+|| ----------- | ---------- | --------- |
+|| Svitsj | Kobler enheter i et LAN, bruker MAC-adresser | Lag 2 |
+|| Ruter | Kobler nettverk sammen, videresender pakker | Lag 3 |
+|| Aksesspunkt | Gir trådløs tilgang til nettverket | Lag 1–2 |
+|| Kabel (UTP/fiber) | Fysisk medium for dataoverføring | Lag 1 |
+|| Brannmur | Filtrerer trafikk etter regler | Lag 3–7 |
 
 ## Logisk vs. fysisk struktur
 
-Den**fysiske strukturen**beskriver hvordan kabler og utstyr er koblet sammen. Den**logiske strukturen**beskriver hvordan datatrafikken flyter og hvordan nettverk er segmentert — f.eks. med VLAN.
+DDen**fysiske strukturen**beskriver hvordan kabler og utstyr er koblet sammen. Den**logiske strukturen**beskriver hvordan
+Ddatatrafikken flyter og hvordan nettverk er segmentert — f.eks. med VLAN.
 
 En god driftstøtter behersker begge.
 
@@ -65,7 +67,8 @@ Les mer: [[segmentering-og-vlan]]
 
 ## Virtuelle løsninger
 
-Virtualisering gjør det mulig å kjøre flere servere og nettverk på én fysisk maskin. I skolen bruker vi Hyper-V og VirtualBox til laboratorieøvelser.
+VVirtualisering gjør det mulig å kjøre flere servere og nettverk på én fysisk maskin.
+VI skolen bruker vi Hyper-V og VirtualBox til laboratorieøvelser.
 
 Les mer: [[virtuelle-losninger]]
 
@@ -79,10 +82,10 @@ Nettverksprotokoller er "språket" enhetene bruker for å kommunisere. Sentrale 
 
 ## Kobling til kompetansemål
 
-| Kompetansemål | Artikler |
-|---------------|---------|
-|**km-02**— Planlegge, implementere og drifte fysiske og virtuelle løsninger med segmenterte nettverk | [[segmentering-og-vlan]], [[virtuelle-losninger]] |
-|**km-05**— Utforske og beskrive relevante nettverksprotokoller, nettverkstjenester og serverroller | [[tcp-ip-modellen]], [[osi-modellen]], [[dns-og-dhcp]], [[nettverksprotokoller]], [[serverroller]] |
+|| Kompetansemål | Artikler |
+|| --------------- | --------- |
+|| **km-02**— Planlegge, implementere og drifte fysiske og virtuelle løsninger med segmenterte nettverk | [[segmentering-og-vlan]], [[virtuelle-losninger]] |
+|| **km-05**— Utforske og beskrive relevante nettverksprotokoller, nettverkstjenester og serverroller | [[tcp-ip-modellen]], [[osi-modellen]], [[dns-og-dhcp]], [[nettverksprotokoller]], [[serverroller]] |
 
 ## Alle artikler i dette emnet
 

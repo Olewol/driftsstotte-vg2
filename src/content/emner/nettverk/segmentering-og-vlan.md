@@ -19,8 +19,7 @@ flashcards: <https://notebooklm.google.com/notebook/f7e5ad6c-7082-40cf-abd5-7a41
 relaterte-oppgaver:
 
   - tittel: "IP-plan og nettverkskart for Nordic Cloud Solutions"
-
-    url: "<https://olewol.github.io/oppgaver-for-2IT/driftsstotte/ip-plan-nettverkskart">
+    url: "https://olewol.github.io/oppgaver-for-2IT/driftsstotte/ip-plan-nettverkskart"
     fag: driftsstotte
 public: true
 video: <https://www.youtube.com/watch?v=MzwV67L_6f8>
@@ -31,9 +30,14 @@ notebooklm: true
 
 ## Introduksjon
 
-Et nettverket der alle enheter snakker med alle andre er enkelt å sette opp — men det er en sikkerhetsmessig og ytelsesmessig katastrofe. Segmentering handler om å dele nettverket inn i logiske soner slik at trafikken styres kontrollert. I praksis gjøres dette med subnetting (lag 3) og VLAN (lag 2). Disse to teknikkene utfyller hverandre og er fundamentale for alle som skal planlegge og drifte et profesjonelt nettverk.
+EEt nettverket der alle enheter snakker med alle andre er enkelt å sette opp — men det er en sikkerhetsmessig og
+EEytelsesmessig katastrofe. Segmentering handler om å dele nettverket inn i logiske soner slik at trafikken styres
+EEkontrollert. I praksis gjøres dette med subnetting (lag 3) og VLAN (lag 2). Disse to teknikkene utfyller hverandre og
+Eer fundamentale for alle som skal planlegge og drifte et profesjonelt nettverk.
 
-For å forstå segmentering er det nyttig å se det i sammenheng med [[osi-modellen]] og de standardiserte protokollene beskrevet i [[nettverksprotokoller]]. VLAN er særlig sentralt i virtuelle infrastrukturer der virtuelle svitsjer bruker IEEE 802.1Q-tagging for å separere trafikk logisk.
+FFor å forstå segmentering er det nyttig å se det i sammenheng med [[osi-modellen]] og de standardiserte protokollene
+FFbeskrevet i [[nettverksprotokoller]]. VLAN er særlig sentralt i virtuelle infrastrukturer der virtuelle svitsjer bruker
+FIEEE 802.1Q-tagging for å separere trafikk logisk.
 
 ## Teori
 
@@ -43,12 +47,13 @@ For å forstå segmentering er det nyttig å se det i sammenheng med [[osi-model
 
 En IPv4-adresse er 32 bit lang[^2] og skrives som fire desimale tall separert av punktum (dotted decimal notation):
 
-```
+```text
 192  .  168  .   1  .  10
 11000000.10101000.00000001.00001010
 ```
 
-Hvert tall (oktet) kan være fra 0 til 255 (8 bit). Det gir teoretisk ca.**4,29 milliarder**unike adresser[^2] — et tall som er oppbrukt, noe som er en av grunnene til IPv6.
+HHvert tall (oktet) kan være fra 0 til 255 (8 bit). Det gir teoretisk ca.**4,29 milliarder**unike adresser[^2] — et tall
+Hsom er oppbrukt, noe som er en av grunnene til IPv6.
 
 #### Nettverksdel og vertsdel
 
@@ -60,41 +65,43 @@ En IP-adresse er delt i to:
 
 #### CIDR-notasjon
 
-CIDR (Classless Inter-Domain Routing) er en kompakt måte å skrive subnettmasken på[^1] — som et suffiks etter IP-adressen:
+CCIDR (Classless Inter-Domain Routing) er en kompakt måte å skrive subnettmasken på[^1] — som et suffiks etter
+CIP-adressen:
 
-| CIDR | Subnettmaske | Antall verter | Typisk bruk |
-|------|-------------|---------------|-------------|
-| /8 | 255.0.0.0 | 16 777 214 | Svært store nettverk |
-| /16 | 255.255.0.0 | 65 534 | Mellomstore nettverk |
-| /24 | 255.255.255.0 | 254 | Vanlig LAN |
-| /25 | 255.255.255.128 | 126 | Halvdelt /24 |
-| /26 | 255.255.255.192 | 62 | Kvartal av /24 |
-| /30 | 255.255.255.252 | 2 | Point-to-point-lenker |
+|| CIDR | Subnettmaske | Antall verter | Typisk bruk |
+|| ------ | ------------- | --------------- | ------------- |
+|| /8 | 255.0.0.0 | 16 777 214 | Svært store nettverk |
+|| /16 | 255.255.0.0 | 65 534 | Mellomstore nettverk |
+|| /24 | 255.255.255.0 | 254 | Vanlig LAN |
+|| /25 | 255.255.255.128 | 126 | Halvdelt /24 |
+|| /26 | 255.255.255.192 | 62 | Kvartal av /24 |
+|| /30 | 255.255.255.252 | 2 | Point-to-point-lenker |
 
 Antall verter = 2^(antall vertsbit) − 2 (nettverk- og broadcast-adresse er reservert).
 
 #### Regneeksempel: Del opp 192.168.1.0/24
 
-Scenario: Du har nettverket `192.168.1.0/24` (254 adresser) og trenger fire separate subnett for: Ansatte, Gjest, Servere, Admin.
+SScenario: Du har nettverket `192.168.1.0/24` (254 adresser) og trenger fire separate subnett for: Ansatte, Gjest,
+SServere, Admin.
 
 Hvert subnett kan bruke /26 (62 verter per subnett):
 
-| Subnett | Nettverksadresse | Første host | Siste host | Broadcast |
-|---------|-----------------|-------------|------------|-----------|
-| Ansatte | 192.168.1.0/26 | 192.168.1.1 | 192.168.1.62 | 192.168.1.63 |
-| Gjest | 192.168.1.64/26 | 192.168.1.65 | 192.168.1.126 | 192.168.1.127 |
-| Servere | 192.168.1.128/26 | 192.168.1.129 | 192.168.1.190 | 192.168.1.191 |
-| Admin | 192.168.1.192/26 | 192.168.1.193 | 192.168.1.254 | 192.168.1.255 |
+|| Subnett | Nettverksadresse | Første host | Siste host | Broadcast |
+|| --------- | ----------------- | ------------- | ------------ | ----------- |
+|| Ansatte | 192.168.1.0/26 | 192.168.1.1 | 192.168.1.62 | 192.168.1.63 |
+|| Gjest | 192.168.1.64/26 | 192.168.1.65 | 192.168.1.126 | 192.168.1.127 |
+|| Servere | 192.168.1.128/26 | 192.168.1.129 | 192.168.1.190 | 192.168.1.191 |
+|| Admin | 192.168.1.192/26 | 192.168.1.193 | 192.168.1.254 | 192.168.1.255 |
 
 #### Private adresserom
 
 Disse adressene rutes ikke på internett og brukes til interne nettverk[^2]:
 
-| Adresseblokk | CIDR | Antall adresser |
-|--------------|------|-----------------|
-| 10.0.0.0–10.255.255.255 | 10.0.0.0/8 | ~16,7 mill. |
-| 172.16.0.0–172.31.255.255 | 172.16.0.0/12 | ~1,05 mill. |
-| 192.168.0.0–192.168.255.255 | 192.168.0.0/16 | 65 536 |
+|| Adresseblokk | CIDR | Antall adresser |
+|| -------------- | ------ | ----------------- |
+|| 10.0.0.0–10.255.255.255 | 10.0.0.0/8 | ~16,7 mill. |
+|| 172.16.0.0–172.31.255.255 | 172.16.0.0/12 | ~1,05 mill. |
+|| 192.168.0.0–192.168.255.255 | 192.168.0.0/16 | 65 536 |
 
 ---
 
@@ -102,56 +109,65 @@ Disse adressene rutes ikke på internett og brukes til interne nettverk[^2]:
 
 #### Hva er et VLAN?
 
-Et VLAN (Virtual Local Area Network) er en logisk inndeling av et fysisk nettverk[^3]. Med VLAN kan du ha tre separate nettverk på én fysisk svitsj — enhetene i hvert VLAN ser hverandre, men ikke enheter i andre VLAN (med mindre du eksplisitt tillater det via en ruter).
+EEt VLAN (Virtual Local Area Network) er en logisk inndeling av et fysisk nettverk[^3].
+EEMed VLAN kan du ha tre separate nettverk på én fysisk svitsj — enhetene i hvert VLAN ser hverandre, men ikke enheter i
+Eandre VLAN (med mindre du eksplisitt tillater det via en ruter).
 
 #### IEEE 802.1Q — VLAN-tagging
 
 Standarden for VLAN er**IEEE 802.1Q**[^4]. Den definerer hvordan en VLAN-tag legges til i Ethernet-rammen:
 
-```
+```text
 [Dest MAC][Src MAC][802.1Q tag][EtherType][Data][FCS]
-                  |          |
+                  ||  |
                   4 bytes: inkluderer 12-bits VLAN ID (0–4094)
 ```
 
-VLAN ID 0 og 4095 er reservert; brukbare VLAN-ID-er er 1–4094.**IEEE 802.1Q**er den internasjonale standarden for VLAN-tagging i Ethernet-rammer — den muliggjør flere logiske nettverk på én fysisk forbindelse.
+VVLAN ID 0 og 4095 er reservert; brukbare VLAN-ID-er er 1–4094.**IEEE 802.1Q**er den internasjonale standarden for
+VVLAN-tagging i Ethernet-rammer — den muliggjør flere logiske nettverk på én fysisk forbindelse.
 
 #### Access-porter vs. trunk-porter
 
-| Port-type | Funksjon | Tagging | Brukes til |
-|-----------|----------|---------|------------|
-|**Access-port**| Tilhører ett VLAN | Untagged (taggen fjernes) | Sluttenheter (PC, printer) |
-|**Trunk-port**| Bærer trafikk for flere VLAN | Tagged (taggen beholdes) | Forbindelser mellom svitsjer og til ruter |
+|| Port-type | Funksjon | Tagging | Brukes til |
+|| ----------- | ---------- | --------- | ------------ |
+|| **Access-port** | Tilhører ett VLAN | Untagged (taggen fjernes) | Sluttenheter (PC, printer) |
+|| **Trunk-port** | Bærer trafikk for flere VLAN | Tagged (taggen beholdes) | Forbindelser mellom svitsjer og til ruter |
 
-En PC på en access-port "vet" ikke at den er i et VLAN[^4] — den ser bare et vanlig nettverk. Taggen legges til av svitsjen og fjernes på mottakersiden.
+EEn PC på en access-port "vet" ikke at den er i et VLAN[^4] — den ser bare et vanlig nettverk.
+ETaggen legges til av svitsjen og fjernes på mottakersiden.
 
-En**trunk-port**er altså en svitsjeport konfigurert for å bære trafikk fra flere VLAN samtidig ved å beholde VLAN-taggene i datapakken.
+EEn**trunk-port**er altså en svitsjeport konfigurert for å bære trafikk fra flere VLAN samtidig ved å beholde
+EVLAN-taggene i datapakken.
 
-**Native VLAN**er VLAN-et som mottar*untagget*trafikk på en trunk-port[^3] (standard er VLAN 1). Det anbefales å endre native VLAN fra 1 av sikkerhetshensyn.
+***Native VLAN**er VLAN-et som mottar*untagget*trafikk på en trunk-port[^3] (standard er VLAN 1).
+*Det anbefales å endre native VLAN fra 1 av sikkerhetshensyn.
 
 #### Hvorfor segmentere med VLAN?
 
-**Sikkerhet**: En trussel i gjeste-VLAN-et kan ikke nå servere i server-VLAN-et uten å passere en ruter/brannmur med eksplisitte tillatelses-regler.
+***Sikkerhet**: En trussel i gjeste-VLAN-et kan ikke nå servere i server-VLAN-et uten å passere en ruter/brannmur med
+*eksplisitte tillatelses-regler.
 
-**Ytelse**: Hvert VLAN er sitt eget broadcast-domene. Broadcast-trafikk (ARP, DHCP Discover) sendes bare innenfor VLAN-et — ikke til alle enheter i hele nettverket.
+***Ytelse**: Hvert VLAN er sitt eget broadcast-domene. Broadcast-trafikk (ARP, DHCP Discover) sendes bare innenfor
+*VLAN-et — ikke til alle enheter i hele nettverket.
 
-**Fleksibilitet**: En ansatt som flytter til et annet rom trenger bare å endre port-VLAN-tilordningen i svitsjen — ingen ny kabling.
+***Fleksibilitet**: En ansatt som flytter til et annet rom trenger bare å endre port-VLAN-tilordningen i svitsjen — ingen
+*ny kabling.
 
 **Typisk VLAN-struktur i en skole/bedrift**:
 
-| VLAN | Navn | Adresserom | Formål |
-|------|------|-----------|--------|
-| 10 | Ansatte | 192.168.10.0/24 | Arbeidsmaskiner |
-| 20 | Gjest | 192.168.20.0/24 | Besøkende, IoT |
-| 30 | Servere | 192.168.30.0/24 | Interne servere |
-| 40 | Admin | 192.168.40.0/24 | IT-avdelingen |
-| 99 | Mgmt | 192.168.99.0/24 | Nettverksutstyr |
+|| VLAN | Navn | Adresserom | Formål |
+|| ------ | ------ | ----------- | -------- |
+|| 10 | Ansatte | 192.168.10.0/24 | Arbeidsmaskiner |
+|| 20 | Gjest | 192.168.20.0/24 | Besøkende, IoT |
+|| 30 | Servere | 192.168.30.0/24 | Interne servere |
+|| 40 | Admin | 192.168.40.0/24 | IT-avdelingen |
+|| 99 | Mgmt | 192.168.99.0/24 | Nettverksutstyr |
 
 ## Eksempel / lab
 
 ### Konfigurasjon i UniFi
 
-**Opprette et VLAN:**
+*## Opprette et VLAN:
 
 1. UniFi Network → Settings → Networks
 2. Klikk "Create New Network"
@@ -161,7 +177,7 @@ En**trunk-port**er altså en svitsjeport konfigurert for å bære trafikk fra fl
 6. Konfigurer subnett (f.eks. `192.168.20.1/24`) og aktiver DHCP
 7. Lagre
 
-**Tilordne VLAN til svitsjeport:**
+*## Tilordne VLAN til svitsjeport:
 
 1. UniFi Network → Devices → velg svitsjen
 2. Gå til Ports-fanen
@@ -170,20 +186,23 @@ En**trunk-port**er altså en svitsjeport konfigurert for å bære trafikk fra fl
    - Native VLAN: VLAN-et for utagget trafikk (access-port: velg VLAN 20)
    - Tagged VLANs: VLAN-ene som skal tagges gjennom porten (trunk-port)
 
-**Trådløst VLAN (SSID):**
+*## Trådløst VLAN (SSID):
 
 1. Settings → WiFi → opprett nytt WiFi-nettverk
 2. Knytt SSID til ønsket VLAN (f.eks. "Gjest-WiFi" → VLAN 20)
 
 ## Study guide
 
-**Kjerneforståelse: subnetting**
-Subnetting deler et IP-adresserom i mindre, isolerte nett. /24 er vanligste LAN-størrelse (254 verter). Forstå forskjellen mellom nettverksadresse, broadcast-adresse og brukbare host-adresser. Husk formelen: 2^(vertsbit) − 2.
+*## Kjerneforståelse: subnetting
+SSubnetting deler et IP-adresserom i mindre, isolerte nett. /24 er vanligste LAN-størrelse (254 verter).
+SSForstå forskjellen mellom nettverksadresse, broadcast-adresse og brukbare host-adresser.
+SHusk formelen: 2^(vertsbit) − 2.
 
-**Kjerneforståelse: VLAN**
-VLAN er logisk nettverkssegmentering på lag 2 (datalink). IEEE 802.1Q-taggen (4 bytes) legges i Ethernet-rammen med VLAN ID. Access-porter fjerner taggen for sluttenheter; trunk-porter beholder den for å bære flere VLAN.
+*## Kjerneforståelse: VLAN
+VVLAN er logisk nettverkssegmentering på lag 2 (datalink). IEEE 802.1Q-taggen (4 bytes) legges i Ethernet-rammen med VLAN
+VID. Access-porter fjerner taggen for sluttenheter; trunk-porter beholder den for å bære flere VLAN.
 
-**Vanlige eksamenspoeng**
+*## Vanlige eksamenspoeng
 
 - Beregne nettverksadresse, broadcast og brukbare adresser fra CIDR-notasjon
 - Forskjellen mellom access-port og trunk-port
@@ -192,21 +211,25 @@ VLAN er logisk nettverkssegmentering på lag 2 (datalink). IEEE 802.1Q-taggen (4
 
 ## FAQ
 
-**Hva er forskjellen mellom subnetting og VLAN?**
-Subnetting (lag 3) deler IP-adresserommet og er rutbar separasjon. VLAN (lag 2) skaper logiske nettverk på én fysisk infrastruktur uten å kreve separate fysiske kabler. De to brukes gjerne sammen: hvert VLAN får sitt eget subnett.
+*## Hva er forskjellen mellom subnetting og VLAN?
+SSubnetting (lag 3) deler IP-adresserommet og er rutbar separasjon. VLAN (lag 2) skaper logiske nettverk på én fysisk
+Sinfrastruktur uten å kreve separate fysiske kabler. De to brukes gjerne sammen: hvert VLAN får sitt eget subnett.
 
-**Kan enheter i forskjellige VLAN kommunisere?**
-Ja, men bare via en ruter eller lag 3-svitsj med eksplisitte tillatelsesregler. Dette gir kontrollert trafikk mellom segmenter — f.eks. at servere er tilgjengelige fra ansatt-VLAN, men ikke fra gjeste-VLAN.
+*## Kan enheter i forskjellige VLAN kommunisere?
+JJa, men bare via en ruter eller lag 3-svitsj med eksplisitte tillatelsesregler. Dette gir kontrollert trafikk mellom
+Jsegmenter — f.eks. at servere er tilgjengelige fra ansatt-VLAN, men ikke fra gjeste-VLAN.
 
-**Hva skjer med broadcast-trafikk i et VLAN?**
-Broadcast (f.eks. DHCP Discover, ARP) sendes bare innenfor det samme VLAN-et. Det betyr at en stor bedrift med 10 VLAN har mye lavere broadcast-belastning enn om alle enheter var i ett stort flatt nettverk.
+*## Hva skjer med broadcast-trafikk i et VLAN?
+BBroadcast (f.eks. DHCP Discover, ARP) sendes bare innenfor det samme VLAN-et. Det betyr at en stor bedrift med 10 VLAN
+Bhar mye lavere broadcast-belastning enn om alle enheter var i ett stort flatt nettverk.
 
-**Hva er native VLAN og hvorfor bør man endre det fra VLAN 1?**
-Native VLAN er VLAN-et som håndterer utagget trafikk på en trunk-port. VLAN 1 er standard, men det er kjent som en sikkerhetsrisiko (VLAN hopping-angrep). Beste praksis er å velge et ubrukt VLAN-nummer som native VLAN.
+*## Hva er native VLAN og hvorfor bør man endre det fra VLAN 1?
+NNative VLAN er VLAN-et som håndterer utagget trafikk på en trunk-port. VLAN 1 er standard, men det er kjent som en
+Nsikkerhetsrisiko (VLAN hopping-angrep). Beste praksis er å velge et ubrukt VLAN-nummer som native VLAN.
 
-**Hvordan konfigurerer man VLAN på Cisco-svitsj (grunnleggende)?**
+*## Hvordan konfigurerer man VLAN på Cisco-svitsj (grunnleggende)?
 
-```
+```bash
 Switch(config)# vlan 10
 Switch(config-vlan)# name Ansatte
 Switch(config)# interface fa0/1
@@ -214,14 +237,17 @@ Switch(config-if)# switchport mode access
 Switch(config-if)# switchport access vlan 10
 ```
 
-**Hva er IEEE 802.1Q?**
-IEEE 802.1Q er den internasjonale standarden for VLAN-tagging i Ethernet-rammer. Taggen er 4 bytes og inneholder bl.a. et 12-bits VLAN ID som muliggjør 4094 ulike VLAN.
+*## Hva er IEEE 802.1Q?
+IIEEE 802.1Q er den internasjonale standarden for VLAN-tagging i Ethernet-rammer. Taggen er 4 bytes og inneholder bl.a.
+Iet 12-bits VLAN ID som muliggjør 4094 ulike VLAN.
 
-**Hva er CIDR og hvorfor er det bedre enn klassisk subnetting?**
-CIDR (Classless Inter-Domain Routing) lar deg bruke subnettmasker som ikke følger de gamle klasse A/B/C-grensene. Dette gir mye mer fleksibel adressering og er grunnlaget for all moderne IP-planlegging.
+*## Hva er CIDR og hvorfor er det bedre enn klassisk subnetting?
+CCIDR (Classless Inter-Domain Routing) lar deg bruke subnettmasker som ikke følger de gamle klasse A/B/C-grensene.
+CDette gir mye mer fleksibel adressering og er grunnlaget for all moderne IP-planlegging.
 
-**Kan jeg ha VLAN på trådløst nettverk?**
-Ja. Moderne aksesspunkter støtter SSID-til-VLAN-mapping. Gjeste-WiFi-nettverket kan kobles til VLAN 20, mens ansattes WiFi kobles til VLAN 10 — trafikken holdes separert selv om begge bruker samme fysiske aksesspunkt.
+*## Kan jeg ha VLAN på trådløst nettverk?
+JJa. Moderne aksesspunkter støtter SSID-til-VLAN-mapping. Gjeste-WiFi-nettverket kan kobles til VLAN 20, mens ansattes
+JWiFi kobles til VLAN 10 — trafikken holdes separert selv om begge bruker samme fysiske aksesspunkt.
 
 ## Quiz
 
@@ -240,25 +266,31 @@ Ja. Moderne aksesspunkter støtter SSID-til-VLAN-mapping. Gjeste-WiFi-nettverket
 <details>
 <summary>Spørsmål 2: Hva er forskjellen mellom en access-port og en trunk-port?</summary>
 
-**Svar:**En access-port tilhører ett VLAN og sender utagget trafikk til sluttenheter. En trunk-port bærer tagget trafikk for flere VLAN og brukes mellom svitsjer og til rutere.
+***Svar:**En access-port tilhører ett VLAN og sender utagget trafikk til sluttenheter.
+*En trunk-port bærer tagget trafikk for flere VLAN og brukes mellom svitsjer og til rutere.
 </details>
 
 <details>
 <summary>Spørsmål 3: Hvilken IEEE-standard definerer VLAN-tagging?</summary>
 
-**Svar:**IEEE 802.1Q definerer VLAN-tagging i Ethernet-rammer. Taggen er 4 bytes og inneholder bl.a. et 12-bits VLAN ID (1–4094).
+***Svar:**IEEE 802.1Q definerer VLAN-tagging i Ethernet-rammer. Taggen er 4 bytes og inneholder bl.a.
+*et 12-bits VLAN ID (1–4094).
 </details>
 
 <details>
 <summary>Spørsmål 4: Hvorfor er VLAN nyttig for nettverkssikkerhet?</summary>
 
-**Svar:**VLAN skaper separate broadcast-domener. En enhet i ett VLAN kan ikke kommunisere direkte med enheter i et annet VLAN uten å passere en ruter eller brannmur med eksplisitte tillatelsesregler. Dette begrenser spredning av trusler og hindrer uautorisert tilgang mellom nettverk.
+***Svar:**VLAN skaper separate broadcast-domener. En enhet i ett VLAN kan ikke kommunisere direkte med enheter i et annet
+**VLAN uten å passere en ruter eller brannmur med eksplisitte tillatelsesregler. Dette begrenser spredning av trusler og
+*hindrer uautorisert tilgang mellom nettverk.
 </details>
 
 <details>
 <summary>Spørsmål 5: Hva er et privat adresserom, og hvorfor brukes det?</summary>
 
-**Svar:**Private adresserom (10.x.x.x, 172.16-31.x.x, 192.168.x.x) er IP-adresser som ikke rutes på internett. De brukes til interne nettverk og oversettes til en offentlig IP via NAT når trafikk går ut på internett. Dette gir adressebesparelse og et ekstra lag med skjul mot internett.
+***Svar:**Private adresserom (10.x.x.x, 172.16-31.x.x, 192.168.x.x) er IP-adresser som ikke rutes på internett.
+**De brukes til interne nettverk og oversettes til en offentlig IP via NAT når trafikk går ut på internett.
+*Dette gir adressebesparelse og et ekstra lag med skjul mot internett.
 </details>
 
 ## Kilder

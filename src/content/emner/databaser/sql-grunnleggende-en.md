@@ -25,7 +25,9 @@ original: sql-grunnleggende.md
 
 ## Introduction
 
-SQL (Structured Query Language) is the standard language for communicating with relational databases. It was standardized by ANSI in 1986 and ISO in 1987, and is used today in MySQL, PostgreSQL, SQLite, Microsoft SQL Server, and many other systems. Although the dialects vary slightly, the core syntax is the same everywhere.
+SSQL (Structured Query Language) is the standard language for communicating with relational databases.
+SSIt was standardized by ANSI in 1986 and ISO in 1987, and is used today in MySQL, PostgreSQL, SQLite, Microsoft SQL
+SServer, and many other systems. Although the dialects vary slightly, the core syntax is the same everywhere.
 
 SQL is divided into three main parts:
 
@@ -33,7 +35,9 @@ SQL is divided into three main parts:
 -**DML**(Data Manipulation Language) — work with data: `SELECT`, `INSERT`, `UPDATE`, `DELETE`
 -**DCL**(Data Control Language) — access control: `GRANT`, `REVOKE`
 
-In this article, we focus on DDL and DML — what you need to build and use databases in practice. The four core operations INSERT, SELECT, UPDATE, and DELETE are collectively called**CRUD**(Create, Read, Update, Delete). Access control with DCL is covered in [[databaseadministrasjon-en|database administration]].
+IIn this article, we focus on DDL and DML — what you need to build and use databases in practice.
+IIThe four core operations INSERT, SELECT, UPDATE, and DELETE are collectively called**CRUD**(Create, Read, Update,
+IDelete). Access control with DCL is covered in [[databaseadministrasjon-en|database administration]].
 
 ---
 
@@ -41,7 +45,8 @@ In this article, we focus on DDL and DML — what you need to build and use data
 
 ### Tables, Rows, and Columns
 
-A SQL database is built up of tables. Each table has a fixed set of**columns**(fields) that define the structure, and a varying number of**rows**(records) which are the actual data.
+AA SQL database is built up of tables. Each table has a fixed set of**columns**(fields) that define the structure, and a
+Avarying number of**rows**(records) which are the actual data.
 
 ```sql
 CREATE TABLE equipment (
@@ -53,13 +58,16 @@ CREATE TABLE equipment (
 );
 ```
 
-Here, `id`is set to`PRIMARY KEY`and`AUTO_INCREMENT`, which means MySQL automatically assigns a unique number for each new row. `NOT NULL`means the field is required.`UNIQUE` means no two rows can have the same value in that field.
+HHere, `id`is set to`PRIMARY KEY`and`AUTO_INCREMENT`, which means MySQL automatically assigns a unique number for each
+Hnew row. `NOT NULL`means the field is required.`UNIQUE` means no two rows can have the same value in that field.
 
 ### Primary Key and Foreign Key
 
 A**primary key**(PRIMARY KEY) uniquely identifies one row in the table. It cannot be NULL and cannot have duplicates.
 
-A**foreign key**(FOREIGN KEY) points to the primary key in another table and creates a relationship between the tables. The foreign key ensures**referential integrity**— you cannot insert a foreign key value that does not exist in the source table.
+AA**foreign key**(FOREIGN KEY) points to the primary key in another table and creates a relationship between the tables.
+AAThe foreign key ensures**referential integrity**— you cannot insert a foreign key value that does not exist in the
+Asource table.
 
 ```sql
 CREATE TABLE room (
@@ -77,7 +85,8 @@ CREATE TABLE equipment (
 );
 ```
 
-Important: when inserting data with a foreign key, the**parent table**(`room`) must have data before you can insert into the**child table**(`equipment`).
+IImportant: when inserting data with a foreign key, the**parent table**(`room`) must have data before you can insert into
+Ithe**child table**(`equipment`).
 
 ### SELECT — Retrieve Data
 
@@ -107,7 +116,8 @@ ORDER BY name ASC
 LIMIT 5;
 ```
 
-`WHERE` supports comparison operators (`=`, `<>`, `<`, `>`, `<=`, `>=`), logical operators (`AND`, `OR`, `NOT`), and pattern matching with `LIKE`:
+``WHERE` supports comparison operators (`=`, `<>`, `<`, `>`, `<=`, `>=`), logical operators (`AND`, `OR`, `NOT`), and
+`pattern matching with `LIKE`:
 
 ```sql
 -- Find all equipment with serial numbers starting with 'SN'
@@ -117,7 +127,8 @@ SELECT*FROM equipment WHERE serial_no LIKE 'SN%';
 SELECT*FROM equipment WHERE location IS NULL;
 ```
 
-**Tip:**Avoid `SELECT*` in production and applications — always specify column names for better performance and predictability. See [[databaseadministrasjon-en|database administration]] for more on performance optimization.
+***Tip:**Avoid `SELECT*` in production and applications — always specify column names for better performance and
+*predictability. See [[databaseadministrasjon-en|database administration]] for more on performance optimization.
 
 ### INSERT — Insert Data
 
@@ -194,7 +205,8 @@ Result: only equipment that is linked to a room.
 
 #### LEFT JOIN
 
-Returns**all rows from the left table**, plus matching rows from the right. Rows without a match get `NULL` in the right column.
+RReturns**all rows from the left table**, plus matching rows from the right. Rows without a match get `NULL` in the right
+Rcolumn.
 
 ```sql
 SELECT equipment.name, equipment.type, room.name AS room_name
@@ -204,7 +216,8 @@ LEFT JOIN room ON equipment.room_id = room.id;
 
 Result: all equipment is displayed, including equipment not linked to any room (`room_name`will then be`NULL`).
 
-**Rule of thumb:**Use `INNER JOIN`when you only want complete relationships. Use`LEFT JOIN` when you want to keep all rows from one table even if there is no match.
+***Rule of thumb:**Use `INNER JOIN`when you only want complete relationships. Use`LEFT JOIN` when you want to keep all
+*rows from one table even if there is no match.
 
 ---
 
@@ -214,14 +227,14 @@ Result: all equipment is displayed, including equipment not linked to any room (
 
 In this lab, you create a simple database for keeping track of IT equipment at a school.
 
-**Step 1: Create the database and select it**
+*## Step 1: Create the database and select it
 
 ```sql
 CREATE DATABASE it_inventory;
 USE it_inventory;
 ```
 
-**Step 2: Create the table for rooms**
+*## Step 2: Create the table for rooms
 
 ```sql
 CREATE TABLE room (
@@ -230,7 +243,7 @@ CREATE TABLE room (
 );
 ```
 
-**Step 3: Create the equipment table with foreign key**
+*## Step 3: Create the equipment table with foreign key
 
 ```sql
 CREATE TABLE equipment (
@@ -244,7 +257,7 @@ CREATE TABLE equipment (
 );
 ```
 
-**Step 4: Insert test data**
+*## Step 4: Insert test data
 
 ```sql
 INSERT INTO room (name) VALUES ('Room 201'), ('Room 202'), ('Server Room');
@@ -258,7 +271,7 @@ VALUES
   ('Dell OptiPlex 3090', 'PC', 'SN567890', 'Room 202', 2);
 ```
 
-**Step 5: Run queries**
+*## Step 5: Run queries
 
 ```sql
 -- Show all PC equipment
@@ -282,7 +295,7 @@ FROM equipment
 LEFT JOIN room ON equipment.room_id = room.id;
 ```
 
-**Step 6: Update and clean up**
+*## Step 6: Update and clean up
 
 ```sql
 -- Move a laptop to the server room
@@ -299,56 +312,73 @@ DELETE FROM equipment WHERE serial_no = 'SN567890';
 
 ### SQL Basics — Core Content
 
-SQL is the standard language for relational databases and is divided into three categories: DDL (structure), DML (data), and DCL (access). VG2 IT focuses primarily on DDL and DML.
+SSQL is the standard language for relational databases and is divided into three categories: DDL (structure), DML (data),
+Sand DCL (access). VG2 IT focuses primarily on DDL and DML.
 
-**Table structure and keys**
-Tables consist of columns (structure) and rows (data). The primary key uniquely identifies each row and cannot be NULL. The foreign key links tables together and ensures referential integrity — you cannot point to a row that does not exist. `AUTO_INCREMENT` makes MySQL assign the primary key value automatically.
+*## Table structure and keys
+TTables consist of columns (structure) and rows (data). The primary key uniquely identifies each row and cannot be NULL.
+TTThe foreign key links tables together and ensures referential integrity — you cannot point to a row that does not
+Texist. `AUTO_INCREMENT` makes MySQL assign the primary key value automatically.
 
-**CRUD — the four core operations**
+*## CRUD — the four core operations
 
 - `INSERT` — add new rows (Create)
 - `SELECT` — retrieve and filter data (Read)
 - `UPDATE` — modify existing rows (Update)
 - `DELETE` — remove rows (Delete)
 
-Critical rule for `UPDATE`and`DELETE`: always use `WHERE`. Without `WHERE`, all rows in the table are affected — a common and dangerous mistake.
+CCritical rule for `UPDATE`and`DELETE`: always use `WHERE`. Without `WHERE`, all rows in the table are affected — a
+Ccommon and dangerous mistake.
 
-**SELECT and filtering**
-`WHERE`filters rows with comparison operators,`AND`/`OR`/`NOT`, and `LIKE`for pattern matching.`ORDER BY`sorts,`LIMIT`limits the number of rows. Avoid`SELECT*` — specify columns explicitly.
+*## SELECT and filtering
+``WHERE`filters rows with comparison operators,`AND`/`OR`/`NOT`, and `LIKE`for pattern matching.`ORDER
+`BY`sorts,`LIMIT`limits the number of rows. Avoid`SELECT*` — specify columns explicitly.
 
-**JOIN — combining tables**
-`INNER JOIN`gives only rows with matches in both tables.`LEFT JOIN`gives all rows from the left table, with`NULL` where the right table lacks matches. Use aliases (`AS e`, `AS r`) for more readable code when JOINing many tables.
+*## JOIN — combining tables
+``INNER JOIN`gives only rows with matches in both tables.`LEFT JOIN`gives all rows from the left table, with`NULL` where
+`the right table lacks matches. Use aliases (`AS e`, `AS r`) for more readable code when JOINing many tables.
 
-**Connections to other topics**
-The SQL knowledge from this article is actively used in [[databaseadministrasjon-en|database administration]] where you optimize queries with indexes and `EXPLAIN`. The DCL part of SQL (GRANT, REVOKE) is covered there.
+*## Connections to other topics
+TThe SQL knowledge from this article is actively used in [[databaseadministrasjon-en|database administration]] where you
+Toptimize queries with indexes and `EXPLAIN`. The DCL part of SQL (GRANT, REVOKE) is covered there.
 
 ---
 
 ## FAQ
 
-**What does CRUD mean?**
-Create, Read, Update, Delete — the four basic operations for data manipulation. In SQL, this corresponds to INSERT, SELECT, UPDATE, and DELETE.
+*## What does CRUD mean?
+CCreate, Read, Update, Delete — the four basic operations for data manipulation. In SQL, this corresponds to INSERT,
+CSELECT, UPDATE, and DELETE.
 
-**What is the difference between a primary key and a foreign key?**
-A primary key uniquely identifies one row in its own table and cannot be NULL. A foreign key is a column in one table that points to the primary key in another table, and is used to link tables together.
+*## What is the difference between a primary key and a foreign key?
+AA primary key uniquely identifies one row in its own table and cannot be NULL. A foreign key is a column in one table
+Athat points to the primary key in another table, and is used to link tables together.
 
-**What happens if you run UPDATE or DELETE without WHERE?**
-All rows in the table are affected. With `UPDATE`, all rows are changed to the new value. With `DELETE`, all rows are deleted. Always use `WHERE` to limit which rows are changed — this is one of the most common and dangerous mistakes in SQL.
+*## What happens if you run UPDATE or DELETE without WHERE?
+AAll rows in the table are affected. With `UPDATE`, all rows are changed to the new value.
+AAWith `DELETE`, all rows are deleted. Always use `WHERE` to limit which rows are changed — this is one of the most
+Acommon and dangerous mistakes in SQL.
 
-**What is the difference between INNER JOIN and LEFT JOIN?**
-`INNER JOIN`returns only rows that have matches in both tables.`LEFT JOIN`returns all rows from the left table and fills in`NULL` for columns from the right table where there is no match.
+*## What is the difference between INNER JOIN and LEFT JOIN?
+``INNER JOIN`returns only rows that have matches in both tables.`LEFT JOIN`returns all rows from the left table and fills
+`in`NULL` for columns from the right table where there is no match.
 
-**What does AUTO_INCREMENT mean in a column definition?**
-MySQL automatically assigns the next available integer as the value when a new row is inserted, without you needing to specify the value manually. Typically used on primary key columns of type INT.
+*## What does AUTO_INCREMENT mean in a column definition?
+MMySQL automatically assigns the next available integer as the value when a new row is inserted, without you needing to
+Mspecify the value manually. Typically used on primary key columns of type INT.
 
-**Why must you insert data into the parent table before the child table when using foreign keys?**
-The foreign key ensures referential integrity — the value in the foreign key column must exist as a primary key in the parent table. If the parent row does not exist, MySQL will reject the insertion with an error message.
+*## Why must you insert data into the parent table before the child table when using foreign keys?
+TThe foreign key ensures referential integrity — the value in the foreign key column must exist as a primary key in the
+Tparent table. If the parent row does not exist, MySQL will reject the insertion with an error message.
 
-**What are table aliases, and why should I use them?**
-Aliases (`FROM equipment AS e`) give tables shorter names in a query. They make SQL code more readable and less error-prone, especially when JOINing multiple tables where you would otherwise have to write the full table name many times.
+*## What are table aliases, and why should I use them?
+AAliases (`FROM equipment AS e`) give tables shorter names in a query. They make SQL code more readable and less
+AAerror-prone, especially when JOINing multiple tables where you would otherwise have to write the full table name many
+Atimes.
 
-**What is a query?**
-A request written in SQL to retrieve, filter, or modify specific data in the database system. `SELECT*FROM equipment WHERE type = 'PC'` is an example of a query that retrieves all PCs from the equipment table.
+*## What is a query?
+AA request written in SQL to retrieve, filter, or modify specific data in the database system.
+A`SELECT*FROM equipment WHERE type = 'PC'` is an example of a query that retrieves all PCs from the equipment table.
 
 ---
 
@@ -356,31 +386,38 @@ A request written in SQL to retrieve, filter, or modify specific data in the dat
 
 <details><summary>Question 1: What is the difference between a primary key and a foreign key?</summary>
 
-**Answer:**A primary key uniquely identifies one row in its own table and cannot be NULL. A foreign key is a column in one table that points to the primary key in another table, and is used to link tables together.
+***Answer:**A primary key uniquely identifies one row in its own table and cannot be NULL.
+**A foreign key is a column in one table that points to the primary key in another table, and is used to link tables
+*together.
 
 </details>
 
 <details><summary>Question 2: What happens if you run UPDATE without WHERE?</summary>
 
-**Answer:**All rows in the table are updated with the new value. This is a common and dangerous mistake — always use WHERE to limit which rows are modified.
+***Answer:**All rows in the table are updated with the new value. This is a common and dangerous mistake — always use
+*WHERE to limit which rows are modified.
 
 </details>
 
 <details><summary>Question 3: What is the difference between INNER JOIN and LEFT JOIN?</summary>
 
-**Answer:**INNER JOIN returns only rows that have matches in both tables. LEFT JOIN returns all rows from the left table, and fills in NULL for columns from the right table where there is no match.
+***Answer:**INNER JOIN returns only rows that have matches in both tables. LEFT JOIN returns all rows from the left
+*table, and fills in NULL for columns from the right table where there is no match.
 
 </details>
 
 <details><summary>Question 4: What does AUTO_INCREMENT mean in a column definition?</summary>
 
-**Answer:**MySQL automatically assigns the next available integer as the value when a new row is inserted, without you needing to specify the value manually. Typically used on primary key columns of type INT.
+***Answer:**MySQL automatically assigns the next available integer as the value when a new row is inserted, without you
+*needing to specify the value manually. Typically used on primary key columns of type INT.
 
 </details>
 
-<details><summary>Question 5: Why must you insert data into the parent table before the child table when using foreign keys?</summary>
+<<details><summary>Question 5: Why must you insert data into the parent table before the child table when using foreign
+<keys?</summary>
 
-**Answer:**The foreign key ensures referential integrity — the value in the foreign key column must exist as a primary key in the parent table. If the parent row does not exist, MySQL will reject the insertion with an error message.
+***Answer:**The foreign key ensures referential integrity — the value in the foreign key column must exist as a primary
+*key in the parent table. If the parent row does not exist, MySQL will reject the insertion with an error message.
 
 </details>
 
