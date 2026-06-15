@@ -36,7 +36,7 @@ Dokumentasjon er «bruksanvisningen» for IT-systemer. Uten dokumentasjon blir s
 - **Nedetidsplan** — Hva gjør vi ved strømbrudd, brann eller cyberangrep?
 
 **Planleggingsmetodikk:**[^4]
-- **ITIL** — Beste praksis for IT-tjenestehåndtering
+- **ITIL**[^3] — Beste praksis for IT-tjenestehåndtering
 - **PDCA (Plan-Do-Check-Act)** — Sirkulær forbedringsprosess
 - **Tidsestimering** — Å kunne anslå hvor lang tid oppgaver tar
 
@@ -51,7 +51,7 @@ Documentation is the "instruction manual" for IT systems. Without documentation,
 - **Disaster recovery plan** — What do we do during power outages, fires, or cyberattacks?
 
 **Planning methodology:**[^4]
-- **ITIL** — Best practice for IT service management
+- **ITIL**[^3] — Best practice for IT service management
 - **PDCA (Plan-Do-Check-Act)** — Continuous improvement cycle
 - **Time estimation** — Being able to estimate how long tasks will take
 
@@ -149,5 +149,4 @@ Plan moving a file server from the server room to a data center:
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
 [^3]: AXELOS. ITIL Foundation. https://www.itil.org/
-
 [^4]: Digdir. Informasjonssikkerhet. https://www.digdir.no/informasjonssikkerhet/
