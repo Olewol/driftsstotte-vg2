@@ -49,6 +49,8 @@ Building secure IT solutions means thinking about security from the start — no
 - **Patching** — Keeping software updated to close security vulnerabilities
 - **Logging and monitoring (SIEM)** — Detecting attacks by analyzing security logs from multiple sources
 
+**Privacy (GDPR):** All IT solutions that process personal data must comply with the General Data Protection Regulation. This means data must be stored securely, kept no longer than necessary, and users must have the right to access their own data.
+
 ---
 
 ## 💡 Eksempler / Examples
@@ -145,4 +147,5 @@ Using the Apache/Nginx server from KM-03 lab:
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
 [^2]: NSM. Grunnprinsipper for IKT-sikkerhet. https://nsm.no/
 [^3]: Cloudflare. Security Glossary. https://www.cloudflare.com/learning/security/glossary/
-[^4]: GDPR.eu. Complete guide to GDPR compliance. https://gdpr.eu/
+[^4]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^5]: GDPR.eu. Complete guide to GDPR compliance. https://gdpr.eu/

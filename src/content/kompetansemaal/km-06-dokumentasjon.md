@@ -49,6 +49,11 @@ Documentation is the "instruction manual" for IT systems. Without documentation,
 - **Troubleshooting guide** — What do we do when something goes wrong?
 - **Disaster recovery plan** — What do we do during power outages, fires, or cyberattacks?
 
+**Planning methodology:**
+- **ITIL** — Best practice for IT service management
+- **PDCA (Plan-Do-Check-Act)** — Continuous improvement cycle
+- **Time estimation** — Being able to estimate how long tasks will take
+
 ---
 
 ## 💡 Eksempler / Examples
@@ -141,4 +146,5 @@ Plan moving a file server from the server room to a data center:
 ## 📚 Kilder / Sources
 
 [^1]: Udir (2020). Læreplan i Vg2 informasjonsteknologi. https://www.udir.no/lk20/itk02-01/
-[^2]: AXELOS. ITIL Foundation. https://www.itil.org/
+[^2]: NDLA. Fagstoff for driftsstøtte VG2. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+[^3]: AXELOS. ITIL Foundation. https://www.itil.org/
