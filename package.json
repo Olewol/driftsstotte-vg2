@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "markdownlint-cli2": "^0.22.1",
     "pagefind": "^1.4.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"
