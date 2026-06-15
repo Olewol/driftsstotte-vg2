@@ -13,3 +13,12 @@ structure_check.py
 # Backup dirs
 src/content-bak-*/
 .astro-stale-*/
+
+# Build output
+dist/
+
+# Dependencies
+node_modules/
+
+# pnpm local store (CI temp)
+/tmp/pnpm-store-*
