@@ -27,17 +27,22 @@ jobs:
       - name: Sjekk ut kode
         uses: actions/checkout@v4
 
+      - name: Installer pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.1.2
+
       - name: Sett opp Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Installer avhengigheiter
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Bygg Astro-sida + Pagefind-indeksering
-        run: npm run build
+        run: pnpm build
 
       - name: Konfigurer GitHub Pages
         uses: actions/configure-pages@v4
