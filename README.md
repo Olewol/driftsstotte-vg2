@@ -25,7 +25,7 @@ npm run preview    # førehandsvis det ferdige bygget
 
 ## Struktur
 
-```
+```text
 /
 ├── public/
 │   ├── audio/          # Lydfiler
