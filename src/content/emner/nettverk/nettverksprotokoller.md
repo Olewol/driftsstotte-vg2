@@ -47,6 +47,7 @@ Alle applikasjonsprotokoller kjører enten over TCP eller UDP på transportlaget
 Et **portnummer** er et tall fra 0–65535 (16 bit) som identifiserer hvilken tjeneste en nettverkspakke er ment for på en maskin. IP-adressen finner maskinen; portnummeret finner riktig tjeneste på maskinen.
 
 Kategorier:
+
 - **Well-known ports (0–1023)**: standardporter for kjente tjenester (HTTP, SMTP, DNS, osv.)
 - **Registered ports (1024–49151)**: brukt av applikasjoner
 - **Dynamic/ephemeral ports (49152–65535)**: tildeles midlertidig til klientforbindelser
@@ -77,7 +78,7 @@ En **three-way handshake** er prosessen TCP bruker for å etablere en stabil for
 
 HTTP (Hypertext Transfer Protocol) er grunnlaget for webkommunikasjon[^2]. Protokollen bruker en **forespørsel/svar-modell**:
 
-```
+```text
 Klient → Server:
 GET /index.html HTTP/1.1
 Host: ndla.no
@@ -91,6 +92,7 @@ Content-Type: text/html
 **HTTP-metoder**: GET (hent ressurs), POST (send data), PUT (oppdater), DELETE (slett)
 
 **HTTP-statuskoder**:
+
 - 2xx Suksess: `200 OK`, `201 Created`
 - 3xx Omdirigering: `301 Moved Permanently`, `302 Found`
 - 4xx Klientfeil: `400 Bad Request`, `403 Forbidden`, `404 Not Found`
@@ -124,7 +126,7 @@ SSH bruker asymmetrisk kryptografi: server og klient utveksler nøkler, og all k
 
 E-postsystemet bruker forskjellige protokoller for sending og mottak:
 
-```
+```text
 [Avsender-klient] --SMTP(587)-→ [Avsenders mailserver] --SMTP(25)-→ [Mottakers mailserver]
                                                                               ↓
                                                                [Mottaker-klient] ←--IMAP(993)--
@@ -143,6 +145,7 @@ SNMPv1 og v2c bruker "community strings" (passord i klartekst). **SNMPv3** er de
 ### Sikkerhet og porter
 
 Kjente portnumre er også kjente angrepsmål. SSH (port 22) og RDP (port 3389) utsettes konstant for automatiserte innloggingsforsøk (brute force). Tiltak:
+
 - Bruk VPN — bare tillat RDP/SSH fra internt nett eller VPN
 - Begrens med IP-restriksjoner i brannmur
 - Bruk nøkkelbasert autentisering for SSH (ikke passord)
@@ -184,6 +187,7 @@ Svar: SSH/SFTP, HTTP, HTTPS, RDP, SMTP
 ### Analysere pakker med Wireshark
 
 Wireshark er et nettverksanalyseverktøy som lar deg se faktisk nettverkstrafikk. Start et opptak og filtrer på protokoll:
+
 - `http` — se HTTP-forespørsler
 - `dns` — se DNS-oppslag
 - `tcp.port == 443` — se HTTPS-trafikk (kryptert innhold, men metadata synlig)
@@ -199,6 +203,7 @@ TCP er pålitelig og forbindelsesorientert (three-way handshake, ACK). UDP er ra
 Lag en tabell: HTTP=80, HTTPS=443, SSH=22, FTP=21/20, SMTP=25/587, IMAP=143/993, DNS=53, RDP=3389, DHCP=67/68.
 
 **Vanlige eksamenspoeng**
+
 - Identifiser hvilken protokoll og port som brukes til en gitt oppgave
 - Forskjellen mellom FTP og SFTP (sikkerhet)
 - Hva HTTP-statuskodene betyr (2xx, 4xx, 5xx)
@@ -280,11 +285,11 @@ Three-way Handshake :: Prosessen TCP bruker for å etablere en stabil forbindels
 
 ## Kilder
 
-[^1]: SNL. (2024). Protokoll — IT. https://snl.no/protokoll_-_it
-[^2]: Cloudflare Learning. (2025). What is TCP/IP? https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/
-[^3]: Professor Messer. (2025). Network+ Study Guide — Protocols and Ports. https://www.professormesser.com/network-plus/
-[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
-[^5]: NDLA. (2024). TCP, UDP og porter. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e
+[^1]: SNL. (2024). Protokoll — IT. <https://snl.no/protokoll_-_it>
+[^2]: Cloudflare Learning. (2025). What is TCP/IP? <https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/>
+[^3]: Professor Messer. (2025). Network+ Study Guide — Protocols and Ports. <https://www.professormesser.com/network-plus/>
+[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+[^5]: NDLA. (2024). TCP, UDP og porter. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e>
 
 ## Ressurser
 

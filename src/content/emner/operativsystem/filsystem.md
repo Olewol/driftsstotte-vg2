@@ -17,7 +17,8 @@ notebooklm: true
 
 ## Introduksjon
 
-Et **filsystem** bestemmer hvordan data lagres og organiseres på en disk. For IT-driftsteknikere er valg av filsystem direkte knyttet til sikkerhet og tilgangskontroll — kun NTFS støtter for eksempel brukerbaserte tillatelser i Windows.[^2] Kunnskap om filsystemer er nødvendig for å administrere rettigheter, sette opp kvoter og forstå begrensningene på ulike lagringsmedier. NTFS-tillatelsene henger tett sammen med [[bruker-og-tilgangsstyring]], og Linux-filsystemet ext4 dekkes i sammenheng med [[linux-grunnleggende]]. Filsystemvalg er også relevant for [[backup-og-gjenoppretting]] siden ikke alle backup-løsninger støtter alle filsystemer.
+Et **filsystem** bestemmer hvordan data lagres og organiseres på en disk. For IT-driftsteknikere er valg av filsystem direkte knyttet til sikkerhet og tilgangskontroll — kun NTFS støtter for eksempel brukerbaserte tillatelser i Windows.[^2] Kunnskap om filsystemer er nødvendig for å administrere rettigheter, sette opp kvoter og forstå begrensningene på ulike lagringsmedier.
+  NTFS-tillatelsene henger tett sammen med [[bruker-og-tilgangsstyring]], og Linux-filsystemet ext4 dekkes i sammenheng med [[linux-grunnleggende]]. Filsystemvalg er også relevant for [[backup-og-gjenoppretting]] siden ikke alle backup-løsninger støtter alle filsystemer.
 
 ---
 
@@ -54,6 +55,7 @@ NTFS er standard filsystem for Windows og Windows Server. Det er det eneste alte
 FAT32 er et eldre filsystem som støttes av praktisk talt alle operativsystemer og enheter. Det brukes primært på USB-pinner og minnekort.
 
 **Kjennetegn:**
+
 - **Ingen tilgangskontroll** — alle som kan lese disken kan lese alle filer
 - **Maks filstørrelse: 4 GB − 1 byte** (4 294 967 295 bytes) — kan ikke lagre enkeltfiler på 4 GB eller mer (f.eks. store ISO-filer eller videofiler)
 - **Maks volumstørrelse: 2 TB**
@@ -69,6 +71,7 @@ exFAT er en etterfølger til FAT32 designet for flash-lagring. Fjerner 4 GB-begr
 ext4 er standard filsystem i moderne Linux-distribusjoner som Ubuntu, Debian og RHEL.[^4]
 
 **Kjennetegn:**
+
 - **Journaling**: Tilsvarende NTFS — logger operasjoner for å sikre konsistens ved strømbrudd.
 - **Inoder**: Hver fil har en inode som lagrer metadata (eier, gruppe, tillatelser, tidsstempler). Selve filnavnet er en peker til inoden.
 - **Tillatelsesmodell**: rwx for eier, gruppe og andre (se [[linux-grunnleggende]]).
@@ -133,7 +136,8 @@ Get-Volume
 ```
 
 Eksempel på output:
-```
+
+```text
 DriveLetter FriendlyName FileSystemType SizeRemaining    Size
 ----------- ------------ -------------- -------------    ----
 C           Windows      NTFS            45.2 GB   237.4 GB
@@ -164,12 +168,14 @@ icacls C:\Data\Salg /remove elev01
 **Filsystemer** bestemmer hvordan data lagres, organiseres og beskyttes på en disk. Valget av filsystem er avgjørende for sikkerhet, ytelse og kompatibilitet.
 
 De fire filsystemene du må kunne:
+
 - **NTFS** — standard for Windows og Windows Server; støtter ACL, journaling, kvoter og kryptering (EFS). Eneste alternativ for Windows-servere med tilgangskontroll.
 - **FAT32** — universelt kompatibelt; brukes på USB og minnekort. Ingen tilgangskontroll. Maks filstørrelse 4 GB — en klassisk feilkilde.
 - **exFAT** — FAT32 uten 4 GB-begrensningen; brukes på større USB-enheter og SD-kort. Ingen tilgangskontroll.
 - **ext4** — standard Linux-filsystem; støtter journaling, inoder, rwx-tillatelser og POSIX ACL.
 
 Kritisk å forstå for NTFS:
+
 - **ACL (Access Control List)** er listen over hvem som har tilgang til en fil/mappe og hva de kan gjøre
 - **Tillatelsesarv** — undermapper arver tillatelser automatisk fra overordnet; kan deaktiveres per objekt
 - **NTFS vs. Share Permissions**: begge gjelder ved nettverkstilgang — den mest restriktive vinner. Best practice: sett Share til «Full kontroll»/«Everyone» og styr via NTFS.

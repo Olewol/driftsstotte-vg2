@@ -135,6 +135,7 @@ Norwegian cloud providers such as Telenor and Basefarm offer alternatives for or
 ### Advantages and Disadvantages of Cloud
 
 **Advantages:**
+
 - **Elasticity** – scale resources up and down as needed
 - **Cost control** – pay only for actual usage (OPEX)
 - **Global reach** – data centers worldwide provide low latency
@@ -143,6 +144,7 @@ Norwegian cloud providers such as Telenor and Basefarm offer alternatives for or
 - **Reduced maintenance responsibility** – the provider handles physical infrastructure
 
 **Disadvantages:**
+
 - **Dependence on internet** – no network, no access
 - **Vendor lock-in** – difficult to switch provider
 - **Ongoing costs** – can become expensive over time for large workloads
@@ -155,6 +157,7 @@ Norwegian cloud providers such as Telenor and Basefarm offer alternatives for or
 Cloud services are flexible, but can lead to uncontrolled costs if not actively managed. **FinOps** (Cloud Financial Management) is a practice for understanding, controlling, and optimizing cloud costs through collaboration between IT, finance, and business.
 
 Typical measures:
+
 - Automatically shut down unused resources (e.g., test servers at night)
 - Right-sizing virtual machines
 - Use reserved instances for steady-state workloads
@@ -197,17 +200,20 @@ Imagine that the school uses Microsoft 365 (SaaS), Azure Virtual Machines (IaaS)
 Cloud services are about renting IT resources over the internet instead of owning them yourself.
 
 **The three service models:**
+
 - **IaaS** – rents infrastructure; responsible for OS and above (Azure VMs, AWS EC2)
 - **PaaS** – provider handles OS; you focus on applications (Azure App Service)
 - **SaaS** – ready-made software; provider handles everything (Microsoft 365, Zoom)
 
 **Deployment models:**
+
 - **Public cloud** – shared resource pool, cheapest, least control
 - **Private cloud** – dedicated, more control, more expensive
 - **Hybrid** – combination, most common in Norway
 - **Multi-cloud** – multiple providers, reduces vendor lock-in
 
 **Key principles:**
+
 - Shared Responsibility Model: do you know who is responsible for what in your solution?
 - GDPR and data sovereignty: data about Norwegian citizens should reside in the EU/EEA
 - Elasticity and SLA: cloud providers guarantee 99.9%+ uptime

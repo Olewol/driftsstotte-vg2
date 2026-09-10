@@ -214,13 +214,13 @@ Viktige kolonner i EXPLAIN-output:
 
 Eksempel på dårlig spørring (full scan):
 
-```
+```text
 type: ALL, key: NULL, rows: 10000
 ```
 
 Etter å ha lagt til en indeks:
 
-```
+```text
 type: ref, key: idx_type, rows: 42
 ```
 
@@ -343,7 +343,8 @@ EXPLAIN SELECT * FROM utstyr WHERE type = 'PC';
 Databaseadministrasjon i MySQL handler om tre overordnede ansvarsområder som en driftstøtter møter i hverdagen.
 
 **Brukertilgang og sikkerhet**
-MySQL identifiserer brukere med kombinasjonen `'brukernavn'@'host'`, noe som gir finkornet kontroll over hvem som kobler til fra hvilken maskin. Tilgangskontroll skjer i to steg: autentisering (er det riktig bruker?) og autorisering (hva har de lov til?). Prinsippet om minste privilegium er avgjørende: gi aldri mer enn det som trengs. Fra MySQL 8.0 kan roller (RBAC) brukes til å forenkle administrasjon der mange brukere trenger samme rettigheter.
+MySQL identifiserer brukere med kombinasjonen `'brukernavn'@'host'`, noe som gir finkornet kontroll over hvem som kobler til fra hvilken maskin. Tilgangskontroll skjer i to steg: autentisering (er det riktig bruker?) og autorisering (hva har de lov til?). Prinsippet om minste privilegium er avgjørende: gi aldri mer enn det som trengs. Fra MySQL 8.0 kan roller (RBAC) brukes til å forenkle
+  administrasjon der mange brukere trenger samme rettigheter.
 
 Sentrale kommandoer: `CREATE USER`, `GRANT`, `REVOKE`, `FLUSH PRIVILEGES`, `SHOW GRANTS`, `DROP USER`, `CREATE ROLE`.
 

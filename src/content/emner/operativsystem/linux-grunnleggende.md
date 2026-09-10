@@ -19,7 +19,8 @@ notebooklm: true
 
 Linux er et åpen kildekode-operativsystem som brukes i stort omfang på servere, skyplattformer og nettverksenheter. For IT-driftsteknikere er grunnleggende Linux-kunnskap nødvendig — mye av infrastrukturen i profesjonelle miljøer kjøres på Linux.[^4]
 
-Denne artikkelen dekker Linux-filstrukturen, filrettighetsmodellen (rwx), brukeradministrasjon og de mest brukte kommandoene. Sammenligninger med Windows-ekvivalenter er inkludert der det er nyttig. Filsystemet ext4 som Linux typisk bruker er beskrevet i [[filsystem]], og Linux-brukeradministrasjon henger tett sammen med [[bruker-og-tilgangsstyring]]. For viderekomne skriptoppgaver i Linux-terminalen, se [[bash-grunnleggende]].
+Denne artikkelen dekker Linux-filstrukturen, filrettighetsmodellen (rwx), brukeradministrasjon og de mest brukte kommandoene. Sammenligninger med Windows-ekvivalenter er inkludert der det er nyttig. Filsystemet ext4 som Linux typisk bruker er beskrevet i [[filsystem]], og Linux-brukeradministrasjon henger tett sammen med [[bruker-og-tilgangsstyring]]. For viderekomne skriptoppgaver i
+  Linux-terminalen, se [[bash-grunnleggende]].
 
 ---
 
@@ -49,11 +50,13 @@ Linux har én enkelt filtre med rot i `/` — det finnes ingen `C:\`-stasjon sli
 Hver fil og mappe i Linux har tre sett med tillatelser for tre kategorier:
 
 **Kategorier:**
+
 - **Eier (user/u)** — brukeren som eier filen
 - **Gruppe (group/g)** — gruppen som er tilknyttet filen
 - **Andre (other/o)** — alle andre brukere
 
 **Tillatelser:**
+
 | Symbol | Tall | Fil | Mappe |
 |---|---|---|---|
 | r (read) | 4 | Les filinnhold | List opp filer i mappen |
@@ -62,7 +65,7 @@ Hver fil og mappe i Linux har tre sett med tillatelser for tre kategorier:
 
 **Tolke `ls -l`-output:**
 
-```
+```text
 -rwxr-xr-- 1 elev01 lærere 4096 mars 20 10:00 skript.sh
 ```
 
@@ -74,7 +77,7 @@ Hver fil og mappe i Linux har tre sett med tillatelser for tre kategorier:
 **Oktaltallsnotasjon:**
 Hvert tillatelsessett summeres: r=4, w=2, x=1
 
-```
+```text
 rwxr-xr-x = 7  5  5 → chmod 755
 rw-r--r-- = 6  4  4 → chmod 644
 rwx------ = 7  0  0 → chmod 700
@@ -83,6 +86,7 @@ rwx------ = 7  0  0 → chmod 700
 ### chmod — endre tillatelser
 
 **Oktalnotasjon:**
+
 ```bash
 chmod 755 mappe/       # eier: rwx, gruppe: r-x, andre: r-x
 chmod 644 dokument.txt # eier: rw-, gruppe: r--, andre: r--
@@ -90,6 +94,7 @@ chmod 700 privat/      # kun eier har tilgang
 ```
 
 **Symbolsk notasjon:**
+
 ```bash
 chmod u+x skript.sh    # legg til kjøretillatelse for eier
 chmod g-w fil.txt      # fjern skrivetillatelse for gruppe
@@ -98,6 +103,7 @@ chmod a+r offentlig    # alle (all) får lesetillatelse
 ```
 
 **Rekursivt (alle filer i mappen):**
+
 ```bash
 chmod -R 755 /var/www/
 ```
@@ -127,6 +133,7 @@ ls -ld /felles/           # vises som 't' på slutten: drwxrwxrwt
 **Root-brukeren** (UID 0) er den allmektige superbrukeren i Linux — tilsvarer `Administrator` i Windows, men uten noen UAC-lignende begrensning. Root kan gjøre alt.[^2]
 
 **sudo** (Superuser Do) lar vanlige brukere kjøre enkeltkommandoer med root-rettigheter:[^2]
+
 ```bash
 sudo apt update           # kjør som root
 sudo -i                   # åpne root-shell (vær forsiktig)
@@ -134,11 +141,13 @@ sudo -u elev01 kommando   # kjør som en annen bruker
 ```
 
 Hvem som kan bruke sudo styres av `/etc/sudoers`. Redigeres alltid med `visudo` (kontrollerer syntaks før lagring):
+
 ```bash
 sudo visudo
 ```
 
 På Ubuntu legges brukere til i `sudo`-gruppen for å gi dem sudo-tilgang:
+
 ```bash
 sudo usermod -aG sudo elev01
 ```
@@ -146,23 +155,28 @@ sudo usermod -aG sudo elev01
 ### Brukeradministrasjon
 
 **Opprett bruker:**
+
 ```bash
 sudo useradd -m -s /bin/bash elev01
 # -m: opprett hjemmemappe
 # -s: sett standard shell
+
 ```
 
 Mer komplett:
+
 ```bash
 sudo useradd -m -s /bin/bash -c "Elev Elevsen" -G sudo elev01
 ```
 
 **Sett/endre passord:**
+
 ```bash
 sudo passwd elev01
 ```
 
 **Endre brukerinnstillinger:**
+
 ```bash
 sudo usermod -aG lærere elev01    # legg til i gruppe
 sudo usermod -s /bin/sh elev01    # endre shell
@@ -171,12 +185,14 @@ sudo usermod -U elev01            # lås opp konto (Unlock)
 ```
 
 **Slett bruker:**
+
 ```bash
 sudo userdel elev01               # slett konto
 sudo userdel -r elev01            # slett konto og hjemmemappe
 ```
 
 **Gruppekommandoer:**
+
 ```bash
 sudo groupadd lærere              # opprett gruppe
 sudo gpasswd -a elev01 lærere    # legg bruker til i gruppe
@@ -186,16 +202,19 @@ sudo gpasswd -d elev01 lærere    # fjern bruker fra gruppe
 ### /etc/passwd og /etc/group
 
 **/etc/passwd** — én linje per bruker:
-```
+
+```text
 brukernavn:passord:UID:GID:kommentar:hjemmemappe:shell
 elev01:x:1001:1001:Elev Elevsen:/home/elev01:/bin/bash
 root:x:0:0:root:/root:/bin/bash
 ```
+
 - Passordet er `x` — faktisk hash lagres i `/etc/shadow`
 - UID 0 = root, 1–999 = systembrukere, 1000+ = vanlige brukere
 
 **/etc/group** — én linje per gruppe:
-```
+
+```text
 gruppenavn:passord:GID:medlemmer
 sudo:x:27:elev01,admin
 lærere:x:1002:elev01,elev02
@@ -232,6 +251,7 @@ chmod u+s program       # sett SUID
 chmod g+s /felles/prosjekt   # sett SGID på mappe
 ls -ld /felles/prosjekt
 # drwxrwsr-x  → 's' i gruppeposisjonen betyr SGID
+
 ```
 
 ### Systemlogging i Linux
@@ -305,6 +325,7 @@ sudo chmod +t /felles/klasse2a
 **Linux** er et åpen kildekode-operativsystem basert på Unix. Det er dominerende på servere, i sky og på nettverksenheter. Som IT-driftsteknikker bruker du Linux via terminalen.
 
 **Filstrukturen** er ett enkelt tre med rot i `/`. Viktige kataloger:
+
 - `/etc` — konfigurasjonsfiler (inkl. `/etc/passwd`, `/etc/shadow`, `/etc/sudoers`)
 - `/home` — hjemmemapper for vanlige brukere
 - `/var/log` — loggfiler fra systemet og tjenester
@@ -312,12 +333,14 @@ sudo chmod +t /felles/klasse2a
 - `/bin` og `/usr/bin` — kommandoer og programmer
 
 **Tillatelsesmodellen (rwx)** gir tre sett av tre tillatelser:
+
 - **r** (read=4), **w** (write=2), **x** (execute=1)
 - For **eier**, **gruppe** og **andre**
 - Oktalsummering: `rwx = 7`, `r-x = 5`, `rw- = 6`
 - Vanlige mønstre: `755` (mapper/programmer), `644` (vanlige filer), `700` (private filer)
 
 **Brukeradministrasjon**:
+
 - `useradd -m -s /bin/bash elev01` — opprett bruker
 - `passwd elev01` — sett passord
 - `usermod -aG sudo elev01` — gi sudo-tilgang

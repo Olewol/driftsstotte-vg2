@@ -22,7 +22,8 @@ public: true
 
 Personvern handler om enkeltmenneskets rett til å kontrollere informasjon om seg selv. I vår digitale hverdag – der apper, tjenester og virksomheter samler inn enorme mengder data om oss – er personvern både en grunnleggende rettighet og et juridisk krav.
 
-I EU og Norge reguleres personvern av **GDPR** (General Data Protection Regulation), en EU-forordning som trådte i kraft i mai 2018.[^1] GDPR gjelder i Norge gjennom EØS-avtalen og er gjennomført i norsk rett via **personopplysningsloven**. For deg som jobber i IT-drift er personvern ikke noe juridisk avdeling håndterer alene – tekniske valg som databasestruktur, tilgangskontroll, logging og backup har direkte personvernkonsekvenser.
+I EU og Norge reguleres personvern av **GDPR** (General Data Protection Regulation), en EU-forordning som trådte i kraft i mai 2018.[^1] GDPR gjelder i Norge gjennom EØS-avtalen og er gjennomført i norsk rett via **personopplysningsloven**. For deg som jobber i IT-drift er personvern ikke noe juridisk avdeling håndterer alene – tekniske valg som databasestruktur, tilgangskontroll,
+  logging og backup har direkte personvernkonsekvenser.
 
 Som IT-drifter vil du møte personvern i sammenheng med [[kryptering]] (GDPR krever kryptering av personopplysninger), [[bruker-og-tilgangsstyring]] (hvem har tilgang til persondata?) og [[risikoanalyse]] (GDPR art. 32 krever risikovurdering som grunnlag for sikkerhetstiltak). Personvern er ikke isolert juss – det er teknisk praksis.
 
@@ -81,6 +82,7 @@ GDPR gir enkeltpersoner en rekke rettigheter som virksomheter er forpliktet til 
 **Privacy by Design** (innebygd personvern) er prinsippet om at personvern skal integreres i systemdesign fra starten av, ikke legges til etterpå. Dette er lovfestet i GDPR art. 25.[^3]
 
 Praktiske eksempler:
+
 - Kryptere all datalagring fra dag én – ikke som en ettertanke
 - Kun samle inn nødvendige felter i registreringsskjemaer (dataminimering)
 - Implementere tilgangskontroll slik at kun autoriserte brukere ser sensitive data
@@ -105,6 +107,7 @@ Denne distinksjonen er avgjørende for hvem som har ansvar hvis noe går galt, o
 ### Personvernombud (DPO)
 
 Noen virksomheter er pålagt å ha et **personvernombud (Data Protection Officer – DPO)**.[^5] Dette gjelder:
+
 - Offentlige organer (alle norske kommuner, etater osv.)
 - Virksomheter som driver systematisk overvåking av enkeltpersoner i stor skala
 - Virksomheter som behandler sensitive personopplysninger i stor skala
@@ -129,6 +132,7 @@ Hvis personopplysninger kompromitteres (uautorisert tilgang, tap av data, feil u
 
 **GDPR art. 33 – 72-timers-regelen:**[^6]
 Brudd med risiko for de registrerte skal varsles til Datatilsynet innen **72 timer** etter at virksomheten oppdaget bruddet. Varselet skal inneholde:
+
 - Beskrivelse av bruddet (hva skjedde)
 - Kategorier og omtrentlig antall berørte
 - Mulige konsekvenser
@@ -143,11 +147,13 @@ Avvikshåndtering – de rutinene som håndterer oppdagelse, stopp og rapporteri
 ### Datatilsynet og sanksjoner
 
 **Datatilsynet** er den norske tilsynsmyndigheten for personvern.[^7] Datatilsynet:
+
 - Håndhever GDPR og personopplysningsloven
 - Veileder virksomheter og enkeltpersoner
 - Kan ilegge administrative gebyrer
 
 **Sanksjoner etter GDPR:**
+
 - Inntil **10 millioner euro** eller 2 % av global årsomsetning for tekniske brudd (art. 83.4)
 - Inntil **20 millioner euro** eller 4 % av global årsomsetning for grunnleggende brudd (art. 83.5)
 
@@ -158,18 +164,21 @@ Avvikshåndtering – de rutinene som håndterer oppdagelse, stopp og rapporteri
 ### Konsekvenser av personvernbrudd
 
 **For enkeltpersoner:**
+
 - Identitetstyveri og svindel (lekkede personnumre, kontonumre)
 - Psykologisk skade og tap av kontroll over eget liv
 - Diskriminering (lekkede opplysninger om helse, seksualitet, politisk overbevisning)
 - Stalking og trakassering (lekkede adresse- eller posisjonsdata)
 
 **For virksomheter:**
+
 - Millionbøter fra Datatilsynet
 - Svekket omdømme og tap av kundenes tillit
 - Søksmål fra skadelidte
 - Tap av kontrakter i offentlig sektor
 
 **For samfunnet:**
+
 - Svekket tillit til digitale tjenester
 - Økt motstand mot nødvendig digitalisering
 - Mulig misbruk av persondata i politiske kampanjer (Cambridge Analytica-skandalen)[^9]
@@ -312,12 +321,12 @@ Avvikshåndtering :: Rutiner for å oppdage, stoppe og rapportere brudd på pers
 
 ## Kilder
 
-[^1]: GDPR (General Data Protection Regulation), EU-forordning 2016/679, gjeldende fra 25. mai 2018. Gjennomført i norsk rett ved personopplysningsloven. https://lovdata.no/dokument/NL/lov/2018-06-15-38
-[^2]: GDPR art. 5 – Prinsipper for behandling av personopplysninger. https://eur-lex.europa.eu/eli/reg/2016/679/oj
-[^3]: GDPR art. 25 – Innebygd personvern (Privacy by Design). Datatilsynet: https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/innebygd-personvern/
-[^4]: GDPR art. 28 – Databehandleravtale. https://eur-lex.europa.eu/eli/reg/2016/679/oj
-[^5]: GDPR art. 37–39 – Personvernombud (DPO). https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/personvernombud/
-[^6]: GDPR art. 33 – Varsling om brudd. https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/melde-og-varsle-om-brudd/
-[^7]: Datatilsynet – Norsk tilsynsmyndighet for personvern. https://www.datatilsynet.no/
-[^8]: Meta-bot 2023 – irsk DPC: https://www.datatilsynet.no/aktuelt/aktuelle-nyheter-2023/irc-dpc-meta-bot/
-[^9]: Cambridge Analytica-skandalen (2018). https://www.datatilsynet.no/aktuelt/aktuelle-nyheter-2018/cambridge-analytica/
+[^1]: GDPR (General Data Protection Regulation), EU-forordning 2016/679, gjeldende fra 25. mai 2018. Gjennomført i norsk rett ved personopplysningsloven. <https://lovdata.no/dokument/NL/lov/2018-06-15-38>
+[^2]: GDPR art. 5 – Prinsipper for behandling av personopplysninger. <https://eur-lex.europa.eu/eli/reg/2016/679/oj>
+[^3]: GDPR art. 25 – Innebygd personvern (Privacy by Design). Datatilsynet: <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/innebygd-personvern/>
+[^4]: GDPR art. 28 – Databehandleravtale. <https://eur-lex.europa.eu/eli/reg/2016/679/oj>
+[^5]: GDPR art. 37–39 – Personvernombud (DPO). <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/personvernombud/>
+[^6]: GDPR art. 33 – Varsling om brudd. <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/melde-og-varsle-om-brudd/>
+[^7]: Datatilsynet – Norsk tilsynsmyndighet for personvern. <https://www.datatilsynet.no/>
+[^8]: Meta-bot 2023 – irsk DPC: <https://www.datatilsynet.no/aktuelt/aktuelle-nyheter-2023/irc-dpc-meta-bot/>
+[^9]: Cambridge Analytica-skandalen (2018). <https://www.datatilsynet.no/aktuelt/aktuelle-nyheter-2018/cambridge-analytica/>

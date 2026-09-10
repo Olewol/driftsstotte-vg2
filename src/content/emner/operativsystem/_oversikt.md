@@ -72,6 +72,7 @@ I skolelab kjøres operativsystemene som regel som **virtuelle maskiner (VM)**. 
 Se læringsmiljøet i datalaben: [[active-directory]] beskriver oppsett av domenekontroller. For Linux-administrasjon, se [[linux-grunnleggende]].
 
 Typisk labboppsett:
+
 1. Windows Server 2019 VM — domenekontroller
 2. Windows 10/11 VM — klientmaskin koblet til domenet
 3. Ubuntu Server VM — Linux-praksis

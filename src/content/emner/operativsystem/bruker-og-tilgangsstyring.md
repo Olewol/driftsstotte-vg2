@@ -113,6 +113,7 @@ Tilgangskontroll bygger på tre steg:
 **Rollebasert tilgangsstyring (RBAC)** er en utvidelse av prinsippet om minste privilegium. I stedet for å tildele rettigheter direkte til enkeltbrukere, knyttes tillatelser til **roller** (f.eks. «Regnskapsfører», «IT-administrator», «Elev»). Brukere tildeles deretter roller.
 
 Fordeler med RBAC:
+
 - Enklere å administrere ved store brukermengder
 - Enklere revisjon («hvem har rollen X?» er ett spørsmål, ikke mange)
 - Lavere risiko for feilkonfigurering — nye brukere arver rollen automatisk
@@ -122,6 +123,7 @@ I Windows AD implementeres RBAC i praksis ved hjelp av sikkerhetsgrupper: én gr
 ### Integrasjon mellom Windows og Linux
 
 I større miljøer er det ønskelig at Linux-klienter kan logge inn mot Windows-domenet. Dette gjøres typisk med:
+
 - **SSSD** (System Security Services Daemon) — lar Linux autentisere mot AD
 - **Samba/Winbind** — alternativ løsning for domeneintegrasjon
 
@@ -134,26 +136,31 @@ Dette er avansert stoff, men konseptet er viktig: ett sentralt brukersystem (AD)
 ### Administrere lokale brukere med PowerShell
 
 **Opprett ny lokal bruker:**
+
 ```powershell
 New-LocalUser -Name "Elev01" -Password (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) -FullName "Elev Elevsen" -Description "Testkonto"
 ```
 
 **Legg brukeren til i en gruppe:**
+
 ```powershell
 Add-LocalGroupMember -Group "Users" -Member "Elev01"
 ```
 
 **List alle lokale brukere:**
+
 ```powershell
 Get-LocalUser
 ```
 
 **Deaktiver en konto:**
+
 ```powershell
 Disable-LocalUser -Name "Elev01"
 ```
 
 **Fjern bruker fra gruppe:**
+
 ```powershell
 Remove-LocalGroupMember -Group "Users" -Member "Elev01"
 ```
@@ -161,28 +168,34 @@ Remove-LocalGroupMember -Group "Users" -Member "Elev01"
 ### Linux-ekvivalenter
 
 **Opprett bruker:**
+
 ```bash
 sudo useradd -m -s /bin/bash elev01
 ```
+
 Flaggene `-m` oppretter hjemmemappe og `-s` setter standard shell.
 
 **Sett passord:**
+
 ```bash
 sudo passwd elev01
 ```
 
 **Legg bruker til i gruppe (f.eks. sudo):**
+
 ```bash
 sudo usermod -aG sudo elev01
 ```
 
 **Vis brukerens grupper:**
+
 ```bash
 groups elev01
 id elev01
 ```
 
 **Deaktiver konto (lås passord):**
+
 ```bash
 sudo passwd -l elev01
 ```
@@ -190,7 +203,8 @@ sudo passwd -l elev01
 ### Strukturen i /etc/passwd
 
 Hver linje i `/etc/passwd` har sju felt separert med kolon:
-```
+
+```text
 brukernavn:x:UID:GID:GECOS:hjemmemappe:shell
 elev01:x:1001:1001:Elev Elevsen:/home/elev01:/bin/bash
 ```
@@ -200,7 +214,7 @@ elev01:x:1001:1001:Elev Elevsen:/home/elev01:/bin/bash
 
 ### Strukturen i /etc/group
 
-```
+```text
 gruppenavn:x:GID:medlemmer
 sudo:x:27:elev01,admin
 ```
@@ -212,10 +226,12 @@ sudo:x:27:elev01,admin
 **Bruker- og tilgangsstyring** handler om å sikre at riktige personer har tilgang til riktige ressurser. Kjerneprinsippet er **minste privilegium**: gi aldri mer tilgang enn nødvendig.
 
 To kontotyper å skille mellom:
+
 - **Lokale kontoer** lagres i maskinens SAM-database og gjelder kun lokalt
 - **Domenekontoer** lagres i Active Directory og fungerer på alle domene-tilknyttede maskiner
 
 Viktige Windows-konsepter:
+
 - **SID** — Windows bruker ikke brukernavn internt, men SID. Sletter du og gjenoppretter en konto med samme navn, mister den alle tilganger
 - **UAC** — hindrer programmer i å eskalere til adminrettigheter uten eksplisitt bekreftelse
 - **Sikkerhetsgrupper** — tildel alltid tillatelser til grupper, aldri enkeltbrukere
@@ -224,6 +240,7 @@ Viktige Windows-konsepter:
 AAA-rammeverket oppsummerer tilgangskontroll: **Autentisering** (hvem er du?), **Autorisasjon** (hva har du lov til?), **Revisjon** (hva har du gjort?).
 
 Linux-ekvivalenter:
+
 - Brukere opprettes med `useradd`, endres med `usermod`, slettes med `userdel`
 - Grupper administreres med `groupadd` og `gpasswd`
 - `/etc/passwd` inneholder brukerinfo; `/etc/shadow` inneholder krypterte passord (kun root kan lese)

@@ -65,6 +65,7 @@ echo "Du er $ALDER år gammel"
 ```
 
 **Viktige regler:**
+
 - Ingen mellomrom rundt `=` ved tilordning (`VAR="verdi"`, ikke `VAR = "verdi"`).
 - Bruk dobbelthermetegn `"..."` rundt variabler for å håndtere mellomrom i verdier.
 - Enkelthermetegn `'...'` tolker ikke variabler — `'$NAVN'` gir ordrett `$NAVN`.
@@ -267,6 +268,7 @@ set -e
 ### Lab: Fullstendig backup-skript
 
 Vi skal skrive et skript som:
+
 1. Definerer kilde- og målmappe
 2. Oppretter en datobasert backup-mappe
 3. Kopierer innholdet
@@ -337,6 +339,7 @@ echo "testinnhold" > "$KILDE/test.txt"
 Bash er skallspråket du møter på alle Linux-systemer. Et Bash-skript er en tekstfil med kommandoer som kjøres linje for linje av Bash-tolken.
 
 **Struktur i et skript:**
+
 1. **Shebang** (`#!/bin/bash`) — alltid første linje, peker på tolken.
 2. **Variabler** — lagrer data. Tilordnes uten mellomrom (`NAVN="verdi"`), leses med `$NAVN`.
 3. **Betingede utsagn** — `if [ betingelse ]; then ... fi` styrer flyten. Bruk filtester (`-f`, `-d`) og sammenligninger (`-eq`, `==`).
@@ -346,6 +349,7 @@ Bash er skallspråket du møter på alle Linux-systemer. Et Bash-skript er en te
 7. **Feilhåndtering** — `$?` er exit-kode (0 = ok). `set -e` stopper skriptet ved første feil. `>&2` sender feilmeldinger til stderr.
 
 **Gode vaner:**
+
 - Bruk alltid `"$VAR"` (dobbelthermetegn) rundt variabler — beskytter mot mellomrom i verdier.
 - Kjør `shellcheck skript.sh` for å finne feil før kjøring.
 - Bruk absolutte stier i skript som kalles av cron eller automatiserte systemer.

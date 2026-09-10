@@ -71,7 +71,7 @@ This is where protocols that programs use directly reside: HTTP for web, SMTP fo
 
 When data is sent down through the layers, each layer adds its own **header** with control information. This is called encapsulation:
 
-```
+```text
 Application:  [DATA]
 Transport:    [TCP-header][DATA]
 Network:      [IP-header][TCP-header][DATA]
@@ -112,6 +112,7 @@ TCP/IP is the model the internet actually uses. OSI is the reference model used 
 ## Study Guide
 
 **Core Understanding Per Layer**
+
 - Layer 1: bits and signals (cable, WiFi, fiber)
 - Layer 2: frames and MAC addresses (switches, Ethernet)
 - Layer 3: IP addresses and routing (routers, IPv4/IPv6)
@@ -125,6 +126,7 @@ Understand that each layer adds its own header. Data from the application layer 
 The 4-layer model merges layers 1 and 2 into a "Network Access Layer." The 5-layer model separates them and is pedagogically closer to OSI. Both are correct.
 
 **Common Exam Points**
+
 - Which layer is responsible for what (IP = layer 3, MAC = layer 2, TCP = layer 4, HTTP = layer 5)
 - Encapsulation: what is added at each layer
 - The difference between TCP and UDP

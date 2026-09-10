@@ -41,7 +41,8 @@ Den enkleste typen brannmur undersøker hver enkelt datapakke isolert og sammenl
 - **Ulempe:** ingen kontekst – brannmuren vet ikke om en pakke er del av en etablert sesjon. En angriper kan forfølge returtrafikk
 
 **Eksempel på en pakkefilter-regel:**
-```
+
+```text
 TILLAT  TCP  fra 192.168.1.0/24  til WHICH  port 443
 BLOKKÉR TCP  fra ANY             til ANY    port 23   (Telnet er utdatert)
 BLOKKÉR ALL  fra ANY             til ANY    (default-deny til slutt)
@@ -58,6 +59,7 @@ En **stateful** brannmur husker tilstanden til aktive nettverksforbindelser [^5]
 - En ekstern aktør som forsøker å initiere en tilkobling direkte inn blokkeres
 
 **Fordeler vs. pakkefiltrering:**
+
 - Kan skille mellom legitim returtrafikk og uønsket innkommende trafikk
 - Vanskeligere å lure med forfalsket IP
 - Standard i alle moderne hjemmeroutere og bedriftsbrannmurer
@@ -81,7 +83,7 @@ WAF er standardkomponent i skytjenester som Azure Application Gateway og Cloudfl
 
 En **DMZ** er et nettverk som befinner seg mellom det eksterne internett og det interne bedriftsnettverket [^3]. Servere som må være tilgjengelige fra internett (webserver, e-postserver, DNS) plasseres i DMZ.
 
-```
+```text
 Internett
     |
 [Ytre brannmur]
@@ -108,6 +110,7 @@ Internett
 **Nettverkssegmentering** deler nettverket inn i separate soner med brannmurregler mellom [^2]. Målet er å begrense **lateral bevegelse** – angriperens evne til å spre seg i nettverket etter å ha kommet inn.
 
 Implementeres via:
+
 - **VLAN (Virtual LAN):** logisk separasjon på nettverksnivå. Ansatt-VLAN, gjeste-VLAN, server-VLAN og IoT-VLAN er typiske segmenter. Se [[segmentering-og-vlan]] for detaljer.
 - **Brannmurregler mellom VLAN-ene:** definerer hvilken trafikk som er tillatt på tvers
 
@@ -143,7 +146,8 @@ Moderne systemer er gjerne kombinert (IDPS) [^8]. De bruker signaturer (kjente a
 
 ### Next-Generation Firewall (NGFW)
 
-En **Next-Generation Firewall** kombinerer tradisjonell stateful inspection med dypere applikasjons-bevissthet [^9]. NGFW kan identifisere og kontrollere trafikk basert på applikasjon (ikke bare port), brukeridentitet og innhold. Eksempler: Palo Alto Networks, Fortinet FortiGate, Cisco Firepower. NGFW er i dag standarden i bedriftsmiljøer fordi enkle pakkefiltre og stateful inspection ikke er tilstrekkelig mot moderne trusler [^3].
+En **Next-Generation Firewall** kombinerer tradisjonell stateful inspection med dypere applikasjons-bevissthet [^9]. NGFW kan identifisere og kontrollere trafikk basert på applikasjon (ikke bare port), brukeridentitet og innhold. Eksempler: Palo Alto Networks, Fortinet FortiGate, Cisco Firepower. NGFW er i dag standarden i bedriftsmiljøer fordi enkle pakkefiltre og stateful inspection
+  ikke er tilstrekkelig mot moderne trusler [^3].
 
 ---
 
@@ -152,6 +156,7 @@ En **Next-Generation Firewall** kombinerer tradisjonell stateful inspection med 
 På Windows-maskiner er den innebygde brannmuren et vertsbasert (host-based) tillegg til nettverksbrannmuren [^10]. Den kontrollerer trafikk inn og ut av den individuelle maskinen.
 
 **Konfigurasjon via GUI:**
+
 1. Søk etter «Windows Defender Firewall with Advanced Security» i Start-menyen
 2. Inngående regler (*Inbound Rules*): kontrollerer hva som kan koble til maskinen
 3. Utgående regler (*Outbound Rules*): kontrollerer hva maskinen kan koble til
@@ -289,13 +294,13 @@ NGFW :: Next-Generation Firewall – kombinerer stateful inspection med applikas
 
 ## Kilder
 
-[^1]: NDLA. (2024). *Brannmur (Driftsstøtte VG2)*. https://ndla.no/r/driftsstotte-im-itk-vg2/brannmur/2aad28ca4e
-[^2]: NSM. (2025). *Grunnprinsipper for IKT-sikkerhet 2.0 – Kontroller dataflyt og segmenter nettverk*. https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-[^3]: Microsoft. (2025). *Azure Network Security Overview*. https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview
-[^4]: Cloudflare. (2025). *What is a firewall?* https://www.cloudflare.com/learning/security/what-is-a-firewall/
-[^5]: PowerCert Animated Videos. (2022). *Stateful vs Stateless Firewall*. YouTube. https://www.youtube.com/watch?v=nS7fOofT-f4
-[^6]: OWASP. (2025). *Web Application Firewall*. https://owasp.org/www-community/Web_Application_Firewall
-[^7]: Østre Toten kommune. (2021). *Ransomware-angrepet – evalueringsrapport*. https://www.regjeringen.no/no/aktuelt/erfaringer-fra-ostre-toten/id2880806/
-[^8]: SANS Institute. (2024). *IDS vs IPS: What's the Difference?* https://www.sans.org/blog/ids-vs-ips/
-[^9]: Palo Alto Networks. (2025). *What is a Next-Generation Firewall?* https://www.paloaltonetworks.com/cyberpedia/what-is-a-next-generation-firewall
-[^10]: Microsoft. (2025). *Windows Defender Firewall with Advanced Security*. https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security
+[^1]: NDLA. (2024). *Brannmur (Driftsstøtte VG2)*. <https://ndla.no/r/driftsstotte-im-itk-vg2/brannmur/2aad28ca4e>
+[^2]: NSM. (2025). *Grunnprinsipper for IKT-sikkerhet 2.0 – Kontroller dataflyt og segmenter nettverk*. <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+[^3]: Microsoft. (2025). *Azure Network Security Overview*. <https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview>
+[^4]: Cloudflare. (2025). *What is a firewall?* <https://www.cloudflare.com/learning/security/what-is-a-firewall/>
+[^5]: PowerCert Animated Videos. (2022). *Stateful vs Stateless Firewall*. YouTube. <https://www.youtube.com/watch?v=nS7fOofT-f4>
+[^6]: OWASP. (2025). *Web Application Firewall*. <https://owasp.org/www-community/Web_Application_Firewall>
+[^7]: Østre Toten kommune. (2021). *Ransomware-angrepet – evalueringsrapport*. <https://www.regjeringen.no/no/aktuelt/erfaringer-fra-ostre-toten/id2880806/>
+[^8]: SANS Institute. (2024). *IDS vs IPS: What's the Difference?* <https://www.sans.org/blog/ids-vs-ips/>
+[^9]: Palo Alto Networks. (2025). *What is a Next-Generation Firewall?* <https://www.paloaltonetworks.com/cyberpedia/what-is-a-next-generation-firewall>
+[^10]: Microsoft. (2025). *Windows Defender Firewall with Advanced Security*. <https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security>

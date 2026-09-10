@@ -128,7 +128,7 @@ schtasks /run /tn "DailyBackup"
 
 A crontab line consists of five time fields followed by the command:
 
-```
+```text
 # min  hour  day-of-month  month  day-of-week  command
   *    *     *            *      *          /path/to/script.sh
 ```
@@ -242,7 +242,7 @@ Scripting is powerful, but it has limitations: a script describes *actions* (do 
 
 #### From Scripting to IaC
 
-```
+```text
 Manual operations → Scripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 ```
 
@@ -252,6 +252,7 @@ Manual operations → Scripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 #### Key IaC Tools
 
 **Ansible** (Red Hat)
+
 - Agentless: communicates via SSH, no software to install on target machines.
 - Configuration is written in YAML files called **playbooks**.
 - Suitable for configuration management and deploying applications.
@@ -272,6 +273,7 @@ Manual operations → Scripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 ```
 
 **Terraform** (HashiCorp)
+
 - Cloud-agnostic: works with AWS, Azure, Google Cloud, and many others.
 - Configuration is written in **HCL** (HashiCorp Configuration Language).
 - Suitable for provisioning cloud infrastructure (servers, networks, databases).
@@ -286,6 +288,7 @@ resource "azurerm_virtual_machine" "webserver" {
 ```
 
 **PowerShell DSC** (Desired State Configuration)
+
 - Microsoft's own IaC tool, integrated with Windows and Azure.
 - Describes desired state for Windows configurations.
 
@@ -293,7 +296,8 @@ IaC is an advanced topic that builds directly on scripting knowledge from this s
 
 #### Idempotence — A Key Principle
 
-An important concept in automation and IaC is **idempotence**: an operation is idempotent if it can be run many times without changing the result after the first successful run. Ansible and Terraform are idempotent — they always check the current state against the desired state and only make changes that are actually needed. A simple Bash script run twice could create duplicates or overwrite data. Design your own scripts with idempotence in mind (e.g., check if the folder already exists before creating it).
+An important concept in automation and IaC is **idempotence**: an operation is idempotent if it can be run many times without changing the result after the first successful run. Ansible and Terraform are idempotent — they always check the current state against the desired state and only make changes that are actually needed. A simple Bash script run twice could create duplicates or
+  overwrite data. Design your own scripts with idempotence in mind (e.g., check if the folder already exists before creating it).
 
 #### Secure Handling of Secrets in Automated Scripts
 
@@ -410,16 +414,19 @@ Automation is about letting systems perform tasks on their own — at the right 
 | Example | `schtasks /create /sc DAILY /st 02:00` | `0 2 * * * /path/to/script.sh` |
 
 **Cron syntax mnemonic** (5 fields): `minute hour day-of-month month day-of-week`
+
 - `*` = all values, `*/5` = every five, `1-5` = Monday–Friday, `@daily` = shortcut for midnight every day.
 - Always use absolute paths in cron — the PATH environment is minimal.
 - Always log output: `>> /var/log/script.log 2>&1`
 
 **Task Scheduler — three parts of a task:**
+
 1. **Trigger** — when (time, event, logon)
 2. **Action** — what (program, script)
 3. **Conditions** — additional requirements (power, network)
 
 **From scripting to IaC:**
+
 - Scripting is *imperative*: "do A, B, C in sequence."
 - IaC is *declarative*: "the system should look like this — the tool handles the rest."
 - Ansible (YAML playbooks via SSH) → configuration management

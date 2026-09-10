@@ -59,6 +59,7 @@ $$\text{PUE} = \frac{\text{Totalt el-forbruk i datasenteret}}{\text{El-forbruk t
 - **PUE = 2,0** betyr at like mye energi sløses som brukes nyttig
 
 **Benchmarks:**
+
 | Aktør | PUE |
 |-------|-----|
 | Google | ~1,10 |
@@ -78,6 +79,7 @@ Hyperscalerne (Google, Meta, Microsoft, Amazon) er best i klassen med PUE rundt 
 Et undervurdert miljøproblem er **mørke data** – data som lagres i datasentre, men aldri brukes. Studier anslår at opptil 80 % av alle lagrede data aldri aksesseres etter at de er opprettet.[^3]
 
 Dette er problematisk fordi:
+
 - Lagring av ubrukte data krever strøm til servere og kjøling
 - Store organisasjoner akkumulerer terabytes med duplikater, utdaterte filer og ubrukte backuper
 
@@ -90,11 +92,13 @@ Tiltak: regelmessig opprydding av datalagre, klare retningslinjer for oppbevarin
 IT-utstyr har begrenset levetid. Når det skiftes ut, blir det **e-avfall** (elektrisk og elektronisk avfall).
 
 E-avfall er problematisk fordi:
+
 - IT-utstyr inneholder **sjeldne jordmetaller** (f.eks. neodym, indium, dysprosium) som er vanskelige å utvinne og produsere
 - Utstyret inneholder **giftige stoffer** som bly, kadmium og kvikksølv
 - Ulovlig deponering av e-avfall er et globalt problem, særlig i Vest-Afrika og Sørøst-Asia
 
 **WEEE-direktivet** (Waste Electrical and Electronic Equipment) er EU-lovgivning som også gjelder i Norge.[^4] Direktivet krever:
+
 - Produsenter og importører er ansvarlige for å samle inn og resirkulere e-avfall
 - Forbrukere og virksomheter skal levere utstyr til godkjente innsamlingspunkter
 - Visse materialer (plast, metaller, glass) skal gjenvinnes
@@ -112,6 +116,7 @@ En av de mest effektive miljøtiltakene er å bruke IT-utstyr lenger:
 - **Refurbished utstyr** (brukt, renovert utstyr) er et voksende marked som reduserer behovet for ny produksjon
 
 Tiltak for levetidsforlengelse:
+
 - Oppgradering av RAM og lagring i stedet for å kjøpe ny PC
 - Bruk av tynne klienter med lang levetid og enkel administrasjon
 - Sentraliserte systemer (VDI, terminalservere) der klientene er enkle og holdbare
@@ -181,6 +186,7 @@ Nkom (Nasjonal kommunikasjonsmyndighet) og Miljødirektoratet regulerer e-avfall
 **Oppgave: Beregn PUE og vurder tiltak**
 
 En skole har et serverrom med følgende målinger:
+
 - Samlet strømmåler (alt utstyr i rommet): 12 kW
 - Strømmåler kun for servere og nettverksutstyr: 8 kW
 
@@ -203,16 +209,19 @@ Kartlegg miljøavtrykket til én bærbar PC gjennom hele livssyklusen: råvarepr
 Bærekraft i IT-drift handler om å forstå og redusere IT-sektorens miljøpåvirkning – fra energiforbruk i datasentre til avhending av gammelt utstyr.
 
 **Energiforbruk:**
+
 - Datasentre bruker 1–1,3 % av globalt el-forbruk (IEA 2022)
 - PUE måler energieffektivitet: 1,0 er perfekt, 1,5 er bransjegjennomsnitt
 - Hyperscalere (Google, Microsoft, AWS) oppnår ~1,1
 
 **E-avfall:**
+
 - 70–80 % av en PC-s karbonavtrykk skjer under produksjon
 - WEEE-direktivet pålegger produsentansvar og krav til gjenvinning
 - Elretur håndterer e-avfall i Norge
 
 **Tiltak (i prioritert rekkefølge av effekt):**
+
 1. Forleng levetiden på utstyr (størst effekt per krone)
 2. Virtualiser og konsolider servere
 3. Velg sertifisert utstyr (Energy Star, EPEAT)
@@ -330,4 +339,3 @@ EE-avfall :: Elektrisk og elektronisk avfall som inneholder miljøgifter og verd
 [^3]: [Nkom: Digital infrastruktur og miljø](https://www.nkom.no/aktuelt/digital-infrastruktur-og-miljo-hvordan-paivirker-vi-klimaet) – Mørke data og energibruk.
 [^4]: [Elretur: E-avfall i Norge](https://www.elretur.no/) – WEEE-direktivet og håndtering av e-avfall.
 [^5]: [IEA: Data Centres and Data Transmission Networks](https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks) – Mål om halverte utslipp innen 2030.
-

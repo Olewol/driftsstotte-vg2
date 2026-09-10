@@ -50,6 +50,7 @@ An event with low probability but catastrophic consequences can be just as impor
 #### Step 1: Identify Assets and Threats
 
 **Assets** are everything that has value and could be affected:
+
 - Hardware (servers, network equipment, PCs)
 - Software and systems
 - Data (personal data, financial records, intellectual property)
@@ -57,6 +58,7 @@ An event with low probability but catastrophic consequences can be just as impor
 - Employees and competence
 
 **Threats** are events that can harm the assets:
+
 - Ransomware attacks
 - Phishing targeting employees
 - Fire or flooding in the server room
@@ -67,6 +69,7 @@ An event with low probability but catastrophic consequences can be just as impor
 #### Step 2: Identify Vulnerabilities
 
 A vulnerability is a weakness that allows a threat to materialize:
+
 - Outdated software without patches
 - Weak passwords or missing MFA
 - Missing firewall
@@ -143,6 +146,7 @@ This means risk analysis is not just good practice – it is a legal requirement
 | Staff PCs | Phishing, malware via USB |
 
 **Step 2 – Identify vulnerabilities:**
+
 - AD server runs Windows Server 2016 without automatic patching
 - Staff use simple passwords without MFA
 - Guest network has no VLAN isolation from the internet
@@ -177,11 +181,13 @@ This means risk analysis is not just good practice – it is a legal requirement
 > In class, students conduct a risk assessment for a fictional Dark Web lab that investigative journalists at "MediaHuset AS" plan to use. The case illustrates structured risk management:
 >
 > **Three assets to protect:**
+>
 > - The company's main network
 > - Source protection / journalist anonymity
 > - Company reputation
 >
 > **Three identified threats:**
+>
 > - Journalist downloads malware that spreads to the corporate network
 > - Journalist logs into personal Facebook via Tor and is exposed (breaking anonymity)
 > - Cleaner inserts an infected USB drive into the lab machine
@@ -200,6 +206,7 @@ This means risk analysis is not just good practice – it is a legal requirement
 Risk = Probability × Consequence. Both are typically assessed on a scale of 1–5. A risk value of 1–4 is low (green), 5–9 medium (yellow), 10–19 high (orange), 20–25 critical (red).
 
 **The 4-step model:**
+
 1. Identify assets and threats – what is worth protecting, and what could harm it?
 2. Identify vulnerabilities – what weaknesses make the threats possible?
 3. Assess and rank risk – use the risk matrix
@@ -215,6 +222,7 @@ Not all risk can be eliminated. Management formally accepts the risk that remain
 Risk assessment is a legal requirement for anyone processing personal data. Measures must be proportionate to the risk to data subjects' rights.
 
 **Practical advice:**
+
 - Always include organizational measures (training, routines), not just technical ones
 - Document the analysis and measures – accountability requires documentation
 - Review and update the analysis regularly, not just once
@@ -257,6 +265,7 @@ At least once a year, and always after significant changes in the IT environment
 <details><summary>Question 2: What are the four steps in a risk analysis process?</summary>
 
 **Answer:**
+
 1. Identify assets and threats
 2. Identify vulnerabilities
 3. Assess and rank risk (risk matrix)

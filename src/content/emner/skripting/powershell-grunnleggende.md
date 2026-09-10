@@ -117,6 +117,7 @@ $aktiv = $true
 ```
 
 **Strengtyper:**
+
 - Enkelthermetegn: `'Hei $navn'` — tolkes bokstavelig, ingen variabelekspansjon.
 - Dobbelthermetegn: `"Hei $navn"` — variabler ekspanderes til sin verdi.
 - For komplekse uttrykk inne i streng: `"Det er $($brukere.Count) brukere"`.
@@ -329,6 +330,7 @@ PowerShell skiller seg fra tradisjonelle skallspråk ved å jobbe med **.NET-obj
 7. **Feilhåndtering** med `try/catch` krever `-ErrorAction Stop` for å fange feil fra cmdlets.
 
 **Viktige skillelinjer:**
+
 - `Write-Host` viser til skjermen; `Write-Output` sender til pipeline — bruk riktig i funksjoner.
 - Execution Policy styrer hvilke skript som kan kjøres; `RemoteSigned` er et godt valg i driftsmiljøer.
 - `Get-Member` er din beste venn: viser alle egenskaper og metoder for et objekt i pipelinen.

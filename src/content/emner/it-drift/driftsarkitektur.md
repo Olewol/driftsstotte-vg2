@@ -100,6 +100,7 @@ Lagring i skyen (f.eks. Azure Blob Storage, AWS S3) egner seg for store mengder 
 ### Klientutstyr
 
 Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
+
 - PC-er og bærbare datamaskiner
 - Nettbrett og mobiltelefoner (BYOD – Bring Your Own Device)
 - Tynne klienter (thin clients) – billige enheter som kobler til en terminalserver
@@ -111,6 +112,7 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 **UPS (Uninterruptible Power Supply)** er et batterisystem som gir strøm ved strømbrudd. Det sikrer at servere og nettverksutstyr kan slå seg ned kontrollert – eller fortsette å kjøre – når strømmen går.
 
 **Redundans** betyr at kritiske komponenter finnes i duplikat, slik at systemet fortsetter å fungere om én komponent feiler:[^5]
+
 - Redundante strømforsyninger i servere
 - Redundante nettverkskoblinger (bonding/failover)
 - RAID (Redundant Array of Independent Disks) for lagring
@@ -123,6 +125,7 @@ Sluttbrukernes utstyr kalles klientutstyr og inkluderer:
 Moderne driftsarkitektur handler ikke bare om hvilke komponenter som finnes – det handler også om hvordan de konfigureres og vedlikeholdes. **Infrastruktur som kode (IaC)** er en metode der IT-infrastruktur beskrives og styres via maskinlesbare konfigurasjonsfiler i stedet for manuell konfigurering.[^4]
 
 Fordeler med IaC:
+
 - Reproduserbar infrastruktur – samme konfigurasjon gir alltid samme resultat
 - Versjonskontroll – endringer spores som kode
 - Automatisert utrulling – raskere og mer pålitelig enn manuelt arbeid
@@ -135,7 +138,7 @@ Verktøy: Terraform (infrastruktur), Ansible (konfigurasjon), Azure ARM-maler. S
 
 En liten til mellomstor bedrift (SMB – Small and Medium Business) kan ha en slik arkitektur:
 
-```
+```text
 [Internett]
      |
 [Brannmur/ruter]
@@ -175,20 +178,24 @@ Se på et eksempel på en Azure ARM-mal eller Terraform-konfigurasjon (finnes ma
 Driftsarkitektur handler om hvordan IT-systemer er bygget opp og hvilke valg som tas for plassering, skalering og sikring av infrastruktur.
 
 **De tre modellene:**
+
 - **On-premise** – full kontroll, høy CAPEX, ingen avhengighet av internett
 - **Public cloud** – elastisk, OPEX-modell, avhengig av leverandør
 - **Hybrid** – kombinasjon, mest utbredt i norske virksomheter
 
 **Servere og virtualisering:**
+
 - Hypervisor muliggjør flere VM-er på én fysisk server (VMware, Hyper-V, KVM)
 - Containere (Docker/Kubernetes) er lettere enn VM-er og deler OS-kjernen
 - IaC automatiserer og versjonskontrollerer infrastrukturoppsettet
 
 **Nettverkskomponenter:**
+
 - Svitsj (lag 2), ruter (lag 3), brannmur (filtrering), VLAN (segmentering), DMZ (offentlige tjenester)
 - Redundans og UPS sikrer kontinuitet ved feil
 
 **Lagring:**
+
 - DAS (direkte tilkoblet, kun én server), NAS (nettverksdeling, SMB/NFS), SAN (høyhastighets blokklagring, Fibre Channel/iSCSI)
 - Objektlagring i sky for ustrukturerte data og backup
 
@@ -307,4 +314,3 @@ Latens :: Forsinkelsen i kommunikasjon mellom klient og server. Lav latens er kr
 [^3]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Virtualisering og hypervisor-teknologi.
 [^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – Infrastruktur som kode (IaC) og beste praksis.
 [^5]: [NSM: Grunnprinsipper for IKT-sikkerhet](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/) – Redundans og kontinuitet i IT-drift.
-

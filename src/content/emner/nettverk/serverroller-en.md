@@ -53,6 +53,7 @@ One physical server can have multiple roles installed, but for performance and s
 ### Active Directory Domain Services (AD DS)
 
 AD DS is the foundation of a Windows domain network. A server with the AD DS role is called a **domain controller** and manages:
+
 - **Authentication**: logs in users with username and password
 - **Authorization**: controls what users have access to
 - **Directory**: central registry of all users, computers, and resources
@@ -61,7 +62,7 @@ AD DS is the foundation of a Windows domain network. A server with the AD DS rol
 
 #### AD Hierarchy
 
-```
+```text
 Forest
   └── Tree: company.no
         └── Domain: company.no
@@ -92,6 +93,7 @@ The domain controller requires DNS — the DNS server role is installed automati
 The DNS server translates domain names to IP addresses. In an AD network, the domain controller's DNS is **authoritative** for the local domain and knows all AD objects.
 
 Configuration in Windows Server:
+
 - Zones: primary zone for `lab.lan` is created automatically with AD DS
 - Forwarders: lookups outside `lab.lan` are forwarded to router (e.g. `192.168.1.1`) or public DNS (`8.8.8.8`)
 - Dynamic update: clients register automatically in DNS when joining the domain
@@ -107,6 +109,7 @@ The DHCP server automatically assigns IP configuration to network clients. In a 
 A **DHCP Scope** is a defined range of IP addresses that the DHCP server can assign to clients on a particular subnet.
 
 Important steps:
+
 1. Disable DHCP on the router
 2. Install the DHCP Server role in Windows Server
 3. Create a scope (e.g. `192.168.1.100`–`192.168.1.200`)
@@ -122,15 +125,18 @@ See [[dns-og-dhcp|DNS and DHCP]] for a full review of DHCP.
 **IIS** (Internet Information Services) is Microsoft's web server role used to host websites or web applications. It is a server role available in Windows Server.
 
 **Function**: serves HTTP/HTTPS requests from browsers. Used for:
+
 - Internal portals and intranet pages
 - Web applications (ASP.NET, PHP)
 - Administrative interfaces for other services
 
 **Competitors**:
+
 - **Apache HTTP Server** — open source, dominant on Linux
 - **Nginx** — open source, known for high performance and reverse proxy use
 
 **Setting up a website in IIS**:
+
 1. Server Manager → Add Roles → Web Server (IIS)
 2. IIS Manager → Sites → Add Website
 3. Specify name, physical path (e.g. `C:\inetpub\wwwroot\mysite`), port, and optionally hostname
@@ -145,6 +151,7 @@ A file server makes folders available over the network so users can store and re
 **SMB (Server Message Block)** is the Windows standard for network sharing, port 445.
 
 **Setting up a shared folder (share)**:
+
 1. Right-click folder → Properties → Sharing → Advanced Sharing
 2. Check "Share this folder", give share name (e.g. `Documents`)
 3. Set share permissions (who can read/write via the share)
@@ -153,9 +160,11 @@ A file server makes folders available over the network so users can store and re
 **NTFS permissions** are file system-level permissions that determine what access users and groups have to files and folders on a file server. They are more granular than share permissions and also apply to local access.
 
 Access from client:
-```
+
+```text
 \\servername\Documents
 ```
+
 Or via "Map network drive" to assign a drive letter (e.g. Z:).
 
 **NFS (Network File System)**: Linux/Unix standard for file sharing. Used in heterogeneous environments. Windows Server supports NFS via the "File Services" role.
@@ -190,7 +199,7 @@ Administration via **Print Management** console: view queues, manage drivers, mo
 
 ### Typical Server Setup in Data Lab (VG2)
 
-```
+```text
 [Windows Server 2022]
 ├── AD DS (domain controller for lab.lan)
 ├── DNS server (authoritative for lab.lan, forwarder: 192.168.1.1)
@@ -239,6 +248,7 @@ AD DS is the foundation. It collects user accounts, computers, and policies in o
 NTFS permissions always apply, share permissions only apply during network access. When both are set, the most restrictive combination takes effect. Folder structure and permissions are closely tied to [[bruker-og-tilgangsstyring|user and access management]].
 
 **Common Exam Points**
+
 - The difference between an OU and a regular folder in AD
 - What FQDN means, with an example
 - The steps to join a client to a domain

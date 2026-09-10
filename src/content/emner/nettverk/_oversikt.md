@@ -22,6 +22,7 @@ public: true
 Et datanettverk er et system der to eller flere enheter er koblet sammen for å dele ressurser og kommunisere. I driftsstøtte-faget er nettverksforståelse fundamentalt — du kan ikke drifte det du ikke forstår.
 
 Nettverk deles gjerne inn etter størrelse:
+
 - **LAN (Local Area Network)** — lokalt nettverk, f.eks. i et klasserom eller kontorbygg
 - **WAN (Wide Area Network)** — nettverk over store geografiske avstander, f.eks. internett
 - **WLAN (Wireless LAN)** — trådløst lokalnettverk (WiFi)
@@ -52,6 +53,7 @@ For å forstå kommunikasjon i nettverk bruker vi to referansemodeller:
 ## Segmentering og VLAN
 
 Segmentering handler om å dele nettverket opp i logiske soner. Dette gir:
+
 - Bedre **sikkerhet** (angrep sprer seg ikke på tvers av segmenter)
 - Bedre **ytelse** (mindre broadcast-trafikk)
 - Enklere **administrasjon**

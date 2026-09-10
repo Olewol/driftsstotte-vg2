@@ -46,6 +46,7 @@ Det fysiske laget definerer de elektriske, optiske og trådløse signalene som r
 
 **Lag 2 — Datalinklaget**
 Pakker biter inn i *frames* og håndterer overføring innenfor ett nettverkssegment. Delt i to underlag:
+
 - **MAC (Media Access Control)**: adressering med 48-bits MAC-adresser, kontroll av tilgang til mediet
 - **LLC (Logical Link Control)**: feildeteksjon, flomstyring
 
@@ -62,6 +63,7 @@ Administrerer *sesjoner* — vedvarende forbindelser mellom applikasjoner. Sesjo
 
 **Lag 6 — Presentasjonslaget**
 Oversetter data mellom applikasjonens format og nettverkets format. Ansvarlig for:
+
 - **Kryptering/dekryptering**: TLS/SSL krypterer HTTP-trafikk til HTTPS
 - **Komprimering**: reduserer datamengden som sendes
 - **Formatkonvertering**: sikrer at f.eks. tegnsett (UTF-8, ASCII) tolkes likt på begge sider
@@ -131,6 +133,7 @@ Avgjør hvilket OSI-lag hvert scenario tilhører:
 Scenario: En PC kan pinge `192.168.1.1` (gateway) men ikke åpne `https://ndla.no`.
 
 Analyser:
+
 - Lag 1–3 fungerer (ping til gateway virker → fysisk forbindelse, datalink og IP er OK)
 - Problemet er på lag 4 (TCP-port blokkert?), lag 6 (TLS-feil?) eller lag 7 (DNS feiler? HTTP-feil?)
 - Test: `nslookup ndla.no` — hvis DNS ikke svarer er problemet lag 7 (DNS-tjenesten) eller lag 3 (ruting mot DNS-server)
@@ -141,12 +144,14 @@ Analyser:
 OSI er en *referansemodell*, ikke en implementasjon. Den brukes som felles referansespråk for å forstå og feilsøke nettverkskommunikasjon. Hvert lag har et klart ansvarsområde og kommuniserer kun med laget direkte over og under.
 
 **Kjerneforståelse per lag**
+
 - Lag 1–2 handler om fysisk og lokal overføring (kabel, WiFi, svitsjer, MAC-adresser)
 - Lag 3 introduserer logisk adressering og ruting (IP, rutere)
 - Lag 4 håndterer ende-til-ende pålitelighet og applikasjonsidentifikasjon (TCP/UDP, portnumre)
 - Lag 5–7 er applikasjonsrelaterte (sesjoner, formatering, brukerprotokoller)
 
 **Vanlige eksamenspoeng**
+
 - Forskjellen mellom svitsj (lag 2) og ruter (lag 3)
 - TCP vs. UDP og når man bruker hva
 - OSI-lagene ovenfra og ned vs. nedenfra og opp
@@ -228,10 +233,10 @@ Referansemodell :: Et teoretisk rammeverk som brukes for å forstå og beskrive 
 
 ## Kilder
 
-[^1]: Cloudflare Learning. (2025). What is the OSI Model? https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/
-[^2]: Professor Messer. (2025). Network+ Study Guide — OSI Model. https://www.professormesser.com/network-plus/
-[^3]: NDLA. (2024). 5-lags TCP/IP-modell. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6
-[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^1]: Cloudflare Learning. (2025). What is the OSI Model? <https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/>
+[^2]: Professor Messer. (2025). Network+ Study Guide — OSI Model. <https://www.professormesser.com/network-plus/>
+[^3]: NDLA. (2024). 5-lags TCP/IP-modell. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>
+[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 

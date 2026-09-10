@@ -19,7 +19,8 @@ original: filsystem.md
 
 ## Introduction
 
-A **file system** determines how data is stored and organized on a disk. For IT operations technicians, choosing a file system is directly linked to security and access control — only NTFS, for example, supports user-based permissions in Windows. Knowledge of file systems is necessary to manage rights, set up quotas, and understand the limitations of different storage media. NTFS permissions are closely related to [[bruker-og-tilgangsstyring]], and the Linux ext4 file system is covered in connection with [[linux-grunnleggende]]. File system choices are also relevant for [[backup-og-gjenoppretting]] since not all backup solutions support every file system.
+A **file system** determines how data is stored and organized on a disk. For IT operations technicians, choosing a file system is directly linked to security and access control — only NTFS, for example, supports user-based permissions in Windows. Knowledge of file systems is necessary to manage rights, set up quotas, and understand the limitations of different storage media. NTFS
+  permissions are closely related to [[bruker-og-tilgangsstyring]], and the Linux ext4 file system is covered in connection with [[linux-grunnleggende]]. File system choices are also relevant for [[backup-og-gjenoppretting]] since not all backup solutions support every file system.
 
 ---
 
@@ -56,6 +57,7 @@ NTFS is the standard file system for Windows and Windows Server. It is the only 
 FAT32 is an older file system supported by practically all operating systems and devices. It is primarily used on USB flash drives and memory cards.
 
 **Characteristics:**
+
 - **No access control** — anyone who can read the disk can read all files
 - **Max file size: 4 GB − 1 byte** (4,294,967,295 bytes) — cannot store individual files of 4 GB or more (e.g., large ISO files or video files)
 - **Max volume size: 2 TB**
@@ -71,6 +73,7 @@ exFAT is a successor to FAT32 designed for flash storage. It removes the 4 GB li
 ext4 is the standard file system on modern Linux distributions such as Ubuntu, Debian, and RHEL.
 
 **Characteristics:**
+
 - **Journaling**: Similar to NTFS — logs operations to ensure consistency after power failure.
 - **Inodes**: Each file has an inode that stores metadata (owner, group, permissions, timestamps). The filename itself is a pointer to the inode.
 - **Permission model**: rwx for owner, group, and others (see [[linux-grunnleggende]]).
@@ -135,7 +138,8 @@ Get-Volume
 ```
 
 Example output:
-```
+
+```text
 DriveLetter FriendlyName FileSystemType SizeRemaining    Size
 ----------- ------------ -------------- -------------    ----
 C           Windows      NTFS            45.2 GB   237.4 GB
@@ -166,12 +170,14 @@ icacls C:\Data\Sales /remove student01
 **File systems** determine how data is stored, organized, and protected on a disk. The choice of file system is critical for security, performance, and compatibility.
 
 The four file systems you need to know:
+
 - **NTFS** — standard for Windows and Windows Server; supports ACL, journaling, quotas, and encryption (EFS). The only option for Windows servers with access control.
 - **FAT32** — universally compatible; used on USB and memory cards. No access control. Max file size 4 GB — a classic pitfall.
 - **exFAT** — FAT32 without the 4 GB limit; used on larger USB devices and SD cards. No access control.
 - **ext4** — standard Linux file system; supports journaling, inodes, rwx permissions, and POSIX ACL.
 
 Critical to understand for NTFS:
+
 - **ACL (Access Control List)** is the list of who has access to a file/folder and what they can do
 - **Permission inheritance** — subfolders automatically inherit permissions from the parent; can be disabled per object
 - **NTFS vs. Share Permissions**: both apply when accessing over the network — the most restrictive wins. Best practice: set Share to "Full Control"/"Everyone" and manage via NTFS.

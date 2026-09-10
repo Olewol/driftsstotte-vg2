@@ -42,7 +42,8 @@ Symmetric encryption uses the **same key** to encrypt and decrypt data.
 - Example: **AES-256** (Advanced Encryption Standard with 256-bit key) – considered unbreakable and is the industry standard for encrypting data at rest (file systems, databases, backups)
 
 **Illustration:**
-```
+
+```text
 Sender: Plaintext → [AES key] → Ciphertext
 Receiver: Ciphertext → [AES key] → Plaintext
 ```
@@ -57,6 +58,7 @@ Asymmetric encryption uses a **key pair**: a public key and a private key. What 
 - **Private key:** kept secret by the owner – must never be shared
 
 Used for two purposes:
+
 1. **Encryption:** Sender encrypts with the receiver's public key → only the receiver can decrypt with their private key
 2. **Digital signature:** The sender signs with their private key → anyone can verify the signature using the sender's public key
 
@@ -82,7 +84,7 @@ This is the model used by TLS (and therefore HTTPS). Almost all secure communica
 
 **TLS 1.3 handshake (simplified):**
 
-```
+```text
 1. Client sends supported cipher suites and a random value
 2. Server sends chosen cipher suite, certificate, and a random value
 3. Client verifies the server's certificate against a CA (Certificate Authority)
@@ -91,6 +93,7 @@ This is the model used by TLS (and therefore HTTPS). Almost all secure communica
 ```
 
 Improvements in TLS 1.3 vs 1.2:
+
 - Faster handshake (1 round trip instead of 2)
 - All outdated cipher suites removed (no RC4, DES, 3DES, MD5)
 - Forward secrecy is mandatory – old sessions cannot be decrypted even if the long-term key is later compromised
@@ -107,7 +110,8 @@ Hashing is a one-way process – unlike encryption, you cannot reverse a hash to
 A digital certificate binds a public key to an identity (e.g., a domain name). The certificate is signed by a **Certificate Authority (CA)**.
 
 **CA hierarchy (chain of trust):**
-```
+
+```text
 Root CA (self-signed, built into OS/browser)
     └── Intermediate CA (signed by Root CA)
             └── Server certificate (signed by Intermediate CA)
@@ -131,6 +135,7 @@ Hashing is a **one-way function** – you can create a hash from data, but you c
 | bcrypt / Argon2 | variable | **Recommended for passwords** – intentionally slow |
 
 Typical use cases:
+
 - Password storage: never store plaintext passwords – store the hash (with salt)
 - File integrity: SHA-256 checksum of a file reveals whether it has been modified
 - Digital signatures: you sign the hash of the document, not the document itself
@@ -154,6 +159,7 @@ E2EE is especially relevant for [[personvern|privacy]] – even if the server is
 3. Select **"Connection is secure"** → **"Certificate is valid"**
 
 Check the following in the certificate:
+
 - **Issued to:** confirms the domain matches
 - **Issued by:** which CA signed the certificate
 - **Valid from / to:** certificates expire (typically 1 year for commercial, 90 days for Let's Encrypt)
@@ -183,6 +189,7 @@ Hashing is a one-way process used for integrity verification and password storag
 End-to-end encryption ensures that only the sender and receiver can read the content – not the service provider. Critical for privacy in communication services.
 
 **Practical checklist:**
+
 - Always use HTTPS on websites (TLS 1.3 preferred)
 - AES-256 for data at rest (files, databases, backups)
 - Never store passwords in plaintext – use bcrypt/Argon2 with salt

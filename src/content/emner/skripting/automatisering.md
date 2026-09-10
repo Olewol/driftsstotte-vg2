@@ -126,7 +126,7 @@ schtasks /run /tn "DagligBackup"
 
 En crontab-linje består av fem tidsfelt etterfulgt av kommandoen:
 
-```
+```text
 # min  time  dag-i-mnd  måned  dag-i-uke  kommando
   *    *     *          *      *          /sti/til/skript.sh
 ```
@@ -240,7 +240,7 @@ Skripting er kraftig, men har begrensninger: et skript beskriver *handlinger* (g
 
 #### Fra skripting til IaC
 
-```
+```text
 Manuell drift → Skripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 ```
 
@@ -250,6 +250,7 @@ Manuell drift → Skripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 #### Sentrale IaC-verktøy
 
 **Ansible** (Red Hat)
+
 - Agentfri: kommuniserer via SSH, ingen programvare å installere på målmaskiner.
 - Konfigurasjon skrives i YAML-filer kalt **playbooks**.
 - Egnet for konfigurasjonsstyring og deploying av applikasjoner.
@@ -270,6 +271,7 @@ Manuell drift → Skripting (Bash/PowerShell) → IaC (Ansible/Terraform)
 ```
 
 **Terraform** (HashiCorp)
+
 - Sky-agnostisk: fungerer med AWS, Azure, Google Cloud og mange andre.
 - Konfigurasjon skrives i **HCL** (HashiCorp Configuration Language).
 - Egnet for å provisjonere skyinfrastruktur (servere, nettverk, databaser).
@@ -284,6 +286,7 @@ resource "azurerm_virtual_machine" "webserver" {
 ```
 
 **PowerShell DSC** (Desired State Configuration)
+
 - Microsofts eget IaC-verktøy, integrert med Windows og Azure.
 - Beskriver ønsket tilstand for Windows-konfigurasjoner.
 
@@ -291,7 +294,8 @@ IaC er et avansert emne som bygger direkte på skripting-kunnskapen fra dette em
 
 #### Idempotens — et sentralt prinsipp
 
-Et viktig begrep i automatisering og IaC er **idempotens**: en operasjon er idempotent hvis den kan kjøres mange ganger uten at resultatet endrer seg etter den første vellykkede kjøringen. Ansible og Terraform er idempotente — de sjekker alltid gjeldende tilstand mot ønsket tilstand og gjør bare det som faktisk trengs. Et enkelt Bash-skript som kjøres to ganger kan derimot opprette duplikater eller overskrive data. Design egne skript med idempotens i tankene (f.eks. sjekk om mappen allerede finnes før du oppretter den).
+Et viktig begrep i automatisering og IaC er **idempotens**: en operasjon er idempotent hvis den kan kjøres mange ganger uten at resultatet endrer seg etter den første vellykkede kjøringen. Ansible og Terraform er idempotente — de sjekker alltid gjeldende tilstand mot ønsket tilstand og gjør bare det som faktisk trengs. Et enkelt Bash-skript som kjøres to ganger kan derimot opprette
+  duplikater eller overskrive data. Design egne skript med idempotens i tankene (f.eks. sjekk om mappen allerede finnes før du oppretter den).
 
 #### Sikker håndtering av hemmeligheter i automatiserte skript
 
@@ -408,16 +412,19 @@ Automatisering handler om å la systemer utføre oppgaver av seg selv — til ri
 | Eksempel | `schtasks /create /sc DAILY /st 02:00` | `0 2 * * * /sti/til/skript.sh` |
 
 **Cron-syntaks huskeregel** (5 felt): `minutt time dag-i-mnd måned dag-i-uke`
+
 - `*` = alle verdier, `*/5` = hvert femte, `1-5` = mandag–fredag, `@daily` = snarvei for midnatt hver dag.
 - Alltid absolutte stier i cron — PATH-miljøet er minimalt.
 - Logg alltid output: `>> /var/log/skript.log 2>&1`
 
 **Task Scheduler — tre deler i en oppgave:**
+
 1. **Trigger** — når (tid, hendelse, pålogging)
 2. **Handling** — hva (program, skript)
 3. **Betingelser** — tilleggskrav (strøm, nettverk)
 
 **Fra skripting til IaC:**
+
 - Skripting er *imperativt*: "gjør A, B, C i rekkefølge."
 - IaC er *deklarativt*: "systemet skal se slik ut — verktøyet ordner resten."
 - Ansible (YAML-playbooks via SSH) → konfigurasjonsstyring

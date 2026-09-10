@@ -35,7 +35,7 @@ To understand segmentation, it's useful to see it in the context of the [[osi-mo
 
 An IPv4 address is 32 bits long and is written as four decimal numbers separated by periods (dotted decimal notation):
 
-```
+```text
 192  .  168  .   1  .  10
 11000000.10101000.00000001.00001010
 ```
@@ -45,6 +45,7 @@ Each number (octet) can range from 0 to 255 (8 bits). This gives theoretically a
 #### Network Part and Host Part
 
 An IP address is divided into two parts:
+
 - **Network part**: identifies the network
 - **Host part**: identifies the specific device in the network
 
@@ -100,7 +101,7 @@ A VLAN (Virtual Local Area Network) is a logical division of a physical network.
 
 The standard for VLANs is **IEEE 802.1Q**. It defines how a VLAN tag is added to the Ethernet frame:
 
-```
+```text
 [Dest MAC][Src MAC][802.1Q tag][EtherType][Data][FCS]
                   |          |
                   4 bytes: includes 12-bit VLAN ID (0–4094)
@@ -144,6 +145,7 @@ A **trunk port** is a switch port configured to carry traffic from multiple VLAN
 ### Configuration in UniFi
 
 **Creating a VLAN:**
+
 1. UniFi Network → Settings → Networks
 2. Click "Create New Network"
 3. Select "Virtual Network (VLAN)"
@@ -153,6 +155,7 @@ A **trunk port** is a switch port configured to carry traffic from multiple VLAN
 7. Save
 
 **Assigning VLAN to Switch Port:**
+
 1. UniFi Network → Devices → select the switch
 2. Go to the Ports tab
 3. Click the desired port
@@ -161,6 +164,7 @@ A **trunk port** is a switch port configured to carry traffic from multiple VLAN
    - Tagged VLANs: VLANs to be tagged through the port (trunk port)
 
 **Wireless VLAN (SSID):**
+
 1. Settings → WiFi → create new WiFi network
 2. Bind SSID to desired VLAN (e.g. "Guest-WiFi" → VLAN 20)
 
@@ -173,6 +177,7 @@ Subnetting divides an IP address space into smaller, isolated networks. /24 is t
 VLAN is logical network segmentation at layer 2 (data link). The IEEE 802.1Q tag (4 bytes) is inserted into the Ethernet frame with a VLAN ID. Access ports remove the tag for end devices; trunk ports keep it to carry multiple VLANs.
 
 **Common Exam Points**
+
 - Calculate network address, broadcast, and usable addresses from CIDR notation
 - The difference between access port and trunk port
 - What native VLAN is and why VLAN 1 as native VLAN is a security risk
@@ -193,7 +198,8 @@ Broadcasts (e.g. DHCP Discover, ARP) are only sent within the same VLAN. This me
 The native VLAN is the VLAN that handles untagged traffic on a trunk port. VLAN 1 is the default, but it is known as a security risk (VLAN hopping attacks). Best practice is to choose an unused VLAN number as the native VLAN.
 
 **How do you configure VLANs on a Cisco switch (basic)?**
-```
+
+```text
 Switch(config)# vlan 10
 Switch(config-vlan)# name Employees
 Switch(config)# interface fa0/1
@@ -216,10 +222,12 @@ Yes. Modern access points support SSID-to-VLAN mapping. The guest WiFi network c
 <summary>Question 1: What is the network address, first usable IP, and broadcast for 192.168.5.0/26?</summary>
 
 **Answer:** /26 gives subnet mask 255.255.255.192 (64 addresses per block).
+
 - Network address: `192.168.5.0`
 - First usable host: `192.168.5.1`
 - Last usable host: `192.168.5.62`
 - Broadcast: `192.168.5.63`
+
 </details>
 
 <details>

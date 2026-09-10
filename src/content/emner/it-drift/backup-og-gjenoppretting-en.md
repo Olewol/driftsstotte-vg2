@@ -23,7 +23,8 @@ original: backup-og-gjenoppretting.md
 
 Data is one of the most valuable resources an organization has. Without a working backup, a single event – a failing hard drive, a ransomware attack, or a fire – can lead to permanent loss of critical information.
 
-Backup is not just about making copies. It is about having a strategy that ensures data can be restored quickly enough and with low enough data loss for the organization to survive the incident. A backup is only valuable if it can actually be restored. In addition, the backup strategy should include system configurations and master images, not just raw data – so that the entire infrastructure can be restored, not just the files.
+Backup is not just about making copies. It is about having a strategy that ensures data can be restored quickly enough and with low enough data loss for the organization to survive the incident. A backup is only valuable if it can actually be restored. In addition, the backup strategy should include system configurations and master images, not just raw data – so that the entire
+  infrastructure can be restored, not just the files.
 
 ---
 
@@ -104,6 +105,7 @@ Example: If the RTO is 2 hours, the IT team must have the systems back up within
 #### Practical Example
 
 A school stores student data and grade systems:
+
 - **RPO: 24 hours** – grades cannot be re-entered further back than one day
 - **RTO: 8 hours** – the system must be back up within one working day
 
@@ -132,6 +134,7 @@ Amazon S3 is used for active backup storage; Glacier is a cheaper archival stora
 Manual backup is prone to human error – the person who is sick on the day the backup should run, forgets it, or skips it "just this once." Automated backup routines eliminate this risk.
 
 Good practices for automated backup:
+
 - Schedule backup jobs outside working hours (e.g., at 02:00) for low impact on systems
 - Configure automatic alerts on backup job failures
 - Use script-based backup (e.g., [[powershell-grunnleggende]]) for custom needs
@@ -188,20 +191,24 @@ Discuss: Should a backup only contain data files, or should it also include syst
 Backup and recovery is about ensuring that data can be restored in the event of loss or failure – and that this actually works in practice.
 
 **The 3-2-1 rule (and 3-2-1-1-0):**
+
 - 3 copies, 2 media, 1 offsite
 - +1 immutable/air-gapped, +0 errors in testing
 - Protects against physical events AND ransomware
 
 **Backup strategies:**
+
 - Full: largest, easiest to restore
 - Incremental: smallest, fastest to run, complex to restore
 - Differential: in between – simple recovery (full + one diff)
 
 **RPO and RTO:**
+
 - RPO = maximum acceptable data loss in time (determines backup frequency)
 - RTO = maximum acceptable downtime (determines recovery speed requirements)
 
 **DR strategies:**
+
 - Cold standby (cheapest, longest RTO) → Warm standby → Hot standby (most expensive, shortest RTO)
 
 **Key principle:** Backups that are not regularly tested are not reliable. Test, document, repeat.

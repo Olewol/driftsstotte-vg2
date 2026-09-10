@@ -36,6 +36,7 @@ Prinsippene i denne artikkelen henger tett sammen med [[brannmur|brannmur og net
 **Security by Design** er prinsippet om at sikkerhet integreres i alle faser av systemutvikling og -drift – fra kravspesifikasjon, design, utvikling og testing til produksjon og avvikling.
 
 Microsofts **SDL (Security Development Lifecycle)** er en referansemodell[^2] med fasene:
+
 1. Opplæring i sikker koding
 2. Kravspesifikasjon inkl. sikkerhetskrav
 3. Trusselmodellering (threat modeling)
@@ -65,6 +66,7 @@ Tradisjonell sikkerhetstenkning antok at alt innenfor bedriftsnettverket var try
 | **Assume breach** | Anta brudd | Design systemet som om det allerede er kompromittert. Segmenter tilgang, krypter end-to-end, overvåk aktivt |
 
 **Praktiske Zero Trust-tiltak:**
+
 - MFA (tofaktorautentisering) for alle brukere – alltid
 - Betinget tilgang (Conditional Access): gi tilgang kun fra godkjente enheter med oppdatert programvare
 - Mikrosegmentering: begrens hvilke systemer brukere og applikasjoner kan nå
@@ -79,6 +81,7 @@ Digitaliseringsdirektoratet (Digdir) har publisert en norsk veileder for nulltil
 Kjente sårbarheter i programvare er en av de hyppigste inngangsdørene for angripere. Patchhåndtering er den systematiske prosessen med å holde all programvare, firmware og operativsystemer oppdatert.
 
 **Patch-syklus:**
+
 1. **Identifiser:** kartlegg hvilke systemer og versjoner som er i bruk (inventarliste)
 2. **Evaluer:** vurder alvorlighetsgrad av nye patcher (kritisk / viktig / moderat)
 3. **Test:** test patcher i et testmiljø før produksjonsrullering
@@ -86,6 +89,7 @@ Kjente sårbarheter i programvare er en av de hyppigste inngangsdørene for angr
 5. **Verifiser:** bekreft at patchene er installert og systemene fungerer
 
 **Verktøy:**
+
 - Windows: **WSUS** (Windows Server Update Services), **Microsoft Intune**
 - Linux: `apt update && apt upgrade` (Debian/Ubuntu), `dnf update` (RHEL/Fedora)
 - Nettverk: leverandørens administrasjonsportal for firmware
@@ -101,6 +105,7 @@ Automatisering av patchprosessen er nøkkelen til å redusere sårbarhetsvinduet
 Logging er registrering av hendelser i et IT-system. Uten logging er det umulig å oppdage angrep, rekonstruere hendelsesforløp eller etterforsake brudd.
 
 **Hva bør logges:**
+
 - Innloggingsforsøk (vellykkede og mislykkede)
 - Tilgangsendringer (nye brukere, endrede rettigheter)
 - Systemendringer og konfigurasjonsendringer
@@ -129,6 +134,7 @@ Brukere, applikasjoner og tjenester skal kun ha de tilgangene som er strengt nø
 Tilganger knyttes til roller (f.eks. «Helpdesk», «Regnskapsmedarbeider», «IT-admin»), ikke til individuelle brukere. Brukere tildeles roller.
 
 **Verktøy:**
+
 - **Active Directory (AD):** brukerkontoer, grupper og rettighetsstyring on-premises. Se [[active-directory]].
 - **Azure Entra ID (tidligere Azure AD):** skybasert IAM. Støtter SSO (Single Sign-On), MFA og Conditional Access.
 - **MFA:** kombinerer noe du vet (passord), noe du har (autentiseringsapp/SMS) og/eller noe du er (biometri). Blokkerer over 99 % av kontoovertak ifølge Microsoft.[^6]
@@ -142,11 +148,13 @@ Se også [[bruker-og-tilgangsstyring]] for praktisk gjennomgang av tilgangsstyri
 Backup er ikke bare en driftsrutine – det er et sikkerhetstiltak og det viktigste reaktive tiltaket mot ransomware.
 
 **3-2-1-regelen:**
+
 - **3** kopier av dataene
 - på **2** forskjellige medier (f.eks. disk + tape eller disk + sky)
 - med **1** offsite-kopi (fysisk eller sky-basert)
 
 **Praktisk:**
+
 - Test gjenoppretting jevnlig – en backup er verdiløs hvis den ikke kan gjenopprettes
 - Isoler backup-systemer fra produksjonsnettverket (ransomware krypterer alt det når)
 - Azure Backup: integrert skybackup for virtuelle maskiner, databaser og filservere
@@ -177,7 +185,7 @@ Eksempel: Et sykehus kan ha RTO = 4 timer og RPO = 1 time for pasientjournalsyst
 
 **Defense in Depth** (lagdelt forsvar) er prinsippet om at ingen enkelt sikkerhetsmekanisme er tilstrekkelig – sikkerhet bygges opp i lag, slik at selv om ett lag svikter, stopper neste lag angriperen.
 
-```
+```text
 Lag 7: Data          → Kryptering, tilgangskontroll, DLP
 Lag 6: Applikasjon   → WAF, sikker koding, patchhåndtering
 Lag 5: Identitet     → MFA, Zero Trust, IAM, RBAC
@@ -198,6 +206,7 @@ Mikrosegmentering er et konkret tiltak for å implementere Defense in Depth på 
 **Scenario: Vurder sikkerhetsnivået til et fiktivt skolenettverk**
 
 Solberg vgs har følgende IT-infrastruktur:
+
 - Windows Server 2022 (AD, filserver, WSUS)
 - 350 Windows 11-klienter administrert via Intune
 - Microsoft 365 med Entra ID og MFA aktivert for ansatte
@@ -337,10 +346,10 @@ JIT :: Just-In-Time – midlertidig, tidsavgrenset tilgang til sensitive systeme
 
 ## Kilder
 
-[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-[^2]: Microsoft – Security Development Lifecycle (SDL). https://learn.microsoft.com/en-us/security/sdl/
-[^3]: Microsoft – Zero Trust-modellen. https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview
-[^4]: Digdir – Nulltillitsarkitektur (norsk veileder). https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054
-[^5]: OWASP Top 10:2021. https://owasp.org/www-project-top-ten/
-[^6]: Microsoft – MFA blokkerer over 99 % av kontoovertak. https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-mfa-how-it-works
-[^7]: Microsoft – Azure Defense in Depth. https://learn.microsoft.com/en-us/azure/security/fundamentals/infrastructure
+[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+[^2]: Microsoft – Security Development Lifecycle (SDL). <https://learn.microsoft.com/en-us/security/sdl/>
+[^3]: Microsoft – Zero Trust-modellen. <https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview>
+[^4]: Digdir – Nulltillitsarkitektur (norsk veileder). <https://www.digdir.no/nasjonal-arkitektur/nulltillitsarkitektur/4054>
+[^5]: OWASP Top 10:2021. <https://owasp.org/www-project-top-ten/>
+[^6]: Microsoft – MFA blokkerer over 99 % av kontoovertak. <https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-mfa-how-it-works>
+[^7]: Microsoft – Azure Defense in Depth. <https://learn.microsoft.com/en-us/azure/security/fundamentals/infrastructure>

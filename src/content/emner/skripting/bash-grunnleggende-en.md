@@ -67,6 +67,7 @@ echo "You are $AGE years old"
 ```
 
 **Important rules:**
+
 - No spaces around `=` when assigning (`VAR="value"`, not `VAR = "value"`).
 - Use double quotes `"..."` around variables to handle spaces in values.
 - Single quotes `'...'` do not interpret variables — `'$NAME'` gives the literal `$NAME`.
@@ -269,6 +270,7 @@ set -e
 ### Lab: Complete Backup Script
 
 We will write a script that:
+
 1. Defines source and destination folders
 2. Creates a date-based backup folder
 3. Copies the content
@@ -339,6 +341,7 @@ echo "testcontent" > "$SOURCE/test.txt"
 Bash is the shell language you encounter on all Linux systems. A Bash script is a text file with commands that are executed line by line by the Bash interpreter.
 
 **Structure of a script:**
+
 1. **Shebang** (`#!/bin/bash`) — always the first line, points to the interpreter.
 2. **Variables** — store data. Assigned without spaces (`NAME="value"`), read with `$NAME`.
 3. **Conditional statements** — `if [ condition ]; then ... fi` controls flow. Use file tests (`-f`, `-d`) and comparisons (`-eq`, `==`).
@@ -348,6 +351,7 @@ Bash is the shell language you encounter on all Linux systems. A Bash script is 
 7. **Error handling** — `$?` is the exit code (0 = ok). `set -e` stops the script at the first error. `>&2` sends error messages to stderr.
 
 **Good practices:**
+
 - Always use `"$VAR"` (double quotes) around variables — protects against spaces in values.
 - Run `shellcheck script.sh` to find errors before execution.
 - Use absolute paths in scripts called by cron or automated systems.

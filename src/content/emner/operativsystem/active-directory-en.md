@@ -21,7 +21,8 @@ original: active-directory.md
 
 **Active Directory (AD)** is Microsoft's directory service and the heart of Windows-based enterprise environments. AD centralizes the management of users, computers, groups, and policies across an entire organization. Instead of managing each machine separately, you control everything from one place — the domain controller.
 
-In Norwegian schools and businesses, Active Directory Domain Services (AD DS) is the most common solution for user administration. This article covers its structure, components, and practical use. AD is closely tied to [[dns-og-dhcp]] — without proper DNS, domain logon does not work. Also see [[serverroller]] for an overview of roles installed on a Windows Server, and [[bruker-og-tilgangsstyring]] for details on permissions and groups.
+In Norwegian schools and businesses, Active Directory Domain Services (AD DS) is the most common solution for user administration. This article covers its structure, components, and practical use. AD is closely tied to [[dns-og-dhcp]] — without proper DNS, domain logon does not work. Also see [[serverroller]] for an overview of roles installed on a Windows Server, and
+  [[bruker-og-tilgangsstyring]] for details on permissions and groups.
 
 ---
 
@@ -31,7 +32,7 @@ In Norwegian schools and businesses, Active Directory Domain Services (AD DS) is
 
 Active Directory is organized as a hierarchy with four levels:
 
-```
+```text
 Forest
 └── Tree
     └── Domain
@@ -49,12 +50,14 @@ The fundamental unit in AD. A domain is a logical group of users, computers, and
 
 **Organizational Unit (OU)**
 Logical containers within a domain. OUs are used to:
+
 - Group objects by function, department, or geography
 - Delegate administrative access (e.g., let the IT department manage only its own OU)
 - Attach Group Policies (GPOs) to specific users or machines
 
 Typical OU structure:
-```
+
+```text
 school.local
 ├── OU=Users
 │   ├── OU=Teachers
@@ -68,6 +71,7 @@ school.local
 ### Domain Controller (DC)
 
 A **domain controller** is a server with AD DS installed. The DC:
+
 - Authenticates all logons in the domain
 - Stores and replicates the AD database (`ntds.dit`)
 - Runs DNS (typically) and the Kerberos authentication service
@@ -85,6 +89,7 @@ The first DC in a domain is also called the first domain-creating controller and
 AD uses **Kerberos** as its default authentication protocol (instead of the older NTLM).
 
 In short:
+
 1. The user logs in and sends their username to the DC
 2. The DC (KDC — Key Distribution Center) returns an encrypted **TGT** (Ticket Granting Ticket)
 3. When the user wants to access a resource, the client uses the TGT to request a **service ticket**
@@ -95,6 +100,7 @@ Kerberos is more secure than NTLM because the password is never transmitted, onl
 ### Active Directory Users and Computers (ADUC)
 
 **ADUC** (`dsa.msc`) is the graphical administration tool for AD. Here you can:
+
 - Create, edit, and delete user accounts
 - Create and manage groups
 - Join computers to OUs
@@ -108,6 +114,7 @@ The default `Users` container holds the built-in accounts: `Administrator`, `Gue
 **Group Policy Objects (GPO)** are among the most powerful features in AD. A GPO is a set of settings that are automatically distributed to users and machines in an OU, domain, or site.
 
 GPOs can control:
+
 - Password policies (length, complexity, lifetime)
 - Security settings (disable USB, lock screen after X minutes)
 - Software distribution (install MSI packages automatically)
@@ -115,6 +122,7 @@ GPOs can control:
 - Desktop settings (wallpaper, start menu)
 
 **Example — Deny Domain Admins logon on client machines:**
+
 1. Open Group Policy Management Console (GPMC)
 2. Create a new GPO on OU=Computers
 3. Navigate to: `Computer Configuration → Windows Settings → Security Settings → Local Policies → User Rights Assignment`
@@ -125,6 +133,7 @@ GPOs are inherited through the hierarchy (forest → domain → OU). A GPO linke
 ### Global Catalog
 
 **Global Catalog (GC)** is a distributed storage that contains a copy of all objects in the entire AD forest — not just the local domain. It is used for:
+
 - Fast cross-domain searches (e.g., finding a user in another domain)
 - Logon with UPNs (User Principal Name, e.g., `user@company.no`)
 - Universal group memberships
@@ -134,6 +143,7 @@ At least one domain controller should have the Global Catalog role enabled. In a
 ### Planning and Naming Standards
 
 Good planning is essential before setting up AD. Key decisions:
+
 - **Domain name**: Use an internal name (e.g., `company.local`) or a subdomain of an external domain (`internal.company.no`). Avoid `.local` in new setups — it can conflict with mDNS.
 - **Naming standard for users**: A consistent naming convention (`firstname.lastname`, `f.lastname`, etc.) simplifies administration and scripting with [[powershell-grunnleggende]].
 - **OU structure**: Design the OU hierarchy based on organizational structure or geographic location — not by roles. The OU structure should be documented in [[dokumentasjon-og-planlegging]].
@@ -141,6 +151,7 @@ Good planning is essential before setting up AD. Key decisions:
 ### Joining Client Machines to the Domain
 
 When a Windows client joins the domain:
+
 1. The machine is created as an object in AD (under `Computers` or a specified OU)
 2. The client begins receiving GPOs from the domain
 3. Domain users can log on to the machine
@@ -222,6 +233,7 @@ gpupdate /force
 **Active Directory** is Microsoft's centralized directory service for Windows domains. It is organized in a hierarchy: **Forest → Tree → Domain → OU**. A **domain controller (DC)** is the server that runs the AD DS role and authenticates all logons.
 
 Core components you need to know:
+
 - **ADUC** (`dsa.msc`) — the graphical tool for creating and managing users, groups, computers, and OUs
 - **GPO (Group Policy Object)** — automatic settings distributed to users and machines in an OU; inherited hierarchically, the closest OU wins
 - **Kerberos** — the authentication protocol AD uses; the password is never sent over the network, only encrypted tickets (TGT)
@@ -229,11 +241,13 @@ Core components you need to know:
 - **Global Catalog** — cross-domain search service; required for UPN logon
 
 Important relationships:
+
 - AD is dependent on **DNS** — the client must be able to resolve the domain controller via DNS to log on
 - **FSMO roles** are specialized DC tasks that only one DC can hold at a time (e.g., PDC Emulator, RID Master)
 - Access control is done via **security groups** linked to NTFS permissions — never assign access directly to individual users
 
 Best practices:
+
 - Always have at least two domain controllers (redundancy)
 - Give administrators two accounts: a daily user account and a separate admin account
 - Use GPOs to enforce password policies and security requirements automatically

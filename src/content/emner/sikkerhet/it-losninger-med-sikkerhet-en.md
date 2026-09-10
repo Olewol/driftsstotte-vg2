@@ -38,6 +38,7 @@ The principles in this article are closely linked to [[brannmur|firewall and net
 **Security by Design** is the principle that security is integrated into all phases of system development and operations – from requirements specification, design, development, and testing, to production and decommissioning.
 
 Microsoft's **SDL (Security Development Lifecycle)** is a reference model with these phases:
+
 1. Training in secure coding
 2. Requirements specification including security requirements
 3. Threat modeling
@@ -67,6 +68,7 @@ Traditional security thinking assumed that everything inside the corporate netwo
 | **Assume breach** | Design the system as if it is already compromised. Segment access, encrypt end-to-end, monitor actively |
 
 **Practical Zero Trust measures:**
+
 - MFA (multi-factor authentication) for all users – always
 - Conditional Access: grant access only from approved devices with updated software
 - Microsegmentation: limit which systems users and applications can reach
@@ -81,6 +83,7 @@ The Norwegian Digitalisation Directorate (Digdir) has published a Norwegian guid
 Known vulnerabilities in software are one of the most common entry points for attackers. Patch management is the systematic process of keeping all software, firmware, and operating systems up to date.
 
 **Patch cycle:**
+
 1. **Identify:** map which systems and versions are in use (inventory list)
 2. **Evaluate:** assess the severity of new patches (critical / important / moderate)
 3. **Test:** test patches in a staging environment before production rollout
@@ -88,6 +91,7 @@ Known vulnerabilities in software are one of the most common entry points for at
 5. **Verify:** confirm that patches are installed and systems are functioning
 
 **Tools:**
+
 - Windows: **WSUS** (Windows Server Update Services), **Microsoft Intune**
 - Linux: `apt update && apt upgrade` (Debian/Ubuntu), `dnf update` (RHEL/Fedora)
 - Network: vendor management portal for firmware
@@ -103,6 +107,7 @@ Automating the patch process is key to reducing the vulnerability window – the
 Logging is the recording of events in an IT system. Without logging, it is impossible to detect attacks, reconstruct event sequences, or investigate breaches.
 
 **What should be logged:**
+
 - Login attempts (successful and failed)
 - Access changes (new users, modified permissions)
 - System changes and configuration changes
@@ -131,6 +136,7 @@ Users, applications, and services should only have the access rights that are st
 Permissions are tied to roles (e.g., "Helpdesk," "Accounting Staff," "IT Admin"), not to individual users. Users are assigned roles.
 
 **Tools:**
+
 - **Active Directory (AD):** user accounts, groups, and permissions management on-premises. See [[active-directory]].
 - **Azure Entra ID (formerly Azure AD):** cloud-based IAM. Supports SSO (Single Sign-On), MFA, and Conditional Access.
 - **MFA:** combines something you know (password), something you have (authenticator app/SMS), and/or something you are (biometrics). Blocks over 99% of account takeovers according to Microsoft.
@@ -144,11 +150,13 @@ See also [[bruker-og-tilgangsstyring|user and access management]] for a practica
 Backup is not just an operational routine – it is a security measure and the most important reactive measure against ransomware.
 
 **The 3-2-1 rule:**
+
 - **3** copies of the data
 - on **2** different media (e.g., disk + tape or disk + cloud)
 - with **1** offsite copy (physical or cloud-based)
 
 **Practical:**
+
 - Test recovery regularly – a backup is worthless if it cannot be restored
 - Isolate backup systems from the production network (ransomware encrypts everything it can reach)
 - Azure Backup: integrated cloud backup for virtual machines, databases, and file servers
@@ -179,7 +187,7 @@ Example: A hospital may have RTO = 4 hours and RPO = 1 hour for its patient reco
 
 **Defense in Depth** (layered defense) is the principle that no single security mechanism is sufficient – security is built in layers, so that even if one layer fails, the next layer stops the attacker.
 
-```
+```text
 Layer 7: Data          → Encryption, access control, DLP
 Layer 6: Application   → WAF, secure coding, patch management
 Layer 5: Identity      → MFA, Zero Trust, IAM, RBAC
@@ -200,6 +208,7 @@ Microsegmentation is a concrete measure for implementing Defense in Depth at the
 **Scenario: Assess the security level of a fictional school network**
 
 Solberg Upper Secondary School has the following IT infrastructure:
+
 - Windows Server 2022 (AD, file server, WSUS)
 - 350 Windows 11 clients managed via Intune
 - Microsoft 365 with Entra ID and MFA enabled for employees

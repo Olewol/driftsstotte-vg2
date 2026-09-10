@@ -115,6 +115,7 @@ Access control is built on three steps:
 **Role-based access control (RBAC)** is an extension of the principle of least privilege. Instead of assigning permissions directly to individual users, permissions are linked to **roles** (e.g., "Accountant", "IT Administrator", "Student"). Users are then assigned roles.
 
 Benefits of RBAC:
+
 - Easier to manage with large numbers of users
 - Easier to audit ("who has role X?" is one question, not many)
 - Lower risk of misconfiguration — new users inherit the role automatically
@@ -124,6 +125,7 @@ In Windows AD, RBAC is practically implemented using security groups: one group 
 ### Windows and Linux Integration
 
 In larger environments, it is desirable for Linux clients to be able to log on against the Windows domain. This is typically done with:
+
 - **SSSD** (System Security Services Daemon) — lets Linux authenticate against AD
 - **Samba/Winbind** — alternative solution for domain integration
 
@@ -136,26 +138,31 @@ This is advanced material, but the concept is important: one central user system
 ### Managing Local Users with PowerShell
 
 **Create a new local user:**
+
 ```powershell
 New-LocalUser -Name "Student01" -Password (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) -FullName "Student Studentsen" -Description "Test account"
 ```
 
 **Add the user to a group:**
+
 ```powershell
 Add-LocalGroupMember -Group "Users" -Member "Student01"
 ```
 
 **List all local users:**
+
 ```powershell
 Get-LocalUser
 ```
 
 **Disable an account:**
+
 ```powershell
 Disable-LocalUser -Name "Student01"
 ```
 
 **Remove user from group:**
+
 ```powershell
 Remove-LocalGroupMember -Group "Users" -Member "Student01"
 ```
@@ -163,28 +170,34 @@ Remove-LocalGroupMember -Group "Users" -Member "Student01"
 ### Linux Equivalents
 
 **Create user:**
+
 ```bash
 sudo useradd -m -s /bin/bash student01
 ```
+
 The flags `-m` create a home directory and `-s` sets the default shell.
 
 **Set password:**
+
 ```bash
 sudo passwd student01
 ```
 
 **Add user to a group (e.g., sudo):**
+
 ```bash
 sudo usermod -aG sudo student01
 ```
 
 **View user's groups:**
+
 ```bash
 groups student01
 id student01
 ```
 
 **Disable account (lock password):**
+
 ```bash
 sudo passwd -l student01
 ```
@@ -192,7 +205,8 @@ sudo passwd -l student01
 ### Structure of /etc/passwd
 
 Each line in `/etc/passwd` has seven fields separated by colons:
-```
+
+```text
 username:x:UID:GID:GECOS:home_directory:shell
 student01:x:1001:1001:Student Studentsen:/home/student01:/bin/bash
 ```
@@ -202,7 +216,7 @@ student01:x:1001:1001:Student Studentsen:/home/student01:/bin/bash
 
 ### Structure of /etc/group
 
-```
+```text
 groupname:x:GID:members
 sudo:x:27:student01,admin
 ```
@@ -214,10 +228,12 @@ sudo:x:27:student01,admin
 **User and access management** is about ensuring the right people have access to the right resources. The core principle is **least privilege**: never give more access than necessary.
 
 Two account types to distinguish:
+
 - **Local accounts** are stored in the machine's SAM database and apply only locally
 - **Domain accounts** are stored in Active Directory and work on all domain-joined machines
 
 Important Windows concepts:
+
 - **SID** — Windows does not use usernames internally, but SIDs. If you delete and recreate an account with the same name, it loses all permissions
 - **UAC** — prevents programs from escalating to admin rights without explicit confirmation
 - **Security groups** — always assign permissions to groups, never to individual users
@@ -226,6 +242,7 @@ Important Windows concepts:
 The AAA framework summarizes access control: **Authentication** (who are you?), **Authorization** (what are you allowed to do?), **Accounting/Auditing** (what have you done?).
 
 Linux equivalents:
+
 - Users are created with `useradd`, modified with `usermod`, deleted with `userdel`
 - Groups are managed with `groupadd` and `gpasswd`
 - `/etc/passwd` contains user info; `/etc/shadow` contains encrypted passwords (only root can read)

@@ -25,7 +25,8 @@ notebooklm: true
 
 ## Introduksjon
 
-Et nettverket der alle enheter snakker med alle andre er enkelt å sette opp — men det er en sikkerhetsmessig og ytelsesmessig katastrofe. Segmentering handler om å dele nettverket inn i logiske soner slik at trafikken styres kontrollert. I praksis gjøres dette med subnetting (lag 3) og VLAN (lag 2). Disse to teknikkene utfyller hverandre og er fundamentale for alle som skal planlegge og drifte et profesjonelt nettverk.
+Et nettverket der alle enheter snakker med alle andre er enkelt å sette opp — men det er en sikkerhetsmessig og ytelsesmessig katastrofe. Segmentering handler om å dele nettverket inn i logiske soner slik at trafikken styres kontrollert. I praksis gjøres dette med subnetting (lag 3) og VLAN (lag 2). Disse to teknikkene utfyller hverandre og er fundamentale for alle som skal planlegge og
+  drifte et profesjonelt nettverk.
 
 For å forstå segmentering er det nyttig å se det i sammenheng med [[osi-modellen]] og de standardiserte protokollene beskrevet i [[nettverksprotokoller]]. VLAN er særlig sentralt i virtuelle infrastrukturer der virtuelle svitsjer bruker IEEE 802.1Q-tagging for å separere trafikk logisk.
 
@@ -37,7 +38,7 @@ For å forstå segmentering er det nyttig å se det i sammenheng med [[osi-model
 
 En IPv4-adresse er 32 bit lang[^2] og skrives som fire desimale tall separert av punktum (dotted decimal notation):
 
-```
+```text
 192  .  168  .   1  .  10
 11000000.10101000.00000001.00001010
 ```
@@ -47,6 +48,7 @@ Hvert tall (oktet) kan være fra 0 til 255 (8 bit). Det gir teoretisk ca. **4,29
 #### Nettverksdel og vertsdel
 
 En IP-adresse er delt i to:
+
 - **Nettverksdelen**: identifiserer nettverket
 - **Vertsdelen**: identifiserer den spesifikke enheten i nettverket
 
@@ -102,7 +104,7 @@ Et VLAN (Virtual Local Area Network) er en logisk inndeling av et fysisk nettver
 
 Standarden for VLAN er **IEEE 802.1Q**[^4]. Den definerer hvordan en VLAN-tag legges til i Ethernet-rammen:
 
-```
+```text
 [Dest MAC][Src MAC][802.1Q tag][EtherType][Data][FCS]
                   |          |
                   4 bytes: inkluderer 12-bits VLAN ID (0–4094)
@@ -146,6 +148,7 @@ En **trunk-port** er altså en svitsjeport konfigurert for å bære trafikk fra 
 ### Konfigurasjon i UniFi
 
 **Opprette et VLAN:**
+
 1. UniFi Network → Settings → Networks
 2. Klikk "Create New Network"
 3. Velg "Virtual Network (VLAN)"
@@ -155,6 +158,7 @@ En **trunk-port** er altså en svitsjeport konfigurert for å bære trafikk fra 
 7. Lagre
 
 **Tilordne VLAN til svitsjeport:**
+
 1. UniFi Network → Devices → velg svitsjen
 2. Gå til Ports-fanen
 3. Klikk på ønsket port
@@ -163,6 +167,7 @@ En **trunk-port** er altså en svitsjeport konfigurert for å bære trafikk fra 
    - Tagged VLANs: VLAN-ene som skal tagges gjennom porten (trunk-port)
 
 **Trådløst VLAN (SSID):**
+
 1. Settings → WiFi → opprett nytt WiFi-nettverk
 2. Knytt SSID til ønsket VLAN (f.eks. "Gjest-WiFi" → VLAN 20)
 
@@ -175,6 +180,7 @@ Subnetting deler et IP-adresserom i mindre, isolerte nett. /24 er vanligste LAN-
 VLAN er logisk nettverkssegmentering på lag 2 (datalink). IEEE 802.1Q-taggen (4 bytes) legges i Ethernet-rammen med VLAN ID. Access-porter fjerner taggen for sluttenheter; trunk-porter beholder den for å bære flere VLAN.
 
 **Vanlige eksamenspoeng**
+
 - Beregne nettverksadresse, broadcast og brukbare adresser fra CIDR-notasjon
 - Forskjellen mellom access-port og trunk-port
 - Hva native VLAN er og hvorfor VLAN 1 som native VLAN er en sikkerhetsrisiko
@@ -195,7 +201,8 @@ Broadcast (f.eks. DHCP Discover, ARP) sendes bare innenfor det samme VLAN-et. De
 Native VLAN er VLAN-et som håndterer utagget trafikk på en trunk-port. VLAN 1 er standard, men det er kjent som en sikkerhetsrisiko (VLAN hopping-angrep). Beste praksis er å velge et ubrukt VLAN-nummer som native VLAN.
 
 **Hvordan konfigurerer man VLAN på Cisco-svitsj (grunnleggende)?**
-```
+
+```text
 Switch(config)# vlan 10
 Switch(config-vlan)# name Ansatte
 Switch(config)# interface fa0/1
@@ -218,10 +225,12 @@ Ja. Moderne aksesspunkter støtter SSID-til-VLAN-mapping. Gjeste-WiFi-nettverket
 <summary>Spørsmål 1: Hva er nettverksadressen, første brukbare IP og broadcast for 192.168.5.0/26?</summary>
 
 **Svar:** /26 gir subnettmaske 255.255.255.192 (64 adresser per blokk).
+
 - Nettverksadresse: `192.168.5.0`
 - Første brukbare host: `192.168.5.1`
 - Siste brukbare host: `192.168.5.62`
 - Broadcast: `192.168.5.63`
+
 </details>
 
 <details>
@@ -264,11 +273,11 @@ IEEE 802.1Q (standard) :: Den internasjonale standarden for VLAN-tagging i Ether
 
 ## Kilder
 
-[^1]: NDLA. (2024). IPv4. https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02
-[^2]: Cloudflare Learning. (2025). What is IP? https://www.cloudflare.com/learning/network-layer/what-is-an-ip-address/
-[^3]: Professor Messer. (2025). Network+ Study Guide — VLANs and Switching. https://www.professormesser.com/network-plus/
-[^4]: NDLA. (2024). Virtuelt lokalnettverk VLAN. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88
-[^5]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^1]: NDLA. (2024). IPv4. <https://ndla.no/en/r/operational-support-im-itk-vg2/ipv4/987eefec02>
+[^2]: Cloudflare Learning. (2025). What is IP? <https://www.cloudflare.com/learning/network-layer/what-is-an-ip-address/>
+[^3]: Professor Messer. (2025). Network+ Study Guide — VLANs and Switching. <https://www.professormesser.com/network-plus/>
+[^4]: NDLA. (2024). Virtuelt lokalnettverk VLAN. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88>
+[^5]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 

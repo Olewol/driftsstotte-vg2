@@ -22,7 +22,8 @@ notebooklm: true
 
 ## Introduksjon
 
-Når du kobler en PC til et nettverk, skjer det to ting automatisk i bakgrunnen: maskinen får en IP-adresse (DHCP), og den lærer hvem den skal spørre når den trenger å finne ut hva `ndla.no` betyr i tall (DNS). Disse to tjenestene er usynlige for de fleste brukere — men uten dem ville ingenting fungere. Som driftstøtter er de to av de viktigste tjenestene du vil konfigurere og feilsøke. DNS og DHCP er ikke isolerte tjenester — de samarbeider tett med [[serverroller]] i et domenenettverk, og feil i én av dem er en av de vanligste årsakene til nettverksproblemer i bedriftsmiljøer. For å forstå hvilke protokoller og porter disse tjenestene bruker, se [[nettverksprotokoller]].
+Når du kobler en PC til et nettverk, skjer det to ting automatisk i bakgrunnen: maskinen får en IP-adresse (DHCP), og den lærer hvem den skal spørre når den trenger å finne ut hva `ndla.no` betyr i tall (DNS). Disse to tjenestene er usynlige for de fleste brukere — men uten dem ville ingenting fungere. Som driftstøtter er de to av de viktigste tjenestene du vil konfigurere og feilsøke.
+  DNS og DHCP er ikke isolerte tjenester — de samarbeider tett med [[serverroller]] i et domenenettverk, og feil i én av dem er en av de vanligste årsakene til nettverksproblemer i bedriftsmiljøer. For å forstå hvilke protokoller og porter disse tjenestene bruker, se [[nettverksprotokoller]].
 
 ## Teori
 
@@ -33,6 +34,7 @@ DHCP automatiserer tildeling av IP-konfigurasjonen til klienter. Uten DHCP mått
 #### Hva DHCP deler ut
 
 En DHCP-server tildeler klienter:
+
 - **IP-adresse** (f.eks. `192.168.1.50`)
 - **Subnettmaske** (f.eks. `255.255.255.0`)
 - **Standard gateway** (f.eks. `192.168.1.1`)
@@ -71,6 +73,7 @@ En **lease-tid** er tidsavtalen mellom DHCP-server og klient om at klienten bruk
 I et enkelt hjemmenettverk kjører DHCP på ruteren. I et bedriftsnettverk med Windows Server bør DHCP flyttes til domenekontrolleren[^6]. Da må DHCP på ruteren **deaktiveres** for å unngå konflikter (to DHCP-servere på samme nett gir kaos).
 
 Sjekk nåværende IP-konfigurasjon fra klienten:
+
 ```cmd
 ipconfig /all
 ```
@@ -85,7 +88,7 @@ DNS er internettets "telefonbok"[^3]. Det oversetter menneskevennlige domenenavn
 
 DNS er organisert i et tre-hierarki:
 
-```
+```text
                     . (rot)
                    / \
                 .no   .com
@@ -155,7 +158,8 @@ nslookup
 ```
 
 Eksempel på output fra `nslookup ndla.no`:
-```
+
+```text
 Server:  UnKnown
 Address:  192.168.1.1
 
@@ -185,6 +189,7 @@ ipconfig /flushdns
 ### Praktisk feilsøking
 
 Vanlige problemer og tiltak:
+
 - **Ingen IP-adresse**: klienten har ikke nådd DHCP-serveren (sjekk om scope er aktivt, om DHCP på ruter er av, om det er nok ledige adresser)
 - **Kan ikke nå ndla.no**: sjekk med `nslookup ndla.no` — hvis DNS-oppslaget feiler, er problemet DNS. Hvis DNS gir svar men siden ikke åpner, er problemet i nettverksforbindelsen.
 - **169.254.x.x-adresse**: APIPA-adresse[^5] — klienten fikk ikke svar fra DHCP-server
@@ -198,6 +203,7 @@ DHCP automatiserer IP-konfigurasjonen. DORA-prosessen (Discover → Offer → Re
 DNS er hierarkisk (rot → TLD → domene → vertsnavn). A-posten er den viktigste. CNAME brukes til alias. MX peker til e-postserver. PTR brukes til omvendt oppslag. I AD er DNS-serveren autoritativ for det lokale domenet.
 
 **Vanlige eksamenspoeng**
+
 - DORA-prosessen steg for steg
 - Hva de ulike DNS-posttypene gjør (A, AAAA, CNAME, MX, PTR)
 - Forskjellen mellom autoritativ DNS-server og rekursiv resolver
@@ -279,12 +285,12 @@ A-Record :: En ressurs-oppføring i DNS som kobler et vertsnavn til en spesifikk
 
 ## Kilder
 
-[^1]: NDLA. (2024). Driftsstøtte IM-ITK VG2 — nettverksfag. https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
-[^2]: Microsoft Learn. (2024). DHCP Overview. https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top
-[^3]: Cloudflare Learning. (2025). What is DNS? https://www.cloudflare.com/learning/dns/what-is-dns/
-[^4]: Professor Messer. (2025). Network+ Study Guide — Network Security. https://www.professormesser.com/network-plus/
-[^5]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
-[^6]: NDLA. (2024). Deaktivere eksisterende DHCP-server. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7
+[^1]: NDLA. (2024). Driftsstøtte IM-ITK VG2 — nettverksfag. <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
+[^2]: Microsoft Learn. (2024). DHCP Overview. <https://learn.microsoft.com/nb-no/windows-server/networking/technologies/dhcp/dhcp-top>
+[^3]: Cloudflare Learning. (2025). What is DNS? <https://www.cloudflare.com/learning/dns/what-is-dns/>
+[^4]: Professor Messer. (2025). Network+ Study Guide — Network Security. <https://www.professormesser.com/network-plus/>
+[^5]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
+[^6]: NDLA. (2024). Deaktivere eksisterende DHCP-server. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/deaktivere-eksisterende-dhcp-server/9d5c1dedc7>
 
 ## Ressurser
 

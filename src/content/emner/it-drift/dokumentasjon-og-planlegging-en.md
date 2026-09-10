@@ -51,7 +51,7 @@ A network topology describes how nodes (devices) are connected in a network.
 
 All devices connect to a central switch or router. Easy to troubleshoot (isolate the cable to the faulty device) and easy to expand.
 
-```
+```text
       [PC]
        |
 [PC]--[Switch]--[PC]
@@ -66,7 +66,7 @@ All devices connect to a central switch or router. Easy to troubleshoot (isolate
 
 All nodes are connected to all other nodes (full mesh) or to many others (partial mesh). Used in WAN networks and robust critical systems.
 
-```
+```text
 [A]---[B]
  | \ / |
  | X  |
@@ -118,6 +118,7 @@ An operations log (change log) is a chronological record of all changes made to 
 #### Format
 
 The log should contain:
+
 - **Date and time** – when was the change made?
 - **Performed by** – who did it?
 - **What was done** – concrete description of the change
@@ -141,7 +142,7 @@ Critical operations should be documented as step-by-step procedures. This ensure
 
 **Example: Procedure for Monthly Backup Test**
 
-```
+```text
 Title: Monthly Recovery Test of File Server Backup
 Responsible role: System Administrator
 Frequency: Every 1st Monday of the month
@@ -181,6 +182,7 @@ Expected result: VM starts, files accessible, no errors.
 
 **Change Management**
 A structured process for handling changes in the IT environment in a controlled manner:
+
 1. The change is planned and documented
 2. Risk assessment is performed
 3. The change is approved (by the appropriate person/role)
@@ -252,6 +254,7 @@ Choose one critical IT operation (e.g., adding a new user in Active Directory, o
 Documentation and planning is about creating and maintaining an overview of the IT environment – so that operations, troubleshooting, and changes can be done in a controlled and efficient manner.
 
 **Types of documentation:**
+
 - **IP address plan** – overview of VLANs, subnets, gateway, DNS, DHCP, and static addresses
 - **Network topology** – visual map of network components and connections (draw.io)
 - **Operations log / change log** – chronological register of all changes
@@ -259,6 +262,7 @@ Documentation and planning is about creating and maintaining an overview of the 
 - **CMDB** – register of all infrastructure
 
 **Network topologies:**
+
 - Star (most common): centralized switch, easy to troubleshoot
 - Mesh: all connected to all, robust but complex
 - Bus: historical, not used in modern networks

@@ -48,6 +48,7 @@ En **hypervisor** er programvaren som administrerer de virtuelle maskinene og fo
 Hyper-V er Microsofts Type 1-hypervisor og er tilgjengelig som en serverrolle i Windows Server[^1]. Den kan også aktiveres som funksjon i Windows 10/11 Pro.
 
 Nøkkelbegreper i Hyper-V:
+
 - **Root partition**: Windows Server-installasjonen med tilgang til faktisk maskinvare
 - **Child partition (Guest VM)**: Den virtuelle maskinen som kun ser emulert/virtuell maskinvare
 - **Generation 1 vs. Generation 2**: Gen 2 støtter UEFI og Secure Boot, anbefalt for moderne OS
@@ -59,12 +60,14 @@ VirtualBox er gratis og plattformuavhengig (Windows, macOS, Linux). Godt egnet f
 ### Virtuelle maskiner — egenskaper
 
 Hver VM har:
+
 - **Virtuell CPU** (vCPU) — én eller flere kjerner
 - **Virtuelt RAM** — allokert fra fysisk RAM
 - **Virtuell harddisk** — lagret som en fil (.vhd, .vhdx, .vmdk) på fysisk disk
 - **Virtuelt nettverkskort** — koblet til en virtuell svitsj
 
 Fordeler med VM-er:
+
 - **Isolasjon**: feil eller kompromittering i én VM påvirker ikke andre
 - **Ressurseffektivitet**: unngår "én server per tjeneste"-overforbruk
 - **Portabilitet**: en VM kan eksporteres og importeres på annen hardware
@@ -106,6 +109,7 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 ### Praktisk bruk i VG2
 
 **Opprette VM i Hyper-V (forenklet):**
+
 1. Hyper-V Manager → Action → New → Virtual Machine
 2. Gi VM-en et navn (f.eks. `WinServer01`)
 3. Velg Generasjon (Gen 2 for Windows Server 2019/2022)
@@ -116,6 +120,7 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 8. Fullfør og start VM-en
 
 **Snapshots/kontrollpunkter:**
+
 - Høyreklikk VM → Checkpoint (tar øyeblikksbilde)
 - Rull tilbake: høyreklikk checkpoint → Apply
 - Slett foreldede checkpoints for å frigjøre diskplass
@@ -131,7 +136,8 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 > **VM-oppsett:** Begge VM-er (WebServer og DBServer) konfigureres med min. 4 GB RAM, 2 CPU-er og 25 GB disk. Nettverksmodus settes til **Bridged Adapter** slik at VM-ene får egne IP-adresser på skolenettverket.
 >
 > **Statisk IP med Netplan (Ubuntu Server):**
-> ```yaml
+>
+> ```yamlyaml
 > network:
 >   ethernets:
 >     enp0s3:
@@ -144,7 +150,9 @@ Eksempel: En Windows Server-VM med AD DS tilordnes VLAN 30 (Servere), mens klien
 >       nameservers:
 >         addresses: [192.168.52.5, 8.8.8.8]
 >   version: 2
+>
 > ```
+>
 > Aktiver med `sudo netplan apply`.
 >
 > **WebServer:** Apache installeres (`sudo apt install apache2 -y`) og PHP-moduler som kreves av osTicket. osTicket lastes ned og legges i `/var/www/html/`.
@@ -176,6 +184,7 @@ NAT: VM deler hostens IP, ikke synlig utenfra. Bridged: VM får egen IP, oppfør
 Virtuelle svitsjer støtter VLAN-tagging. En VM kan tilhøre et VLAN akkurat som en fysisk maskin. Dette er sentralt for å integrere virtuelle servere i segmenterte nettverksarkitekturer.
 
 **Vanlige eksamenspoeng**
+
 - Forskjellen mellom Type 1 og Type 2 hypervisor
 - Hva et snapshot er og når man bruker det
 - Forskjellen mellom NAT og Bridged i VirtualBox
@@ -256,10 +265,10 @@ Isolasjon :: Prinsippet om at en virtuell maskin er separert fra andre maskiner 
 
 ## Kilder
 
-[^1]: Microsoft Learn. (2025). Hyper-V Technology Overview. https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview
-[^2]: Professor Messer. (2025). Network+ Study Guide — Virtualization. https://www.professormesser.com/network-plus/
-[^3]: NDLA. (2024). Virtualisering i Windows Server. https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb
-[^4]: Cloudflare Learning. (2025). What is Virtualization? https://www.cloudflare.com/learning/cloud/what-is-virtualization/
+[^1]: Microsoft Learn. (2025). Hyper-V Technology Overview. <https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview>
+[^2]: Professor Messer. (2025). Network+ Study Guide — Virtualization. <https://www.professormesser.com/network-plus/>
+[^3]: NDLA. (2024). Virtualisering i Windows Server. <https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb>
+[^4]: Cloudflare Learning. (2025). What is Virtualization? <https://www.cloudflare.com/learning/cloud/what-is-virtualization/>
 
 ## Ressurser
 

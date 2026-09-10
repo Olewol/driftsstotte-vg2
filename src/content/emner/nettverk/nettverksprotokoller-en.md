@@ -49,6 +49,7 @@ All application protocols run either over TCP or UDP at the transport layer.
 A **port number** is a number from 0–65535 (16 bit) that identifies which service a network packet is intended for on a machine. The IP address finds the machine; the port number finds the right service on the machine.
 
 Categories:
+
 - **Well-known ports (0–1023)**: standard ports for well-known services (HTTP, SMTP, DNS, etc.)
 - **Registered ports (1024–49151)**: used by applications
 - **Dynamic/ephemeral ports (49152–65535)**: temporarily assigned to client connections
@@ -79,7 +80,7 @@ A **three-way handshake** is the process TCP uses to establish a stable connecti
 
 HTTP (Hypertext Transfer Protocol) is the foundation of web communication. The protocol uses a **request/response model**:
 
-```
+```text
 Client → Server:
 GET /index.html HTTP/1.1
 Host: ndla.no
@@ -93,6 +94,7 @@ Content-Type: text/html
 **HTTP methods**: GET (get resource), POST (send data), PUT (update), DELETE (delete)
 
 **HTTP status codes**:
+
 - 2xx Success: `200 OK`, `201 Created`
 - 3xx Redirection: `301 Moved Permanently`, `302 Found`
 - 4xx Client Error: `400 Bad Request`, `403 Forbidden`, `404 Not Found`
@@ -126,7 +128,7 @@ SSH uses asymmetric cryptography: server and client exchange keys, and all commu
 
 The email system uses different protocols for sending and receiving:
 
-```
+```text
 [Sender client] --SMTP(587)-→ [Sender's mail server] --SMTP(25)-→ [Recipient's mail server]
                                                                               ↓
                                                                [Recipient client] ←--IMAP(993)--
@@ -145,6 +147,7 @@ SNMPv1 and v2c use "community strings" (passwords in plain text). **SNMPv3** is 
 ### Security and Ports
 
 Well-known port numbers are also well-known attack targets. SSH (port 22) and RDP (port 3389) are constantly subjected to automated login attempts (brute force). Countermeasures:
+
 - Use VPN — only allow RDP/SSH from internal network or VPN
 - Restrict with IP restrictions in firewall
 - Use key-based authentication for SSH (not passwords)
@@ -186,6 +189,7 @@ Answer: SSH/SFTP, HTTP, HTTPS, RDP, SMTP
 ### Analyze Packets with Wireshark
 
 Wireshark is a network analysis tool that lets you see actual network traffic. Start a capture and filter by protocol:
+
 - `http` — see HTTP requests
 - `dns` — see DNS lookups
 - `tcp.port == 443` — see HTTPS traffic (encrypted content, but metadata visible)
@@ -201,6 +205,7 @@ TCP is reliable and connection-oriented (three-way handshake, ACK). UDP is fast 
 Create a table: HTTP=80, HTTPS=443, SSH=22, FTP=21/20, SMTP=25/587, IMAP=143/993, DNS=53, RDP=3389, DHCP=67/68.
 
 **Common Exam Points**
+
 - Identify which protocol and port is used for a given task
 - The difference between FTP and SFTP (security)
 - What HTTP status codes mean (2xx, 4xx, 5xx)

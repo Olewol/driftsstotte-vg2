@@ -300,6 +300,7 @@ SQL is the standard language for relational databases and is divided into three 
 Tables consist of columns (structure) and rows (data). The primary key uniquely identifies each row and cannot be NULL. The foreign key links tables together and ensures referential integrity — you cannot point to a row that does not exist. `AUTO_INCREMENT` makes MySQL assign the primary key value automatically.
 
 **CRUD — the four core operations**
+
 - `INSERT` — add new rows (Create)
 - `SELECT` — retrieve and filter data (Read)
 - `UPDATE` — modify existing rows (Update)

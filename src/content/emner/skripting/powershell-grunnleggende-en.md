@@ -119,6 +119,7 @@ $active = $true
 ```
 
 **String types:**
+
 - Single quotes: `'Hello $name'` — interpreted literally, no variable expansion.
 - Double quotes: `"Hello $name"` — variables are expanded to their value.
 - For complex expressions inside a string: `"There are $($users.Count) users"`.
@@ -331,6 +332,7 @@ PowerShell differs from traditional shell languages by working with **.NET objec
 7. **Error handling** with `try/catch` requires `-ErrorAction Stop` to catch errors from cmdlets.
 
 **Important distinctions:**
+
 - `Write-Host` displays to screen; `Write-Output` sends to the pipeline — use correctly in functions.
 - Execution Policy controls which scripts can run; `RemoteSigned` is a good choice in operations environments.
 - `Get-Member` is your best friend: shows all properties and methods of an object in the pipeline.

@@ -48,6 +48,7 @@ Nøkkelbegreper:
 | **Indeks** | En datastruktur som gjør oppslag raskere |
 
 Relasjoner mellom tabeller kan være:
+
 - **En-til-mange (1:N)** — én avdeling har mange ansatte
 - **Mange-til-mange (M:N)** — en student kan ta mange kurs, et kurs kan ha mange studenter (løses med en koblingstabell)
 

@@ -24,9 +24,11 @@ original: personvern.md
 
 Privacy is about an individual's right to control information about themselves. In our digital everyday lives – where apps, services, and organizations collect enormous amounts of data about us – privacy is both a fundamental right and a legal requirement.
 
-In the EU and Norway, privacy is regulated by **GDPR** (General Data Protection Regulation), an EU regulation that came into force in May 2018. GDPR applies in Norway through the EEA Agreement and is implemented in Norwegian law via the **Personal Data Act**. For those working in IT operations, privacy is not something the legal department handles alone – technical choices like database structure, access control, logging, and backup have direct privacy implications.
+In the EU and Norway, privacy is regulated by **GDPR** (General Data Protection Regulation), an EU regulation that came into force in May 2018. GDPR applies in Norway through the EEA Agreement and is implemented in Norwegian law via the **Personal Data Act**. For those working in IT operations, privacy is not something the legal department handles alone – technical choices like database
+  structure, access control, logging, and backup have direct privacy implications.
 
-As an IT operations professional, you will encounter privacy in connection with [[kryptering|encryption]] (GDPR requires encryption of personal data), [[bruker-og-tilgangsstyring|user and access management]] (who has access to personal data?), and [[risikoanalyse|risk analysis]] (GDPR Art. 32 requires risk assessment as a basis for security measures). Privacy is not isolated legal theory – it is technical practice.
+As an IT operations professional, you will encounter privacy in connection with [[kryptering|encryption]] (GDPR requires encryption of personal data), [[bruker-og-tilgangsstyring|user and access management]] (who has access to personal data?), and [[risikoanalyse|risk analysis]] (GDPR Art. 32 requires risk assessment as a basis for security measures). Privacy is not isolated legal theory
+– it is technical practice.
 
 ---
 
@@ -83,6 +85,7 @@ GDPR gives individuals a number of rights that organizations are obligated to fu
 **Privacy by Design** is the principle that privacy must be integrated into system design from the start, not added afterward. This is codified in GDPR Art. 25.
 
 Practical examples:
+
 - Encrypt all data storage from day one – not as an afterthought
 - Only collect necessary fields in registration forms (data minimization)
 - Implement access control so that only authorized users see sensitive data
@@ -107,6 +110,7 @@ This distinction is crucial for who is responsible if something goes wrong, and 
 ### Data Protection Officer (DPO)
 
 Some organizations are required to have a **Data Protection Officer (DPO)**. This applies to:
+
 - Public authorities (all Norwegian municipalities, agencies, etc.)
 - Organizations that carry out systematic monitoring of individuals on a large scale
 - Organizations that process special categories of personal data on a large scale
@@ -131,6 +135,7 @@ If personal data is compromised (unauthorized access, data loss, incorrect discl
 
 **GDPR Art. 33 – The 72-hour rule:**
 Breaches that pose a risk to data subjects must be notified to the Data Protection Authority (Datatilsynet) within **72 hours** of the organization becoming aware of the breach. The notification must include:
+
 - Description of the breach (what happened)
 - Categories and approximate number of affected individuals
 - Possible consequences
@@ -145,11 +150,13 @@ Incident management – the routines for detecting, stopping, and reporting brea
 ### Datatilsynet and Sanctions
 
 **Datatilsynet** is the Norwegian supervisory authority for privacy. Datatilsynet:
+
 - Enforces GDPR and the Personal Data Act
 - Provides guidance to organizations and individuals
 - Can impose administrative fines
 
 **Sanctions under GDPR:**
+
 - Up to **€10 million** or 2% of global annual turnover for technical breaches (Art. 83.4)
 - Up to **€20 million** or 4% of global annual turnover for fundamental breaches (Art. 83.5)
 
@@ -160,18 +167,21 @@ Incident management – the routines for detecting, stopping, and reporting brea
 ### Consequences of Personal Data Breaches
 
 **For individuals:**
+
 - Identity theft and fraud (leaked ID numbers, account numbers)
 - Psychological harm and loss of control over one's own life
 - Discrimination (leaked information about health, sexuality, political beliefs)
 - Stalking and harassment (leaked address or location data)
 
 **For organizations:**
+
 - Multi-million euro fines from the Data Protection Authority
 - Damaged reputation and loss of customer trust
 - Lawsuits from affected parties
 - Loss of public sector contracts
 
 **For society:**
+
 - Reduced trust in digital services
 - Increased resistance to necessary digitalization
 - Potential misuse of personal data in political campaigns (Cambridge Analytica scandal)

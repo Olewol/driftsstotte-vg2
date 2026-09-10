@@ -216,13 +216,13 @@ Important columns in EXPLAIN output:
 
 Example of a bad query (full scan):
 
-```
+```text
 type: ALL, key: NULL, rows: 10000
 ```
 
 After adding an index:
 
-```
+```text
 type: ref, key: idx_type, rows: 42
 ```
 
@@ -345,7 +345,8 @@ EXPLAIN SELECT * FROM equipment WHERE type = 'PC';
 Database administration in MySQL covers three main areas of responsibility that an operations technician encounters in daily work.
 
 **User access and security**
-MySQL identifies users with the combination `'username'@'host'`, which gives granular control over who connects from which machine. Access control happens in two steps: authentication (is it the right user?) and authorization (what are they allowed to do?). The principle of least privilege is crucial: never grant more than what is needed. From MySQL 8.0, roles (RBAC) can be used to simplify administration where many users need the same privileges.
+MySQL identifies users with the combination `'username'@'host'`, which gives granular control over who connects from which machine. Access control happens in two steps: authentication (is it the right user?) and authorization (what are they allowed to do?). The principle of least privilege is crucial: never grant more than what is needed. From MySQL 8.0, roles (RBAC) can be used to
+  simplify administration where many users need the same privileges.
 
 Key commands: `CREATE USER`, `GRANT`, `REVOKE`, `FLUSH PRIVILEGES`, `SHOW GRANTS`, `DROP USER`, `CREATE ROLE`.
 

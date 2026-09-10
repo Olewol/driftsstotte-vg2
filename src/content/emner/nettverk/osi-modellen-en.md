@@ -48,6 +48,7 @@ The physical layer defines the electrical, optical, and wireless signals that re
 
 **Layer 2 — Data Link Layer**
 Wraps bits into *frames* and handles transmission within one network segment. Divided into two sublayers:
+
 - **MAC (Media Access Control)**: addressing with 48-bit MAC addresses, media access control
 - **LLC (Logical Link Control)**: error detection, flow control
 
@@ -64,6 +65,7 @@ Manages *sessions* — persistent connections between applications. The session 
 
 **Layer 6 — Presentation Layer**
 Translates data between the application's format and the network's format. Responsible for:
+
 - **Encryption/decryption**: TLS/SSL encrypts HTTP traffic to HTTPS
 - **Compression**: reduces the amount of data being sent
 - **Format conversion**: ensures character sets (UTF-8, ASCII) are interpreted the same on both sides
@@ -133,6 +135,7 @@ Determine which OSI layer each scenario belongs to:
 Scenario: A PC can ping `192.168.1.1` (gateway) but cannot open `https://ndla.no`.
 
 Analysis:
+
 - Layers 1–3 are working (ping to gateway works → physical connection, data link, and IP are OK)
 - The problem is at layer 4 (TCP port blocked?), layer 6 (TLS error?) or layer 7 (DNS failing? HTTP error?)
 - Test: `nslookup ndla.no` — if DNS doesn't respond, the problem is layer 7 (DNS service) or layer 3 (routing to DNS server)
@@ -143,12 +146,14 @@ Analysis:
 OSI is a *reference model*, not an implementation. It is used as a common reference language for understanding and troubleshooting network communication. Each layer has a clear area of responsibility and only communicates with the layer directly above and below.
 
 **Core Understanding Per Layer**
+
 - Layers 1–2 deal with physical and local transmission (cable, WiFi, switches, MAC addresses)
 - Layer 3 introduces logical addressing and routing (IP, routers)
 - Layer 4 handles end-to-end reliability and application identification (TCP/UDP, port numbers)
 - Layers 5–7 are application-related (sessions, formatting, user protocols)
 
 **Common Exam Points**
+
 - The difference between a switch (layer 2) and a router (layer 3)
 - TCP vs. UDP and when to use each
 - The OSI layers from top to bottom vs. bottom to top

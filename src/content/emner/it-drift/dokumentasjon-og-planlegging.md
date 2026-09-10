@@ -49,7 +49,7 @@ En nettverkstopologi beskriver hvordan noder (enheter) er koblet sammen i et net
 
 Alle enheter kobler seg til en sentral svitsj eller ruter. Enkel å feilsøke (isoler kabelen til den defekte enheten) og enkel å utvide.
 
-```
+```text
       [PC]
        |
 [PC]--[Svitsj]--[PC]
@@ -64,7 +64,7 @@ Alle enheter kobler seg til en sentral svitsj eller ruter. Enkel å feilsøke (i
 
 Alle noder er koblet til alle andre noder (full mesh) eller til mange andre (partial mesh). Brukes i WAN-nett og robuste kritiske systemer.
 
-```
+```text
 [A]---[B]
  | \ / |
  | X  |
@@ -116,6 +116,7 @@ En driftslogg (change log) er en kronologisk registrering av alle endringer som 
 #### Format
 
 Loggen bør inneholde:
+
 - **Dato og klokkeslett** – når ble endringen gjort?
 - **Utført av** – hvem gjorde det?
 - **Hva ble gjort** – konkret beskrivelse av endringen
@@ -139,7 +140,7 @@ Kritiske operasjoner bør dokumenteres som steg-for-steg prosedyrer. Dette sikre
 
 **Eksempel: Prosedyre for månedlig backup-test**
 
-```
+```text
 Tittel: Månedlig gjenopprettingstest av filserver-backup
 Ansvarlig rolle: Systemadministrator
 Frekvens: Hver 1. mandag i måneden
@@ -179,6 +180,7 @@ Forventet resultat: VM starter, filer tilgjengelige, ingen feil.
 
 **Change Management (endringstyring)**
 En strukturert prosess for å håndtere endringer i IT-miljøet på en kontrollert måte:
+
 1. Endringen planlegges og dokumenteres
 2. Risikovurdering gjennomføres
 3. Endringen godkjennes (av riktig person/rolle)
@@ -250,6 +252,7 @@ Velg én kritisk IT-operasjon (f.eks. legge til en ny bruker i Active Directory,
 Dokumentasjon og planlegging handler om å skape og vedlikeholde oversikt over IT-miljøet – slik at drift, feilsøking og endringer kan gjøres kontrollert og effektivt.
 
 **Dokumentasjonstyper:**
+
 - **IP-adresseplan** – oversikt over VLAN, subnett, gateway, DNS, DHCP og statiske adresser
 - **Nettverkstopologi** – visuelt kart over nettverkskomponenter og koblinger (draw.io)
 - **Driftslogg/endringslogg** – kronologisk register over alle endringer
@@ -257,6 +260,7 @@ Dokumentasjon og planlegging handler om å skape og vedlikeholde oversikt over I
 - **CMDB** – register over all infrastruktur
 
 **Nettverkstopologier:**
+
 - Stjerne (vanligst): sentralisert svitsj, enkel å feilsøke
 - Mesh: alle koblet til alle, robust men kompleks
 - Buss: historisk, brukes ikke i moderne nettverk
@@ -377,4 +381,3 @@ Single point of failure :: En komponent hvis svikt gjør hele systemet utilgjeng
 [^3]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Nettverkstopologier og nettverksstruktur.
 [^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – Prinsipper for driftslogg og endringssporing.
 [^5]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – ITIL og endringstyring i offentlig sektor.
-

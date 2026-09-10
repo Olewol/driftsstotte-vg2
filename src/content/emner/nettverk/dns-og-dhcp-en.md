@@ -24,7 +24,8 @@ notebooklm: true
 
 ## Introduction
 
-When you connect a PC to a network, two things happen automatically in the background: the machine gets an IP address (DHCP), and it learns who to ask when it needs to find out what `ndla.no` means in numbers (DNS). These two services are invisible to most users — but without them, nothing would work. As an IT support technician, they are among the most important services you will configure and troubleshoot. DNS and DHCP are not isolated services — they work closely with [[serverroller|server roles]] in a domain network, and errors in either are among the most common causes of network problems in business environments. To understand which protocols and ports these services use, see [[nettverksprotokoller|network protocols]].
+When you connect a PC to a network, two things happen automatically in the background: the machine gets an IP address (DHCP), and it learns who to ask when it needs to find out what `ndla.no` means in numbers (DNS). These two services are invisible to most users — but without them, nothing would work. As an IT support technician, they are among the most important services you will
+  configure and troubleshoot. DNS and DHCP are not isolated services — they work closely with [[serverroller|server roles]] in a domain network, and errors in either are among the most common causes of network problems in business environments. To understand which protocols and ports these services use, see [[nettverksprotokoller|network protocols]].
 
 ## Theory
 
@@ -35,6 +36,7 @@ DHCP automates the assignment of IP configuration to clients. Without DHCP, an a
 #### What DHCP Distributes
 
 A DHCP server assigns clients:
+
 - **IP address** (e.g. `192.168.1.50`)
 - **Subnet mask** (e.g. `255.255.255.0`)
 - **Default gateway** (e.g. `192.168.1.1`)
@@ -73,6 +75,7 @@ A **lease time** is the time agreement between the DHCP server and client that t
 In a simple home network, DHCP runs on the router. In a business network with Windows Server, DHCP should be moved to the domain controller. The DHCP on the router must then be **disabled** to avoid conflicts (two DHCP servers on the same network creates chaos).
 
 Check current IP configuration from the client:
+
 ```cmd
 ipconfig /all
 ```
@@ -87,7 +90,7 @@ DNS is the internet's "phone book." It translates human-friendly domain names li
 
 DNS is organized in a tree hierarchy:
 
-```
+```text
                     . (root)
                    / \
                 .no   .com
@@ -157,7 +160,8 @@ nslookup
 ```
 
 Example output from `nslookup ndla.no`:
-```
+
+```text
 Server:  UnKnown
 Address:  192.168.1.1
 
@@ -187,6 +191,7 @@ ipconfig /flushdns
 ### Practical Troubleshooting
 
 Common problems and solutions:
+
 - **No IP address**: client hasn't reached the DHCP server (check if scope is active, if DHCP on router is off, if there are enough available addresses)
 - **Can't reach ndla.no**: check with `nslookup ndla.no` — if the DNS lookup fails, the problem is DNS. If DNS responds but the page won't open, the problem is the network connection.
 - **169.254.x.x address**: APIPA address — client didn't get a response from the DHCP server
@@ -200,6 +205,7 @@ DHCP automates IP configuration. The DORA process (Discover → Offer → Reques
 DNS is hierarchical (root → TLD → domain → hostname). The A record is the most important. CNAME is used for aliases. MX points to the mail server. PTR is used for reverse lookups. In AD, the DNS server is authoritative for the local domain.
 
 **Common Exam Points**
+
 - The DORA process step by step
 - What the different DNS record types do (A, AAAA, CNAME, MX, PTR)
 - The difference between authoritative DNS server and recursive resolver

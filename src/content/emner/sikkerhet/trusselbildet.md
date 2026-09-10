@@ -150,16 +150,17 @@ NSM understreker at digital sikkerhet er nasjonal sikkerhet. Derfor er IKT-kompe
 
 Du mottar følgende e-poster. Vurder hvilke som er phishing og hvorfor:
 
-1. *«Kjære kunde, kontoen din er midlertidig sperret. Klikk her for å bekrefte identiteten din: www.dnb-sikkerhet.net»*
+1. *«Kjære kunde, kontoen din er midlertidig sperret. Klikk her for å bekrefte identiteten din: <www.dnb-sikkerhet.net>»*
    → Mistenkelig: domenet er ikke dnb.no. Hasteappell. Lenke til ukjent nettside.
 
-2. *«Hei Kari, her er referat fra møtet i går. Se vedlagt PDF.»* – avsender er kollega@bedrift.no
+2. *«Hei Kari, her er referat fra møtet i går. Se vedlagt PDF.»* – avsender er <kollega@bedrift.no>
    → Kan være legitimt, men: sjekk om vedlegget er forventet, og om avsenderadressen stemmer nøyaktig.
 
 3. *«Du har vunnet en iPhone 15. Skriv inn kredittkortinfo for å betale frakt.»*
    → Klassisk svindel. Ingen legitim premie krever betaling for frakt med kredittkort på forhånd.
 
 **Tiltak for phishing-forsvar:**
+
 - Bruk av MFA (tofaktorautentisering) – selv om passordet stjeles, hindres innlogging
 - E-postfilter med SPF, DKIM og DMARC
 - Bevissthetstrening for ansatte
@@ -280,10 +281,10 @@ Smishing :: SMS-phishing – svindelforsøk via tekstmelding som utgir seg for �
 
 ## Kilder
 
-[^1]: NSM – Risikovurdering 2024 (årlig trusselrapport). https://nsm.no/regelverk-og-hjelp/risiko-2024
-[^2]: NCSC – WannaCry. https://www.ncsc.gov.uk/ransomware
-[^3]: Østre Toten kommune – Conti-ransomware-angrep 2021. https://nsm.no/aktuelt/omfattende-it-angrep-mot-ostre-toten-kommune
-[^4]: NSM – DDoS-angrep mot norske mål 2022. https://nsm.no/aktuelt/ddos-angrep-mot-norske-nettsider
-[^5]: NSM – Trusler fra statlige aktører. https://nsm.no/fagomrader/digital-sikkerhet/
-[^6]: OWASP Top 10:2021. https://owasp.org/www-project-top-ten/
-[^7]: Cambridge Analytica-skandalen (2018). https://www.datatilsynet.no/aktuelt/aktuelle-nyheter-2018/cambridge-analytica/
+[^1]: NSM – Risikovurdering 2024 (årlig trusselrapport). <https://nsm.no/regelverk-og-hjelp/risiko-2024>
+[^2]: NCSC – WannaCry. <https://www.ncsc.gov.uk/ransomware>
+[^3]: Østre Toten kommune – Conti-ransomware-angrep 2021. <https://nsm.no/aktuelt/omfattende-it-angrep-mot-ostre-toten-kommune>
+[^4]: NSM – DDoS-angrep mot norske mål 2022. <https://nsm.no/aktuelt/ddos-angrep-mot-norske-nettsider>
+[^5]: NSM – Trusler fra statlige aktører. <https://nsm.no/fagomrader/digital-sikkerhet/>
+[^6]: OWASP Top 10:2021. <https://owasp.org/www-project-top-ten/>
+[^7]: Cambridge Analytica-skandalen (2018). <https://www.datatilsynet.no/aktuelt/aktuelle-nyheter-2018/cambridge-analytica/>

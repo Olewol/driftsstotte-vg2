@@ -69,7 +69,7 @@ Her befinner seg protokollene som programmer bruker direkte: HTTP for web, SMTP 
 
 Når data sendes nedover gjennom lagene, legger hvert lag til sin egen **header** (topptekst) med styringsinformasjon. Dette kalles innkapsling[^1]:
 
-```
+```text
 Applikasjon:  [DATA]
 Transport:    [TCP-header][DATA]
 Nettverk:     [IP-header][TCP-header][DATA]
@@ -110,6 +110,7 @@ TCP/IP er den modellen internett faktisk bruker[^1]. OSI er referansemodellen so
 ## Study guide
 
 **Kjerneforståelse per lag**
+
 - Lag 1: bits og signaler (kabel, WiFi, fiber)
 - Lag 2: frames og MAC-adresser (svitsjer, Ethernet)
 - Lag 3: IP-adresser og ruting (rutere, IPv4/IPv6)
@@ -123,6 +124,7 @@ Forstå at hvert lag legger til sin header. Data fra applikasjonslaget er payloa
 4-lagsmodellen slår sammen lag 1 og 2 til "Network Access Layer". 5-lagsmodellen skiller disse og er pedagogisk mer lik OSI. Begge er korrekte.
 
 **Vanlige eksamenspoeng**
+
 - Hvilket lag er ansvarlig for hva (IP = lag 3, MAC = lag 2, TCP = lag 4, HTTP = lag 5)
 - Innkapsling: hva legges til på hvert lag
 - Forskjellen mellom TCP og UDP
@@ -202,10 +204,10 @@ TCP (Transmission Control Protocol) :: En forbindelsesorientert protokoll på tr
 
 ## Kilder
 
-[^1]: Cloudflare Learning. (2025). What is TCP/IP? https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/
-[^2]: NDLA. (2024). 5-lags TCP/IP-modell. https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6
-[^3]: Professor Messer. (2025). Network+ Study Guide — TCP/IP Model. https://www.professormesser.com/network-plus/
-[^4]: Microsoft Learn. (2025). Networking fundamentals. https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/
+[^1]: Cloudflare Learning. (2025). What is TCP/IP? <https://www.cloudflare.com/learning/ddos/what-is-tcp-ip/>
+[^2]: NDLA. (2024). 5-lags TCP/IP-modell. <https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6>
+[^3]: Professor Messer. (2025). Network+ Study Guide — TCP/IP Model. <https://www.professormesser.com/network-plus/>
+[^4]: Microsoft Learn. (2025). Networking fundamentals. <https://learn.microsoft.com/en-us/training/paths/networking-fundamentals/>
 
 ## Ressurser
 

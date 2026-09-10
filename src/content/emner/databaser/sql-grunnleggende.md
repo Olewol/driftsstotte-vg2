@@ -298,6 +298,7 @@ SQL er standardspråket for relasjonsdatabaser og deles i tre kategorier: DDL (s
 Tabeller består av kolonner (struktur) og rader (data). Primærnøkkelen identifiserer hver rad unikt og kan ikke være NULL. Fremmednøkkelen kobler tabeller sammen og sikrer referanseintegritet — du kan ikke peke til en rad som ikke finnes. `AUTO_INCREMENT` gjør at MySQL tildeler primærnøkkelverdi automatisk.
 
 **CRUD — de fire kjerneoperasjonene**
+
 - `INSERT` — legg til nye rader (Create)
 - `SELECT` — hent og filtrer data (Read)
 - `UPDATE` — endre eksisterende rader (Update)

@@ -50,6 +50,7 @@ A **hypervisor** is the software that manages the virtual machines and distribut
 Hyper-V is Microsoft's Type 1 hypervisor and is available as a server role in Windows Server. It can also be enabled as a feature in Windows 10/11 Pro.
 
 Key concepts in Hyper-V:
+
 - **Root partition**: The Windows Server installation with access to actual hardware
 - **Child partition (Guest VM)**: The virtual machine that only sees emulated/virtual hardware
 - **Generation 1 vs. Generation 2**: Gen 2 supports UEFI and Secure Boot, recommended for modern OS
@@ -61,12 +62,14 @@ VirtualBox is free and cross-platform (Windows, macOS, Linux). Well suited for l
 ### Virtual Machines — Characteristics
 
 Each VM has:
+
 - **Virtual CPU** (vCPU) — one or more cores
 - **Virtual RAM** — allocated from physical RAM
 - **Virtual hard disk** — stored as a file (.vhd, .vhdx, .vmdk) on physical disk
 - **Virtual network card** — connected to a virtual switch
 
 Benefits of VMs:
+
 - **Isolation**: a fault or compromise in one VM does not affect others
 - **Resource efficiency**: avoids the "one server per service" overconsumption
 - **Portability**: a VM can be exported and imported on different hardware
@@ -108,6 +111,7 @@ Example: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while cli
 ### Practical Use in VG2
 
 **Creating a VM in Hyper-V (simplified):**
+
 1. Hyper-V Manager → Action → New → Virtual Machine
 2. Give the VM a name (e.g. `WinServer01`)
 3. Choose Generation (Gen 2 for Windows Server 2019/2022)
@@ -118,6 +122,7 @@ Example: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while cli
 8. Complete and start the VM
 
 **Snapshots/checkpoints:**
+
 - Right-click VM → Checkpoint (takes a snapshot)
 - Rollback: right-click checkpoint → Apply
 - Delete obsolete checkpoints to free up disk space
@@ -133,7 +138,8 @@ Example: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while cli
 > **VM Setup:** Both VMs (WebServer and DBServer) are configured with min. 4 GB RAM, 2 CPUs, and 25 GB disk. Network mode is set to **Bridged Adapter** so the VMs get their own IP addresses on the school network.
 >
 > **Static IP with Netplan (Ubuntu Server):**
-> ```yaml
+>
+> ```yamlyaml
 > network:
 >   ethernets:
 >     enp0s3:
@@ -146,7 +152,9 @@ Example: A Windows Server VM with AD DS is assigned VLAN 30 (Servers), while cli
 >       nameservers:
 >         addresses: [192.168.52.5, 8.8.8.8]
 >   version: 2
+>
 > ```
+>
 > Activate with `sudo netplan apply`.
 >
 > **WebServer:** Apache is installed (`sudo apt install apache2 -y`) along with PHP modules required by osTicket. osTicket is downloaded and placed in `/var/www/html/`.
@@ -178,6 +186,7 @@ NAT: VM shares the host's IP, not visible from outside. Bridged: VM gets its own
 Virtual switches support VLAN tagging. A VM can belong to a VLAN just like a physical machine. This is central for integrating virtual servers into segmented network architectures.
 
 **Common Exam Points**
+
 - The difference between Type 1 and Type 2 hypervisors
 - What a snapshot is and when to use it
 - The difference between NAT and Bridged in VirtualBox

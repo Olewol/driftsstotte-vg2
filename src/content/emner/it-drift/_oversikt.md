@@ -54,7 +54,8 @@ Dette emnet er delt inn i fem fagartikler som bygger på hverandre:
 
 ### Sammenheng mellom emnene
 
-En god driftsarkitektur ([[driftsarkitektur]]) er grunnmuren – den definerer hvilke fysiske og virtuelle komponenter virksomheten bruker. Skytjenester ([[skytjenester]]) er en sentral del av moderne arkitektur og endrer måten vi tenker på infrastruktur. Backup og gjenoppretting ([[backup-og-gjenoppretting]]) sørger for at data overlever feil og angrep. Alt dette forutsetter god dokumentasjon ([[dokumentasjon-og-planlegging]]) for at teamet skal kunne jobbe effektivt og strukturert. Til slutt ser vi på hva IT-bransjen gjør – og bør gjøre – for å redusere miljøpåvirkningen ([[baerekraft]]).
+En god driftsarkitektur ([[driftsarkitektur]]) er grunnmuren – den definerer hvilke fysiske og virtuelle komponenter virksomheten bruker. Skytjenester ([[skytjenester]]) er en sentral del av moderne arkitektur og endrer måten vi tenker på infrastruktur. Backup og gjenoppretting ([[backup-og-gjenoppretting]]) sørger for at data overlever feil og angrep. Alt dette forutsetter god
+  dokumentasjon ([[dokumentasjon-og-planlegging]]) for at teamet skal kunne jobbe effektivt og strukturert. Til slutt ser vi på hva IT-bransjen gjør – og bør gjøre – for å redusere miljøpåvirkningen ([[baerekraft]]).
 
 ---
 

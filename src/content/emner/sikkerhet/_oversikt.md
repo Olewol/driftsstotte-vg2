@@ -38,6 +38,7 @@ CIA-triaden er grunnmuren i all informasjonssikkerhet. Den består av tre egensk
 | **Availability** | Tilgjengelighet | Systemer og data er tilgjengelige når de trengs |
 
 Et angrep retter seg alltid mot én eller flere av disse egenskapene:
+
 - **Ransomware** rammer tilgjengelighet (filer krypteres) og konfidensialitet (data stjeles)
 - **Datamanipulering** rammer integritet
 - **DDoS** rammer tilgjengelighet
@@ -49,19 +50,24 @@ Et angrep retter seg alltid mot én eller flere av disse egenskapene:
 Dette fagområdet dekker sju artikler:
 
 ### Trusler og trusselbilde
+
 - [[trusselbildet]] – Malware, phishing, DDoS, APT og samfunnspåvirkning *(km-07)*
 
 ### Analyse og planlegging
+
 - [[risikoanalyse]] – Risikovurderingsprosessen, risikomatrise og tiltak *(km-08)*
 
 ### Tekniske sikkerhetstiltak
+
 - [[kryptering]] – Symmetrisk/asymmetrisk kryptering, TLS, PKI og hashing *(km-10)*
 - [[brannmur]] – Pakkefiltrering, stateful inspection, DMZ og IDS/IPS *(km-10)*
 
 ### Systemer med innebygd sikkerhet
+
 - [[it-losninger-med-sikkerhet]] – Security by Design, Zero Trust, patching, SIEM og BCDR *(km-10)*
 
 ### Personvern og juridisk rammeverk
+
 - [[personvern]] – GDPR, rettigheter, bruddvarsling og samfunnskonsekvenser *(km-10, km-11)*
 
 ---
@@ -70,13 +76,14 @@ Dette fagområdet dekker sju artikler:
 
 **NSM – Nasjonal sikkerhetsmyndighet**
 Norges ekspertorgan for informasjons- og objektsikkerhet. Utgir *Grunnprinsipper for IKT-sikkerhet* (v2.1, 2024) – en praktisk veileder for sikker drift. NSM har fire kategorier av grunnprinsipper:
+
 1. Identifiser og kartlegg
 2. Beskytt og oppretthold
 3. Oppdag
 4. Håndter og gjenopprett
 
 **NCSC – Norwegian Cyber Security Centre**
-Opereres av NSM. Tilbyr 24/7 hendelseshåndtering og varsling. Kontakt: cert@ncsc.no
+Opereres av NSM. Tilbyr 24/7 hendelseshåndtering og varsling. Kontakt: <cert@ncsc.no>
 
 **Datatilsynet**
 Norsk tilsynsmyndighet for personvern. Håndhever GDPR og personopplysningsloven. Ressurser for unge: [dubestemmer.no](https://dubestemmer.no) og [slettmeg.no](https://slettmeg.no).
@@ -97,7 +104,7 @@ Norsk tilsynsmyndighet for personvern. Håndhever GDPR og personopplysningsloven
 
 ## Sammenheng mellom emnene
 
-```
+```text
 Trusler (km-07)
      ↓
 Risikoanalyse (km-08) ← identifiserer hvilke trusler som er relevante

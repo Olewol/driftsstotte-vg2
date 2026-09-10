@@ -40,7 +40,8 @@ Ved symmetrisk kryptering brukes **samme nøkkel** til å kryptere og dekryptere
 - Eksempel: **AES-256** (Advanced Encryption Standard med 256-bits nøkkel) – regnes som uknekket og er industristandarden for kryptering av data i ro (filsystemer, databaser, backuper)[^3]
 
 **Illustrasjon:**
-```
+
+```text
 Avsender: Klartekst → [AES-nøkkel] → Chiffertekst
 Mottaker: Chiffertekst → [AES-nøkkel] → Klartekst
 ```
@@ -55,6 +56,7 @@ Asymmetrisk kryptering bruker et **nøkkelpar**: en offentlig nøkkel (public ke
 - **Privat nøkkel:** holdes hemmelig av eieren – må aldri deles
 
 Brukes til to formål:
+
 1. **Kryptering:** Avsender krypterer med mottakerens offentlige nøkkel → bare mottakeren kan dekryptere med sin private nøkkel
 2. **Digital signatur:** Avsenderen signerer med sin private nøkkel → hvem som helst kan verifisere signaturen med avsenderens offentlige nøkkel
 
@@ -80,7 +82,7 @@ Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon 
 
 **TLS 1.3 handshake (forenklet):**
 
-```
+```text
 1. Klienten sender støttede cipher suites og en tilfeldig verdi
 2. Serveren sender valgt cipher suite, sertifikat og en tilfeldig verdi
 3. Klienten verifiserer serverens sertifikat mot en CA (Certificate Authority)
@@ -89,6 +91,7 @@ Dette er modellen TLS (og dermed HTTPS) bruker. Nesten all sikker kommunikasjon 
 ```
 
 Forbedringer i TLS 1.3 vs 1.2:
+
 - Raskere handshake (1 round-trip i stedet for 2)
 - Alle utdaterte cipher suites fjernet (ingen RC4, DES, 3DES, MD5)
 - Forward secrecy er obligatorisk – gamle sesjoner kan ikke dekrypteres selv om nøkkelen later kompromitteres[^4]
@@ -105,7 +108,8 @@ Hashing er en enveisprosess – i motsetning til kryptering kan man ikke reverse
 Et digitalt sertifikat binder en offentlig nøkkel til en identitet (f.eks. et domenenavn). Sertifikatet er signert av en **Certificate Authority (CA)**.
 
 **CA-hierarki (tillitskjede):**
-```
+
+```text
 Root CA (selvsignert, innebygget i OS/nettleser)
     └── Intermediate CA (signert av Root CA)
             └── Serverens sertifikat (signert av Intermediate CA)
@@ -126,9 +130,10 @@ Hashing er en **enveisfunksjon** – du kan lage en hash fra data, men ikke reko
 | MD5 | 128 bit | **Utdatert** – kollisjoner er funnet |
 | SHA-1 | 160 bit | **Utdatert** – ikke lenger anbefalt |
 | SHA-256 | 256 bit | **Anbefalt** – brukes i TLS, sertifikater, Git |
-| bcrypt / Argon2 | variabel | **Anbefalt for passord** – langsom med vilje |[^6]
+| bcrypt / Argon2 | variabel | **Anbefalt for passord** – langsom med vilje [^6] |
 
 Typiske bruksområder:
+
 - Passordlagring: aldri lagre klartekstpassord – lagre hashen (med salt)
 - Filintegritet: SHA-256-sum av en fil avslører om filen er endret
 - Digital signatur: man signerer hashen av dokumentet, ikke selve dokumentet
@@ -152,6 +157,7 @@ E2EE er spesielt relevant for [[personvern]] – selv om serveren hackes, er inn
 3. Velg **«Tilkoblingen er sikker»** → **«Sertifikatet er gyldig»**
 
 Sjekk følgende i sertifikatet:
+
 - **Utstedt til:** bekrefter at domenet stemmer
 - **Utstedt av:** hvilken CA som har signert sertifikatet
 - **Gyldig fra / til:** sertifikater utløper (typisk 1 år for kommersielle, 90 dager for Let's Encrypt)
@@ -181,6 +187,7 @@ Hashing er en enveisprosess og brukes til integritetskontroll og passordlagring 
 Ende-til-ende-kryptering sikrer at kun avsender og mottaker kan lese innholdet – ikke tjenesteleverandøren. Kritisk for personvern i kommunikasjonstjenester.
 
 **Praktisk sjekkliste:**
+
 - Alltid HTTPS på nettsider (TLS 1.3 foretrukket)
 - AES-256 for data i ro (filer, databaser, backuper)
 - Aldri lagre passord i klartekst – bruk bcrypt/Argon2 med salt
@@ -275,11 +282,11 @@ AES-256 :: Advanced Encryption Standard med 256-bits nøkkel – industristandar
 
 ## Kilder
 
-[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). «Beskytt data i ro og under overføring». https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-[^2]: Datatilsynet – Kryptering av personopplysninger. https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/
-[^3]: NDLA – Kryptering. https://ndla.no
-[^4]: TLS 1.3 (RFC 8446). Mozilla Hacks – Introducing TLS 1.3. https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/
-[^5]: Let's Encrypt – How It Works. https://letsencrypt.org/how-it-works/
-[^6]: OWASP Top 10:2021 – A02: Cryptographic Failures. https://owasp.org/www-project-top-ten/
-[^7]: Signal – Technical Information. https://signal.org/docs/
-[^8]: NIST – Post-Quantum Cryptography Standardization. https://csrc.nist.gov/projects/post-quantum-cryptography
+[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). «Beskytt data i ro og under overføring». <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+[^2]: Datatilsynet – Kryptering av personopplysninger. <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/informasjonssikkerhet-internkontroll/kryptering/>
+[^3]: NDLA – Kryptering. <https://ndla.no>
+[^4]: TLS 1.3 (RFC 8446). Mozilla Hacks – Introducing TLS 1.3. <https://hacks.mozilla.org/2018/03/introducing-the-new-firefox-63/>
+[^5]: Let's Encrypt – How It Works. <https://letsencrypt.org/how-it-works/>
+[^6]: OWASP Top 10:2021 – A02: Cryptographic Failures. <https://owasp.org/www-project-top-ten/>
+[^7]: Signal – Technical Information. <https://signal.org/docs/>
+[^8]: NIST – Post-Quantum Cryptography Standardization. <https://csrc.nist.gov/projects/post-quantum-cryptography>

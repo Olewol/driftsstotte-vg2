@@ -19,7 +19,8 @@ notebooklm: true
 
 **Active Directory (AD)** er Microsofts katalogtjeneste og er hjertet i Windows-baserte bedriftsmiljøer.[^2] AD sentraliserer administrasjon av brukere, datamaskiner, grupper og policyer for hele organisasjonen. I stedet for å administrere hver maskin separat, styrer du alt fra én plass — domenekontrolleren.
 
-I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den vanligste løsningen for brukeradministrasjon. Denne artikkelen dekker struktur, komponenter og praktisk bruk. AD henger tett sammen med [[dns-og-dhcp]] — uten korrekt DNS fungerer ikke domenepålogging. Se også [[serverroller]] for oversikt over hvilke roller som installeres på en Windows Server, og [[bruker-og-tilgangsstyring]] for detaljer om rettigheter og grupper.
+I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den vanligste løsningen for brukeradministrasjon. Denne artikkelen dekker struktur, komponenter og praktisk bruk. AD henger tett sammen med [[dns-og-dhcp]] — uten korrekt DNS fungerer ikke domenepålogging. Se også [[serverroller]] for oversikt over hvilke roller som installeres på en Windows Server, og
+  [[bruker-og-tilgangsstyring]] for detaljer om rettigheter og grupper.
 
 ---
 
@@ -29,7 +30,7 @@ I norske skoler og bedrifter er Active Directory Domain Services (AD DS) den van
 
 Active Directory er organisert som et hierarki med fire nivåer:
 
-```
+```text
 Skog (Forest)
 └── Tre (Tree)
     └── Domene (Domain)
@@ -47,12 +48,14 @@ Grunnenheten i AD. Et domene er en logisk gruppe av brukere, datamaskiner og res
 
 **Organisasjonsenhet (OU)**
 Logiske beholdere inni et domene. OU-er brukes til å:
+
 - Gruppere objekter etter funksjon, avdeling eller geografi
 - Delegere administrasjonstilgang (f.eks. la IT-avdelingen administrere kun sin OU)
 - Knytte gruppepolicyer (GPO-er) til spesifikke brukere eller maskiner
 
 Typisk OU-struktur:
-```
+
+```text
 skole.local
 ├── OU=Brukere
 │   ├── OU=Lærere
@@ -66,6 +69,7 @@ skole.local
 ### Domenekontroller (DC)
 
 En **domenekontroller** er en server med AD DS installert. DC-en:
+
 - Autentiserer alle pålogginger i domenet
 - Lagrer og replikerer AD-databasen (`ntds.dit`)
 - Kjører DNS (vanligvis) og Kerberos-autentiseringstjenesten
@@ -83,6 +87,7 @@ Den første DC-en i et domene kalles også den første domeneopprettende kontrol
 AD bruker **Kerberos** som standard autentiseringsprotokoll (i stedet for det eldre NTLM).[^2]
 
 Kort forklart:
+
 1. Brukeren logger inn og sender brukernavnet til DC-en
 2. DC-en (KDC — Key Distribution Center) sender tilbake en kryptert **TGT** (Ticket Granting Ticket)
 3. Når brukeren vil aksessere en ressurs, bruker klienten TGT-en til å be om en **tjenesteticket**
@@ -93,6 +98,7 @@ Kerberos er sikrere enn NTLM fordi passordet aldri sendes, kun krypterte billett
 ### Active Directory Users and Computers (ADUC)
 
 **ADUC** (`dsa.msc`) er det grafiske administrasjonsverktøyet for AD. Her kan du:
+
 - Opprette, redigere og slette brukerkontoer
 - Opprette og administrere grupper
 - Koble datamaskiner til OU-er
@@ -106,6 +112,7 @@ Standardbeholderen `Users` inneholder de innebygde kontoene: `Administrator`, `G
 **Group Policy Objects (GPO)** er en av de kraftigste funksjonene i AD. En GPO er et sett med innstillinger som automatisk distribueres til brukere og maskiner i en OU, et domene eller en site.[^3]
 
 GPO-er kan styre:
+
 - Passordpolicyer (lengde, kompleksitet, levetid)
 - Sikkerhetsinnstillinger (deaktiver USB, lås skjerm etter X minutter)
 - Programvaredistribusjon (installer MSI-pakker automatisk)
@@ -113,6 +120,7 @@ GPO-er kan styre:
 - Skrivebordsinnstillinger (bakgrunn, startmeny)
 
 **Eksempel — Nekte pålogging fra Domain Admins på klientmaskiner:**
+
 1. Åpne Group Policy Management Console (GPMC)
 2. Opprett ny GPO på OU=Datamaskiner
 3. Naviger til: `Computer Configuration → Windows Settings → Security Settings → Local Policies → User Rights Assignment`
@@ -123,6 +131,7 @@ GPO-er arves gjennom hierarkiet (skog → domene → OU). En GPO koblet til en O
 ### Global katalog
 
 **Global Catalog (GC)** er en distribuert lagringsplass som inneholder en kopi av alle objekter i hele AD-skogen — ikke bare lokalt domene. Den brukes til:
+
 - Hurtige søk på tvers av domener (f.eks. å finne en bruker i et annet domene)
 - Pålogging med UPN-er (User Principal Name, f.eks. `bruker@firma.no`)
 - Universelle gruppemedlemskap
@@ -132,6 +141,7 @@ Minst én domenekontroller bør ha Global Catalog-rollen aktivert. I et single-d
 ### Planlegging og navnestandard
 
 God planlegging er avgjørende før man setter opp AD. Viktige beslutninger:
+
 - **Domenenavn**: Bruk et internt navn (f.eks. `firma.local`) eller subdomene av et eksternt domene (`intern.firma.no`). Unngå `.local` i nye oppsett — det kan kollidere med mDNS.
 - **Navnestandard for brukere**: Konsistent navnekonvensjon (`fornavn.etternavn`, `f.etternavn` e.l.) forenkler administrasjon og scripting med [[powershell-grunnleggende]].
 - **OU-struktur**: Design OU-hierarkiet basert på organisasjonsstruktur eller geografisk plassering — ikke etter roller. OU-strukturen bør dokumenteres i [[dokumentasjon-og-planlegging]].
@@ -139,6 +149,7 @@ God planlegging er avgjørende før man setter opp AD. Viktige beslutninger:
 ### Domenekobling av klientmaskiner
 
 Når en Windows-klient kobles til domenet:
+
 1. Maskinen opprettes som et objekt i AD (under `Computers` eller angitt OU)
 2. Klienten begynner å motta GPO-er fra domenet
 3. Domenebrukere kan logge inn på maskinen
@@ -220,6 +231,7 @@ gpupdate /force
 **Active Directory** er Microsofts sentraliserte katalogtjeneste for Windows-domener. Den er organisert i et hierarki: **Skog → Tre → Domene → OU**. En **domenekontroller (DC)** er serveren som kjører AD DS-rollen og autentiserer alle pålogginger.
 
 Kjernekomponenter du må kjenne:
+
 - **ADUC** (`dsa.msc`) — det grafiske verktøyet for å opprette og administrere brukere, grupper, datamaskiner og OU-er
 - **GPO (Group Policy Object)** — automatiske innstillinger som distribueres til brukere og maskiner i en OU; arver hierarkisk, nærmeste OU vinner
 - **Kerberos** — autentiseringsprotokollen AD bruker; passordet sendes aldri over nettverket, kun krypterte billetter (TGT)
@@ -227,11 +239,13 @@ Kjernekomponenter du må kjenne:
 - **Global katalog** — tverr-domene søketjeneste; nødvendig for UPN-pålogging
 
 Viktige sammenhenger:
+
 - AD er avhengig av **DNS** — klienten må kunne slå opp domenekontrolleren via DNS for å logge inn
 - **FSMO-roller** er spesialiserte DC-oppgaver som kun én DC kan ha om gangen (f.eks. PDC Emulator, RID Master)
 - Tilgangsstyring gjøres via **sikkerhetsgrupper** koblet til NTFS-rettigheter — aldri tildel tilgang direkte til enkeltbrukere
 
 Beste praksis:
+
 - Ha alltid minst to domenekontrollere (redundans)
 - Gi administratorer to kontoer: en daglig brukerkonto og en separat adminkonto
 - Bruk GPO til å håndheve passordpolicyer og sikkerhetskrav automatisk

@@ -21,7 +21,8 @@ notebooklm: true
 
 Data er en av de mest verdifulle ressursene en virksomhet har. Uten fungerende backup kan én hendelse – en harddisk som feiler, et ransomware-angrep eller en brann – føre til permanent tap av kritisk informasjon.
 
-Backup handler ikke bare om å ta kopier. Det handler om å ha en strategi som sikrer at data kan gjenopprettes raskt nok og med lavt nok datatap til at virksomheten overlever hendelsen. En backup er kun verdifull hvis den faktisk kan gjenopprettes. I tillegg bør backup-strategien inkludere systemkonfigurasjoner og master-images, ikke bare rådata – slik at hele infrastrukturen kan gjenopprettes, ikke bare filene.
+Backup handler ikke bare om å ta kopier. Det handler om å ha en strategi som sikrer at data kan gjenopprettes raskt nok og med lavt nok datatap til at virksomheten overlever hendelsen. En backup er kun verdifull hvis den faktisk kan gjenopprettes. I tillegg bør backup-strategien inkludere systemkonfigurasjoner og master-images, ikke bare rådata – slik at hele infrastrukturen kan
+  gjenopprettes, ikke bare filene.
 
 ---
 
@@ -102,6 +103,7 @@ Eksempel: Dersom RTO er 2 timer, må IT-teamet ha systemene oppe igjen innen 2 t
 #### Praktisk eksempel
 
 En skole lagrer elevdata og karaktersystemer:
+
 - **RPO: 24 timer** – karakterer kan ikke mates inn på nytt lenger tilbake enn én dag
 - **RTO: 8 timer** – systemet må være oppe igjen innen én arbeidsdag
 
@@ -130,6 +132,7 @@ Amazon S3 brukes for aktiv backup-lagring; Glacier er et billigere arkivlagrings
 Manuell backup er utsatt for menneskelig svikt – den som er syk den dagen backupen skal kjøres, glemmer det, eller hopper over det «for én gangs skyld». Automatiserte backup-rutiner eliminerer denne risikoen.
 
 Gode praksiser for automatisert backup:
+
 - Planlegg backup-jobber utenfor arbeidstid (f.eks. kl. 02:00) for lavt påvirkning på systemer
 - Konfigurer automatisk varsling ved feil i backup-jobben
 - Bruk skriptbasert backup (f.eks. [[powershell-grunnleggende]]) for tilpassede behov
@@ -186,20 +189,24 @@ Diskuter: Bør en backup kun inneholde datafiler, eller bør den også inkludere
 Backup og gjenoppretting handler om å sikre at data kan gjenopprettes ved tap eller feil – og at dette faktisk fungerer i praksis.
 
 **3-2-1-regelen (og 3-2-1-1-0):**
+
 - 3 kopier, 2 medier, 1 offsite
-- + 1 immutable/air-gapped, + 0 feil i testing
+- Pluss 1 immutable/air-gapped, pluss 0 feil i testing
 - Beskytter mot fysiske hendelser OG ransomware
 
 **Backupstrategier:**
+
 - Full: størst, enklest å gjenopprette
 - Inkrementell: minst, raskest å kjøre, kompleks å gjenopprette
 - Differensiell: midt imellom – enkel gjenoppretting (full + én diff)
 
 **RPO og RTO:**
+
 - RPO = maks akseptabelt datatap i tid (bestemmer backup-frekvens)
 - RTO = maks akseptabel nedetid (bestemmer krav til gjenopprettingshastighet)
 
 **DR-strategier:**
+
 - Cold standby (billigst, lengst RTO) → Warm standby → Hot standby (dyrest, korteste RTO)
 
 **Nøkkelprinsipp:** Backup som ikke testes jevnlig er ikke pålitelig. Test, dokumenter, repeter.
@@ -308,4 +315,3 @@ System-image :: Komplett kopi av et operativsystem med konfigurasjon og programv
 [^3]: [Microsoft Azure Well-Architected Framework: Disaster Recovery](https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery) – Definisjoner av RPO og RTO.
 [^4]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Om katastrofegjenoppretting og beredskap.
 [^5]: [NSM: Grunnprinsipper for IKT-sikkerhet – Sikre og gjenopprette data](https://nsm.no/fagomrader/digital-sikkerhet/grunnprinsipper-for-ikt-sikkerhet-2-0/oppdage-og-handtere-hendelser/sikre-og-gjenopprette-data/) – RAID er ikke backup.
-

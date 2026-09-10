@@ -152,16 +152,17 @@ NSM emphasizes that digital security is national security. This is why ICT compe
 
 You receive the following emails. Assess which ones are phishing and why:
 
-1. *"Dear customer, your account has been temporarily blocked. Click here to verify your identity: www.dnb-sikkerhet.net"*
+1. *"Dear customer, your account has been temporarily blocked. Click here to verify your identity: <www.dnb-sikkerhet.net>"*
    → Suspicious: the domain is not dnb.no. Urgency appeal. Link to unknown website.
 
-2. *"Hi Kari, here are the minutes from yesterday's meeting. See attached PDF."* – sender is colleague@company.no
+2. *"Hi Kari, here are the minutes from yesterday's meeting. See attached PDF."* – sender is <colleague@company.no>
    → Could be legitimate, but: check if the attachment is expected, and whether the sender address matches exactly.
 
 3. *"You have won an iPhone 15. Enter your credit card info to pay shipping."*
    → Classic scam. No legitimate prize requires paying shipping with a credit card in advance.
 
 **Phishing defense measures:**
+
 - Use MFA (multi-factor authentication) – even if the password is stolen, login is blocked
 - Email filtering with SPF, DKIM, and DMARC
 - Security awareness training for employees

@@ -133,6 +133,7 @@ Norske skyleverandører som Telenor og Basefarm tilbyr alternativer for virksomh
 ### Fordeler og ulemper med sky
 
 **Fordeler:**
+
 - **Elastisitet** – skaleringsressurser opp og ned etter behov
 - **Kostnadskontroll** – betaler kun for faktisk bruk (OPEX)
 - **Global rekkevidde** – datasentre over hele verden gir lav latens
@@ -141,6 +142,7 @@ Norske skyleverandører som Telenor og Basefarm tilbyr alternativer for virksomh
 - **Redusert vedlikeholdsansvar** – leverandøren tar seg av fysisk infrastruktur
 
 **Ulemper:**
+
 - **Avhengighet av internett** – ingen nett, ingen tilgang
 - **Vendor lock-in** – vanskelig å bytte leverandør
 - **Løpende kostnader** – kan bli dyrt over tid for store arbeidsbelastninger
@@ -153,6 +155,7 @@ Norske skyleverandører som Telenor og Basefarm tilbyr alternativer for virksomh
 Sky-tjenester er fleksible, men kan føre til ukontrollerte kostnader hvis de ikke styres aktivt. **FinOps** (Cloud Financial Management) er en praksis for å forstå, kontrollere og optimalisere skykostnader i samarbeid mellom IT, finans og forretning.[^4]
 
 Typiske tiltak:
+
 - Slå av ubrukte ressurser automatisk (f.eks. test-servere om natten)
 - Velg riktig størrelse (right-sizing) på virtuelle maskiner
 - Bruk reserverte kapasiteter (Reserved Instances) for faste arbeidsbelastninger
@@ -195,17 +198,20 @@ Tenk deg at skolen bruker Microsoft 365 (SaaS), Azure Virtual Machines (IaaS) og
 Skytjenester handler om å leie IT-ressurser over internett i stedet for å eie dem selv.
 
 **De tre tjenestemodellene:**
+
 - **IaaS** – leier infrastruktur; ansvarlig for OS og opp (Azure VMs, AWS EC2)
 - **PaaS** – leverandøren håndterer OS; du fokuserer på applikasjoner (Azure App Service)
 - **SaaS** – ferdig programvare; leverandøren håndterer alt (Microsoft 365, Zoom)
 
 **Driftsmodeller:**
+
 - **Public cloud** – delt ressurspool, billigst, minst kontroll
 - **Private cloud** – dedikert, mer kontroll, dyrere
 - **Hybrid** – kombinasjon, vanligst i Norge
 - **Multi-cloud** – flere leverandører, reduserer vendor lock-in
 
 **Nøkkelprinsipper:**
+
 - Shared Responsibility Model: vet du hvem som er ansvarlig for hva i din løsning?
 - GDPR og datasuverenitet: data om norske borgere bør ligge i EU/EØS
 - Elastisitet og SLA: skyleverandørene garanterer 99,9 %+ oppetid
@@ -329,4 +335,3 @@ FinOps :: Cloud Financial Management – praksis for å forstå og optimalisere 
 [^3]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – Shared Responsibility Model og ansvarsdeling.
 [^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – FinOps og kostnadsstyring i sky.
 [^5]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – GDPR og datasuverenitet ved bruk av skytjenester.
-

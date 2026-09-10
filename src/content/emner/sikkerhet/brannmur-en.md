@@ -42,7 +42,8 @@ The simplest type of firewall examines each data packet in isolation against a r
 - **Disadvantage:** no context — the firewall doesn't know if a packet is part of an established session
 
 **Example packet filter rule:**
-```
+
+```text
 ALLOW  TCP  from 192.168.1.0/24  to ANY    port 443
 DENY   TCP  from ANY             to ANY    port 23   (Telnet is outdated)
 DENY   ALL  from ANY             to ANY    (default-deny at the end)
@@ -59,6 +60,7 @@ A **stateful** firewall remembers the state of active network connections [^5]. 
 - An external actor attempting to initiate a direct incoming connection is blocked
 
 **Advantages over packet filtering:**
+
 - Can distinguish legitimate return traffic from unwanted incoming traffic
 - Harder to fool with spoofed IP addresses
 - Standard in all modern home routers and enterprise firewalls
@@ -82,7 +84,7 @@ WAF is a standard component in cloud services such as Azure Application Gateway 
 
 A **DMZ** is a network segment positioned between the external internet and the internal corporate network [^3]. Servers that must be accessible from the internet (web servers, email servers, DNS) are placed in the DMZ.
 
-```
+```text
 Internet
     |
 [External Firewall]
@@ -109,6 +111,7 @@ Internet
 **Network segmentation** divides the network into separate zones with firewall rules between them [^2]. The goal is to limit **lateral movement** — the attacker's ability to spread across the network after gaining initial access.
 
 Implemented via:
+
 - **VLAN (Virtual LAN):** logical separation at the network level. Employee VLAN, guest VLAN, server VLAN, and IoT VLAN are typical segments.
 - **Firewall rules between VLANs:** define which traffic is allowed across
 
@@ -151,6 +154,7 @@ A **Next-Generation Firewall** combines traditional stateful inspection with dee
 On Windows machines, the built-in firewall is a host-based addition to the network firewall [^10]. It controls traffic in and out of the individual machine.
 
 **GUI configuration:**
+
 1. Search for "Windows Defender Firewall with Advanced Security" in the Start menu
 2. **Inbound Rules:** control what can connect to the machine
 3. **Outbound Rules:** control what the machine can connect to
@@ -279,12 +283,12 @@ NGFW :: Next-Generation Firewall — combines stateful inspection with applicati
 
 ## Sources
 
-[^1]: NDLA. (2024). *Firewall (Driftsstøtte VG2)*. https://ndla.no/r/driftsstotte-im-itk-vg2/brannmur/2aad28ca4e
-[^2]: NSM. (2025). *Basic Principles for ICT Security 2.0*. https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-[^3]: Microsoft. (2025). *Azure Network Security Overview*. https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview
-[^4]: Cloudflare. (2025). *What is a firewall?* https://www.cloudflare.com/learning/security/what-is-a-firewall/
-[^5]: PowerCert Animated Videos. (2022). *Stateful vs Stateless Firewall*. YouTube. https://www.youtube.com/watch?v=nS7fOofT-f4
-[^6]: OWASP. (2025). *Web Application Firewall*. https://owasp.org/www-community/Web_Application_Firewall
-[^7]: SANS Institute. (2024). *IDS vs IPS: What's the Difference?* https://www.sans.org/blog/ids-vs-ips/
-[^8]: Palo Alto Networks. (2025). *What is a Next-Generation Firewall?* https://www.paloaltonetworks.com/cyberpedia/what-is-a-next-generation-firewall
-[^9]: Microsoft. (2025). *Windows Defender Firewall with Advanced Security*. https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security
+[^1]: NDLA. (2024). *Firewall (Driftsstøtte VG2)*. <https://ndla.no/r/driftsstotte-im-itk-vg2/brannmur/2aad28ca4e>
+[^2]: NSM. (2025). *Basic Principles for ICT Security 2.0*. <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+[^3]: Microsoft. (2025). *Azure Network Security Overview*. <https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview>
+[^4]: Cloudflare. (2025). *What is a firewall?* <https://www.cloudflare.com/learning/security/what-is-a-firewall/>
+[^5]: PowerCert Animated Videos. (2022). *Stateful vs Stateless Firewall*. YouTube. <https://www.youtube.com/watch?v=nS7fOofT-f4>
+[^6]: OWASP. (2025). *Web Application Firewall*. <https://owasp.org/www-community/Web_Application_Firewall>
+[^7]: SANS Institute. (2024). *IDS vs IPS: What's the Difference?* <https://www.sans.org/blog/ids-vs-ips/>
+[^8]: Palo Alto Networks. (2025). *What is a Next-Generation Firewall?* <https://www.paloaltonetworks.com/cyberpedia/what-is-a-next-generation-firewall>
+[^9]: Microsoft. (2025). *Windows Defender Firewall with Advanced Security*. <https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security>

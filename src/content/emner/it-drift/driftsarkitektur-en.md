@@ -24,7 +24,8 @@ original: driftsarkitektur.md
 
 An operations architecture describes how an organization's IT infrastructure is built – which components exist, how they connect, and where they are located. A well-thought-out architecture makes the system stable, secure, and scalable.
 
-Today, there are three main models: on-premise infrastructure, cloud-based infrastructure, and a combination of both (hybrid). The choice depends on requirements for control, cost, flexibility, and legal obligations. A good operations architecture always considers who is responsible for what – which is especially important when services are moved to the cloud (see [[skytjenester]] for the Shared Responsibility Model).
+Today, there are three main models: on-premise infrastructure, cloud-based infrastructure, and a combination of both (hybrid). The choice depends on requirements for control, cost, flexibility, and legal obligations. A good operations architecture always considers who is responsible for what – which is especially important when services are moved to the cloud (see [[skytjenester]] for
+  the Shared Responsibility Model).
 
 ---
 
@@ -102,6 +103,7 @@ Cloud storage (e.g., Azure Blob Storage, AWS S3) is suitable for large amounts o
 ### Client Equipment
 
 End-user equipment is called client equipment and includes:
+
 - PCs and laptops
 - Tablets and mobile phones (BYOD – Bring Your Own Device)
 - Thin clients – inexpensive devices that connect to a terminal server
@@ -113,6 +115,7 @@ End-user equipment is called client equipment and includes:
 **UPS (Uninterruptible Power Supply)** is a battery system that provides power during outages. It ensures that servers and network equipment can shut down gracefully – or continue running – when the power goes out.
 
 **Redundancy** means that critical components exist in duplicate, so the system continues to function if one component fails:
+
 - Redundant power supplies in servers
 - Redundant network connections (bonding/failover)
 - RAID (Redundant Array of Independent Disks) for storage
@@ -125,6 +128,7 @@ End-user equipment is called client equipment and includes:
 Modern operations architecture is not only about which components exist – it is also about how they are configured and maintained. **Infrastructure as Code (IaC)** is a method where IT infrastructure is described and managed via machine-readable configuration files instead of manual configuration.
 
 Advantages of IaC:
+
 - Reproducible infrastructure – the same configuration always produces the same result
 - Version control – changes are tracked as code
 - Automated deployment – faster and more reliable than manual work
@@ -137,7 +141,7 @@ Tools: Terraform (infrastructure), Ansible (configuration), Azure ARM templates.
 
 A small to medium-sized business (SMB) might have an architecture like this:
 
-```
+```text
 [Internet]
      |
 [Firewall/Router]
@@ -177,20 +181,24 @@ Look at an example of an Azure ARM template or Terraform configuration (many ope
 Operations architecture is about how IT systems are built and what choices are made for the placement, scaling, and security of infrastructure.
 
 **The three models:**
+
 - **On-premise** – full control, high CAPEX, no dependence on internet
 - **Public cloud** – elastic, OPEX model, dependent on provider
 - **Hybrid** – combination, most common in Norwegian enterprises
 
 **Servers and virtualization:**
+
 - Hypervisor enables multiple VMs on one physical server (VMware, Hyper-V, KVM)
 - Containers (Docker/Kubernetes) are lighter than VMs and share the OS kernel
 - IaC automates and version-controls infrastructure setup
 
 **Network components:**
+
 - Switch (layer 2), router (layer 3), firewall (filtering), VLAN (segmentation), DMZ (public services)
 - Redundancy and UPS ensure continuity during failures
 
 **Storage:**
+
 - DAS (directly attached, one server only), NAS (network sharing, SMB/NFS), SAN (high-speed block storage, Fibre Channel/iSCSI)
 - Cloud object storage for unstructured data and backups
 

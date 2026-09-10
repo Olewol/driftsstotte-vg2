@@ -61,6 +61,7 @@ $$\text{PUE} = \frac{\text{Total electricity consumption of the data center}}{\t
 - **PUE = 2.0** means as much energy is wasted as is used productively
 
 **Benchmarks:**
+
 | Provider | PUE |
 |----------|-----|
 | Google | ~1.10 |
@@ -80,6 +81,7 @@ The hyperscalers (Google, Meta, Microsoft, Amazon) are best in class with PUE ar
 An underestimated environmental problem is **dark data** – data stored in data centers but never used. Studies estimate that up to 80% of all stored data is never accessed after it is created.
 
 This is problematic because:
+
 - Storing unused data requires power for servers and cooling
 - Large organizations accumulate terabytes of duplicates, outdated files, and unused backups
 
@@ -92,11 +94,13 @@ Measures: regular data cleanup, clear retention and deletion policies, and data 
 IT equipment has a limited lifespan. When it is replaced, it becomes **e-waste** (electrical and electronic waste).
 
 E-waste is problematic because:
+
 - IT equipment contains **rare earth metals** (e.g., neodymium, indium, dysprosium) that are difficult to extract and produce
 - Equipment contains **toxic substances** such as lead, cadmium, and mercury
 - Illegal dumping of e-waste is a global problem, particularly in West Africa and Southeast Asia
 
 **The WEEE Directive** (Waste Electrical and Electronic Equipment) is EU legislation that also applies in Norway. The directive requires:
+
 - Producers and importers are responsible for collecting and recycling e-waste
 - Consumers and businesses must deliver equipment to approved collection points
 - Certain materials (plastics, metals, glass) must be recovered
@@ -114,6 +118,7 @@ One of the most effective environmental measures is to use IT equipment longer:
 - **Refurbished equipment** (used, renovated equipment) is a growing market that reduces the need for new production
 
 Measures for lifespan extension:
+
 - Upgrading RAM and storage instead of buying a new PC
 - Using thin clients with long lifespans and simple administration
 - Centralized systems (VDI, terminal servers) where clients are simple and durable
@@ -183,6 +188,7 @@ Nkom (Norwegian Communications Authority) and the Norwegian Environment Agency r
 **Task: Calculate PUE and assess measures**
 
 A school has a server room with the following measurements:
+
 - Total power meter (all equipment in the room): 12 kW
 - Power meter for servers and network equipment only: 8 kW
 
@@ -205,16 +211,19 @@ Map the environmental footprint of a laptop throughout its entire lifecycle: raw
 Sustainability in IT operations is about understanding and reducing the IT sector's environmental impact – from energy consumption in data centers to disposal of old equipment.
 
 **Energy consumption:**
+
 - Data centers use 1–1.3% of global electricity consumption (IEA 2022)
 - PUE measures energy efficiency: 1.0 is perfect, 1.5 is industry average
 - Hyperscalers (Google, Microsoft, AWS) achieve ~1.1
 
 **E-waste:**
+
 - 70–80% of a PC's carbon footprint occurs during manufacturing
 - The WEEE Directive imposes producer responsibility and recycling requirements
 - Elretur handles e-waste in Norway
 
 **Measures (in order of impact):**
+
 1. Extend equipment lifespan (greatest impact per krone)
 2. Virtualize and consolidate servers
 3. Choose certified equipment (Energy Star, EPEAT)

@@ -21,7 +21,8 @@ original: linux-grunnleggende.md
 
 Linux is an open-source operating system widely used on servers, cloud platforms, and network devices. For IT operations technicians, basic Linux knowledge is essential — much of the infrastructure in professional environments runs on Linux.
 
-This article covers the Linux file structure, the file permission model (rwx), user administration, and the most commonly used commands. Comparisons with Windows equivalents are included where helpful. The ext4 file system that Linux typically uses is described in [[filsystem]], and Linux user administration is closely related to [[bruker-og-tilgangsstyring]]. For advanced scripting tasks in the Linux terminal, see [[bash-grunnleggende]].
+This article covers the Linux file structure, the file permission model (rwx), user administration, and the most commonly used commands. Comparisons with Windows equivalents are included where helpful. The ext4 file system that Linux typically uses is described in [[filsystem]], and Linux user administration is closely related to [[bruker-og-tilgangsstyring]]. For advanced scripting
+  tasks in the Linux terminal, see [[bash-grunnleggende]].
 
 ---
 
@@ -51,11 +52,13 @@ Linux has a single file tree rooted at `/` — there is no `C:\` drive like in W
 Each file and directory in Linux has three sets of permissions for three categories:
 
 **Categories:**
+
 - **User (u)** — the user who owns the file
 - **Group (g)** — the group associated with the file
 - **Others (o)** — all other users
 
 **Permissions:**
+
 | Symbol | Number | File | Directory |
 |---|---|---|---|
 | r (read) | 4 | Read file contents | List files in the directory |
@@ -64,7 +67,7 @@ Each file and directory in Linux has three sets of permissions for three categor
 
 **Interpreting `ls -l` output:**
 
-```
+```text
 -rwxr-xr-- 1 student01 teachers 4096 Mar 20 10:00 script.sh
 ```
 
@@ -76,7 +79,7 @@ Each file and directory in Linux has three sets of permissions for three categor
 **Octal notation:**
 Each permission set is summed: r=4, w=2, x=1
 
-```
+```text
 rwxr-xr-x = 7  5  5 → chmod 755
 rw-r--r-- = 6  4  4 → chmod 644
 rwx------ = 7  0  0 → chmod 700
@@ -85,6 +88,7 @@ rwx------ = 7  0  0 → chmod 700
 ### chmod — Change Permissions
 
 **Octal notation:**
+
 ```bash
 chmod 755 directory/       # owner: rwx, group: r-x, others: r-x
 chmod 644 document.txt     # owner: rw-, group: r--, others: r--
@@ -92,6 +96,7 @@ chmod 700 private/         # only owner has access
 ```
 
 **Symbolic notation:**
+
 ```bash
 chmod u+x script.sh    # add execute permission for owner
 chmod g-w file.txt     # remove write permission for group
@@ -100,6 +105,7 @@ chmod a+r public       # all (everyone) gets read permission
 ```
 
 **Recursively (all files in directory):**
+
 ```bash
 chmod -R 755 /var/www/
 ```
@@ -129,6 +135,7 @@ ls -ld /shared/           # shown as 't' at the end: drwxrwxrwt
 **Root user** (UID 0) is the all-powerful superuser in Linux — equivalent to `Administrator` in Windows, but without any UAC-like restriction. Root can do anything.
 
 **sudo** (Superuser Do) lets regular users run individual commands with root privileges:
+
 ```bash
 sudo apt update           # run as root
 sudo -i                   # open root shell (be careful)
@@ -136,11 +143,13 @@ sudo -u student01 command # run as another user
 ```
 
 Who can use sudo is controlled by `/etc/sudoers`. Always edit with `visudo` (checks syntax before saving):
+
 ```bash
 sudo visudo
 ```
 
 On Ubuntu, users are added to the `sudo` group to grant them sudo access:
+
 ```bash
 sudo usermod -aG sudo student01
 ```
@@ -148,23 +157,28 @@ sudo usermod -aG sudo student01
 ### User Administration
 
 **Create user:**
+
 ```bash
 sudo useradd -m -s /bin/bash student01
 # -m: create home directory
 # -s: set default shell
+
 ```
 
 More complete:
+
 ```bash
 sudo useradd -m -s /bin/bash -c "Student Studentsen" -G sudo student01
 ```
 
 **Set/change password:**
+
 ```bash
 sudo passwd student01
 ```
 
 **Modify user settings:**
+
 ```bash
 sudo usermod -aG teachers student01    # add to group
 sudo usermod -s /bin/sh student01      # change shell
@@ -173,12 +187,14 @@ sudo usermod -U student01              # unlock account
 ```
 
 **Delete user:**
+
 ```bash
 sudo userdel student01               # delete account
 sudo userdel -r student01            # delete account and home directory
 ```
 
 **Group commands:**
+
 ```bash
 sudo groupadd teachers              # create group
 sudo gpasswd -a student01 teachers  # add user to group
@@ -188,16 +204,19 @@ sudo gpasswd -d student01 teachers  # remove user from group
 ### /etc/passwd and /etc/group
 
 **/etc/passwd** — one line per user:
-```
+
+```text
 username:password:UID:GID:comment:home_directory:shell
 student01:x:1001:1001:Student Studentsen:/home/student01:/bin/bash
 root:x:0:0:root:/root:/bin/bash
 ```
+
 - The password is `x` — the actual hash is stored in `/etc/shadow`
 - UID 0 = root, 1–999 = system users, 1000+ = regular users
 
 **/etc/group** — one line per group:
-```
+
+```text
 groupname:password:GID:members
 sudo:x:27:student01,admin
 teachers:x:1002:student01,student02
@@ -234,6 +253,7 @@ chmod u+s program       # set SUID
 chmod g+s /shared/project   # set SGID on directory
 ls -ld /shared/project
 # drwxrwsr-x  → 's' in the group position means SGID
+
 ```
 
 ### System Logging in Linux
@@ -307,6 +327,7 @@ sudo chmod +t /shared/class2a
 **Linux** is an open-source operating system based on Unix. It is dominant on servers, in the cloud, and on network devices. As an IT operations technician, you use Linux via the terminal.
 
 **File structure** is a single tree rooted at `/`. Important directories:
+
 - `/etc` — configuration files (including `/etc/passwd`, `/etc/shadow`, `/etc/sudoers`)
 - `/home` — home directories for regular users
 - `/var/log` — log files from the system and services
@@ -314,12 +335,14 @@ sudo chmod +t /shared/class2a
 - `/bin` and `/usr/bin` — commands and programs
 
 **Permission model (rwx)** gives three sets of three permissions:
+
 - **r** (read=4), **w** (write=2), **x** (execute=1)
 - For **owner**, **group**, and **others**
 - Octal sum: `rwx = 7`, `r-x = 5`, `rw- = 6`
 - Common patterns: `755` (directories/programs), `644` (regular files), `700` (private files)
 
 **User administration:**
+
 - `useradd -m -s /bin/bash student01` — create user
 - `passwd student01` — set password
 - `usermod -aG sudo student01` — grant sudo access

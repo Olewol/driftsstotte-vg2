@@ -48,6 +48,7 @@ En hendelse med lav sannsynlighet men katastrofale konsekvenser kan være like v
 #### Steg 1: Identifiser verdier og trusler
 
 **Verdier (assets)** er alt som har verdi og som kan bli rammet:
+
 - Maskinvare (servere, nettverksutstyr, PC-er)
 - Programvare og systemer
 - Data (personopplysninger, regnskapsdata, IP)
@@ -55,6 +56,7 @@ En hendelse med lav sannsynlighet men katastrofale konsekvenser kan være like v
 - Ansatte og kompetanse
 
 **Trusler** er hendelser som kan skade verdiene:
+
 - Ransomware-angrep
 - Phishing mot ansatte
 - Brann eller flom i serverrom
@@ -65,6 +67,7 @@ En hendelse med lav sannsynlighet men katastrofale konsekvenser kan være like v
 #### Steg 2: Identifiser sårbarheter
 
 En sårbarhet er en svakhet som gjør at en trussel kan materialisere seg:
+
 - Utdatert programvare uten patcher
 - Svake passord eller manglende MFA
 - Manglende brannmur
@@ -141,6 +144,7 @@ Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav ders
 | Ansatt-PC-er | Phishing, malware via USB |
 
 **Steg 2 – Identifiser sårbarheter:**
+
 - AD-server kjører Windows Server 2016 uten automatisk patching
 - Ansatte bruker enkle passord uten MFA
 - Gjestenettverk har ikke VLAN-isolasjon fra internett
@@ -175,11 +179,13 @@ Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav ders
 > I undervisningen gjennomfører elevene en ROS-analyse for en tenkt Dark Web-lab som gravejournalistene i «MediaHuset AS» skal bruke. Caset illustrerer strukturert risikostyring:
 >
 > **Tre verdier å beskytte:**
+>
 > - Hovednettverket til bedriften
 > - Kildevern / journalistenes anonymitet
 > - Bedriftens omdømme
 >
 > **Tre identifiserte trusler:**
+>
 > - Journalist laster ned malware som sprer seg til bedriftsnettet
 > - Journalist logger på privat Facebook i Tor og avsløres (bryter anonymitet)
 > - Renholder setter inn infisert minnepenn i lab-maskinen
@@ -198,6 +204,7 @@ Dette betyr at risikoanalyse ikke bare er god praksis – det er et lovkrav ders
 Risiko = Sannsynlighet × Konsekvens. Begge vurderes typisk på en skala fra 1–5. En risikoverdi på 1–4 er lav (grønn), 5–9 middels (gul), 10–19 høy (oransje), 20–25 kritisk (rød).
 
 **4-stegsmodellen:**
+
 1. Identifiser verdier og trusler – hva er verdt å beskytte, og hva kan ramme det?
 2. Identifiser sårbarheter – hvilke svakheter gjør truslene mulige?
 3. Vurder og ranger risiko – bruk risikomatrisen
@@ -213,6 +220,7 @@ All risiko kan ikke elimineres. Ledelsen aksepterer formelt den risikoen som gje
 Risikovurdering er et lovkrav for alle som behandler personopplysninger. Tiltakene må stå i forhold til risikoen for de registrertes rettigheter.
 
 **Praktiske råd:**
+
 - Inkluder alltid organisatoriske tiltak (opplæring, rutiner), ikke bare tekniske
 - Dokumenter analysen og tiltakene – ansvarlighet krever dokumentasjon
 - Gjennomgå og oppdater analysen jevnlig, ikke bare én gang
@@ -255,6 +263,7 @@ Minst én gang per år, og alltid ved vesentlige endringer i IT-miljøet (ny pro
 <details><summary>Spørsmål 2: Hva er de fire stegene i en risikoanalyseprosess?</summary>
 
 **Svar:**
+
 1. Identifiser verdier og trusler
 2. Identifiser sårbarheter
 3. Vurder og ranger risiko (risikomatrise)
@@ -308,7 +317,7 @@ Verdi (asset) :: Alt som har verdi i en virksomhet og som bør beskyttes: data, 
 
 ## Kilder
 
-[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/
-[^2]: GDPR art. 32 – Sikkerhet ved behandling av personopplysninger. https://eur-lex.europa.eu/eli/reg/2016/679/oj
-[^3]: Datatilsynet – Risikovurdering. https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/
-[^4]: NVE – Veileder for ROS-analyse. https://www.nve.no/kartlegging-av-risiko-og-sarbarhet-ros/
+[^1]: NSM – Grunnprinsipper for IKT-sikkerhet v2.1 (2024). <https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/>
+[^2]: GDPR art. 32 – Sikkerhet ved behandling av personopplysninger. <https://eur-lex.europa.eu/eli/reg/2016/679/oj>
+[^3]: Datatilsynet – Risikovurdering. <https://www.datatilsynet.no/rettigheter-og-plikter/virksomhetenes-plikter/vurdere-risiko-og-personvernkonsekvenser/risikovurdering/>
+[^4]: NVE – Veileder for ROS-analyse. <https://www.nve.no/kartlegging-av-risiko-og-sarbarhet-ros/>
