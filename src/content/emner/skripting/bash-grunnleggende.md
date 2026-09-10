@@ -386,31 +386,31 @@ Legg til `set -e` øverst (etter shebang). Da avsluttes skriptet automatisk med 
 
 ## Quiz
 
-<details><summary>Spørsmål 1: Hva gjør shebang-linjen `#!/bin/bash` øverst i et skript?</summary>
+<details><summary>Spørsmål 1: Hva gjør shebang-linjen <code>#!/bin/bash</code> øverst i et skript?</summary>
 
 **Svar:** Den forteller operativsystemet at filen skal tolkes av programmet `/bin/bash`. Uten shebang kan skriptet kjøres av feil tolk eller ikke i det hele tatt.
 
 </details>
 
-<details><summary>Spørsmål 2: Hva er verdien av `$?` etter en kommando som lyktes?</summary>
+<details><summary>Spørsmål 2: Hva er verdien av <code>$?</code> etter en kommando som lyktes?</summary>
 
 **Svar:** `0`. I Bash (og Unix generelt) betyr exit-kode `0` suksess. Alle andre verdier indikerer en feil.
 
 </details>
 
-<details><summary>Spørsmål 3: Hvorfor bruker vi `mkdir -p` i stedet for bare `mkdir`?</summary>
+<details><summary>Spørsmål 3: Hvorfor bruker vi <code>mkdir -p</code> i stedet for bare <code>mkdir</code>?</summary>
 
 **Svar:** `-p` (parents) oppretter også alle manglende foreldremapper i stien, og gir ikke feilmelding hvis mappen allerede eksisterer. `mkdir /backup/2024-01-01` ville feilet hvis `/backup` ikke finnes, men `mkdir -p /backup/2024-01-01` fungerer uansett.
 
 </details>
 
-<details><summary>Spørsmål 4: Hva er forskjellen på `$1` i skriptets hoveddel og `$1` inne i en funksjon?</summary>
+<details><summary>Spørsmål 4: Hva er forskjellen på <code>$1</code> i skriptets hoveddel og <code>$1</code> inne i en funksjon?</summary>
 
 **Svar:** I skriptets hoveddel refererer `$1` til første argument gitt til *skriptet* når det kjøres (f.eks. `./skript.sh argument1`). Inne i en funksjon refererer `$1` til første argument gitt til *funksjonen* ved kall.
 
 </details>
 
-<details><summary>Spørsmål 5: Hva gjør `set -e` øverst i et Bash-skript?</summary>
+<details><summary>Spørsmål 5: Hva gjør <code>set -e</code> øverst i et Bash-skript?</summary>
 
 **Svar:** Det gjør at skriptet avbrytes umiddelbart dersom en kommando returnerer en ikke-null exit-kode (dvs. en feil). Dette hindrer at skriptet fortsetter med delvis mislykket tilstand.
 

@@ -388,31 +388,31 @@ Add `set -e` at the top (after the shebang). The script will then automatically 
 
 ## Quiz
 
-<details><summary>Question 1: What does the shebang line `#!/bin/bash` at the top of a script do?</summary>
+<details><summary>Question 1: What does the shebang line <code>#!/bin/bash</code> at the top of a script do?</summary>
 
 **Answer:** It tells the operating system that the file should be interpreted by the program `/bin/bash`. Without the shebang, the script may be run by the wrong interpreter or not at all.
 
 </details>
 
-<details><summary>Question 2: What is the value of `$?` after a command that succeeded?</summary>
+<details><summary>Question 2: What is the value of <code>$?</code> after a command that succeeded?</summary>
 
 **Answer:** `0`. In Bash (and Unix in general), exit code `0` means success. All other values indicate an error.
 
 </details>
 
-<details><summary>Question 3: Why do we use `mkdir -p` instead of just `mkdir`?</summary>
+<details><summary>Question 3: Why do we use <code>mkdir -p</code> instead of just <code>mkdir</code>?</summary>
 
 **Answer:** `-p` (parents) also creates any missing parent folders in the path, and does not give an error if the folder already exists. `mkdir /backup/2024-01-01` would fail if `/backup` does not exist, but `mkdir -p /backup/2024-01-01` works regardless.
 
 </details>
 
-<details><summary>Question 4: What is the difference between `$1` in the script's main part and `$1` inside a function?</summary>
+<details><summary>Question 4: What is the difference between <code>$1</code> in the script's main part and <code>$1</code> inside a function?</summary>
 
 **Answer:** In the script's main part, `$1` refers to the first argument given to the *script* when it runs (e.g., `./script.sh argument1`). Inside a function, `$1` refers to the first argument given to the *function* when called.
 
 </details>
 
-<details><summary>Question 5: What does `set -e` do at the top of a Bash script?</summary>
+<details><summary>Question 5: What does <code>set -e</code> do at the top of a Bash script?</summary>
 
 **Answer:** It makes the script abort immediately if a command returns a non-zero exit code (i.e., an error). This prevents the script from continuing in a partially failed state.
 

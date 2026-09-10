@@ -1750,7 +1750,7 @@
     },
     {
       "question": "Sudoers",
-      "answer": "Configuration file in Linux (`/etc/sudoers`) that defines who can run commands with root privileges"
+      "answer": "Configuration file in Linux (/etc/sudoers) that defines who can run commands with root privileges"
     },
     {
       "question": "SSSD",
@@ -1816,7 +1816,7 @@
     },
     {
       "question": "Sudoers",
-      "answer": "Konfigurasjonsfil i Linux (`/etc/sudoers`) som definerer hvem som kan kjøre kommandoer med root-rettigheter"
+      "answer": "Konfigurasjonsfil i Linux (/etc/sudoers) som definerer hvem som kan kjøre kommandoer med root-rettigheter"
     },
     {
       "question": "SSSD",
@@ -1866,7 +1866,7 @@
     },
     {
       "question": "POSIX ACL",
-      "answer": "Extended access control in Linux beyond standard rwx; provides per-user and per-group permissions with `setfacl`/`getfacl`"
+      "answer": "Extended access control in Linux beyond standard rwx; provides per-user and per-group permissions with setfacl/getfacl"
     },
     {
       "question": "icacls",
@@ -1924,7 +1924,7 @@
     },
     {
       "question": "POSIX ACL",
-      "answer": "Utvidet tilgangskontroll i Linux utover standard rwx; gir per-bruker- og per-gruppe-tillatelser med `setfacl`/`getfacl`"
+      "answer": "Utvidet tilgangskontroll i Linux utover standard rwx; gir per-bruker- og per-gruppe-tillatelser med setfacl/getfacl"
     },
     {
       "question": "icacls",
@@ -2737,15 +2737,15 @@
       "answer": "Five fields (min hour day month weekday) followed by the command to run"
     },
     {
-      "question": "`@reboot`",
+      "question": "@reboot",
       "answer": "Cron special string that runs the command at system startup"
     },
     {
-      "question": "`crontab -e`",
+      "question": "crontab -e",
       "answer": "Command to edit the user's crontab in the default editor"
     },
     {
-      "question": "`schtasks /create`",
+      "question": "schtasks /create",
       "answer": "Windows command-line tool for creating scheduled tasks"
     },
     {
@@ -2769,11 +2769,11 @@
       "answer": "Describes desired end state — the tool determines which steps are needed"
     },
     {
-      "question": "`2>&1`",
+      "question": "2>&1",
       "answer": "Shell redirect that sends stderr to the same location as stdout"
     },
     {
-      "question": "`Register-ScheduledTask`",
+      "question": "Register-ScheduledTask",
       "answer": "PowerShell cmdlet that registers a scheduled task in Windows Task Scheduler"
     },
     {
@@ -2803,15 +2803,15 @@
       "answer": "Fem felt (min time dag mnd ukedag) etterfulgt av kommandoen som skal kjøres"
     },
     {
-      "question": "`@reboot`",
+      "question": "@reboot",
       "answer": "Cron-spesialstreng som kjører kommandoen ved systemoppstart"
     },
     {
-      "question": "`crontab -e`",
+      "question": "crontab -e",
       "answer": "Kommando for å redigere brukerens crontab i standardeditoren"
     },
     {
-      "question": "`schtasks /create`",
+      "question": "schtasks /create",
       "answer": "Windows-kommandolinjeverktøy for å opprette planlagte oppgaver"
     },
     {
@@ -2835,11 +2835,11 @@
       "answer": "Beskriver ønsket sluttilstand — verktøyet bestemmer selv hvilke steg som trengs"
     },
     {
-      "question": "`2>&1`",
+      "question": "2>&1",
       "answer": "Shell-omdirigering som sender stderr til samme sted som stdout"
     },
     {
-      "question": "`Register-ScheduledTask`",
+      "question": "Register-ScheduledTask",
       "answer": "PowerShell-cmdlet som registrerer en planlagt oppgave i Windows Task Scheduler"
     },
     {
@@ -2862,42 +2862,42 @@
   "bash-grunnleggende-en": [
     {
       "question": "Shebang",
-      "answer": "The first line of a script (`#!/bin/bash`) that tells the OS which interpreter to use"
+      "answer": "The first line of a script (#!/bin/bash) that tells the OS which interpreter to use"
     },
     {
-      "question": "`$?`",
+      "question": "$?",
       "answer": "Special variable that contains the exit code of the previous command (0 = success)"
     },
     {
-      "question": "`$1`, `$2`",
+      "question": "$1, $2",
       "answer": "Positional parameters — arguments given to the script or function"
     },
     {
-      "question": "`set -e`",
+      "question": "set -e",
       "answer": "Bash setting that aborts the script at the first error"
     },
     {
-      "question": "`$(command)`",
+      "question": "$(command)",
       "answer": "Command substitution — runs the command and inserts the output"
     },
     {
-      "question": "`mkdir -p`",
+      "question": "mkdir -p",
       "answer": "Creates a folder and all missing parent folders, without error if the folder exists"
     },
     {
-      "question": "`chmod +x`",
+      "question": "chmod +x",
       "answer": "Grants execute permissions to a file so it can be run directly"
     },
     {
-      "question": "`local`",
+      "question": "local",
       "answer": "Keyword in Bash functions that limits a variable's scope to the function block"
     },
     {
-      "question": "`[ -d PATH ]`",
+      "question": "[ -d PATH ]",
       "answer": "Bash test that is true if the path exists and is a directory"
     },
     {
-      "question": "`[ -f PATH ]`",
+      "question": "[ -f PATH ]",
       "answer": "Bash test that is true if the path exists and is a regular file"
     },
     {
@@ -2910,48 +2910,48 @@
     },
     {
       "question": "Command substitution",
-      "answer": "Technique (`$(command)`) that runs a command and inserts the result directly into a variable"
+      "answer": "Technique ($(command)) that runs a command and inserts the result directly into a variable"
     }
   ],
   "bash-grunnleggende": [
     {
       "question": "Shebang",
-      "answer": "Den første linjen i et skript (`#!/bin/bash`) som forteller OS hvilken tolk som skal brukes"
+      "answer": "Den første linjen i et skript (#!/bin/bash) som forteller OS hvilken tolk som skal brukes"
     },
     {
-      "question": "`$?`",
+      "question": "$?",
       "answer": "Spesialvariabel som inneholder exit-koden til forrige kommando (0 = suksess)"
     },
     {
-      "question": "`$1`, `$2`",
+      "question": "$1, $2",
       "answer": "Posisjonelle parametere — argumenter gitt til skriptet eller funksjonen"
     },
     {
-      "question": "`set -e`",
+      "question": "set -e",
       "answer": "Bash-innstilling som avbryter skriptet ved første feil"
     },
     {
-      "question": "`$(kommando)`",
+      "question": "$(kommando)",
       "answer": "Kommandosubstitusjon — kjører kommandoen og setter inn utdataene"
     },
     {
-      "question": "`mkdir -p`",
+      "question": "mkdir -p",
       "answer": "Oppretter mappe og alle manglende foreldremapper, uten feil ved eksisterende mappe"
     },
     {
-      "question": "`chmod +x`",
+      "question": "chmod +x",
       "answer": "Gir kjørerettigheter til en fil slik at den kan kjøres direkte"
     },
     {
-      "question": "`local`",
+      "question": "local",
       "answer": "Nøkkelord i Bash-funksjoner som begrenser variabelens levetid til funksjonsblokken"
     },
     {
-      "question": "`[ -d STI ]`",
+      "question": "[ -d STI ]",
       "answer": "Bash-test som er sann dersom stien eksisterer og er en mappe"
     },
     {
-      "question": "`[ -f STI ]`",
+      "question": "[ -f STI ]",
       "answer": "Bash-test som er sann dersom stien eksisterer og er en vanlig fil"
     },
     {
@@ -2964,7 +2964,7 @@
     },
     {
       "question": "Kommandosubstitusjon",
-      "answer": "Teknikk (`$(kommando)`) som kjører en kommando og setter inn resultatet direkte i en variabel"
+      "answer": "Teknikk ($(kommando)) som kjører en kommando og setter inn resultatet direkte i en variabel"
     }
   ],
   "powershell-grunnleggende-en": [
@@ -2973,55 +2973,55 @@
       "answer": "Basic command unit in PowerShell, follows Verb-Noun pattern (e.g., Get-Service)"
     },
     {
-      "question": "`$_`",
+      "question": "$_",
       "answer": "Automatic variable in PowerShell that represents the current object in a pipeline"
     },
     {
-      "question": "`Get-Member`",
+      "question": "Get-Member",
       "answer": "Cmdlet that shows all properties and methods of the objects passed in"
     },
     {
-      "question": "`Where-Object`",
+      "question": "Where-Object",
       "answer": "Cmdlet that filters pipeline objects based on a condition"
     },
     {
-      "question": "`Select-Object`",
+      "question": "Select-Object",
       "answer": "Cmdlet that selects specific properties from pipeline objects"
     },
     {
-      "question": "`Export-Csv`",
+      "question": "Export-Csv",
       "answer": "Cmdlet that writes pipeline objects to a CSV file"
     },
     {
-      "question": "`Import-Module`",
+      "question": "Import-Module",
       "answer": "Loads a PowerShell module with its associated cmdlets"
     },
     {
-      "question": "`param` block",
+      "question": "param block",
       "answer": "Declares parameters for a PowerShell function with type and validation"
     },
     {
-      "question": "`[Parameter(Mandatory)]`",
+      "question": "[Parameter(Mandatory)]",
       "answer": "Attribute that makes a function parameter mandatory"
     },
     {
-      "question": "`-ErrorAction Stop`",
-      "answer": "Makes a cmdlet throw an exception on error, so `catch` can handle it"
+      "question": "-ErrorAction Stop",
+      "answer": "Makes a cmdlet throw an exception on error, so catch can handle it"
     },
     {
       "question": "Execution Policy",
       "answer": "Security policy that determines which PowerShell scripts can run"
     },
     {
-      "question": "`$env:COMPUTERNAME`",
+      "question": "$env:COMPUTERNAME",
       "answer": "Automatic environment variable with the machine's name"
     },
     {
-      "question": "`Write-Host`",
+      "question": "Write-Host",
       "answer": "Writes directly to the console — not sent to the pipeline and cannot be captured by other cmdlets"
     },
     {
-      "question": "`Write-Output`",
+      "question": "Write-Output",
       "answer": "Sends the value to the pipeline so it can be processed further by other cmdlets"
     },
     {
@@ -3035,55 +3035,55 @@
       "answer": "Grunnleggende kommandoenhet i PowerShell, følger Verb-Substantiv-mønster (f.eks. Get-Service)"
     },
     {
-      "question": "`$_`",
+      "question": "$_",
       "answer": "Automatisk variabel i PowerShell som representerer gjeldende objekt i en pipeline"
     },
     {
-      "question": "`Get-Member`",
+      "question": "Get-Member",
       "answer": "Cmdlet som viser alle egenskaper og metoder for objektene som sendes inn"
     },
     {
-      "question": "`Where-Object`",
+      "question": "Where-Object",
       "answer": "Cmdlet som filtrerer pipeline-objekter basert på en betingelse"
     },
     {
-      "question": "`Select-Object`",
+      "question": "Select-Object",
       "answer": "Cmdlet som velger bestemte egenskaper fra pipeline-objekter"
     },
     {
-      "question": "`Export-Csv`",
+      "question": "Export-Csv",
       "answer": "Cmdlet som skriver pipeline-objekter til en CSV-fil"
     },
     {
-      "question": "`Import-Module`",
+      "question": "Import-Module",
       "answer": "Laster inn en PowerShell-modul med tilhørende cmdlets"
     },
     {
-      "question": "`param`-blokk",
+      "question": "param-blokk",
       "answer": "Deklarerer parametere til en PowerShell-funksjon med type og validering"
     },
     {
-      "question": "`[Parameter(Mandatory)]`",
+      "question": "[Parameter(Mandatory)]",
       "answer": "Attributt som gjør en funksjonsparameter obligatorisk"
     },
     {
-      "question": "`-ErrorAction Stop`",
-      "answer": "Gjør at en cmdlet kaster et unntak ved feil, slik at `catch` kan fange det"
+      "question": "-ErrorAction Stop",
+      "answer": "Gjør at en cmdlet kaster et unntak ved feil, slik at catch kan fange det"
     },
     {
       "question": "Execution Policy",
       "answer": "Sikkerhetspolitikk som bestemmer hvilke PowerShell-skript som kan kjøres"
     },
     {
-      "question": "`$env:COMPUTERNAME`",
+      "question": "$env:COMPUTERNAME",
       "answer": "Automatisk miljøvariabel med maskinens navn"
     },
     {
-      "question": "`Write-Host`",
+      "question": "Write-Host",
       "answer": "Skriver direkte til konsollet — sendes ikke til pipelinen og kan ikke fanges av andre cmdlets"
     },
     {
-      "question": "`Write-Output`",
+      "question": "Write-Output",
       "answer": "Sender verdien til pipelinen slik at den kan bearbeides videre av andre cmdlets"
     },
     {

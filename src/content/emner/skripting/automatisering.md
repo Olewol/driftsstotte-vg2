@@ -470,7 +470,7 @@ Skript lagres gjerne i versjonskontroll (Git), loggfiler eller deles med kollege
 
 </details>
 
-<details><summary>Spørsmål 2: Hva betyr `*/5` i crontab-syntaksen?</summary>
+<details><summary>Spørsmål 2: Hva betyr <code>*/5</code> i crontab-syntaksen?</summary>
 
 **Svar:** `*/5` betyr "hvert femte" av den aktuelle tidsenheten. I minutt-feltet betyr `*/5` hvert 5. minutt (0, 5, 10, 15, ...). I time-feltet ville det betydd hver 5. time.
 
@@ -488,7 +488,7 @@ Skript lagres gjerne i versjonskontroll (Git), loggfiler eller deles med kollege
 
 </details>
 
-<details><summary>Spørsmål 5: Hva betyr `2>&1` på slutten av en cron-kommando?</summary>
+<details><summary>Spørsmål 5: Hva betyr <code>2&gt;&amp;1</code> på slutten av en cron-kommando?</summary>
 
 **Svar:** Det videresender **stderr** (filbeskriver 2) til **stdout** (filbeskriver 1). Når dette kombineres med `>> /var/log/backup.log`, betyr det at både vanlig utdata og feilmeldinger skrives til samme loggfil.
 

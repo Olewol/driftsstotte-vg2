@@ -302,7 +302,7 @@ Autentisering verifiserer identiteten din (du er den du utgir deg for å være).
 
 </details>
 
-<details><summary>Spørsmål 6: Hva gjør kommandoen `usermod -aG sudo elev01` i Linux?</summary>
+<details><summary>Spørsmål 6: Hva gjør kommandoen <code>usermod -aG sudo elev01</code> i Linux?</summary>
 
 **Svar:** Den legger brukeren `elev01` til i gruppen `sudo` uten å fjerne brukeren fra andre grupper (`-a` = append, `-G` = supplementary groups). Dette gir brukeren mulighet til å kjøre kommandoer med root-rettigheter via `sudo`.
 

@@ -381,7 +381,7 @@ The first character indicates the file type: `-` = regular file, `d` = directory
 
 ## Quiz
 
-<details><summary>Question 1: What does the permission code `chmod 755` mean?</summary>
+<details><summary>Question 1: What does the permission code <code>chmod 755</code> mean?</summary>
 
 **Answer:** Owner gets rwx (7 = 4+2+1), group gets r-x (5 = 4+0+1), others get r-x (5 = 4+0+1). The owner can read, write, and execute; group and others can read and execute, but not write.
 
@@ -393,7 +393,7 @@ The first character indicates the file type: `-` = regular file, `d` = directory
 
 </details>
 
-<details><summary>Question 3: What is the difference between `useradd` and `usermod`?</summary>
+<details><summary>Question 3: What is the difference between <code>useradd</code> and <code>usermod</code>?</summary>
 
 **Answer:** `useradd` creates a new user account. `usermod` modifies settings on an existing account (e.g., adds group memberships, changes shell, or locks the account).
 

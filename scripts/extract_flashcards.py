@@ -2,6 +2,11 @@
 Extract flashcards from the ## Flashcards section of each emne file.
 Outputs to src/data/flashcards.json for use at build time.
 Format: term :: definition
+
+NOTE: FlashCardSection renders cards as PLAIN TEXT (Astro escapes expressions),
+so markdown syntax (`code`, **bold**) must be stripped from terms/definitions —
+otherwise raw backticks/asterisks appear to students. Bold is already removed;
+backticks stripped since 2026-09-10 (t_4001f0f3).
 """
 import re, os, json
 
@@ -31,8 +36,8 @@ for emne in sorted(os.listdir(emner_dir)):
             if '::' not in line:
                 continue
             term, _, defn = line.partition('::')
-            term = term.strip().replace('*', '').strip()
-            defn = defn.strip().replace('*', '').strip()
+            term = term.strip().replace('*', '').replace('`', '').strip()
+            defn = defn.strip().replace('*', '').replace('`', '').strip()
             if term and defn and not term.startswith('#'):
                 cards.append({'question': term, 'answer': defn})
 

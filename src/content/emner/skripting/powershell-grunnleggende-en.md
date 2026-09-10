@@ -374,13 +374,13 @@ ISE (Integrated Scripting Environment) is a built-in graphical tool for writing 
 
 </details>
 
-<details><summary>Question 2: What does `Where-Object` do in a pipeline?</summary>
+<details><summary>Question 2: What does <code>Where-Object</code> do in a pipeline?</summary>
 
 **Answer:** `Where-Object` filters objects in the pipeline and only passes through those that meet a condition. For example: `Get-Service | Where-Object Status -EQ "Running"` shows only services that are running.
 
 </details>
 
-<details><summary>Question 3: Why do you use `-NoTypeInformation` with `Export-Csv`?</summary>
+<details><summary>Question 3: Why do you use <code>-NoTypeInformation</code> with <code>Export-Csv</code>?</summary>
 
 **Answer:** Without `-NoTypeInformation`, PowerShell adds an extra first line to the CSV file with the .NET type name of the object (e.g., `#TYPE Microsoft.PowerShell.Commands.LocalUser`). This line is unnecessary and can confuse other programs reading the CSV file.
 
@@ -392,7 +392,7 @@ ISE (Integrated Scripting Environment) is a built-in graphical tool for writing 
 
 </details>
 
-<details><summary>Question 5: What is needed for an error to be caught by `catch` in PowerShell?</summary>
+<details><summary>Question 5: What is needed for an error to be caught by <code>catch</code> in PowerShell?</summary>
 
 **Answer:** You must add `-ErrorAction Stop` to the cmdlet that might fail. By default, PowerShell cmdlets are set to continue even on error (`-ErrorAction Continue`), and then an exception error that `catch` can catch is not thrown.
 

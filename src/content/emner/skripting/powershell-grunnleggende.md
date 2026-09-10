@@ -372,13 +372,13 @@ ISE (Integrated Scripting Environment) er et innebygd grafisk verktøy for å sk
 
 </details>
 
-<details><summary>Spørsmål 2: Hva gjør `Where-Object` i en pipeline?</summary>
+<details><summary>Spørsmål 2: Hva gjør <code>Where-Object</code> i en pipeline?</summary>
 
 **Svar:** `Where-Object` filtrerer objekter i pipelinen og slipper bare gjennom de som oppfyller en betingelse. For eksempel: `Get-Service | Where-Object Status -EQ "Running"` viser bare tjenester som kjører.
 
 </details>
 
-<details><summary>Spørsmål 3: Hvorfor bruker man `-NoTypeInformation` ved `Export-Csv`?</summary>
+<details><summary>Spørsmål 3: Hvorfor bruker man <code>-NoTypeInformation</code> ved <code>Export-Csv</code>?</summary>
 
 **Svar:** Uten `-NoTypeInformation` legger PowerShell til en ekstra første linje i CSV-filen med .NET-typenavnet til objektet (f.eks. `#TYPE Microsoft.PowerShell.Commands.LocalUser`). Denne linjen er unødvendig og kan forvirre andre programmer som leser CSV-filen.
 
@@ -390,7 +390,7 @@ ISE (Integrated Scripting Environment) er et innebygd grafisk verktøy for å sk
 
 </details>
 
-<details><summary>Spørsmål 5: Hva må til for at en feil skal fanges av `catch` i PowerShell?</summary>
+<details><summary>Spørsmål 5: Hva må til for at en feil skal fanges av <code>catch</code> i PowerShell?</summary>
 
 **Svar:** Man må legge til `-ErrorAction Stop` på cmdleten som kan feile. Som standard er PowerShell-cmdlets satt til å fortsette selv ved feil (`-ErrorAction Continue`), og da kastes ikke en unntaksfeil som `catch` kan fange.
 

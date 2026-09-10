@@ -379,7 +379,7 @@ Det første tegnet angir filtypen: `-` = vanlig fil, `d` = katalog (directory), 
 
 ## Quiz
 
-<details><summary>Spørsmål 1: Hva betyr tillatelseskoden `chmod 755`?</summary>
+<details><summary>Spørsmål 1: Hva betyr tillatelseskoden <code>chmod 755</code>?</summary>
 
 **Svar:** Eier får rwx (7 = 4+2+1), gruppe får r-x (5 = 4+0+1), andre får r-x (5 = 4+0+1). Eieren kan lese, skrive og kjøre; gruppe og andre kan lese og kjøre, men ikke skrive.
 
@@ -391,7 +391,7 @@ Det første tegnet angir filtypen: `-` = vanlig fil, `d` = katalog (directory), 
 
 </details>
 
-<details><summary>Spørsmål 3: Hva er forskjellen mellom `useradd` og `usermod`?</summary>
+<details><summary>Spørsmål 3: Hva er forskjellen mellom <code>useradd</code> og <code>usermod</code>?</summary>
 
 **Svar:** `useradd` oppretter en ny brukerkonto. `usermod` endrer innstillingene på en eksisterende konto (f.eks. legger til gruppemedlemskap, endrer shell eller låser kontoen).
 

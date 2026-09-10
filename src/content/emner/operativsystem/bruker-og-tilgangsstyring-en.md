@@ -304,7 +304,7 @@ Authentication verifies your identity (you are who you claim to be). Authorizati
 
 </details>
 
-<details><summary>Question 6: What does the command `usermod -aG sudo student01` do in Linux?</summary>
+<details><summary>Question 6: What does the command <code>usermod -aG sudo student01</code> do in Linux?</summary>
 
 **Answer:** It adds the user `student01` to the `sudo` group without removing the user from other groups (`-a` = append, `-G` = supplementary groups). This gives the user the ability to run commands with root privileges via `sudo`.
 

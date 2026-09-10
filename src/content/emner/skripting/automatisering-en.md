@@ -472,7 +472,7 @@ Scripts are often stored in version control (Git), log files, or shared with col
 
 </details>
 
-<details><summary>Question 2: What does `*/5` mean in crontab syntax?</summary>
+<details><summary>Question 2: What does <code>*/5</code> mean in crontab syntax?</summary>
 
 **Answer:** `*/5` means "every five" of the relevant time unit. In the minute field, `*/5` means every 5th minute (0, 5, 10, 15, ...). In the hour field, it would mean every 5th hour.
 
@@ -490,7 +490,7 @@ Scripts are often stored in version control (Git), log files, or shared with col
 
 </details>
 
-<details><summary>Question 5: What does `2>&1` at the end of a cron command mean?</summary>
+<details><summary>Question 5: What does <code>2&gt;&amp;1</code> at the end of a cron command mean?</summary>
 
 **Answer:** It redirects **stderr** (file descriptor 2) to **stdout** (file descriptor 1). When combined with `>> /var/log/backup.log`, it means both normal output and error messages are written to the same log file.
 
