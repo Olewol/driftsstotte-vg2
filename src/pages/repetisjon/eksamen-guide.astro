@@ -1,0 +1,337 @@
+---
+import RepetisjonLayout from '../../layouts/RepetisjonLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<RepetisjonLayout
+  title="Eksamensguide — alt samlet"
+  description="Alle 9 temaene samlet på én side. Tabeller, diagrammer og kjapprepetisjon — perfekt til siste repetisjon før eksamen."
+  prev="sikkerhet-driftsprinsipper"
+  prevLabel="Prinsipper for sikkerhet og drift"
+  next="oppgaver"
+  nextLabel="Oppgaver — test deg selv"
+>
+
+Alle temaene i eksamen guiden samlet på én side. Hvert tema har tabeller og diagrammer — detaljene finner du på faktasidene. Til slutt: kjapprepetisjon og en interaktiv feilsøkingsflyt.
+
+<div class="hvorfor-callout">
+  <div class="hvorfor-callout-title">Hvorfor denne siden?</div>
+  <p>Dette er sammendraget du bruker <strong>dagen før og timen før eksamen</strong>. Les tabellene, test deg selv i hodet, og åpne faktasiden kun der du svarer feil. PDF/nedlastbar versjon: <a href={`${base}/eksamen-repetisjon-driftsstotte-vg2.md`}>eksamen-repetisjon-driftsstotte-vg2.md</a>.</p>
+</div>
+
+<h2>Brukeradministrasjon</h2>
+
+Active Directory (AD) lagrer brukere, maskiner og tilganger sentralt. Autentisering skjer mot en domenekontroller (DC) med Kerberos — passordet sendes aldri over nettverket.
+
+<img src={`${base}/diagrams/ad-hierarchy.svg`} alt="AD-hierarki: skog, tre, domene, OU" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<table><thead><tr>
+<th>Begrep</th>
+<th>Forklaring</th>
+</tr></thead><tbody>
+<tr><td><strong>Katalogtjeneste</strong></td><td>Sentral database over brukere, maskiner og tilganger (AD DS / Entra ID)</td></tr>
+<tr><td><strong>OU</strong></td><td>Organisasjonsenhet — logisk beholder for brukere/maskiner i AD; GPO-er knyttes hit</td></tr>
+<tr><td><strong>Domene</strong></td><td>Grunnenheten i AD, identifisert med DNS-navn (f.eks. firma.local)</td></tr>
+<tr><td><strong>SID</strong></td><td>Security Identifier — unik ID for hver bruker/gruppe i Windows</td></tr>
+<tr><td><strong>GPO</strong></td><td>Group Policy Object — sentrale innstillinger som distribueres til OU-er</td></tr>
+<tr><td><strong>LDAP</strong></td><td>Protokollen AD bruker for katalogtilgang (kryptert: LDAPS, port 636)</td></tr>
+<tr><td><strong>Kerberos</strong></td><td>Standard autentiseringsprotokoll i AD — sikrere enn NTLM</td></tr>
+</tbody></table>
+
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p><strong>Minst 2 domenekontrollere</strong> for redundans — uten DNS fungerer ikke AD-pålogging.</p>
+  <p><strong>RBAC:</strong> aldri tillatelser til enkeltbrukere — opprett sikkerhetsgruppe, legg bruker i gruppen, tildel tillatelser til gruppen. Minste privilegium.</p>
+  <p><strong>Oppsigelse:</strong> deaktiver kontoen, slett den aldri — SID-en bevarer e-post, filer og tilgangshistorikk.</p>
+</div>
+
+<h2>Infrastruktur og maskinvare</h2>
+
+<table><thead><tr>
+<th>Komponent</th>
+<th>Funksjon</th>
+</tr></thead><tbody>
+<tr><td>Domenekontroller (DC)</td><td>Autentisering, AD-database</td></tr>
+<tr><td>DHCP-server</td><td>Automatisk IP-tildeling</td></tr>
+<tr><td>DNS-server</td><td>Navneoppløsning</td></tr>
+<tr><td>Brannmur</td><td>Trafikkontroll mellom nettverk</td></tr>
+<tr><td>Svitsj</td><td>Koble enheter i LAN (lag 2)</td></tr>
+<tr><td>Ruter</td><td>Koble sammen nettverk (lag 3)</td></tr>
+<tr><td>Aksesspunkt</td><td>Wi-Fi-dekning</td></tr>
+<tr><td>NAS / fillager</td><td>Sentral fillagring</td></tr>
+<tr><td>Backup-server</td><td>Sikkerhetskopier</td></tr>
+<tr><td>UPS</td><td>Strømbackup til kritisk utstyr</td></tr>
+</tbody></table>
+
+<h3>Servertyper — når brukes hva?</h3>
+
+<img src={`${base}/diagrams/servertyper.svg`} alt="Servertyper: Tower, Rack, Blade, Virtuell" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<table><thead><tr>
+<th>Type</th>
+<th>Beskrivelse</th>
+<th>Når brukes</th>
+</tr></thead><tbody>
+<tr><td><strong>Tower</strong></td><td>Frittstående kabinett, lik en stasjonær PC</td><td>Små bedrifter, enkeltstående servere</td></tr>
+<tr><td><strong>Rack</strong></td><td>Monteres i rack-stativ, 1U/2U høyde</td><td>De fleste bedrifter, standardisert</td></tr>
+<tr><td><strong>Blade</strong></td><td>Tette moduler i felles chassis med delt strøm/kjøling</td><td>Store datasentre, høy tetthet</td></tr>
+<tr><td><strong>Virtuell (VM)</strong></td><td>Programvare som emulerer en fysisk server</td><td>Konsolidering, flere OS på samme maskinvare</td></tr>
+</tbody></table>
+
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p>Minimum 2 DC-er, DHCP på server (ikke ruter) i bedriftsnettverk, separate svitsjer for servere og klienter, UPS til alt kritisk utstyr.</p>
+  <p>Virtualisering: <strong>Type 1-hypervisor</strong> (ESXi, Hyper-V, Proxmox) kjører direkte på maskinvaren i produksjon; Type 2 (VirtualBox) til testing. Container deler verts-OS-kjernen — lettere, men mindre isolasjon enn VM.</p>
+</div>
+
+<h2>Nettverk og segmentering</h2>
+
+VLAN deler et fysisk nettverk inn i flere logiske nettverk. Trafikken isoleres per VLAN — kryssing mellom VLAN krever ruter eller brannmur. IEEE 802.1Q er standarden for VLAN-tagging.
+
+<img src={`${base}/diagrams/vlan-segmentering.svg`} alt="VLAN-segmentering: ruter, svitsj, access-porter" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<table><thead><tr>
+<th>VLAN</th>
+<th>Navn</th>
+<th>Subnett</th>
+<th>Formål</th>
+</tr></thead><tbody>
+<tr><td>10</td><td>Kontor</td><td>192.168.10.0/24</td><td>Ansattes PC-er og skrivere</td></tr>
+<tr><td>20</td><td>Produksjon</td><td>192.168.20.0/24</td><td>Maskiner og produksjonsutstyr</td></tr>
+<tr><td>30</td><td>Gjest</td><td>192.168.30.0/24</td><td>Besøkende, kun internett</td></tr>
+<tr><td>40</td><td>Servere</td><td>192.168.40.0/24</td><td>AD, filserver, backup</td></tr>
+<tr><td>50</td><td>Drift</td><td>192.168.50.0/24</td><td>Overvåking, administrasjon</td></tr>
+</tbody></table>
+
+<p><strong>IT vs OT:</strong> IT er kontorutstyr (PC-er, servere); OT er produksjonsutstyr (PLC, SCADA). OT har ofte gammelt OS som ikke kan oppdateres — isolasjon er eneste forsvaret. Brannmur mellom IT og OT: kun nødvendig trafikk tillatt.</p>
+
+<h3>VPN</h3>
+
+<table><thead><tr>
+<th>Type</th>
+<th>Bruksområde</th>
+</tr></thead><tbody>
+<tr><td><strong>Site-to-Site</strong></td><td>Kobler to hele nettverk sammen (hovedkontor ↔ avdeling/brakkerigg)</td></tr>
+<tr><td><strong>Remote Access</strong></td><td>Én bruker kobler seg til nettverket (hjemmekontor)</td></tr>
+</tbody></table>
+
+<table><thead><tr>
+<th>Protokoll</th>
+<th>Styrke</th>
+</tr></thead><tbody>
+<tr><td>IPsec</td><td>Standard, mye brukt</td></tr>
+<tr><td>OpenVPN</td><td>Fleksibel, plattformuavhengig</td></tr>
+<tr><td>WireGuard</td><td>Rask, moderne, enkel</td></tr>
+</tbody></table>
+
+<h3>DORA — DHCP-prosessen</h3>
+
+<img src={`${base}/diagrams/dhcp-dora.svg`} alt="DHCP DORA-prosessen: Discover, Offer, Request, Acknowledge" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p>Segmentering hindrer <strong>lateral bevegelse</strong> ved angrep. Trunk-porter tagges med VLAN ID i begge ender; access-porter tilhører ett VLAN.</p>
+</div>
+
+<h2>Nettverkssikkerhet</h2>
+
+<table><thead><tr>
+<th>Brannmurtype</th>
+<th>Nivå</th>
+<th>Hva den sjekker</th>
+</tr></thead><tbody>
+<tr><td>Pakkefiltrering (stateless)</td><td>Lag 3/4</td><td>IP, port, protokoll</td></tr>
+<tr><td>Stateful inspection</td><td>Lag 3/4+</td><td>Samme + tilstandstabell</td></tr>
+<tr><td>WAF (applikasjonsbrannmur)</td><td>Lag 7</td><td>HTTP-innhold, SQL-injeksjon, XSS</td></tr>
+</tbody></table>
+
+<img src={`${base}/diagrams/dmz.svg`} alt="DMZ: internett, ytre brannmur, DMZ-sone, indre brannmur, internt nett" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<p><strong>DMZ</strong> — tjenester som må nås fra internett (web, e-post, VPN) plasseres i en isolert sone. Kompromitteres en DMZ-server, står den indre brannmuren mellom angriperen og internnettet.</p>
+
+<img src={`${base}/diagrams/defense-in-depth.svg`} alt="Forsvar i dybden — 7 lag med sikkerhet" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p><strong>Default-deny:</strong> blokker alt, tillat kun det som trengs. Brannmurregler spesifiserer kilde, destinasjon, port, protokoll og retning. Loggfør og overvåk.</p>
+  <p><strong>NSM grunnprinsipper:</strong> kontrollere dataflyt, minste privilegium, sårbarhetshåndtering, overvåking/logging, hendelseshåndtering.</p>
+</div>
+
+<h2>Servermodeller og virtualisering</h2>
+
+<table><thead><tr>
+<th>Modell</th>
+<th>Fordeler</th>
+<th>Ulemper</th>
+<th>Typisk bruk</th>
+</tr></thead><tbody>
+<tr><td>Tower</td><td>Billig, enkel, stille</td><td>Tar plass, dårlig skalering</td><td>Små bedrifter, testmiljø</td></tr>
+<tr><td>Rack</td><td>Standardisert, god kjøling</td><td>Krever rack-stativ, støy</td><td>De fleste bedrifter</td></tr>
+<tr><td>Blade</td><td>Svært høy tetthet, delt infrastruktur</td><td>Dyrere chassis, leverandørbundet</td><td>Store datasentre</td></tr>
+</tbody></table>
+
+<table><thead><tr>
+<th>Behov</th>
+<th>Anbefaling</th>
+</tr></thead><tbody>
+<tr><td>Få servere, ikke eget serverrom</td><td>Tower</td></tr>
+<tr><td>Standard bedriftsmiljø</td><td>Rack (1U/2U)</td></tr>
+<tr><td>10+ servere på liten plass</td><td>Blade</td></tr>
+<tr><td>Fleksibel ressursbruk</td><td>Virtuell — hypervisor + VM-er</td></tr>
+</tbody></table>
+
+<table><thead><tr>
+<th>Virtualiseringsmodell</th>
+<th>Beskrivelse</th>
+<th>Best egnet for</th>
+</tr></thead><tbody>
+<tr><td>Full virtualisering</td><td>Hypervisor emulerer komplett maskinvare</td><td>Hvilket som helst OS</td></tr>
+<tr><td>Paravirtualisering</td><td>Gjeste-OS vet at det er virtuelt</td><td>Bedre ytelse, krever tilpasset OS</td></tr>
+<tr><td>Container</td><td>Deler verts-OS-kjernen</td><td>Lett og raskt, samme OS-type</td></tr>
+</tbody></table>
+
+<h2>Backup og gjenoppretting</h2>
+
+<img src={`${base}/diagrams/backup-3-2-1.svg`} alt="3-2-1 backup-regelen" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<p><strong>3-2-1:</strong> 3 kopier av data, 2 ulike medietyper, 1 kopi offsite. Moderne utvidelse <strong>3-2-1-1-0</strong>: +1 uforanderlig (immutable) kopi, 0 feil ved gjenopprettingstesting.</p>
+
+<table><thead><tr>
+<th>Strategi</th>
+<th>Lagringsplass</th>
+<th>Backuptid</th>
+<th>Gjenopprettingstid</th>
+</tr></thead><tbody>
+<tr><td>Full backup</td><td>Størst</td><td>Lengst</td><td>Raskest</td></tr>
+<tr><td>Differensiell</td><td>Medium (vokser til neste full)</td><td>Medium</td><td>Medium (full + siste differensielle)</td></tr>
+<tr><td>Inkrementell</td><td>Minst</td><td>Raskest</td><td>Lengst (full + alle inkrementelle)</td></tr>
+</tbody></table>
+
+<table><thead><tr>
+<th>Begrep</th>
+<th>Betydning</th>
+<th>Eksempel</th>
+</tr></thead><tbody>
+<tr><td><strong>RPO</strong></td><td>Hvor mye datatap har vi råd til?</td><td>4 timer = backup hver 4. time</td></tr>
+<tr><td><strong>RTO</strong></td><td>Hvor lang nedetid tåler vi?</td><td>2 timer = oppe innen 2 timer</td></tr>
+</tbody></table>
+
+<div class="eksamen-callout">
+  <div class="eksamen-callout-title">Husk til eksamen</div>
+  <p><strong>Test gjenoppretting jevnlig</strong> — en backup som ikke kan gjenopprettes er verdiløs. Offsite backup beskytter mot brann og innbrudd.</p>
+</div>
+
+<h2>Dokumentasjon og planlegging</h2>
+
+Dokumentasjon er like viktig som konfigurasjonen — uten dokumentasjon blir feilsøking gjetting.
+
+<table><thead><tr>
+<th>Type</th>
+<th>Innhold</th>
+<th>Oppdateres</th>
+</tr></thead><tbody>
+<tr><td>Nettverkskart</td><td>Topologi, enheter, linker</td><td>Ved endringer</td></tr>
+<tr><td>IP-plan</td><td>VLAN, subnett, reserverte IP-er</td><td>Når nytt subnett tas i bruk</td></tr>
+<tr><td>Endringslogg</td><td>Hva, hvem, hvorfor, når</td><td>Hver gang noe endres</td></tr>
+<tr><td>Passordhvelv</td><td>Tjenestekontoer, admin-passord</td><td>Ved passordrullering</td></tr>
+<tr><td>Brannmurregler</td><td>Kilde, destinasjon, port, regelnummer</td><td>Når regel legges til/fjernes</td></tr>
+</tbody></table>
+
+<table><thead><tr>
+<th>Topologi</th>
+<th>Fordeler</th>
+<th>Ulemper</th>
+</tr></thead><tbody>
+<tr><td>Stjerne</td><td>Enkelt å feilsøke</td><td>Avhengig av sentral enhet</td></tr>
+<tr><td>Buss</td><td>Billig</td><td>Sårbar, treg</td></tr>
+<tr><td>Ring</td><td>Robust</td><td>Vanskelig å feilsøke</td></tr>
+<tr><td>Mesh</td><td>Svært robust</td><td>Dyrt, komplekst</td></tr>
+</tbody></table>
+
+<div class="tips-callout">
+  <div class="tips-callout-title">IP-plan — nøkkelprinsipper</div>
+  <p>DHCP for klienter, statisk IP for servere og nettverksutstyr. Planlegg for vekst (/24 gir 254 adresser). Dokumenter reserverte IP-er. Utdatert dokumentasjon er verre enn ingen.</p>
+</div>
+
+<h2>Nettverksprotokoller</h2>
+
+<img src={`${base}/diagrams/osi-model.svg`} alt="OSI-modellen: 7 lag med protokoller" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+
+<table><thead><tr>
+<th>Lag</th>
+<th>Protokoller</th>
+<th>Funksjon</th>
+</tr></thead><tbody>
+<tr><td>7 Applikasjon</td><td>HTTP, HTTPS, FTP, SMTP, SSH</td><td>Applikasjonsdata</td></tr>
+<tr><td>4 Transport</td><td>TCP (pålitelig), UDP (raskt)</td><td>Segmentering, portnummer</td></tr>
+<tr><td>3 Nettverk</td><td>IP, ICMP, ARP</td><td>Adressering, ruting</td></tr>
+<tr><td>2 Link</td><td>Ethernet, Wi-Fi</td><td>Rammer, MAC-adresser</td></tr>
+<tr><td>1 Fysisk</td><td>Kabling, fiber, signaler</td><td>Bitoverføring</td></tr>
+</tbody></table>
+
+<div class="compare-box">
+  <div class="compare-header">TCP — pålitelig</div>
+  <div class="compare-header">UDP — raskt</div>
+  <div class="compare-cell"><strong>Forbindelse:</strong> opprettes først (3-way handshake)</div>
+  <div class="compare-cell"><strong>Forbindelse:</strong> forbindelsesløs — bare sender</div>
+  <div class="compare-cell"><strong>Pålitelighet:</strong> bekreftelse (ACK), re-sending ved tap</div>
+  <div class="compare-cell"><strong>Pålitelighet:</strong> ingen garanti — "best effort"</div>
+  <div class="compare-cell"><strong>Bruksområde:</strong> web, e-post, filoverføring</div>
+  <div class="compare-cell"><strong>Bruksområde:</strong> streaming, spill, DNS</div>
+</div>
+
+<h2>Prinsipper for sikkerhet og drift</h2>
+
+<table><thead><tr>
+<th>Prinsipp</th>
+<th>Betydning</th>
+</tr></thead><tbody>
+<tr><td><strong>Minste privilegium</strong></td><td>Kun tilgangene som trengs for å utføre jobben</td></tr>
+<tr><td><strong>Defense in depth</strong></td><td>Flere lag med forsvar</td></tr>
+<tr><td><strong>Default-deny</strong></td><td>Nekt alt, tillat eksplisitt</td></tr>
+<tr><td><strong>Need to know</strong></td><td>Kun data du trenger i din rolle</td></tr>
+<tr><td><strong>Separation of duties</strong></td><td>Ingen skal ha alenemakt over kritiske funksjoner</td></tr>
+</tbody></table>
+
+<h2>Kjapprepetisjon — 5 minutter før eksamen</h2>
+
+<table><thead><tr>
+<th>Tema</th>
+<th>3 viktigste punkter</th>
+</tr></thead><tbody>
+<tr><td>AD</td><td>DC, OU, Kerberos — minst 2 DC-er</td></tr>
+<tr><td>VLAN</td><td>Segmentering, 802.1Q, access vs trunk</td></tr>
+<tr><td>Sikkerhet</td><td>Brannmur, DMZ, default-deny</td></tr>
+<tr><td>Servermodeller</td><td>Tower, rack, blade — når brukes hva?</td></tr>
+<tr><td>Virtualisering</td><td>Hypervisor, VM, container — konsolidering</td></tr>
+<tr><td>Backup</td><td>3-2-1, RPO/RTO, test gjenoppretting</td></tr>
+<tr><td>VPN</td><td>Site-to-Site, Remote Access, kryptering</td></tr>
+<tr><td>Dokumentasjon</td><td>IP-plan, topologi, endringslogg</td></tr>
+<tr><td>Prinsipper</td><td>Minste privilegium, defense in depth, default-deny</td></tr>
+<tr><td>IT vs OT</td><td>Separer nettverk, isoler produksjonsutstyr</td></tr>
+</tbody></table>
+
+<h2>Feilsøking lag for lag (interaktivt)</h2>
+
+<p>OSI-modellen i praksis: feilsøk <strong>nedenfra og opp</strong>. Diagrammet under er interaktivt — du kan zoome og panorere.</p>
+
+<pre class="mermaid" is:raw>
+flowchart TD
+  A["Nettverket fungerer ikke"] --> B{"Kabel og signal OK?"}
+  B -- "Nei" --> B1["Bytt kabel, sjekk port og linkerlys"]
+  B -- "Ja" --> C{"Pinger gatewayen?"}
+  C -- "Nei" --> C1["Sjekk IP-konfigurasjonen med ipconfig"]
+  C -- "Ja" --> D{"Pinger et domenenavn?"}
+  D -- "Nei" --> D1["DNS-problem — sjekk DNS-serverinnstillingen"]
+  D -- "Ja" --> E["Problem på applikasjonslaget — sjekk tjeneste og port"]
+  C1 --> C
+  D1 --> D
+  B1 --> B
+</pre>
+
+<div class="tips-callout">
+  <div class="tips-callout-title">Slik bruker du flyten</div>
+  <p><strong>Ping IP-en først.</strong> Fungerer ping til gatewayen? Da er lag 1–3 OK, og problemet ligger høyere. Får du svar på IP men ikke på navn? Da er det DNS (lag 7). Får du ikke SYN-ACK tilbake? Porten er blokkert eller serveren er nede.</p>
+</div>
+
+</RepetisjonLayout>

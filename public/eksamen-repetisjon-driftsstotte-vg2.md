@@ -28,7 +28,7 @@ Active Directory er bygget opp som et trestruktur-hierarki. Øverst står skogen
 
 <img src="diagrams/ad-hierarchy.svg" alt="Active Directory hierarki: Forest → Tree → Domain → OU" width="100%" />
 
-```
+```text
                         ┌──────────────────┐
                         │  Skog / Forest    │
                         └────────┬─────────┘
@@ -84,9 +84,11 @@ RBAC går ut på å gruppere brukere etter rolle og gi tillatelser til gruppene 
 ### Husk til eksamen
 
 - Domenekontroller (DC) = server med AD DS. Du trenger **minst 2** for redundans
+
 - Uten DNS fungerer ikke AD-pålogging
 - Kerberos > NTLM: passordet sendes aldri over nettverket
 - Slett aldri konto ved oppsigelse — **deaktiver** kontoen (bevarer SID, e-post, data)
+
 - UAC hindrer programmer i å kjøre som administrator uten godkjenning
 
 ---
@@ -157,14 +159,19 @@ Virtualisering lar deg kjøre flere "datamaskiner" på én fysisk maskin. Dette 
 ```
 
 **Hypervisor** — programvare som kjører virtuelle maskiner:
+
 - **Type 1 (bare metal)**: VMware ESXi, Hyper-V, Proxmox — kjører direkte på hardware. Raskest og mest stabilt
+
 - **Type 2 (hosted)**: VirtualBox, VMware Workstation — kjører på et OS. Egnet for testing
 
 **VM vs Container:**
+
 - **VM**: komplett simulering med eget OS — tyngre, men full isolasjon
+
 - **Container**: deler verts-OS-kjernen — lettere, raskere, men samme OS-type (Docker)
 
 **Fordeler med virtualisering:**
+
 - Konsolidering: 10 fysiske servere → 1 fysisk + 10 VM-er
 - Snapshots: ta øyeblikksbilde før oppdatering
 - Live migration: flytt VM uten nedetid
@@ -184,7 +191,9 @@ VLAN (Virtual LAN) lar deg dele et fysisk nettverk inn i flere logiske nettverk.
 > **IEEE 802.1Q** = standard for VLAN-tagging. VLAN ID 0–4094 (reservert: 0 og 4095).
 
 **To porttyper:**
+
 - **Access-port**: tilhører ett VLAN (for sluttenheter som PC-er og skrivere)
+
 - **Trunk-port**: bærer trafikk for flere VLAN (mellom svitsjer, mot ruter)
 
 <img src="diagrams/vlan-segmentering.svg" alt="VLAN-segmentering: Router → Svitsj → Access-porer" width="100%" />
@@ -218,6 +227,7 @@ VLAN (Virtual LAN) lar deg dele et fysisk nettverk inn i flere logiske nettverk.
 Dette er et viktig skillet i moderne driftsstøtte:
 
 - **IT (Information Technology)** — kontorutstyr, PC-er, servere
+
 - **OT (Operational Technology)** — produksjonsmaskiner, PLC-er, SCADA-systemer
 
 OT-utstyr har ofte gammelt OS som **ikke kan patche-s**. Derfor er isolasjon det eneste forsvaret. Brannmur mellom IT og OT: kun nødvendig trafikk tillatt. Bruk VLAN eller fysisk separate nettverk.
@@ -227,10 +237,13 @@ OT-utstyr har ofte gammelt OS som **ikke kan patche-s**. Derfor er isolasjon det
 VPN brukes for sikker kommunikasjon over internett. All trafikk krypteres mellom to endepunkter.
 
 **Typer:**
+
 - **Site-to-Site**: kobler sammen to hele nettverk (f.eks. hovedkontor og avdelingskontor)
+
 - **Remote Access**: én enkelt bruker kobler seg til nettverket (f.eks. hjemmekontor)
 
 **Protokoller:**
+
 | Protokoll | Styrke |
 |-----------|--------|
 | IPsec | Standard, mye brukt |
@@ -272,8 +285,10 @@ Klient                               DHCP-server
 ### Husk til eksamen
 
 - Segmentering hindrer **lateral bevegelse** ved angrep
+
 - VLAN + ACL på ruter/svitsj gir trafikkontroll mellom segmenter
 - Trunk-porter må **tagges** med riktig VLAN ID i begge ender
+
 - Access-porter settes til **ett** VLAN — enkel konfigurasjon
 
 ---
@@ -327,9 +342,13 @@ Flere lag med sikkerhet slik at ett gjennombrudd ikke er katastrofalt. Tenk på 
 ### Husk til eksamen
 
 - **Default-deny**: blokker alt, tillat kun det som trengs
+
 - Segmentering hindrer **lateral bevegelse**
+
 - **NSM Grunnprinsipper**: kontroller dataflyt, minste privilegium, sårbarhetshåndtering
+
 - Brannmurregler: spesifiser **kilde, destinasjon, port, protokoll og retning**
+
 - Loggfør og overvåk brannmurtrafikk
 
 ---
@@ -411,6 +430,7 @@ Korte RPO/RTO = dyrere løsning — finn balansen som passer bedriften.
 ### Husk til eksamen
 
 - **Test gjenoppretting jevnlig** — en backup som ikke kan restores er verdiløs
+
 - Full backup + inkrementell er mest lagringsplass-effektivt
 - Offsite backup beskytter mot brann, innbrudd, flom
 - 3-2-1-regelen er bransjestandard
@@ -424,8 +444,11 @@ Dokumentasjon er like viktig som selve konfigurasjonen. Uten dokumentasjon blir 
 ### Hvorfor dokumentere?
 
 - **Feilsøking** — vet hvordan systemet skal se ut, finn avvik raskere
+
 - **Onboarding** — nye IT-ansatte kan sette seg inn uten muntlig overlevering
+
 - **Revisjon / GDPR** — sporbarhet på hvem som har tilgang til hva
+
 - **Kontinuitet** — bedriften er ikke avhengig av én persons hukommelse
 
 ### IP-adresseplan — generisk eksempel
@@ -471,8 +494,10 @@ Dokumentasjon er like viktig som selve konfigurasjonen. Uten dokumentasjon blir 
 ### Husk til eksamen
 
 - Dokumentasjon er **like viktig** som konfigurasjonen
+
 - Uten IP-plan får du IP-konflikter og kaos
 - Hold dokumentasjonen oppdatert — **utdatert dokumentasjon er verre enn ingen**
+
 - Endringslogg gjør feilsøking mye enklere
 
 ---

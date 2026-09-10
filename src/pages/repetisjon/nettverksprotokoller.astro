@@ -56,42 +56,22 @@ Den praktiske modellen som internett faktisk bruker:
 
 <img src={`${base}/diagrams/tcp-vs-udp.svg`} alt="TCP vs UDP: pålitelighet vs hastighet" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-<table><thead><tr>
-<th>Egenskap</th>
-<th>TCP</th>
-<th>UDP</th>
-</tr></thead><tbody>
-<tr>
-<td>Forbindelse</td>
-<td>Oppretter forbindelse først (3-way handshake)</td>
-<td>Forbindelsesløs — bare sender</td>
-</tr>
-<tr>
-<td>Pålitelighet</td>
-<td>Bekreftelse (ACK), re-sending ved tap</td>
-<td>Ingen garanti — "best effort"</td>
-</tr>
-<tr>
-<td>Rekkefølge</td>
-<td>Bevarer rekkefølgen</td>
-<td>Kan komme i feil rekkefølge</td>
-</tr>
-<tr>
-<td>Overhead</td>
-<td>Høyere (headers, bekreftelser)</td>
-<td>Lavere (minimale headers)</td>
-</tr>
-<tr>
-<td>Hastighet</td>
-<td>Saktere</td>
-<td>Raskere</td>
-</tr>
-<tr>
-<td>Bruksområde</td>
-<td>Web (HTTP), e-post (SMTP), filoverføring (FTP), SSH</td>
-<td>Streaming, VoIP, DNS, spill</td>
-</tr>
-</tbody></table>
+<div class="compare-box">
+  <div class="compare-header">TCP — pålitelig</div>
+  <div class="compare-header">UDP — raskt</div>
+  <div class="compare-cell"><strong>Forbindelse:</strong> Oppretter forbindelse først (3-way handshake)</div>
+  <div class="compare-cell"><strong>Forbindelse:</strong> Forbindelsesløs — bare sender</div>
+  <div class="compare-cell"><strong>Pålitelighet:</strong> Bekreftelse (ACK), re-sending ved tap</div>
+  <div class="compare-cell"><strong>Pålitelighet:</strong> Ingen garanti — "best effort"</div>
+  <div class="compare-cell"><strong>Rekkefølge:</strong> Bevarer rekkefølgen</div>
+  <div class="compare-cell"><strong>Rekkefølge:</strong> Kan komme i feil rekkefølge</div>
+  <div class="compare-cell"><strong>Overhead:</strong> Høyere (headers, bekreftelser)</div>
+  <div class="compare-cell"><strong>Overhead:</strong> Lavere (minimale headers)</div>
+  <div class="compare-cell"><strong>Hastighet:</strong> Saktere</div>
+  <div class="compare-cell"><strong>Hastighet:</strong> Raskere</div>
+  <div class="compare-cell"><strong>Bruksområde:</strong> Web (HTTP), e-post (SMTP), filoverføring (FTP), SSH</div>
+  <div class="compare-cell"><strong>Bruksområde:</strong> Streaming, VoIP, DNS, spill</div>
+</div>
 
 Husk: TCP = pålitelig og treigt. UDP = raskt, men du risikerer tap. Velg basert på hva som er viktigst — korrekthet eller hastighet.
 
@@ -175,7 +155,7 @@ Disse 11 portene må du kunne. Spesielt 22, 53, 80, 443 og 3389 dukker opp omtre
 
 <h3>TCP 3-way handshake</h3>
 
-<img src={`${base}/diagrams/dhcp-dora.svg`} alt="DHCP DORA-prosessen" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
+<img src={`${base}/diagrams/tcp-handshake.svg`} alt="TCP 3-way handshake: SYN, SYN-ACK, ACK" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
 Slik opprettes en TCP-forbindelse:
 

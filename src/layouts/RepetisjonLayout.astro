@@ -4,6 +4,9 @@ const { title, description, prev, next, prevLabel, nextLabel } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
 
+// Eksamensguiden er et sammendrag, ikke et tema — skal ikke telles i progresjonen
+const isSummary = path.includes('eksamen-guide');
+
 const topics = [
   'brukeradministrasjon', 'infrastruktur-maskinvare', 'nettverk-segmentering',
   'nettverkssikkerhet', 'servermodeller-virtualisering', 'backup-gjenoppretting',
@@ -24,7 +27,8 @@ const topicSlug = topics[topicIndex - 1] || '';
         <span>/</span>
         <span>{title}</span>
       </div>
-      <div class="rep-dots" aria-label="Tema {topicIndex} av {totalTopics}">
+      {!isSummary && (
+      <div class="rep-dots" aria-label={`Tema ${topicIndex} av ${totalTopics}`}>
         <div class="rep-dot-row">
           {Array.from({length: totalTopics}, (_, i) => (
             <div class={`rep-dot ${i < topicIndex ? 'rep-dot--done' : ''} ${i === topicIndex - 1 ? 'rep-dot--active' : ''}`}></div>
@@ -32,19 +36,28 @@ const topicSlug = topics[topicIndex - 1] || '';
         </div>
         <span class="rep-dots-label">{topicIndex}/{totalTopics}</span>
       </div>
+      )}
     </div>
 
-    <!-- Progress bar -->
+    <!-- Progress bar (skjult for sammendragssider) -->
+    {!isSummary && (
     <div class="rep-progress-bar">
       <div class="rep-progress-fill" style="width:${(topicIndex / totalTopics) * 100}%"></div>
     </div>
+    )}
 
     <!-- Header -->
     <div class="rep-hero">
+      {isSummary ? (
+        <div class="rep-hero-badge" style="background:rgba(249,115,22,.13);color:#f97316;border-color:rgba(249,115,22,.3);">
+          📄 Sammendrag
+        </div>
+      ) : (
       <div class="rep-hero-badge">
         <span class="rep-hero-check" id="theme-check" data-slug={topicSlug} onclick="toggleCompletion(this)">○</span>
         Tema {topicIndex} av {totalTopics}
       </div>
+      )}
       <h1 class="rep-hero-title">{title}</h1>
       {description && <p class="rep-hero-desc">{description}</p>}
     </div>
@@ -89,7 +102,12 @@ const topicSlug = topics[topicIndex - 1] || '';
   <button id="scroll-top" class="rep-scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Til toppen">↑</button>
 </BaseLayout>
 
-<style>
+<style is:global>
+  /* MERK: is:global er bevisst — innholdet (<slot />) i .rep-prose er slot-innhold
+     som Astro IKKE gir data-astro-cid-attributter. Scoped CSS her ville matchet
+     verken callouts, tabeller, compare-boxes eller nokkelbegreper i innholdet.
+     Alle klasser er rep-*-prefikset eller unike for repetisjonssidene, så
+     globalisering kolliderer ikke med ContentLayout/emner-sidene. */
   /* ---- Layout ---- */
   .repetisjon-article {
     max-width: 880px;
@@ -621,6 +639,7 @@ const topicSlug = topics[topicIndex - 1] || '';
     .rep-prose { font-size: 15px; }
     .rep-prose table { font-size: 13px; }
     .nokkelbegreper-grid { grid-template-columns: 1fr; }
+    .compare-box { grid-template-columns: 1fr; }
     .rep-scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 18px; }
   }
 </style>

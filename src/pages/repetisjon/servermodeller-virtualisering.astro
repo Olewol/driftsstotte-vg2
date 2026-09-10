@@ -103,37 +103,20 @@ Type 1 er det du bruker i produksjon. Type 2 er greit for å teste noe på lapto
 
 <img src={`${base}/diagrams/vm-vs-container.svg`} alt="VM vs Container: størrelse, oppstart, isolasjon" style="max-width:100%;height:auto;margin:1rem 0;border-radius:10px;border:1px solid var(--border);background:#fff;" />
 
-<table><thead><tr>
-<th>Egenskap</th>
-<th>VM</th>
-<th>Container</th>
-</tr></thead><tbody>
-<tr>
-<td>OS</td>
-<td>Hver VM har eget OS</td>
-<td>Deler verts-OS-kjerne</td>
-</tr>
-<tr>
-<td>Størrelse</td>
-<td>Flere GB</td>
-<td>MB</td>
-</tr>
-<tr>
-<td>Oppstart</td>
-<td>Minutter</td>
-<td>Sekunder</td>
-</tr>
-<tr>
-<td>Isolasjon</td>
-<td>Høy (full hardware-emulering)</td>
-<td>Moderat (deler kjerne)</td>
-</tr>
-<tr>
-<td>Ressursbruk</td>
-<td>Høy</td>
-<td>Lav</td>
-</tr>
-</tbody></table>
+<div class="compare-box">
+  <div class="compare-header">VM — full isolasjon</div>
+  <div class="compare-header">Container — lett og rask</div>
+  <div class="compare-cell"><strong>OS:</strong> Hver VM har eget OS</div>
+  <div class="compare-cell"><strong>OS:</strong> Deler verts-OS-kjerne</div>
+  <div class="compare-cell"><strong>Størrelse:</strong> Flere GB</div>
+  <div class="compare-cell"><strong>Størrelse:</strong> MB</div>
+  <div class="compare-cell"><strong>Oppstart:</strong> Minutter</div>
+  <div class="compare-cell"><strong>Oppstart:</strong> Sekunder</div>
+  <div class="compare-cell"><strong>Isolasjon:</strong> Høy (full hardware-emulering)</div>
+  <div class="compare-cell"><strong>Isolasjon:</strong> Moderat (deler kjerne)</div>
+  <div class="compare-cell"><strong>Ressursbruk:</strong> Høy</div>
+  <div class="compare-cell"><strong>Ressursbruk:</strong> Lav</div>
+</div>
 
 VM gir bedre isolasjon. Container gir bedre utnyttelse av ressurser. Velg basert på behovet — ikke bruk container fordi det er kult hvis du trenger isolasjon.
 

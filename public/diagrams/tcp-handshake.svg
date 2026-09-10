@@ -1,0 +1,35 @@
+<svg width="100%" viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;height:auto;background:transparent;">
+<style>
+  .t { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #1a1a18; }
+  .ts { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #5f5e5a; }
+  .th { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #1a1a18; font-weight: 500; }
+  .b > rect { fill: #E6F1FB; stroke: #185FA5; stroke-width: 0.5px; rx: 8; }
+  .p > rect { fill: #EEEDFE; stroke: #534AB7; stroke-width: 0.5px; rx: 8; }
+  .ok > rect { fill: #EAF7EF; stroke: #2E7D4F; stroke-width: 0.5px; rx: 8; }
+  .arr-right { stroke: #185FA5; stroke-width: 1.5px; fill: none; }
+  .arr-left { stroke: #534AB7; stroke-width: 1.5px; fill: none; }
+  .life { stroke: #b4b2a9; stroke-width: 1px; stroke-dasharray: 4 4; }
+</style>
+<defs>
+  <marker id="arr-right" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arr-left" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M8 1L2 5L8 9" fill="none" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<g class="p"><rect x="30" y="10" width="160" height="36"/><text class="th" x="110" y="28" text-anchor="middle" dominant-baseline="central">Klient</text></g>
+<g class="b"><rect x="480" y="10" width="170" height="36"/><text class="th" x="565" y="28" text-anchor="middle" dominant-baseline="central">Server (port 443)</text></g>
+<line x1="110" y1="46" x2="110" y2="215" class="life"/>
+<line x1="565" y1="46" x2="565" y2="215" class="life"/>
+<line x1="110" y1="70" x2="555" y2="70" class="arr-right" marker-end="url(#arr-right)"/>
+<text class="ts" x="180" y="62">1. SYN</text>
+<text class="ts" x="180" y="80">"Kan vi opprette forbindelse?"</text>
+<line x1="565" y1="115" x2="120" y2="115" class="arr-left" marker-end="url(#arr-left)"/>
+<text class="ts" x="180" y="107">2. SYN-ACK</text>
+<text class="ts" x="180" y="125">"Ja — jeg er klar"</text>
+<line x1="110" y1="160" x2="555" y2="160" class="arr-right" marker-end="url(#arr-right)"/>
+<text class="ts" x="180" y="152">3. ACK</text>
+<text class="ts" x="180" y="170">"Forbindelsen er etablert"</text>
+<g class="ok"><rect x="190" y="190" width="300" height="30"/><text class="ts" x="340" y="205" text-anchor="middle" dominant-baseline="central">Dataoverføring kan starte</text></g>
+</svg>
