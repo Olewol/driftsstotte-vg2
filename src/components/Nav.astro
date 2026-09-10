@@ -2,7 +2,10 @@
 import ThemeToggle from './ThemeToggle.astro';
 import MobileNav from './MobileNav.astro';
 
-const { currentPath = '/' } = Astro.props;
+// Normaliser pathname: uten trailing slash (unntatt rotnivå) så sammenligninger
+// mot lenker med/uten slash blir robuste (Astro gir /base uten slash på forsida).
+const raw = Astro.props.currentPath ?? Astro.url.pathname ?? '/';
+const norm = raw.replace(/\/+$/, '') || raw;
 const base = import.meta.env.BASE_URL;
 
 const links = [
@@ -17,14 +20,13 @@ const links = [
   { href: `${base}/repetisjon`,      label: 'Eksamensrepetisjon' },
 ];
 
-// Language toggle logic
-const isEnglish = currentPath.endsWith('-en/');
-const isHomePage = currentPath === `${base}/` || currentPath === `${base}/en/`;
+const isHome = norm === base || norm === '' || norm === `${base}/en`;
+const isEnglish = /-en$/.test(norm);
+const langAgnostic = norm.replace(/-en$/, '');
+
 let otherLangPath = '';
-if (!isHomePage) {
-  otherLangPath = isEnglish
-    ? currentPath.replace(/-en\/$/, '/')
-    : currentPath.replace(/\/$/, '-en/');
+if (!isHome) {
+  otherLangPath = isEnglish ? `${langAgnostic}/` : `${langAgnostic}-en/`;
 }
 const otherLangLabel = isEnglish ? 'Norsk' : 'English';
 const otherLangIcon = isEnglish ? '🇳🇴' : '🇬🇧';
@@ -44,8 +46,8 @@ const searchLabel = isEnglish ? 'Search' : 'Søk';
     {links.map(l => (
       <a
         href={l.href}
-        aria-current={currentPath === l.href ? 'page' : undefined}
-        style={`padding:7px 14px;font-size:14px;color:${currentPath === l.href ? 'var(--text)' : 'var(--text2)'};text-decoration:none;border-radius:7px;background:${currentPath === l.href ? 'var(--surface2)' : 'transparent'};transition:color .15s,background .15s;`}
+        aria-current={norm === l.href.replace(/\/+$/, '') || (l.href === `${base}/` && isHome) ? 'page' : undefined}
+        style={`padding:7px 14px;font-size:14px;color:${(norm === l.href.replace(/\/+$/, '') || (l.href === `${base}/` && isHome)) ? 'var(--text)' : 'var(--text2)'};text-decoration:none;border-radius:7px;background:${(norm === l.href.replace(/\/+$/, '') || (l.href === `${base}/` && isHome)) ? 'var(--surface2)' : 'transparent'};transition:color .15s,background .15s;`}
       >{l.label}</a>
     ))}
   </div>
@@ -55,7 +57,7 @@ const searchLabel = isEnglish ? 'Search' : 'Søk';
       <span>🔍</span><span>{searchLabel}…</span>
       <kbd style="margin-left:auto;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;padding:1px 6px;font-size:11px;color:var(--text3);">⌘K</kbd>
     </a>
-    {!isHomePage && (
+    {!isHome && (
       <a
         href={otherLangPath}
         class="desktop-links"

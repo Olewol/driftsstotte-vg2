@@ -12,18 +12,20 @@ const links = [
   { href: `${base}/repetisjon`,      label: 'Eksamensrepetisjon' },
 ];
 
-const currentPath = Astro.url.pathname;
-const isEnglish = currentPath.endsWith('-en/');
-let otherLangPath;
+// Normaliser pathname så sammenligninger blir robuste (forsida mangler trailing slash i Astro 5)
+const raw = Astro.url.pathname ?? '/';
+const norm = raw.replace(/\/+$/, '') || raw;
+
+const isHome = norm === base || norm === '' || norm === `${base}/en`;
+const isEnglish = /-en$/.test(norm);
+const langAgnostic = norm.replace(/-en$/, '');
+
+let otherLangPath = '';
 let showLangToggle = true;
-if (currentPath === `${base}/`) {
-  showLangToggle = false;
-} else if (currentPath === `${base}/en/`) {
+if (isHome) {
   showLangToggle = false;
 } else {
-  otherLangPath = isEnglish
-    ? currentPath.replace(/-en\/$/, '/')
-    : currentPath.replace(/\/$/, '-en/');
+  otherLangPath = isEnglish ? `${langAgnostic}/` : `${langAgnostic}-en/`;
 }
 const otherLangLabel = isEnglish ? 'Norsk' : 'English';
 const otherLangIcon = isEnglish ? '🇳🇴' : '🇬🇧';
@@ -56,7 +58,11 @@ const searchLabel = isEnglish ? 'Search' : 'Søk';
     )}
   </div>
   {links.map(l => (
-    <a href={l.href} style="font-size:18px;color:var(--text);padding:12px 0;border-bottom:1px solid var(--border);text-decoration:none;">{l.label}</a>
+    <a
+      href={l.href}
+      aria-current={norm === l.href.replace(/\/+$/, '') || (l.href === `${base}/` && isHome) ? 'page' : undefined}
+      style={`font-size:18px;padding:12px 0;border-bottom:1px solid var(--border);text-decoration:none;color:${(norm === l.href.replace(/\/+$/, '') || (l.href === `${base}/` && isHome)) ? 'var(--text)' : 'var(--text2)'};${(norm === l.href.replace(/\/+$/, '') || (l.href === `${base}/` && isHome)) ? 'font-weight:600;' : ''}`}
+    >{l.label}</a>
   ))}
   <!-- Close button ved bunnen for lett tilgang -->
   <button id="closeMenu" aria-label="Lukk menyen" style="margin-top:auto;width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:14px;font-size:16px;color:var(--text);cursor:pointer;">✕ Lukk</button>
@@ -73,12 +79,23 @@ const searchLabel = isEnglish ? 'Search' : 'Søk';
   const menu = document.getElementById('mobileMenu')!;
   const close = document.getElementById('closeMenu')!;
 
-  hamburger.addEventListener('click', () => {
+  function openMenu() {
     menu.style.display = 'flex';
     hamburger.setAttribute('aria-expanded', 'true');
-  });
-  close.addEventListener('click', () => {
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
     menu.style.display = 'none';
     hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMenu);
+  close.addEventListener('click', closeMenu);
+  menu.addEventListener('click', (e) => {
+    if (e.target === menu) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.style.display === 'flex') closeMenu();
   });
 </script>

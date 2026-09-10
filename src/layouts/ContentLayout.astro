@@ -47,7 +47,7 @@ const pageLang = language === 'en' ? 'en' : 'no';
       <h1 style="font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;">{title}</h1>
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--text2);">
         {ukeStr && <span>📅 Årsplan:
-          <a href="/" style={`display:inline-block;font-size:12px;background:${bg};color:${color};border:1px solid color-mix(in srgb,${color} 25%,transparent);padding:3px 10px;border-radius:6px;text-decoration:none;margin-left:4px;`}>
+          <a href={`${import.meta.env.BASE_URL}`} style={`display:inline-block;font-size:12px;background:${bg};color:${color};border:1px solid color-mix(in srgb,${color} 25%,transparent);padding:3px 10px;border-radius:6px;text-decoration:none;margin-left:4px;`}>
             {ukeStr}
           </a>
         </span>}
