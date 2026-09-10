@@ -26,6 +26,7 @@ Generert: 2026-05-20
 ## Struktursjekk
 
 ### 8-seksjoners struktur (emnefiler)
+
 - **Introduksjon** — ✅ alle filer
 - **Teori** — ✅ alle filer (med h3/h4 underoverskrifter)
 - **Eksempel / lab** — ⚠️ mangler i noen filer

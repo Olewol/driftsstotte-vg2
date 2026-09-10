@@ -1,6 +1,7 @@
 # Nettverk quiz
 
 ## Question 1
+
 Hvilket lag i OSI-modellen er ansvarlig for å videresende data basert på MAC-adresser?
 
 - [ ] Nettverkslaget (Lag 3)
@@ -11,6 +12,7 @@ Hvilket lag i OSI-modellen er ansvarlig for å videresende data basert på MAC-a
 **Hint:** Tenk på hvilket lag en vanlig svitsj opererer på for å koble sammen enheter i et LAN.
 
 ## Question 2
+
 Hva skjer i det første steget av DORA-prosessen i DHCP?
 
 - [ ] Serveren sender et tilbud om en IP-adresse til klienten.
@@ -21,6 +23,7 @@ Hva skjer i det første steget av DORA-prosessen i DHCP?
 **Hint:** Vurder hva bokstaven D står for i forkortelsen DORA.
 
 ## Question 3
+
 Hvilken DNS-posttype (record) brukes for å koble et domenenavn til en IPv4-adresse?
 
 - [ ] MX
@@ -31,6 +34,7 @@ Hvilken DNS-posttype (record) brukes for å koble et domenenavn til en IPv4-adre
 **Hint:** Dette er den vanligste posttypen som brukes når du taster inn en nettadresse i nettleseren.
 
 ## Question 4
+
 Hvorfor foretrekkes UDP fremfor TCP for tjenester som videostreaming og nettspill?
 
 - [ ] UDP garanterer at alle pakker kommer frem i riktig rekkefølge.
@@ -41,6 +45,7 @@ Hvorfor foretrekkes UDP fremfor TCP for tjenester som videostreaming og nettspil
 **Hint:** Tenk på forskjellen mellom pålitelighet og hastighet i sanntidskommunikasjon.
 
 ## Question 5
+
 Hva er hovedformålet med å konfigurere en 'Trunk-port' på en svitsj?
 
 - [ ] Å koble til en enkelt PC som bare skal ha tilgang til ett VLAN.
@@ -51,6 +56,7 @@ Hva er hovedformålet med å konfigurere en 'Trunk-port' på en svitsj?
 **Hint:** Vurder hvordan to svitsjer kan utveksle informasjon om flere adskilte nettverk over samme kabel.
 
 ## Question 6
+
 Hvilken serverrolle er nødvendig for at Windows-klienter skal kunne finne domenekontrolleren under innlogging?
 
 - [ ] Webserver (IIS)
@@ -61,6 +67,7 @@ Hvilken serverrolle er nødvendig for at Windows-klienter skal kunne finne domen
 **Hint:** Tenk på hvilken tjeneste som oversetter navn til adresser slik at klienter vet hvem de skal snakke med.
 
 ## Question 7
+
 Hvilket portnummer og transportprotokoll benyttes som standard for HTTPS-trafikk?
 
 - [ ] Port 80 over TCP
@@ -71,6 +78,7 @@ Hvilket portnummer og transportprotokoll benyttes som standard for HTTPS-trafikk
 **Hint:** Dette er porten som aktiveres når du ser hengelåsikonet i nettleseren.
 
 ## Question 8
+
 Hva er en 'Native VLAN' på en trunk-forbindelse?
 
 - [ ] VLAN-et som brukes til å kryptere all trafikk på trunken.
@@ -81,6 +89,7 @@ Hva er en 'Native VLAN' på en trunk-forbindelse?
 **Hint:** Vurder hva som skjer med pakker som mangler en spesifikk ID-etikett når de sendes over en trunk.
 
 ## Question 9
+
 I VirtualBox, hva skjer når en virtuell maskin er satt til 'NAT'-modus?
 
 - [ ] Den virtuelle maskinen får en unik IP direkte fra det fysiske nettverket.
@@ -91,6 +100,7 @@ I VirtualBox, hva skjer når en virtuell maskin er satt til 'NAT'-modus?
 **Hint:** Tenk på hvordan rutere i hjemmenettverk vanligvis kobler mange enheter til internett ved bruk av bare én offentlig adresse.
 
 ## Question 10
+
 Hva er den viktigste fordelen med nettverkssegmentering ved hjelp av VLAN?
 
 - [ ] Det gjør at man slipper å bruke fysiske rutere i nettverket.

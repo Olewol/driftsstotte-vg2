@@ -11,7 +11,7 @@ Generert: 2026-05-20
 
 ## Arkitektur
 
-```
+```text
 driftsstotte-vault (Obsidian, private)
   └── public/emner/ → GitHub Actions → driftsstotte-vg2 (Astro 5) → GitHub Pages
                                                        ↕
@@ -40,6 +40,7 @@ driftsstotte-vault (Obsidian, private)
 ## Status per emne
 
 ### Video (YouTube/NDLA)
+
 | Emne | Video | Kommentar |
 |------|-------|-----------|
 | Backup og gjenoppretting | ✅ | |
@@ -62,18 +63,21 @@ driftsstotte-vault (Obsidian, private)
 | **Mangler video:** SQL, dokumentasjon, Active Directory, brukerstyring, filsystem, Linux, risikoanalyse, trusselbildet, automatisering | ❌ 9 stk | Trenger YouTube/NDLA |
 
 ### Tospråklig
+
 | Status | Antall |
 |--------|--------|
 | Kun norsk | 27/27 |
 | Engelsk versjon | **0/27** ❌ |
 
 ### Inline kildehenvisning
+
 | Status | Antall |
 |--------|--------|
 | Med fotnoter i brødtekst | **0/27** ❌ |
 | Kun i frontmatter | 27/27 |
 
 ### NotebookLM
+
 | Kategori | Notebook ID | Artifacts |
 |----------|------------|-----------|
 | Nettverk | f7e5ad6c... | 1 video, 1 infographic, 2 flashcards, 2 reports |
@@ -86,6 +90,7 @@ driftsstotte-vault (Obsidian, private)
 **Mangler:** Audio Overviews (podcast) i ALLE notebooks ❌
 
 ## TTS (taleopplesning)
+
 ✅ Implementert via TTSBar.astro — Web Speech API, norsk stemme, hastighetskontroll.
 
 ## Hull som må fylles
