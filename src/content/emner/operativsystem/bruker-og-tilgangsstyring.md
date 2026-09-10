@@ -310,27 +310,6 @@ Autentisering verifiserer identiteten din (du er den du utgir deg for å være).
 
 ---
 
-## Flashcards
-
-Lokal konto :: Brukerkonto lagret i maskinens SAM-database, gyldig kun på denne maskinen
-Domenekonto :: Brukerkonto lagret i Active Directory, gyldig på alle maskiner i domenet
-SID :: Security Identifier — unik numerisk identifikator Windows tildeler hver konto og gruppe
-Prinsippet om minste privilegium :: Brukere skal kun ha de rettighetene de trenger for jobben sin
-UAC :: User Account Control — Windows-mekanisme som krever eksplisitt godkjenning for administrative operasjoner
-Domain Admins :: Innebygd AD-gruppe med full administrasjonstilgang til domenet
-Sikkerhetsgruppe :: AD-objekt som samler brukere for felles tilgangsstyring
-Domenelokal gruppe :: Gruppe som kan brukes til tillatelser kun i eget domene
-Global gruppe :: Gruppe fra eget domene som kan brukes til tillatelser i alle domener i skogen
-AAA :: Autentisering, Autorisasjon og Revisjon — grunnprinsippene for tilgangskontroll
-useradd :: Linux-kommando for å opprette en ny brukerkonto
-usermod -aG :: Linux-kommando for å legge en bruker til i en tilleggsgruppe uten å fjerne eksisterende gruppemedlemskap
-/etc/shadow :: Linux-fil som lagrer krypterte passord (kun root kan lese)
-RBAC :: Rollebasert tilgangsstyring — rettigheter knyttes til roller, ikke enkeltpersoner
-Sudoers :: Konfigurasjonsfil i Linux (`/etc/sudoers`) som definerer hvem som kan kjøre kommandoer med root-rettigheter
-SSSD :: System Security Services Daemon — lar Linux-klienter autentisere mot Active Directory
-
----
-
 ## Ressurser
 
 - [Microsoft Learn: AD-standardkontoer](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-default-user-accounts)

@@ -217,22 +217,6 @@ Start at layer 1 and work up: check cable → switch → IP address → firewall
 **Answer:** "Please Do Not Throw Sausage Pizza Away" — Physical, Data Link, Network, Transport, Session, Presentation, Application (layers 1 to 7).
 </details>
 
-## Flashcards
-
-OSI model :: ISO standard's 7-layer reference model for network communication
-Physical layer (OSI 1) :: Bit transmission over physical medium (cable, fiber, WiFi radio)
-Data Link layer (OSI 2) :: Frames and MAC addressing within one network segment
-Network layer (OSI 3) :: IP addressing and routing between different networks
-Transport layer (OSI 4) :: End-to-end communication with TCP or UDP and port numbers
-Session layer (OSI 5) :: Creating, maintaining, and terminating application sessions
-Presentation layer (OSI 6) :: Formatting, encryption (TLS), and compression of data
-Application layer (OSI 7) :: User-facing protocols like HTTP, FTP, SMTP, and DNS
-OSI vs TCP/IP :: OSI has 7 layers and is a reference model; TCP/IP has 4–5 layers and is what the internet actually uses
-Encapsulation :: The process where data is wrapped in control information (headers) from each layer of the OSI model as it travels down the stack
-PDU (Protocol Data Unit) :: The name for the information unit at a specific layer: Segment (layer 4), Packet (layer 3), Frame (layer 2)
-Layers :: The seven logical levels of the OSI model that divide network communication tasks to ensure standardization and simplify troubleshooting
-Reference Model :: A theoretical framework used to understand and describe how complex processes like network communication work
-
 ## Resources
 
 - [TCP/IP 5-layer model (mentions OSI) — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6)

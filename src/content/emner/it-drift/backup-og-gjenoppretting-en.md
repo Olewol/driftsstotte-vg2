@@ -271,36 +271,6 @@ RPO: "We can afford to lose a maximum of 4 hours of data." – Backup must run a
 
 ---
 
-## Flashcards
-
-3-2-1 rule :: 3 copies of data, 2 different storage media, 1 offsite copy. Standard minimum requirement for backup strategy.
-
-RPO :: Recovery Point Objective – maximum acceptable data loss measured in time. Determines backup frequency.
-
-RTO :: Recovery Time Objective – maximum acceptable downtime. Determines recovery speed requirements.
-
-Full backup :: Complete copy of all selected data. Largest storage usage, fastest to restore.
-
-Incremental backup :: Copy of changes since the last backup (regardless of type). Small and fast, but complex recovery.
-
-Differential backup :: Copy of all changes since the last full backup. Medium size and recovery time.
-
-Immutable backup :: Backup data that is locked and cannot be modified or deleted. Protects against ransomware.
-
-Air-gapped backup :: Backup isolated from the network. Attackers cannot reach it digitally.
-
-Disaster Recovery (DR) :: Comprehensive plan for restoring IT systems after a major disaster.
-
-Veeam :: Leading backup software for virtualized environments. Supports VMware, Hyper-V, and cloud backup.
-
-Cold standby :: DR strategy where backup infrastructure is set up manually when needed. Cheapest, longest RTO.
-
-Hot standby :: DR strategy with a fully parallel environment ready at all times. Shortest RTO, most expensive.
-
-System image :: Complete copy of an operating system with configuration and software. Faster full restoration than file-by-file.
-
----
-
 ## Resources
 
 - [Veeam: 3-2-1 Backup Rule](https://www.veeam.com/blog/321-backup-rule.html)

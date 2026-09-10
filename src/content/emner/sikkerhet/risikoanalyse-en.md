@@ -293,23 +293,6 @@ At least once a year, and always after significant changes in the IT environment
 
 ---
 
-## Flashcards
-
-Risk :: Probability multiplied by consequence. Expresses how serious a potential event is
-Risk matrix :: Visual tool (typically 5×5) that ranks risk scenarios by probability and consequence
-Vulnerability :: A weakness in a system that can be exploited by a threat (e.g., outdated software, weak password)
-Threat :: A potential event that can harm assets in an IT system (e.g., ransomware, fire, human error)
-Preventive measures :: Measures that stop an event from occurring, e.g., firewall, MFA, and patches
-Detective measures :: Measures that reveal that something is under attack, e.g., logging, IDS, and antivirus monitoring
-Reactive measures :: Measures that limit damage after an event, e.g., backup recovery and DR plan
-Residual risk :: The risk that remains after measures are implemented – formally accepted by management
-GDPR Art. 32 :: Legal requirement to conduct a risk assessment and implement appropriate security measures when processing personal data
-Risk acceptance :: A management decision that a remaining risk level is within acceptable boundaries
-ROS analysis :: Risk and Vulnerability Analysis – Norwegian term for structured risk assessment, particularly used in the public sector
-Asset :: Everything of value in an organization that should be protected: data, systems, services, employees, and reputation
-
----
-
 ## Resources
 
 - [NSM Fundamental Principles for ICT Security (Norwegian)](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)

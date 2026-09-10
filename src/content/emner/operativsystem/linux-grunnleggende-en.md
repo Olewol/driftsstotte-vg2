@@ -413,35 +413,6 @@ The first character indicates the file type: `-` = regular file, `d` = directory
 
 ---
 
-## Flashcards
-
-/ :: The root directory in Linux — the top of the entire file system
-/etc :: Directory with configuration files for the system and services
-/home :: Directory with home directories for regular users
-/var/log :: Directory with log files from the system and services
-chmod :: Linux command to change file permissions (rwx)
-chown :: Linux command to change owner and/or group of a file
-sudo :: Command that lets a regular user run a command with root privileges
-root :: Superuser in Linux (UID 0) with unlimited access to the system
-rwx :: Read (r=4), write (w=2), execute (x=1) — the three permissions in Linux
-chmod 755 :: owner: rwx, group: r-x, others: r-x — typical for websites and directories
-chmod 644 :: owner: rw-, group: r--, others: r-- — typical for regular files
-sticky bit :: Prevents users from deleting files in a shared directory that they do not own
-/etc/passwd :: File with user accounts — contains username, UID, GID, home directory, and shell
-/etc/shadow :: File with encrypted passwords — only readable by root
-/etc/group :: File with group definitions and group memberships
-useradd -m :: Create a new Linux user with a home directory
-usermod -aG :: Add user to a supplementary group without removing existing group memberships
-visudo :: Safe way to edit /etc/sudoers — checks syntax before saving
-SUID :: Set User ID — special permission bit that makes an executable run with the file owner's privileges
-SGID :: Set Group ID — on a directory: new files inherit the directory's group instead of the creator's primary group
-journalctl :: Command to read system logs from systemd journald; supports filtering by service and time
-/var/log/auth.log :: Linux log file for authentication events, sudo usage, and SSH logins
-UID :: User ID — numeric identifier for a Linux user (root=0, system users 1–999, regular users 1000+)
-GID :: Group ID — numeric identifier for a Linux group
-
----
-
 ## Resources
 
 - [Ubuntu Community Wiki: FilePermissions](https://help.ubuntu.com/community/FilePermissions)

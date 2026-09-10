@@ -269,22 +269,6 @@ Well-known ports are port numbers 0–1023 that are reserved for standardized se
 **Answer:** RDP is a popular attack target. Automated tools constantly scan the internet for open port 3389 and attempt brute force login. If successful, the attacker gets graphical access to the Windows machine. The solution is to only allow RDP from VPN or the IP addresses of administrators.
 </details>
 
-## Flashcards
-
-HTTP :: Hypertext Transfer Protocol — unencrypted web protocol on port 80
-HTTPS :: HTTP over TLS — encrypted web protocol on port 443
-FTP :: File Transfer Protocol — unencrypted file transfer on port 21 (control) and 20 (data)
-SFTP :: Secure file transfer over SSH on port 22 — encrypted replacement for FTP
-SSH :: Secure Shell — encrypted remote terminal/command line access on port 22
-RDP :: Remote Desktop Protocol — graphical Windows remote control on port 3389
-SMTP :: Simple Mail Transfer Protocol — sending email, port 25 (server-server) / 587 (client-server)
-IMAP :: Internet Message Access Protocol — email synchronization from server, port 143 / 993 (TLS)
-POP3 :: Post Office Protocol 3 — downloading email from server, port 110 / 995 (TLS)
-SNMP :: Simple Network Management Protocol — monitoring network devices on port 161/162
-TCP (Transmission Control Protocol) :: A connection-oriented and reliable protocol that ensures data arrives in the correct order and without errors through error checking
-UDP (User Datagram Protocol) :: A connectionless protocol that prioritizes speed over reliability; sends data without confirming receipt
-Three-way Handshake :: The process TCP uses to establish a stable connection between sender and receiver (SYN, SYN-ACK, ACK)
-
 ## Resources
 
 - [TCP, UDP and Ports — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/tcp-udp-og-porter/d7acb2196e)

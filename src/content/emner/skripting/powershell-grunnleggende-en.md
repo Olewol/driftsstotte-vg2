@@ -400,26 +400,6 @@ ISE (Integrated Scripting Environment) is a built-in graphical tool for writing 
 
 ---
 
-## Flashcards
-
-Cmdlet :: Basic command unit in PowerShell, follows Verb-Noun pattern (e.g., Get-Service)
-`$_` :: Automatic variable in PowerShell that represents the current object in a pipeline
-`Get-Member` :: Cmdlet that shows all properties and methods of the objects passed in
-`Where-Object` :: Cmdlet that filters pipeline objects based on a condition
-`Select-Object` :: Cmdlet that selects specific properties from pipeline objects
-`Export-Csv` :: Cmdlet that writes pipeline objects to a CSV file
-`Import-Module` :: Loads a PowerShell module with its associated cmdlets
-`param` block :: Declares parameters for a PowerShell function with type and validation
-`[Parameter(Mandatory)]` :: Attribute that makes a function parameter mandatory
-`-ErrorAction Stop` :: Makes a cmdlet throw an exception on error, so `catch` can handle it
-Execution Policy :: Security policy that determines which PowerShell scripts can run
-`$env:COMPUTERNAME` :: Automatic environment variable with the machine's name
-`Write-Host` :: Writes directly to the console — not sent to the pipeline and cannot be captured by other cmdlets
-`Write-Output` :: Sends the value to the pipeline so it can be processed further by other cmdlets
-ISE (Integrated Scripting Environment) :: Built-in graphical tool in Windows for writing and testing PowerShell scripts
-
----
-
 ## Resources
 
 - [Microsoft Learn – PowerShell 101: Getting Started](https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started)

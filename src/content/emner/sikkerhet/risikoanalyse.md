@@ -291,23 +291,6 @@ Minst én gang per år, og alltid ved vesentlige endringer i IT-miljøet (ny pro
 
 ---
 
-## Flashcards
-
-Risiko :: Sannsynlighet multiplisert med konsekvens. Uttrykker hvor alvorlig en potensiell hendelse er
-Risikomatrise :: Visuelt verktøy (typisk 5×5) som rangerer risikoscenarioer etter sannsynlighet og konsekvens
-Sårbarhet :: En svakhet i et system som kan utnyttes av en trussel (eks. utdatert programvare, svakt passord)
-Trussel :: En potensiell hendelse som kan skade verdier i et IT-system (eks. ransomware, brann, menneskelig feil)
-Forebyggende tiltak :: Tiltak som hindrer at en hendelse inntreffer, f.eks. brannmur, MFA og patcher
-Oppdagende tiltak :: Tiltak som avslører at noe er under angrep, f.eks. logging, IDS og antivirusovervåkning
-Reaktive tiltak :: Tiltak som begrenser skaden etter en hendelse, f.eks. backup-gjenoppretting og DR-plan
-Restrisiko :: Risikoen som gjenstår etter at tiltak er innført – aksepteres formelt av ledelsen
-GDPR art. 32 :: Lovkrav om å gjennomføre risikovurdering og innføre egnede sikkerhetstiltak ved behandling av personopplysninger
-Risikoaksept :: En ledelsesbeslutning om at en gjenværende risikonivå er innenfor akseptable grenser
-ROS-analyse :: Risiko- og Sårbarhetsanalyse – norsk begrep for strukturert risikovurdering, særlig brukt i offentlig sektor
-Verdi (asset) :: Alt som har verdi i en virksomhet og som bør beskyttes: data, systemer, tjenester, ansatte og omdømme
-
----
-
 ## Ressurser
 
 - [NSM Grunnprinsipper for IKT-sikkerhet](https://nsm.no/regelverk-og-hjelp/rad-og-anbefalinger/grunnprinsipper-for-ikt-sikkerhet/)

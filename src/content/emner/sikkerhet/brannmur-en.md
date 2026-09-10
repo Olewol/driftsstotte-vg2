@@ -265,22 +265,6 @@ WAF is used in addition to a regular firewall when exposing web applications to 
 
 ---
 
-## Flashcards
-
-Packet filtering :: Stateless firewall that inspects source/destination IP, port, and protocol for each packet in isolation
-Stateful inspection :: Firewall that remembers the state of active connections and automatically allows return traffic
-WAF :: Web Application Firewall — application-layer firewall that inspects HTTP content and blocks SQL injection and XSS
-DMZ :: Demilitarized Zone — network segment between internet and internal network for internet-exposed servers
-Network segmentation :: Dividing a network into VLAN zones with firewall rules between to limit lateral movement
-Default-deny :: Firewall principle: block everything, allow only explicitly approved traffic
-IDS :: Intrusion Detection System — monitors traffic and alerts on suspicious activity, but does not block
-IPS :: Intrusion Prevention System — monitors traffic and automatically blocks suspicious activity inline
-Lateral movement :: An attacker's ability to move between systems after gaining initial access
-Host-based firewall :: Firewall running on the machine itself (e.g. Windows Defender Firewall), in addition to the network firewall
-NGFW :: Next-Generation Firewall — combines stateful inspection with application identification and user identity for deeper traffic analysis
-
----
-
 ## Sources
 
 [^1]: NDLA. (2024). *Firewall (Driftsstøtte VG2)*. <https://ndla.no/r/driftsstotte-im-itk-vg2/brannmur/2aad28ca4e>

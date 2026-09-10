@@ -255,23 +255,6 @@ State-sponsored actors can use social media to systematically spread fake news, 
 
 ---
 
-## Flashcards
-
-Malware :: Collective term for malicious software such as viruses, worms, trojans, ransomware, spyware, and rootkits
-Ransomware :: Malware that encrypts files and demands payment. Dominant threat against Norwegian organizations (NSM)
-Phishing :: Attempt to trick users into revealing sensitive information by posing as a legitimate entity
-Spear phishing :: Targeted phishing against a specific person or organization, based on collected information
-DDoS :: Distributed Denial of Service – floods a service with traffic from a botnet to make it unavailable
-Zero-day :: Unknown vulnerability in software that is exploited before the vendor has developed a patch
-APT :: Advanced Persistent Threat – long-term, sophisticated attacks from resourceful (often state-sponsored) actors
-Botnet :: Network of compromised machines controlled by an attacker, used among other things for DDoS
-Insider threat :: Threat from employees or others with internal access, either unintentional (mistake) or intentional (sabotage)
-OWASP Top 10 :: List of the ten most common security flaws in web applications, published by OWASP
-Pretexting :: Social engineering where the attacker constructs a believable false background story to trick the victim
-Smishing :: SMS phishing – fraud attempts via text message posing as a bank, package carrier, etc.
-
----
-
 ## Resources
 
 - [NSM – Digital Security (Norwegian)](https://nsm.no/fagomrader/digital-sikkerhet/)

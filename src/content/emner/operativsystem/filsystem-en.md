@@ -243,25 +243,6 @@ Example: NTFS says "Read", Share says "Full Control". The user gets only read ac
 
 ---
 
-## Flashcards
-
-NTFS :: Standard Windows file system with support for ACL, quotas, journaling, and encryption
-ACL :: Access Control List — list of users/groups and their permissions on a file or folder
-Permission inheritance :: Mechanism in NTFS where subfolders automatically adopt the permissions of the parent folder
-FAT32 :: Older file system without access control; max file size 4 GB − 1 byte (4,294,967,295 bytes)
-exFAT :: Modern FAT-based file system without the 4 GB limit; used on USB/SD
-ext4 :: Standard Linux file system with journaling, inodes, and rwx permission model
-Inode :: Data structure in Linux file systems that stores metadata about a file (owner, permissions, timestamp)
-Journaling :: File system transaction log that ensures consistency after a system crash
-Disk quota :: Limit on how much storage space a user can use on a volume
-Full control :: Highest NTFS permission level — includes the right to change permissions and take ownership
-POSIX ACL :: Extended access control in Linux beyond standard rwx; provides per-user and per-group permissions with `setfacl`/`getfacl`
-icacls :: Windows command-line tool for viewing and changing NTFS permissions
-Share Permissions :: Permissions that only apply when accessing a shared resource over the network; combined with NTFS permissions (most restrictive wins)
-EFS :: Encrypting File System — NTFS feature for transparent file encryption tied to the user's certificate
-
----
-
 ## Resources
 
 - [Microsoft Learn: NTFS Overview](https://learn.microsoft.com/en-us/windows-server/storage/file-server/ntfs-overview)

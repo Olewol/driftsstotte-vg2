@@ -333,38 +333,6 @@ draw.io is free, web-based, and saves diagrams as XML files that can be version-
 
 ---
 
-## Flashcards
-
-Network topology :: Description of how nodes are connected in a network. Examples: star, mesh, bus.
-
-Star topology :: All devices connected to a central switch. Simple and most common in modern networks.
-
-IP address plan :: Structured overview of IP addresses, subnets, gateway, and DNS in a network.
-
-Subnet :: A portion of an IP network separated using a subnet mask. Used for VLAN segmentation and addressing.
-
-VLAN :: Virtual LAN – logical network segmentation. Devices in the same VLAN communicate as if they are on the same physical network.
-
-Operations log :: Chronological log of all changes in the IT environment. Used for troubleshooting, auditing, and continuity.
-
-CMDB :: Configuration Management Database – register of all IT infrastructure and configurations.
-
-draw.io :: Free, web-based tool for drawing network topologies and architecture diagrams.
-
-IT Glue :: Professional documentation tool for IT operations companies. Consolidates documentation, passwords, and device information.
-
-Procedure documentation :: Step-by-step instructions for critical IT operations. Ensures anyone can perform the task.
-
-ROS analysis :: Risk and vulnerability analysis. Used in the planning phase to identify and assess risk.
-
-ITIL :: IT Infrastructure Library – framework of best practices in IT operations. Covers change management, incident management, and service management.
-
-Change management :: Structured process for planning, approving, and documenting changes in the IT environment. Always includes a rollback plan.
-
-Single point of failure :: A component whose failure makes the entire system unavailable. Mitigated with redundancy.
-
----
-
 ## Resources
 
 - [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131)

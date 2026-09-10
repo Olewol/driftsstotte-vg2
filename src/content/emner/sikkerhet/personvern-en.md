@@ -295,23 +295,6 @@ GDPR Art. 9 defines special categories (sensitive data): health information, bio
 
 ---
 
-## Flashcards
-
-GDPR :: EU's General Data Protection Regulation, applicable in Norway via the EEA. Came into force May 2018
-Personal Data Act :: Norwegian law implementing GDPR in Norwegian legislation
-Legal basis :: Legal grounds for processing personal data (GDPR Art. 6): consent, contract, legal obligation, etc.
-Data minimization :: Principle that only necessary personal data is collected (GDPR Art. 5(1)(c))
-Privacy by Design :: Principle that privacy is integrated into system design from the start (GDPR Art. 25)
-72-hour rule :: Breaches posing risk to data subjects must be notified to the Data Protection Authority within 72 hours (GDPR Art. 33)
-Datatilsynet :: Norwegian Data Protection Authority. Enforces GDPR and the Personal Data Act
-DPO :: Data Protection Officer – mandatory for public authorities and certain private organizations
-Right to be forgotten :: The right to demand deletion of one's personal data when it is no longer necessary (GDPR Art. 17)
-Data processing agreement :: Agreement (GDPR Art. 28) regulating how a third party processes personal data on behalf of the organization
-Controller :: The organization that determines the purpose and means of processing personal data and has overall legal responsibility
-Incident management :: Routines for detecting, stopping, and reporting personal data breaches to the Data Protection Authority and affected individuals
-
----
-
 ## Resources
 
 - [Datatilsynet – The Privacy Principles (Norwegian)](https://www.datatilsynet.no/rettigheter-og-plikter/personvernprinsippene/)

@@ -250,21 +250,6 @@ Isolation means a VM is separated from other VMs and from the host system. If a 
 **Answer:** (Choose three of): Resource efficiency (fewer physical servers), isolation between services, portability (export/import of VMs), snapshots for easy rollback, easy scaling, faster deployment of new servers.
 </details>
 
-## Flashcards
-
-Hypervisor :: Software that manages virtual machines and distributes physical resources among them
-Type 1 hypervisor :: Hypervisor that runs directly on hardware (bare metal): Hyper-V, VMware ESXi, Proxmox
-Type 2 hypervisor :: Hypervisor that runs on top of a host operating system: VirtualBox, VMware Workstation
-VM (virtual machine) :: Isolated software-simulated computer that runs its own OS on a hypervisor
-Snapshot :: Point-in-time image of a VM's state that can be used to roll back changes
-Hyper-V external switch :: Virtual switch connected to a physical network card — gives VMs access to the physical network
-NAT (VM networking) :: VM shares the host's IP and reaches the internet, but is not directly visible from outside
-Bridged (VM networking) :: VM connects directly to the physical network and gets its own IP address
-Root partition :: Hyper-V terminology for the Windows Server installation with access to physical hardware
-Child partition :: Hyper-V terminology for a guest VM that only sees virtual/emulated hardware
-Virtual Switch (vSwitch) :: A software-based network switch that allows virtual machines to communicate with each other and physical networks via VLAN
-Isolation :: The principle that a virtual machine is separated from other machines and the host system, so that faults or viruses in one VM do not spread
-
 ## Resources
 
 - [Virtualization in Windows Server — NDLA](https://ndla.no/nb/r/teknologiforstaelse-im-ikm-vg1/virtualisering-i-windows-server/5f000530eb)

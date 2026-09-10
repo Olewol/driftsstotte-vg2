@@ -498,27 +498,6 @@ Scripts are often stored in version control (Git), log files, or shared with col
 
 ---
 
-## Flashcards
-
-Crontab :: Configuration file in Linux that defines scheduled tasks for the cron daemon
-Cron syntax :: Five fields (min hour day month weekday) followed by the command to run
-`@reboot` :: Cron special string that runs the command at system startup
-`crontab -e` :: Command to edit the user's crontab in the default editor
-`schtasks /create` :: Windows command-line tool for creating scheduled tasks
-Task Scheduler trigger :: The condition that starts a task (time, event, logon, etc.)
-Infrastructure as Code (IaC) :: The practice of defining IT infrastructure in machine-readable configuration files
-Ansible :: Agentless IaC tool (Red Hat) that uses YAML playbooks via SSH
-Terraform :: Cloud-agnostic IaC tool (HashiCorp) that uses HCL to provision infrastructure
-Declarative configuration :: Describes desired end state — the tool determines which steps are needed
-`2>&1` :: Shell redirect that sends stderr to the same location as stdout
-`Register-ScheduledTask` :: PowerShell cmdlet that registers a scheduled task in Windows Task Scheduler
-Idempotence :: Principle in automation where an operation can be run many times without changing the result after the first successful run
-Scheduled tasks :: Using Task Scheduler (Windows) or cron (Linux) to run scripts automatically at given times or events
-Imperative scripting :: Scripts that describe the actions to be performed step by step ("do A, then B")
-Declarative IaC :: Configuration that describes the desired end state, not the procedure to reach it
-
----
-
 ## Resources
 
 - [Microsoft Learn – Task Scheduler](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page)

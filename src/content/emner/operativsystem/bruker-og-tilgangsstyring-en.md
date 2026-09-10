@@ -312,27 +312,6 @@ Authentication verifies your identity (you are who you claim to be). Authorizati
 
 ---
 
-## Flashcards
-
-Local account :: User account stored in the machine's SAM database, valid only on that machine
-Domain account :: User account stored in Active Directory, valid on all machines in the domain
-SID :: Security Identifier — unique numeric identifier Windows assigns to each account and group
-Principle of least privilege :: Users should only have the permissions they need for their job
-UAC :: User Account Control — Windows mechanism that requires explicit approval for administrative operations
-Domain Admins :: Built-in AD group with full administrative access to the domain
-Security group :: AD object that gathers users for shared access management
-Domain local group :: Group that can be used for permissions only in its own domain
-Global group :: Group from the same domain that can be used for permissions in all domains in the forest
-AAA :: Authentication, Authorization, and Accounting — the core principles of access control
-useradd :: Linux command to create a new user account
-usermod -aG :: Linux command to add a user to a supplementary group without removing existing group memberships
-/etc/shadow :: Linux file that stores encrypted passwords (only root can read)
-RBAC :: Role-based access control — permissions are linked to roles, not individuals
-Sudoers :: Configuration file in Linux (`/etc/sudoers`) that defines who can run commands with root privileges
-SSSD :: System Security Services Daemon — lets Linux clients authenticate against Active Directory
-
----
-
 ## Resources
 
 - [Microsoft Learn: AD Default Accounts](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-default-user-accounts)

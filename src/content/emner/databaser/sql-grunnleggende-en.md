@@ -381,26 +381,6 @@ A request written in SQL to retrieve, filter, or modify specific data in the dat
 
 ---
 
-## Flashcards
-
-SQL :: Standard language for communicating with relational databases (ANSI 1986, ISO 1987)
-DDL :: Data Definition Language — commands like CREATE, ALTER, and DROP that modify database structure
-DML :: Data Manipulation Language — commands like SELECT, INSERT, UPDATE, and DELETE that work with data
-Primary key :: A column (or combination) that uniquely identifies each row in a table — cannot be NULL
-Foreign key :: A column that points to the primary key in another table and creates a relationship between the tables
-Referential integrity :: The guarantee that a foreign key value always points to an existing row in the referenced table
-AUTO_INCREMENT :: MySQL feature that automatically assigns the next available integer to a column on insertion
-INNER JOIN :: Combines rows from two tables where there are matches in both — rows without matches are excluded
-LEFT JOIN :: Returns all rows from the left table and matching rows from the right — NULL where there is no match
-WHERE :: Clause that filters which rows are affected by a SELECT, UPDATE, or DELETE
-ORDER BY :: Clause that sorts the result of a SELECT, ASC = ascending, DESC = descending
-LIMIT :: Clause that limits the number of rows returned by a SELECT
-CRUD :: Create, Read, Update, Delete — the four basic data operations, corresponding to INSERT, SELECT, UPDATE, DELETE in SQL
-Query :: A request in SQL to retrieve, filter, or modify data in the database system
-Table alias :: Short form for a table name in a query (e.g., FROM equipment AS e) — makes JOIN code more readable
-
----
-
 ## Resources
 
 - [W3Schools SQL Tutorial](https://www.w3schools.com/sql/default.asp)

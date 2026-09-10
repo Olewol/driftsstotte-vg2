@@ -253,23 +253,6 @@ Statsstøttede aktører kan bruke sosiale medier til å spre falske nyheter syst
 
 ---
 
-## Flashcards
-
-Malware :: Samlebetegnelse for ondsinnet programvare som virus, ormer, trojaner, ransomware, spyware og rootkit
-Ransomware :: Malware som krypterer filer og krever løsepenger. Dominerende trussel mot norske virksomheter (NSM)
-Phishing :: Forsøk på å lure brukere til å oppgi sensitiv informasjon ved å utgi seg for en legitim aktør
-Spear phishing :: Målrettet phishing mot én spesifikk person eller organisasjon, basert på innsamlet informasjon
-DDoS :: Distributed Denial of Service – oversvømmer en tjeneste med trafikk fra et botnet for å gjøre den utilgjengelig
-Zero-day :: Ukjent sårbarhet i programvare som utnyttes før leverandøren har utviklet en patch
-APT :: Advanced Persistent Threat – langsiktige, sofistikerte angrep fra ressurssterke (ofte statsstøttede) aktører
-Botnet :: Nettverk av kompromitterte maskiner kontrollert av en angriper, brukes bl.a. til DDoS
-Innsidetrussel :: Trussel fra ansatte eller andre med intern tilgang, enten utilsiktet (feil) eller tilsiktet (sabotasje)
-OWASP Top 10 :: Liste over de ti vanligste sikkerhetsfeilene i webapplikasjoner, utgitt av OWASP
-Pretexting :: Sosial manipulering der angriperen konstruerer en troverdig falsk bakgrunnshistorie for å lure offeret
-Smishing :: SMS-phishing – svindelforsøk via tekstmelding som utgir seg for å være bank, pakkeleverandør e.l.
-
----
-
 ## Ressurser
 
 - [NSM – Digital sikkerhet](https://nsm.no/fagomrader/digital-sikkerhet/)

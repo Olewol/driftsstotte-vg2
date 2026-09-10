@@ -313,26 +313,6 @@ Technically yes, but it is complicated and risky. All GPOs, profiles, and servic
 
 ---
 
-## Flashcards
-
-Active Directory (AD) :: Microsoft's directory service for centralized management of users, machines, and policies
-Domain Controller (DC) :: Server with AD DS installed that authenticates all logons in the domain
-Organizational Unit (OU) :: Logical container in AD for organizing objects and linking GPOs
-GPO :: Group Policy Object — set of settings automatically distributed to users and machines in AD
-ADUC :: Active Directory Users and Computers — graphical tool for managing AD objects
-Forest :: Top level in the AD hierarchy; collection of trees sharing a common schema and global catalog
-Domain :: The fundamental unit in AD — logical group of users and machines under common administration
-LDAP :: Lightweight Directory Access Protocol — protocol for searching and updating the AD directory
-Kerberos :: Authentication protocol used by AD; based on encrypted tickets, the password is never sent over the network
-TGT :: Ticket Granting Ticket — Kerberos ticket used to request access to services without re-entering a password
-FSMO :: Flexible Single Master Operation — special AD roles that only one DC can hold at a time
-gpupdate /force :: Command to force an immediate update of group policies on a client
-Global Catalog (GC) :: Distributed storage with a copy of all objects in the AD forest; enables cross-domain searches and UPN logon
-RBAC :: Role-based access control — permissions are assigned based on the user's role, not as individual permissions
-Naming standard :: Consistent convention for usernames in AD (e.g., firstname.lastname) that simplifies administration and scripting
-
----
-
 ## Resources
 
 - [Microsoft Learn: AD Default Accounts](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-default-user-accounts)

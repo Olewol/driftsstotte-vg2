@@ -496,27 +496,6 @@ Skript lagres gjerne i versjonskontroll (Git), loggfiler eller deles med kollege
 
 ---
 
-## Flashcards
-
-Crontab :: Konfigurasjonsfil i Linux som definerer planlagte oppgaver for cron-daemonen
-Cron-syntaks :: Fem felt (min time dag mnd ukedag) etterfulgt av kommandoen som skal kjøres
-`@reboot` :: Cron-spesialstreng som kjører kommandoen ved systemoppstart
-`crontab -e` :: Kommando for å redigere brukerens crontab i standardeditoren
-`schtasks /create` :: Windows-kommandolinjeverktøy for å opprette planlagte oppgaver
-Task Scheduler-trigger :: Betingelsen som starter en oppgave (tid, hendelse, pålogging osv.)
-Infrastructure as Code (IaC) :: Praksis med å definere IT-infrastruktur i maskinlesbare konfigurasjonsfiler
-Ansible :: Agentfritt IaC-verktøy (Red Hat) som bruker YAML-playbooks via SSH
-Terraform :: Sky-agnostisk IaC-verktøy (HashiCorp) som bruker HCL for å provisjonere infrastruktur
-Deklarativ konfigurasjon :: Beskriver ønsket sluttilstand — verktøyet bestemmer selv hvilke steg som trengs
-`2>&1` :: Shell-omdirigering som sender stderr til samme sted som stdout
-`Register-ScheduledTask` :: PowerShell-cmdlet som registrerer en planlagt oppgave i Windows Task Scheduler
-Idempotens :: Prinsipp i automatisering der en operasjon kan kjøres mange ganger uten at resultatet endrer seg etter første vellykkede kjøring
-Planlagte oppgaver :: Bruk av Task Scheduler (Windows) eller cron (Linux) for å kjøre skript automatisk på gitte tidspunkter eller hendelser
-Imperativ skripting :: Skript som beskriver handlingene som skal utføres steg for steg ("gjør A, så B")
-Deklarativ IaC :: Konfigurasjon som beskriver ønsket sluttilstand, ikke fremgangsmåten for å nå den
-
----
-
 ## Ressurser
 
 - [Microsoft Learn – Task Scheduler](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page)

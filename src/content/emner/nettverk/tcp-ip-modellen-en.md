@@ -190,20 +190,6 @@ ICMP (Internet Control Message Protocol) is a protocol at layer 3 used for error
 **Answer:** Layering allows each layer to be developed and updated independently of the others. For example, you can switch from IPv4 to IPv6 at layer 3 without changing TCP at layer 4 or HTTP at layer 5. It also simplifies troubleshooting — you can isolate a problem to a single layer.
 </details>
 
-## Flashcards
-
-TCP :: Connection-oriented transport protocol that guarantees delivery and ordering
-UDP :: Connectionless transport protocol that is fast but without delivery guarantees
-IP address :: Logical address at layer 3 that identifies a device in a network (IPv4: 32 bits)
-MAC address :: Physical address at layer 2 that identifies a network card (48 bits, e.g. 00:1A:2B:3C:4D:5E)
-Encapsulation :: The process where each layer adds its header as data travels down through the TCP/IP layers
-Port :: Number (1–65535) that identifies which application/service a network packet is intended for
-ARP :: Address Resolution Protocol — translates IP address to MAC address on the same network
-ICMP :: Internet Control Message Protocol — used for error messages and diagnostics (ping)
-Three-way handshake :: The TCP process for establishing a connection: SYN → SYN-ACK → ACK
-Router :: Network device that operates at layer 3 and forwards packets between different networks
-TCP (Transmission Control Protocol) :: A connection-oriented protocol at the transport layer that guarantees error-free delivery and correct ordering of data packets
-
 ## Resources
 
 - [TCP/IP 5-layer Model — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/5-lags-tcpip-modell/9e31c212f6)

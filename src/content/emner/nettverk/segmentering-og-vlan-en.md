@@ -254,20 +254,6 @@ Yes. Modern access points support SSID-to-VLAN mapping. The guest WiFi network c
 **Answer:** Private address ranges (10.x.x.x, 172.16-31.x.x, 192.168.x.x) are IP addresses that are not routed on the internet. They are used for internal networks and are translated to a public IP via NAT when traffic goes to the internet. This saves address space and provides an extra layer of concealment from the internet.
 </details>
 
-## Flashcards
-
-VLAN :: Virtual Local Area Network — logical division of a physical network using IEEE 802.1Q
-CIDR :: Classless Inter-Domain Routing — writing subnet mask as a suffix: e.g. /24 = 255.255.255.0
-Subnet mask :: Indicates the boundary between network part and host part in an IP address
-Access port :: Switch port that belongs to one VLAN and sends untagged traffic to end devices
-Trunk port :: Switch port that carries tagged traffic for multiple VLANs (switch-to-switch, switch-to-router)
-Native VLAN :: The VLAN that receives untagged traffic on a trunk port (default VLAN 1)
-IEEE 802.1Q :: The standard for VLAN tagging in Ethernet frames
-Broadcast domain :: The area where broadcast traffic spreads; each VLAN is its own broadcast domain
-/24 network :: Subnet with 256 addresses (254 usable), subnet mask 255.255.255.0
-Private addresses :: IP addresses (10.x.x.x, 172.16-31.x.x, 192.168.x.x) that are not routed on the internet
-IEEE 802.1Q (standard) :: The international standard for VLAN tagging in Ethernet frames, enabling multiple logical networks on a single physical connection
-
 ## Resources
 
 - [Virtual Local Area Network VLAN — NDLA](https://ndla.no/nb/r/driftsstotte-im-itk-vg2/virtuelt-lokalnettverk-vlan/9d865afa88)

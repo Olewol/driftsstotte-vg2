@@ -318,23 +318,6 @@ Logging alone gives you raw data – you cannot manually read through millions o
 
 ---
 
-## Flashcards
-
-Security by Design :: Principle that security is integrated into all phases of system development and operations, not added afterward
-Zero Trust :: Security architecture based on "never trust, always verify" – no implicit trust of users, devices, or networks
-Least privilege :: Principle that users and systems are only given the access rights that are strictly necessary
-SIEM :: Security Information and Event Management – centralized log collection and event analysis. E.g., Microsoft Sentinel
-3-2-1 rule :: Backup principle: 3 copies, 2 media, 1 offsite copy
-RTO :: Recovery Time Objective – maximum acceptable downtime during recovery
-RPO :: Recovery Point Objective – maximum acceptable data loss, specifies how old the latest backup can be
-BCDR :: Business Continuity and Disaster Recovery – plans for maintaining and restoring IT services during and after catastrophic events
-Defense in Depth :: Layered security – policies, physical, network, computer, identity, application, and data
-RBAC :: Role-Based Access Control – permissions tied to roles, not individual users
-Microsegmentation :: Fine-grained network division where individual systems or applications are isolated from each other to limit lateral movement
-JIT :: Just-In-Time – temporary, time-limited access to sensitive systems, granted only when needed
-
----
-
 ## Resources
 
 - [Microsoft – Zero Trust Overview](https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview)

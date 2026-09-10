@@ -420,24 +420,6 @@ Add `set -e` at the top (after the shebang). The script will then automatically 
 
 ---
 
-## Flashcards
-
-Shebang :: The first line of a script (`#!/bin/bash`) that tells the OS which interpreter to use
-`$?` :: Special variable that contains the exit code of the previous command (0 = success)
-`$1`, `$2` :: Positional parameters — arguments given to the script or function
-`set -e` :: Bash setting that aborts the script at the first error
-`$(command)` :: Command substitution — runs the command and inserts the output
-`mkdir -p` :: Creates a folder and all missing parent folders, without error if the folder exists
-`chmod +x` :: Grants execute permissions to a file so it can be run directly
-`local` :: Keyword in Bash functions that limits a variable's scope to the function block
-`[ -d PATH ]` :: Bash test that is true if the path exists and is a directory
-`[ -f PATH ]` :: Bash test that is true if the path exists and is a regular file
-Shellcheck :: Static analysis tool for Bash scripts that finds errors and suggests best practices without running the script
-Exit code :: Status code (0–255) returned by a command; 0 = success, anything else = error
-Command substitution :: Technique (`$(command)`) that runs a command and inserts the result directly into a variable
-
----
-
 ## Resources
 
 - [TLDP Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html)

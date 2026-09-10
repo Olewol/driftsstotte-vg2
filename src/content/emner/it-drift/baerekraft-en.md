@@ -290,40 +290,6 @@ Three factors: nearly 100% renewable electricity from hydropower, cold climate e
 
 ---
 
-## Flashcards
-
-PUE :: Power Usage Effectiveness – measure of energy efficiency in data centers. PUE = total consumption / IT consumption. 1.0 is perfect; industry average ~1.5.
-
-E-waste :: Electrical and electronic waste. Contains rare earth metals and toxic substances. Must be delivered to approved facilities.
-
-WEEE Directive :: EU directive on electrical and electronic waste. Producer responsibility and recycling requirements. Applies in Norway.
-
-Energy Star :: Certification program for energy-efficient IT equipment. Products typically use 25–50% less energy.
-
-EPEAT :: Electronic Product Environmental Assessment Tool – global certification for environmentally friendly IT equipment. Used in public procurement.
-
-Lifespan extension :: Measures to use IT equipment longer. One of the most effective environmental measures since production is the greatest environmental burden.
-
-Free cooling :: Use of cold outside air or water to cool data centers. Reduces the need for energy-intensive cooling machines.
-
-Hyperscaler :: The largest cloud providers (Google, Microsoft, Amazon, Meta). Have the best PUE values (~1.1) and largest renewable energy contracts.
-
-Refurbished equipment :: Used IT equipment that is renovated and resold. Reduces the need for new production and environmental impact.
-
-Statkraft :: Norwegian state-owned energy company and Europe's largest producer of renewable energy. Important for Norway's position in green IT.
-
-IEA :: International Energy Agency – international organization that monitors global energy use. Authoritative source for data center statistics.
-
-Circular IT :: Operational model that prioritizes reuse, repair, and upgrading to keep hardware in use as long as possible.
-
-Dark Data :: Data stored in data centers but never used. Leads to unnecessary energy consumption for storage and cooling.
-
-TCO Certified :: International sustainability certification for IT equipment assessing both environmental and social conditions in the production chain.
-
-EE-waste :: Electrical and electronic waste containing environmental toxins and valuable metals requiring specialized recycling.
-
----
-
 ## Resources
 
 - [IEA: Data Centres and Data Transmission Networks](https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks)

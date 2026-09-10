@@ -312,21 +312,6 @@ Share permissions only apply when connecting to the folder via the network. NTFS
 **Answer:** Active Directory relies on DNS for clients to find the domain controller (via SRV records in DNS). Without DNS, clients cannot log in, find AD services, or communicate with the domain. The DNS role is therefore always installed in combination with AD DS.
 </details>
 
-## Flashcards
-
-Server role :: Additional function installed in Windows Server via Server Manager (e.g. AD DS, DNS, DHCP, IIS)
-AD DS :: Active Directory Domain Services — domain controller role that centralizes authentication and directory services
-Domain controller :: Server with the AD DS role that manages users, groups, and policies in a domain
-OU :: Organizational Unit — logical container in AD that supports Group Policy and delegated administration
-IIS :: Internet Information Services — Microsoft's web server for Windows Server, serves HTTP/HTTPS
-SMB :: Server Message Block — Windows protocol for network sharing of folders and files (port 445)
-FQDN :: Fully Qualified Domain Name — complete domain name e.g. pc01.lab.lan
-MTA :: Mail Transfer Agent — server software that sends and forwards email via SMTP
-GPO :: Group Policy Object — policy set in AD that distributes settings to users and machines
-NAS :: Network Attached Storage — dedicated storage device with file server functionality
-DHCP Scope :: A defined range of IP addresses that the DHCP server can assign to clients on a particular subnet
-NTFS permissions :: File system-level permissions that determine what access users and groups have to files and folders on a file server
-
 ## Resources
 
 - [User Accounts, Groups, and Structure in AD — NDLA](https://ndla.no/r/driftsstotte-im-itk-vg2/brukerkontoer-grupper-og-struktur-i-active-directory/2c7a25f92e)

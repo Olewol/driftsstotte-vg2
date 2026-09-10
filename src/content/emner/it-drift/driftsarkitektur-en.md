@@ -262,42 +262,6 @@ A DMZ (Demilitarized Zone) is an isolated network between the internet and the i
 
 ---
 
-## Flashcards
-
-On-premise :: Local IT infrastructure owned and operated by the organization itself, with full control but high capital costs (CAPEX).
-
-Hybrid cloud :: An operational model that combines local (on-premise) infrastructure with cloud services.
-
-Hypervisor :: Software that allows one physical server to run multiple virtual machines (VMs) simultaneously. Examples: VMware ESXi, Hyper-V.
-
-VM (virtual machine) :: A software-based server that behaves like a physical machine but runs on shared physical hardware.
-
-NAS :: Network Attached Storage – storage unit connected to the network for file sharing. Accessible to all devices on the network.
-
-SAN :: Storage Area Network – dedicated high-speed network for storage. Provides servers with block-based access to storage.
-
-DAS :: Direct Attached Storage – storage connected directly to one server. Simple and fast, but not shared.
-
-Switch :: Network component that connects devices in a local network (LAN) using MAC addresses.
-
-Firewall :: Network security component that filters traffic in and out of the network based on rules.
-
-VLAN :: Virtual LAN – logical segmentation of a network without physical separation, used for security and performance.
-
-UPS :: Uninterruptible Power Supply – battery system that ensures power during outages and protects against unplanned shutdowns.
-
-CAPEX :: Capital Expenditure – one-time expenses for purchasing equipment. Typical for on-premise infrastructure.
-
-OPEX :: Operational Expenditure – ongoing operating expenses. Typical for cloud services with a subscription model.
-
-Infrastructure as Code (IaC) :: Method for managing IT infrastructure via machine-readable configuration files instead of manual configuration. Provides reproducibility and version control.
-
-Redundancy :: Duplication of critical components in a system to ensure operation if one part fails.
-
-Latency :: The delay in communication between client and server. Low latency is critical for real-time systems.
-
----
-
 ## Resources
 
 - [Microsoft Azure: What is IaaS?](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas/)

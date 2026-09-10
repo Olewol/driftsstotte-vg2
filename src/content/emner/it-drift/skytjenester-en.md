@@ -279,44 +279,6 @@ Serverless (e.g., Azure Functions) is not that there are no servers – it is th
 
 ---
 
-## Flashcards
-
-IaaS :: Infrastructure as a Service – renting virtual infrastructure (servers, storage, networking). The customer manages the OS and above. Example: AWS EC2, Azure Virtual Machines.
-
-PaaS :: Platform as a Service – the provider handles the OS and middleware. The customer focuses on application development. Example: Azure App Service.
-
-SaaS :: Software as a Service – ready-made software delivered over the web. The provider handles everything. Example: Microsoft 365, Google Workspace.
-
-Public cloud :: Cloud resources shared between many customers at the provider. Cheapest and most scalable. Example: Azure, AWS.
-
-Private cloud :: Dedicated cloud for one organization. More control, but more expensive.
-
-Hybrid cloud :: Combination of public and private cloud (and/or on-premise). Provides flexibility.
-
-Shared Responsibility Model :: Responsibility model that distributes security responsibility between the provider and the customer depending on the service model.
-
-SLA :: Service Level Agreement – agreement on guaranteed availability and performance. E.g., 99.9% uptime.
-
-GDPR :: General Data Protection Regulation – EU law regulating the processing of personal data. Applies in Norway.
-
-Data processing agreement :: Legally required agreement between the organization and the cloud provider regulating the processing of personal data.
-
-Elasticity :: The ability to scale resources up and down as needed – a key advantage of cloud.
-
-OPEX :: Operational Expenditure – ongoing costs. Cloud uses the OPEX model (pay for use).
-
-Multi-cloud :: Use of multiple public cloud providers to avoid vendor lock-in and increase redundancy.
-
-Serverless :: PaaS variant where the provider automatically allocates resources based on code execution. No server administration. Example: Azure Functions.
-
-Hyperscalers :: The largest cloud providers (AWS, Azure, Google Cloud) with enormous global infrastructure and capacity.
-
-Data sovereignty :: The principle that data is subject to the laws of the country where it is physically stored. Critical for GDPR compliance.
-
-FinOps :: Cloud Financial Management – practice for understanding and optimizing cloud costs through collaboration between IT and finance.
-
----
-
 ## Resources
 
 - [AWS: What is cloud computing?](https://aws.amazon.com/what-is-cloud-computing/)
