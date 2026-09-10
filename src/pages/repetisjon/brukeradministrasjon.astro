@@ -71,19 +71,17 @@ Hierarkiet betyr noe: GPO-er arves nedover. En policy satt på domenet gjelder a
 
 <h4>Best Practice for OU-struktur</h4>
 
-```
-firma.local
-+-- OU=Brukere
-|   +-- OU=AvdelingA
-|   +-- OU=AvdelingB
-|   +-- OU=AvdelingC
-+-- OU=Datamaskiner
-|   +-- OU=Kontor
-|   +-- OU=Felt
-+-- OU=Grupper
-    +-- OU=Sikkerhetsgrupper
-    +-- OU=Distribusjonsgrupper
-```
+<pre style="line-height:1.4;font-size:13px;overflow-x:auto;">firma.local
+├── OU=Brukere
+│   ├── OU=AvdelingA
+│   ├── OU=AvdelingB
+│   └── OU=AvdelingC
+├── OU=Datamaskiner
+│   ├── OU=Kontor
+│   └── OU=Felt
+└── OU=Grupper
+    ├── OU=Sikkerhetsgrupper
+    └── OU=Distribusjonsgrupper</pre>
 
 <h3>Rollebasert tilgang (RBAC)</h3>
 

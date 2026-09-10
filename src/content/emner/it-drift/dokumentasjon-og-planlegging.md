@@ -2,34 +2,26 @@
 title: "Dokumentasjon og planlegging"
 emne: it-drift
 kompetansemaal:
-
   - km-06
-
 kilder:
-
   - ndla
-  - <https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131>
-  - <https://learn.microsoft.com/en-us/azure/architecture/framework/>
-  - <https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>
-  - <https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>
-  - <https://snl.no/skytjeneste>
-
+  - https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131
+  - https://learn.microsoft.com/en-us/azure/architecture/framework/
+  - https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/
+  - https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153
+  - https://snl.no/skytjeneste
 video: null
 tags: []
-flashcards: <https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd>
+flashcards: https://notebooklm.google.com/notebook/bc9a5656-7a9b-4dc5-a59e-ef4a96aa8ccd
 public: true
 notebooklm: true
 ---
 
 ## Introduksjon
 
-GGod dokumentasjon er ryggraden i profesjonell IT-drift.[^1] Uten oppdatert dokumentasjon er det umulig å feilsøke
-Geffektivt, vanskelig å lære opp nye medarbeidere, og risikabelt å gjøre endringer i systemet.
+God dokumentasjon er ryggraden i profesjonell IT-drift.[^1] Uten oppdatert dokumentasjon er det umulig å feilsøke effektivt, vanskelig å lære opp nye medarbeidere, og risikabelt å gjøre endringer i systemet.
 
-DDokumentasjon og planlegging handler om å ha oversikt: over hva som finnes, hvordan det henger sammen, hva som er gjort,
-DDog hva som skal gjøres. Dette er kompetansemål km-06 – en av de mest praktiske delene av faget.
-DDEn god IT-avdeling behandler dokumentasjon som levende ressurser som oppdateres kontinuerlig, ikke som noe som skrives
-Dén gang og deretter samler støv.
+Dokumentasjon og planlegging handler om å ha oversikt: over hva som finnes, hvordan det henger sammen, hva som er gjort, og hva som skal gjøres. Dette er kompetansemål km-06 – en av de mest praktiske delene av faget. En god IT-avdeling behandler dokumentasjon som levende ressurser som oppdateres kontinuerlig, ikke som noe som skrives én gang og deretter samler støv.
 
 ---
 
@@ -39,11 +31,11 @@ Dén gang og deretter samler støv.
 
 Dokumentasjon tjener flere formål i IT-drift:
 
--**Feilsøking**– vet vi hva som er normal konfigurasjon, er det lettere å finne avvik
--**Onboarding**– ny kollega eller vikar kan ta over uten å starte fra null
--**Revisjoner og compliance**– myndigheter og kunder kan kreve dokumentasjon (f.eks. etter GDPR)
--**Endringstyring**– sporing av hva som er endret, hvem som endret det og hvorfor
--**Kontinuitet**– virksomheten er ikke avhengig av én person som bærer all kunnskap i hodet
+- **Feilsøking** – vet vi hva som er normal konfigurasjon, er det lettere å finne avvik
+- **Onboarding** – ny kollega eller vikar kan ta over uten å starte fra null
+- **Revisjoner og compliance** – myndigheter og kunder kan kreve dokumentasjon (f.eks. etter GDPR)
+- **Endringstyring** – sporing av hva som er endret, hvem som endret det og hvorfor
+- **Kontinuitet** – virksomheten er ikke avhengig av én person som bærer all kunnskap i hodet
 
 Digdir understreker at god dokumentasjon er grunnlaget for interoperabilitet i norsk offentlig sektor.[^2]
 
@@ -55,14 +47,13 @@ En nettverkstopologi beskriver hvordan noder (enheter) er koblet sammen i et net
 
 #### Stjernetopologi (vanligst)
 
-AAlle enheter kobler seg til en sentral svitsj eller ruter. Enkel å feilsøke (isoler kabelen til den defekte enheten) og
-Aenkel å utvide.
+Alle enheter kobler seg til en sentral svitsj eller ruter. Enkel å feilsøke (isoler kabelen til den defekte enheten) og enkel å utvide.
 
-```javascript
+```
       [PC]
-       ||
+       |
 [PC]--[Svitsj]--[PC]
-       ||
+       |
       [Server]
 ```
 
@@ -71,14 +62,13 @@ Aenkel å utvide.
 
 #### Mesh-topologi
 
-AAlle noder er koblet til alle andre noder (full mesh) eller til mange andre (partial mesh).
-ABrukes i WAN-nett og robuste kritiske systemer.
+Alle noder er koblet til alle andre noder (full mesh) eller til mange andre (partial mesh). Brukes i WAN-nett og robuste kritiske systemer.
 
-```javascript
+```
 [A]---[B]
- || \ / |
- || X |
- || / \ |
+ | \ / |
+ | X  |
+ |/ \ |
 [C]---[D]
 ```
 
@@ -87,90 +77,83 @@ ABrukes i WAN-nett og robuste kritiske systemer.
 
 #### Busstopologi (historisk)
 
-AAlle enheter koblet til én felles kabel (bus). Brukes ikke lenger i moderne nettverk, men kjennes igjen fra eldre
-AEthernet-standarder.
+Alle enheter koblet til én felles kabel (bus). Brukes ikke lenger i moderne nettverk, men kjennes igjen fra eldre Ethernet-standarder.
 
 ---
 
 ### IP-adresseplan
 
-EEn IP-adresseplan er en strukturert oversikt over alle IP-adresser, subnett og tilhørende informasjon i nettverket.
-EDen er et kritisk planleggings- og driftsdokument. Se [[dns-og-dhcp]] og [[segmentering-og-vlan]] for relaterte emner.
+En IP-adresseplan er en strukturert oversikt over alle IP-adresser, subnett og tilhørende informasjon i nettverket. Den er et kritisk planleggings- og driftsdokument. Se [[dns-og-dhcp]] og [[segmentering-og-vlan]] for relaterte emner.
 
 #### Eksempel: IP-adresseplan for et skolenettverk
 
-**Nettverksinfo:**192.168.1.0/24 (254 brukbare adresser)
+**Nettverksinfo:** 192.168.1.0/24 (254 brukbare adresser)
 
-|| VLAN | Navn | Subnett | Nettadresse | Gateway | DNS | DHCP-område | Kommentar |
-|| ------ | ------ | --------- | ------------- | --------- | ----- | ------------- | ----------- |
-|| 10 | Administrasjon | /26 | 192.168.1.0 | 192.168.1.1 | 192.168.1.10 | .20–.62 | 42 adresser til ansatte |
-|| 20 | Elever | /25 | 192.168.1.128 | 192.168.1.129 | 192.168.1.10 | .140–.253 | 114 adresser, BYOD |
-|| 30 | Servere | /27 | 192.168.1.64 | 192.168.1.65 | 192.168.1.66 | Statisk | Filserver, AD, backup |
-|| 40 | Gjest/IoT | /27 | 192.168.1.96 | 192.168.1.97 | 8.8.8.8 | .100–.126 | Isolert, kun internett |
+| VLAN | Navn | Subnett | Nettadresse | Gateway | DNS | DHCP-område | Kommentar |
+|------|------|---------|-------------|---------|-----|-------------|-----------|
+| 10 | Administrasjon | /26 | 192.168.1.0 | 192.168.1.1 | 192.168.1.10 | .20–.62 | 42 adresser til ansatte |
+| 20 | Elever | /25 | 192.168.1.128 | 192.168.1.129 | 192.168.1.10 | .140–.253 | 114 adresser, BYOD |
+| 30 | Servere | /27 | 192.168.1.64 | 192.168.1.65 | 192.168.1.66 | Statisk | Filserver, AD, backup |
+| 40 | Gjest/IoT | /27 | 192.168.1.96 | 192.168.1.97 | 8.8.8.8 | .100–.126 | Isolert, kun internett |
 
-*## Statiske adresser (utvalg):
+**Statiske adresser (utvalg):**
 
-|| Enhet | IP-adresse | MAC-adresse | Lokasjon |
-|| ------- | ----------- | ------------- | ---------- |
-|| Brannmur (WAN-grensesnitt) | 10.0.0.1 | – | Server-rom |
-|| Kjernesvitsj | 192.168.1.2 | aa:bb:cc:dd:ee:01 | Server-rom |
-|| Active Directory / DNS | 192.168.1.10 | aa:bb:cc:dd:ee:10 | Server-rom |
-|| Filserver | 192.168.1.11 | aa:bb:cc:dd:ee:11 | Server-rom |
-|| NAS (backup) | 192.168.1.12 | aa:bb:cc:dd:ee:12 | Server-rom |
-|| Printer, 1. etasje | 192.168.1.50 | aa:bb:cc:dd:ee:50 | Rom 101 |
+| Enhet | IP-adresse | MAC-adresse | Lokasjon |
+|-------|-----------|-------------|----------|
+| Brannmur (WAN-grensesnitt) | 10.0.0.1 | – | Server-rom |
+| Kjernesvitsj | 192.168.1.2 | aa:bb:cc:dd:ee:01 | Server-rom |
+| Active Directory / DNS | 192.168.1.10 | aa:bb:cc:dd:ee:10 | Server-rom |
+| Filserver | 192.168.1.11 | aa:bb:cc:dd:ee:11 | Server-rom |
+| NAS (backup) | 192.168.1.12 | aa:bb:cc:dd:ee:12 | Server-rom |
+| Printer, 1. etasje | 192.168.1.50 | aa:bb:cc:dd:ee:50 | Rom 101 |
 
 ---
 
 ### Driftslogg og endringslogg
 
-EEn driftslogg (change log) er en kronologisk registrering av alle endringer som er gjort i IT-miljøet.[^4] Det er
-Ekanskje det viktigste enkeltdokumentet i en driftsorganisasjon.
+En driftslogg (change log) er en kronologisk registrering av alle endringer som er gjort i IT-miljøet.[^4] Det er kanskje det viktigste enkeltdokumentet i en driftsorganisasjon.
 
 #### Format
 
 Loggen bør inneholde:
--**Dato og klokkeslett**– når ble endringen gjort?
--**Utført av**– hvem gjorde det?
--**Hva ble gjort**– konkret beskrivelse av endringen
--**Hvorfor**– årsak/begrunnelse
--**Resultat**– ble det som forventet? Noen problemer?
--**Saksnummer / ticket**– referanse til helpdesk-saken om det er relevant
+- **Dato og klokkeslett** – når ble endringen gjort?
+- **Utført av** – hvem gjorde det?
+- **Hva ble gjort** – konkret beskrivelse av endringen
+- **Hvorfor** – årsak/begrunnelse
+- **Resultat** – ble det som forventet? Noen problemer?
+- **Saksnummer / ticket** – referanse til helpdesk-saken om det er relevant
 
 #### Eksempel på endringslogg
 
-|| Dato | Utført av | Endring | Årsak | Resultat |
-|| ------ | ----------- | --------- | ------- | --------- |
-|| 2025-11-12 08:30 | Erik H. | Oppdaterte Windows Server 2022 til KB5043050 | Månedlig patchrunde | OK, server startet normalt |
-|| 2025-11-14 14:00 | Sara L. | Lagt til ny PC (HP EliteBook) i AD, VLAN 20 | Ny elev | Funger, DHCP-leie bekreftet |
-|| 2025-11-15 09:15 | Erik H. | Endret DHCP-område for VLAN 20: .140–.200 → .140–.253 | Kapasitetsbehov | OK, ny rekkevidde aktiv |
+| Dato | Utført av | Endring | Årsak | Resultat |
+|------|-----------|---------|-------|---------|
+| 2025-11-12 08:30 | Erik H. | Oppdaterte Windows Server 2022 til KB5043050 | Månedlig patchrunde | OK, server startet normalt |
+| 2025-11-14 14:00 | Sara L. | Lagt til ny PC (HP EliteBook) i AD, VLAN 20 | Ny elev | Funger, DHCP-leie bekreftet |
+| 2025-11-15 09:15 | Erik H. | Endret DHCP-område for VLAN 20: .140–.200 → .140–.253 | Kapasitetsbehov | OK, ny rekkevidde aktiv |
 
 ---
 
 ### Prosedyredokumentasjon
 
-KKritiske operasjoner bør dokumenteres som steg-for-steg prosedyrer. Dette sikrer at operasjonen kan utføres av hvem som
-Khelst i teamet – ikke bare den som opprinnelig satte det opp.
+Kritiske operasjoner bør dokumenteres som steg-for-steg prosedyrer. Dette sikrer at operasjonen kan utføres av hvem som helst i teamet – ikke bare den som opprinnelig satte det opp.
 
-*## Eksempel: Prosedyre for månedlig backup-test
+**Eksempel: Prosedyre for månedlig backup-test**
 
-```bash
+```
 Tittel: Månedlig gjenopprettingstest av filserver-backup
 Ansvarlig rolle: Systemadministrator
 Frekvens: Hver 1. mandag i måneden
 
 Steg:
-
 1. Logg inn på Veeam Backup & Replication.
 2. Naviger til siste fulle backup av FILESERVER01.
 3. Høyreklikk → «Instant Recovery» → velg isolert test-nettverk.
 4. Start gjenoppretting og vent til VM er tilgjengelig (ca. 5 min).
 5. Logg inn på den gjenopprettede VM og verifiser:
-
    a. At tjenestene (fileshare, DNS) kjører.
    b. At en tilfeldig valgt fil fra siste uke er tilgjengelig og lesbar.
-
-1. 
-2. 
+6. Dokumenter resultatet i driftsloggen.
+7. Slå av test-VM.
 
 Forventet resultat: VM starter, filer tilgjengelige, ingen feil.
 ```
@@ -179,25 +162,23 @@ Forventet resultat: VM starter, filer tilgjengelige, ingen feil.
 
 ### Verktøy for dokumentasjon
 
-|| Verktøy | Bruksområde |
-|| --------- | ------------- |
-|| **draw.io / Lucidchart** | Nettverkstopologier, arkitekturdiagrammer |
-|| **Markdown / Obsidian** | Driftslogg, prosedyrer, intern wiki |
-|| **Confluence** | Teambasert wiki, brukt i store IT-avdelinger |
-|| **IT Glue** | Profesjonelt MSP-verktøy for IT-dokumentasjon. Integrerer passordhåndtering, enhetsregister og prosedyrer. |
-|| **CMDB** | Configuration Management Database – register over all IT-infrastruktur (enheter, konfigurasjon, relasjoner) |
-|| **Excel/Google Sheets** | IP-adresseplaner og inventarlister (enkel, men ikke skalerbar) |
+| Verktøy | Bruksområde |
+|---------|-------------|
+| **draw.io / Lucidchart** | Nettverkstopologier, arkitekturdiagrammer |
+| **Markdown / Obsidian** | Driftslogg, prosedyrer, intern wiki |
+| **Confluence** | Teambasert wiki, brukt i store IT-avdelinger |
+| **IT Glue** | Profesjonelt MSP-verktøy for IT-dokumentasjon. Integrerer passordhåndtering, enhetsregister og prosedyrer. |
+| **CMDB** | Configuration Management Database – register over all IT-infrastruktur (enheter, konfigurasjon, relasjoner) |
+| **Excel/Google Sheets** | IP-adresseplaner og inventarlister (enkel, men ikke skalerbar) |
 
 ---
 
 ### ITIL og endringstyring
 
-***ITIL**(IT Infrastructure Library) er et rammeverk for god IT-driftspraksis som er mye brukt i norsk og internasjonal
-*IT-bransje.[^5] Selv om man ikke behøver å innføre hele ITIL på VG2-nivå, er noen begreper sentrale:
+**ITIL** (IT Infrastructure Library) er et rammeverk for god IT-driftspraksis som er mye brukt i norsk og internasjonal IT-bransje.[^5] Selv om man ikke behøver å innføre hele ITIL på VG2-nivå, er noen begreper sentrale:
 
-*## Change Management (endringstyring)
+**Change Management (endringstyring)**
 En strukturert prosess for å håndtere endringer i IT-miljøet på en kontrollert måte:
-
 1. Endringen planlegges og dokumenteres
 2. Risikovurdering gjennomføres
 3. Endringen godkjennes (av riktig person/rolle)
@@ -213,14 +194,14 @@ Uten endringstyring kan ukontrollerte endringer bli den hyppigste årsaken til d
 
 God planlegging reduserer risiko og gjør prosjektet mer forutsigbart. En enkel planleggingsprosess kan se slik ut:
 
-1.**Behovskartlegging**– hva ønsker virksomheten å oppnå?
-2.**Kravspesifikasjon**– tekniske og funksjonelle krav
-3.**Risikovurdering (ROS-analyse)**– hva kan gå galt, og hva er konsekvensen?
-4.**Løsningsforslag og valg**– vurder alternativer
-5.**Prosjektplan**– tidsplan, ansvar, milepæler
-6.**Implementering og testing**
-7.**Dokumentasjon og overlevering**
-8.**Evaluering**– ble kravene oppfylt?
+1. **Behovskartlegging** – hva ønsker virksomheten å oppnå?
+2. **Kravspesifikasjon** – tekniske og funksjonelle krav
+3. **Risikovurdering (ROS-analyse)** – hva kan gå galt, og hva er konsekvensen?
+4. **Løsningsforslag og valg** – vurder alternativer
+5. **Prosjektplan** – tidsplan, ansvar, milepæler
+6. **Implementering og testing**
+7. **Dokumentasjon og overlevering**
+8. **Evaluering** – ble kravene oppfylt?
 
 Se [[risikoanalyse]] for mer om ROS-analyser i IT-sammenheng.
 
@@ -230,23 +211,22 @@ Se [[risikoanalyse]] for mer om ROS-analyser i IT-sammenheng.
 
 ### Systematisk feilsøking i 5 steg
 
->**Kilde:**Klasseromsnotater (2ITA)
+> **Kilde:** Klasseromsnotater (2ITA)
 >
 > Når noe stopper opp, ikke få panikk. Gå systematisk til verks med disse stegene:
 >
-> 1.**Observer**– Hva skjer (og hva skjer ikke)? Les hele feilmeldingen, ikke bare de første ordene.
-> 2.**Analyser**– Hva var det siste som fungerte? Hvilken endring ble gjort rett før feilen? Ofte ligger feilen der.
-> 3.**Still hypoteser**– Hva trenger datamaskinen for å gjøre dette? Test hypotesen med konkrete kommandoer (f.eks. `ping 8.8.8.8` for å teste nettverkstilgang).
-> 4.**Bruk verktøy og les feilmeldingen**– Vanlige mønstre:
->
-> - `Permission denied`→ glemt`sudo`
-> - `Could not resolve host` → nettverk eller DNS-problem
-> - `No such file or directory`→ feil filnavn eller feil mappe (sjekk med`ls`)
-> 5.**Søk etter kunnskap**– Kopier hele feilmeldingen (uten brukernavn) til Google eller en AI. Gi alltid kontekst: OS-versjon, hva du prøver å gjøre, og hva som skjer.
+> 1. **Observer** – Hva skjer (og hva skjer ikke)? Les hele feilmeldingen, ikke bare de første ordene.
+> 2. **Analyser** – Hva var det siste som fungerte? Hvilken endring ble gjort rett før feilen? Ofte ligger feilen der.
+> 3. **Still hypoteser** – Hva trenger datamaskinen for å gjøre dette? Test hypotesen med konkrete kommandoer (f.eks. `ping 8.8.8.8` for å teste nettverkstilgang).
+> 4. **Bruk verktøy og les feilmeldingen** – Vanlige mønstre:
+>    - `Permission denied` → glemt `sudo`
+>    - `Could not resolve host` → nettverk eller DNS-problem
+>    - `No such file or directory` → feil filnavn eller feil mappe (sjekk med `ls`)
+> 5. **Søk etter kunnskap** – Kopier hele feilmeldingen (uten brukernavn) til Google eller en AI. Gi alltid kontekst: OS-versjon, hva du prøver å gjøre, og hva som skjer.
 >
 > Dokumenter alltid løsningen i loggen din — det er gull verdt neste gang samme problem oppstår.
 
-*## Oppgave: Lag IP-adresseplan for et skolenettverk
+**Oppgave: Lag IP-adresseplan for et skolenettverk**
 
 Gitt: Skole med 80 elever, 20 ansatte, 3 servere, 2 printere og et gjestenettverk.
 
@@ -257,10 +237,9 @@ Gitt: Skole med 80 elever, 20 ansatte, 3 servere, 2 printere og et gjestenettver
 5. Angi statiske adresser for servrene.
 6. Tegn en enkel topologi i draw.io som viser VLAN-strukturen.
 
-*## Tilleggsoppgave: Skriv en prosedyre
+**Tilleggsoppgave: Skriv en prosedyre**
 
-VVelg én kritisk IT-operasjon (f.eks. legge til en ny bruker i Active Directory, eller utføre en backup).
-VDokumenter operasjonen som en steg-for-steg prosedyre med tittel, ansvarlig rolle, frekvens og forventet resultat.
+Velg én kritisk IT-operasjon (f.eks. legge til en ny bruker i Active Directory, eller utføre en backup). Dokumenter operasjonen som en steg-for-steg prosedyre med tittel, ansvarlig rolle, frekvens og forventet resultat.
 
 ---
 
@@ -268,61 +247,49 @@ VDokumenter operasjonen som en steg-for-steg prosedyre med tittel, ansvarlig rol
 
 ### Kjerneinnhold
 
-DDokumentasjon og planlegging handler om å skape og vedlikeholde oversikt over IT-miljøet – slik at drift, feilsøking og
-Dendringer kan gjøres kontrollert og effektivt.
+Dokumentasjon og planlegging handler om å skape og vedlikeholde oversikt over IT-miljøet – slik at drift, feilsøking og endringer kan gjøres kontrollert og effektivt.
 
-*## Dokumentasjonstyper:
--**IP-adresseplan**– oversikt over VLAN, subnett, gateway, DNS, DHCP og statiske adresser
--**Nettverkstopologi**– visuelt kart over nettverkskomponenter og koblinger (draw.io)
--**Driftslogg/endringslogg**– kronologisk register over alle endringer
--**Prosedyredokumentasjon**– steg-for-steg instrukser for kritiske operasjoner
--**CMDB**– register over all infrastruktur
+**Dokumentasjonstyper:**
+- **IP-adresseplan** – oversikt over VLAN, subnett, gateway, DNS, DHCP og statiske adresser
+- **Nettverkstopologi** – visuelt kart over nettverkskomponenter og koblinger (draw.io)
+- **Driftslogg/endringslogg** – kronologisk register over alle endringer
+- **Prosedyredokumentasjon** – steg-for-steg instrukser for kritiske operasjoner
+- **CMDB** – register over all infrastruktur
 
-*## Nettverkstopologier:
-
+**Nettverkstopologier:**
 - Stjerne (vanligst): sentralisert svitsj, enkel å feilsøke
 - Mesh: alle koblet til alle, robust men kompleks
 - Buss: historisk, brukes ikke i moderne nettverk
 
-*## Planleggingsprosess:
+**Planleggingsprosess:**
 Behovskartlegging → Krav → ROS-analyse → Løsningsvalg → Prosjektplan → Implementering → Dokumentasjon → Evaluering
 
-*## ITIL endringstyring:
+**ITIL endringstyring:**
 Alle endringer planlegges, risikovurderes, godkjennes, gjennomføres, dokumenteres. Rollback-plan alltid klar.
 
-***Husk:**Uten dokumentasjon er IT-avdelingen avhengig av enkeltpersoners hukommelse.
-*God dokumentasjon er en kollektiv forsikring.
+**Husk:** Uten dokumentasjon er IT-avdelingen avhengig av enkeltpersoners hukommelse. God dokumentasjon er en kollektiv forsikring.
 
 ---
 
 ## FAQ
 
-*## Hvorfor er endringsloggen viktigere enn folk tror?
-NNår noe slutter å virke, er det første spørsmålet alltid: «Hva endret vi sist?» Endringsloggen gir svaret umiddelbart.
-NUten den må man gjette – noe som kan ta timer eller dager.
+**Hvorfor er endringsloggen viktigere enn folk tror?**
+Når noe slutter å virke, er det første spørsmålet alltid: «Hva endret vi sist?» Endringsloggen gir svaret umiddelbart. Uten den må man gjette – noe som kan ta timer eller dager.
 
-*## Hva er forskjellen på en driftslogg og en endringslogg?
-II praksis brukes begrepene om hverandre, men en endringslogg fokuserer spesifikt på endringer som er gjort (patching,
-Ikonfigurasjon, ny bruker), mens en driftslogg kan inkludere hendelser, feil og status mer generelt.
+**Hva er forskjellen på en driftslogg og en endringslogg?**
+I praksis brukes begrepene om hverandre, men en endringslogg fokuserer spesifikt på endringer som er gjort (patching, konfigurasjon, ny bruker), mens en driftslogg kan inkludere hendelser, feil og status mer generelt.
 
-*## Hva er CMDB og er det nødvendig for en liten skole?
-CCMDB (Configuration Management Database) er et detaljert register over all IT-infrastruktur.
-CCFor en liten skole er et enkelt Excel-ark eller Markdown-dokument tilstrekkelig. Store virksomheter bruker dedikerte
-CCMDB-verktøy (f.eks. ServiceNow) fordi antallet komponenter er for stort for manuell sporing.
+**Hva er CMDB og er det nødvendig for en liten skole?**
+CMDB (Configuration Management Database) er et detaljert register over all IT-infrastruktur. For en liten skole er et enkelt Excel-ark eller Markdown-dokument tilstrekkelig. Store virksomheter bruker dedikerte CMDB-verktøy (f.eks. ServiceNow) fordi antallet komponenter er for stort for manuell sporing.
 
-*## Hva er ITIL og trenger vi det?
-IITIL er et rammeverk med beste praksis for IT-drift, opprinnelig utviklet for store organisasjoner.
-IIPrinsippene (endringstyring, incident management, service management) er relevante i alle størrelser, selv om man ikke
-Iimplementerer hele rammeverket. Å ha en endringslogg og rollback-prosess er ITIL-tenkning i sin enkleste form.
+**Hva er ITIL og trenger vi det?**
+ITIL er et rammeverk med beste praksis for IT-drift, opprinnelig utviklet for store organisasjoner. Prinsippene (endringstyring, incident management, service management) er relevante i alle størrelser, selv om man ikke implementerer hele rammeverket. Å ha en endringslogg og rollback-prosess er ITIL-tenkning i sin enkleste form.
 
-*## Hva er en ROS-analyse i IT-planlegging?
-RROS (Risiko og Sårbarhets) analyse kartlegger hva som kan gå galt med en planlagt IT-løsning, hvor sannsynlig det er, og
-Rhva konsekvensen er. Det gir grunnlag for å prioritere tiltak. Se [[risikoanalyse]] for metode og maler.
+**Hva er en ROS-analyse i IT-planlegging?**
+ROS (Risiko og Sårbarhets) analyse kartlegger hva som kan gå galt med en planlagt IT-løsning, hvor sannsynlig det er, og hva konsekvensen er. Det gir grunnlag for å prioritere tiltak. Se [[risikoanalyse]] for metode og maler.
 
-*## Hva gjør draw.io til et godt dokumentasjonsverktøy?
-ddraw.io er gratis, nettbasert, og lagrer diagrammer som XML-filer som kan versjonskontrolleres med git.
-ddDet har spesifikke symbolbiblioteker for nettverkstopologier. Resultatet er visuelle, lettleselige diagrammer som kan
-ddeles og oppdateres enkelt.
+**Hva gjør draw.io til et godt dokumentasjonsverktøy?**
+draw.io er gratis, nettbasert, og lagrer diagrammer som XML-filer som kan versjonskontrolleres med git. Det har spesifikke symbolbiblioteker for nettverkstopologier. Resultatet er visuelle, lettleselige diagrammer som kan deles og oppdateres enkelt.
 
 ---
 
@@ -330,51 +297,73 @@ ddeles og oppdateres enkelt.
 
 <details><summary>Spørsmål 1: Hvorfor er en endringslogg viktig i IT-drift?</summary>
 
-***Svar:**Endringsloggen gir en historikk over alle endringer som er gjort i systemet.
-**Dette er uunnværlig ved feilsøking (hva endret vi rett før problemet oppsto?), revisjoner, onboarding av ny kollega og
-*for å opprettholde kontinuitet når folk slutter.
+**Svar:** Endringsloggen gir en historikk over alle endringer som er gjort i systemet. Dette er uunnværlig ved feilsøking (hva endret vi rett før problemet oppsto?), revisjoner, onboarding av ny kollega og for å opprettholde kontinuitet når folk slutter.
 
 </details>
 
 <details><summary>Spørsmål 2: Hva er en stjernetopologi og hva er dens svakhet?</summary>
 
-***Svar:**En stjernetopologi kobler alle enheter til en sentral svitsj. Det er enkelt å feilsøke og utvide.
-**Svakheten er at svitsjen er et single point of failure – feiler svitsjen, mister alle enheter kontakten.
-*Dette avhjelpes med redundante svitsjer.
+**Svar:** En stjernetopologi kobler alle enheter til en sentral svitsj. Det er enkelt å feilsøke og utvide. Svakheten er at svitsjen er et single point of failure – feiler svitsjen, mister alle enheter kontakten. Dette avhjelpes med redundante svitsjer.
 
 </details>
 
 <details><summary>Spørsmål 3: Hva skal en IP-adresseplan inneholde?</summary>
 
-***Svar:**En IP-adresseplan skal minst inneholde: nettverksadresse og subnettmaske, gateway-adresse, DNS-server(e),
-**DHCP-område, og oversikt over statiske adresser (servere, printere, nettverksutstyr).
-*Den kan også inkludere VLAN-informasjon og MAC-adresser.
+**Svar:** En IP-adresseplan skal minst inneholde: nettverksadresse og subnettmaske, gateway-adresse, DNS-server(e), DHCP-område, og oversikt over statiske adresser (servere, printere, nettverksutstyr). Den kan også inkludere VLAN-informasjon og MAC-adresser.
 
 </details>
 
 <details><summary>Spørsmål 4: Hva er CMDB?</summary>
 
-***Svar:**CMDB (Configuration Management Database) er et register over all IT-infrastruktur i en virksomhet: enheter,
-*programvare, konfigurasjoner og relasjonene mellom dem. Det er grunnlaget for god endringstyring og feilsøking.
+**Svar:** CMDB (Configuration Management Database) er et register over all IT-infrastruktur i en virksomhet: enheter, programvare, konfigurasjoner og relasjonene mellom dem. Det er grunnlaget for god endringstyring og feilsøking.
 
 </details>
 
-<<details><summary>Spørsmål 5: Nevn to verktøy som brukes til nettverksdokumentasjon og beskriv hva de brukes
-<til.</summary>
+<details><summary>Spørsmål 5: Nevn to verktøy som brukes til nettverksdokumentasjon og beskriv hva de brukes til.</summary>
 
-***Svar:**draw.io brukes til å tegne nettverkstopologier og arkitekturdiagrammer – visuelt og gratis.
-**IT Glue er et profesjonelt dokumentasjonsverktøy brukt av driftsselskaper (MSP-er) som samler alt fra passordhåndtering
-*til prosedyrer og enhetsregister i ett system.
+**Svar:** draw.io brukes til å tegne nettverkstopologier og arkitekturdiagrammer – visuelt og gratis. IT Glue er et profesjonelt dokumentasjonsverktøy brukt av driftsselskaper (MSP-er) som samler alt fra passordhåndtering til prosedyrer og enhetsregister i ett system.
 
 </details>
 
 ---
 
+## Flashcards
+
+Nettverkstopologi :: Beskrivelse av hvordan noder er koblet sammen i et nettverk. Eksempler: stjerne, mesh, buss.
+
+Stjernetopologi :: Alle enheter koblet til en sentral svitsj. Enkel og vanligst i moderne nettverk.
+
+IP-adresseplan :: Strukturert oversikt over IP-adresser, subnett, gateway og DNS i et nettverk.
+
+Subnett :: En del av et IP-nettverk adskilt ved hjelp av subnettmaske. Brukes for VLAN-segmentering og adressering.
+
+VLAN :: Virtual LAN – logisk nettverksegmentering. Enheter i samme VLAN kommuniserer som om de er på samme fysiske nettverk.
+
+Driftslogg :: Kronologisk logg over alle endringer i IT-miljøet. Brukes til feilsøking, revisjon og kontinuitet.
+
+CMDB :: Configuration Management Database – register over all IT-infrastruktur og konfigurasjoner.
+
+draw.io :: Gratis, nettbasert verktøy for tegning av nettverkstopologier og arkitekturdiagrammer.
+
+IT Glue :: Profesjonelt dokumentasjonsverktøy for IT-driftsselskaper. Samler dokumentasjon, passord og enhetsinformasjon.
+
+Prosedyredokumentasjon :: Steg-for-steg instrukser for kritiske IT-operasjoner. Sikrer at hvem som helst kan utføre oppgaven.
+
+ROS-analyse :: Risiko- og sårbarhetsanalyse. Brukes i planleggingsfasen for å identifisere og vurdere risiko.
+
+ITIL :: IT Infrastructure Library – rammeverk for beste praksis i IT-drift. Dekker endringstyring, incident management og service management.
+
+Endringstyring :: Strukturert prosess for å planlegge, godkjenne og dokumentere endringer i IT-miljøet. Inkluderer alltid rollback-plan.
+
+Single point of failure :: En komponent hvis svikt gjør hele systemet utilgjengelig. Avhjelpes med redundans.
+
+---
+
 ## Ressurser
 
-- [Digdir: Referansearkitektur for datadeling](<https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131>)
-- [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>)
-- [draw.io (diagramtegning)](<https://app.diagrams.net/>)
+- [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131)
+- [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/)
+- [draw.io (diagramtegning)](https://app.diagrams.net/)
 - [[driftsarkitektur]]
 - [[backup-og-gjenoppretting]]
 - [[risikoanalyse]]
@@ -383,8 +372,9 @@ ddeles og oppdateres enkelt.
 
 ## Kilder
 
-[^1]: [NDLA: Dokumentasjon og planlegging](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Betydningen av dokumentasjon i IT-drift.
-[^2]: [Digdir: Referansearkitektur for datadeling](<https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131>) – Dokumentasjon som grunnlag for interoperabilitet.
-[^3]: [NDLA: Sikkerhet og sårbarhet](<https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/>) – Nettverkstopologier og nettverksstruktur.
-[^4]: [Microsoft Azure Well-Architected Framework](<https://learn.microsoft.com/en-us/azure/architecture/framework/>) – Prinsipper for driftslogg og endringssporing.
-[^5]: [Digdir: Skytjenester i offentlig sektor](<https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153>) – ITIL og endringstyring i offentlig sektor.
+[^1]: [NDLA: Dokumentasjon og planlegging](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Betydningen av dokumentasjon i IT-drift.
+[^2]: [Digdir: Referansearkitektur for datadeling](https://www.digdir.no/nasjonal-arkitektur/referansearkitektur-for-datadeling/2131) – Dokumentasjon som grunnlag for interoperabilitet.
+[^3]: [NDLA: Sikkerhet og sårbarhet](https://ndla.no/nb/subject:26f1cd12-4242-486d-be22-75c3750a52a2/) – Nettverkstopologier og nettverksstruktur.
+[^4]: [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/architecture/framework/) – Prinsipper for driftslogg og endringssporing.
+[^5]: [Digdir: Skytjenester i offentlig sektor](https://www.digdir.no/nasjonal-arkitektur/skytjenester/2153) – ITIL og endringstyring i offentlig sektor.
+
